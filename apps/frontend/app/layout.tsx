@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../styles/globals.css";
+import "./globals.css";
 import { Header } from "@/components/layout/header";
-import { ReduxProvider } from "@/components/providers/ReduxProvider";
+import ClientProviders from "@/components/providers/ClientProviders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hockey Hub",
-  description: "Hockey Team Management Application",
+  description: "Centralized platform for hockey team management",
 };
 
 export default function RootLayout({
@@ -29,14 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <ReduxProvider>
+        <ClientProviders>
           <div className="relative flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1">
-              {children}
-            </main>
+            <main className="flex-1">{children}</main>
           </div>
-        </ReduxProvider>
+        </ClientProviders>
       </body>
     </html>
   );
