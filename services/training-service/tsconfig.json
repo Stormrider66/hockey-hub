@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "ES2016", 
+    "module": "CommonJS", 
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true,
+    "noEmit": false // Override base config
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+} 

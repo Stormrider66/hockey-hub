@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:17-alpine # Use PostgreSQL 17 as per database-schema.md
+    container_name: hockeyhub_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-hockeyhub_dev}
+      POSTGRES_USER: ${POSTGRES_USER:-hockeyhub_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hockeyhub_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-hockeyhub_user} -d ${POSTGRES_DB:-hockeyhub_dev}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- Placeholder for Backend Services --- 
+  # Example User Service (to be defined later)
+  # user-service:
+  #   build:
+  #     context: ./services/user-service
+  #     dockerfile: Dockerfile
+  #   container_name: hockeyhub_user_service
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - DATABASE_URL=postgresql://${POSTGRES_USER:-hockeyhub_user}:${POSTGRES_PASSWORD:-hockeyhub_password}@db:5432/${POSTGRES_DB:-hockeyhub_dev}
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     db: 
+  #       condition: service_healthy 
+  #   networks:
+  #     - hockeyhub_network
+  #   volumes:
+  #     - ./services/user-service:/usr/src/app
+  #     - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's
+
+  # --- Frontend App --- 
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: hockeyhub_frontend
+    ports:
+      - "${FRONTEND_PORT:-3000}:80" # Map host 3000 to container 80 (Nginx)
+    # No environment needed for static build unless during build stage
+    # No volumes needed for static build in production, but useful for dev
+    # environment:
+    #   - NODE_ENV=development
+    networks:
+      - hockeyhub_network
+    # Volumes for development (hot-reloading) - requires different Dockerfile setup
+    # volumes:
+    #   - ./apps/frontend:/app
+    #   - /app/node_modules
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  hockeyhub_network:
+    driver: bridge 
