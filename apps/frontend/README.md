@@ -1,0 +1,1 @@
+# Hockey Hub Frontend\n\nNext.js frontend application for Hockey Hub.
