@@ -43,6 +43,28 @@ services:
   #     - ./services/user-service:/usr/src/app
   #     - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's
 
+  # Training Service
+  training-service:
+    build:
+      context: ./services/training-service
+      dockerfile: Dockerfile # Assuming a standard Dockerfile exists
+    container_name: hockeyhub_training_service
+    ports:
+      - "${TRAINING_SERVICE_PORT:-3004}:3004"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-hockeyhub_user}:${POSTGRES_PASSWORD:-hockeyhub_password}@db:5432/${POSTGRES_DB:-hockeyhub_dev}
+      - NODE_ENV=${NODE_ENV:-development}
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret}
+      # Add other necessary environment variables
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - hockeyhub_network
+    volumes:
+      - ./services/training-service/src:/usr/src/app/src # Map src for development changes
+      - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's
+
   # --- Frontend App --- 
   frontend:
     build:
