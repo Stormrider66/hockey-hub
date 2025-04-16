@@ -2,13 +2,11 @@
 
 ## Current Status
 
-**Project Phase**: Design System Implementation
-**Overall Completion**: 5%
-**Current Focus**: Design System Implementation and Project Setup
+**Project Phase**: Frontend Foundation / Backend Refinement (Phase 2/3)
+**Overall Completion**: ~30-35% (Estimate based on service scaffolding and initial frontend work)
+**Current Focus**: Frontend component implementation (Calendar) & Backend service refinement
 
 ## What's Been Completed
-
-We are at the early stages of the project, with the following items completed:
 
 - ✅ Project requirements gathering
 - ✅ High-level architecture planning
@@ -17,192 +15,166 @@ We are at the early stages of the project, with the following items completed:
 - ✅ Design system selection (shadcn/ui with Tailwind CSS)
 - ✅ UI component reference implementation (HockeyAppUIComponents.tsx)
 - ✅ Color scheme and visual language definition
+- ✅ **Frontend Setup:**
+  - ✅ Next.js project initialization
+  - ✅ shadcn/ui integration
+  - ✅ Tailwind CSS setup
+  - ✅ Basic layout (`layout.tsx`, `header.tsx`)
+  - ✅ Redux Toolkit setup (`store.ts`, `preferencesSlice`, `ReduxProvider`)
+  - ✅ NextAuth.js setup (`SessionProvider`, basic API route)
+  - ✅ **Interactive Calendar Page:**
+    - ✅ `/calendar` route created
+    - ✅ `CalendarView` component using `react-big-calendar`
+    - ✅ Event fetching from Calendar Service
+    - ✅ Styling based on event types
+    - ✅ Swedish locale configuration
+- ✅ **User Service:**
+  - ✅ Authentication system (Core logic, JWT, Refresh, Reset)
+  - ✅ Basic DB Schema & TypeORM setup
+  - ✅ DTOs & Custom Error Handling
+  - ✅ Email Service Integration (Mock)
+  - ✅ Logging & Middleware (CORS, Helmet, Morgan, Request ID)
+  - ✅ Initial Unit Tests
+- ✅ **Calendar Service:**
+  - ✅ Initial Service Setup (Express, TS)
+  - ✅ Core Type Definitions (Event, Location, Resource, ResourceType)
+  - ✅ Database Schema Defined
+  - ✅ DB Connection Pool Setup (pg)
+  - ✅ Basic CRUD Repositories & Controllers (Events, Locations, Resources, ResourceTypes)
+  - ✅ Basic API Routes Setup (`/events`)
+- ✅ **Communication Service:**
+  - ✅ Initial Service Setup (Express, TS, Socket.IO)
+  - ✅ Core Type Definitions (Chat, Message, Notification)
+  - ✅ Database Schema Defined
+  - ✅ DB Connection Pool Setup (pg)
+  - ✅ Socket.IO Authentication Middleware (JWT based)
+  - ✅ Socket.IO Room Joining Logic (User, Team)
+  - ✅ Basic Message Sending Handler (Validation placeholder, DB placeholder, Broadcasting)
+  - ✅ Basic API Repositories/Controllers/Routes (getUserChats, getChatMessages)
+- ✅ **Training Service:**
+  - ✅ Initial Service Setup (Express, TS)
+  - ✅ Core Type Definitions (Exercise, Template, Session, Test Definition/Result)
+  - ✅ Database Schema Defined
+  - ✅ DB Connection Pool Setup (pg)
+  - ✅ Basic CRUD Repositories & Controllers (Exercises, Categories, Templates, Test Definitions, Test Results, Scheduled Sessions)
+  - ✅ Placeholder Intensity Calculator Service
+  - ✅ Basic API Routes Setup
+- ✅ **Medical Service:**
+  - ✅ Initial Service Setup (Express, TS)
+  - ✅ Core Type Definitions (Injury, Update, Treatment, Plan, Status, Info)
+  - ✅ Database Schema Defined
+  - ✅ DB Connection Pool Setup (pg)
+  - ✅ Basic CRUD Repositories & Controllers (Injuries)
+  - ✅ Basic API Routes Setup
+- ✅ **Planning Service:**
+  - ✅ Initial Service Setup (Express, TS)
+  - ✅ Core Type Definitions (Season, Phase, Goal, Plan, Item)
+  - ✅ Database Schema Defined
+  - ✅ DB Connection Pool Setup (pg)
+  - ✅ Basic CRUD Repositories & Controllers (Seasons, Goals, Dev Plans)
+  - ✅ Zod Validation Schemas & Middleware (Seasons, Goals)
+  - ✅ Basic Authorization Middleware & Controller Checks (Seasons, Goals, Dev Plans using simulated authzService)
+  - ✅ authzService implemented with (simulated) API calls to User Service
+  - ✅ Basic API Routes Setup
+- ✅ **Error Resolution:**
+  - ✅ Fixed Next.js config warnings
+  - ✅ Resolved `React Context is unavailable` errors (Provider refactoring)
+  - ✅ Resolved `CLIENT_FETCH_ERROR` (NextAuth route setup)
+  - ✅ Resolved `fetch failed` errors (Service startup timing/retry logic, API route path correction)
 
 ## What's In Progress
 
-The following items are currently being worked on:
+- 🔄 **Backend Refinement:**
+    - 🔄 Adding Zod Validation (In Progress: Planning Service - Dev Plans/Phases)
+    - 🔄 Implementing Authorization Logic (In Progress: Planning Service - Requires real authzService logic)
+    - 🔄 Implementing Core Logic TODOs (Intensity Calc, Resource Conflicts, etc.)
+    - ⬜ Implementing remaining CRUD endpoints (e.g., Injury Updates, Plan Items, Participants)
+- 🔄 **User Service:** (Parallel work assumed)
+    - 🔄 Role-based access control logic
+    - 🔄 Team/User/Parent relationship endpoints & logic
+    - 🔄 API Routes definition & implementation
+    - 🔄 Unit & Integration Testing
+- 🔄 **API Gateway:**
+    - ⬜ Configuration for new services
+    - ⬜ Centralized JWT validation implementation
+- 🔄 **Frontend:**
+    - 🔄 Configure NextAuth.js providers
+    - ⬜ Implement event creation/editing modal/page for Calendar
+    - ⬜ Build UI for Teams section
+    - ⬜ Build UI for Chat/Communication
+- ⬜ CI/CD Pipeline Refinement (Deployments for new services)
+- ⬜ Database Initialization/Migrations setup for all services
 
-- 🔄 Design system implementation
-- 🔄 Repository structure setup
-- 🔄 Initial project documentation
-- 🔄 Docker configuration planning
-- 🔄 Database schema design
-- 🔄 API contract drafting
+## What's Left to Build (High Level)
 
-## What's Left to Build
-
-As we are at the start of the project, most items remain to be built:
-
-### Phase 1: Core Infrastructure and Design System (Current Focus)
-- ⬜ Repository structure
-- ⬜ Docker and Docker Compose setup
-- ⬜ PostgreSQL database initialization
-- ⬜ API Gateway foundation
-- ⬜ User Service implementation
-  - Authentication system
-  - Role-based access control
-  - Team management
-  - User relationships
-- ⬜ Frontend foundation
-  - React with TypeScript setup
-  - Tailwind CSS and shadcn/ui integration
-  - Component library development
-  - Authentication flows
+### Phase 1: Core Infrastructure and Design System (Mostly Complete)
+- ✅ User Service implementation (Core Auth Done)
+  - ⬜ RBAC, Team/User Management
+- ✅ Frontend foundation & Component Library (Basic setup done)
 - ⬜ Internationalization framework
-  - i18next setup
-  - Initial translations
-  - Language switching
 
-### Phase 2: Core Functionality
-- ⬜ Calendar Service
-  - Event management
-  - Resource booking
-  - Calendar views
-  - Conflict detection
-  
-- ⬜ Communication Service
-  - WebSocket implementation
-  - Chat functionality
-  - Notification system
-  - Message persistence
-  
-- ⬜ Training Service (Basic)
-  - Exercise library
-  - Training templates
-  - Session planning
-  - Calendar integration
+### Phase 2: Core Functionality (In Progress)
+- ✅ **Calendar Service:** Basic Read Implemented
+  - ⬜ Refine CRUD, Resource booking, Conflict detection
+- ⬜ **Communication Service:** Implement DB persistence, Notifications, Full chat logic
+- ⬜ **Training Service:** Intensity calc, Scheduling logic, Test Batches, Live Sessions
+- ✅ **Frontend:** Calendar View Implemented
+  - ⬜ Implement Chat UI
+  - ⬜ Implement Training Module UI
 
-### Phase 3: Extended Functionality
-- ⬜ Medical Service
-  - Injury tracking
-  - Treatment planning
-  - Rehabilitation management
-  - Player availability status
-  
-- ⬜ Planning Service
-  - Season planning
-  - Goal setting
-  - Periodization
-  - Training cycles
-  
-- ⬜ Statistics Service
-  - Performance tracking
-  - Data visualization
-  - Reporting
-  - Trend analysis
+### Phase 3: Extended Functionality (Scaffolding Done, Logic Pending)
+- ⬜ **Medical Service:** Implement remaining CRUD, Player Status logic
+- ⬜ **Planning Service:** Implement Phase/Item/Goal CRUD fully, refine Authorization
+- ⬜ Statistics Service (Not Started)
 
-### Phase 4: Advanced Features
+### Phase 4-6: Advanced Features, Integration, Finalization
 - ⬜ Payment Service
-  - Subscription management
-  - Payment processing
-  - Invoice generation
-  
 - ⬜ Admin Service
-  - System monitoring
-  - Organization onboarding
-  - System configuration
-  
-- ⬜ AI-Assisted Features
-  - Training program generation
-  - Rehabilitation planning
-
-### Phase 5: Integration and Refinement
-- ⬜ External integrations
-  - Payment providers
-  - External statistics sources
-  - File storage services
-  
-- ⬜ Advanced analytics
-  - Performance insights
-  - Predictive analytics
-  - Custom reporting
-
-### Phase 6: Finalization
-- ⬜ Comprehensive testing
-  - Performance testing
-  - Security auditing
-  - Usability testing
-  
+- ⬜ AI Features
+- ⬜ External Integrations
+- ⬜ Advanced Analytics & Reporting
+- ⬜ Comprehensive Testing (Performance, Security, Usability)
 - ⬜ Documentation
-  - API documentation
-  - User guides
-  - Admin documentation
-  
-- ⬜ Deployment preparation
-  - Production environment setup
-  - Scaling strategy implementation
-  - Monitoring and alerting
+- ⬜ Deployment & Scaling
 
-## Known Issues
+## Known Issues / Risks
 
-As the project is in the planning phase, we don't have functional issues yet, but we have identified some potential challenges:
-
-1. **Complexity in Service Integration**
-   - Need to carefully plan service dependencies
-   - Potential for circular dependencies
-   - Challenge in maintaining consistency across services
-   
-2. **Design System Consistency**
-   - Ensuring consistent implementation across all modules
-   - Maintaining accessibility with custom components
-   - Handling responsive design for complex layouts
-   - Ensuring dark mode works correctly across all interfaces
-
-3. **Authentication Challenges**
-   - Secure implementation of JWT
-   - Proper handling of token refresh
-   - Role-based permission enforcement
-   
-4. **Performance Considerations**
-   - Efficient database schema design needed
-   - Potentially large datasets for statistics
-   - Real-time communication scaling
-   
-5. **Internationalization Complexity**
-   - Managing translations across many components
-   - Date and number formatting by locale
-   - Right-to-left language support (future)
+1. **Inter-Service Communication:** The current simulated API calls in `authzService` need replacement. Performance/reliability of synchronous calls vs. complexity of async events needs evaluation.
+2. **Authorization Complexity:** Implementing granular permissions based on roles and relationships (coach-team-player, parent-child) across services requires careful design and testing.
+3. **TODO Implementation:** Several core logic pieces (intensity calc, conflict detection) are still placeholders.
+4. **Frontend Completeness:** Significant work remains to build out the different modules in the UI.
+5. **Data Consistency:** Ensuring data integrity across service boundaries.
+6. **Startup Order (Local Dev):** While retry logic helps, the fundamental dependency requires Docker Compose or similar for robust startup orchestration in production.
 
 ## Next Milestones
 
-1. **Milestone 1: Design System & Project Setup** (Target: 2 weeks)
-   - Complete repository structure
-   - Implement design system (Tailwind CSS & shadcn/ui)
-   - Create core UI components based on HockeyAppUIComponents.tsx
-   - Configure dark mode and internationalization
-   
-2. **Milestone 2: User Management** (Target: 3 weeks)
-   - Authentication system working
-   - Role-based access control implemented
-   - Team and user relationships established
-   - Basic frontend with authentication
-   
-3. **Milestone 3: Calendar & Training Base** (Target: 4 weeks)
-   - Basic calendar functionality
-   - Training module foundations
-   - Integration between modules
-   - Real-time updates
+1. **Milestone: Backend Core Logic & Refinement** (Target: 3-4 weeks)
+   - Implement core TODOs (Intensity Calc, Resource Conflicts).
+   - Implement real authorization helper logic (`authzService.ts`).
+   - Add Zod validation to remaining Planning/Training/Medical endpoints.
+   - Implement remaining basic CRUD in scaffolded services.
+   - Set up API Gateway routing for implemented services.
+
+2. **Milestone: Foundational Frontend** (Target: 3-4 weeks remaining)
+   - ✅ Implement basic Calendar UI (fetching/displaying events).
+   - Connect Auth flow to User Service (Configure Providers).
+   - Build core layout components using shadcn/ui (Refinement).
+   - Implement basic Chat UI (listing chats, displaying messages).
+
+3. **Milestone: Training Module Frontend & Core Features** (Target: 4 weeks)
+   - UI for Exercise Library, Templates.
+   - UI for Scheduling Sessions (integrating intensity calc).
+   - UI for Test Definitions & Results entry.
 
 ## Implementation Timeline
 
-Based on the phased approach outlined in the project brief, here's our planned timeline:
+(Timeline remains roughly the same, but progress within phases updated)
 
-1. **Phase 1: Core Infrastructure & Design System** (2-3 months)
-   - Basic infrastructure, user management, internationalization, design system
-
-2. **Phase 2: Core Functionality** (3-4 months)
-   - Calendar, communication, basic training features
-
-3. **Phase 3: Extended Functionality** (3-4 months)
-   - Medical management, planning, statistics
-
-4. **Phase 4: Advanced Features** (2-3 months)
-   - Payment processing, administration, AI features
-
-5. **Phase 5: Refinement and Integration** (1-2 months)
-   - Advanced analytics, external integrations
-
-6. **Phase 6: Final Testing and Launch** (1 month)
-   - Comprehensive testing, security audits, documentation
+1. **Phase 1: Core Infrastructure & Design System** (Mostly Complete)
+2. **Phase 2: Core Functionality** (In Progress - Calendar View FE done)
+3. **Phase 3: Extended Functionality** (In Progress - Backend Scaffolding Done)
+4. **Phase 4: Advanced Features** (Not Started)
+5. **Phase 5: Refinement and Integration** (Ongoing Refinement)
+6. **Phase 6: Final Testing and Launch** (Not Started)
 
 This document will be updated regularly as the project progresses to track completed work, current status, and upcoming priorities.

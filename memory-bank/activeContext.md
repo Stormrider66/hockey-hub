@@ -2,71 +2,32 @@
 
 ## Current Work Focus
 
-We are currently focusing on establishing the design system for the Hockey Hub project. According to our implementation plan, we're working on:
+We are currently focused on the **User Service implementation** within Phase 1 (Core Infrastructure).
 
-1. **Design System Implementation**
-   - Implementing shadcn/ui components
-   - Configuring Tailwind CSS for consistent styling
-   - Creating reusable UI patterns and components
-   - Establishing a color system for different event types and player statuses
-   - Setting up dark mode and internationalization support
+Significant progress has been made on the core authentication logic (`authService.ts`):
+- Implemented JWT-based authentication (access/refresh tokens).
+- Integrated TypeORM for database interactions.
+- Established proper DTOs and custom error handling.
+- Implemented secure secret management using environment variables.
+- Completed core functions: `register`, `login`, `logout`, `refreshToken`.
+- Implemented password recovery flow: `forgotPassword`, `resetPassword`.
+- Integrated email sending via `emailService.ts` (using Nodemailer).
+- Set up structured logging (Pino) and request/response logging (`pino-http`).
+- Added Request ID middleware.
+- Refined CORS configuration.
+- Wrote initial unit tests for `authService.ts` using Jest.
 
-2. **Core Service Planning**
-   - Designing detailed API contracts for all services
-   - Planning database schema for each service
-   - Defining communication patterns between services
-   - Establishing coding standards and patterns
+Other Phase 1 items like Design System integration, API Gateway setup, and Frontend foundation are proceeding in parallel or are next in line.
 
-3. **User Service Implementation**
-   - User authentication system with JWT
-   - Role-based access control
-   - Team and user relationships
-   - Parent-child account linking
+## Immediate Next Steps (User Service Focus)
 
-4. **API Gateway Setup**
-   - Initial routing configuration
-   - Authentication middleware
-   - CORS and security headers
-   - Request validation framework
-
-5. **Internationalization Foundation**
-   - Setting up i18next structure
-   - Creating initial translation files
-   - Implementing language switching
-   - Database schema for translation management
-
-## Immediate Next Steps
-
-1. **Complete Design System Integration**
-   - Install and configure Tailwind CSS and shadcn/ui
-   - Implement the color palette and theme configuration
-   - Create core shared components based on the design system
-   - Set up ThemeProvider for dark mode support
-   - Set up I18nProvider for multilingual support
-
-2. **Develop Module-Specific Components**
-   - Create calendar module components using the design system
-   - Implement training module components following established patterns
-   - Build medical module UI with consistent status indicators
-   - Develop communication module interface using shadcn/ui components
-
-3. **Database Initialization**
-   - Create initial PostgreSQL schema
-   - Set up migration framework
-   - Define core tables (users, roles, teams)
-   - Create database seeding for development
-
-4. **User Service Foundation**
-   - Set up Express server with TypeScript
-   - Create core user model and repository
-   - Implement authentication endpoints
-   - Set up JWT token generation and validation
-
-5. **Frontend Project Setup**
-   - Initialize React project with TypeScript
-   - Configure Tailwind CSS and shadcn/ui
-   - Set up routing and state management
-   - Create initial layout components based on the design system
+1.  **Implement API Routes:** Create `authRoutes.ts` to expose the `authService` functions via HTTP endpoints (e.g., `/api/v1/auth/register`, `/api/v1/auth/login`, etc.). Include input validation (using a library like `express-validator` or `zod`).
+2.  **Implement Role-Based Access Control (RBAC):**
+    *   Define roles and permissions (possibly link `Role` entity to specific permission strings).
+    *   Create middleware (`checkRole`, `checkPermission`) to protect routes based on user roles extracted from JWT.
+3.  **Complete Unit Tests:** Add tests for `emailService.ts` and improve coverage for `authService.ts`.
+4.  **Integration Testing:** Set up basic integration tests for the auth endpoints (using `supertest`).
+5.  **Implement User/Team/Parent Relationships:** Define the remaining entities (`Team`, `TeamMember`, `PlayerParentLink`) and implement service logic for managing these relationships (likely in a separate `userService.ts` or similar).
 
 ## Current Technical Decisions
 
@@ -78,11 +39,11 @@ We are currently focusing on establishing the design system for the Hockey Hub p
    - Using lucide-react for all icons in the application
 
 2. **Authentication Strategy**
-   - Using JWT with access and refresh tokens
-   - Access tokens with 15-minute lifespan
-   - Refresh tokens with 7-day lifespan
-   - Token storage in HttpOnly cookies
-   - Token revocation strategy to be determined
+   - Using JWT with access and refresh tokens (Implemented)
+   - Access tokens with 15-minute lifespan (Configurable via env)
+   - Refresh tokens with 7-day lifespan (Configurable via env)
+   - Token storage strategy (Client-side storage assumed, needs review for HttpOnly cookies if applicable)
+   - Token revocation on logout/password change (Implemented)
 
 3. **Database Approach**
    - Using PostgreSQL 17 as the primary database
@@ -107,36 +68,17 @@ We are currently focusing on establishing the design system for the Hockey Hub p
 
 ## Technical Considerations and Questions
 
-1. **Design System Integration**
-   - How to maintain consistency across all microservices
-   - Best practices for sharing design tokens between frontend services
-   - Strategies for component reuse across different modules
-   - Approach for ensuring responsive design on all devices
-   - Methods for testing design system components
-
-2. **Service Communication**
-   - Deciding between REST, GraphQL, and gRPC for different communication needs
-   - Determining when to use direct service calls vs. event-based communication
-   - Planning circuit breaker patterns for resilience
-   - Defining retry and timeout policies
-
-3. **Database Schema Details**
-   - Finalizing schema for complex relationships
-   - Designing optimal indexes for query patterns
-   - Planning for data partitioning if needed
-   - Determining cascade behaviors for related entities
-
-4. **State Management**
-   - Deciding on Redux patterns for complex state
-   - Planning caching strategies for API responses
-   - Designing real-time data synchronization
-   - Optimizing for performance and re-renders
-
-5. **Authentication Edge Cases**
-   - Handling token expiration during active use
-   - Managing multiple devices and sessions
-   - Implementing secure password reset flows
-   - Designing multi-factor authentication (future)
+1. **Authentication/Authorization:**
+    *   Finalize strategy for storing/linking permissions to roles.
+    *   How should HttpOnly cookies vs. local storage be handled for tokens, considering microservice architecture and potential frontend needs?
+    *   Need for session management alongside JWT?
+2. **Email Service:**
+    *   Select and configure production email provider.
+    *   Implement email templates (consider using a templating engine).
+    *   Robust error handling/retry logic for email sending.
+3. **Testing:**
+    *   Strategy for integration testing involving database (test containers? dedicated test DB?).
+    *   E2E testing setup (Cypress?).
 
 ## Tools and Resources Needed
 
@@ -171,4 +113,4 @@ We are currently focusing on establishing the design system for the Hockey Hub p
    - Error tracking planning
    - Performance metric collection
 
-This document reflects the current state of the Hockey Hub project with a focus on design system implementation and initial service setup.
+This document reflects the current state, focusing on the progress and next steps for the User Service authentication.
