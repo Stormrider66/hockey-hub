@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import * as ExerciseRepository from '../repositories/exerciseRepository';
+import { exerciseRepository } from '../repositories/ExerciseRepository';
 import { Exercise } from '../types/exercise';
 
 // TODO: Add validation, authorization, error handling
@@ -17,8 +17,8 @@ export const getExercises = async (req: Request, res: Response, next: NextFuncti
     const offset = (parseInt(page as string, 10) - 1) * limitNum;
 
     try {
-        const exercises = await ExerciseRepository.findExercises(filters, limitNum, offset);
-        const total = await ExerciseRepository.countExercises(filters);
+        const exercises = await exerciseRepository.findExercises(filters, limitNum, offset);
+        const total = await exerciseRepository.countExercises(filters);
         res.status(200).json({ 
             success: true, 
             data: exercises,
@@ -42,7 +42,7 @@ export const getExerciseById = async (req: Request, res: Response, next: NextFun
     const organizationId = 'placeholder-org-id'; // Replace later
     // TODO: Validate ID format
     try {
-        const exercise = await ExerciseRepository.findExerciseById(id, organizationId);
+        const exercise = await exerciseRepository.findExerciseById(id, organizationId);
         if (!exercise) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Exercise not found or not accessible' });
         }
@@ -64,7 +64,7 @@ export const createExerciseHandler = async (req: Request, res: Response, next: N
     }
 
     try {
-        const newExercise = await ExerciseRepository.createExercise({
+        const newExercise = await exerciseRepository.createExercise({
             ...exerciseData,
             organizationId: exerciseData.isPublic ? undefined : organizationId, // Org ID only if not public
             createdByUserId,
@@ -96,11 +96,11 @@ export const updateExerciseHandler = async (req: Request, res: Response, next: N
 
     try {
         // Potential check: Fetch exercise first to verify ownership/existence for non-public
-        // const existing = await ExerciseRepository.findExerciseById(id, organizationId);
+        // const existing = await exerciseRepository.findExerciseById(id, organizationId);
         // if (!existing) { ... return 404 or 403 ... }
         // Add more complex auth logic here based on who can update what
         
-        const updatedExercise = await ExerciseRepository.updateExercise(id, updateData);
+        const updatedExercise = await exerciseRepository.updateExercise(id, updateData);
         if (!updatedExercise) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Exercise not found' });
         }
@@ -119,10 +119,10 @@ export const deleteExerciseHandler = async (req: Request, res: Response, next: N
     
     try {
         // Potential check: Fetch exercise first to verify ownership/existence for non-public
-        // const existing = await ExerciseRepository.findExerciseById(id, organizationId);
+        // const existing = await exerciseRepository.findExerciseById(id, organizationId);
         // if (!existing) { ... return 404 or 403 ... }
         
-        const deleted = await ExerciseRepository.deleteExercise(id);
+        const deleted = await exerciseRepository.deleteExercise(id);
         if (!deleted) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Exercise not found' });
         }

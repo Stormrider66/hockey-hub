@@ -61,7 +61,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// TODO: Add Request ID middleware
 // TODO: Add Logger middleware (using req.logger)
 
 // --- API Routes ---
@@ -97,4 +96,9 @@ const startServer = async () => {
   }
 };
 
-startServer(); 
+// Only start server if not in test environment or if run directly
+if (process.env.NODE_ENV !== 'test') {
+  startServer();
+}
+
+export { app }; // Export the app instance for testing 

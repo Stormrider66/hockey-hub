@@ -16,8 +16,14 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
 
-    // If using bundlers
+    // Module Resolution
     "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // If using bundlers
     "jsx": "preserve", // Adjust if using React/Next.js ('react-jsx' or 'react-jsxdev')
 
     // Output

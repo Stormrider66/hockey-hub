@@ -1,0 +1,102 @@
+name: Planning Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/planning-service/**'
+      - '.github/workflows/planning-service.yml'
+  pull_request:
+    paths:
+      - 'services/planning-service/**'
+
+jobs:
+  test:
+    name: Test Planning Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: services/planning-service/package-lock.json
+          
+      - name: Install dependencies
+        run: cd services/planning-service && npm ci
+        
+      - name: Run linting
+        run: cd services/planning-service && npm run lint
+        
+      - name: Run unit tests
+        run: cd services/planning-service && npm run test
+        
+      - name: Test scheduling algorithms
+        run: cd services/planning-service && npm run test:scheduling
+        
+      - name: Test conflict resolution
+        run: cd services/planning-service && npm run test:conflicts
+        
+      - name: Test resource allocation
+        run: cd services/planning-service && npm run test:resources
+        
+      - name: Test calendar integration
+        run: cd services/planning-service && npm run test:calendar-integration
+        
+  performance-test:
+    name: Performance Testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/planning-service && npm ci
+        
+      - name: Run scheduling performance tests
+        run: cd services/planning-service && npm run test:performance
+        
+      - name: Run load tests for multi-team scheduling
+        run: cd services/planning-service && npm run test:load
+        
+  build:
+    name: Build Planning Service
+    needs: [test, performance-test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./services/planning-service
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-planning-service:${{ env.BRANCH_NAME }}
+            ghcr.io/${{ github.repository }}-planning-service:${{ github.sha }} 

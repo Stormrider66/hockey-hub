@@ -1,0 +1,97 @@
+name: Medical Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/medical-service/**'
+      - '.github/workflows/medical-service.yml'
+  pull_request:
+    paths:
+      - 'services/medical-service/**'
+
+jobs:
+  test:
+    name: Test Medical Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: services/medical-service/package-lock.json
+          
+      - name: Install dependencies
+        run: cd services/medical-service && npm ci
+        
+      - name: Run linting
+        run: cd services/medical-service && npm run lint
+        
+      - name: Run unit tests
+        run: cd services/medical-service && npm run test
+        
+      - name: Verify data encryption
+        run: cd services/medical-service && npm run test:encryption
+        
+      - name: Test access control
+        run: cd services/medical-service && npm run test:access-control
+        
+      - name: Verify GDPR compliance
+        run: cd services/medical-service && npm run test:gdpr
+        
+  security-scan:
+    name: Medical Data Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Run OWASP ZAP scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          target: 'http://localhost:3005'
+          cmd_options: '-a'
+          
+      - name: Check for sensitive data patterns
+        run: |
+          cd services/medical-service
+          npm ci
+          npm run scan:sensitive-data
+          
+  build:
+    name: Build Medical Service
+    needs: [test, security-scan]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./services/medical-service
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-medical-service:${{ env.BRANCH_NAME }}
+            ghcr.io/${{ github.repository }}-medical-service:${{ github.sha }} 

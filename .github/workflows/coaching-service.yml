@@ -1,0 +1,155 @@
+name: Coaching Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/coaching-service/**'
+      - '.github/workflows/coaching-service.yml'
+  pull_request:
+    paths:
+      - 'services/coaching-service/**'
+
+jobs:
+  test:
+    name: Test Coaching Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: services/coaching-service/package-lock.json
+          
+      - name: Install dependencies
+        run: cd services/coaching-service && npm ci
+        
+      - name: Run linting
+        run: cd services/coaching-service && npm run lint
+        
+      - name: Run unit tests
+        run: cd services/coaching-service && npm run test
+        
+      - name: Test coach profiles
+        run: cd services/coaching-service && npm run test:profiles
+        
+      - name: Test coach assignments
+        run: cd services/coaching-service && npm run test:assignments
+        
+      - name: Test feedback system
+        run: cd services/coaching-service && npm run test:feedback
+        
+      - name: Test performance analysis
+        run: cd services/coaching-service && npm run test:performance
+        
+  integration-test:
+    name: Integration Testing
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: coaching_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/coaching-service && npm ci
+        
+      - name: Run database migrations
+        run: cd services/coaching-service && npm run migrate
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: coaching_test
+          
+      - name: Run integration tests
+        run: cd services/coaching-service && npm run test:integration
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: coaching_test
+          
+  security-test:
+    name: Security Testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/coaching-service && npm ci
+        
+      - name: Run dependency vulnerability scan
+        run: cd services/coaching-service && npm audit --production
+        continue-on-error: true
+        
+      - name: Run static code analysis
+        run: cd services/coaching-service && npm run security:scan
+        
+      - name: Test data privacy compliance
+        run: cd services/coaching-service && npm run test:privacy
+        
+  build:
+    name: Build Coaching Service
+    needs: [test, integration-test, security-test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+        
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./services/coaching-service
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-coaching-service:${{ env.BRANCH_NAME }}
+            ghcr.io/${{ github.repository }}-coaching-service:${{ github.sha }} 

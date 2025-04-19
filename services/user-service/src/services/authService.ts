@@ -7,7 +7,7 @@ import { ConflictError, UnauthorizedError } from '../errors/authErrors'; // Impo
 import crypto from 'crypto';
 import { sendPasswordResetEmail } from './emailService'; // Import email service function
 import logger from '../config/logger'; // Import logger
-// TODO: Import custom error classes (e.g., ConflictError, UnauthorizedError) when created
+import { getRolePermissions } from './permissionService'; // Import permission derivation logic
 
 // --- Configuration --- //
 const ACCESS_TOKEN_SECRET = process.env.JWT_SECRET;
@@ -23,11 +23,15 @@ if (!ACCESS_TOKEN_SECRET || !REFRESH_TOKEN_SECRET) {
 
 // TODO: Define interfaces for DTOs (RegisterDto, LoginDto, etc.)
 
-// Keep TokenPayload internal for now
+// Update TokenPayload to include all necessary claims
 interface TokenPayload {
   userId: string;
   email: string;
-  roles: string[]; // Assuming roles are stored as strings
+  roles: string[];
+  permissions: string[]; // Added permissions
+  organizationId?: string; // Added organization ID (optional, depends on user context)
+  teamIds?: string[]; // Added team IDs (optional)
+  lang: string; // Added language preference
 }
 
 /**
@@ -152,8 +156,11 @@ export const register = async (userData: RegisterDto): Promise<User> => {
 export const login = async (credentials: LoginDto): Promise<{ accessToken: string; refreshToken: string; user: Partial<User> }> => {
   const userRepository = getRepository(User);
 
-  // 1. Find user by email
-  const user = await userRepository.findOne({ where: { email: credentials.email }, relations: ['roles'] });
+  // 1. Find user by email, including roles and team memberships
+  const user = await userRepository.findOne({
+      where: { email: credentials.email },
+      relations: ['roles', 'teamMemberships', 'teamMemberships.team'] // Include team memberships and team details
+  });
   if (!user) {
     throw new UnauthorizedError('Invalid credentials'); // Use UnauthorizedError
   }
@@ -169,25 +176,37 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
     throw new UnauthorizedError('User account is not active'); // Use UnauthorizedError
   }
 
-  // 4. Generate tokens
+  // 4. Prepare JWT Payload
+  const userRoles = user.roles?.map(role => role.name) || [];
+  const userPermissions = getRolePermissions(userRoles); // Derive permissions from roles
+  const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
+  // Determine primary organization ID (e.g., from the first team or a dedicated field)
+  // This logic might need refinement based on how organization association is defined.
+  const userOrganizationId = user.teamMemberships?.[0]?.team?.organizationId;
+
   const tokenPayload: TokenPayload = {
     userId: user.id,
     email: user.email,
-    roles: user.roles?.map(role => role.name) || [], // Extract role names
+    roles: userRoles,
+    permissions: userPermissions,
+    organizationId: userOrganizationId, // Add organization ID
+    teamIds: userTeamIds, // Add team IDs
+    lang: user.preferredLanguage || 'sv', // Add language, default to 'sv'
   };
-  const accessToken = generateAccessToken(tokenPayload);
-  const refreshToken = generateRefreshToken(tokenPayload);
 
-  // 5. Save refresh token
+  // 5. Generate tokens
+  const accessToken = generateAccessToken(tokenPayload);
+  const refreshToken = generateRefreshToken({ userId: user.id }); // Refresh token only needs userId
+
+  // 6. Save refresh token
   await saveRefreshToken(user.id, refreshToken);
 
-  // 6. Update last login time (optional)
+  // 7. Update last login time (optional)
   user.lastLogin = new Date();
   await userRepository.save(user);
 
-  // 7. Return tokens and basic user info
+  // 8. Return tokens and basic user info
   delete (user as any).passwordHash;
-  // Optionally filter user data returned
   const returnUser: Partial<User> = {
       id: user.id,
       email: user.email,
@@ -195,6 +214,7 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
       lastName: user.lastName,
       preferredLanguage: user.preferredLanguage,
       roles: user.roles, // Or just role names
+      // teamMemberships might be too large, return only relevant parts if needed
   };
 
   return { accessToken, refreshToken, user: returnUser };
@@ -202,41 +222,62 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
 
 export const refreshToken = async (incomingRefreshToken: string): Promise<{ accessToken: string; refreshToken: string }> => {
   const refreshTokenRepository = getRepository(RefreshToken);
+  const userRepository = getRepository(User); // Need user repo to fetch full user details
 
   try {
-    // 1. Verify the incoming refresh token
-    const decoded = jwt.verify(incomingRefreshToken, REFRESH_TOKEN_SECRET) as TokenPayload;
+    // 1. Verify the incoming refresh token (only checks signature and expiry, payload has only userId)
+    const decodedRefresh = jwt.verify(incomingRefreshToken, REFRESH_TOKEN_SECRET) as { userId: string };
 
-    // 2. Find the token in the database
+    // 2. Find the token in the database and the associated user with roles/teams
     const storedToken = await refreshTokenRepository.findOne({
-      where: { token: incomingRefreshToken, userId: decoded.userId, revoked: false },
-      relations: ['user', 'user.roles'],
+      where: { token: incomingRefreshToken, userId: decodedRefresh.userId, revoked: false },
     });
 
-    if (!storedToken || !storedToken.user) {
-      // TODO: Optionally revoke all tokens for this user as a security measure
-      throw new UnauthorizedError('Invalid refresh token'); // Use UnauthorizedError
+    if (!storedToken) {
+      throw new UnauthorizedError('Invalid refresh token');
+    }
+    // Check expiry manually from DB record
+    if (storedToken.expiresAt < new Date()) {
+      await revokeRefreshToken(storedToken.token); // Revoke expired token
+      throw new UnauthorizedError('Refresh token expired');
     }
 
-    // 3. Check if token has expired
-    if (storedToken.expiresAt < new Date()) {
-       throw new UnauthorizedError('Refresh token expired'); // Use UnauthorizedError
+    // Fetch user details required for the new access token payload
+    const user = await userRepository.findOne({
+        where: { id: storedToken.userId },
+        relations: ['roles', 'teamMemberships', 'teamMemberships.team']
+    });
+
+    if (!user) {
+        await revokeRefreshToken(storedToken.token); // Revoke token if user not found
+        throw new UnauthorizedError('User associated with token not found');
     }
 
     // 4. Revoke the old refresh token
     await revokeRefreshToken(storedToken.token);
 
-    // 5. Generate new tokens
-    const newTokenPayload: TokenPayload = {
-      userId: storedToken.user.id,
-      email: storedToken.user.email,
-      roles: storedToken.user.roles?.map(role => role.name) || [],
-    };
-    const newAccessToken = generateAccessToken(newTokenPayload);
-    const newRefreshToken = generateRefreshToken(newTokenPayload);
+    // 5. Prepare new access token payload
+    const userRoles = user.roles?.map(role => role.name) || [];
+    const userPermissions = getRolePermissions(userRoles); // Derive permissions
+    const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
+    const userOrganizationId = user.teamMemberships?.[0]?.team?.organizationId; // Determine org ID
 
-    // 6. Save the new refresh token
-    await saveRefreshToken(storedToken.user.id, newRefreshToken);
+    const newAccessTokenPayload: TokenPayload = {
+      userId: user.id,
+      email: user.email,
+      roles: userRoles,
+      permissions: userPermissions,
+      organizationId: userOrganizationId,
+      teamIds: userTeamIds,
+      lang: user.preferredLanguage || 'sv',
+    };
+
+    // 6. Generate new tokens
+    const newAccessToken = generateAccessToken(newAccessTokenPayload);
+    const newRefreshToken = generateRefreshToken({ userId: user.id }); // Refresh token only needs userId
+
+    // 7. Save the new refresh token
+    await saveRefreshToken(user.id, newRefreshToken);
 
     return { accessToken: newAccessToken, refreshToken: newRefreshToken };
 
@@ -265,7 +306,7 @@ export const logout = async (incomingRefreshToken: string): Promise<void> => {
 // --- Helper Functions ---
 
 const generateAccessToken = (payload: TokenPayload): string => {
-  // Restore function body
+  // Ensure all payload fields are included
   return jwt.sign(
     payload,
     ACCESS_TOKEN_SECRET,
@@ -273,11 +314,10 @@ const generateAccessToken = (payload: TokenPayload): string => {
   );
 };
 
-const generateRefreshToken = (payload: TokenPayload): string => {
-  const refreshPayload = { userId: payload.userId };
-  // Restore function body
+// Refresh token payload only contains userId for security
+const generateRefreshToken = (payload: { userId: string }): string => {
   return jwt.sign(
-    refreshPayload,
+    payload,
     REFRESH_TOKEN_SECRET,
     { expiresIn: REFRESH_TOKEN_EXPIRY as any }
   );
@@ -288,8 +328,10 @@ const saveRefreshToken = async (userId: string, token: string): Promise<void> =>
 
   // Decode expiry from the token itself
   const decoded = jwt.decode(token) as { exp?: number };
-  // Restore function body
-  const expiresAt = decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // Default 7 days
+  // If decode fails or exp is missing, handle appropriately (e.g., set default expiry)
+  const expiresAt = decoded?.exp
+    ? new Date(decoded.exp * 1000)
+    : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // Default 7 days
 
   const newRefreshToken = refreshTokenRepository.create({
     userId,
@@ -302,8 +344,14 @@ const saveRefreshToken = async (userId: string, token: string): Promise<void> =>
 
 const revokeRefreshToken = async (token: string): Promise<void> => {
     const refreshTokenRepository = getRepository(RefreshToken);
-    // Find the token and mark it as revoked
-    await refreshTokenRepository.update({ token: token }, { revoked: true, revokedReason: 'Logout or Refresh' });
+    // Add logging for revocation attempts
+    logger.info(`Attempting to revoke refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
+    const result = await refreshTokenRepository.update({ token: token, revoked: false }, { revoked: true, revokedReason: 'Logout or Refresh' });
+    if (result.affected === 0) {
+        logger.warn(`Refresh token ${token ? token.substring(0, 10) + '...' : 'undefined'} not found or already revoked.`);
+    } else {
+        logger.info(`Successfully revoked refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
+    }
 };
 
 // TODO: Implement forgotPassword and resetPassword logic

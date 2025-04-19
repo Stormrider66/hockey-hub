@@ -1,0 +1,74 @@
+name: PR Workflow
+
+on:
+  pull_request:
+    branches: [ main, develop, 'release/**' ]
+    
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+      
+      - name: Check TypeScript compilation
+        run: npm run type-check
+      
+      - name: Run unit tests
+        run: npm run test
+      
+      - name: Add PR size label
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.issue.number;
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber,
+            });
+            
+            let additions = 0;
+            let deletions = 0;
+            
+            files.forEach(file => {
+              additions += file.additions;
+              deletions += file.deletions;
+            });
+            
+            const totalChanges = additions + deletions;
+            
+            let sizeLabel;
+            if (totalChanges < 100) {
+              sizeLabel = 'size/xs';
+            } else if (totalChanges < 300) {
+              sizeLabel = 'size/s';
+            } else if (totalChanges < 500) {
+              sizeLabel = 'size/m';
+            } else if (totalChanges < 1000) {
+              sizeLabel = 'size/l';
+            } else {
+              sizeLabel = 'size/xl';
+            }
+            
+            await github.rest.issues.addLabels({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [sizeLabel]
+            }); 

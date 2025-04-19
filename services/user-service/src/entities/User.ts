@@ -9,11 +9,14 @@ import {
   ManyToMany,
   JoinTable,
   Index,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Role } from './Role';
 import { TeamMember } from './TeamMember';
 import { PlayerParentLink } from './PlayerParentLink';
 import { RefreshToken } from './RefreshToken';
+import { Organization } from './Organization';
 
 type UserStatus = 'active' | 'inactive' | 'pending';
 
@@ -79,6 +82,10 @@ export class User {
     inverseJoinColumn: { name: 'role_id', referencedColumnName: 'id' },
   })
   roles!: Role[];
+
+  @ManyToOne(() => Organization, (organization) => organization.users, { nullable: true, eager: false })
+  @JoinColumn({ name: 'organization_id' }) 
+  organization: Organization | null | undefined;
 
   @OneToMany(() => TeamMember, (teamMember) => teamMember.user)
   teamMemberships!: TeamMember[];

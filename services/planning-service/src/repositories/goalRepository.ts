@@ -170,81 +170,86 @@ export const deleteTeamGoal = async (id: string, organizationId: string): Promis
 interface FindPlayerGoalsFilters {
     organizationId: string; // Required
     playerId?: string;
-    teamId?: string; // To find goals for players in a team
+    teamId?: string;       
     seasonId?: string;
     status?: string;
     category?: string;
+    playerIds?: string[];      // For parent scope 
+    accessibleTeamIds?: string[]; // For coach scope
 }
 
-export const findPlayerGoals = async (filters: FindPlayerGoalsFilters, limit: number, offset: number): Promise<PlayerGoal[]> => {
-    let queryText = 'SELECT pg.* FROM player_goals pg';
+export const findPlayerGoals = async (filters: FindPlayerGoalsFilters, limit: number, offset: number): Promise<{ goals: PlayerGoal[], total: number }> => {
+    let selectClause = 'SELECT pg.* ';
+    // Include user info if needed for filtering or display?
+    // selectClause += ', u.first_name as player_first_name, u.last_name as player_last_name, u.team_id as player_team_id ';
+    let fromClause = 'FROM player_goals pg';
     const queryParams: any[] = [filters.organizationId];
     const whereClauses: string[] = ['pg.organization_id = $1'];
     let paramIndex = 2;
-
-    // Join with users/team_members if filtering by teamId
-    if (filters.teamId) {
-        // This assumes team membership info is available or replicated here
-        // In a pure microservice, this might require getting playerIds from User service first
-        queryText += ' JOIN users u ON pg.player_id = u.id'; // Hypothetical join
-        whereClauses.push(`u.team_id = $${paramIndex++}`); // Hypothetical filter
-        queryParams.push(filters.teamId);
-        console.warn('[findPlayerGoals] Filtering by teamId assumes user data is accessible/replicated.');
+    
+    // Join with users table if filtering by team(s)
+    if (filters.teamId || filters.accessibleTeamIds) {
+        // WARNING: Assumes access to a 'users' table/view with team_id in this service's DB.
+        console.warn('[findPlayerGoals] Filtering by teamId or accessibleTeamIds assumes user/team data is accessible/replicated.');
+        fromClause += ' JOIN users u ON pg.player_id = u.id'; 
     }
 
-    if (filters.playerId) { whereClauses.push(`pg.player_id = $${paramIndex++}`); queryParams.push(filters.playerId); }
+    if (filters.playerId) { 
+        whereClauses.push(`pg.player_id = $${paramIndex++}`); 
+        queryParams.push(filters.playerId); 
+    } else if (filters.playerIds && filters.playerIds.length > 0) { 
+        whereClauses.push(`pg.player_id = ANY($${paramIndex++}::uuid[])`); 
+        queryParams.push(filters.playerIds);
+    }
+
+    // IMPORTANT: Ensure teamId and accessibleTeamIds are mutually exclusive in controller
+    if (filters.teamId) { 
+        // Assumes users table has team_id column
+        whereClauses.push(`u.team_id = $${paramIndex++}`); 
+        queryParams.push(filters.teamId); 
+    } else if (filters.accessibleTeamIds && filters.accessibleTeamIds.length > 0) {
+        // Assumes users table has team_id column
+        whereClauses.push(`u.team_id = ANY($${paramIndex++}::uuid[])`);
+        queryParams.push(filters.accessibleTeamIds);
+    }
+    
     if (filters.seasonId) { whereClauses.push(`pg.season_id = $${paramIndex++}`); queryParams.push(filters.seasonId); }
     if (filters.status) { whereClauses.push(`pg.status = $${paramIndex++}`); queryParams.push(filters.status); }
     if (filters.category) { whereClauses.push(`pg.category = $${paramIndex++}`); queryParams.push(filters.category); }
 
+    // --- Count Query --- 
+    let countQueryText = `SELECT COUNT(pg.id) ${fromClause}`;
     if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
+        countQueryText += ' WHERE ' + whereClauses.join(' AND ');
     }
-
-    queryText += ` ORDER BY pg.created_at DESC LIMIT $${paramIndex++} OFFSET $${paramIndex++}`;
-    queryParams.push(limit, offset);
-
-    console.log('[DB Query] Finding player goals:', queryText, queryParams);
+    console.log('[DB Query] Counting player goals:', countQueryText, queryParams);
+    let total = 0;
     try {
-        const result: QueryResult<PlayerGoal> = await db.query(queryText, queryParams);
-        console.log(`[DB Success] Found ${result.rows.length} player goals`);
-        return result.rows;
-    } catch (error) {
-        console.error('[DB Error] Failed to find player goals:', error);
-        throw new Error('Database error while fetching player goals.');
-    }
-};
-
-export const countPlayerGoals = async (filters: FindPlayerGoalsFilters): Promise<number> => {
-    let queryText = 'SELECT COUNT(*) FROM player_goals pg';
-    const queryParams: any[] = [filters.organizationId];
-    const whereClauses: string[] = ['pg.organization_id = $1'];
-    let paramIndex = 2;
-
-    if (filters.teamId) {
-        queryText += ' JOIN users u ON pg.player_id = u.id'; // Hypothetical
-        whereClauses.push(`u.team_id = $${paramIndex++}`); // Hypothetical
-        queryParams.push(filters.teamId);
-    }
-
-    if (filters.playerId) { whereClauses.push(`pg.player_id = $${paramIndex++}`); queryParams.push(filters.playerId); }
-    if (filters.seasonId) { whereClauses.push(`pg.season_id = $${paramIndex++}`); queryParams.push(filters.seasonId); }
-    if (filters.status) { whereClauses.push(`pg.status = $${paramIndex++}`); queryParams.push(filters.status); }
-    if (filters.category) { whereClauses.push(`pg.category = $${paramIndex++}`); queryParams.push(filters.category); }
-
-    if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
-    }
-
-    console.log('[DB Query] Counting player goals:', queryText, queryParams);
-    try {
-        const result = await db.query(queryText, queryParams);
-        const count = parseInt(result.rows[0].count, 10);
-        console.log(`[DB Success] Counted ${count} player goals`);
-        return count;
+        const countResult = await db.query(countQueryText, queryParams);
+        total = parseInt(countResult.rows[0].count, 10);
+        console.log(`[DB Success] Counted ${total} player goals`);
     } catch (error) {
         console.error('[DB Error] Failed to count player goals:', error);
         throw new Error('Database error while counting player goals.');
+    }
+
+    // --- Data Query --- 
+    let queryText = `${selectClause} ${fromClause}`;
+     if (whereClauses.length > 0) {
+        queryText += ' WHERE ' + whereClauses.join(' AND ');
+    }
+    queryText += ` ORDER BY pg.created_at DESC LIMIT $${paramIndex++} OFFSET $${paramIndex++}`;
+    // Add limit and offset params AFTER potential filter params
+    const dataQueryParams = [...queryParams, limit, offset]; 
+
+    console.log('[DB Query] Finding player goals:', queryText, dataQueryParams);
+    try {
+        const result: QueryResult<PlayerGoal> = await db.query(queryText, dataQueryParams);
+        console.log(`[DB Success] Found ${result.rows.length} player goals for page`);
+        return { goals: result.rows, total };
+    } catch (error) {
+        console.error('[DB Error] Failed to find player goals:', error);
+        throw new Error('Database error while fetching player goals.');
     }
 };
 

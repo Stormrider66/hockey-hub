@@ -9,6 +9,7 @@ import {
   Index,
 } from 'typeorm';
 import { Team } from './Team';
+import { User } from './User';
 
 type OrganizationStatus = 'active' | 'inactive' | 'trial';
 
@@ -66,6 +67,9 @@ export class Organization {
   deletedAt?: Date;
 
   // --- Relationships ---
+  @OneToMany(() => User, (user) => user.organization)
+  users!: User[];
+
   @OneToMany(() => Team, (team) => team.organization)
   teams!: Team[];
 

@@ -1,16 +1,27 @@
 // Placeholder for error handling middleware
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '@utils/AppError'; // Using path alias
+import { AppError } from '../utils/AppError'; // Using path alias
 
-export const errorHandlerMiddleware = (err: Error | AppError, req: Request, res: Response, next: NextFunction) => {
-    console.error('[ErrorHandler]', err);
+// Use explicit error handler middleware signature
+export const errorHandlerMiddleware = (
+    error: Error | AppError,
+    _req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    // If headers have already been sent, delegate to the default Express error handler
+    if (res.headersSent) {
+        return next(error);
+    }
 
-    if (err instanceof AppError) {
-        return res.status(err.statusCode).json({
+    console.error('[ErrorHandler]', error);
+
+    if (error instanceof AppError) {
+        return res.status(error.statusCode).json({
             error: true,
-            message: err.message,
-            code: err.code,
-            details: err.details
+            message: error.message,
+            code: error.code,
+            details: error.details
         });
     } 
     

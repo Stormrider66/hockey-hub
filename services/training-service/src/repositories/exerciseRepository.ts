@@ -1,217 +1,112 @@
-import db from '../db';
-import { Exercise } from '../types/exercise';
-import { QueryResult } from 'pg';
+import { Repository, EntityRepository } from 'typeorm';
+import { AppDataSource } from '../data-source'; // Assuming data-source.ts is now correct
+import { Exercise } from '../entities/Exercise'; // Assuming Exercise.ts is now correct
 
-// TODO: Add validation for inputs
+@EntityRepository(Exercise)
+export class ExerciseRepository extends Repository<Exercise> {
+    // Find exercises with filters, pagination, and search
+    async findExercises(filters: {
+        organizationId?: string;
+        category?: string;
+        searchTerm?: string;
+    }, limit: number, offset: number): Promise<Exercise[]> {
+        const query = this.createQueryBuilder('exercise')
+            .where('1=1'); // Start with true condition to chain WHERE clauses
 
-interface FindExercisesFilters {
-    organizationId?: string;
-    isPublic?: boolean;
-    category?: string;
-    searchTerm?: string;
-}
+        if (filters.organizationId) {
+            query.andWhere('(exercise.organization_id = :orgId OR exercise.is_public = true)', {
+                orgId: filters.organizationId
+            });
+        } else {
+            query.andWhere('exercise.is_public = true');
+        }
 
-export const findExercises = async (filters: FindExercisesFilters, limit: number, offset: number): Promise<Exercise[]> => {
-    let queryText = 'SELECT * FROM exercises';
-    const queryParams: any[] = [];
-    const whereClauses: string[] = [];
-    let paramIndex = 1;
+        if (filters.category) {
+            query.andWhere('exercise.category = :category', { category: filters.category });
+        }
 
-    // Apply filters
-    // Only show public OR organization-specific exercises
-    if (filters.organizationId) {
-        whereClauses.push(`(is_public = true OR organization_id = $${paramIndex++})`);
-        queryParams.push(filters.organizationId);
-    } else {
-        // If no org ID, only show public exercises
-        whereClauses.push(`is_public = true`);
-    }
-    
-    if (filters.category) {
-        whereClauses.push(`category = $${paramIndex++}`);
-        queryParams.push(filters.category);
-    }
-    if (filters.searchTerm) {
-        whereClauses.push(`(name ILIKE $${paramIndex} OR description ILIKE $${paramIndex})`);
-        queryParams.push(`%${filters.searchTerm}%`);
-        paramIndex++;
-    }
+        if (filters.searchTerm) {
+            query.andWhere(
+                '(exercise.name ILIKE :search OR exercise.description ILIKE :search)',
+                { search: `%${filters.searchTerm}%` }
+            );
+        }
 
-    if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
+        return query
+            .orderBy('exercise.created_at', 'DESC')
+            .take(limit)
+            .skip(offset)
+            .getMany();
     }
 
-    queryText += ` ORDER BY name ASC LIMIT $${paramIndex++} OFFSET $${paramIndex++}`;
-    queryParams.push(limit, offset);
+    // Count exercises with filters
+    async countExercises(filters: {
+        organizationId?: string;
+        category?: string;
+        searchTerm?: string;
+    }): Promise<number> {
+        const query = this.createQueryBuilder('exercise')
+            .where('1=1');
 
-    console.log('[DB Query] Finding exercises:', queryText, queryParams);
-    try {
-        const result: QueryResult<Exercise> = await db.query(queryText, queryParams);
-        console.log(`[DB Success] Found ${result.rows.length} exercises`);
-        return result.rows;
-    } catch (error) {
-        console.error('[DB Error] Failed to find exercises:', error);
-        throw new Error('Database error while fetching exercises.');
-    }
-};
+        if (filters.organizationId) {
+            query.andWhere('(exercise.organization_id = :orgId OR exercise.is_public = true)', {
+                orgId: filters.organizationId
+            });
+        } else {
+            query.andWhere('exercise.is_public = true');
+        }
 
-export const countExercises = async (filters: FindExercisesFilters): Promise<number> => {
-     let queryText = 'SELECT COUNT(*) FROM exercises';
-    const queryParams: any[] = [];
-    const whereClauses: string[] = [];
-    let paramIndex = 1;
+        if (filters.category) {
+            query.andWhere('exercise.category = :category', { category: filters.category });
+        }
 
-    // Apply same filters as findExercises
-    if (filters.organizationId) {
-        whereClauses.push(`(is_public = true OR organization_id = $${paramIndex++})`);
-        queryParams.push(filters.organizationId);
-    } else {
-        whereClauses.push(`is_public = true`);
-    }
-    if (filters.category) {
-        whereClauses.push(`category = $${paramIndex++}`);
-        queryParams.push(filters.category);
-    }
-     if (filters.searchTerm) {
-        whereClauses.push(`(name ILIKE $${paramIndex} OR description ILIKE $${paramIndex})`);
-        queryParams.push(`%${filters.searchTerm}%`);
-        paramIndex++;
+        if (filters.searchTerm) {
+            query.andWhere(
+                '(exercise.name ILIKE :search OR exercise.description ILIKE :search)',
+                { search: `%${filters.searchTerm}%` }
+            );
+        }
+
+        return query.getCount();
     }
 
-    if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
+    // Find a single exercise by ID
+    async findExerciseById(id: string, organizationId?: string): Promise<Exercise | null> {
+        const query = this.createQueryBuilder('exercise')
+            .where('exercise.id = :id', { id });
+
+        if (organizationId) {
+            query.andWhere('(exercise.organization_id = :orgId OR exercise.is_public = true)', {
+                orgId: organizationId
+            });
+        } else {
+            query.andWhere('exercise.is_public = true');
+        }
+
+        return query.getOne();
     }
 
-    console.log('[DB Query] Counting exercises:', queryText, queryParams);
-    try {
-        const result = await db.query(queryText, queryParams);
-        const count = parseInt(result.rows[0].count, 10);
-         console.log(`[DB Success] Counted ${count} exercises`);
-        return count;
-    } catch (error) {
-        console.error('[DB Error] Failed to count exercises:', error);
-        throw new Error('Database error while counting exercises.');
-    }
-};
-
-export const findExerciseById = async (id: string, organizationId?: string): Promise<Exercise | null> => {
-    let queryText = 'SELECT * FROM exercises WHERE id = $1';
-    const queryParams: any[] = [id];
-    let paramIndex = 2;
-
-    // Ensure user can access non-public exercises only if they belong to the org
-    if (organizationId) {
-        queryText += ` AND (is_public = true OR organization_id = $${paramIndex++})`;
-        queryParams.push(organizationId);
-    }
-    else {
-        queryText += ` AND is_public = true`;
+    // Create a new exercise
+    async createExercise(data: Partial<Exercise>): Promise<Exercise> {
+        const exercise = this.create(data);
+        return this.save(exercise);
     }
 
-    console.log('[DB Query] Finding exercise by ID:', queryText, queryParams);
-    try {
-        const result: QueryResult<Exercise> = await db.query(queryText, queryParams);
-        if (result.rows.length === 0) {
+    // Update an existing exercise
+    async updateExercise(id: string, data: Partial<Exercise>): Promise<Exercise | null> {
+        const result = await this.update(id, data);
+        if (result.affected === 0) {
             return null;
         }
-        console.log(`[DB Success] Found exercise ${id}`);
-        return result.rows[0];
-    } catch (error) {
-        console.error(`[DB Error] Failed to find exercise ${id}:`, error);
-        throw new Error('Database error while fetching exercise by ID.');
-    }
-};
-
-export const createExercise = async (data: Omit<Exercise, 'id' | 'createdAt' | 'updatedAt'>): Promise<Exercise> => {
-    const { 
-        name, 
-        description, 
-        videoUrl, 
-        muscleGroups, 
-        equipmentRequired, 
-        difficultyLevel, 
-        category, 
-        createdByUserId, 
-        organizationId, 
-        isPublic = false 
-    } = data;
-
-    const queryText = `
-        INSERT INTO exercises (name, description, video_url, muscle_groups, equipment_required, difficulty_level, category, created_by_user_id, organization_id, is_public)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-        RETURNING *
-    `;
-    const params = [
-        name, 
-        description || null, 
-        videoUrl || null, 
-        muscleGroups || null,
-        equipmentRequired || null,
-        difficultyLevel || null,
-        category || null,
-        createdByUserId || null, // Allow null if system creates public exercises?
-        organizationId || null,
-        isPublic
-    ];
-
-    console.log('[DB Query] Creating exercise:', queryText, params);
-    try {
-        const result: QueryResult<Exercise> = await db.query(queryText, params);
-        console.log('[DB Success] Exercise created:', result.rows[0]);
-        return result.rows[0];
-    } catch (error) {
-        console.error('[DB Error] Failed to create exercise:', error);
-        throw new Error('Database error while creating exercise.');
-    }
-};
-
-export const updateExercise = async (id: string, data: Partial<Omit<Exercise, 'id' | 'createdAt' | 'updatedAt' | 'organizationId' | 'createdByUserId'>>): Promise<Exercise | null> => {
-    const updateFields: string[] = [];
-    const updateParams: any[] = [];
-    let paramIndex = 1;
-
-    Object.entries(data).forEach(([key, value]) => {
-        // Map camelCase keys to snake_case DB columns
-        const dbColumn = key.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
-        updateFields.push(`${dbColumn} = $${paramIndex++}`);
-        updateParams.push(value);
-    });
-
-    if (updateFields.length === 0) {
-        throw new Error("No fields provided for update.");
+        return this.findOneBy({ id });
     }
 
-    updateFields.push(`updated_at = NOW()`);
-    const queryText = `UPDATE exercises SET ${updateFields.join(', ')} WHERE id = $${paramIndex++} RETURNING *`;
-    updateParams.push(id);
-
-    console.log('[DB Query] Updating exercise:', queryText, updateParams);
-    try {
-        const result: QueryResult<Exercise> = await db.query(queryText, updateParams);
-        if (result.rows.length === 0) {
-            return null; // Not found
-        }
-        console.log('[DB Success] Exercise updated:', result.rows[0]);
-        return result.rows[0];
-    } catch (error) {
-        console.error(`[DB Error] Failed to update exercise ${id}:`, error);
-        throw new Error('Database error while updating exercise.');
+    // Delete an exercise (soft delete if configured in entity)
+    async deleteExercise(id: string): Promise<boolean> {
+        const result = await this.softDelete(id);
+        return result.affected === 1;
     }
-};
+}
 
-export const deleteExercise = async (id: string): Promise<boolean> => {
-    const queryText = 'DELETE FROM exercises WHERE id = $1';
-    const params = [id];
-
-    console.log('[DB Query] Deleting exercise:', queryText, params);
-    try {
-        const result = await db.query(queryText, params);
-        const deleted = result.rowCount ? result.rowCount > 0 : false;
-        console.log(`[DB Success] Exercise ${id} deletion attempt result: ${deleted}`);
-        return deleted;
-    } catch (error) {
-        console.error(`[DB Error] Failed to delete exercise ${id}:`, error);
-        throw new Error('Database error while deleting exercise.');
-        // Consider checking for FK constraints if templates use exercises
-    }
-}; 
+// Export the repository instance
+export const exerciseRepository = AppDataSource.getCustomRepository(ExerciseRepository);
