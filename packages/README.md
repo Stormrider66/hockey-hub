@@ -1,0 +1,1 @@
+# Hockey Hub Shared Packages\n\nShared libraries and utilities used across Hockey Hub services and applications:\n\n- UI Components\n- API Client\n- Common Types\n- Utilities\n- Configuration

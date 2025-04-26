@@ -30,4 +30,4 @@
     "noEmit": true // Base config doesn't output files itself
   },
   "exclude": ["node_modules"]
-} 
+}

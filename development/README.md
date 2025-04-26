@@ -1,0 +1,1 @@
+# Hockey Hub Development Utilities\n\nDevelopment tools and utilities for Hockey Hub:\n\n- Database migrations\n- Seed data\n- Development scripts\n- Testing utilities\n- Docker configurations\n- CI/CD pipelines

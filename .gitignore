@@ -51,4 +51,4 @@ build/
 *.log
 
 # Cursor specific
-.cursor/ 
+.cursor/
