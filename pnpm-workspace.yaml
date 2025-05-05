@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+  - packages/*
+  - services/*
+  - shared/*
+
+ignoredBuiltDependencies:
+  - bcrypt
+  - sharp
+  - unrs-resolver

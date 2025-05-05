@@ -133,6 +133,7 @@ The infrastructure consists of the following core components:
 - **Key Management**: Azure Key Vault for secrets and certificates
 - **Monitoring**: Azure Monitor with Application Insights
 - **Identity**: Azure Active Directory for service authentication
+- **Message Broker (RabbitMQ)**: Provides asynchronous event bus for microservices (see dedicated section below)
 
 ### Architecture Diagram
 
@@ -165,6 +166,60 @@ The infrastructure consists of the following core components:
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+### RabbitMQ Deployment
+
+RabbitMQ is the standard message broker for all asynchronous events and Sagas.
+
+**Chart & Version** : Bitnami `rabbitmq` Helm chart v12+ (RabbitMQ 3.13)
+
+**Topology**
+* Single replica in dev / test
+* 3‑node quorum queues in staging / prod
+
+**Key Helm Values (staging/prod)**
+```yaml
+replicaCount: 3
+persistence:
+  enabled: true
+  size: 20Gi
+  storageClass: managed-premium
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+service:
+  type: ClusterIP
+auth:
+  username: hockeyhub
+  password: ${RABBITMQ_PASSWORD}
+  existingPasswordSecret: rabbitmq-secret
+extraPlugins: "rabbitmq_peer_discovery_k8s rabbitmq_management"
+clustering:
+  enabled: true
+  k8sDomain: cluster.local
+  forceBoot: true
+```
+
+**Security & Tenancy**
+* One vhost per micro‑service (`user-service`, `calendar-service`, etc.).
+* Credentials stored in Kubernetes Secrets managed via Azure Key Vault.
+* NetworkPolicy restricts ingress to namespace `microservices` only.
+* TLS enabled for production using cert‑manager.
+
+**Management UI**
+* Exposed via internal Service/Ingress on `/rabbitmq/` protected by Azure AD.
+
+**Monitoring**
+* Prometheus exporter enabled (`prometheus-rabbitmq-exporter`) with default metrics scraped at `/metrics`.
+
+**Backup / HA**
+* Quorum queues + daily snapshot of the persistent volume.
+
+---
 
 ## CI/CD Pipeline
 
@@ -799,324 +854,313 @@ spec:
         averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
 ```
 
-### Health Checks and Probes
-
-Each service implements health checks for Kubernetes probes:
-
-```yaml
-# deployment.yaml
-livenessProbe:
-  httpGet:
-    path: /health/live
-    port: http
-  initialDelaySeconds: 30
-  periodSeconds: 15
-  timeoutSeconds: 5
-  failureThreshold: 3
-readinessProbe:
-  httpGet:
-    path: /health/ready
-    port: http
-  initialDelaySeconds: 10
-  periodSeconds: 10
-  timeoutSeconds: 3
-  failureThreshold: 2
-startupProbe:
-  httpGet:
-    path: /health/startup
-    port: http
-  initialDelaySeconds: 5
-  periodSeconds: 5
-  timeoutSeconds: 3
-  failureThreshold: 12 # Allow up to 1 minute to start
-```
-
-### Service Mesh Integration
-
-For advanced networking, observability, and security, the production environment uses Istio service mesh:
-
-```yaml
-# Enable Istio sidecar injection for the namespace
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: production
-  labels:
-    istio-injection: enabled
-```
-
-Service mesh features used:
-
-- **Traffic Management**: Advanced routing and load balancing
-- **Security**: mTLS between services
-- **Observability**: Distributed tracing and metrics collection
-- **Resilience**: Circuit breaking and retries
-
 ## Monitoring and Logging
 
-The Hockey Hub platform implements comprehensive monitoring and logging to ensure system health and aid troubleshooting.
+The Hockey Hub platform uses a comprehensive monitoring and logging strategy to ensure system reliability and performance.
 
 ### Monitoring Stack
 
-The monitoring system consists of the following components:
+The monitoring stack consists of the following components:
 
-1. **Metrics Collection**:
-   - Prometheus for metrics aggregation
-   - Node Exporter for host metrics
-   - kube-state-metrics for Kubernetes metrics
-   - Custom service metrics via Prometheus client libraries
+1. **Prometheus**: Time-series database for storing metrics
+2. **Grafana**: Visualization and dashboarding tool
+3. **Alertmanager**: Alerting and notification system
+4. **Node Exporter**: Exports hardware and OS metrics from nodes
+5. **Kube-State-Metrics**: Exports Kubernetes object metrics
+6. **Blackbox Exporter**: Probes endpoints for availability and latency
+7. **PostgreSQL Exporter**: Exports database metrics
+8. **Azure Monitor**: Integration with Azure Monitor for additional insights
 
-2. **Visualization**:
-   - Grafana for dashboards and visualization
-   - Preconfigured dashboards for:
-     - Infrastructure health
-     - Service performance
-     - Business metrics
-     - Database performance
+### Logging Strategy
 
-3. **Alerting**:
-   - AlertManager for alert routing
-   - Integration with PagerDuty for on-call notification
-   - Slack integration for team notifications
-   - Email alerts for non-urgent issues
+The Hockey Hub platform uses a centralized logging approach with the following components:
 
-### Logging Architecture
+1. **Fluentd**: Log collector and forwarder
+2. **Elasticsearch**: Distributed search and analytics engine
+3. **Kibana**: Visualization and exploration tool
+4. **Azure Monitor**: Integration with Azure Monitor for additional insights
 
-Logs are centralized and structured for efficient analysis:
+### Alerting and Notification
 
-1. **Log Collection**:
-   - Fluentd as the log collector
-   - JSON-formatted logs from all services
-   - Standardized log structure with required fields
+The Hockey Hub platform uses Alertmanager for alerting and notification. Alerts are configured based on predefined rules and sent to the appropriate channels (email, Slack, PagerDuty).
 
-2. **Log Storage**:
-   - Elasticsearch for log storage and indexing
-   - Time-based index management
-   - Log retention policies by environment
+### Dashboarding
 
-3. **Log Analysis**:
-   - Kibana for log visualization and search
-   - Predefined searches for common issues
-   - Log correlation with request IDs
+The Hockey Hub platform uses Grafana for dashboarding and visualization. Dashboards provide insights into system performance, resource utilization, and application metrics.
 
-### Monitoring and Logging Implementation
+## Backup and Disaster Recovery
 
-#### Prometheus Deployment
+The Hockey Hub platform follows a robust backup and disaster recovery strategy to ensure data availability and system resilience.
 
+### Backup Strategy
+
+1. **Database Backups**: Regular backups of the PostgreSQL database are stored in Azure Blob Storage.
+2. **File Attachments**: File attachments are stored in Azure Blob Storage with lifecycle management for cost optimization.
+3. **Incremental Backups**: Incremental backups are performed daily to minimize the impact on performance.
+4. **Point-in-Time Recovery**: Point-in-time recovery is enabled for the PostgreSQL database to restore to any point in time.
+
+### Disaster Recovery Strategy
+
+1. **Geo-Redundant Infrastructure**: The Hockey Hub platform is deployed across multiple availability zones in Azure to ensure high availability and fault tolerance.
+2. **Geo-Redundant Backups**: Database backups are geo-redundant to ensure data availability in case of regional failures.
+3. **Failover Clusters**: Failover clusters are configured for critical services to ensure continuous availability.
+4. **Disaster Recovery Plan**: A disaster recovery plan is in place to ensure rapid recovery in case of major incidents.
+
+## Scaling Strategy
+
+The Hockey Hub platform uses a scalable architecture to handle increased traffic and workload.
+
+### Auto-Scaling
+
+Auto-scaling is enabled for all microservices to ensure optimal resource utilization and performance. The auto-scaling configuration varies by environment:
+
+#### Development
 ```yaml
-# prometheus-config.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: prometheus-config
-data:
-  prometheus.yml: |
-    global:
-      scrape_interval: 15s
-      evaluation_interval: 15s
-    
-    scrape_configs:
-      - job_name: 'kubernetes-pods'
-        kubernetes_sd_configs:
-          - role: pod
-        relabel_configs:
-          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-            action: keep
-            regex: true
-          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
-            action: replace
-            target_label: __metrics_path__
-            regex: (.+)
-          - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
-            action: replace
-            regex: ([^:]+)(?::\d+)?;(\d+)
-            replacement: $1:$2
-            target_label: __address__
-          - action: labelmap
-            regex: __meta_kubernetes_pod_label_(.+)
-          - source_labels: [__meta_kubernetes_namespace]
-            action: replace
-            target_label: kubernetes_namespace
-          - source_labels: [__meta_kubernetes_pod_name]
-            action: replace
-            target_label: kubernetes_pod_name
+autoscaling:
+  enabled: false
 ```
 
-#### Application Monitoring Implementation
-
-Each service exports metrics via a `/metrics` endpoint using the Prometheus client library:
-
-```typescript
-// src/utils/metrics.ts
-import { register, Counter, Histogram, Gauge } from 'prom-client';
-import express from 'express';
-
-// Initialize metrics
-const httpRequestDurationMicroseconds = new Histogram({
-  name: 'http_request_duration_seconds',
-  help: 'Duration of HTTP requests in seconds',
-  labelNames: ['method', 'route', 'status_code'],
-  buckets: [0.01, 0.03, 0.05, 0.07, 0.1, 0.3, 0.5, 0.7, 1, 3, 5, 7, 10]
-});
-
-const httpRequestCounter = new Counter({
-  name: 'http_requests_total',
-  help: 'Total number of HTTP requests',
-  labelNames: ['method', 'route', 'status_code']
-});
-
-const activeConnections = new Gauge({
-  name: 'active_connections',
-  help: 'Current active connections'
-});
-
-// Setup metrics middleware for Express
-export const metricsMiddleware = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const start = process.hrtime();
-  
-  // Increment active connections
-  activeConnections.inc();
-  
-  res.on('finish', () => {
-    // Decrement active connections
-    activeConnections.dec();
-    
-    // Record request duration
-    const duration = process.hrtime(start);
-    const durationInSeconds = duration[0] + duration[1] / 1e9;
-    
-    // Skip metrics route itself
-    if (req.path !== '/metrics') {
-      const route = req.route ? req.route.path : req.path;
-      
-      httpRequestDurationMicroseconds
-        .labels(req.method, route, res.statusCode.toString())
-        .observe(durationInSeconds);
-      
-      httpRequestCounter
-        .labels(req.method, route, res.statusCode.toString())
-        .inc();
-    }
-  });
-  
-  next();
-};
-
-// Metrics endpoint
-export const metricsEndpoint = async (_req: express.Request, res: express.Response) => {
-  res.set('Content-Type', register.contentType);
-  res.end(await register.metrics());
-};
-
-// Default metrics (GC, memory, etc.)
-export const startDefaultMetrics = () => {
-  register.setDefaultLabels({
-    app: process.env.SERVICE_NAME || 'unknown-service'
-  });
-  register.collectDefaultMetrics();
-};
-```
-
-#### Logging Configuration
-
-Standardized logging is implemented using Winston:
-
-```typescript
-// src/utils/logger.ts
-import winston from 'winston';
-import { Request } from 'express';
-
-// Define log format
-const logFormat = winston.format.combine(
-  winston.format.timestamp(),
-  winston.format.metadata({ fillExcept: ['message', 'level', 'timestamp', 'label'] }),
-  winston.format.json()
-);
-
-// Create logger
-const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
-  format: logFormat,
-  defaultMeta: { service: process.env.SERVICE_NAME || 'unknown-service' },
-  transports: [
-    new winston.transports.Console()
-  ]
-});
-
-// Request context middleware
-export const requestLogger = (req: Request, res: Response, next: Function) => {
-  // Generate request ID if not present
-  const requestId = req.headers['x-request-id'] || uuidv4();
-  
-  // Create request-scoped logger
-  req.logger = logger.child({
-    requestId,
-    method: req.method,
-    url: req.url,
-    ip: req.ip,
-    userAgent: req.headers['user-agent']
-  });
-  
-  // Add request ID to response headers
-  res.setHeader('x-request-id', requestId);
-  
-  // Log request
-  req.logger.info('Request received');
-  
-  // Log response when finished
-  res.on('finish', () => {
-    req.logger.info('Response sent', {
-      statusCode: res.statusCode,
-      responseTime: Date.now() - req.startTime
-    });
-  });
-  
-  next();
-};
-
-export default logger;
-```
-
-#### EFK Stack Configuration
-
-The Elasticsearch, Fluentd, and Kibana (EFK) stack is deployed using Helm:
-
-```bash
-# Install EFK stack
-helm repo add elastic https://helm.elastic.co
-helm repo add fluent https://fluent.github.io/helm-charts
-
-# Install Elasticsearch
-helm install elasticsearch elastic/elasticsearch \
-  --namespace logging \
-  --create-namespace \
-  --set replicas=3 \
-  --set minimumMasterNodes=2 \
-  --set resources.requests.cpu=1 \
-  --set resources.requests.memory=2Gi \
-  --set resources.limits.cpu=2 \
-  --set resources.limits.memory=4Gi
-
-# Install Fluentd
-helm install fluentd fluent/fluentd \
-  --namespace logging \
-  --set forwarder.sources.forward.port=24224 \
-  --set forwarder.sources.forward.bind=0.0.0.0 \
-  --set aggregator.enabled=true \
-  --set aggregator.buffer.flush_interval=10s \
-  --set aggregator.buffer.flush_mode=interval
-
-# Install Kibana
-helm install kibana elastic/kibana \
-  --namespace logging \
-  --set elasticsearchHosts=http://elasticsearch-master:9200
-```
-
-### Alerting Configuration
-
-Alerting is configured in Prometheus AlertManager:
-
+#### Staging
 ```yaml
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 9
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+```
+
+#### Production
+```yaml
+autoscaling:
+  enabled: true
+  minReplicas: 6
+  maxReplicas: 15
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+```
+
+### Load Balancing
+
+The Hockey Hub platform uses Kubernetes Ingress Controller for load balancing. The Ingress Controller distributes traffic across multiple replicas of each microservice to ensure high availability and fault tolerance.
+
+### Caching
+
+Caching is implemented at various levels to improve performance and reduce latency:
+
+1. **CDN**: Content Delivery Network for static assets
+2. **Redis**: In-memory data store for caching frequently accessed data
+3. **HTTP Caching**: HTTP caching headers are used to cache responses at the client level
+
+## Security Considerations
+
+The Hockey Hub platform follows a comprehensive security strategy to ensure data protection, authentication, and authorization.
+
+### Authentication and Authorization
+
+1. **JWT Tokens**: JSON Web Tokens are used for authentication and authorization.
+2. **Role-Based Access Control (RBAC)**: RBAC is implemented to control access to resources based on user roles.
+3. **OAuth 2.0**: OAuth 2.0 is used for third-party authentication and authorization.
+4. **Service-to-Service Authentication**: Service-to-service authentication is implemented using short-lived JWT tokens.
+
+### Data Protection
+
+1. **Encryption**: Data at rest and in transit is encrypted using industry-standard encryption algorithms.
+2. **Row-Level Security (RLS)**: RLS is implemented to ensure that users only have access to their own data.
+3. **Field-Level Encryption**: Field-level encryption is implemented for sensitive data fields.
+
+### Network Security
+
+1. **TLS/SSL**: TLS/SSL is used to encrypt communication between the client and the server.
+2. **Network Policies**: Network policies are implemented to control traffic flow between microservices.
+3. **Firewalls**: Firewalls are used to protect the network from unauthorized access.
+
+### Compliance and Certifications
+
+The Hockey Hub platform is compliant with the following regulations and certifications:
+
+1. **GDPR**: General Data Protection Regulation
+2. **CCPA**: California Consumer Privacy Act
+3. **ISO 27001**: Information Security Management System
+4. **SOX**: Sarbanes-Oxley Act
+5. **HIPAA**: Health Insurance Portability and Accountability Act
+
+## Implementation Roadmap
+
+The Hockey Hub platform follows a phased implementation approach to ensure a successful rollout.
+
+### Phase 1: Basic Installation
+
+1. **CI/CD Pipeline**: Implement a comprehensive CI/CD pipeline using GitHub Actions.
+2. **Saga Orchestration**: Implement Saga orchestration for distributed transactions.
+3. **API Gateway**: Implement an API Gateway to handle incoming requests and route them to the appropriate microservices.
+4. **User Service**: Implement the User Service to handle user authentication, authorization, and management.
+5. **Localization**: Implement localization support for multiple languages.
+
+### Phase 2: Core Functionality
+
+1. **Calendar Service**: Implement the Calendar Service to handle event scheduling and management.
+2. **Communication Service**: Implement the Communication Service to handle real-time communication between users.
+3. **Training Service**: Implement the Training Service to handle training session scheduling and management.
+4. **Medical Service**: Implement the Medical Service to handle medical data management and privacy.
+
+### Phase 3: Enhancements
+
+1. **Statistics Service**: Implement the Statistics Service to provide insights and analytics.
+2. **Planning Service**: Implement the Planning Service to handle team and event planning.
+3. **Payment Service**: Implement the Payment Service to handle payment processing.
+4. **Admin Service**: Implement the Admin Service to handle administrative tasks.
+
+### Phase 4: Advanced Features
+
+1. **AI Integration**: Integrate AI features for personalized recommendations and predictions.
+2. **Machine Learning**: Implement machine learning models for predictive maintenance and performance optimization.
+3. **IoT Integration**: Integrate IoT devices for real-time data collection and analysis.
+4. **Mobile App**: Develop a mobile app for iOS and Android platforms.
+
+# Hockey Hub - Infrastructure and Deployment Strategy
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Deployment Environments](#deployment-environments)
+3. [Infrastructure Architecture](#infrastructure-architecture)
+4. [CI/CD Pipeline](#cicd-pipeline)
+5. [Environment Configuration Management](#environment-configuration-management)
+6. [Database Deployment Strategy](#database-deployment-strategy)
+7. [Service Deployment](#service-deployment)
+8. [Monitoring and Logging](#monitoring-and-logging)
+9. [Backup and Disaster Recovery](#backup-and-disaster-recovery)
+10. [Scaling Strategy](#scaling-strategy)
+11. [Security Considerations](#security-considerations)
+12. [Implementation Roadmap](#implementation-roadmap)
+
+## Overview
+
+This document outlines the infrastructure and deployment strategy for the Hockey Hub platform. It defines how the system will be deployed, managed, and monitored across different environments. The strategy ensures reliability, scalability, and security while maintaining operational efficiency.
+
+The Hockey Hub platform follows a microservice architecture with multiple independent services that need to be deployed, configured, and monitored consistently. This document provides the blueprint for operationalizing the entire system.
+
+## Deployment Environments
+
+The Hockey Hub platform utilizes four distinct environments to support the full software development lifecycle:
+
+### Local Development Environment
+
+- **Purpose**: Individual developer workstations for feature development and testing
+- **Infrastructure**: Docker Compose for containerized local development
+- **Configuration**:
+  - Hot reloading for both frontend and backend services
+  - Local PostgreSQL database instance
+  - Environment variables via `.env` files
+  - Service discovery through Docker Compose DNS
+  - Mock data for development
+
+### Testing Environment
+
+- **Purpose**: Automated testing, integration testing, and quality assurance
+- **Infrastructure**: Ephemeral cloud-based Kubernetes environment
+- **Configuration**:
+  - Test database with seed data
+  - Isolated from production data
+  - CI/CD integration for automated testing
+  - Minimal resource allocation
+
+### Staging Environment
+
+- **Purpose**: Pre-production validation, UAT, and performance testing
+- **Infrastructure**: Cloud-based Kubernetes cluster (production mirror)
+- **Configuration**:
+  - Production-like setup with reduced resources
+  - Anonymized production data (for testing)
+  - Full monitoring and logging
+  - Accessible to stakeholders for testing
+
+### Production Environment
+
+- **Purpose**: Live system serving end-users
+- **Infrastructure**: Cloud-based Kubernetes cluster (with high availability)
+- **Configuration**:
+  - Redundant components for high availability
+  - Auto-scaling enabled
+  - Regular backups
+  - Comprehensive monitoring and alerting
+  - Geographic distribution for global performance (future)
+
+## Infrastructure Architecture
+
+### Cloud Provider
+
+The Hockey Hub platform is deployed on **Azure Kubernetes Service (AKS)** with the following rationale:
+
+- Strong support for Kubernetes
+- Comprehensive compliance certifications
+- Integrated identity management
+- Global presence for future expansion
+- Cost-effective scaling options
+
+### Infrastructure Components
+
+The infrastructure consists of the following core components:
+
+#### Kubernetes Clusters
+
+- **Dev/Test Cluster**:
+  - Single availability zone
+  - Smaller node sizes (Standard_D2s_v3)
+  - Autoscaling range: 3-6 nodes
+  - Development namespace for feature branches
+  - Testing namespace for automated tests
+
+- **Staging Cluster**:
+  - Two availability zones
+  - Medium node sizes (Standard_D4s_v3)
+  - Autoscaling range: 3-9 nodes
+
+- **Production Cluster**:
+  - Three availability zones
+  - Larger node sizes (Standard_D8s_v3)
+  - Autoscaling range: 6-15 nodes
+  - Node affinity rules for service placement
+
+#### Database Infrastructure
+
+- **Database**: Azure Database for PostgreSQL - Flexible Server
+  - Development: Basic tier, single instance
+  - Staging: General Purpose tier, zone-redundant
+  - Production: Business Critical tier, zone-redundant with read replicas
+
+- **Storage**:
+  - Azure Blob Storage for file attachments and backups
+  - Separate storage accounts for each environment
+  - Lifecycle management for cost optimization
+
+#### Networking
+
+- **Virtual Network**:
+  - Separate VNets for each environment
+  - Network security groups for traffic control
+  - Private endpoints for Azure services
+
+- **Ingress**:
+  - NGINX Ingress Controller for Kubernetes
+  - Azure Application Gateway for TLS termination and WAF (production only)
+  - DNS management through Azure DNS
+
+#### Supporting Services
+
+- **Container Registry**: Azure Container Registry for Docker images
+- **Key Management**: Azure Key Vault for secrets and certificates
+- **Monitoring**: Azure Monitor with Application Insights
+- **Identity**: Azure Active Directory for service authentication
+- **Message Broker (RabbitMQ)**: Provides asynchronous event bus for microservices (see dedicated section below)
+
+### Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Azure Cloud Platform                          │
+│                                                                      │
 # alertmanager-config.yaml
 apiVersion: v1
 kind: ConfigMap

@@ -1,21 +1,30 @@
+// @ts-nocheck
+import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import http from 'http';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import { AppDataSource } from './data-source';
 import exerciseRoutes from './routes/exerciseRoutes'; // Import exercise routes
 import physicalCategoryRoutes from './routes/physicalCategoryRoutes'; // Import category routes
 import physicalTemplateRoutes from './routes/physicalTemplateRoutes'; // Import template routes
 import testDefinitionRoutes from './routes/testDefinitionRoutes'; // Import test definition routes
 import testResultRoutes from './routes/testResultRoutes'; // Import test result routes
 import scheduledSessionRoutes from './routes/scheduledSessionRoutes'; // Import scheduled session routes
+import { Server as SocketIOServer } from 'socket.io';
+import { initLiveMetricsSocket } from './websocket/liveMetricsSocket';
+import { initSessionIntervalSocket } from './websocket/sessionIntervalSocket';
 
 // Load environment variables
-dotenv.config({ path: '../../.env' });
+dotenv.config(); // Load from service directory .env
 
 const app = express();
 const server = http.createServer(app);
+const io = new SocketIOServer(server, {
+    cors: { origin: '*', methods: ['GET', 'POST'] }
+});
 
 const servicePort = process.env.TRAINING_SERVICE_PORT || 3004;
 
@@ -68,7 +77,18 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     });
 });
 
-// --- Start Server ---
-server.listen(servicePort, () => {
-    console.log(`Training Service listening on port ${servicePort}`);
-}); 
+// --- Initialize TypeORM and Start Server ---
+AppDataSource.initialize()
+  .then(() => {
+    console.log('TypeORM Data Source has been initialized!');
+    server.listen(servicePort, () => {
+      console.log(`Training Service listening on port ${servicePort}`);
+    });
+    // Initialize WebSocket handlers after DataSource is ready
+    initLiveMetricsSocket(io);
+    initSessionIntervalSocket(io);
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization:', err);
+    process.exit(1);
+  }); 

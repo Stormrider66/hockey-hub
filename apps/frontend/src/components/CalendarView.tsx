@@ -34,7 +34,7 @@ const eventStyleMap: Record<EventType, { className: string; Icon: LucideIcon }> 
 };
 
 // Input prop type matching the data fetched in page.tsx
-interface InputEvent {
+export interface InputEvent {
   id: string;
   title: string;
   start: string; // ISO 8601 date string

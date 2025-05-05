@@ -206,6 +206,90 @@ Stores refresh tokens for authentication.
 **Foreign Keys:**
 - `user_id` REFERENCES users(id) ON DELETE CASCADE
 
+### Table: password_reset_tokens
+Stores password reset tokens issued to users.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PK, NOT NULL | Primary identifier |
+| user_id | UUID | FK, NOT NULL | Reference to users.id |
+| token | VARCHAR(255) | UNIQUE, NOT NULL | Secure random token value |
+| expires_at | TIMESTAMP WITH TIME ZONE | NOT NULL | Expiration timestamp |
+| used_at | TIMESTAMP WITH TIME ZONE | NULL | When the token was used (NULL if unused) |
+| created_at | TIMESTAMP WITH TIME ZONE | NOT NULL DEFAULT NOW() | Creation timestamp |
+
+**Indexes:**
+- Primary Key: `id`
+- Unique Index: `token`
+- Index: `user_id`
+- Index: `expires_at`
+- Index: `(user_id, used_at)`
+
+**Foreign Keys:**
+- `user_id` REFERENCES users(id) ON DELETE CASCADE
+
+### Table: email_verification_tokens
+Stores email verification tokens for new user accounts or email changes.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PK, NOT NULL | Primary identifier |
+| user_id | UUID | FK, NOT NULL | Reference to users.id |
+| token | VARCHAR(255) | UNIQUE, NOT NULL | Secure random token value |
+| expires_at | TIMESTAMP WITH TIME ZONE | NOT NULL | Expiration timestamp |
+| verified_at | TIMESTAMP WITH TIME ZONE | NULL | Timestamp when verification occurred |
+| created_at | TIMESTAMP WITH TIME ZONE | NOT NULL DEFAULT NOW() | Creation timestamp |
+
+**Indexes:**
+- Primary Key: `id`
+- Unique Index: `token`
+- Index: `user_id`
+- Index: `expires_at`
+- Index: `(user_id, verified_at)`
+
+**Foreign Keys:**
+- `user_id` REFERENCES users(id) ON DELETE CASCADE
+
+### Table: permissions
+Master list of fine‑grained permissions used across the platform.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PK, NOT NULL | Primary identifier |
+| code | VARCHAR(100) | UNIQUE, NOT NULL | Permission code (e.g., `calendar.events.create`) |
+| description | TEXT | NULL | Human‑readable description |
+| created_at | TIMESTAMP WITH TIME ZONE | NOT NULL DEFAULT NOW() | Creation timestamp |
+| updated_at | TIMESTAMP WITH TIME ZONE | NOT NULL DEFAULT NOW() | Last update timestamp |
+
+**Indexes:**
+- Primary Key: `id`
+- Unique Index: `code`
+
+### Table: role_permissions
+Junction table mapping roles to permissions.
+
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| role_id | UUID | FK, NOT NULL | Reference to roles.id |
+| permission_id | UUID | FK, NOT NULL | Reference to permissions.id |
+
+**Indexes:**
+- Primary Key: `(role_id, permission_id)`
+- Index: `role_id`
+- Index: `permission_id`
+
+**Foreign Keys:**
+- `role_id` REFERENCES roles(id) ON DELETE CASCADE
+- `permission_id` REFERENCES permissions(id) ON DELETE CASCADE
+
+### ENUM: user_status_enum
+To ensure alignment with the API, the `users.status` ENUM must include:
+- `pending`
+- `active`
+- `inactive`
+
+If the database already defines this ENUM with only `active/inactive`, create a migration to add `pending`.
+
 ## Schema: Calendar Service (calendar-service)
 
 ### Table: events
@@ -1781,3 +1865,32 @@ Below is a simplified ER diagram representation showing key entities and their r
 - **Backup Testing**: Regular testing of restoration procedures.
 
 This database schema provides a comprehensive foundation for the Hockey App platform, with careful consideration for data relationships, performance optimization, and future scalability. Each table is designed to support specific business requirements while maintaining database integrity and efficiency.
+
+## Docker Compose Integration
+
+To support all microservices in local development via Docker Compose, a shared `db` service (PostgreSQL 17) is defined in the root `docker-compose.yml` and is accessible under the hostname `db` on port `5432`.
+
+Each microservice (e.g., user-service, training-service, medical-service) should configure its database connection using environment variables pointing to the `db` service:
+
+- `POSTGRES_HOST=db`
+- `POSTGRES_PORT=5432`
+- `POSTGRES_USER=postgres`
+- `POSTGRES_PASSWORD=postgres`
+- `POSTGRES_DB=<service_database_name>`
+
+Example snippet for the Medical Service in `docker-compose.yml`:
+```yaml
+medical-service:
+  build: ./services/medical-service
+  env_file: ./services/medical-service/.env
+  environment:
+    - POSTGRES_HOST=db
+    - POSTGRES_PORT=5432
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=medical-service
+  depends_on:
+    - db
+```
+
+Repeat similar configuration blocks for other services (training-service, calendar-service, etc.), adjusting `DB_NAME` to match each service's database name.

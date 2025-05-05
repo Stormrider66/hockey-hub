@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import * as TestRepository from '../repositories/testRepository';
+import * as TestRepository from '../repositories/TestRepository';
 import { TestDefinition, TestResult } from '../types/test';
 
 // TODO: Add validation, authorization, error handling

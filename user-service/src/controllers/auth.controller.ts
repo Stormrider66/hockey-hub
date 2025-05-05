@@ -3,26 +3,30 @@ import { AuthService } from '../services/auth.service';
 import { RegisterUserDto } from '../dtos/register-user.dto';
 import { LoginUserDto } from '../dtos/login-user.dto';
 import { User } from '../entities/user.entity';
+import AppDataSource from '../data-source'; // Now using the local data-source.ts
+import { RequestHandler } from 'express';
 
 // Define controller handler types
 type ControllerHandler = (req: Request, res: Response, next: NextFunction) => Promise<void>;
 
 export class AuthController {
-  private authService = new AuthService();
+  // Get the UserRepository from the DataSource
+  private userRepository = AppDataSource.getRepository(User);
+  // Instantiate AuthService with the repository
+  private authService = new AuthService(this.userRepository);
 
-  // @ts-ignore - bypassing Express type conflicts
-  public register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  // Explicitly type controller methods for router compatibility
+  public register: RequestHandler = async (req, res, next) => {
     try {
       const userData: RegisterUserDto = req.body;
-      const newUser: Omit<User, 'passwordHash'> = await this.authService.registerUser(userData);
+      const newUser = await this.authService.registerUser(userData);
       res.status(201).json({ data: newUser, message: 'User registered successfully' });
     } catch (error) {
       next(error);
     }
   };
 
-  // @ts-ignore - bypassing Express type conflicts
-  public login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  public login: RequestHandler = async (req, res, next) => {
     try {
       const credentials: LoginUserDto = req.body;
       const { accessToken, refreshToken, user } = await this.authService.loginUser(credentials);

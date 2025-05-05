@@ -1,117 +1,97 @@
-# Hockey Hub - Project Brief
+# Hockey Hub Project Brief
 
 ## Project Overview
-The Hockey Hub will be a comprehensive platform designed to serve as a central hub for hockey organizations. It will facilitate communication between all stakeholders, streamline planning and administration, and provide tools for training, medical management, and performance analysis.
-
-### Core Purpose
-To create a unified platform that centralizes all aspects of hockey organization management, improving efficiency, communication, and overall performance for teams at all levels.
-
-### Target Users
-- **Players**: Access schedules, training plans, and team communications
-- **Coaches**: Plan training, manage team activities, analyze performance
-- **Medical Staff**: Track injuries, manage rehabilitation, monitor player health
-- **Administrative Staff**: Handle scheduling, resources, and organizational tasks
-- **Parents/Guardians**: Stay informed about children's activities and schedules
-
-### Key Goals
-1. Centralize all hockey organization activities in a single platform
-2. Improve communication between all stakeholders
-3. Streamline training planning, execution, and analysis
-4. Enable comprehensive medical and rehabilitation management
-5. Provide detailed statistics and performance analytics
-6. Support multi-language capabilities (initially Swedish and English)
-7. Scale to support 10,000+ users across multiple hockey organizations
+Hockey Hub is a comprehensive sports management system designed specifically for hockey teams and organizations. It provides a suite of microservices to handle various aspects of team management, training, and communication.
 
 ## Core Requirements
 
-### Functional Requirements
+### System Architecture
+- Microservices-based architecture
+- Each service handles a specific domain of functionality
+- Services communicate through a well-defined API gateway
 
-#### User Management
-- Role-based access control with 8 distinct roles (Admin, Club Admin, Coach, Fys Coach, Rehab, Equipment Manager, Player, Parent)
-- Multi-team support with proper permissions
-- Parent-child account relationships
-- CSV import for bulk user creation
-- Multi-language support with user language preferences
+### Key Services
+1. Training Service (Port 3004)
+   - Manage physical training sessions
+   - Track exercises and workouts
+   - Handle training templates and schedules
 
-#### Calendar and Scheduling
-- Comprehensive calendar for all team activities
-- Resource booking and conflict management
-- Multiple calendar views (month, week, day)
-- Event categorization and filtering
-- Notification system for schedule changes
+2. User Service (Port 3001)
+   - User authentication and authorization
+   - Profile management
+   - Role-based access control
 
-#### Training Management
-- Ice and physical training planning
-- Exercise library with multimedia support
-- Test management and result tracking
-- Data-driven training intensity based on test results
-- AI-assisted training program generation
+3. Communication Service (Port 3002)
+   - Team messaging
+   - Notifications
+   - Announcements
 
-#### Medical Management
-- Injury registration and tracking
-- Treatment and rehabilitation planning
-- Player availability status management
-- Progress monitoring and documentation
-- AI-assisted rehabilitation program generation
+4. Calendar Service (Port 3003)
+   - Schedule management
+   - Event coordination
+   - Availability tracking
 
-#### Communication
-- Real-time chat (individual and group)
-- Notifications system
-- Message attachments and image sharing
-- Read receipts and status indicators
+5. Medical Service (Port 3005)
+   - Injury tracking
+   - Rehabilitation programs
+   - Medical records
 
-#### Statistics and Analysis
-- Player performance tracking
-- Team statistics visualization
-- Automated data collection from external sources
-- Progress tracking and reporting
-- Custom analytics dashboards
+6. Planning Service (Port 3006)
+   - Season planning
+   - Training program design
+   - Goal setting
 
-#### Planning and Administration
-- Season planning and periodization
-- Team and individual goal setting
-- Resource planning and allocation
-- Multi-phase implementation strategy
+7. Statistics Service (Port 3007)
+   - Performance metrics
+   - Progress tracking
+   - Analytics
 
-#### Payment Processing
-- Subscription management
-- Integration with payment providers (Stripe, Bankgiro)
-- Invoice generation and tracking
+8. Payment Service (Port 3008)
+   - Handle payments
+   - Subscription management
+   - Financial tracking
 
-### Non-Functional Requirements
-- **Architecture**: Microservice-based for scalability
-- **Performance**: Fast response times, even with high user load
-- **Scalability**: Support for 10,000+ users
-- **Security**: Proper data protection, especially for medical information
-- **Usability**: Intuitive interface for all user roles
-- **Availability**: High uptime with minimal maintenance windows
-- **Internationalization**: Support for multiple languages
-- **Responsiveness**: Mobile-first design for all features
+9. Admin Service (Port 3009)
+   - System administration
+   - Configuration management
+   - Access control
 
-## Project Constraints
-- Must use microservice architecture with specified service boundaries
-- Must implement PostgreSQL 17 as the database system
-- Must use React with TypeScript and Tailwind CSS for frontend
-- Must use Node.js with TypeScript for backend services
-- Must implement proper internationalization from the beginning
-- Must follow a phased implementation approach
-- Must support both web and mobile devices through responsive design
+### Technical Requirements
+- TypeScript/Node.js backend
+- PostgreSQL databases
+- TypeORM for database interactions
+- RESTful API design
+- Secure authentication
+- Multi-language support (Swedish/English)
 
-## Implementation Phases
-1. **Phase 1**: Core infrastructure, user management, and internationalization
-2. **Phase 2**: Calendar, communication, and training functionality
-3. **Phase 3**: Medical management, season planning, and statistics
-4. **Phase 4**: Payment processing, administration features
-5. **Phase 5**: Advanced analytics, external integrations
-6. **Phase 6**: Testing, security auditing, and documentation
+### Database Structure
+Each service maintains its own database for:
+- Data isolation
+- Independent scaling
+- Service autonomy
+
+### Security Requirements
+- Secure password handling
+- JWT-based authentication
+- Role-based access control
+- Data encryption
+- Secure API endpoints
+
+## Project Goals
+1. Create a modern, scalable platform for hockey team management
+2. Provide comprehensive training and performance tracking
+3. Enable efficient team communication and coordination
+4. Ensure data security and user privacy
+5. Support multi-language functionality
+6. Maintain high performance and reliability
 
 ## Success Criteria
-- All microservices functioning correctly and communicating properly
-- Successful onboarding process for new hockey organizations
-- Intuitive user experience across all device types
-- Proper handling of multi-language support
-- Comprehensive access control based on user roles
-- Efficient data flow between system components
-- High system performance even under peak load
+1. All services operational and communicating effectively
+2. Successful user authentication and authorization
+3. Efficient data management across services
+4. Responsive and intuitive user interface
+5. Comprehensive test coverage
+6. Proper error handling and logging
+7. Documentation completeness
 
 This document serves as the foundation for all other memory bank files and defines the scope and goals of the Hockey Hub project.

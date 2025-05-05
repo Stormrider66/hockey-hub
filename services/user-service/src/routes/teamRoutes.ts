@@ -8,6 +8,7 @@ import {
     addTeamMemberSchema,
     removeTeamMemberSchema,
     getTeamSchema,
+    listTeamsSchema
 } from '../validations/teamValidations';
 import {
     createTeamHandler,
@@ -17,6 +18,7 @@ import {
     addTeamMemberHandler,
     removeTeamMemberHandler,
     getTeamMembersHandler,
+    listTeamsHandler
 } from '../controllers/teamController';
 
 const router = Router();
@@ -25,6 +27,14 @@ const router = Router();
 router.use(authenticateToken);
 
 // --- Team Routes --- //
+
+// GET /api/v1/teams - List teams
+router.get(
+    '/',
+    authorize({ requiredPermissions: ['team:read'] }),
+    validateRequest(listTeamsSchema),
+    listTeamsHandler
+);
 
 // POST /api/v1/teams - Create a new team
 router.post(

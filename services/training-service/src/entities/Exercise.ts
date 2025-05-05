@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, Index } from 'typeorm';
+import { UUID, ISODateString, UrlString, ExerciseCategory as ExerciseCategoryEnum } from '@hockey-hub/types';
 
 export enum Difficulty { // Make sure 'export' is here
     BEGINNER = 'beginner',
@@ -7,59 +8,68 @@ export enum Difficulty { // Make sure 'export' is here
 }
 
 @Entity('exercises')
-@Index(['category', 'difficulty'])
+@Index(['organizationId', 'name'])
 @Index(['created_by_user_id'])
-@Index(['organization_id'])
 @Index(['is_public'])
 export class Exercise { // Make sure 'export' is here
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id!: UUID;
+
+    @Column({ type: 'uuid', nullable: true })
+    organizationId?: UUID | null; // Null indicates a global/system exercise
 
     @Column()
-    name: string;
+    name!: string;
 
-    @Column()
-    category: string;
+    @Column({ type: 'text', nullable: true })
+    description?: string | null;
+
+    @Column({
+        type: 'enum',
+        enum: ExerciseCategoryEnum
+    })
+    category!: ExerciseCategoryEnum;
+
+    @Column({ type: 'varchar', length: 2048, nullable: true })
+    videoUrl?: UrlString | null;
+
+    @Column({ type: 'text', nullable: true })
+    instructions?: string | null;
+
+    // Using simple-array for basic lists
+    @Column({ type: 'simple-array', nullable: true })
+    muscleGroups?: string[];
+
+    @Column({ type: 'simple-array', nullable: true })
+    equipmentNeeded?: string[];
 
     @Column({
         type: 'enum',
         enum: Difficulty,
     })
-    difficulty: Difficulty;
-
-    @Column('varchar', { array: true, nullable: true })
-    equipment: string[];
-
-    @Column('varchar', { array: true, nullable: true })
-    muscle_groups: string[];
+    difficulty!: Difficulty;
 
     @Column('text')
-    description: string;
+    description!: string;
 
     @Column('text')
-    instructions: string;
+    instructions!: string;
 
     @Column({ nullable: true })
-    video_url: string;
-
-    @Column({ nullable: true })
-    image_url: string;
+    image_url!: string;
 
     @Column('uuid')
-    created_by_user_id: string;
-
-    @Column('uuid', { nullable: true })
-    organization_id: string;
+    created_by_user_id!: string;
 
     @Column({ default: false })
-    is_public: boolean;
+    is_public!: boolean;
 
-    @CreateDateColumn()
-    created_at: Date;
+    @CreateDateColumn({ type: 'timestamptz' })
+    createdAt!: ISODateString;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @UpdateDateColumn({ type: 'timestamptz' })
+    updatedAt!: ISODateString;
 
     @DeleteDateColumn({ nullable: true })
-    deleted_at: Date;
+    deleted_at!: Date;
 }

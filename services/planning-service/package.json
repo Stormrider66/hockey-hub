@@ -6,12 +6,17 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "typeorm": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts",
+    "migration:generate": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts migration:generate src/migrations/%npm_config_name%",
+    "migration:run": "pnpm typeorm migration:run",
+    "migration:revert": "pnpm typeorm migration:revert"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hockey-hub/types": "workspace:*",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -20,6 +25,7 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "pg": "^8.12.0",
+    "typeorm": "^0.3.22",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -29,6 +35,8 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.14.10",
     "@types/pg": "^8.11.6",
+    "@types/qs": "^6.9.18",
+    "dotenv-cli": "^8.0.0",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"

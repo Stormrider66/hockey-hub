@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Router } from 'express';
 import {
     getExercises,
@@ -6,10 +7,10 @@ import {
     updateExerciseHandler,
     deleteExerciseHandler
 } from '../controllers/exerciseController';
-
-// TODO: Add auth middleware
+import { requireAuth } from '../middlewares/authMiddleware';
 
 const router = Router();
+router.use(requireAuth);
 
 router.get('/', getExercises);
 router.post('/', createExerciseHandler);

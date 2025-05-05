@@ -1,0 +1,33 @@
+Merge branch 'main' of https://github.com/Stormrider66/hockey-hub
+
+# Conflicts:
+#	.gitignore
+#	LICENSE
+#	README.md
+#	apps/frontend/README.md
+#	docker-compose.yml
+#	package.json
+#	tsconfig.base.json
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please run
+#	git update-ref -d MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	modified:   LICENSE
+#	modified:   README.md
+#	new file:   development/README.md
+#	modified:   docker-compose.yml
+#	new file:   packages/README.md
+#	new file:   services/README.md
+#	modified:   tsconfig.base.json
+#

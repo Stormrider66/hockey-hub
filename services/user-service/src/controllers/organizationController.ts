@@ -11,8 +11,6 @@ import {
 import { NotFoundError, ConflictError, AuthorizationError } from '../errors/serviceErrors';
 import { AuthenticatedUser } from '../middleware/authenticateToken';
 
-const organizationService = new OrganizationService();
-
 // Define the expected structure of query params AFTER validation/transformation
 interface ProcessedListOrgsQuery {
     page: number;
@@ -30,6 +28,7 @@ export const listOrganizationsHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const organizationService = new OrganizationService();
     try {
         // Authorization check handled by middleware
         const processedQuery = req.query as unknown as ProcessedListOrgsQuery; // Cast after validation
@@ -54,6 +53,7 @@ export const getOrganizationHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const organizationService = new OrganizationService();
     try {
         const user = req.user as AuthenticatedUser;
         const targetOrganizationId = req.params.organizationId;
@@ -84,10 +84,11 @@ export const createOrganizationHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const organizationService = new OrganizationService();
     try {
         const user = req.user as AuthenticatedUser;
         // Authorization check already done by middleware (admin role required)
-        const organization = await organizationService.createOrganization(req.body, user.userId);
+        const organization = await organizationService.createOrganization(req.body, user.userId!);
         res.status(201).json({ success: true, data: organization });
     } catch (error) {
         if (error instanceof ConflictError) {
@@ -102,6 +103,7 @@ export const updateOrganizationHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const organizationService = new OrganizationService();
     try {
         const user = req.user as AuthenticatedUser;
         const targetOrganizationId = req.params.organizationId;
@@ -116,7 +118,7 @@ export const updateOrganizationHandler = async (
             throw new AuthorizationError('Only system administrators can change organization status.');
         }
 
-        const organization = await organizationService.updateOrganization(targetOrganizationId, req.body, user.userId);
+        const organization = await organizationService.updateOrganization(targetOrganizationId, req.body, user.userId!);
         res.status(200).json({ success: true, data: organization });
     } catch (error) {
          if (error instanceof NotFoundError) {
@@ -134,11 +136,12 @@ export const deleteOrganizationHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const organizationService = new OrganizationService();
     try {
         const user = req.user as AuthenticatedUser;
         // Authorization check already done by middleware (admin role required)
 
-        await organizationService.deleteOrganization(req.params.organizationId, user.userId);
+        await organizationService.deleteOrganization(req.params.organizationId, user.userId!);
         res.status(200).json({ success: true, message: 'Organization deleted successfully' });
     } catch (error) {
         if (error instanceof NotFoundError) {

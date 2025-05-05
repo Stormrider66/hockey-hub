@@ -11,8 +11,7 @@ import {
 import { ListUsersQueryDto } from '../dtos/user.dto'; // Import the DTO for query structure
 import { NotFoundError, ConflictError, AuthorizationError } from '../errors/serviceErrors';
 import { AuthenticatedUser } from '../middleware/authenticateToken';
-
-const userService = new UserService();
+import { User } from '../entities/User'; // Import User entity
 
 // Define the expected structure of query params AFTER validation/transformation
 interface ProcessedListUsersQuery {
@@ -35,6 +34,7 @@ export const listUsersHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
     try {
         // The query object might still be typed as ParsedQs | undefined by Express,
         // but validateRequest middleware ensures it matches ListUsersInput schema
@@ -71,6 +71,7 @@ export const getUserHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
     try {
         // TODO: Add finer-grained authorization (can user view this specific profile?)
         const user = await userService.findById(req.params.userId, ['roles', 'teamMemberships', 'teamMemberships.team']);
@@ -89,6 +90,7 @@ export const updateUserHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
     try {
         const requestingUser = req.user as AuthenticatedUser;
         const targetUserId = req.params.userId;
@@ -100,7 +102,7 @@ export const updateUserHandler = async (
         }
         
         // Pass requesting user's info for service-level checks
-        const user = await userService.updateUser(targetUserId, req.body, requestingUser.userId, requestingUser.roles);
+        const user = await userService.updateUser(targetUserId, req.body, requestingUser.userId!, requestingUser.roles);
         res.status(200).json({ success: true, data: user });
     } catch (error) {
         if (error instanceof NotFoundError) {
@@ -118,11 +120,12 @@ export const deleteUserHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
     try {
         const requestingUser = req.user as AuthenticatedUser;
         // Authorization handled by the authorize middleware on the route
         
-        await userService.deleteUser(req.params.userId, requestingUser.userId);
+        await userService.deleteUser(req.params.userId, requestingUser.userId!);
         res.status(200).json({ success: true, message: 'User deleted successfully' });
     } catch (error) {
         if (error instanceof NotFoundError) {
@@ -139,11 +142,39 @@ export const assignRoleHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
     try {
         const requestingUser = req.user as AuthenticatedUser;
-        // Authorization handled by the authorize middleware on the route
+        const targetUserId = req.params.userId;
+        const roleNameToAssign = req.body.roleName;
 
-        const user = await userService.assignRoleToUser(req.params.userId, req.body.roleName, requestingUser.userId);
+        // Fetch target user to check organization
+        const targetUser = await userService.findUserEntityById(targetUserId);
+        if (!targetUser) {
+            throw new NotFoundError('Target user not found.');
+        }
+
+        // Authorization Checks
+        const isSystemAdmin = requestingUser.roles.includes('admin');
+        const isClubAdmin = requestingUser.roles.includes('club_admin');
+
+        if (isSystemAdmin) {
+            // System Admin can assign any role
+        } else if (isClubAdmin) {
+            // Club Admin checks
+            if (requestingUser.organizationId !== targetUser.organizationId) {
+                throw new AuthorizationError('Club admin can only manage roles within their own organization.');
+            }
+            if (roleNameToAssign === 'admin') {
+                 throw new AuthorizationError('Club admin cannot assign the system admin role.');
+            }
+        } else {
+            // Other roles cannot assign roles
+            throw new AuthorizationError('Insufficient permissions to assign roles.');
+        }
+
+        // Authorization passed, proceed with assignment
+        const user = await userService.assignRoleToUser(targetUserId, roleNameToAssign, requestingUser.userId!);
         res.status(200).json({ success: true, data: user }); // Return updated user
     } catch (error) {
         if (error instanceof NotFoundError || error instanceof ConflictError) {
@@ -152,6 +183,9 @@ export const assignRoleHandler = async (
                 message: error.message, 
                 code: error.code 
             });
+        }
+         if (error instanceof AuthorizationError) {
+             return res.status(403).json({ error: true, message: error.message, code: error.code });
         }
         next(error); // Pass other errors (like potential auth errors from service) on
     }
@@ -162,11 +196,44 @@ export const removeRoleHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const userService = new UserService();
      try {
         const requestingUser = req.user as AuthenticatedUser;
-         // Authorization handled by the authorize middleware on the route
+        const targetUserId = req.params.userId;
+        const roleNameToRemove = req.params.roleName;
+        
+        // Fetch target user to check organization
+        const targetUser = await userService.findUserEntityById(targetUserId);
+        if (!targetUser) {
+            throw new NotFoundError('Target user not found.');
+        }
 
-        const user = await userService.removeRoleFromUser(req.params.userId, req.params.roleName, requestingUser.userId);
+        // Authorization Checks
+        const isSystemAdmin = requestingUser.roles.includes('admin');
+        const isClubAdmin = requestingUser.roles.includes('club_admin');
+
+        if (isSystemAdmin) {
+            // System Admin can remove any role
+            if (targetUser.id === requestingUser.userId && roleNameToRemove === 'admin') {
+                 throw new AuthorizationError('System admin cannot remove their own admin role.');
+            }
+        } else if (isClubAdmin) {
+            // Club Admin checks
+            if (requestingUser.organizationId !== targetUser.organizationId) {
+                throw new AuthorizationError('Club admin can only manage roles within their own organization.');
+            }
+            if (roleNameToRemove === 'admin') {
+                 throw new AuthorizationError('Club admin cannot remove the system admin role.');
+            }
+            // Prevent club admin removing their own club_admin role if they are the target?
+            // (Consider adding this check if needed)
+        } else {
+            // Other roles cannot remove roles
+            throw new AuthorizationError('Insufficient permissions to remove roles.');
+        }
+
+         // Authorization passed, proceed with removal
+        const user = await userService.removeRoleFromUser(targetUserId, roleNameToRemove, requestingUser.userId!);
         res.status(200).json({ success: true, data: user }); // Return updated user
     } catch (error) {
         if (error instanceof NotFoundError) {
@@ -175,6 +242,9 @@ export const removeRoleHandler = async (
                 message: error.message, 
                 code: 'ROLE_ASSIGNMENT_NOT_FOUND' // More specific code
             });
+        }
+         if (error instanceof AuthorizationError) {
+             return res.status(403).json({ error: true, message: error.message, code: error.code });
         }
         next(error); // Pass other errors (like potential auth errors from service) on
     }

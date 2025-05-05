@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import * as TemplateRepository from '../repositories/physicalTemplateRepository';
+import * as TemplateRepository from '../repositories/PhysicalTemplateRepository';
 import { PhysicalSessionTemplate } from '../types/training';
 
 // TODO: Add validation, authorization, error handling

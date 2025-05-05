@@ -35,6 +35,18 @@ interface AddMemberDto {
     startDate?: Date;
 }
 
+// Options for listing teams
+interface ListTeamsOptions {
+    page?: number;
+    limit?: number;
+    search?: string;
+    organizationId?: string; // Filter by specific organization
+    status?: 'active' | 'inactive' | 'archived';
+    category?: string;
+    sort?: 'name' | 'category' | 'createdAt';
+    order?: 'asc' | 'desc';
+}
+
 export class TeamService {
     private teamRepository: Repository<Team>;
     private memberRepository: Repository<TeamMember>;
@@ -183,11 +195,13 @@ export class TeamService {
             throw new NotFoundError(`Team with ID ${teamId} not found`);
         }
         
-        // Ensure members and user are loaded
+        // Ensure members are loaded
         if (!teamWithMembers.members) {
             return [];
         }
-        return teamWithMembers.members.map(member => member.user).filter(user => !!user); // Filter out potential null users
+        // Await the promises for each user
+        const users = await Promise.all(teamWithMembers.members.map(member => member.user));
+        return users.filter(user => !!user); // Filter out potential null users
     }
 
     // Helper to check if a user is a member of a team (useful for auth checks)
@@ -202,5 +216,57 @@ export class TeamService {
             where: { userId, teamId }
         });
         return !!membership && roles.includes(membership.role);
+    }
+
+    // Method to list teams with filters and pagination
+    async listTeams(options: ListTeamsOptions): Promise<{ teams: Team[], total: number }> {
+        const { 
+            page = 1, 
+            limit = 20, 
+            search, 
+            organizationId, // Filter by specific organization
+            status, 
+            category, 
+            sort = 'name', 
+            order = 'asc'
+        } = options;
+        
+        const skip = (page - 1) * limit;
+        const queryBuilder = this.teamRepository.createQueryBuilder('team')
+            .leftJoinAndSelect('team.organization', 'organization'); // Join organization for potential filtering/display
+
+        // Filtering
+        if (status) {
+            queryBuilder.andWhere('team.status = :status', { status });
+        }
+        if (category) {
+            queryBuilder.andWhere('team.category = :category', { category });
+        }
+        if (organizationId) {
+            // IMPORTANT: Ensure calling code provides correct organizationId based on user role
+            queryBuilder.andWhere('team.organizationId = :organizationId', { organizationId });
+        }
+        if (search) {
+            queryBuilder.andWhere(
+                '(team.name ILIKE :search OR team.shortName ILIKE :search OR organization.name ILIKE :search)',
+                { search: `%${search}%` }
+            );
+        }
+
+        // Sorting
+        const sortField = `team.${sort}`; // Corrected: Sort only by defined Team fields
+        queryBuilder.orderBy(sortField, order.toUpperCase() as 'ASC' | 'DESC');
+
+        // Pagination
+        queryBuilder.skip(skip).take(limit);
+        
+        // Select specific fields if needed, e.g., to add member count
+        // queryBuilder.loadRelationCountAndMap('team.memberCount', 'team.members');
+        
+        // Execute query
+        const [teams, total] = await queryBuilder.getManyAndCount();
+        
+        // Optionally map response to exclude sensitive data or format
+        return { teams, total };
     }
 } 

@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDa
 import { PhysicalSessionCategory } from './PhysicalSessionCategory'; // This entity also needs to exist
 
 @Entity('physical_session_templates')
-@Index(['categoryId', 'organizationId'])
+@Index(['categoryId', 'organization_id'])
 export class PhysicalSessionTemplate { // Make sure 'export' is here
     @PrimaryGeneratedColumn('uuid')
     id!: string;

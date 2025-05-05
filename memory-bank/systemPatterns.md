@@ -293,4 +293,302 @@ admin-service
 - Input validation on all endpoints
 - Regular security audits and penetration testing
 
-This document outlines the planned system architecture, key design patterns, component relationships, data flows, and technical decisions that will form the foundation of the Hockey Hub.
+# System Patterns
+
+## Architecture Overview
+
+### Microservices Architecture
+- Independent services for specific domains
+- REST API communication between services
+- Service-specific databases
+- Centralized authentication
+
+### Service Communication
+- HTTP/REST for synchronous operations
+- Event-driven for asynchronous operations
+- Circuit breakers for fault tolerance
+- Service discovery via API gateway
+
+## Design Patterns
+
+### Repository Pattern
+```typescript
+// Example Repository Pattern Implementation
+export class ExerciseRepository {
+    private repository: Repository<Exercise>;
+
+    constructor() {
+        this.repository = AppDataSource.getRepository(Exercise);
+    }
+
+    async findById(id: string): Promise<Exercise | null> {
+        return this.repository.findOne({ where: { id } });
+    }
+
+    async create(exercise: Partial<Exercise>): Promise<Exercise> {
+        const newExercise = this.repository.create(exercise);
+        return this.repository.save(newExercise);
+    }
+}
+```
+
+### Service Layer Pattern
+```typescript
+// Example Service Layer Pattern
+export class ExerciseService {
+    private repository: ExerciseRepository;
+
+    constructor() {
+        this.repository = new ExerciseRepository();
+    }
+
+    async createExercise(data: CreateExerciseDTO): Promise<Exercise> {
+        // Business logic and validation
+        return this.repository.create(data);
+    }
+}
+```
+
+### Controller Pattern
+```typescript
+// Example Controller Pattern
+export class ExerciseController {
+    private service: ExerciseService;
+
+    constructor() {
+        this.service = new ExerciseService();
+    }
+
+    async create(req: Request, res: Response) {
+        const exercise = await this.service.createExercise(req.body);
+        return res.status(201).json(exercise);
+    }
+}
+```
+
+## Database Patterns
+
+### Entity Structure
+```typescript
+// Example Entity Pattern
+@Entity()
+export class Exercise {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column()
+    name: string;
+
+    @Column('text')
+    description: string;
+
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
+}
+```
+
+### Relationship Patterns
+- One-to-Many relationships
+- Many-to-Many relationships
+- Soft deletes
+- Timestamps on all entities
+
+## Error Handling
+
+### Custom Error Classes
+```typescript
+// Example Error Pattern
+export class AppError extends Error {
+    constructor(
+        public statusCode: number,
+        public message: string,
+        public code?: string
+    ) {
+        super(message);
+        this.name = 'AppError';
+    }
+}
+```
+
+### Error Middleware
+```typescript
+// Example Error Middleware
+export const errorHandler = (
+    err: Error,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    if (err instanceof AppError) {
+        return res.status(err.statusCode).json({
+            error: true,
+            message: err.message,
+            code: err.code
+        });
+    }
+    // Handle other errors
+};
+```
+
+## Authentication Patterns
+
+### JWT Authentication
+```typescript
+// Example JWT Middleware
+export const authenticate = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const token = req.headers.authorization?.split(' ')[1];
+        if (!token) throw new AppError(401, 'No token provided');
+        
+        const decoded = verifyToken(token);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        next(new AppError(401, 'Invalid token'));
+    }
+};
+```
+
+### Role-Based Access Control
+```typescript
+// Example RBAC Middleware
+export const authorize = (roles: string[]) => {
+    return (req: Request, res: Response, next: NextFunction) => {
+        if (!roles.includes(req.user.role)) {
+            throw new AppError(403, 'Unauthorized');
+        }
+        next();
+    };
+};
+```
+
+## Validation Patterns
+
+### Request Validation
+```typescript
+// Example Validation Schema
+export const createExerciseSchema = {
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    type: Joi.string().valid('strength', 'cardio').required()
+};
+```
+
+### Validation Middleware
+```typescript
+// Example Validation Middleware
+export const validate = (schema: object) => {
+    return (req: Request, res: Response, next: NextFunction) => {
+        const { error } = Joi.validate(req.body, schema);
+        if (error) {
+            throw new AppError(400, error.details[0].message);
+        }
+        next();
+    };
+};
+```
+
+## Testing Patterns
+
+### Unit Testing
+```typescript
+// Example Unit Test
+describe('ExerciseService', () => {
+    it('should create exercise', async () => {
+        const service = new ExerciseService();
+        const exercise = await service.createExercise({
+            name: 'Push-ups',
+            description: 'Basic push-ups'
+        });
+        expect(exercise).toBeDefined();
+    });
+});
+```
+
+### Integration Testing
+```typescript
+// Example Integration Test
+describe('Exercise API', () => {
+    it('should create exercise via API', async () => {
+        const response = await request(app)
+            .post('/api/exercises')
+            .send({
+                name: 'Push-ups',
+                description: 'Basic push-ups'
+            });
+        expect(response.status).toBe(201);
+    });
+});
+```
+
+## Logging Patterns
+
+### Structured Logging
+```typescript
+// Example Logging Pattern
+export const logger = {
+    info: (message: string, meta?: object) => {
+        console.log(JSON.stringify({
+            level: 'info',
+            message,
+            timestamp: new Date().toISOString(),
+            ...meta
+        }));
+    },
+    error: (message: string, error?: Error, meta?: object) => {
+        console.error(JSON.stringify({
+            level: 'error',
+            message,
+            error: error?.stack,
+            timestamp: new Date().toISOString(),
+            ...meta
+        }));
+    }
+};
+```
+
+## API Response Patterns
+
+### Standard Response Format
+```typescript
+// Example Response Format
+export interface ApiResponse<T> {
+    success: boolean;
+    data?: T;
+    error?: {
+        message: string;
+        code?: string;
+    };
+    meta?: {
+        page?: number;
+        limit?: number;
+        total?: number;
+    };
+}
+```
+
+### Response Helper
+```typescript
+// Example Response Helper
+export const sendResponse = <T>(
+    res: Response,
+    data: T,
+    statusCode: number = 200,
+    meta?: object
+) => {
+    return res.status(statusCode).json({
+        success: true,
+        data,
+        meta
+    });
+};
+```
+
+These patterns form the foundation of the Hockey Hub system architecture and should be followed consistently across all services.

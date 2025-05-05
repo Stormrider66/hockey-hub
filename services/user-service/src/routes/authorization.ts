@@ -1,12 +1,15 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { checkPermission } from '../controllers/authorizationController';
-// import { authenticateToken } from '../middleware/authMiddleware'; // TODO: Implement and import actual auth middleware
+import { AuthenticatedUser } from '../middleware/authenticateToken';
 // import { validateQuery } from '../middleware/validationMiddleware'; // TODO: Implement and import validation middleware
 // import { checkPermissionSchema } from '../dtos/authorization.dto'; // TODO: Create DTO/schema for validation
 
 const router = Router();
 
-// Placeholder for actual authentication middleware
+/**
+ * Mock authentication middleware for local testing
+ * This should NOT be used in production and will be replaced by actual JWT verification
+ */
 const authenticateTokenPlaceholder = (req: Request, _res: Response, next: NextFunction) => {
     // TODO: Replace with actual JWT verification logic
     // This mock attaches a dummy user for the controller to work
@@ -14,14 +17,23 @@ const authenticateTokenPlaceholder = (req: Request, _res: Response, next: NextFu
     const userIdHeader = req.headers['x-user-id'];
     const userRolesHeader = req.headers['x-user-roles'];
     
+    // Create a mock user that implements the AuthenticatedUser interface
     req.user = { 
         id: typeof userIdHeader === 'string' ? userIdHeader : 'mock-user-id', 
         email: 'test@example.com',
         // Explicitly handle string case after type check
         roles: typeof userRolesHeader === 'string' 
                ? userRolesHeader.split(',') 
-               : ['coach'] // Default if header is missing or not a string
-    };
+               : ['coach'], // Default if header is missing or not a string
+        permissions: ['read:all', 'write:team'],
+        organizationId: 'mock-org-id',
+        lang: 'sv',
+        // Add userId getter 
+        get userId() {
+            return this.id;
+        }
+    } as AuthenticatedUser;
+    
     console.warn('Using placeholder authentication middleware!');
     next();
 };

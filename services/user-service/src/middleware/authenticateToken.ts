@@ -1,30 +1,18 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import logger from '../config/logger';
+import {
+  AuthenticatedUser,
+  TokenPayload,
+  TypedRequest,
+  ErrorResponse,
+} from '../types';
 
-// Define a type for the user payload attached to the request
-// Ensure this matches the TokenPayload in authService.ts
-export interface AuthenticatedUser {
-  id: string; // Changed from userId to id
-  email: string;
-  roles: string[];
-  permissions: string[];
-  organizationId: string; // Made required by removing ?
-  teamIds?: string[];
-  lang: string;
-}
-
-// Extend Express Request type to include the user object
-declare global {
-  namespace Express {
-    interface Request {
-      user?: AuthenticatedUser;
-    }
-  }
-}
+// Re-export the AuthenticatedUser interface for backward compatibility
+export { AuthenticatedUser };
 
 // Define RequestHandler type
-type AuthRequestHandler = (req: Request, res: Response, next: NextFunction) => void;
+type AuthRequestHandler = (req: TypedRequest, res: Response, next: NextFunction) => void;
 
 const ACCESS_TOKEN_SECRET = process.env.JWT_SECRET;
 
@@ -43,7 +31,7 @@ export const authenticateToken: AuthRequestHandler = (req, res, next) => {
       error: true,
       message: 'Authentication required',
       code: 'AUTHENTICATION_REQUIRED',
-    });
+    } as ErrorResponse);
   }
 
   try {
@@ -64,15 +52,22 @@ export const authenticateToken: AuthRequestHandler = (req, res, next) => {
       throw new Error('Invalid token structure');
     }
 
+    // Cast to our TokenPayload type
+    const tokenPayload = decoded as TokenPayload;
+
     // Explicitly create the AuthenticatedUser object
     const authenticatedUser: AuthenticatedUser = {
-      id: decoded.userId, // Map userId from token to id in our interface
-      email: decoded.email || '', // Provide default or handle potentially missing email
-      roles: decoded.roles,
-      permissions: decoded.permissions,
-      organizationId: decoded.organizationId || '', // Provide default empty string if missing
-      teamIds: decoded.teamIds,
-      lang: decoded.lang || 'sv', // Default language if not present
+      id: tokenPayload.userId, // Map userId from token to id in our interface
+      email: tokenPayload.email || '', // Provide default or handle potentially missing email
+      roles: tokenPayload.roles,
+      permissions: tokenPayload.permissions,
+      organizationId: tokenPayload.organizationId || '', // Provide default empty string if missing
+      teamIds: tokenPayload.teamIds,
+      lang: tokenPayload.lang || 'sv', // Default language if not present
+      // Add getter for userId that returns id
+      get userId() {
+        return this.id;
+      }
     };
 
     // Attach user information to the request object
@@ -95,14 +90,14 @@ export const authenticateToken: AuthRequestHandler = (req, res, next) => {
         error: true,
         message: 'Token expired',
         code: 'TOKEN_EXPIRED',
-      });
+      } as ErrorResponse);
     } else if (error instanceof jwt.JsonWebTokenError) {
         logger.error('Invalid authentication token', { error: error.message });
          return res.status(401).json({
             error: true,
             message: 'Invalid token',
             code: 'INVALID_TOKEN',
-        });
+          } as ErrorResponse);
     }
     // Handle other potential errors during verification
     const message = error instanceof Error ? error.message : 'Unknown error during token verification';
@@ -111,6 +106,6 @@ export const authenticateToken: AuthRequestHandler = (req, res, next) => {
       error: true,
       message: 'Invalid token',
       code: 'INVALID_TOKEN',
-    });
+    } as ErrorResponse);
   }
-}; 
+};

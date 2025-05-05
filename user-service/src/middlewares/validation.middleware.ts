@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
-// import HttpException from '../exceptions/HttpException'; // Need exception handling setup
+import HttpException from '../errors/HttpException'; // Corrected path
 
 // Define the type for the DTO constructor
 type DtoConstructor<T> = new (...args: any[]) => T;
@@ -33,17 +33,24 @@ export const validationMiddleware = <T extends object>(
             )
             .join(', ');
 
-          // Use a generic error for now, replace with HttpException later
-          // next(new HttpException(400, message));
-          console.error("Validation Errors:", message);
-          res.status(400).json({ error: true, message: `Validation failed: ${message}`, code: 'VALIDATION_ERROR' });
+          // Pass the error to the centralized error handler
+          const validationError = new HttpException(
+            400, // Bad Request
+            `Validation failed: ${message}`,
+            'VALIDATION_ERROR',
+            { validationErrors: errors } // Optional: Include original errors in details
+          );
+          next(validationError); 
         } else {
           // Validation passed, attach DTO instance to request for controller use (optional)
           // req.dto = dtoInstance; // You might need to extend Request type
           next(); // Proceed to the next middleware/handler
         }
       })
-      .catch(next); // Catch any errors during validation itself
+      .catch(err => { // Catch potential errors during validation itself
+        // Pass generic server error to the centralized handler
+        next(new HttpException(500, 'Error during input validation processing.', 'INTERNAL_VALIDATION_ERROR', { originalError: err }));
+      });
   };
 };
 

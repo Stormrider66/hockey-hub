@@ -15,6 +15,10 @@ This document outlines the comprehensive strategy for integrating Google's Gemin
 7. [Local Fallback Mechanism](#local-fallback-mechanism)
 8. [Testing Strategy](#testing-strategy)
 9. [Implementation Roadmap](#implementation-roadmap)
+10. [Event Publication & Messaging](#event-publication--messaging)
+11. [RLS & Data-Access Model](#rls--data-access-model)
+12. [GDPR & Privacy Compliance](#gdpr--privacy-compliance)
+13. [Alerting & Quota Thresholds](#alerting--quota-thresholds)
 
 ## AI Integration Architecture
 
@@ -1184,3 +1188,32 @@ export class AIService {
     }
   }
 }
+```
+
+## Event Publication & Messaging
+
+After a program or rehab plan is generated and stored, the AI Service publishes a domain event over RabbitMQ so interested services (Training, Medical, Notification) can react without tight coupling.
+
+| Event Key | Payload | Consumer Examples |
+|-----------|---------|-------------------|
+| `ai.training_program.created` | `{ programId, playerId, createdBy, version }` | Training Service cache refresh, Communication Service notify coach |
+| `ai.rehab_plan.created` | `{ planId, injuryId, playerId, createdBy, version }` | Medical Service notifications, Calendar Service schedule sessions |
+
+Events are published to the `ai` topic exchange with per‑service queues.  Consumers must acknowledge within 30 s; otherwise messages are re‑queued.
+
+## RLS & Data‑Access Model
+The AI Service **never** connects directly to PostgreSQL tables that contain player data.  Instead it uses gRPC/REST calls to Training and Medical services, which apply Row‑Level‑Security policies.  This ensures consistency with the RLS matrix and avoids privilege escalation.
+
+## GDPR & Privacy Compliance
+1. All prompts sent to Gemini omit personal identifiers (names, birth dates).  Only pseudonymised IDs are used.  
+2. AI responses are stored with a `generated_by_ai` flag and version.  Users can request deletion, and the data will be cascaded.  
+3. Logs redact any prompt content that might reveal personal data.  
+4. Data Processing Agreement (DPA) with Google is retained in compliance docs.
+
+## Alerting & Quota Thresholds
+Cost manager emits Prometheus metrics `ai_tokens_total` & `ai_cost_estimate_total`.  Alerts:
+* `AI_BUDGET_80_PERCENT` – cost ≥ 80 % of monthly budget (warning).  
+* `AI_BUDGET_EXCEEDED` – cost ≥ 100 % (critical, automatic fallback only).
+
+---
+*Last updated 2024‑03‑14 for messaging, RLS, GDPR compliance, and alerting.*

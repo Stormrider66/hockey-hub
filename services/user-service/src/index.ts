@@ -1,17 +1,18 @@
+import dotenv from 'dotenv';
+
+// Load environment variables very first
+dotenv.config();
+
 import 'reflect-metadata'; // Required for TypeORM
 import express from 'express';
 import cors, { CorsOptions } from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import addRequestId from 'express-request-id'; // Import request-id middleware
 import apiRouter from './routes'; // Import main API router
 import { errorHandler } from './middleware/errorHandler'; // Import error handler
 import AppDataSource from './data-source'; // Import the DataSource
 import logger from './config/logger'; // Import the logger
 import pinoHttp from 'pino-http'; // Import pino-http
-
-// Load environment variables
-dotenv.config();
 
 const app = express();
 const PORT = process.env.USER_SERVICE_PORT || 3001;

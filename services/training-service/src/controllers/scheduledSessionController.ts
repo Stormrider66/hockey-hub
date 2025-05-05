@@ -1,9 +1,9 @@
 /// <reference path="../types/express.d.ts" />
 import { Request, Response, NextFunction } from 'express';
-import * as SessionRepository from '../repositories/scheduledSessionRepository';
-import * as TemplateRepository from '../repositories/physicalTemplateRepository'; // Needed to fetch template
-import * as TestResultRepository from '../repositories/testRepository'; // Re-enable import
-import * as TestDefinitionRepository from '../repositories/testRepository'; // Use same repo for definitions
+import * as SessionRepository from '../repositories/ScheduledSessionRepository';
+import * as TemplateRepository from '../repositories/PhysicalTemplateRepository'; // Needed to fetch template
+import * as TestResultRepository from '../repositories/TestRepository'; // Re-enable import
+import * as TestDefinitionRepository from '../repositories/TestRepository'; // Use same repo for definitions
 import { ScheduledPhysicalSession } from '../types/training'; // Removed SessionExercise import
 import { TestResult, TestDefinition } from '../types/test'; // Import TestResult
 import { resolveSessionIntensity } from '../services/intensityCalculator'; // Assume this service exists

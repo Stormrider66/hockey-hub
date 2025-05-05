@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import preferencesReducer from './features/preferencesSlice';
 import { apiSlice } from './api/apiSlice'; // Import the apiSlice
+import trainingSessionViewerReducer from '../features/trainingSessionViewer/trainingSessionViewerSlice'; // new slice
 
 export const store = configureStore({
   reducer: {
     preferences: preferencesReducer,
     [apiSlice.reducerPath]: apiSlice.reducer, // Add the api reducer
+    trainingSessionViewer: trainingSessionViewerReducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

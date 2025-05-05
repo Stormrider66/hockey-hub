@@ -36,7 +36,9 @@ export const apiSlice = createApi({
     'TestResult',
     'Chat',
     'Resource', // Added Resource tag
-    'Location'  // Added Location tag
+    'Location', // Added Location tag
+    'Exercise',
+    'Program'
   ],
   endpoints: () => ({}), // Endpoints will be injected from other files
 });

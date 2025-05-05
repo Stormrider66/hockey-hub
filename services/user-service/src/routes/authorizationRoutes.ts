@@ -1,15 +1,15 @@
 import { Router } from 'express';
-import { checkAuthorizationController } from '../controllers/authorization.controller.js';
+import { checkPermission } from '../controllers/authorizationController';
 import { authenticateToken } from '../middleware/authenticateToken';
 
-const router = Router();
+const router: Router = Router();
 
 // ... (Swagger comments remain the same) ...
 
 router.get(
     '/check',
     authenticateToken,
-    checkAuthorizationController
+    checkPermission
 );
 
 export default router; 

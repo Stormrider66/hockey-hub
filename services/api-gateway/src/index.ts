@@ -56,6 +56,39 @@ app.use('/api/calendar', createProxyMiddleware({
   }
 }));
 
+// Proxy requests to Training Service (running on port 3004)
+app.use('/api/v1/training', createProxyMiddleware({
+  target: 'http://localhost:3004',
+  changeOrigin: true,
+  onProxyReq: (_proxyReq, req, _res) => {
+    console.log(`[API Gateway] Proxying request to Training Service: ${req.method} ${req.originalUrl}`);
+  },
+  onError: (err: Error, _req: Request, res: Response) => {
+    console.error('[API Gateway] Training Service Proxy error:', err);
+    if (!res.headersSent) {
+        res.status(500).json({ error: 'Training Service Proxy error', details: err.message });
+    }
+  }
+}));
+
+// Proxy requests to User Service (running on port 3001)
+app.use('/api/v1/users', createProxyMiddleware({
+  target: 'http://localhost:3001',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/v1/users': '', // strip prefix when forwarding to user-service
+  },
+  onProxyReq: (_proxyReq, req: Request, _res: Response) => {
+    console.log(`[API Gateway] Proxying request to User Service: ${req.method} ${req.originalUrl}`);
+  },
+  onError: (err: Error, _req: Request, res: Response) => {
+    console.error('[API Gateway] User Service Proxy error:', err);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'User Service Proxy error', details: err.message });
+    }
+  },
+}));
+
 // Add proxies for other services here as they are created
 // app.use('/api/calendar', createProxyMiddleware({ target: 'http://localhost:3003', changeOrigin: true }));
 // ... etc

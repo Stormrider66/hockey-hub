@@ -11,9 +11,9 @@ import {
 import { Team } from './Team';
 import { User } from './User';
 
-type OrganizationStatus = 'active' | 'inactive' | 'trial';
+export type OrganizationStatus = 'active' | 'inactive' | 'trial';
 
-@Entity({ name: 'organizations' })
+@Entity('organizations')
 @Index(['name'])
 @Index(['status'])
 export class Organization {
@@ -23,13 +23,13 @@ export class Organization {
   @Column({ type: 'varchar', length: 100 })
   name!: string;
 
-  @Column({ type: 'varchar', length: 255 })
+  @Column({ name: 'contact_email', type: 'varchar', length: 255 })
   contactEmail!: string;
 
-  @Column({ type: 'varchar', length: 20, nullable: true })
+  @Column({ name: 'contact_phone', type: 'varchar', length: 20, nullable: true })
   contactPhone?: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column({ name: 'logo_url', type: 'varchar', length: 255, nullable: true })
   logoUrl?: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
@@ -38,40 +38,36 @@ export class Organization {
   @Column({ type: 'varchar', length: 100, nullable: true })
   city?: string;
 
-  @Column({ type: 'varchar', length: 100, default: 'Sweden' })
-  country!: string;
+  @Column({ type: 'varchar', length: 100, nullable: true, default: 'Sweden' })
+  country?: string;
 
-  @Column({ type: 'varchar', length: 7, nullable: true })
-  primaryColor?: string; // Hex code
+  @Column({ name: 'primary_color', type: 'varchar', length: 7, nullable: true })
+  primaryColor?: string;
 
-  @Column({ type: 'varchar', length: 7, nullable: true })
-  secondaryColor?: string; // Hex code
+  @Column({ name: 'secondary_color', type: 'varchar', length: 7, nullable: true })
+  secondaryColor?: string;
 
-  @Column({ type: 'varchar', length: 10, default: 'sv' })
+  @Column({ name: 'default_language', type: 'varchar', length: 10, default: 'sv' })
   defaultLanguage!: string;
 
-  @Column({
-    type: 'enum',
-    enum: ['active', 'inactive', 'trial'],
-    default: 'active'
-  })
+  @Column({ type: 'enum', enum: ['active', 'inactive', 'trial'], default: 'active' })
   status!: OrganizationStatus;
 
-  @CreateDateColumn({ type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp with time zone' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt!: Date;
 
-  @DeleteDateColumn({ type: 'timestamp with time zone', nullable: true })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp with time zone', nullable: true, select: false })
   deletedAt?: Date;
 
   // --- Relationships ---
-  @OneToMany(() => User, (user) => user.organization)
-  users!: User[];
-
   @OneToMany(() => Team, (team) => team.organization)
   teams!: Team[];
+
+  @OneToMany(() => User, (user) => user.organization)
+  users!: User[];
 
   // Note: Relationships to other services (e.g., Subscriptions) are managed conceptually
   // or via IDs, not direct TypeORM relations across service boundaries.

@@ -2,16 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { ExerciseService } from '../services/ExerciseService';
 import { PhysicalSessionTemplateService } from '../services/PhysicalSessionTemplateService';
 
-// Extend Express Request to include user property
-declare module 'express' {
-    interface Request {
-        user?: {
-            id: string;
-            organizationId: string;
-        };
-    }
-}
-
 export class TrainingController {
     private exerciseService: ExerciseService;
     private templateService: PhysicalSessionTemplateService;

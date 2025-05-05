@@ -1,50 +1,61 @@
 import { Request, Response, NextFunction } from 'express';
-// import { BaseError } from '../utils/errors/BaseError'; // TODO: Create BaseError class
+import { HttpException } from '../types';
+import type { ErrorHandlerMiddleware, TypedRequest, ErrorResponse } from '../types';
+import logger from '../config/logger';
 
-// Define a standard error response structure (align with documentation)
-interface ErrorResponse {
-  error: boolean;
-  message: string;
-  code?: string;
-  category?: string;
-  details?: Record<string, any>;
-  timestamp: string;
-  path: string;
-  transactionId?: string; // TODO: Implement request ID middleware
-}
-
-export const errorHandler = (
-  err: Error,
-  req: Request,
-  res: Response,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _next: NextFunction
+/**
+ * Global error handler middleware
+ * Formats all errors into a consistent response structure
+ */
+export const errorHandler: ErrorHandlerMiddleware = (
+  error: Error, 
+  req: TypedRequest, 
+  res: Response, 
+  next: NextFunction
 ): void => {
-  console.error('Error occurred:', err); // TODO: Replace with a proper logger
-
+  // Default status code and error message
   let statusCode = 500;
-  let errorResponse: ErrorResponse = {
+  let message = 'Internal server error';
+  let errorCode = 'INTERNAL_ERROR';
+  let details = undefined;
+
+  // Extract request information for logging
+  const reqId = req.headers['x-request-id'] || 'unknown';
+  const path = req.originalUrl || req.url;
+  const timestamp = new Date().toISOString();
+
+  // Handle HttpException (our custom error class)
+  if (error instanceof HttpException) {
+    statusCode = error.status;
+    message = error.message;
+    errorCode = error.code || errorCode;
+    details = error.details;
+  }
+
+  // Convert to standardized error response
+  const errorResponse: ErrorResponse = {
     error: true,
-    message: 'Internal Server Error',
-    code: 'INTERNAL_ERROR',
-    category: 'INTERNAL_ERROR',
-    timestamp: new Date().toISOString(),
-    path: req.path,
+    message: message,
+    code: errorCode,
+    status: statusCode,
+    details: details,
+    timestamp: timestamp,
+    path: path,
+    transactionId: reqId.toString()
   };
 
-  // if (err instanceof BaseError) { // TODO: Uncomment when BaseError exists
-  //   statusCode = err.statusCode;
-  //   errorResponse = {
-  //     ...errorResponse,
-  //     message: err.message,
-  //     code: err.errorCode,
-  //     category: err.category,
-  //     details: err.details,
-  //   };
-  // }
-  // TODO: Add specific error type handling (e.g., validation errors)
+  // Log error
+  logger.error('Request error', {
+    statusCode,
+    message: error.message,
+    code: errorCode,
+    path,
+    transactionId: reqId,
+    stack: error.stack
+  });
 
-  // TODO: Add transaction ID from request context
-
+  // Send formatted response to client
   res.status(statusCode).json(errorResponse);
-}; 
+};
+
+export default errorHandler;

@@ -1,49 +1,51 @@
-import { DataSource } from 'typeorm';
-import dotenv from 'dotenv';
-import { PhysicalSessionTemplate } from './entities/PhysicalSessionTemplate';
-import { PhysicalSessionCategory } from './entities/PhysicalSessionCategory';
+import 'dotenv/config'; // Load .env first
+import { DataSource, DataSourceOptions } from 'typeorm';
+import 'reflect-metadata'; // Required for TypeORM
+
+// Import all entities from the entities directory
+// (Ensure these files exist and are correctly defined)
 import { Exercise } from './entities/Exercise';
-import { ScheduledPhysicalSession } from './entities/ScheduledPhysicalSession';
-import { TestDefinition } from './entities/TestDefinition';
-import { TestNormValue } from './entities/TestNormValue';
-import { TestResult } from './entities/TestResult';
-import { TestBatch } from './entities/TestBatch';
-import { SessionAttendance } from './entities/SessionAttendance';
+import { TrainingPlan } from './entities/TrainingPlan';
+import { TrainingSession } from './entities/TrainingSession';
+import { TrainingSessionPhase } from './entities/TrainingSessionPhase';
+import { TrainingSessionExercise } from './entities/TrainingSessionExercise';
+import { PlayerTrainingLoad } from './entities/PlayerTrainingLoad';
 
-dotenv.config();
-
-// Ensure environment variables are loaded or provide defaults
-const dbHost = process.env.DB_HOST || 'db'; // Use 'db' for Docker service name
-const dbPort = parseInt(process.env.DB_PORT || '5432');
-const dbUsername = process.env.DB_USERNAME || 'hockeyhub_user';
-const dbPassword = process.env.DB_PASSWORD || 'hockeyhub_password';
-const dbName = process.env.DB_NAME || 'hockeyhub_dev';
-const isDevelopment = process.env.NODE_ENV === 'development';
-
-console.log(`Connecting to DB: ${dbUsername}@${dbHost}:${dbPort}/${dbName}`); // Add logging
-
-export const AppDataSource = new DataSource({
+const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
-    host: dbHost,
-    port: dbPort,
-    username: dbUsername,
-    password: dbPassword,
-    database: dbName,
-    synchronize: isDevelopment, // Use migrations in production
-    logging: isDevelopment,
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '5432', 10),
+    username: process.env.DB_USERNAME || process.env.POSTGRES_USER,
+    password: process.env.DB_PASSWORD || process.env.POSTGRES_PASSWORD,
+    database: process.env.DB_NAME || process.env.POSTGRES_DB, // Use DB_NAME from .env
+    synchronize: false, // Ensure synchronize is false
+    logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'],
     entities: [
-        PhysicalSessionTemplate,
-        PhysicalSessionCategory,
-        Exercise,
-        ScheduledPhysicalSession,
-        TestDefinition,
-        TestNormValue,
-        TestResult,
-        TestBatch,
-        SessionAttendance
-        // Add other entities here as they are created
+        // List all entities explicitly or use path pattern
+        // Exercise, 
+        // TrainingPlan, 
+        // TrainingSession, 
+        // TrainingSessionPhase, 
+        // TrainingSessionExercise, 
+        // PlayerTrainingLoad
+        'dist/src/entities/**/*.js' // Use path pattern
     ],
-    migrations: [], // Define migrations path later
+    migrations: [
+        'dist/src/migrations/**/*.js'
+    ],
     subscribers: [],
-    connectTimeoutMS: 10000, // Add connection timeout
-});
+    connectTimeoutMS: 10000,
+    ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
+    // namingStrategy: new SnakeNamingStrategy(), // Add later if needed
+};
+
+export const AppDataSource = new DataSource(dataSourceOptions);
+
+// Optional initialization logging
+AppDataSource.initialize()
+    .then(() => {
+        console.log('[DB] Training Service: Data Source Initialized!');
+    })
+    .catch((err) => {
+        console.error('[DB] Training Service: Error during Data Source initialization:', err);
+    });

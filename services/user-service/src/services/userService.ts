@@ -1,5 +1,5 @@
 import { getRepository, Repository } from 'typeorm';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { User } from '../entities/User';
 import { Role } from '../entities/Role';
 import { NotFoundError, ConflictError, AuthorizationError } from '../errors/serviceErrors';
@@ -211,5 +211,28 @@ export class UserService {
         });
         if (!user || !user.passwordHash) return false;
         return bcrypt.compare(plainTextPass, user.passwordHash);
+    }
+
+    /**
+     * Fetches a User entity by ID without removing sensitive fields.
+     * Primarily for internal service/controller use for authorization checks.
+     * @param userId The ID of the user to fetch.
+     * @returns The User entity or null if not found.
+     */
+    async findUserEntityById(userId: string): Promise<User | null> {
+        const user = await this.userRepository.findOne({
+            where: { id: userId },
+            relations: ['organization'], // Load organization for checks
+        });
+        return user;
+    }
+
+    async findByEmail(email: string, relations: string[] = []): Promise<User | null> {
+        logger.debug(`Finding user by email: ${email}`);
+        const user = await this.userRepository.findOne({ 
+            where: { email: email.toLowerCase() }, // Ensure case-insensitivity
+            relations 
+        });
+        return user; // Return user or null if not found
     }
 } 

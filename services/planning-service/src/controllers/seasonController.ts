@@ -4,11 +4,13 @@ import * as SeasonRepository from '../repositories/seasonRepository';
 import { Season, SeasonPhase } from '../types/planning';
 // Re-add necessary Zod input types
 import { CreateSeasonInput, UpdateSeasonInput } from '../validation/seasonSchemas'; 
-import { checkTeamAccess, checkPlayerAccess } from '../services/authzService'; // Assuming helpers are here
+// import { checkTeamAccess, checkPlayerAccess } from '../services/authzService'; // Assuming helpers are here - REMOVED UNUSED IMPORT
+// import { NotFoundError, ConflictError } from '../errors/serviceErrors'; // Commented out temporarily
 
 // TODO: Add validation, authorization, error handling
 
 export const getSeasons = async (req: Request, res: Response, next: NextFunction) => {
+    // const seasonService = new SeasonService(); // Example if using a service class
     const { status, page = 1, limit = 20 } = req.query;
     const organizationId = req.user?.organizationId; // Use authenticated user's orgId
     const userRoles = req.user?.roles || [];

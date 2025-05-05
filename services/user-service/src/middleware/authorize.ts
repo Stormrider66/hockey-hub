@@ -1,18 +1,19 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import logger from '../config/logger';
-import { AuthenticatedUser } from './authenticateToken'; // Import the user type
-
-interface AuthorizeOptions {
-  allowedRoles?: string[];
-  requiredPermissions?: string[];
-}
+import {
+  AuthenticatedUser,
+  AuthorizeOptions,
+  TypedRequest,
+  ErrorResponse,
+  AuthorizationMiddlewareFactory,
+} from '../types';
 
 /**
  * Middleware to check if the authenticated user has the required roles or permissions.
  */
-export const authorize = 
+export const authorize: AuthorizationMiddlewareFactory = 
   (options: AuthorizeOptions) => 
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: TypedRequest, res: Response, next: NextFunction) => {
     const user = req.user as AuthenticatedUser | undefined;
 
     // Should be caught by authenticateToken first, but double-check
@@ -22,7 +23,7 @@ export const authorize =
         error: true,
         message: 'Authentication required for authorization',
         code: 'AUTHENTICATION_REQUIRED',
-      });
+      } as ErrorResponse);
     }
 
     const { allowedRoles, requiredPermissions } = options;
@@ -75,6 +76,6 @@ export const authorize =
         error: true,
         message: 'Insufficient permissions',
         code: 'INSUFFICIENT_PERMISSIONS',
-      });
+      } as ErrorResponse);
     }
-  }; 
+  };

@@ -7,58 +7,55 @@ import {
   ManyToOne,
   JoinColumn,
   Index,
-  Unique,
+  Check
 } from 'typeorm';
 import { User } from './User';
 import { Team } from './Team';
 
-type TeamRole = 'player' | 'coach' | 'assistant_coach' | 'manager' | 'staff';
+export type TeamMemberRoleEnum = 'player' | 'coach' | 'assistant_coach' | 'manager' | 'staff';
 
-@Entity({ name: 'team_members' })
+@Entity('team_members')
 @Index(['teamId'])
 @Index(['userId'])
 @Index(['role'])
-@Unique(['teamId', 'userId', 'role']) // A user can only have one specific role in a team
+@Index(['teamId', 'userId', 'role'], { unique: true }) // Composite unique index
+@Check(`"role" IN ('player', 'coach', 'assistant_coach', 'manager', 'staff')`)
 export class TeamMember {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ name: 'team_id', type: 'uuid' })
   teamId!: string;
 
-  @Column({ type: 'uuid' })
+  @ManyToOne(() => Team, (team) => team.members, { nullable: false, lazy: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'team_id' })
+  team!: Promise<Team>;
+
+  @Column({ name: 'user_id', type: 'uuid' })
   userId!: string;
 
-  @Column({
-    type: 'enum',
-    enum: ['player', 'coach', 'assistant_coach', 'manager', 'staff'],
-  })
-  role!: TeamRole;
+  @ManyToOne(() => User, (user) => user.teamMemberships, { nullable: false, lazy: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user!: Promise<User>;
+
+  @Column({ type: 'enum', enum: ['player', 'coach', 'assistant_coach', 'manager', 'staff'] })
+  role!: TeamMemberRoleEnum;
 
   @Column({ type: 'varchar', length: 50, nullable: true })
-  position?: string; // e.g., 'forward', 'defense', 'goalkeeper'
+  position?: string;
 
-  @Column({ type: 'varchar', length: 10, nullable: true })
+  @Column({ name: 'jersey_number', type: 'varchar', length: 10, nullable: true })
   jerseyNumber?: string;
 
-  @Column({ type: 'date' })
+  @Column({ name: 'start_date', type: 'date' })
   startDate!: Date;
 
-  @Column({ type: 'date', nullable: true })
+  @Column({ name: 'end_date', type: 'date', nullable: true })
   endDate?: Date;
 
-  @CreateDateColumn({ type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp with time zone' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt!: Date;
-
-  // --- Relationships ---
-  @ManyToOne(() => Team, (team) => team.members, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'teamId' })
-  team!: Team;
-
-  @ManyToOne(() => User, (user) => user.teamMemberships, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'userId' })
-  user!: User;
 }

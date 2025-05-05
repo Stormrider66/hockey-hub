@@ -67,9 +67,24 @@ export const getTeamSchema = z.object({
   }),
 });
 
+// Schema for listing teams (validates query parameters)
+export const listTeamsSchema = z.object({
+  query: z.object({
+    page: z.string().optional().transform(val => val ? parseInt(val, 10) : 1).refine(val => val >= 1, 'Page must be 1 or greater'),
+    limit: z.string().optional().transform(val => val ? parseInt(val, 10) : 20).refine(val => val >= 1 && val <= 100, 'Limit must be between 1 and 100'),
+    search: z.string().optional(),
+    organizationId: z.string().uuid({ message: 'Invalid Organization ID' }).optional(),
+    status: teamStatuses.optional(),
+    category: z.string().optional(),
+    sort: z.enum(['name', 'category', 'createdAt']).optional().default('name'),
+    order: z.enum(['asc', 'desc']).optional().default('asc'),
+  }),
+});
+
 // Type definitions inferred from schemas
 export type CreateTeamInput = z.infer<typeof createTeamSchema>['body'];
 export type UpdateTeamInput = z.infer<typeof updateTeamSchema>; // Includes params and body
 export type AddTeamMemberInput = z.infer<typeof addTeamMemberSchema>; // Includes params and body
 export type RemoveTeamMemberInput = z.infer<typeof removeTeamMemberSchema>; // Includes params and query
-export type GetTeamInput = z.infer<typeof getTeamSchema>['params']; 
+export type GetTeamInput = z.infer<typeof getTeamSchema>['params'];
+export type ListTeamsQueryInput = z.infer<typeof listTeamsSchema>['query']; 

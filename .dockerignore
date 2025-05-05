@@ -1,0 +1,15 @@
+# Ignore node modules and build artifacts
+node_modules
+**/node_modules
+/dist
+/build
+.DS_Store
+.git
+.gitignore
+.env*
+# Turbo cache
+.turbo
+# Logs
+*.log
+# OS files
+Thumbs.db 

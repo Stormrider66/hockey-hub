@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { PhysicalSessionTemplate } from './PhysicalSessionTemplate';
 
 @Entity('physical_session_categories')
-@Index(['name', 'organizationId'], { unique: true })
+@Index(['name', 'organization_id'], { unique: true })
 export class PhysicalSessionCategory { // Make sure 'export' is here
     @PrimaryGeneratedColumn('uuid')
     id!: string; // Added '!'

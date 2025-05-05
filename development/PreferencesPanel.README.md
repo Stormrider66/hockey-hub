@@ -6,14 +6,13 @@ The PreferencesPanel is a React component that provides a user interface for man
 ## Features
 - Language selection (English/Swedish)
 - Theme switching (Light/Dark)
-- Notification preferences management (Email, Push, SMS)
+- Notification preferences management (Email, Push, SMS, In‑App)
 
 ## Dependencies
 ```bash
 # Required packages
 @reduxjs/toolkit
 react-redux
-lucide-react
 # shadcn/ui components
 @/components/ui/card
 @/components/ui/label
@@ -130,3 +129,31 @@ This component follows the Hockey Hub design system guidelines:
 - Follows Tailwind CSS utility patterns
 - Uses lucide-react icons
 - Maintains consistent spacing and layout
+
+## Testing
+
+The component should be covered by both unit tests (React Testing Library) and accessibility checks (`jest-axe`).  A template test is provided below:
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { axe } from 'jest-axe';
+import { PreferencesPanel } from '@/components/PreferencesPanel';
+
+describe('PreferencesPanel', () => {
+  it('renders without violations', async () => {
+    const { container } = render(<PreferencesPanel />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('allows language change', () => {
+    render(<PreferencesPanel />);
+    screen.getByLabelText(/english/i).click();
+    expect(/* redux store dispatch spy */).toHaveBeenCalledWith(
+      expect.objectContaining({ type: 'preferences/setLanguage', payload: 'en' })
+    );
+  });
+});
+```
+
+Add a Cypress test to verify that toggling preferences persists across page reloads.  Refer to `testing-strategy.md` for naming conventions and coverage goals.

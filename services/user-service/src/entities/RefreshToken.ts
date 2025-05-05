@@ -9,8 +9,7 @@ import {
 } from 'typeorm';
 import { User } from './User';
 
-@Entity({ name: 'refresh_tokens' })
-@Index(['token'], { unique: true })
+@Entity('refresh_tokens')
 @Index(['userId'])
 @Index(['expiresAt'])
 @Index(['userId', 'revoked'])
@@ -18,26 +17,26 @@ export class RefreshToken {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ name: 'user_id', type: 'uuid' })
   userId!: string;
 
+  @ManyToOne(() => User, { nullable: false, lazy: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'user_id' })
+  user!: Promise<User>;
+
   @Column({ type: 'varchar', length: 255, unique: true })
+  @Index({ unique: true })
   token!: string;
 
-  @Column({ type: 'timestamp with time zone' })
+  @Column({ name: 'expires_at', type: 'timestamp with time zone' })
   expiresAt!: Date;
 
-  @CreateDateColumn({ type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
   @Column({ type: 'boolean', default: false })
   revoked!: boolean;
 
-  @Column({ type: 'varchar', length: 100, nullable: true })
+  @Column({ name: 'revoked_reason', type: 'varchar', length: 100, nullable: true })
   revokedReason?: string;
-
-  // --- Relationships ---
-  @ManyToOne(() => User, (user) => user.refreshTokens, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'userId' })
-  user!: User;
 }

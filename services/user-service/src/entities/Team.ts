@@ -13,18 +13,22 @@ import {
 import { Organization } from './Organization';
 import { TeamMember } from './TeamMember';
 
-type TeamStatus = 'active' | 'inactive' | 'archived';
+export type TeamStatus = 'active' | 'inactive' | 'archived';
 
-@Entity({ name: 'teams' })
+@Entity('teams')
 @Index(['organizationId'])
 @Index(['status'])
-@Index(['organizationId', 'status'])
+@Index(['organizationId', 'status']) // Composite index
 export class Team {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ name: 'organization_id', type: 'uuid' })
   organizationId!: string;
+
+  @ManyToOne(() => Organization, (organization) => organization.teams, { nullable: false, lazy: true })
+  @JoinColumn({ name: 'organization_id' })
+  organization!: Promise<Organization>;
 
   @Column({ type: 'varchar', length: 100 })
   name!: string;
@@ -35,10 +39,10 @@ export class Team {
   @Column({ type: 'varchar', length: 20, nullable: true })
   season?: string; // e.g., "2023-2024"
 
-  @Column({ type: 'varchar', length: 255, nullable: true })
+  @Column({ name: 'logo_url', type: 'varchar', length: 255, nullable: true })
   logoUrl?: string;
 
-  @Column({ type: 'varchar', length: 7, nullable: true })
+  @Column({ name: 'primary_color', type: 'varchar', length: 7, nullable: true })
   primaryColor?: string; // Hex code
 
   @Column({ type: 'text', nullable: true })
@@ -51,22 +55,16 @@ export class Team {
   })
   status!: TeamStatus;
 
-  @CreateDateColumn({ type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp with time zone' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt!: Date;
 
-  @DeleteDateColumn({ type: 'timestamp with time zone', nullable: true })
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamp with time zone', nullable: true, select: false })
   deletedAt?: Date;
 
   // --- Relationships ---
-  @ManyToOne(() => Organization, (organization) => organization.teams, {
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'organizationId' })
-  organization!: Organization;
-
   @OneToMany(() => TeamMember, (teamMember) => teamMember.team)
   members!: TeamMember[];
 

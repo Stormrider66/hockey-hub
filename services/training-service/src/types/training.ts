@@ -62,6 +62,7 @@ export interface ScheduledPhysicalSession {
     assignedToUserId?: string; // UUID
     assignedToTeamId?: string; // UUID
     scheduledDate: Date;
+    place?: string | null; // Optional location for the session
     calendarEventId?: string; // UUID - Link to the event in Calendar Service
     status: 'scheduled' | 'active' | 'completed' | 'canceled';
     // Sections and exercises might be copied and resolved with specific values here

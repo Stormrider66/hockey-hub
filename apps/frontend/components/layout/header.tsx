@@ -53,6 +53,13 @@ export function Header() {
           >
             Teams
           </Button>
+          <Button
+            variant="ghost"
+            className="mr-2"
+            onClick={() => navigate("/fys-coach/programs")}
+          >
+            Program
+          </Button>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex items-center">

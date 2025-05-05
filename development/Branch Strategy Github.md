@@ -43,13 +43,34 @@ Merged to both main and develop
 Delete after merging
 
 
-Service-Specific Branches
+### Monorepo Service Ownership
 
-For your microservice architecture, consider having separate development branches for major services
-Example: develop-user-service, develop-training-service
-These merge into the main develop branch
+Since Hockey Hub uses a **monorepo**, we no longer create `develop-*service*` branches.  Instead:
 
+1. **Code Owners** – each `services/<name>/` directory has a CODEOWNERS entry so PRs auto‑assign reviewers.  
+2. **Feature Flags** – long‑running work is hidden behind toggles rather than separate dev branches.  
+3. **Path‑based CI** – GitHub Actions uses `paths:` filters so only affected services build/test.  Example matrix:
+   ```yaml
+   strategy:
+     matrix:
+       service: ${{ fromJson(needs.changed-files.outputs.services) }}
+   ```
 
+This keeps branch count low and ensures faster merges.
+
+### Schema Versioning Rules
+
+1. All database changes **must** include a migration file `V{nn}__description.sql` in `services/user-service/migrations` (or appropriate service).  
+2. If `development/database-schema.md` or `*.api.md` files change in a PR, CI runs:
+   * `migra` diff against a temporary DB – fail if drift detected.
+   * `schemathesis` contract tests for modified OpenAPI docs.  
+3. PR template includes checkbox: `☐ Migration file added/updated`.
+
+### PR Checks
+* `lint`, `test`, `contract-test`, `db-migration-diff` must pass before merge.  
+* Coverage thresholds from `testing-strategy.md` enforced via Jest config.
+
+---
 
 Workflow Practices
 Pull Requests

@@ -7,49 +7,45 @@ import {
   ManyToOne,
   JoinColumn,
   Index,
-  Unique,
+  Check
 } from 'typeorm';
 import { User } from './User';
 
-type RelationshipType = 'parent' | 'guardian' | 'other';
+export type RelationshipType = 'parent' | 'guardian' | 'other';
 
-@Entity({ name: 'player_parent_links' })
+@Entity('player_parent_links')
 @Index(['parentId'])
 @Index(['childId'])
 @Index(['isPrimary'])
-@Unique(['parentId', 'childId']) // Can't link the same parent-child twice
+@Index(['parentId', 'childId'], { unique: true }) // Composite unique index
+@Check(`"relationship" IN ('parent', 'guardian', 'other')`)
 export class PlayerParentLink {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'uuid' })
+  @Column({ name: 'parent_id', type: 'uuid' })
   parentId!: string;
 
-  @Column({ type: 'uuid' })
+  @ManyToOne(() => User, (user) => user.parentLinks, { nullable: false, lazy: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'parent_id' })
+  parent!: Promise<User>;
+
+  @Column({ name: 'child_id', type: 'uuid' })
   childId!: string;
 
-  @Column({
-    type: 'enum',
-    enum: ['parent', 'guardian', 'other'],
-    default: 'parent'
-  })
+  @ManyToOne(() => User, (user) => user.childLinks, { nullable: false, lazy: true, onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'child_id' })
+  child!: Promise<User>;
+
+  @Column({ type: 'enum', enum: ['parent', 'guardian', 'other'], default: 'parent' })
   relationship!: RelationshipType;
 
-  @Column({ type: 'boolean', default: false })
+  @Column({ name: 'is_primary', type: 'boolean', default: false })
   isPrimary!: boolean;
 
-  @CreateDateColumn({ type: 'timestamp with time zone' })
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @UpdateDateColumn({ type: 'timestamp with time zone' })
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
   updatedAt!: Date;
-
-  // --- Relationships ---
-  @ManyToOne(() => User, (user) => user.childLinks, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'parentId' })
-  parent!: User;
-
-  @ManyToOne(() => User, (user) => user.parentLinks, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'childId' })
-  child!: User;
 }

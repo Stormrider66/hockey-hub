@@ -1469,3 +1469,330 @@ class DataValidator {
     return validations[migrationName] || [];
   }
 }
+```
+
+## Advanced Implementation Patterns
+
+### Database Optimization
+
+#### Connection Pooling
+```typescript
+// Example connection pool configuration
+const poolConfig = {
+    min: 2,
+    max: 10,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000
+};
+
+export const AppDataSource = new DataSource({
+    // ... other config
+    extra: {
+        poolSize: poolConfig.max
+    }
+});
+```
+
+#### Query Optimization
+```typescript
+// Example optimized query with relations
+const getExerciseWithDetails = async (id: string): Promise<Exercise> => {
+    return await exerciseRepository
+        .createQueryBuilder('exercise')
+        .leftJoinAndSelect('exercise.category', 'category')
+        .leftJoinAndSelect('exercise.templates', 'template')
+        .where('exercise.id = :id', { id })
+        .cache(true)
+        .getOne();
+};
+```
+
+### Error Management
+
+#### Global Error Handler
+```typescript
+// Enhanced error handling
+export class ErrorHandler {
+    public static handle(error: Error, req: Request, res: Response) {
+        logger.error('Error occurred', {
+            error: error.message,
+            stack: error.stack,
+            path: req.path,
+            method: req.method,
+            timestamp: new Date().toISOString()
+        });
+
+        if (error instanceof AppError) {
+            return res.status(error.statusCode).json({
+                error: true,
+                code: error.code,
+                message: error.message
+            });
+        }
+
+        return res.status(500).json({
+            error: true,
+            code: 'INTERNAL_ERROR',
+            message: 'An unexpected error occurred'
+        });
+    }
+}
+```
+
+### Caching Strategy
+
+#### Redis Implementation
+```typescript
+// Redis cache service
+export class CacheService {
+    private client: Redis;
+
+    constructor() {
+        this.client = new Redis({
+            host: process.env.REDIS_HOST,
+            port: parseInt(process.env.REDIS_PORT),
+            password: process.env.REDIS_PASSWORD
+        });
+    }
+
+    async get<T>(key: string): Promise<T | null> {
+        const data = await this.client.get(key);
+        return data ? JSON.parse(data) : null;
+    }
+
+    async set(key: string, value: any, ttl?: number): Promise<void> {
+        await this.client.set(
+            key,
+            JSON.stringify(value),
+            'EX',
+            ttl || 3600
+        );
+    }
+}
+```
+
+### Authentication Enhancement
+
+#### JWT with Refresh Tokens
+```typescript
+// Enhanced JWT service
+export class AuthService {
+    private static readonly ACCESS_TOKEN_EXPIRY = '15m';
+    private static readonly REFRESH_TOKEN_EXPIRY = '7d';
+
+    static async generateTokens(user: User) {
+        const accessToken = jwt.sign(
+            { userId: user.id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: this.ACCESS_TOKEN_EXPIRY }
+        );
+
+        const refreshToken = jwt.sign(
+            { userId: user.id },
+            process.env.JWT_REFRESH_SECRET,
+            { expiresIn: this.REFRESH_TOKEN_EXPIRY }
+        );
+
+        return { accessToken, refreshToken };
+    }
+
+    static async refreshAccessToken(refreshToken: string) {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+        const user = await userRepository.findOne(decoded.userId);
+        
+        if (!user) throw new AppError(401, 'User not found');
+        
+        return this.generateTokens(user);
+    }
+}
+```
+
+### Request Validation
+
+#### Advanced Validation
+```typescript
+// Enhanced validation with custom decorators
+export function Validate(schema: object) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        const originalMethod = descriptor.value;
+
+        descriptor.value = async function (...args: any[]) {
+            const req = args[0];
+            const { error, value } = Joi.validate(req.body, schema);
+
+            if (error) {
+                throw new AppError(400, error.details[0].message);
+            }
+
+            req.body = value; // Use sanitized values
+            return originalMethod.apply(this, args);
+        };
+
+        return descriptor;
+    };
+}
+```
+
+### Logging Enhancement
+
+#### Structured Logging
+```typescript
+// Enhanced logging service
+export class Logger {
+    static info(message: string, meta?: object) {
+        console.log(JSON.stringify({
+            level: 'info',
+            message,
+            timestamp: new Date().toISOString(),
+            ...meta
+        }));
+    }
+
+    static error(message: string, error?: Error, meta?: object) {
+        console.error(JSON.stringify({
+            level: 'error',
+            message,
+            error: error?.stack,
+            timestamp: new Date().toISOString(),
+            ...meta
+        }));
+    }
+
+    static warn(message: string, meta?: object) {
+        console.warn(JSON.stringify({
+            level: 'warn',
+            message,
+            timestamp: new Date().toISOString(),
+            ...meta
+        }));
+    }
+}
+```
+
+### Performance Monitoring
+
+#### Metrics Collection
+```typescript
+// Performance monitoring middleware
+export function trackMetrics(req: Request, res: Response, next: NextFunction) {
+    const start = process.hrtime();
+
+    res.on('finish', () => {
+        const [seconds, nanoseconds] = process.hrtime(start);
+        const duration = seconds * 1000 + nanoseconds / 1000000;
+
+        metrics.timing('response_time', duration, {
+            path: req.path,
+            method: req.method,
+            status: res.statusCode
+        });
+
+        metrics.increment('request_count', {
+            path: req.path,
+            method: req.method,
+            status: res.statusCode
+        });
+    });
+
+    next();
+}
+```
+
+### Security Enhancements
+
+#### Rate Limiting
+```typescript
+// Rate limiting middleware
+export const rateLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: 'Too many requests from this IP, please try again later',
+    handler: (req: Request, res: Response) => {
+        throw new AppError(429, 'Too many requests');
+    }
+});
+```
+
+### Testing Improvements
+
+#### Integration Testing
+```typescript
+// Enhanced integration tests
+describe('Exercise API Integration', () => {
+    let connection: Connection;
+    
+    beforeAll(async () => {
+        connection = await createTestConnection();
+    });
+
+    afterAll(async () => {
+        await connection.close();
+    });
+
+    it('should create and retrieve exercise', async () => {
+        const exercise = {
+            name: 'Push-ups',
+            description: 'Basic push-ups'
+        };
+
+        const createResponse = await request(app)
+            .post('/api/exercises')
+            .send(exercise);
+
+        expect(createResponse.status).toBe(201);
+
+        const getResponse = await request(app)
+            .get(`/api/exercises/${createResponse.body.id}`);
+
+        expect(getResponse.status).toBe(200);
+        expect(getResponse.body.name).toBe(exercise.name);
+    });
+});
+```
+
+### API Documentation
+
+#### OpenAPI Enhancement
+```typescript
+// Enhanced OpenAPI documentation
+export const exerciseSchema = {
+    openapi: '3.0.0',
+    paths: {
+        '/exercises': {
+            post: {
+                summary: 'Create new exercise',
+                requestBody: {
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                properties: {
+                                    name: {
+                                        type: 'string',
+                                        description: 'Exercise name'
+                                    },
+                                    description: {
+                                        type: 'string',
+                                        description: 'Exercise description'
+                                    }
+                                },
+                                required: ['name']
+                            }
+                        }
+                    }
+                },
+                responses: {
+                    '201': {
+                        description: 'Exercise created successfully'
+                    },
+                    '400': {
+                        description: 'Invalid input'
+                    }
+                }
+            }
+        }
+    }
+};
+```
+
+These technical enhancements provide advanced patterns and implementations for improving the Hockey Hub system's performance, security, and maintainability.

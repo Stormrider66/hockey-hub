@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { getRepository, MoreThan } from 'typeorm';
 import { User, RefreshToken } from '../entities';

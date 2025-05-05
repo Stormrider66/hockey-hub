@@ -4,7 +4,7 @@
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "dev": "cross-env PORT=3010 ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "cross-env PORT=3005 ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint .",

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import * as CategoryRepository from '../repositories/physicalCategoryRepository';
+import * as CategoryRepository from '../repositories/PhysicalCategoryRepository';
 import { PhysicalSessionCategory } from '../types/training';
 
 // TODO: Add validation, authorization, error handling

@@ -1082,3 +1082,56 @@ describe('TeamForm', () => {
     expect(screen.getByText(/failed to save team/i)).toBeInTheDocument();
   });
 });
+```
+
+## OpenAPI & Contract Testing
+
+A new testing layer validates that each micro‑service implementation stays in sync with its contracts.
+
+1. **REST/OpenAPI** – Use Schemathesis (Python) or Dredd (Node) in CI:
+   ```bash
+   schemathesis run ./services/calendar-service/calendar-service-api.yaml --base-url http://localhost:3003
+   ```
+   Fail the pipeline if any endpoint violates schema, status codes, or examples.
+2. **Event Contracts** – Use Pact‑style messaging tests.  Producer (e.g., Calendar Service) publishes a contract for `event.created`; consumers verify.
+3. **Database Schema Drift** – Use `sqitch` or `migra` to detect divergence between `*.md` docs and live DB.
+
+## RabbitMQ / Async Process Testing
+
+For integration tests that require the message bus:
+* **Testcontainers** spins up a disposable RabbitMQ container:
+  ```typescript
+  const rabbit = await new GenericContainer('rabbitmq:3.13-management')
+      .withExposedPorts(5672, 15672)
+      .start();
+  ```
+* Use a helper to purge queues between tests.
+* Contract tests ensure mandatory routing keys exist.
+
+## RLS Policy Tests
+
+Add a Jest test suite that opens a pg connection as different roles and asserts access:
+```typescript
+it('coach cannot select players outside own team', async () => {
+  await expect(coachClient.query('SELECT * FROM users WHERE id = $1', [otherTeamPlayerId]))
+    .rejects.toThrow(/permission denied/);
+});
+```
+These run after migrations in CI to guarantee policies remain enforced.
+
+## Test Coverage Goals
+
+| Micro‑service | Unit % | Integration % | E2E % |
+|--------------|--------|---------------|-------|
+| User Service | 90 | 70 | 15 |
+| Medical Service | 85 | 60 | 15 |
+| Payment Service | 85 | 60 | 10 |
+| Training Service | 80 | 50 | 15 |
+| Calendar Service | 80 | 50 | 15 |
+| Communication Service | 75 | 50 | 10 |
+| Other services | 75 | 40 | 10 |
+
+> Coverage checked with Jest + Istanbul.  Thresholds enforced in `package.json` test script per service.
+
+---
+*Last updated 2024‑03‑14 to align with new contract testing & RLS requirements.*

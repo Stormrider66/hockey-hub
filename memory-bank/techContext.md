@@ -40,7 +40,7 @@
 - **Caching**: Redis
 
 ### External Integrations
-- **Payment Processing**: Stripe, Swish, Bankgiro
+- **Payment Processing**: Stripe, Bankgiro
 - **Cloud Storage**: OneDrive integration 
 - **Email Delivery**: Nodemailer with SMTP provider
 - **SMS Notifications**: Twilio (optional)
@@ -353,7 +353,7 @@ The application will follow a three-phase mobile implementation:
 - `typescript`: Type safety
 - `typeorm`: Database ORM
 - `jsonwebtoken`: Authentication
-- `bcrypt`: Password hashing
+- `bcryptjs`: Password hashing (Replaced bcrypt due to build issues)
 - `socket.io`: Real-time communication
 - `joi`: Validation
 - `winston`: Logging

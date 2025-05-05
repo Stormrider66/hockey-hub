@@ -5,13 +5,12 @@ import { NotFoundError, ConflictError } from '../errors/serviceErrors';
 import { AuthenticatedUser } from '../middleware/authenticateToken';
 import { TeamService } from '../services/teamService';
 
-const parentService = new ParentService();
-
 export const addParentLinkHandler = async (
     req: Request<{}, {}, AddParentLinkInput>,
     res: Response,
     next: NextFunction
 ) => {
+    const parentService = new ParentService();
     try {
         // TODO: Add authorization check - only admins/club_admins can create links?
         const link = await parentService.addParentChildLink(req.body);
@@ -33,6 +32,7 @@ export const removeParentLinkHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const parentService = new ParentService();
     try {
         // TODO: Add authorization check - only admins/club_admins can remove links?
         await parentService.removeParentChildLink(req.params.linkId);
@@ -50,6 +50,7 @@ export const getChildrenHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const parentService = new ParentService();
     try {
         const user = req.user as AuthenticatedUser;
         const targetUserId = req.params.userId;
@@ -82,6 +83,7 @@ export const getParentsHandler = async (
     res: Response,
     next: NextFunction
 ) => {
+    const parentService = new ParentService();
      try {
         const user = req.user as AuthenticatedUser;
         const targetUserId = req.params.userId;
@@ -92,6 +94,7 @@ export const getParentsHandler = async (
         if(user.roles.includes('admin') || user.roles.includes('club_admin')) canAccess = true; // Admins
         // Coach/Rehab/Fys check (if player is in their team)
         if (user.teamIds && user.teamIds.length > 0) {
+            const teamService = new TeamService();
             const isMember = await new TeamService().isUserMemberOfTeam(targetUserId, user.teamIds[0]); // Example check
             if (isMember && (user.roles.includes('coach') || user.roles.includes('rehab') || user.roles.includes('fys_coach'))) {
                 canAccess = true;

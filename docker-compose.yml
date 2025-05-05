@@ -22,32 +22,32 @@ services:
       timeout: 5s
       retries: 5
 
-  # --- Placeholder for Backend Services --- 
-  # Example User Service (to be defined later)
-  # user-service:
-  #   build:
-  #     context: ./services/user-service
-  #     dockerfile: Dockerfile
-  #   container_name: hockeyhub_user_service
-  #   ports:
-  #     - "3001:3001"
-  #   environment:
-  #     - DATABASE_URL=postgresql://${POSTGRES_USER:-hockeyhub_user}:${POSTGRES_PASSWORD:-hockeyhub_password}@db:5432/${POSTGRES_DB:-hockeyhub_dev}
-  #     - NODE_ENV=development
-  #   depends_on:
-  #     db: 
-  #       condition: service_healthy 
-  #   networks:
-  #     - hockeyhub_network
-  #   volumes:
-  #     - ./services/user-service:/usr/src/app
-  #     - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's
+  # User Service
+  user-service:
+    build:
+      context: ./services/user-service
+      dockerfile: Dockerfile
+    container_name: hockeyhub_user_service
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-hockeyhub_user}:${POSTGRES_PASSWORD:-hockeyhub_password}@db:5432/${POSTGRES_DB:-hockeyhub_dev}
+      - NODE_ENV=${NODE_ENV:-development}
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - hockeyhub_network
+    volumes:
+      - ./services/user-service:/usr/src/app
+      - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's
 
   # Training Service
   training-service:
     build:
       context: ./services/training-service
-      dockerfile: Dockerfile # Assuming a standard Dockerfile exists
+      dockerfile: Dockerfile
     container_name: hockeyhub_training_service
     ports:
       - "${TRAINING_SERVICE_PORT:-3004}:3004"
