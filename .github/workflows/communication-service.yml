@@ -22,23 +22,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: services/communication-service/package-lock.json
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
           
+      - name: Enable corepack & install pnpm
+        run: corepack enable
+
       - name: Install dependencies
-        run: cd services/communication-service && npm ci
+        run: pnpm install --frozen-lockfile --filter "communication-service..."
         
       - name: Run linting
-        run: cd services/communication-service && npm run lint
+        run: pnpm --filter "communication-service" run lint
         
       - name: Run unit tests
-        run: cd services/communication-service && npm run test:unit
+        run: pnpm --filter "communication-service" run test:unit
         
       - name: Run WebSocket integration tests
-        run: cd services/communication-service && npm run test:socket
+        run: pnpm --filter "communication-service" run test:socket
         
       - name: Test file attachment handling
-        run: cd services/communication-service && npm run test:file-uploads
+        run: pnpm --filter "communication-service" run test:file-uploads
         
   build:
     name: Build Communication Service

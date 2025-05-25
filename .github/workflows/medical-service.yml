@@ -22,17 +22,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: services/medical-service/package-lock.json
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
           
+      - name: Enable corepack & install pnpm
+        run: corepack enable
+        
       - name: Install dependencies
-        run: cd services/medical-service && npm ci
+        run: pnpm install --frozen-lockfile --filter "medical-service..."
         
       - name: Run linting
-        run: cd services/medical-service && npm run lint
+        run: pnpm --filter "medical-service" run lint
         
-      - name: Run unit tests
-        run: cd services/medical-service && npm run test
+      - name: Run tests
+        run: pnpm --filter "medical-service" run test
         
       - name: Verify data encryption
         run: cd services/medical-service && npm run test:encryption

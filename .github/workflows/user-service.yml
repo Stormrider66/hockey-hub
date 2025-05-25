@@ -24,10 +24,10 @@ jobs:
           node-version: 16 # Or your project's Node version
       - name: Install dependencies
         working-directory: ./services/user-service
-        run: npm ci
-      - name: Run ESLint
+        run: pnpm install --frozen-lockfile --filter "user-service..."
+      - name: Run linting
         working-directory: ./services/user-service
-        run: npm run lint
+        run: pnpm --filter "user-service" run lint
 
   test:
     runs-on: ubuntu-latest
@@ -54,10 +54,10 @@ jobs:
           node-version: 16 # Match Node version
       - name: Install dependencies
         working-directory: ./services/user-service
-        run: npm ci
+        run: pnpm install --frozen-lockfile --filter "user-service..."
       - name: Wait for PostgreSQL
         run: sleep 10 # Simple wait, replace with proper health check if needed
-      - name: Run Unit & Integration Tests
+      - name: Run unit tests
         working-directory: ./services/user-service
         env:
           # Ensure tests use the service container
@@ -68,7 +68,7 @@ jobs:
           DB_DATABASE: test_db
           JWT_SECRET: test-secret # Use test secrets
           JWT_REFRESH_SECRET: test-refresh-secret
-        run: npm test -- --coverage # Run tests defined in package.json
+        run: pnpm --filter "user-service" run test -- --coverage # Run tests defined in package.json
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
@@ -178,4 +178,8 @@ jobs:
         run: echo "Deploying User Service ${{ github.sha }} to Production..."
       # - name: Set up kubectl
       # - name: Set AKS context (Prod)
-      # - name: Deploy with Helm/Kubectl (Canary/Blue-Green) 
+      # - name: Deploy with Helm/Kubectl (Canary/Blue-Green)
+
+  # New steps
+  # - name: Enable corepack
+  #   run: corepack enable 

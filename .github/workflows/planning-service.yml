@@ -22,17 +22,20 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: services/planning-service/package-lock.json
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
+          
+      - name: Enable corepack
+        run: corepack enable
           
       - name: Install dependencies
-        run: cd services/planning-service && npm ci
+        run: pnpm install --frozen-lockfile --filter "planning-service..."
         
       - name: Run linting
-        run: cd services/planning-service && npm run lint
+        run: pnpm --filter "planning-service" run lint
         
-      - name: Run unit tests
-        run: cd services/planning-service && npm run test
+      - name: Run tests
+        run: pnpm --filter "planning-service" run test
         
       - name: Test scheduling algorithms
         run: cd services/planning-service && npm run test:scheduling
