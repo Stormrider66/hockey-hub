@@ -11,7 +11,8 @@
     "migration:generate": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts migration:generate src/migrations/%npm_config_name%",
     "migration:run": "pnpm typeorm migration:run",
     "migration:revert": "pnpm typeorm migration:revert",
-    "test": "jest --runInBand --config jest.config.ts"
+    "test": "jest --runInBand --config jest.config.ts",
+    "lint": "echo 'No lint configured for planning-service'"
   },
   "keywords": [],
   "author": "",
