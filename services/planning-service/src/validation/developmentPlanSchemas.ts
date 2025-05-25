@@ -17,7 +17,7 @@ export const createDevelopmentPlanSchema = z.object({
 
 export const updateDevelopmentPlanSchema = z.object({
     params: z.object({
-        id: z.string().uuid({ message: "Invalid Plan ID format" })
+        planId: z.string().uuid({ message: "Invalid Plan ID format" })
     }),
     body: z.object({
         title: z.string().min(3).optional(),
@@ -31,7 +31,7 @@ export const updateDevelopmentPlanSchema = z.object({
 
 export const planIdParamSchema = z.object({
     params: z.object({
-        id: z.string().uuid({ message: "Invalid Plan ID format" })
+        planId: z.string().uuid({ message: "Invalid Plan ID format" })
     })
 });
 
@@ -41,12 +41,11 @@ export const createDevelopmentPlanItemSchema = z.object({
         planId: z.string().uuid({ message: "Invalid Plan ID format" })
     }),
     body: z.object({
-        skillArea: z.string({ required_error: 'Skill area is required' }).min(1),
-        currentLevel: z.string().optional(),
-        targetLevel: z.string().optional(),
-        actions: z.string().optional(),
-        resources: z.string().optional(),
-        order: z.number().int().optional(),
+        category: z.string({ required_error: 'Category is required' }).min(1),
+        focusArea: z.string({ required_error: 'Focus area is required' }).min(1),
+        description: z.string().optional(),
+        status: z.string().optional(),
+        notes: z.string().optional(),
     })
 });
 
@@ -56,12 +55,11 @@ export const updateDevelopmentPlanItemSchema = z.object({
         itemId: z.string().uuid({ message: "Invalid Item ID format" })
     }),
     body: z.object({
-        skillArea: z.string().min(1).optional(),
-        currentLevel: z.string().optional().nullable(),
-        targetLevel: z.string().optional().nullable(),
-        actions: z.string().optional().nullable(),
-        resources: z.string().optional().nullable(),
-        order: z.number().int().optional().nullable(),
+        category: z.string().min(1).optional(),
+        focusArea: z.string().min(1).optional(),
+        description: z.string().optional().nullable(),
+        status: z.string().optional(),
+        notes: z.string().optional().nullable(),
     }).refine(data => Object.keys(data).length > 0, { 
         message: "At least one field must be provided for update" 
     })
@@ -74,6 +72,21 @@ export const planItemIdParamSchema = z.object({
     })
 });
 
+// --- List / Query Schema ---
+const pageSchema = z.preprocess(v => Number(v), z.number().int().min(1).default(1));
+const limitSchema = z.preprocess(v => Number(v), z.number().int().min(1).max(100).default(20));
+
+export const listDevelopmentPlansQuerySchema = z.object({
+    query: z.object({
+        page: pageSchema.optional(),
+        limit: limitSchema.optional(),
+        sort: z.enum(['createdAt', 'updatedAt', 'title', 'status']).optional(),
+        order: z.enum(['asc', 'desc']).optional(),
+        status: planStatusEnum.optional(),
+        playerId: z.string().uuid().optional(),
+        teamId: z.string().uuid().optional(),
+    })
+});
 
 // Type helpers
 export type CreateDevelopmentPlanInput = z.infer<typeof createDevelopmentPlanSchema>['body'];

@@ -8,6 +8,7 @@ import seasonRoutes from './routes/seasonRoutes'; // Import season routes
 import teamGoalRoutes from './routes/teamGoalRoutes'; // Import team goal routes
 import playerGoalRoutes from './routes/playerGoalRoutes'; // Import player goal routes
 import developmentPlanRoutes from './routes/developmentPlanRoutes'; // Import development plan routes
+import { AppError, NotFoundError } from './errors/serviceErrors'; // Import custom errors
 
 // Load environment variables - Handled in db/index.ts
 // dotenv.config({ path: '../../.env' });
@@ -43,18 +44,31 @@ app.use('/api/v1/development-plans', developmentPlanRoutes);
 // --- Error Handling Middleware ---
 // ... (existing error handling, _req, _res, _next already prefixed)
 app.use((_req: Request, _res: Response, next: NextFunction) => {
-    const error = new Error('Not Found');
-    (error as any).status = 404;
-    next(error);
+    // Use custom NotFoundError for consistency
+    next(new NotFoundError('API endpoint not found'));
 });
 
-app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    console.error("[" + (err.status || 500) + "] " + err.message + (err.stack ? "\n" + err.stack : ""));
-    res.status(err.status || 500).json({
-        error: true,
-        message: err.message || 'Internal Server Error',
-        code: err.code || (err.status === 404 ? 'NOT_FOUND' : 'INTERNAL_ERROR')
-    });
+// Update error handler to recognize AppError
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+    if (err instanceof AppError) {
+        // Handle known application errors
+        console.error(`[${err.name}] (${err.statusCode}): ${err.message}`, err.details || '', err.stack);
+        return res.status(err.statusCode).json({
+            error: true,
+            message: err.message,
+            code: err.code,
+            details: err.details,
+        });
+    } else {
+        // Handle unexpected errors
+        console.error("[" + (err.name || 'UnknownError') + "] (500): " + err.message + (err.stack ? "\n" + err.stack : ""));
+        // Don't expose potentially sensitive details of unknown errors
+        return res.status(500).json({
+            error: true,
+            message: 'An unexpected internal server error occurred.',
+            code: 'INTERNAL_SERVER_ERROR',
+        });
+    }
 });
 
 // --- Start Server ---

@@ -18,12 +18,11 @@ export const findDevelopmentPlans = async (filters: FindDevelopmentPlansFilters,
     const whereClauses: string[] = ['dp.organization_id = $1'];
     let paramIndex = 2;
 
-    // TODO: Handle teamId filter by joining or getting playerIds
+    // Handle teamId filter by joining users table (player -> team relationship)
     if (filters.teamId) {
-        console.warn('[findDevelopmentPlans] Filtering by teamId not fully implemented yet.');
-        // queryText += ' JOIN users u ON dp.player_id = u.id'; 
-        // whereClauses.push(`u.team_id = $${paramIndex++}`); 
-        // queryParams.push(filters.teamId);
+        queryText += ' JOIN users u ON dp.player_id = u.id';
+        whereClauses.push(`u.team_id = $${paramIndex++}`);
+        queryParams.push(filters.teamId);
     }
 
     if (filters.playerId) { whereClauses.push(`dp.player_id = $${paramIndex++}`); queryParams.push(filters.playerId); }
@@ -54,12 +53,11 @@ export const countDevelopmentPlans = async (filters: FindDevelopmentPlansFilters
     const whereClauses: string[] = ['dp.organization_id = $1'];
     let paramIndex = 2;
 
-    // TODO: Handle teamId filter
+    // Handle teamId filter by joining users table (player -> team relationship)
     if (filters.teamId) {
-         console.warn('[countDevelopmentPlans] Filtering by teamId not fully implemented yet.');
-        // queryText += ' JOIN users u ON dp.player_id = u.id';
-        // whereClauses.push(`u.team_id = $${paramIndex++}`);
-        // queryParams.push(filters.teamId);
+        queryText += ' JOIN users u ON dp.player_id = u.id';
+        whereClauses.push(`u.team_id = $${paramIndex++}`);
+        queryParams.push(filters.teamId);
     }
 
     if (filters.playerId) { whereClauses.push(`dp.player_id = $${paramIndex++}`); queryParams.push(filters.playerId); }

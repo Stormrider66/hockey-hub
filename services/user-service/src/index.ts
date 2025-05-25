@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import 'reflect-metadata'; // Required for TypeORM
-import express from 'express';
+import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
 import helmet from 'helmet';
 import addRequestId from 'express-request-id'; // Import request-id middleware
@@ -13,12 +13,14 @@ import { errorHandler } from './middleware/errorHandler'; // Import error handle
 import AppDataSource from './data-source'; // Import the DataSource
 import logger from './config/logger'; // Import the logger
 import pinoHttp from 'pino-http'; // Import pino-http
+import { startOrgConsumer } from './workers/orgEventConsumer';
 
-const app = express();
+const app: Application = express();
 const PORT = process.env.USER_SERVICE_PORT || 3001;
 
 // --- Middleware ---
-app.use(addRequestId()); // Add request ID (must be early)
+// Add request ID (must be early) – cast to RequestHandler to satisfy TS generics
+app.use(addRequestId() as unknown as express.RequestHandler);
 
 // Setup HTTP logger middleware
 app.use(pinoHttp({
@@ -89,7 +91,8 @@ const startServer = async () => {
     logger.info("Data Source has been initialized!"); // Use logger
 
     app.listen(PORT, () => {
-      logger.info(`User Service listening on port ${PORT}`); // Use logger
+      logger.info(`User Service listening on port ${PORT}`);
+      startOrgConsumer();
     });
   } catch (error) {
     logger.error({ err: error }, 'Error during server startup:'); // Use logger, include error object

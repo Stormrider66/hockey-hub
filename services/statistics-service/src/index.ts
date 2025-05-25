@@ -46,7 +46,7 @@ AppDataSource.initialize()
       console.log(`Statistics Service listening on port ${PORT}`);
     });
   })
-  .catch((err) => {
+  .catch((err: unknown) => {
     console.error('Statistics Service: Error during Data Source initialization:', err);
     process.exit(1);
   });

@@ -19,9 +19,9 @@ export class ResourceType {
     // Add any specific attributes for resource types if needed
     // e.g., defaultCapacity?: number;
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
-    @UpdateDateColumn({ type: 'timestamptz' })
+    @UpdateDateColumn({ type: 'datetime' })
     updatedAt!: ISODateString;
 } 

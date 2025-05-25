@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { AnyZodObject, ZodError } from 'zod';
+import { ZodEffects } from 'zod';
 
 /**
  * Middleware to validate request body, params, and query against a Zod schema.
- * @param schema The Zod schema to validate against.
+ * @param schema The Zod schema (ZodObject or ZodEffects) to validate against.
  */
-export const validate = (schema: AnyZodObject) => 
+export const validate = (schema: AnyZodObject | ZodEffects<AnyZodObject>) => 
     async (req: Request, res: Response, next: NextFunction) => {
     try {
         await schema.parseAsync({

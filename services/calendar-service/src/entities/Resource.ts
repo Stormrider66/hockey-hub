@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany, Index } from 'typeorm';
 import { ResourceType } from './ResourceType';
+import { Location } from './Location';
 import { EventResource } from './EventResource';
 import { UUID, ISODateString } from '@hockey-hub/types';
 
@@ -18,9 +19,17 @@ export class Resource {
     @Column({ type: 'uuid' })
     resourceTypeId!: UUID;
 
-    @ManyToOne(() => ResourceType, { onDelete: 'RESTRICT' }) // Prevent deleting type if resources exist
+    @ManyToOne(() => ResourceType, { onDelete: 'RESTRICT' })
     @JoinColumn({ name: 'resourceTypeId' })
     resourceType!: ResourceType;
+
+    // Location relationship
+    @Column({ type: 'uuid' })
+    locationId!: UUID;
+
+    @ManyToOne(() => Location, { onDelete: 'SET NULL', nullable: true })
+    @JoinColumn({ name: 'locationId' })
+    location?: Location | null;
 
     @Column({ type: 'text', nullable: true })
     description?: string | null;
@@ -36,9 +45,9 @@ export class Resource {
     @OneToMany(() => EventResource, eventResource => eventResource.resource)
     eventResources?: EventResource[]; // Events this resource is booked for
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
-    @UpdateDateColumn({ type: 'timestamptz' })
+    @UpdateDateColumn({ type: 'datetime' })
     updatedAt!: ISODateString;
 } 

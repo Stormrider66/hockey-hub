@@ -4,7 +4,7 @@ import { AuthenticatedUser } from '../middleware/authenticateToken';
 // import { validateQuery } from '../middleware/validationMiddleware'; // TODO: Implement and import validation middleware
 // import { checkPermissionSchema } from '../dtos/authorization.dto'; // TODO: Create DTO/schema for validation
 
-const router = Router();
+const router: Router = Router();
 
 /**
  * Mock authentication middleware for local testing

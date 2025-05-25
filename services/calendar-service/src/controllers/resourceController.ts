@@ -1,57 +1,61 @@
 import { Request, Response, NextFunction } from 'express';
-import db from '../db';
-import { ResourceType, Resource } from '../types/resource';
-import { QueryResult } from 'pg';
+import { ResourceType } from '../entities/ResourceType';
+import { Resource } from '../entities/Resource';
+import {
+  findAll as rtFindAll,
+  findById as rtFindById,
+  createResourceType as rtCreate,
+  updateResourceType as rtUpdate,
+  deleteResourceType as rtDelete,
+} from '../repositories/resourceTypeRepository';
+
+import {
+  findAll as resFindAll,
+  findById as resFindById,
+  createResource as resCreate,
+  updateResource as resUpdate,
+  deleteResource as resDelete,
+} from '../repositories/resourceRepository';
 
 // TODO: Add proper error handling, validation, and authorization
 
 // --- Resource Type Handlers ---
 
 export const getAllResourceTypes = async (req: Request, res: Response, next: NextFunction) => {
-    const { organizationId } = req.query; // Example filter
-    // TODO: Filter by user's org ID from token
-
-    let queryText = 'SELECT * FROM resource_types';
-    const queryParams = [];
-    if (organizationId) {
-        queryText += ' WHERE organization_id = $1';
-        queryParams.push(organizationId as string);
-    }
-    queryText += ' ORDER BY name ASC';
-
-    console.log('[DB Query] Fetching resource types:', queryText, queryParams);
     try {
-        const result: QueryResult<ResourceType> = await db.query(queryText, queryParams);
-        res.status(200).json({ success: true, data: result.rows });
+        const { organizationId } = req.query;
+        const types = await rtFindAll({ organizationId: organizationId as string | undefined });
+        return res.status(200).json({ success: true, data: types });
     } catch (err) {
         console.error('[Error] Failed to fetch resource types:', err);
-        next(err);
+        return next(err);
     }
 };
 
 export const getResourceTypeById = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    // TODO: Validate ID format
-    // TODO: Check authorization
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource type ID format' });
+    }
 
     try {
-        const queryText = 'SELECT * FROM resource_types WHERE id = $1';
-        console.log('[DB Query] Fetching resource type by ID:', queryText, [id]);
-        const result: QueryResult<ResourceType> = await db.query(queryText, [id]);
-
-        if (result.rows.length === 0) {
+        const type = await rtFindById(id);
+        if (!type) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource type not found' });
         }
-        res.status(200).json({ success: true, data: result.rows[0] });
+        return res.status(200).json({ success: true, data: type });
     } catch (err) {
         console.error(`[Error] Failed to fetch resource type ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 export const createResourceType = async (req: Request, res: Response, next: NextFunction) => {
-    // TODO: Get organizationId from token
-    const organizationId = 'placeholder-org-id';
+    const organizationId = req.user?.organizationId;
+    if (!organizationId) {
+        return res.status(401).json({ error: true, code: 'UNAUTHENTICATED', message: 'Missing user context' });
+    }
     const { name, description } = req.body as Partial<ResourceType>;
 
     if (!name) {
@@ -59,228 +63,302 @@ export const createResourceType = async (req: Request, res: Response, next: Next
     }
 
     try {
-        const queryText = `
-            INSERT INTO resource_types (organization_id, name, description)
-            VALUES ($1, $2, $3)
-            RETURNING *
-        `;
-        const params = [organizationId, name, description || null];
-        console.log('[DB Query] Creating resource type:', queryText, params);
-        const result: QueryResult<ResourceType> = await db.query(queryText, params);
-
-        console.log('[Success] Resource type created:', result.rows[0]);
-        res.status(201).json({ success: true, data: result.rows[0] });
+        const newType = await rtCreate({ organizationId, name, description });
+        return res.status(201).json({ success: true, data: newType });
     } catch (err) {
         console.error('[Error] Failed to create resource type:', err);
-        next(err);
+        return next(err);
     }
 };
 
 export const updateResourceType = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, description } = req.body as Partial<ResourceType>;
-    // TODO: Validate ID format & authorization
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource type ID format' });
+    }
 
-    const updateFields: string[] = [];
-    const updateParams: any[] = [];
-    let paramIndex = 1;
-
-    if (name !== undefined) { updateFields.push(`name = $${paramIndex++}`); updateParams.push(name); }
-    if (description !== undefined) { updateFields.push(`description = $${paramIndex++}`); updateParams.push(description); }
-
-    if (updateFields.length === 0) {
+    const dto: Partial<ResourceType> = { ...req.body };
+    if (Object.keys(dto).length === 0) {
         return res.status(400).json({ error: true, message: 'No update data provided' });
     }
 
-    updateFields.push(`updated_at = NOW()`);
-    const queryText = `UPDATE resource_types SET ${updateFields.join(', ')} WHERE id = $${paramIndex++} RETURNING *`;
-    updateParams.push(id);
-
-    console.log('[DB Query] Updating resource type:', queryText, updateParams);
     try {
-        const result: QueryResult<ResourceType> = await db.query(queryText, updateParams);
-        if (result.rows.length === 0) {
+        const updated = await rtUpdate(id, dto);
+        if (!updated) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource type not found' });
         }
-        console.log('[Success] Resource type updated:', result.rows[0]);
-        res.status(200).json({ success: true, data: result.rows[0] });
+        return res.status(200).json({ success: true, data: updated });
     } catch (err) {
         console.error(`[Error] Failed to update resource type ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 export const deleteResourceType = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    // TODO: Validate ID format & authorization
-    // TODO: Check if type is in use by resources (FK constraint: ON DELETE RESTRICT)
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource type ID format' });
+    }
 
     try {
-        const queryText = 'DELETE FROM resource_types WHERE id = $1 RETURNING id';
-        console.log('[DB Query] Deleting resource type:', queryText, [id]);
-        const result = await db.query(queryText, [id]);
-
-        if (result.rowCount === 0) {
+        const deleted = await rtDelete(id);
+        if (!deleted) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource type not found' });
         }
-        console.log(`[Success] Resource type deleted: ${id}`);
-        res.status(200).json({ success: true, message: 'Resource type deleted successfully' });
+        return res.status(200).json({ success: true, message: 'Resource type deleted successfully' });
     } catch (err) {
-        if ((err as any).code === '23503') { // FK violation
-             return res.status(409).json({ error: true, code: 'RESOURCE_CONFLICT', message: 'Cannot delete resource type because it is still in use by resources.'});
+        if ((err as any).code === '23503') {
+            return res.status(409).json({ error: true, code: 'RESOURCE_CONFLICT', message: 'Cannot delete resource type because it is still in use by resources.' });
         }
         console.error(`[Error] Failed to delete resource type ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 // --- Resource Handlers ---
 
 export const getAllResources = async (req: Request, res: Response, next: NextFunction) => {
-    const { organizationId, locationId, resourceTypeId } = req.query;
+    const { organizationId: orgId, locationId, resourceTypeId } = req.query;
     // TODO: Filter by user's org ID from token
 
-    let queryText = 'SELECT r.*, rt.name as resource_type_name, l.name as location_name FROM resources r LEFT JOIN resource_types rt ON r.resource_type_id = rt.id LEFT JOIN locations l ON r.location_id = l.id';
-    const queryParams = [];
-    const whereClauses = [];
-    let paramIndex = 1;
-
-    if (organizationId) { whereClauses.push(`r.organization_id = $${paramIndex++}`); queryParams.push(organizationId as string); }
-    if (locationId) { whereClauses.push(`r.location_id = $${paramIndex++}`); queryParams.push(locationId as string); }
-    if (resourceTypeId) { whereClauses.push(`r.resource_type_id = $${paramIndex++}`); queryParams.push(resourceTypeId as string); }
-    whereClauses.push(`r.is_active = true`); // Default to only active resources
-
-    if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
-    }
-    queryText += ' ORDER BY r.name ASC';
-
-    console.log('[DB Query] Fetching resources:', queryText, queryParams);
     try {
-        const result: QueryResult<Resource> = await db.query(queryText, queryParams);
-        res.status(200).json({ success: true, data: result.rows });
+        const resources = await resFindAll({
+            organizationId: orgId as string | undefined,
+            locationId: locationId as string | undefined,
+            resourceTypeId: resourceTypeId as string | undefined,
+        });
+        return res.status(200).json({ success: true, data: resources });
     } catch (err) {
         console.error('[Error] Failed to fetch resources:', err);
-        next(err);
+        return next(err);
     }
 };
 
 export const getResourceById = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    // TODO: Validate ID format & authorization
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource ID format' });
+    }
 
     try {
-        const queryText = 'SELECT r.*, rt.name as resource_type_name, l.name as location_name FROM resources r LEFT JOIN resource_types rt ON r.resource_type_id = rt.id LEFT JOIN locations l ON r.location_id = l.id WHERE r.id = $1';
-        console.log('[DB Query] Fetching resource by ID:', queryText, [id]);
-        const result: QueryResult<Resource> = await db.query(queryText, [id]);
-
-        if (result.rows.length === 0) {
+        const resource = await resFindById(id);
+        if (!resource) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource not found' });
         }
-        res.status(200).json({ success: true, data: result.rows[0] });
+        return res.status(200).json({ success: true, data: resource });
     } catch (err) {
         console.error(`[Error] Failed to fetch resource ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 export const createResource = async (req: Request, res: Response, next: NextFunction) => {
-    // TODO: Get organizationId from token
-    const organizationId = 'placeholder-org-id';
-    const { name, description, resourceTypeId, locationId, capacity, isActive = true } = req.body as Partial<Resource & { isActive?: boolean }>;
+    const organizationId = req.user?.organizationId;
+    if (!organizationId) {
+        return res.status(401).json({ error: true, code: 'UNAUTHENTICATED', message: 'Missing user context' });
+    }
+
+    const { name, description, resourceTypeId, locationId, capacity, isBookable = true } = req.body as Partial<Resource> & { isBookable?: boolean } & { locationId?: string };
 
     if (!name || !resourceTypeId || !locationId) {
         return res.status(400).json({ error: true, message: 'Missing required fields: name, resourceTypeId, locationId' });
     }
-    // TODO: Validate existence of resourceTypeId and locationId
 
     try {
-        const queryText = `
-            INSERT INTO resources (organization_id, name, description, resource_type_id, location_id, capacity, is_active)
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING *
-        `;
-        const params = [organizationId, name, description || null, resourceTypeId, locationId, capacity || null, isActive];
-        console.log('[DB Query] Creating resource:', queryText, params);
-        const result: QueryResult<Resource> = await db.query(queryText, params);
-
-        console.log('[Success] Resource created:', result.rows[0]);
-        res.status(201).json({ success: true, data: result.rows[0] });
+        const newResource = await resCreate({
+            organizationId,
+            name,
+            description,
+            resourceTypeId,
+            locationId,
+            capacity,
+            isBookable,
+        });
+        return res.status(201).json({ success: true, data: newResource });
     } catch (err) {
         console.error('[Error] Failed to create resource:', err);
-        next(err);
+        return next(err);
     }
 };
 
 export const updateResource = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const { name, description, resourceTypeId, locationId, capacity, isActive } = req.body as Partial<Resource & { isActive?: boolean }>;
-    // TODO: Validate ID format & authorization
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource ID format' });
+    }
 
-    const updateFields: string[] = [];
-    const updateParams: any[] = [];
-    let paramIndex = 1;
+    const dto: Partial<Resource> & { locationId?: string; isBookable?: boolean } = { ...req.body };
 
-    if (name !== undefined) { updateFields.push(`name = $${paramIndex++}`); updateParams.push(name); }
-    if (description !== undefined) { updateFields.push(`description = $${paramIndex++}`); updateParams.push(description); }
-    if (resourceTypeId !== undefined) { updateFields.push(`resource_type_id = $${paramIndex++}`); updateParams.push(resourceTypeId); }
-    if (locationId !== undefined) { updateFields.push(`location_id = $${paramIndex++}`); updateParams.push(locationId); }
-    if (capacity !== undefined) { updateFields.push(`capacity = $${paramIndex++}`); updateParams.push(capacity); }
-    if (isActive !== undefined) { updateFields.push(`is_active = $${paramIndex++}`); updateParams.push(isActive); }
-
-    if (updateFields.length === 0) {
+    if (Object.keys(dto).length === 0) {
         return res.status(400).json({ error: true, message: 'No update data provided' });
     }
 
-    updateFields.push(`updated_at = NOW()`);
-    const queryText = `UPDATE resources SET ${updateFields.join(', ')} WHERE id = $${paramIndex++} RETURNING *`;
-    updateParams.push(id);
-
-    console.log('[DB Query] Updating resource:', queryText, updateParams);
     try {
-        const result: QueryResult<Resource> = await db.query(queryText, updateParams);
-        if (result.rows.length === 0) {
+        const updated = await resUpdate(id, dto);
+        if (!updated) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource not found' });
         }
-        console.log('[Success] Resource updated:', result.rows[0]);
-        res.status(200).json({ success: true, data: result.rows[0] });
+        return res.status(200).json({ success: true, data: updated });
     } catch (err) {
         console.error(`[Error] Failed to update resource ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 export const deleteResource = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    // TODO: Validate ID format & authorization
-    // TODO: Check if resource is in use by events (FK constraint: ON DELETE CASCADE set on event_resources)
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource ID format' });
+    }
 
     try {
-        const queryText = 'DELETE FROM resources WHERE id = $1 RETURNING id';
-        console.log('[DB Query] Deleting resource:', queryText, [id]);
-        const result = await db.query(queryText, [id]);
-
-        if (result.rowCount === 0) {
+        const deleted = await resDelete(id);
+        if (!deleted) {
             return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource not found' });
         }
-        console.log(`[Success] Resource deleted: ${id}`);
-        res.status(200).json({ success: true, message: 'Resource deleted successfully' });
+        return res.status(200).json({ success: true, message: 'Resource deleted successfully' });
     } catch (err) {
-         if ((err as any).code === '23503') { // Should not happen if ON DELETE CASCADE is used correctly on event_resources
-             console.error(`[Error] Attempted to delete resource ${id} which is still in use.`);
-             return res.status(409).json({ error: true, code: 'RESOURCE_CONFLICT', message: 'Cannot delete resource because it is still referenced (check FK constraints).'});
+        if ((err as any).code === '23503') {
+            console.error(`[Error] Attempted to delete resource ${id} which is still in use.`);
+            return res.status(409).json({ error: true, code: 'RESOURCE_CONFLICT', message: 'Cannot delete resource because it is still referenced (check FK constraints).' });
         }
         console.error(`[Error] Failed to delete resource ${id}:`, err);
-        next(err);
+        return next(err);
     }
 };
 
 // Placeholder for getResourceAvailability - Implement later
 export const getResourceAvailability = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
-    const { start, end } = req.query;
-    // TODO: Implement conflict checking logic
-    // Basic usage to satisfy linter for now:
-    console.log(`Checking availability for resource ${id} between ${start} and ${end}`); 
-    res.status(501).json({ message: `GET /resources/${id}/availability Not Implemented Yet`, query: req.query });
+    const { start, end } = req.query as { start?: string; end?: string };
+
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource ID format' });
+    }
+
+    if (!start || !end) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'start and end query parameters are required' });
+    }
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid date format for start or end' });
+    }
+    if (endDate <= startDate) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'end must be after start' });
+    }
+
+    // Check resource exists and is bookable
+    const resource = await resFindById(id);
+    if (!resource || !resource.isBookable) {
+        return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Resource not found or not bookable' });
+    }
+
+    // Find conflicting events using conflictDetection util
+    const { findConflictingEvents } = await import('../utils/conflictDetection');
+    const conflicts = await findConflictingEvents({
+        startTime: start,
+        endTime: end,
+        resourceIds: [id],
+    });
+
+    const available = conflicts.length === 0;
+    res.status(200).json({ success: true, data: { available, conflicts } });
+};
+
+/**
+ * Bulk availability checker for multiple resources within a time window.
+ * Query params:
+ *   ids  – comma-separated list of resource UUIDs (required)
+ *   start, end – ISO strings (required)
+ *   granularityMinutes – optional positive integer; if provided, the response includes slot availability.
+ */
+export const getResourcesAvailability = async (req: Request, res: Response, _next: NextFunction) => {
+    const { ids, start, end, granularityMinutes } = req.query as {
+        ids?: string;
+        start?: string;
+        end?: string;
+        granularityMinutes?: string;
+    };
+
+    if (!ids || !start || !end) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'ids, start and end query parameters are required' });
+    }
+
+    const resourceIds = ids.split(',').map(id => id.trim()).filter(Boolean);
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (resourceIds.some(id => !uuidRegex.test(id))) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid resource ID format in ids list' });
+    }
+
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime()) || endDate <= startDate) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid start/end values' });
+    }
+
+    // Verify all resources exist & are bookable
+    const resources = await Promise.all(resourceIds.map(rid => resFindById(rid)));
+    const missing: string[] = [];
+    const validResources: Resource[] = [];
+    resources.forEach((resItem, idx) => {
+        if (!resItem || !resItem.isBookable) {
+            missing.push(resourceIds[idx]);
+        } else {
+            validResources.push(resItem);
+        }
+    });
+    if (missing.length > 0) {
+        return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Some resources not found or not bookable', details: { missing } });
+    }
+
+    // Conflicts
+    const { findConflictingEvents } = await import('../utils/conflictDetection');
+    const conflicts = await findConflictingEvents({
+        startTime: start,
+        endTime: end,
+        resourceIds,
+    });
+
+    const busyByResource: Record<string, any[]> = {};
+    resourceIds.forEach(id => (busyByResource[id] = []));
+    conflicts.forEach(c => {
+        busyByResource[c.conflict_identifier].push(c);
+    });
+
+    const summary = resourceIds.map(id => ({ id, available: busyByResource[id].length === 0 }));
+
+    // Slot calculation if granularityMinutes provided
+    let slots: Array<{ start: string; end: string; unavailableResourceIds: string[] }> | undefined;
+    if (granularityMinutes) {
+        const step = parseInt(granularityMinutes, 10);
+        if (isNaN(step) || step <= 0) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'granularityMinutes must be a positive integer' });
+        }
+
+        slots = [];
+        for (let t = startDate.getTime(); t < endDate.getTime(); t += step * 60000) {
+            const slotStart = new Date(t);
+            const slotEnd = new Date(Math.min(t + step * 60000, endDate.getTime()));
+
+            const unavailable: string[] = [];
+            resourceIds.forEach(rid => {
+                const hasOverlap = busyByResource[rid].some(evt => {
+                    return new Date(evt.start_time).getTime() < slotEnd.getTime() && new Date(evt.end_time).getTime() > slotStart.getTime();
+                });
+                if (hasOverlap) unavailable.push(rid);
+            });
+
+            slots.push({ start: slotStart.toISOString(), end: slotEnd.toISOString(), unavailableResourceIds: unavailable });
+        }
+    }
+
+    res.status(200).json({ success: true, data: { resources: summary, slots } });
 }; 

@@ -32,9 +32,9 @@ export class EventAttendee {
 
     // Store only userId. Fetch user details from User service when needed.
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
-    @UpdateDateColumn({ type: 'timestamptz' })
+    @UpdateDateColumn({ type: 'datetime' })
     updatedAt!: ISODateString;
 } 

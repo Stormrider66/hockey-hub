@@ -5,6 +5,12 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import AppDataSource from './data-source';
+import subscriptionRoutes from './routes/subscriptionRoutes';
+import invoiceRoutes from './routes/invoiceRoutes';
+import paymentMethodRoutes from './routes/paymentMethodRoutes';
+import { stripeWebhookHandler } from './controllers/webhookController';
+import { authenticate } from './middleware/authMiddleware';
+import { startOrgConsumer } from './workers/orgEventConsumer';
 
 dotenv.config(); // Load .env
 
@@ -14,15 +20,22 @@ const PORT = process.env.PORT || 3008;
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
+
+// Stripe webhook endpoint (raw body required) before JSON parsing
+app.post('/api/v1/payments/webhooks/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler);
+
 app.use(express.json());
+app.use(authenticate);
 
 // Basic Health Check
 app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({ status: 'UP', service: 'Payment Service' });
 });
 
-// Placeholder for API routes
-// app.use('/api/v1', apiRouter);
+// API Routes
+app.use('/api/v1/payments/subscriptions', subscriptionRoutes);
+app.use('/api/v1/payments/invoices', invoiceRoutes);
+app.use('/api/v1/payments/payment-methods', paymentMethodRoutes);
 
 // Basic Error Handling
 app.use((_req, _res, next) => {
@@ -44,9 +57,10 @@ AppDataSource.initialize()
     console.log('Payment Service: Data Source Initialized!');
     app.listen(PORT, () => {
       console.log(`Payment Service listening on port ${PORT}`);
+      startOrgConsumer();
     });
   })
-  .catch((err) => {
+  .catch((err: unknown) => {
     console.error('Payment Service: Error during Data Source initialization:', err);
     process.exit(1);
   });

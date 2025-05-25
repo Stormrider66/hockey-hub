@@ -12,8 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Users, BarChart, Activity, Calendar, MessageCircle, User } from "lucide-react";
+import { Clock, Users, BarChart, Activity, Calendar, MessageCircle, User, HeartPulse, Dumbbell, Shirt, Shield, Building } from "lucide-react";
 import { LucideIcon } from "lucide-react";
+import { getEventTypeColor, getStatusColor, cn } from "@/lib/design-utils";
 
 interface DashboardCardProps {
   title: string;
@@ -25,7 +26,7 @@ interface EventCardProps {
   title: string;
   time: string;
   location: string;
-  type: keyof typeof eventTypeConfig;
+  type: string;
 }
 
 interface WorkoutCardProps {
@@ -44,21 +45,40 @@ interface TestResultItemProps {
 
 interface PlayerAvailabilityProps {
   name: string;
-  status: "full" | "limited" | "rehab" | "unavailable";
+  status: string;
   position: string;
   number: string;
   note?: string;
   return?: string;
 }
 
-const eventTypeConfig = {
-  ice: { bg: "bg-blue-100", text: "text-blue-800", icon: Calendar },
-  physical: { bg: "bg-green-100", text: "text-green-800", icon: Activity },
-  game: { bg: "bg-red-100", text: "text-red-800", icon: Users },
-  medical: { bg: "bg-amber-100", text: "text-amber-800", icon: Activity },
-  meeting: { bg: "bg-purple-100", text: "text-purple-800", icon: MessageCircle },
-  travel: { bg: "bg-indigo-100", text: "text-indigo-800", icon: Calendar },
-} as const;
+const getEventTypeIcon = (type: string): LucideIcon => {
+  const iconMap: Record<string, LucideIcon> = {
+    ice: Calendar,
+    physical: Activity,
+    game: Users,
+    medical: HeartPulse,
+    meeting: MessageCircle,
+    travel: Calendar,
+    strength: Dumbbell,
+    power: Activity,
+    testing: BarChart,
+    activation: Activity,
+    recovery: Activity,
+  };
+  return iconMap[type.toLowerCase().split('-')[0]] || Activity;
+};
+
+const getPlayerStatusText = (status: string): string => {
+  const textMap: Record<string, string> = {
+    "full": "Full",
+    "limited": "Limited",
+    "individual": "Individual",
+    "rehab": "Rehab",
+    "unavailable": "Unavailable",
+  };
+  return textMap[status.toLowerCase()] || "Unknown";
+};
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title, count, icon }) => (
   <Card>
@@ -73,15 +93,15 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, count, icon }) => 
 );
 
 const EventCard: React.FC<EventCardProps> = ({ title, time, location, type }) => {
-  const config = eventTypeConfig[type];
-  const Icon = config.icon;
+  const colorClasses = getEventTypeColor(type);
+  const Icon = getEventTypeIcon(type);
   
   return (
     <Card>
       <CardHeader className="space-y-1.5 p-4">
-        <Badge className={`${config.bg} ${config.text}`}>
+        <Badge className={cn(colorClasses)}>
           <Icon className="mr-1 h-3 w-3" />
-          {type.charAt(0).toUpperCase() + type.slice(1)}
+          {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
         </Badge>
         <CardTitle className="text-base">{title}</CardTitle>
       </CardHeader>
@@ -133,12 +153,8 @@ const PlayerAvailability: React.FC<PlayerAvailabilityProps> = ({
   note, 
   return: returnDate 
 }) => {
-  const statusConfig = {
-    full: { color: "bg-green-100 text-green-800", text: "Full" },
-    limited: { color: "bg-yellow-100 text-yellow-800", text: "Limited" },
-    rehab: { color: "bg-orange-100 text-orange-800", text: "Rehab" },
-    unavailable: { color: "bg-red-100 text-red-800", text: "Unavailable" },
-  };
+  const colorClasses = getStatusColor(status);
+  const statusText = getPlayerStatusText(status);
 
   return (
     <div className="flex items-center justify-between py-2">
@@ -153,8 +169,8 @@ const PlayerAvailability: React.FC<PlayerAvailabilityProps> = ({
           {returnDate && <p className="text-sm text-muted-foreground mt-1">Return: {returnDate}</p>}
         </div>
       </div>
-      <Badge className={statusConfig[status].color}>
-        {statusConfig[status].text}
+      <Badge className={cn(colorClasses)}>
+        {statusText}
       </Badge>
     </div>
   );
@@ -257,11 +273,13 @@ export default function HockeyAppUIComponents() {
                   <Badge variant="secondary">Secondary</Badge>
                   <Badge variant="destructive">Warning</Badge>
                   <Badge variant="outline">Outline</Badge>
-                  <Badge className="bg-blue-100 text-blue-800">Ice Training</Badge>
-                  <Badge className="bg-green-100 text-green-800">Physical Training</Badge>
-                  <Badge className="bg-red-100 text-red-800">Game</Badge>
-                  <Badge className="bg-amber-100 text-amber-800">Rehab</Badge>
-                  <Badge className="bg-purple-100 text-purple-800">Meeting</Badge>
+                  <Badge className={cn(getEventTypeColor('ice-training'))}>Ice Training</Badge>
+                  <Badge className={cn(getEventTypeColor('physical-training'))}>Physical Training</Badge>
+                  <Badge className={cn(getEventTypeColor('game'))}>Game</Badge>
+                  <Badge className={cn(getEventTypeColor('medical'))}>Rehab</Badge>
+                  <Badge className={cn(getEventTypeColor('meeting'))}>Meeting</Badge>
+                  <Badge className={cn(getEventTypeColor('strength-training'))}>Strength Training</Badge>
+                  <Badge className={cn(getEventTypeColor('testing-session'))}>Testing Session</Badge>
                 </div>
               </section>
             </div>
@@ -278,13 +296,13 @@ export default function HockeyAppUIComponents() {
                     title="Ice Training - Technique"
                     time="13:00 - 14:30"
                     location="Skellefteå Kraft Arena, Rink A"
-                    type="ice"
+                    type="ice-training"
                   />
                   <EventCard
                     title="Physical Training - Strength"
                     time="15:00 - 16:00"
                     location="Gym, Skellefteå Kraft Arena"
-                    type="physical"
+                    type="physical-training"
                   />
                   <EventCard
                     title="Game vs Luleå HF"
@@ -309,6 +327,18 @@ export default function HockeyAppUIComponents() {
                     time="08:00 - 12:00"
                     location="Meeting at arena entrance"
                     type="travel"
+                  />
+                  <EventCard
+                    title="Strength Workout"
+                    time="10:00 - 11:00"
+                    location="Gym"
+                    type="strength-training"
+                  />
+                  <EventCard
+                    title="Recovery Routine"
+                    time="10:00 - 11:00"
+                    location="Recovery Room"
+                    type="recovery-session"
                   />
                 </div>
               </section>

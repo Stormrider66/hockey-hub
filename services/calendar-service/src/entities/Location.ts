@@ -39,9 +39,9 @@ export class Location {
     @Column({ type: 'decimal', precision: 10, scale: 7, nullable: true })
     longitude?: number;
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
-    @UpdateDateColumn({ type: 'timestamptz' })
+    @UpdateDateColumn({ type: 'datetime' })
     updatedAt!: ISODateString;
 } 

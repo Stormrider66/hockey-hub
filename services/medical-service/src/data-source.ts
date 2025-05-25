@@ -19,8 +19,12 @@ const dataSourceOptions: DataSourceOptions = {
     synchronize: false, // Ensure synchronize is false
     logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'],
     entities: [
-        // Use path pattern
-        'dist/src/entities/**/*.js' 
+        Injury,
+        MedicalNote,
+        PlayerStatusUpdate,
+        MedicalAssessment,
+        PlayerMedicalJournal,
+        'dist/src/entities/**/*.js'
     ],
     migrations: [
         'dist/src/migrations/**/*.js'
@@ -32,6 +36,8 @@ const dataSourceOptions: DataSourceOptions = {
 };
 
 export const AppDataSource = new DataSource(dataSourceOptions);
+
+export default AppDataSource;
 
 // Optional initialization logging
 AppDataSource.initialize()

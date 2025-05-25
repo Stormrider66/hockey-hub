@@ -21,7 +21,7 @@ import {
     listTeamsHandler
 } from '../controllers/teamController';
 
-const router = Router();
+const router: Router = Router();
 
 // Middleware applied to all /teams routes
 router.use(authenticateToken);

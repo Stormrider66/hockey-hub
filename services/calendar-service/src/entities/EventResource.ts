@@ -29,7 +29,7 @@ export class EventResource {
     @JoinColumn({ name: 'resourceId' })
     resource!: Resource;
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
     // No UpdateDateColumn needed for a simple join table usually

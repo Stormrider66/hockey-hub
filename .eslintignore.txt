@@ -1,0 +1,2 @@
+# Ignore dashboard mock-ups
+development/Frontend/**

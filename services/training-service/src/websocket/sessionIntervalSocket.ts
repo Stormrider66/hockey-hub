@@ -1,10 +1,12 @@
-import { Server } from 'socket.io';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SocketIOServer = any;
+
 import { findScheduledSessionById } from '../repositories/ScheduledSessionRepository';
 import { ScheduledPhysicalSession, SessionSection } from '../types/training';
 import jwt from 'jsonwebtoken';
 import { AuthenticatedUser } from '../types/auth';
 
-export const initSessionIntervalSocket = (io: Server) => {
+export const initSessionIntervalSocket = (io: SocketIOServer) => {
     const nsp = io.of('/session-intervals');
 
     // Authentication middleware similar to comm‑service

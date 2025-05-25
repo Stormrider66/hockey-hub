@@ -3,7 +3,7 @@ import { Router, Request, Response } from 'express';
 // import { validateRequest } from '../middleware/validationMiddleware'; // TODO: Implement validation
 // import { registerSchema, loginSchema, refreshTokenSchema /*, ... other schemas */ } from '../dtos/authDtos'; // TODO: Create DTOs
 
-const router = Router();
+const router: Router = Router();
 
 // Placeholder handlers - Replace with actual controller methods
 const placeholderHandler = (_req: Request, res: Response) => {

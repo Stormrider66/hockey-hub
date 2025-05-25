@@ -12,7 +12,7 @@ import { registerSchema, loginSchema } from '../validations/authValidations';
  * would be to address the ts-node version conflict (needs ^10.7.0 for typeorm, but
  * other dependencies require ^9.1.1).
  */
-const router = Router();
+const router: Router = Router();
 
 // /register endpoint with Zod validation
 router.post('/register',

@@ -1,7 +1,9 @@
-import { Server } from 'socket.io';
+// Local fallback type for Socket.IO Server to avoid dependency on @types/socket.io
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SocketIOServer = any;
 import { findLatestMetricsByTeamId } from '../repositories/LiveMetricsRepository';
 
-export const initLiveMetricsSocket = (io: Server) => {
+export const initLiveMetricsSocket = (io: SocketIOServer) => {
     const nsp = io.of('/live-metrics');
 
     // Track active team rooms that have at least one connected client

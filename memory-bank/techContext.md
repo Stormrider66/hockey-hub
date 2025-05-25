@@ -11,7 +11,7 @@
 - **Form Handling**: React Hook Form with Zod validation
 - **Internationalization**: i18next with language detection
 - **Data Visualization**: Recharts
-- **Testing**: Jest, React Testing Library, Cypress
+- **Testing**: Jest, React Testing Library, Cypress, Storybook with MSW (for component-level API mocking)
 
 ### Backend
 - **Runtime**: Node.js (LTS version)
@@ -55,6 +55,7 @@
 - Database seeding for development data
 - Local service discovery via Docker Compose DNS
 - Shared volume mapping for code changes
+- Storybook for isolated UI component development, using Mock Service Worker (MSW) to mock API responses for components that interact with backend services.
 
 ### Standard Environment Variables
 ```

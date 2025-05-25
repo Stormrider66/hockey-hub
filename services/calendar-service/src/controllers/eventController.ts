@@ -1,7 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import db from '../db';
+import {
+    findAll as repoFindAll,
+    findById as repoFindById,
+    createEvent as repoCreateEvent,
+    updateEvent as repoUpdateEvent,
+    deleteEvent as repoDeleteEvent,
+} from '../repositories/eventRepository';
+import {
+    findByEvent as attendeeFindByEvent,
+    addAttendee as attendeeAdd,
+    removeAttendee as attendeeRemove,
+} from '../repositories/eventAttendeeRepository';
 import { CalendarEvent } from '../types/event';
-import { QueryResult } from 'pg';
+import { CreateEventInput } from '../validation/eventSchemas';
+import { findConflictingEvents } from '../utils/conflictDetection';
+import { EventType as EventTypeEnum, EventStatus as EventStatusEnum, AttendeeStatus as AttendeeStatusEnum } from '@hockey-hub/types';
+import { doesTeamExist } from '../services/teamService';
+import { doesUserExist } from '../services/userService';
+import { findById as locFindById } from '../repositories/locationRepository';
+import { findById as resRepositoryFindById } from '../repositories/resourceRepository';
+import { t } from '../utils/translate';
 
 // TODO: Add proper error handling and validation
 
@@ -9,65 +27,13 @@ import { QueryResult } from 'pg';
  * Get all calendar events, potentially filtered by query parameters.
  */
 export const getAllEvents = async (req: Request, res: Response, next: NextFunction) => {
-    const { start, end, teamId, eventTypeId, locationId } = req.query;
-
-    // Basic validation (expand later)
-    if (start && isNaN(Date.parse(start as string))) {
-        return res.status(400).json({ error: true, message: 'Invalid start date format' });
-    }
-    if (end && isNaN(Date.parse(end as string))) {
-        return res.status(400).json({ error: true, message: 'Invalid end date format' });
-    }
-
-    let queryText = 'SELECT * FROM events';
-    const queryParams = [];
-    const whereClauses = [];
-    let paramIndex = 1;
-
-    // Build WHERE clauses based on query parameters
-    // Time range filtering
-    if (start) {
-        whereClauses.push(`end_time >= $${paramIndex++}`);
-        queryParams.push(start as string);
-    }
-    if (end) {
-        whereClauses.push(`start_time <= $${paramIndex++}`);
-        queryParams.push(end as string);
-    }
-
-    // Other filters
-    if (teamId) {
-        whereClauses.push(`team_id = $${paramIndex++}`);
-        queryParams.push(teamId as string);
-    }
-    if (eventTypeId) {
-        whereClauses.push(`event_type = $${paramIndex++}`);
-        queryParams.push(eventTypeId as string);
-    }
-    if (locationId) {
-        whereClauses.push(`location_id = $${paramIndex++}`);
-        queryParams.push(locationId as string);
-    }
-
-    // Add WHERE clauses to the query if any exist
-    if (whereClauses.length > 0) {
-        queryText += ' WHERE ' + whereClauses.join(' AND ');
-    }
-
-    queryText += ' ORDER BY start_time ASC'; // Default ordering
-
-    console.log('[DB Query] Fetching events:', queryText, queryParams);
-
+    const { start, end, teamId, eventType, locationId } = req.query as any;
     try {
-        const result: QueryResult<CalendarEvent> = await db.query(queryText, queryParams);
-        
-        // TODO: Add logic to fetch participants and resources if needed/requested
-
-        res.status(200).json({ success: true, data: result.rows });
+        const events = await repoFindAll({ start, end, teamId, eventType, locationId });
+        res.status(200).json({ success: true, data: events });
     } catch (err) {
         console.error('[Error] Failed to fetch events:', err);
-        // Pass error to the generic error handler in index.ts
-        next(err); 
+        next(err);
     }
 };
 
@@ -76,44 +42,20 @@ export const getAllEvents = async (req: Request, res: Response, next: NextFuncti
  */
 export const getEventById = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    // Basic validation for ID format (UUID)
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid event ID format' });
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: t('errors.event.invalid_id', req) });
     }
 
     try {
-        // Fetch the event itself
-        const eventQueryText = 'SELECT * FROM events WHERE id = $1';
-        console.log('[DB Query] Fetching event by ID:', eventQueryText, [id]);
-        const eventResult: QueryResult<CalendarEvent> = await db.query(eventQueryText, [id]);
-
-        if (eventResult.rows.length === 0) {
-            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Event not found' });
+        const event = await repoFindById(id);
+        if (!event) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: t('errors.event.not_found', req) });
         }
-
-        const event = eventResult.rows[0];
-
-        // Fetch associated resource IDs
-        const resourceQueryText = 'SELECT resource_id FROM event_resources WHERE event_id = $1';
-        console.log('[DB Query] Fetching resources for event:', resourceQueryText, [id]);
-        const resourceResult: QueryResult<{ resource_id: string }> = await db.query(resourceQueryText, [id]);
-        event.resourceIds = resourceResult.rows.map(row => row.resource_id);
-
-        // TODO: Fetch participants (if stored explicitly) or derive from team
-        // Example if stored explicitly:
-        // const participantQueryText = 'SELECT user_id, role_in_event, attendance_status FROM event_participants WHERE event_id = $1';
-        // console.log('[DB Query] Fetching participants for event:', participantQueryText, [id]);
-        // const participantResult: QueryResult<EventParticipant> = await db.query(participantQueryText, [id]);
-        // event.participants = participantResult.rows; 
-        // (Need to also fetch user names etc. from user-service or join)
-
-        console.log('[Success] Event fetched:', event);
         res.status(200).json({ success: true, data: event });
-
     } catch (err) {
         console.error(`[Error] Failed to fetch event ${id}:`, err);
-        next(err); // Pass to the main error handler
+        next(err);
     }
 };
 
@@ -121,9 +63,12 @@ export const getEventById = async (req: Request, res: Response, next: NextFuncti
  * Create a new calendar event.
  */
 export const createEvent = async (req: Request, res: Response, next: NextFunction) => {
-    // TODO: Get organizationId and createdByUserId from authenticated user token (req.user)
-    const organizationId = 'placeholder-org-id'; // Replace with actual ID from auth middleware
-    const createdByUserId = 'placeholder-user-id'; // Replace with actual ID from auth middleware
+    const organizationId = req.user?.organizationId;
+    const createdByUserId = req.user?.id;
+
+    if (!organizationId || !createdByUserId) {
+        return res.status(401).json({ error: true, code: 'UNAUTHENTICATED', message: 'Missing user context' });
+    }
 
     const {
         title,
@@ -132,10 +77,10 @@ export const createEvent = async (req: Request, res: Response, next: NextFunctio
         endTime,
         eventType,
         locationId,
-        teamId,
-        resourceIds, // Expecting an array of resource UUIDs
-        status = 'scheduled' // Default status
-    } = req.body as Partial<CalendarEvent & { resourceIds?: string[] }>;
+        teamIds,
+        resourceIds,
+        status = 'scheduled'
+    } = req.body as CreateEventInput & { resourceIds?: string[] };
 
     // --- Basic Validation ---
     if (!title || !startTime || !endTime || !eventType) {
@@ -155,64 +100,75 @@ export const createEvent = async (req: Request, res: Response, next: NextFunctio
     if (resourceIds && !Array.isArray(resourceIds)) {
         return res.status(400).json({ error: true, message: 'resourceIds must be an array' });
     }
-    // TODO: Validate eventType against the enum
-    // TODO: Validate existence of locationId, teamId, resourceIds if provided
-    // TODO: Add resource conflict detection before insertion
+    // Validate enums
+    if (!Object.values(EventTypeEnum).includes(eventType as EventTypeEnum)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid eventType' });
+    }
+    if (status && !Object.values(EventStatusEnum).includes(status as EventStatusEnum)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid status value' });
+    }
+    // --- Existence Checks (location & resources) ---
+    if (locationId) {
+        const locExists = await locFindById(locationId);
+        if (!locExists) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'locationId does not exist' });
+        }
+    }
 
-    const client = await db.getClient();
+    if (resourceIds && resourceIds.length > 0) {
+        const resourceChecks = await Promise.all(resourceIds.map(id => resRepositoryFindById(id)));
+        const missing: string[] = [];
+        resourceChecks.forEach((res, idx) => {
+            if (!res) missing.push(resourceIds[idx]);
+        });
+        if (missing.length > 0) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'One or more resourceIds do not exist', details: { missing } });
+        }
+    }
+
+    // Team existence
+    if (teamIds && teamIds.length === 1) {
+        const teamOk = await doesTeamExist(teamIds[0], organizationId);
+        if (!teamOk) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Provided teamId does not exist' });
+        }
+    }
+
+    // --- Conflict Detection ---
+    const conflictEvents = await findConflictingEvents({
+        startTime,
+        endTime,
+        resourceIds: resourceIds ?? [],
+        teamId: teamIds && teamIds.length === 1 ? teamIds[0] : null,
+        locationId: locationId ?? null,
+    });
+
+    if (conflictEvents.length > 0) {
+        return res.status(409).json({
+            error: true,
+            code: 'EVENT_CONFLICT',
+            message: t('errors.event.conflict', req),
+            conflicts: conflictEvents,
+        });
+    }
+
     try {
-        await client.query('BEGIN');
-
-        // Insert into events table
-        const eventQueryText = `
-            INSERT INTO events (organization_id, team_id, location_id, created_by_user_id, title, description, start_time, end_time, event_type, status)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-            RETURNING *
-        `;
-        const eventParams = [
+        const eventToSave: any = {
             organizationId,
-            teamId || null,
-            locationId || null,
-            createdByUserId,
+            teamIds,
+            locationId: locationId ?? null,
             title,
-            description || null,
+            description: description ?? null,
             startTime,
             endTime,
             eventType,
-            status
-        ];
-
-        console.log('[DB Query] Creating event:', eventQueryText, eventParams);
-        const eventResult: QueryResult<CalendarEvent> = await client.query(eventQueryText, eventParams);
-        const newEvent = eventResult.rows[0];
-
-        // Insert into event_resources junction table if resourceIds are provided
-        if (resourceIds && resourceIds.length > 0) {
-            const resourceQueryText = `
-                INSERT INTO event_resources (event_id, resource_id)
-                VALUES ($1, $2)
-            `;
-            // Use Promise.all to run inserts concurrently within the transaction
-            await Promise.all(resourceIds.map(resourceId => {
-                console.log(`[DB Query] Linking resource ${resourceId} to event ${newEvent.id}`);
-                // TODO: Add validation that resourceId is a valid UUID
-                return client.query(resourceQueryText, [newEvent.id, resourceId]);
-            }));
-            // Attach resourceIds to the returned event object for confirmation
-            // Ensure the type includes resourceIds potentially (adjust CalendarEvent type if needed)
-            (newEvent as any).resourceIds = resourceIds; 
-        }
-
-        await client.query('COMMIT');
-        console.log('[Success] Event created:', newEvent);
-        res.status(201).json({ success: true, data: newEvent });
-
+            status,
+        };
+        const saved = await repoCreateEvent({ ...eventToSave, resourceIds });
+        res.status(201).json({ success: true, data: saved });
     } catch (err) {
-        await client.query('ROLLBACK');
         console.error('[Error] Failed to create event:', err);
-        next(err); // Pass to the main error handler
-    } finally {
-        client.release(); // Release the client back to the pool
+        next(err);
     }
 };
 
@@ -236,7 +192,7 @@ export const updateEvent = async (req: Request, res: Response, next: NextFunctio
     // --- Basic Validation ---
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid event ID format' });
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: t('errors.event.invalid_id', req) });
     }
     if (startTime && isNaN(Date.parse(startTime as unknown as string))) { 
         return res.status(400).json({ error: true, message: 'Invalid date format for startTime' });
@@ -250,105 +206,90 @@ export const updateEvent = async (req: Request, res: Response, next: NextFunctio
     if (resourceIds && !Array.isArray(resourceIds)) {
         return res.status(400).json({ error: true, message: 'resourceIds must be an array' });
     }
-    // TODO: Add more validation (check enums, existence of foreign keys, etc.)
-    // TODO: Add authorization check - who can update this event?
-    // TODO: Add resource conflict detection if time or resources change
+    // Validate enums were handled earlier; now check referenced entities
 
-    const client = await db.getClient();
+    if (locationId !== undefined && locationId !== null) {
+        const locExists = await locFindById(locationId);
+        if (!locExists) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'locationId does not exist' });
+        }
+    }
+
+    if (resourceIds !== undefined) {
+        const resourceChecks = await Promise.all(resourceIds.map(id => resRepositoryFindById(id)));
+        const missingRes: string[] = [];
+        resourceChecks.forEach((res, idx) => {
+            if (!res) missingRes.push(resourceIds[idx]);
+        });
+        if (missingRes.length > 0) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'One or more resourceIds do not exist', details: { missing: missingRes } });
+        }
+    }
+
+    // --- Fetch Existing Event & Resources to Determine Final State ---
+    const existingEventResult = await repoFindById(id);
+    if (!existingEventResult) {
+        return res.status(404).json({ error: true, code: 'NOT_FOUND', message: t('errors.event.not_found', req) });
+    }
+
+    // Determine final values after update (what they *will* be)
+    const toIso = (val: any): string => (val instanceof Date ? val.toISOString() : String(val));
+    const rawStart = startTime ?? existingEventResult.startTime;
+    const rawEnd = endTime ?? existingEventResult.endTime;
+    const finalStart: string = toIso(rawStart);
+    const finalEnd: string = toIso(rawEnd);
+    const finalTeamId: string | null = teamId !== undefined ? teamId : (existingEventResult.teamIds && existingEventResult.teamIds.length === 1 ? existingEventResult.teamIds[0] : null);
+    const existingResourceIds = existingEventResult.eventResources?.map(er => er.resourceId) ?? [];
+    const finalResourceIds = resourceIds !== undefined ? resourceIds : existingResourceIds;
+
+    // --- Conflict Detection ---
+    const conflictsOnUpdate = await findConflictingEvents({
+        startTime: finalStart,
+        endTime: finalEnd,
+        resourceIds: finalResourceIds,
+        teamId: finalTeamId,
+        locationId: locationId !== undefined ? locationId : existingEventResult.locationId,
+        excludeEventId: id,
+    });
+
+    if (conflictsOnUpdate.length > 0) {
+        return res.status(409).json({
+            error: true,
+            code: 'EVENT_CONFLICT',
+            message: t('errors.event.conflict', req),
+            conflicts: conflictsOnUpdate,
+        });
+    }
+
+    // Team existence check (now that we have orgId)
+    if (teamId !== undefined) {
+        const orgIdForTeam = req.user?.organizationId ?? existingEventResult.organizationId;
+        const teamOk = await doesTeamExist(teamId, orgIdForTeam);
+        if (!teamOk) {
+            return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Provided teamId does not exist' });
+        }
+    }
+
     try {
-        await client.query('BEGIN');
-
-        // --- Update Event Fields ---
-        const updateFields: string[] = [];
-        const updateParams: any[] = [];
-        let paramIndex = 1;
-        let eventFieldsWereUpdated = false;
-
-        // Build the SET part of the UPDATE query dynamically
-        if (title !== undefined) { updateFields.push(`title = $${paramIndex++}`); updateParams.push(title); }
-        if (description !== undefined) { updateFields.push(`description = $${paramIndex++}`); updateParams.push(description); }
-        if (startTime !== undefined) { updateFields.push(`start_time = $${paramIndex++}`); updateParams.push(startTime); }
-        if (endTime !== undefined) { updateFields.push(`end_time = $${paramIndex++}`); updateParams.push(endTime); }
-        if (eventType !== undefined) { updateFields.push(`event_type = $${paramIndex++}`); updateParams.push(eventType); }
-        if (locationId !== undefined) { updateFields.push(`location_id = $${paramIndex++}`); updateParams.push(locationId); }
-        if (teamId !== undefined) { updateFields.push(`team_id = $${paramIndex++}`); updateParams.push(teamId); }
-        if (status !== undefined) { updateFields.push(`status = $${paramIndex++}`); updateParams.push(status); }
-
-        // Only run UPDATE query if there are fields to update
-        if (updateFields.length > 0) {
-            eventFieldsWereUpdated = true;
-            updateFields.push(`updated_at = NOW()`); // Always update the timestamp
-            const eventUpdateQueryText = `UPDATE events SET ${updateFields.join(', ')} WHERE id = $${paramIndex++} RETURNING id`;
-            updateParams.push(id);
-
-            console.log('[DB Query] Updating event fields:', eventUpdateQueryText, updateParams);
-            const eventUpdateResult = await client.query(eventUpdateQueryText, updateParams);
-
-            if (eventUpdateResult.rows.length === 0) {
-                await client.query('ROLLBACK');
-                return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Event not found' });
-            }
+        const dto: any = {
+            title,
+            description,
+            startTime,
+            endTime,
+            eventType,
+            locationId,
+            teamIds: teamId ? [teamId] : undefined,
+            status: status as EventStatusEnum,
+            resourceIds,
+        };
+        const updated = await repoUpdateEvent(id, dto);
+        if (!updated) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: t('errors.event.not_found', req) });
         }
-
-        // --- Handle Resource Updates ---
-        let resourcesWereHandled = false;
-        if (resourceIds !== undefined) {
-            resourcesWereHandled = true;
-            // 1. Delete existing resource links for this event
-            const deleteResourcesQuery = 'DELETE FROM event_resources WHERE event_id = $1';
-            console.log('[DB Query] Deleting old resource links for event:', deleteResourcesQuery, [id]);
-            await client.query(deleteResourcesQuery, [id]);
-
-            // 2. Insert new resource links if any provided
-            if (resourceIds.length > 0) {
-                const insertResourceQuery = 'INSERT INTO event_resources (event_id, resource_id) VALUES ($1, $2)';
-                await Promise.all(resourceIds.map(resourceId => {
-                    console.log(`[DB Query] Linking resource ${resourceId} to event ${id}`);
-                    return client.query(insertResourceQuery, [id, resourceId]);
-                }));
-            }
-        }
-
-        // --- Check if any update actually happened ---
-        if (!eventFieldsWereUpdated && !resourcesWereHandled) {
-            await client.query('ROLLBACK');
-            const currentEventResult = await db.query('SELECT * FROM events WHERE id = $1', [id]);
-             if (currentEventResult.rows.length === 0) {
-                 return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Event not found' });
-             }
-             const currentEvent = currentEventResult.rows[0] as CalendarEvent;
-             const currentResourcesResult = await db.query('SELECT resource_id FROM event_resources WHERE event_id = $1', [id]);
-             currentEvent.resourceIds = currentResourcesResult.rows.map(r => r.resource_id);
-             return res.status(200).json({ success: true, data: currentEvent, message: 'No update data provided, returning current state.' });
-        }
-
-        // --- Commit Transaction --- 
-        await client.query('COMMIT');
-
-        // --- Fetch Final State --- 
-        console.log('[DB Query] Fetching final event state after update:', id);
-        const finalEventResult = await db.query('SELECT * FROM events WHERE id = $1', [id]);
-
-        if (finalEventResult.rows.length === 0) {
-            console.error(`[Error] Event ${id} not found after successful update commit.`);
-            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Event not found after update attempt' });
-        }
-        const finalEvent = finalEventResult.rows[0] as CalendarEvent;
-
-        // Fetch final resources
-        const finalResourcesResult = await db.query('SELECT resource_id FROM event_resources WHERE event_id = $1', [id]);
-        finalEvent.resourceIds = finalResourcesResult.rows.map(r => r.resource_id);
-        // TODO: Fetch participants if needed
-
-        console.log('[Success] Event updated:', finalEvent);
-        res.status(200).json({ success: true, data: finalEvent });
-
+        res.status(200).json({ success: true, data: updated });
     } catch (err) {
-        await client.query('ROLLBACK');
         console.error(`[Error] Failed to update event ${id}:`, err);
-        next(err); // Pass to the main error handler
-    } finally {
-        client.release(); // Release the client back to the pool
+        next(err);
     }
 };
 
@@ -361,63 +302,133 @@ export const deleteEvent = async (req: Request, res: Response, next: NextFunctio
     // --- Basic Validation ---
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(id)) {
-        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid event ID format' });
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: t('errors.event.invalid_id', req) });
     }
     // TODO: Add authorization check - who can delete this event?
 
-    const client = await db.getClient();
     try {
-        await client.query('BEGIN');
-
-        // 1. Delete resource links (optional, depends if CASCADE is set on FK)
-        // If FK has ON DELETE CASCADE, this step is not strictly needed but can be explicit
-        const deleteResourcesQuery = 'DELETE FROM event_resources WHERE event_id = $1';
-        console.log('[DB Query] Deleting resource links for event:', deleteResourcesQuery, [id]);
-        await client.query(deleteResourcesQuery, [id]);
-        
-        // TODO: Delete participant links if event_participants table is used
-        // const deleteParticipantsQuery = 'DELETE FROM event_participants WHERE event_id = $1';
-        // console.log('[DB Query] Deleting participants for event:', deleteParticipantsQuery, [id]);
-        // await client.query(deleteParticipantsQuery, [id]);
-
-        // 2. Delete the event itself
-        const deleteEventQuery = 'DELETE FROM events WHERE id = $1 RETURNING id';
-        console.log('[DB Query] Deleting event:', deleteEventQuery, [id]);
-        const deleteResult = await client.query(deleteEventQuery, [id]);
-
-        // Check if an event was actually deleted
-        if (deleteResult.rowCount === 0) {
-            await client.query('ROLLBACK'); // Event didn't exist
-            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Event not found' });
+        const deleted = await repoDeleteEvent(id);
+        if (!deleted) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: t('errors.event.not_found', req) });
         }
-
-        await client.query('COMMIT');
-        console.log(`[Success] Event deleted: ${id}`);
         res.status(200).json({ success: true, message: 'Event deleted successfully' });
-
     } catch (err) {
-        await client.query('ROLLBACK');
         console.error(`[Error] Failed to delete event ${id}:`, err);
-        next(err); // Pass to the main error handler
-    } finally {
-        client.release(); // Release the client back to the pool
+        next(err);
     }
 };
 
-// Placeholder for getEventParticipants - Implement later
+/**
+ * Get event participants.
+ */
 export const getEventParticipants = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
-    res.status(501).json({ message: `GET /events/${id}/participants Not Implemented Yet` });
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid event ID format' });
+    }
+
+    try {
+        const attendees = await attendeeFindByEvent(id);
+        return res.status(200).json({ success: true, data: attendees });
+    } catch (err) {
+        console.error(`[Error] Failed to fetch participants for event ${id}:`, err);
+        return _next(err);
+    }
 };
 
-// Placeholder for addEventParticipant - Implement later
+/**
+ * Add an event participant.
+ */
 export const addEventParticipant = async (req: Request, res: Response, _next: NextFunction) => {
     const { id } = req.params;
-    res.status(501).json({ message: `POST /events/${id}/participants Not Implemented Yet`, data: req.body });
+    const { userId, status = 'invited', reasonForAbsence } = req.body as { userId: string; status?: string; reasonForAbsence?: string };
+
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id) || !uuidRegex.test(userId)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid UUID format' });
+    }
+
+    // Validate status enum
+    const allowedStatus = Object.values(AttendeeStatusEnum);
+    if (!allowedStatus.includes(status as AttendeeStatusEnum)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid attendee status' });
+    }
+
+    // Verify user exists
+    const userExists = await doesUserExist(userId);
+    if (!userExists) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'User does not exist' });
+    }
+
+    try {
+        const attendee = await attendeeAdd({
+            eventId: id,
+            userId,
+            status,
+            reasonForAbsence: reasonForAbsence ?? null,
+        });
+        return res.status(201).json({ success: true, data: attendee });
+    } catch (err: any) {
+        if (err.code === '23505') {
+            return res.status(409).json({ error: true, code: 'RESOURCE_CONFLICT', message: 'User already added to event' });
+        }
+        console.error(`[Error] Failed to add participant to event ${id}:`, err);
+        return _next(err);
+    }
 };
 
-// Placeholder for removeEventParticipant - Implement later
+/**
+ * Remove an event participant.
+ */
 export const removeEventParticipant = async (req: Request, res: Response, _next: NextFunction) => {
-    const { eventId, userId } = req.params;
-    res.status(501).json({ message: `DELETE /events/${eventId}/participants/${userId} Not Implemented Yet` });
+    const { eventId, userId } = req.params as { eventId: string; userId: string };
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(eventId) || !uuidRegex.test(userId)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid UUID format' });
+    }
+
+    try {
+        const removed = await attendeeRemove(eventId, userId);
+        if (!removed) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Participant not found for this event' });
+        }
+        return res.status(200).json({ success: true, message: 'Participant removed' });
+    } catch (err) {
+        console.error(`[Error] Failed to remove participant ${userId} from event ${eventId}:`, err);
+        return _next(err);
+    }
+};
+
+/**
+ * Simple helper to update only the status field of an event.
+ * Route: PATCH /events/:id/status
+ */
+export const updateEventStatus = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const { status } = req.body as { status: string | undefined };
+
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: t('errors.event.invalid_id', req) });
+    }
+
+    if (!status) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'status is required' });
+    }
+
+    if (!Object.values(EventStatusEnum).includes(status as EventStatusEnum)) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Invalid status value' });
+    }
+
+    try {
+        const updated = await repoUpdateEvent(id, { status: status as EventStatusEnum });
+        if (!updated) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: t('errors.event.not_found', req) });
+        }
+        res.status(200).json({ success: true, data: updated });
+    } catch (err) {
+        console.error(`[Error] Failed to update status for event ${id}:`, err);
+        next(err);
+    }
 }; 

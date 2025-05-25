@@ -16,7 +16,7 @@ import {
     deleteOrganizationHandler
 } from '../controllers/organizationController';
 
-const router = Router();
+const router: Router = Router();
 
 // All organization routes require authentication
 router.use(authenticateToken);

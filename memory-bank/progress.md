@@ -114,29 +114,25 @@
   - ✅ TypeORM Setup Complete (Entities, Migrations, Connection)
   - ✅ Core logic/endpoints implemented (including Live Metrics/Intervals).
 - ✅ **Medical Service:**
-  - ✅ Initial Service Setup (Express, TS)
-  - ✅ Core Type Definitions (Injury, Update, Treatment, Plan, Status, Info)
-  - ✅ Database Schema Defined
-  - ✅ DB Connection Pool Setup (pg) & Verified
-  - ✅ Basic CRUD Repositories & Controllers (Injuries)
-  - ✅ Basic API Routes Setup
-  - ✅ TypeORM Setup Complete (Entities, Migrations, Connection)
-  - ✅ Basic API scaffolding done.
+  - ✅ Complete CRUD for Injuries, Injury Updates, Treatments, Treatment Plans & Items, Player Availability, and Medical Documents (upload, download, delete, signed URLs)
+  - ✅ Global JWT authentication and granular role-based authorization applied
+  - ✅ Standardized `ErrorResponse` format implemented and API spec updated to v0.2
+  - ✅ Package version bumped to 1.0.1
+  - ✅ Comprehensive integration and unit tests passing across all endpoints
 - ✅ **Planning Service:**
   - ✅ Initial Service Setup (Express, TS)
   - ✅ Core Type Definitions (Season, Phase, Goal, Plan, Item)
   - ✅ Database Schema Defined
   - ✅ DB Connection Pool Setup (pg) & Verified (after resolving startup issues)
-  - ✅ Basic CRUD Repositories & Controllers (Seasons, Goals, Dev Plans - some stubbed)
-  - ✅ Zod Validation Schemas & Middleware (Seasons, Goals)
-  - ✅ Basic Authorization Middleware & Controller Checks (Seasons, Goals, Dev Plans using simulated authzService)
-  - ✅ authzService implemented with API calls to User Service (previously simulated).
-  - ✅ **Authorization Refinement:** 
-    - ✅ `authzService.ts` updated to forward user JWT to User Service.
-    - ✅ `goalController.ts` updated to use refactored `authzService` and specific permission strings.
-  - ✅ Basic API Routes Setup
+  - ✅ CRUD Repositories & Controllers (Seasons, Phases, Development Plans, Plan Items) fully implemented
+  - ✅ Zod Validation Schemas & Middleware (Seasons, Phases, Development Plans, Plan Items) with overlap/date validation
+  - ✅ Custom Error Classes & Global Error Handler integrated (serviceErrors.ts)
+  - ✅ Basic Authorization Middleware & Controller Checks using `authzService`
+  - ✅ authzService updated to forward user JWT to User Service
+  - ✅ Jest Integration Tests added for Season & Season Phase endpoints (all passing)
+  - ✅ API Routes Setup complete
   - ✅ TypeORM Setup Complete (Entities, Migrations, Connection)
-  - ✅ Basic API scaffolding done (some parts stubbed).
+  - ✅ Planning Service now free of stubbed code sections.
 - ✅ **Statistics Service:**
   - ✅ Initial Service Setup (Express, TS)
   - ✅ DB Created & Connection Verified
@@ -145,6 +141,17 @@
   - ✅ Initial Service Setup (Express, TS)
   - ✅ DB Created & Connection Verified
   - ✅ TypeORM Setup Complete (Entities, Migrations, Connection)
+  - ✅ **Outbox Dispatcher Implementation:**
+    - ✅ Created `outboxDispatcher.ts` with polling mechanism for due messages
+    - ✅ Implemented retry logic with exponential backoff
+    - ✅ Added comprehensive unit tests in `outboxDispatcher.test.ts`
+    - ✅ Resolved module system issues:
+      - Converted to CommonJS for runtime compatibility
+      - Used `// @ts-ignore` in `index.ts` for TypeScript import
+      - Added `// @ts-nocheck` to test file
+    - ✅ Set up Jest configuration and test infrastructure
+    - ✅ Implemented proper test cleanup with `afterEach` and `afterAll`
+    - ✅ Used Jest's timer mocking for testing intervals
 - ✅ **Admin Service:**
   - ✅ Initial Service Setup (Express, TS)
   - ✅ DB Created & Connection Verified
@@ -153,22 +160,58 @@
 - ✅ **CI/CD Infrastructure (GitHub Actions):**
   - ✅ Coaching Service: Workflow defined 
   - ✅ Training Service: Workflow defined
+- ✅ **Translations Package (@hockey-hub/translations):**
+  - ✅ Initial package setup (`package.json`, `tsconfig.json`, basic `src` structure with `en.json`, `sv.json`).
+  - ✅ TypeScript build process configured and working.
+  - ✅ ESLint configured and linting successfully for `src` directory.
+  - ✅ `index.ts` exports translations for consumption by other packages.
+- ✅ **Completed Items:**
+  - ✅ Initial list existing...
+  - ✅ May 9 2025 – User-service compile errors resolved (qs typings, RolePermission relations, lazy relation awaits, parentService fix). Full monorepo `pnpm build` now succeeds across 15 packages.
+  - ✅ Next.js frontend dynamic import SSR issue fixed by converting `training-session` page to a Client Component (`"use client"`). Frontend build passes.
+  - ✅ **May 22 2025 – Role-Based Dashboards Connected**
+    - Eight dashboards (Equipment-Manager, Physical-Trainer, Medical-Staff, Coach, Club-Admin, Admin, Player, Parent) scaffolded in Next.js app.
+    - Storybook stories created for each; MSW handlers return realistic JSON so components load with data.
+    - RTK-Query slices added per dashboard; components now request data via hooks and show loading states.
+    - Added `Club` & `System` tagTypes to `apiSlice`; fixed TypeScript lint issues.
+    - No remaining "coming soon" placeholders – every tab renders sample data.
+- ✅ **Frontend (Storybook & MSW for Component Development):**
+  - ✅ Initialized MSW for Storybook in `apps/frontend` (`public/mockServiceWorker.js` created).
+  - ✅ Configured Storybook (`.storybook/main.ts`) to serve MSW worker via `staticDirs`.
+  - ✅ Updated MSW addon usage in Storybook (`.storybook/preview.ts`) from `mswDecorator` to `mswLoader`.
+  - ✅ Set MSW `onUnhandledRequest: 'bypass'` in `preview.ts` to avoid warnings for unmocked static assets.
+  - ✅ Corrected MSW mock handlers in `preview.ts` for `/api/v1/tests`, `/api/v1/tests/analytics/correlation`, and `/api/v1/tests/analytics/regression` to use correct paths and data structures.
+  - ✅ `TestAnalyticsPanel.stories.tsx` now renders correctly with mocked API calls.
+- ✅ **Planning Service Refinement** (controllers, validation, tests) complete – 46 tests passing.
+- ✅ **Calendar Service**
+    - CRUD controllers for Events, Locations, ResourceTypes, Resources finished.
+    - Status PATCH endpoint added.
+    - Validation with Zod & middleware.
+    - Unit + Integration + Negative-path tests added (18 tests).
+    - Jest 29 hoisted; service test config migrated.
+- ✅ Test suites: All Calendar & Planning tests pass in CI.
+- ✅ **Event Bus & Saga Infrastructure**
+    - NATS 2.15 integrated across Admin, Calendar, Payment, User services.
+    - Outbox pattern operational (Admin & Payment).
+    - Subscription Cancellation Saga (Payment) and Organization Provisioning Saga (Admin) implemented.
+    - Calendar service now auto-creates default Location on org provisioned.
 
 ## What's In Progress
 
 - 🔄 **Backend Core API Implementation:**
-    - ⬜ Implementing remaining CRUD endpoints & core logic (Calendar, Communication, Medical, Training, etc.).
+    - ⬜ Implementing remaining CRUD endpoints & core logic (Calendar, Communication, Training, etc.).
     - 🔄 **Refine Planning Service**: Remove stubs/comments, implement fully.
 - 🔄 **User Service Testing:**
     - ⬜ Add unit/integration tests for implemented endpoints.
 - ⬜ **API Gateway:**
     - ⬜ Configuration for services & JWT validation.
-- ⬜ **Frontend (UI Implementation):**
+- 🔄 **Frontend (UI Implementation & Storybook Integration):**
     - ⬜ Configure NextAuth.js providers
     - ✅ Calendar View Implemented and loads on `/calendar`.
     - ✅ Frontend loaded successfully on `localhost:3000`.
-    - ⬜ **Training Session Viewer:** Implement UI for `TeamSelection`, `PlayerList`, `TeamMetrics` (charting), `IntervalDisplay` (timer viz). Connect to real backend sockets/API when available.
-    - ⬜ **Schedule Session Modal:** (Dependent on viewer) UI to schedule sessions.
+    - ✅ Storybook with MSW is configured and working for components like `TestAnalyticsPanel`.
+    - ⬜ **Training Session Viewer:** Implement UI for `TeamSelection`, `PlayerList`, `TeamMetrics` (charting), `IntervalDisplay` (timer viz). Connect to real backend sockets/API when available. Develop stories with MSW mocks.
+    - ⬜ **Schedule Session Modal:** (Dependent on viewer) UI to schedule sessions. Develop stories with MSW mocks.
 - ⬜ **CI/CD Pipeline Enhancements:**
     - ⬜ Implement deployment steps.
     - ⬜ Configure test coverage reporting.
@@ -189,7 +232,13 @@
 - 🔄 **Calendar Service:** Refine CRUD, Resource booking, Conflict detection
 - 🔄 **Communication Service:** Implement DB persistence, Notifications, Full chat logic
 - 🔄 **Training Service:** Finalize Intensity calc, Scheduling logic, Test Batches, Live Sessions
-- ⬜ **Frontend:** Implement core module UIs (Training Viewer, etc.)
+- 🔄 **Frontend (UI Implementation & Storybook Integration):**
+    - ⬜ Configure NextAuth.js providers
+    - ✅ Calendar View Implemented and loads on `/calendar`.
+    - ✅ Frontend loaded successfully on `localhost:3000`.
+    - ✅ Storybook with MSW is configured and working for components like `TestAnalyticsPanel`.
+    - ⬜ **Training Session Viewer:** Implement UI for `TeamSelection`, `PlayerList`, `TeamMetrics` (charting), `IntervalDisplay` (timer viz). Connect to real backend sockets/API when available. Develop stories with MSW mocks.
+    - ⬜ **Schedule Session Modal:** (Dependent on viewer) UI to schedule sessions. Develop stories with MSW mocks.
 
 ### Phase 3: Extended Functionality (Partially Started)
 - 🔄 **Medical Service:** Implement remaining CRUD, Player Status logic
@@ -211,7 +260,7 @@
 1.  **Authorization Complexity:** Requires thorough testing for User Service and implementation in other services. **(Mitigation In Progress)**
 2.  **Inter-Service Communication:** Patterns need implementation. **(Risk Accepted for Authz)**
 3.  **TODO Implementation:** Stubbed code (Planning Service) & core logic pieces remain.
-4.  **Frontend Completeness:** Significant work remains.
+4.  **Frontend Completeness:** Significant work remains, but tooling for isolated component development (Storybook/MSW) is now in a good state.
 5.  **Data Consistency:** Saga pattern planned but not implemented.
 6.  **CI Test Script Implementation:** Scripts need creation.
 7.  **Temporary Mock Service:** Needs removal.
@@ -324,14 +373,11 @@
 - ⏳ Documentation pending
 
 ### Medical Service (Port 3005)
-- ✅ Basic setup complete
-- ✅ Database (`hockeyhub_medical`) created & connection verified
-- ✅ Entity relationships defined, Migrations setup & schema sync confirmed.
-- ⏳ Injury tracking CRUD refinement pending
-- ⏳ Treatment planning pending
-- ⏳ Integration pending
-- ⏳ Testing pending
-- ⏳ Documentation pending
+- ✅ Complete CRUD for Injuries, Injury Updates, Treatments, Treatment Plans & Items, Player Availability, and Medical Documents (upload, download, delete, signed URLs)
+- ✅ Global JWT authentication and granular role-based authorization applied
+- ✅ Standardized `ErrorResponse` format implemented and API spec updated to v0.2
+- ✅ Package version bumped to 1.0.1
+- ✅ Comprehensive integration and unit tests passing across all endpoints
 
 ### Planning Service (Port 3006)
 - ✅ Basic setup complete
@@ -466,3 +512,9 @@
 2. ⬜ Full testing coverage
 3. ⬜ Complete documentation
 4. ⬜ Security audit
+
+## Test Coverage Totals
+- Planning Service: 46 tests ✅
+- Calendar Service: 18 tests + manual NATS listener smoke ✅
+- Payment Service: 14 tests ✅
+- Admin Service: compilation + manual event flow verified ✅

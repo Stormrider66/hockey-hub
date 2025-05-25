@@ -15,15 +15,18 @@
     "migration:revert": "pnpm typeorm migration:revert"
   },
   "dependencies": {
+    "@hockey-hub/types": "workspace:*",
+    "chart.js": "^4.4.9",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.21.2",
     "helmet": "^5.1.1",
     "morgan": "^1.10.0",
     "pg": "^8.14.1",
+    "react-chartjs-2": "^5.3.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.22",
-    "@hockey-hub/types": "workspace:*"
+    "simple-statistics": "^7.8.8",
+    "typeorm": "^0.3.22"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -32,10 +35,13 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^16.0.0",
     "@types/pg": "^8.11.12",
+    "@types/supertest": "^6.0.3",
     "dotenv-cli": "^8.0.0",
     "eslint": "^8.0.0",
     "jest": "^27.0.0",
     "nodemon": "^3.1.9",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.3.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^5.3.0"
   }

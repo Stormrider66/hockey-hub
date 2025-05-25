@@ -57,6 +57,11 @@ export const canPerformAction = async (
                 logger.warn('Club admin user missing organization relation', { userId });
                 return false;
             }
+            const clubOrg = await user.organization;
+            if (!clubOrg) {
+                logger.warn('Club admin user missing organization after await', { userId });
+                return false;
+            }
             // TODO: Fetch the resource's organization and compare if applicable
             // e.g., if resourceType is 'team', fetch team and check team.organizationId === user.organization.id
             logger.debug('Authorization granted: Generic permission (Club Admin - needs resource org check)', { userId, action, resourceType });
@@ -120,11 +125,13 @@ export const canPerformAction = async (
     
     // 5. Organization Context (e.g., Club Admin accessing resources in their org)
     if (userRoles.includes('club_admin')) {
-        if (!user.organization) {
-            logger.warn('Club admin user missing organization relation', { userId });
+        const org = await user.organization; // organization is a lazy Promise relation
+        const userOrgId = org?.id;
+
+        if (!userOrgId) {
+            logger.warn('Club admin user has no organization loaded', { userId });
             return false;
         }
-        const userOrgId = user.organization.id;
         let requiresResourceOrgCheck = false; 
 
         const orgScopedResourceTypes = ['team', 'user', 'team-goal', 'player-goal', 'season', 'development-plan']; 

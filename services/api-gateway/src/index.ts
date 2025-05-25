@@ -30,7 +30,7 @@ app.use('/api/users', createProxyMiddleware({
     // You can add custom headers here if needed
     // proxyReq.setHeader('X-Special-Proxy-Header', 'foobar');
   },
-  onError: (err: Error, req: Request, res: Response) => {
+  onError: (err: Error, _req: Request, res: Response) => {
     console.error('[API Gateway] Proxy error:', err);
     if (!res.headersSent) {
         res.status(500).json({ error: 'Proxy error', details: err.message });

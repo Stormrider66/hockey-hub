@@ -49,17 +49,12 @@ export class Exercise { // Make sure 'export' is here
     })
     difficulty!: Difficulty;
 
-    @Column('text')
-    description!: string;
+    // creator and assets
+    @Column({ type: 'varchar', length: 2048, nullable: true })
+    imageUrl?: UrlString | null;
 
-    @Column('text')
-    instructions!: string;
-
-    @Column({ nullable: true })
-    image_url!: string;
-
-    @Column('uuid')
-    created_by_user_id!: string;
+    @Column({ type: 'uuid' })
+    createdByUserId!: UUID;
 
     @Column({ default: false })
     is_public!: boolean;
@@ -71,5 +66,5 @@ export class Exercise { // Make sure 'export' is here
     updatedAt!: ISODateString;
 
     @DeleteDateColumn({ nullable: true })
-    deleted_at!: Date;
+    deletedAt?: Date | null;
 }

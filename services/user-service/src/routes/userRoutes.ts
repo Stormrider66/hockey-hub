@@ -18,7 +18,7 @@ import {
     removeRoleHandler
 } from '../controllers/userController';
 
-const router = Router();
+const router: Router = Router();
 
 // All user routes require authentication
 router.use(authenticateToken);

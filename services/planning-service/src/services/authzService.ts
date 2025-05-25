@@ -1,4 +1,5 @@
-import axios, { AxiosError } from 'axios';
+import { client } from '../lib/httpClient';
+import { AxiosError } from 'axios';
 
 // Base URL for the User Service
 const USER_SERVICE_BASE_URL = process.env.USER_SERVICE_URL || 'http://user-service:3001/api/v1'; 
@@ -30,7 +31,7 @@ async function checkAuthorization(
             headers['Authorization'] = `Bearer ${authToken}`;
         }
         
-        const response = await axios.get<{ authorized: boolean }>(
+        const response = await client.get<{ authorized: boolean }>(
             url, 
             { 
                 params, 

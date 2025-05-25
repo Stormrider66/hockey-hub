@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, Index } from 'typeorm';
-import { TrainingSession } from './TrainingSession'; // Assuming sessions are linked here
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
 import { UUID, ISODateString } from '@hockey-hub/types';
 
 @Entity('training_plans')

@@ -9,6 +9,7 @@ import { QueryResult } from 'pg';
 interface FindTeamGoalsFilters {
     organizationId: string; // Required
     teamId?: string;
+    accessibleTeamIds?: string[]; // For coach scope (multiple teams)
     seasonId?: string;
     status?: string;
     category?: string;
@@ -20,7 +21,13 @@ export const findTeamGoals = async (filters: FindTeamGoalsFilters, limit: number
     const whereClauses: string[] = ['organization_id = $1'];
     let paramIndex = 2;
 
-    if (filters.teamId) { whereClauses.push(`team_id = $${paramIndex++}`); queryParams.push(filters.teamId); }
+    if (filters.teamId) { 
+        whereClauses.push(`team_id = $${paramIndex++}`); 
+        queryParams.push(filters.teamId); 
+    } else if (filters.accessibleTeamIds && filters.accessibleTeamIds.length > 0) {
+        whereClauses.push(`team_id = ANY($${paramIndex++}::uuid[])`);
+        queryParams.push(filters.accessibleTeamIds);
+    }
     if (filters.seasonId) { whereClauses.push(`season_id = $${paramIndex++}`); queryParams.push(filters.seasonId); }
     if (filters.status) { whereClauses.push(`status = $${paramIndex++}`); queryParams.push(filters.status); }
     if (filters.category) { whereClauses.push(`category = $${paramIndex++}`); queryParams.push(filters.category); }
@@ -49,7 +56,13 @@ export const countTeamGoals = async (filters: FindTeamGoalsFilters): Promise<num
     const whereClauses: string[] = ['organization_id = $1'];
     let paramIndex = 2;
 
-    if (filters.teamId) { whereClauses.push(`team_id = $${paramIndex++}`); queryParams.push(filters.teamId); }
+    if (filters.teamId) { 
+        whereClauses.push(`team_id = $${paramIndex++}`); 
+        queryParams.push(filters.teamId); 
+    } else if (filters.accessibleTeamIds && filters.accessibleTeamIds.length > 0) {
+        whereClauses.push(`team_id = ANY($${paramIndex++}::uuid[])`);
+        queryParams.push(filters.accessibleTeamIds);
+    }
     if (filters.seasonId) { whereClauses.push(`season_id = $${paramIndex++}`); queryParams.push(filters.seasonId); }
     if (filters.status) { whereClauses.push(`status = $${paramIndex++}`); queryParams.push(filters.status); }
     if (filters.category) { whereClauses.push(`category = $${paramIndex++}`); queryParams.push(filters.category); }

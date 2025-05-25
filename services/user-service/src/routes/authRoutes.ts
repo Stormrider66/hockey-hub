@@ -8,7 +8,7 @@ import * as authService from '../services/authService';
 // @ts-ignore - types provided by default import
 import asyncHandler from 'express-async-handler';
 
-const router = Router();
+const router: Router = Router();
 
 // ----- Validators --------------------------------------------------------- //
 const registerSchemaZod = z.object({

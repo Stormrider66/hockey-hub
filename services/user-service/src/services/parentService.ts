@@ -82,17 +82,21 @@ export class ParentService {
     async getChildrenForParent(parentId: string): Promise<User[]> {
         const links = await this.linkRepository.find({
             where: { parentId },
-            relations: ['child'] // Ensure the child User entity is loaded
+            relations: ['child']
         });
-        return links.map(link => link.child).filter(child => !!child); // Filter out potential nulls
+        const childrenPromises = links.map(async (link) => await link.child);
+        const children = await Promise.all(childrenPromises);
+        return children.filter((child): child is User => !!child);
     }
 
     async getParentsForChild(childId: string): Promise<User[]> {
-         const links = await this.linkRepository.find({
+        const links = await this.linkRepository.find({
             where: { childId },
-            relations: ['parent'] // Ensure the parent User entity is loaded
+            relations: ['parent']
         });
-        return links.map(link => link.parent).filter(parent => !!parent); // Filter out potential nulls
+        const parentPromises = links.map(async (link) => await link.parent);
+        const parents = await Promise.all(parentPromises);
+        return parents.filter((parent): parent is User => !!parent);
     }
     
     // Helper to check if a user is a parent/guardian of another user

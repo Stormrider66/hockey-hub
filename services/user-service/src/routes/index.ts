@@ -7,7 +7,7 @@ import userRoutes from './userRoutes';
 import organizationRoutes from './organizationRoutes';
 // import roleRoutes from './roleRoutes'; // Comment out for now
 
-const router = Router();
+const router: Router = Router();
 
 // Mount authentication routes
 router.use('/auth', authRoutes);

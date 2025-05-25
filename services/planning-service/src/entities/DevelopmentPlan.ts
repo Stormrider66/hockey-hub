@@ -38,6 +38,9 @@ export class DevelopmentPlan {
     @OneToMany(() => DevelopmentPlanItem, item => item.developmentPlan, { cascade: true, eager: false })
     items?: DevelopmentPlanItem[];
 
+    @Column({ type: 'uuid', nullable: true })
+    createdByUserId?: UUID | null;
+
     @CreateDateColumn({ type: 'timestamptz' })
     createdAt!: ISODateString;
 

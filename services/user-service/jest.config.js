@@ -17,7 +17,8 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@hockey-hub/(.*)$': '<rootDir>/../../shared/$1/dist',
+    '^typeorm$': '<rootDir>/../../node_modules/typeorm',
   },
   setupFiles: ['<rootDir>/jest.setup.ts'],
-  testMatch: ['**/src/routes/__tests__/authRoutes.e2e.test.ts'],
+  testMatch: ['**/src/workers/**/*.test.ts', '**/src/routes/__tests__/authRoutes.e2e.test.ts'],
 }; 

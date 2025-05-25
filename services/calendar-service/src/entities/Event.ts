@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany, Index } from 'typeorm';
-import { Organization } from '../../user-service/src/entities/Organization'; // Assuming common location or adjust path
 import { Location } from './Location';
 import { EventAttendee } from './EventAttendee';
 import { EventResource } from './EventResource';
@@ -15,10 +14,7 @@ export class Event {
 
     @Column({ type: 'uuid' })
     organizationId!: UUID;
-    // Relation to Organization might be needed if fetching org details
-    // @ManyToOne(() => Organization)
-    // @JoinColumn({ name: 'organizationId' })
-    // organization?: Organization;
+    // Relation to Organization can be resolved via API call to User Service when needed.
 
     // Store team IDs as an array of UUIDs
     @Column({ type: 'uuid', array: true, nullable: true })
@@ -43,10 +39,10 @@ export class Event {
     })
     status!: EventStatusEnum;
 
-    @Column({ type: 'timestamptz' }) // Use timestamptz for time zone support
+    @Column({ type: 'datetime' })
     startTime!: ISODateString;
 
-    @Column({ type: 'timestamptz' })
+    @Column({ type: 'datetime' })
     endTime!: ISODateString;
 
     @Column({ default: false })
@@ -85,7 +81,7 @@ export class Event {
     })
     repetition!: EventRepetitionEnum;
 
-    @Column({ type: 'timestamptz', nullable: true })
+    @Column({ type: 'datetime', nullable: true })
     repetitionEndDate?: ISODateString | null;
 
     @Column({ type: 'uuid', nullable: true })
@@ -98,9 +94,9 @@ export class Event {
     @Column({ type: 'uuid', nullable: true })
     relatedGameId?: UUID | null;
 
-    @CreateDateColumn({ type: 'timestamptz' })
+    @CreateDateColumn({ type: 'datetime' })
     createdAt!: ISODateString;
 
-    @UpdateDateColumn({ type: 'timestamptz' })
+    @UpdateDateColumn({ type: 'datetime' })
     updatedAt!: ISODateString;
 } 

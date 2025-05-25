@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { User } from './User';
 import { Permission } from './Permission';
+import { RolePermission } from './RolePermission';
 
 @Entity('roles')
 @Index(['name'], { unique: true })
@@ -42,4 +43,8 @@ export class Role {
   //     inverseJoinColumn: { name: 'permission_id', referencedColumnName: 'id' },
   // })
   permissions!: Permission[];
+
+  // Relation to RolePermission join entity (for granular control or additional metadata)
+  @OneToMany(() => RolePermission, (rolePermission) => rolePermission.role)
+  rolePermissions!: RolePermission[];
 }

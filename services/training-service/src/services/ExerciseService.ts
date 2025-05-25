@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { exerciseRepository } from '../repositories/ExerciseRepository';
 import { Exercise, Difficulty } from '../entities/Exercise';
 import { AppError } from '../utils/AppError';

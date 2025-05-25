@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, Index } from 'typeorm';
-import { ChatMessage } from './ChatMessage';
 import { ConversationParticipant } from './ConversationParticipant';
 import { ConversationType as ConversationTypeEnum, UUID, ISODateString, UrlString } from '@hockey-hub/types';
 

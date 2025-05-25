@@ -27,15 +27,13 @@ export interface SeasonPhase {
 
 // Optional: More detailed cycle structure within phases
 export interface TrainingCycle {
-    id: string; // UUID
-    seasonPhaseId: string; // UUID
-    parentCycleId?: string; // UUID, for micro cycles within meso, etc.
-    type: 'macro' | 'meso' | 'micro';
+    id: string;
+    seasonId: string;
+    phaseId: string;
+    organizationId: string;
     name: string;
     startDate: Date;
     endDate: Date;
-    focus?: string;
-    load?: 'high' | 'medium' | 'low' | 'recovery' | 'taper';
     description?: string;
     order?: number;
     createdAt: Date;

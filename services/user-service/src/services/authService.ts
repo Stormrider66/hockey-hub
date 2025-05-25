@@ -181,8 +181,15 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
   const userPermissions = getRolePermissions(userRoles); // Derive permissions from roles
   const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
   // Determine primary organization ID (e.g., from the first team or a dedicated field)
-  // This logic might need refinement based on how organization association is defined.
-  const userOrganizationId = user.teamMemberships?.[0]?.team?.organizationId;
+  let userOrganizationId: string | undefined;
+  if (user.teamMemberships && user.teamMemberships.length > 0) {
+    try {
+      const firstTeam = await user.teamMemberships[0].team;
+      userOrganizationId = firstTeam?.organizationId;
+    } catch (_) {
+      // ignore
+    }
+  }
 
   const tokenPayload: TokenPayload = {
     userId: user.id,
@@ -260,7 +267,15 @@ export const refreshToken = async (incomingRefreshToken: string): Promise<{ acce
     const userRoles = user.roles?.map(role => role.name) || [];
     const userPermissions = getRolePermissions(userRoles); // Derive permissions
     const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
-    const userOrganizationId = user.teamMemberships?.[0]?.team?.organizationId; // Determine org ID
+    let userOrganizationId: string | undefined;
+    if (user.teamMemberships && user.teamMemberships.length > 0) {
+      try {
+        const firstTeam = await user.teamMemberships[0].team;
+        userOrganizationId = firstTeam?.organizationId;
+      } catch (_) {
+        /* ignore */
+      }
+    }
 
     const newAccessTokenPayload: TokenPayload = {
       userId: user.id,

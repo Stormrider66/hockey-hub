@@ -1,0 +1,13 @@
+{
+  "common": {
+    "greeting": "Hej",
+    "actions": {
+      "save": "Spara",
+      "cancel": "Avbryt"
+    }
+  },
+  "calendar": {
+    "title": "Kalender",
+    "event": "Händelse"
+  }
+} 

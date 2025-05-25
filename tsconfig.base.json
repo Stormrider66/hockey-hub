@@ -7,7 +7,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
-    "isolatedModules": true,
+    "isolatedModules": false,
 
     // Strictness
     "strict": true,
@@ -20,8 +20,11 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*", "./apps/frontend/src/*"]
     },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "useDefineForClassFields": false,
 
     // If using bundlers
     "jsx": "preserve", // Adjust if using React/Next.js ('react-jsx' or 'react-jsxdev')

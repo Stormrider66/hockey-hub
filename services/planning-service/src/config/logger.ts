@@ -32,7 +32,7 @@ const logFormat = combine(
   timestamp({ format: 'YYYY-MM-DD HH:mm:ss.ms' }),
   colorize({ all: true }),
   align(),
-  printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
+  printf((info: any) => `[${info.timestamp}] ${info.level}: ${info.message}`)
 );
 
 // Define transports (console only for now)

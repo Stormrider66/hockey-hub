@@ -1,38 +1,49 @@
-import 'dotenv/config'; // Make sure to load .env variables first
+import 'dotenv/config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-// Define connection options separately for clarity
-const dataSourceOptions: DataSourceOptions = {
+let dataSourceOptions: DataSourceOptions;
+
+if (process.env.NODE_ENV === 'test') {
+  // Use in-memory SQL.js for fast, isolated tests (no native deps)
+  dataSourceOptions = {
+    type: 'sqljs',
+    autoSave: false,
+    location: 'test-db',
+    synchronize: true,
+    entities: ['src/entities/**/*.ts'],
+    logging: false,
+  };
+} else {
+  dataSourceOptions = {
     type: 'postgres',
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT || '5432', 10),
-    username: process.env.DB_USERNAME || process.env.POSTGRES_USER, // Fallback if needed
+    username: process.env.DB_USERNAME || process.env.POSTGRES_USER,
     password: process.env.DB_PASSWORD || process.env.POSTGRES_PASSWORD,
-    database: process.env.DB_NAME || process.env.POSTGRES_DB, // Ensure correct DB name is loaded
-    synchronize: false, // Never use TRUE in production!
-    logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'], // Log queries in dev
-    entities: [
-        // Path relative to the compiled JS output (dist/src/entities...)
-        // Or use __dirname if module context allows, but relative paths are often safer
-        'dist/src/entities/**/*.js' 
-    ],
-    migrations: [
-        'dist/src/migrations/**/*.js'
-    ],
-    // namingStrategy: new SnakeNamingStrategy(), // Re-enable later if needed and tested
+    database: process.env.DB_NAME || process.env.POSTGRES_DB,
+    synchronize: false,
+    logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'],
+    entities: process.env.NODE_ENV === 'development'
+      ? ['src/entities/**/*.ts']
+      : ['dist/src/entities/**/*.js'],
+    migrations: process.env.NODE_ENV === 'development'
+      ? ['src/migrations/**/*.ts']
+      : ['dist/src/migrations/**/*.js'],
     ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-};
+  };
+}
 
 // Create and export the DataSource instance
 const AppDataSource = new DataSource(dataSourceOptions);
 
-// Optional: Log connection status on initialization (useful for CLI)
-AppDataSource.initialize()
+if (process.env.NODE_ENV !== 'test') {
+  AppDataSource.initialize()
     .then(() => {
-        console.log('[DB] Calendar Service: Data Source Initialized!');
+      console.log('[DB] Calendar Service: Data Source Initialized!');
     })
     .catch((err) => {
-        console.error('[DB] Calendar Service: Error during Data Source initialization:', err);
+      console.error('[DB] Calendar Service: Error during Data Source initialization:', err);
     });
+}
 
 export default AppDataSource; 

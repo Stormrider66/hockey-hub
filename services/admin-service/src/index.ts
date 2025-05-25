@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import AppDataSource from './data-source';
+import organizationRoutes from './routes/organizationRoutes';
+import { startOutboxDispatcher } from './workers/outboxDispatcher';
 
 dotenv.config(); // Load .env
 
@@ -15,6 +17,8 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
+
+app.use('/api/v1/admin/organizations', organizationRoutes);
 
 // Basic Health Check
 app.get('/health', (_req: Request, res: Response) => {
@@ -42,11 +46,12 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 AppDataSource.initialize()
   .then(() => {
     console.log('Admin Service: Data Source Initialized!');
+    startOutboxDispatcher();
     app.listen(PORT, () => {
       console.log(`Admin Service listening on port ${PORT}`);
     });
   })
-  .catch((err) => {
+  .catch((err: unknown) => {
     console.error('Admin Service: Error during Data Source initialization:', err);
     process.exit(1);
   });

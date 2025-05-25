@@ -10,6 +10,7 @@ import { Invoice } from './entities/Invoice';
 import { InvoiceItem } from './entities/InvoiceItem';
 import { Payment } from './entities/Payment';
 import { Refund } from './entities/Refund';
+import { OutboxMessage } from './entities/OutboxMessage';
 
 const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
@@ -21,8 +22,15 @@ const dataSourceOptions: DataSourceOptions = {
     synchronize: false, // Ensure synchronize is false
     logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'],
     entities: [
-        // Use path pattern
-        'dist/src/entities/**/*.js' 
+        SubscriptionPlan,
+        Subscription,
+        PaymentMethod,
+        Invoice,
+        InvoiceItem,
+        Payment,
+        Refund,
+        OutboxMessage,
+        'dist/src/entities/**/*.js'
     ],
     migrations: [
         'dist/src/migrations/**/*.js'
@@ -34,6 +42,8 @@ const dataSourceOptions: DataSourceOptions = {
 };
 
 export const AppDataSource = new DataSource(dataSourceOptions);
+
+export default AppDataSource;
 
 // Optional initialization logging
 AppDataSource.initialize()

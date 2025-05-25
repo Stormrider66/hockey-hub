@@ -25,7 +25,7 @@ export const calendarApi = apiSlice.injectEndpoints({
       } | void // Allow calling without arguments
     >({
       query: (params: { start?: string; end?: string; teamId?: string; eventTypeId?: string; locationId?: string } | void) => ({ 
-        url: '/events', 
+        url: 'events', 
         params: params || {},
       }),
       providesTags: (result: Event[] | undefined) => 
@@ -39,14 +39,14 @@ export const calendarApi = apiSlice.injectEndpoints({
     
     // Get single event
     getEvent: builder.query<Event, string>({
-      query: (id: string) => `/events/${id}`, 
+      query: (id: string) => `events/${id}`, 
       providesTags: (result: Event | undefined, error: any, id: string) => [{ type: 'Event', id }], // Added types
     }),
     
     // Create event
     createEvent: builder.mutation<Event, Partial<Event>>({
       query: (event: Partial<Event>) => ({ 
-        url: '/events',
+        url: 'events',
         method: 'POST',
         body: event,
       }),
@@ -56,7 +56,7 @@ export const calendarApi = apiSlice.injectEndpoints({
     // Update event
     updateEvent: builder.mutation<Event, { id: string; event: Partial<Event> }>({
       query: ({ id, event }: { id: string; event: Partial<Event> }) => ({ // Added types
-        url: `/events/${id}`,
+        url: `events/${id}`,
         method: 'PUT',
         body: event,
       }),
@@ -69,7 +69,7 @@ export const calendarApi = apiSlice.injectEndpoints({
     // Delete event
     deleteEvent: builder.mutation<void, string>({
       query: (id: string) => ({ 
-        url: `/events/${id}`,
+        url: `events/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: [{ type: 'Event', id: 'LIST' }],
@@ -81,7 +81,7 @@ export const calendarApi = apiSlice.injectEndpoints({
       { id: string; status: 'scheduled' | 'canceled' | 'completed' }
     >({
       query: ({ id, status }: { id: string; status: string }) => ({ // Added types
-        url: `/events/${id}/status`,
+        url: `events/${id}/status`,
         method: 'PATCH',
         body: { status },
       }),
@@ -93,7 +93,7 @@ export const calendarApi = apiSlice.injectEndpoints({
     
     // Get event participants
     getEventParticipants: builder.query<EventParticipant[], string>({
-      query: (eventId: string) => `/events/${eventId}/participants`, 
+      query: (eventId: string) => `events/${eventId}/participants`, 
       providesTags: (result: EventParticipant[] | undefined, error: any, eventId: string) => [ // Added types
         { type: 'Event', id: `${eventId}-participants` }, 
       ],
@@ -105,7 +105,7 @@ export const calendarApi = apiSlice.injectEndpoints({
       { eventId: string; userId: string }
     >({
       query: ({ eventId, userId }: { eventId: string; userId: string }) => ({ // Added types
-        url: `/events/${eventId}/participants`,
+        url: `events/${eventId}/participants`,
         method: 'POST',
         body: { userId },
       }),
@@ -120,7 +120,7 @@ export const calendarApi = apiSlice.injectEndpoints({
       { eventId: string; userId: string }
     >({
       query: ({ eventId, userId }: { eventId: string; userId: string }) => ({ // Added types
-        url: `/events/${eventId}/participants/${userId}`,
+        url: `events/${eventId}/participants/${userId}`,
         method: 'DELETE',
       }),
       invalidatesTags: (result: void | undefined, error: any, { eventId }: { eventId: string }) => [ // Added types
@@ -131,7 +131,7 @@ export const calendarApi = apiSlice.injectEndpoints({
     // Get resources
     getResources: builder.query<Resource[], { locationId?: string } | void>({
       query: (params: { locationId?: string } | void) => ({ 
-        url: '/resources',
+        url: 'resources',
         params: params || {},
       }),
       providesTags: (result: Resource[] | undefined) => 
@@ -149,14 +149,14 @@ export const calendarApi = apiSlice.injectEndpoints({
       { resourceId: string; start: string; end: string }
     >({
       query: ({ resourceId, start, end }: { resourceId: string; start: string; end: string }) => ({ // Added types
-        url: `/resources/${resourceId}/availability`,
+        url: `resources/${resourceId}/availability`,
         params: { start, end },
       }),
     }),
     
     // Get locations
     getLocations: builder.query<Location[], void>({
-      query: () => '/locations',
+      query: () => 'locations',
       providesTags: (result: Location[] | undefined) => 
         result
           ? [

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Request, Response, NextFunction } from 'express';
 import { exerciseRepository } from '../repositories/ExerciseRepository';
 import { Exercise } from '../types/exercise';

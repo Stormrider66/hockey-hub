@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import * as InjuryRepository from '../repositories/injuryRepository';
 import { Injury } from '../types/medical';
+import * as TreatmentRepository from '../repositories/treatmentRepository';
 
 // TODO: Add validation, authorization, error handling
 
@@ -158,14 +159,79 @@ export const addInjuryUpdate = async (req: Request, res: Response, _next: NextFu
 };
 
 // --- Treatment Controllers (Placeholder) ---
-export const getInjuryTreatments = async (req: Request, res: Response, _next: NextFunction) => {
-    const { injuryId } = req.params; // Assuming route like /api/v1/injuries/:injuryId/treatments
-     // TODO: Implement fetching treatments for injuryId
-    res.status(501).json({ message: `GET /injuries/${injuryId}/treatments Not Implemented Yet`});
+export const getInjuryTreatments = async (req: Request, res: Response, next: NextFunction) => {
+    const { injuryId } = req.params;
+    try {
+        const treatments = await TreatmentRepository.findTreatmentsByInjuryId(injuryId);
+        res.status(200).json({ success: true, data: treatments });
+    } catch (error) {
+        next(error);
+    }
 };
 
-export const addInjuryTreatment = async (req: Request, res: Response, _next: NextFunction) => {
+export const addInjuryTreatment = async (req: Request, res: Response, next: NextFunction) => {
     const { injuryId } = req.params;
-    // TODO: Implement adding a treatment
-    res.status(501).json({ message: `POST /injuries/${injuryId}/treatments Not Implemented Yet`});
+    const userId = (req as any).user?.id;
+    const data = req.body as {
+        date: string;
+        treatmentType: string;
+        notes?: string;
+        durationMinutes?: number;
+    };
+    if (!userId) {
+        return res.status(403).json({ error: true, code: 'FORBIDDEN', message: 'User context missing.' });
+    }
+    if (!data.date || !data.treatmentType) {
+        return res.status(400).json({ error: true, code: 'VALIDATION_ERROR', message: 'Missing required fields: date, treatmentType' });
+    }
+    try {
+        const newTreatment = await TreatmentRepository.createTreatment({
+            injuryId,
+            date: new Date(data.date),
+            treatmentType: data.treatmentType,
+            notes: data.notes,
+            durationMinutes: data.durationMinutes,
+            performedByUserId: userId
+        });
+        res.status(201).json({ success: true, data: newTreatment });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const updateTreatmentHandler = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const data = req.body as Partial<{
+        date: string;
+        treatmentType: string;
+        notes?: string;
+        durationMinutes?: number;
+    }>;
+    try {
+        const updated = await TreatmentRepository.updateTreatment(id, {
+            date: data.date ? new Date(data.date) : undefined,
+            treatmentType: data.treatmentType,
+            notes: data.notes,
+            durationMinutes: data.durationMinutes
+        });
+        if (!updated) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Treatment not found' });
+        }
+        res.status(200).json({ success: true, data: updated });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const deleteTreatmentHandler = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    try {
+        const deleted = await TreatmentRepository.deleteTreatment(id);
+        if (!deleted) {
+            return res.status(404).json({ error: true, code: 'NOT_FOUND', message: 'Treatment not found' });
+        }
+        res.status(200).json({ success: true, message: 'Treatment deleted successfully' });
+    } catch (error) {
+        next(error);
+    }
 }; 

@@ -14,7 +14,7 @@ import {
     getParentsHandler
 } from '../controllers/parentController';
 
-const router = Router();
+const router: Router = Router();
 
 // All parent-child routes require authentication
 router.use(authenticateToken);

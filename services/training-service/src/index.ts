@@ -12,6 +12,7 @@ import physicalCategoryRoutes from './routes/physicalCategoryRoutes'; // Import 
 import physicalTemplateRoutes from './routes/physicalTemplateRoutes'; // Import template routes
 import testDefinitionRoutes from './routes/testDefinitionRoutes'; // Import test definition routes
 import testResultRoutes from './routes/testResultRoutes'; // Import test result routes
+import testAnalyticsRoutes from './routes/testAnalyticsRoutes'; // Import analytics routes
 import scheduledSessionRoutes from './routes/scheduledSessionRoutes'; // Import scheduled session routes
 import { Server as SocketIOServer } from 'socket.io';
 import { initLiveMetricsSocket } from './websocket/liveMetricsSocket';
@@ -53,6 +54,9 @@ app.use('/api/v1/tests', testDefinitionRoutes);
 
 // Mount Test Result Routes
 app.use('/api/v1/test-results', testResultRoutes);
+
+// Mount Test Analytics Routes
+app.use('/api/v1/tests/analytics', testAnalyticsRoutes);
 
 // Mount Scheduled Session Routes
 app.use('/api/v1/scheduled-sessions', scheduledSessionRoutes);

@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { checkAuthorizationController } from '../controllers/authorization.controller';
 import { authenticateToken } from '../middleware/authenticateToken'; // Corrected import name
 
-const router = Router();
+const router: Router = Router();
 
 /**
  * @swagger

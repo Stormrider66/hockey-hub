@@ -1,0 +1,1 @@
+export const t = (key: string, _ctx?: any): string => key; 
