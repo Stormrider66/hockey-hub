@@ -10,7 +10,11 @@
     "typeorm": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts",
     "migration:generate": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts migration:generate src/migrations/%npm_config_name%",
     "migration:run": "pnpm typeorm migration:run",
-    "migration:revert": "pnpm typeorm migration:revert"
+    "migration:revert": "pnpm typeorm migration:revert",
+    "lint": "echo 'No lint configured for communication-service'",
+    "test:unit": "echo 'No unit tests yet for communication-service'",
+    "test:socket": "echo 'No socket tests yet for communication-service'",
+    "test:file-uploads": "echo 'No file upload tests yet for communication-service'"
   },
   "keywords": [],
   "author": "",
