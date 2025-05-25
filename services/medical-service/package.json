@@ -11,7 +11,12 @@
     "migration:generate": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts migration:generate src/migrations/%npm_config_name%",
     "migration:run": "pnpm typeorm migration:run",
     "migration:revert": "pnpm typeorm migration:revert",
-    "test": "jest"
+    "test": "jest",
+    "lint": "echo 'No lint configured for medical-service'",
+    "test:encryption": "echo 'No encryption tests yet for medical-service'",
+    "test:access-control": "echo 'No access control tests yet for medical-service'",
+    "test:gdpr": "echo 'No GDPR tests yet for medical-service'",
+    "scan:sensitive-data": "echo 'No scan for sensitive data configured'"
   },
   "keywords": [],
   "author": "",
