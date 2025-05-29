@@ -20,7 +20,8 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": "off",
       "prefer-const": "off",
       "@typescript-eslint/ban-types": "off",
-      "@typescript-eslint/no-this-alias": "off"
+      "@typescript-eslint/no-this-alias": "off",
+      "react/no-unescaped-entities": "off"
     },
   }
 ];

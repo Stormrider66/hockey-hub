@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { TestAnalyticsPanel } from './TestAnalyticsPanel';
-// @ts-ignore: MSW v2 http object
 import { http, HttpResponse } from 'msw';
 
 const meta: Meta<typeof TestAnalyticsPanel> = {

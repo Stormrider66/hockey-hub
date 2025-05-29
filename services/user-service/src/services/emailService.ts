@@ -25,7 +25,7 @@ const createTransporter = async (): Promise<Mail> => {
   
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
-  let testAccount = await nodemailer.createTestAccount();
+  const testAccount = await nodemailer.createTestAccount();
   logger.debug({ user: testAccount.user }, 'Ethereal test account created');
 
   // Create reusable transporter object using the default SMTP transport
@@ -71,7 +71,7 @@ This link will expire in 1 hour. If you did not request this, please ignore this
              <p>If you did not request this, please ignore this email.</p>`, // html body
     };
 
-    let info = await mailer.sendMail(mailOptions);
+    const info = await mailer.sendMail(mailOptions);
 
     logger.info({ messageId: info.messageId, recipient: to }, 'Password reset email sent');
     // Preview only available when sending through an Ethereal account

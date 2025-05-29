@@ -20,5 +20,7 @@ module.exports = {
   },
   clearMocks: true,
   verbose: true,
-  timers: 'legacy',
+  fakeTimers: {
+    enableGlobally: false,
+  },
 }; 

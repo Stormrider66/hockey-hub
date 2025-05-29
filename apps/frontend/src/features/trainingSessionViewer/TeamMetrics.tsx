@@ -20,17 +20,17 @@ interface PlayerMetric {
   watts?: number;
 }
 
+// Extracted demo metrics for dependency consistency in useEffect
+const demoMetrics: PlayerMetric[] = [
+  { id: 'player-1', name: 'Player One', heartRate: 128, watts: 220 },
+  { id: 'player-2', name: 'Player Two', heartRate: 142, watts: 260 },
+  { id: 'player-3', name: 'Player Three', heartRate: 116, watts: 200 },
+];
+
 export default function TeamMetrics({ socket }: Props) {
   const metricType = useAppSelector((state) => state.trainingSessionViewer.metricType);
   const [metrics, setMetrics] = useState<PlayerMetric[]>([]);
   const [connected, setConnected] = useState<boolean>(false);
-
-  // Demo fallback metrics
-  const demoMetrics: PlayerMetric[] = [
-    { id: 'player-1', name: 'Player One', heartRate: 128, watts: 220 },
-    { id: 'player-2', name: 'Player Two', heartRate: 142, watts: 260 },
-    { id: 'player-3', name: 'Player Three', heartRate: 116, watts: 200 },
-  ];
 
   useEffect(() => {
     // If no socket connection, populate demo metrics

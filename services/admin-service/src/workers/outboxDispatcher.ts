@@ -1,8 +1,12 @@
 import { getDueMessages, markSuccess, markFailure } from '../repositories/outboxRepository';
 import { busPublish } from '../lib/eventBus';
 
-export const startOutboxDispatcher = (pollIntervalMs = 5000, maxRetries = 5, baseDelayMs = 5000) => {
-  setInterval(async () => {
+export function startOutboxDispatcher(
+  pollIntervalMs = 5000,
+  maxRetries = 5,
+  baseDelayMs = 5000
+): NodeJS.Timeout {
+  const interval = setInterval(async () => {
     const due = await getDueMessages();
     for (const msg of due) {
       try {
@@ -15,4 +19,5 @@ export const startOutboxDispatcher = (pollIntervalMs = 5000, maxRetries = 5, bas
       }
     }
   }, pollIntervalMs);
-}; 
+  return interval;
+}

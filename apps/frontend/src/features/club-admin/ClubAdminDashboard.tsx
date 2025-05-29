@@ -56,19 +56,18 @@ export default function ClubAdminDashboard() {
   ];
 
   const members = apiData?.members ?? [];
-  const events = apiData?.events ?? [];
   const tasks = apiData?.tasks ?? [];
 
-  // Build helper map for quick lookup of events per day (ISO yyyy-MM-dd => array)
   const eventsByDate = React.useMemo(() => {
-    const map: Record<string, typeof events> = {};
-    events.forEach((ev) => {
+    const evts = apiData?.events ?? [];
+    const map: Record<string, typeof evts> = {};
+    evts.forEach((ev) => {
       const key = format(new Date(ev.date), "yyyy-MM-dd");
       if (!map[key]) map[key] = [];
       map[key].push(ev);
     });
     return map;
-  }, [events]);
+  }, [apiData?.events]);
 
   const calendarDays = React.useMemo(() => generateCalendarCells(currentMonth), [currentMonth]);
 

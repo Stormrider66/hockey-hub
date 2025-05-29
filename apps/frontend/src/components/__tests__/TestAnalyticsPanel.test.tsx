@@ -20,8 +20,9 @@ describe('TestAnalyticsPanel', () => {
     render(<TestAnalyticsPanel playerId="player1" />);
     // Check Pearson's r text
     expect(screen.getByText(/Pearson's r: 0.500/)).toBeInTheDocument();
-    // Check chart rendered
-    expect(screen.getByTestId('chart')).toBeInTheDocument();
+    // Check charts rendered (there should be multiple)
+    const charts = screen.getAllByTestId('chart');
+    expect(charts.length).toBeGreaterThan(0);
   });
 
   it('renders regression results when data is available', () => {

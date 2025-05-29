@@ -16,41 +16,42 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'pnpm'
           cache-dependency-path: pnpm-lock.yaml
           
-      - name: Enable corepack
-        run: corepack enable
-        
-      - name: Install dependencies
+      - name: Enable corepack & install pnpm
+        run: |
+          corepack enable
+          
+      - name: Install dependencies (workspace)
         run: pnpm install --frozen-lockfile --filter "training-service..."
         
       - name: Run linting
         run: pnpm --filter "training-service" run lint
         
-      - name: Run unit tests
+      - name: Run tests
         run: pnpm --filter "training-service" run test
         
-      - name: Test exercise management
-        run: cd services/training-service && npm run test:exercises
+      - name: Test intensity calculations
+        run: pnpm --filter "training-service" run test:intensity
         
-      - name: Test training programs
-        run: cd services/training-service && npm run test:programs
+      - name: Test resource conflict detection
+        run: pnpm --filter "training-service" run test:conflicts
         
-      - name: Test progress tracking
-        run: cd services/training-service && npm run test:progress
+      - name: Test live metrics streaming
+        run: pnpm --filter "training-service" run test:live-metrics
         
-      - name: Test workout generation
-        run: cd services/training-service && npm run test:generation
+      - name: Test session interval management
+        run: pnpm --filter "training-service" run test:intervals
         
-      - name: Test exercise recommendations
-        run: cd services/training-service && npm run test:recommendations
+      - name: Test Socket.IO authentication
+        run: pnpm --filter "training-service" run test:socket-auth
         
   integration-test:
     name: Integration Testing
@@ -83,10 +84,10 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           
@@ -139,10 +140,10 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           
@@ -158,28 +159,15 @@ jobs:
           DB_PASSWORD: postgres
           DB_NAME: training_perf
           
-      - name: Run program generation performance test
-        run: cd services/training-service && npm run test:perf:generation
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_NAME: training_perf
-          REDIS_HOST: localhost
-          REDIS_PORT: 6379
-          
-      - name: Run concurrent user load test
-        run: cd services/training-service && npm run test:perf:load
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_NAME: training_perf
-          REDIS_HOST: localhost
-          REDIS_PORT: 6379
-          
+      - name: Run live metrics performance tests
+        run: cd services/training-service && npm run test:performance:metrics
+        
+      - name: Run session management load tests
+        run: cd services/training-service && npm run test:performance:sessions
+        
+      - name: Test Socket.IO connection limits
+        run: cd services/training-service && npm run test:performance:sockets
+        
   build:
     name: Build Training Service
     needs: [test, integration-test, performance-test]
@@ -188,27 +176,61 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
         
       - name: Login to container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Extract branch name
-        shell: bash
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-training-service
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
         
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: ./services/training-service
           push: true
-          tags: |
-            ghcr.io/${{ github.repository }}-training-service:${{ env.BRANCH_NAME }}
-            ghcr.io/${{ github.repository }}-training-service:${{ github.sha }} 
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+            
+  deploy-staging:
+    name: Deploy to Staging
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to staging environment
+        run: |
+          echo "Deploying Training Service to staging..."
+          # Add actual deployment commands here
+          
+  deploy-production:
+    name: Deploy to Production
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to production environment
+        run: |
+          echo "Deploying Training Service to production..."
+          # Add actual deployment commands here 
