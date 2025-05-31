@@ -12,199 +12,998 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 import {
-  Stethoscope,
-  Calendar,
-  Activity,
-  Bell,
-  Plus,
+  Stethoscope, Calendar, Activity, Bell, Plus, FileText,
+  AlertTriangle, Clock, CheckCircle, XCircle, TrendingUp,
+  User, ChevronRight, Upload, Filter, Search, BarChart3,
+  FileCheck, Heart, Brain, Zap, Shield, Timer, Users,
+  ArrowUp, ArrowDown, Minus, Target, Clipboard, MessageSquare
 } from "lucide-react";
 import {
   ResponsiveContainer,
   PieChart,
   Pie,
   Cell,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  BarChart,
+  Bar,
 } from "recharts";
 import { useGetMedicalOverviewQuery } from "@/store/api/medicalApi";
 
+// Mock data for comprehensive dashboard
+const mockInjuries = [
+  {
+    id: 1,
+    player: "Erik Andersson",
+    playerId: "15",
+    injury: "ACL Tear - Right Knee",
+    bodyPart: "Knee",
+    severity: "severe",
+    status: "acute",
+    dateOccurred: "2024-01-12",
+    estimatedReturn: "6-8 months",
+    phase: 1,
+    totalPhases: 5,
+    progress: 15,
+    mechanism: "Non-contact twist during game",
+    notes: "Surgery scheduled for next week"
+  },
+  {
+    id: 2,
+    player: "Marcus Lindberg",
+    playerId: "7",
+    injury: "Hamstring Strain Grade 2",
+    bodyPart: "Hamstring",
+    severity: "moderate",
+    status: "rehab",
+    dateOccurred: "2024-01-05",
+    estimatedReturn: "3-4 weeks",
+    phase: 3,
+    totalPhases: 4,
+    progress: 65,
+    mechanism: "Sprint during practice",
+    notes: "Responding well to treatment"
+  },
+  {
+    id: 3,
+    player: "Viktor Nilsson",
+    playerId: "23",
+    injury: "Concussion Protocol",
+    bodyPart: "Head",
+    severity: "moderate",
+    status: "assessment",
+    dateOccurred: "2024-01-15",
+    estimatedReturn: "TBD",
+    phase: 1,
+    totalPhases: 5,
+    progress: 20,
+    mechanism: "Collision during game",
+    notes: "Following return-to-play protocol"
+  },
+  {
+    id: 4,
+    player: "Johan Bergström",
+    playerId: "14",
+    injury: "Ankle Sprain Grade 1",
+    bodyPart: "Ankle",
+    severity: "mild",
+    status: "rtp",
+    dateOccurred: "2024-01-01",
+    estimatedReturn: "Ready",
+    phase: 4,
+    totalPhases: 4,
+    progress: 95,
+    mechanism: "Awkward landing",
+    notes: "Cleared for full participation"
+  }
+];
+
+const todaysTreatments = [
+  { id: 1, time: "09:00", player: "Marcus Lindberg", type: "Physiotherapy", location: "Treatment Room", duration: 45 },
+  { id: 2, time: "10:00", player: "Erik Andersson", type: "Post-Op Assessment", location: "Medical Office", duration: 30 },
+  { id: 3, time: "11:30", player: "Viktor Nilsson", type: "Cognitive Testing", location: "Testing Room", duration: 60 },
+  { id: 4, time: "14:00", player: "Johan Bergström", type: "Return to Play Test", location: "Training Field", duration: 90 },
+  { id: 5, time: "16:00", player: "Anders Johansson", type: "Preventive Care", location: "Treatment Room", duration: 30 }
+];
+
+const playerAvailability = {
+  full: 18,
+  limited: 3,
+  individual: 2,
+  rehab: 4,
+  unavailable: 2
+};
+
+const recoveryTrends = [
+  { week: 'W1', injuries: 8, recovered: 2 },
+  { week: 'W2', injuries: 6, recovered: 3 },
+  { week: 'W3', injuries: 7, recovered: 4 },
+  { week: 'W4', injuries: 5, recovered: 5 },
+  { week: 'W5', injuries: 4, recovered: 3 },
+  { week: 'W6', injuries: 4, recovered: 2 }
+];
+
+const injuryByType = [
+  { type: 'Muscle', count: 12, percentage: 35 },
+  { type: 'Joint', count: 8, percentage: 23 },
+  { type: 'Ligament', count: 6, percentage: 18 },
+  { type: 'Bone', count: 4, percentage: 12 },
+  { type: 'Concussion', count: 3, percentage: 9 },
+  { type: 'Other', count: 1, percentage: 3 }
+];
+
 export default function MedicalStaffDashboard() {
-  const [tab, setTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState("overview");
+  const [selectedInjury, setSelectedInjury] = useState(null);
   const { data: apiData, isLoading } = useGetMedicalOverviewQuery("senior");
 
-  const appointments = apiData?.appointments ?? [
-    { time: "14:00", player: "Oskar Lind", type: "Assessment", location: "Med Room" },
-    { time: "15:00", player: "Johan Berg", type: "Rehab", location: "Rehab Gym" },
-  ];
-  const availability = apiData?.availability ?? { full: 18, limited: 3, rehab: 2, out: 1 };
-  const injuries = apiData?.injuries ?? [
-    { player: "Oskar Lind", injury: "Knee Sprain", status: "Acute" },
-    { player: "Johan Berg", injury: "Shoulder", status: "Rehab" },
-    { player: "Emma Lindberg", injury: "Ankle", status: "RTP" },
-  ];
+  // Status color mapping
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'full': return 'bg-green-100 text-green-800';
+      case 'limited': return 'bg-yellow-100 text-yellow-800';
+      case 'individual': return 'bg-orange-100 text-orange-800';
+      case 'rehab': return 'bg-red-100 text-red-800';
+      case 'unavailable': return 'bg-gray-100 text-gray-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  const getSeverityBadge = (severity: string) => {
+    switch (severity) {
+      case 'severe': return <Badge className="bg-red-100 text-red-800">Severe</Badge>;
+      case 'moderate': return <Badge className="bg-amber-100 text-amber-800">Moderate</Badge>;
+      case 'mild': return <Badge className="bg-yellow-100 text-yellow-800">Mild</Badge>;
+      default: return <Badge>Unknown</Badge>;
+    }
+  };
 
   const pieData = [
-    { name: "Full", value: availability.full, color: "#10b981" },
-    { name: "Limited", value: availability.limited, color: "#f59e0b" },
-    { name: "Rehab", value: availability.rehab, color: "#3b82f6" },
-    { name: "Out", value: availability.out, color: "#ef4444" },
+    { name: "Full", value: playerAvailability.full, color: "#10b981" },
+    { name: "Limited", value: playerAvailability.limited, color: "#eab308" },
+    { name: "Individual", value: playerAvailability.individual, color: "#f97316" },
+    { name: "Rehab", value: playerAvailability.rehab, color: "#ef4444" },
+    { name: "Unavailable", value: playerAvailability.unavailable, color: "#6b7280" }
   ];
 
-  return (
-    <div className="space-y-6 p-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Medical Dashboard</h1>
-        <Button size="sm" variant="outline">
-          <Bell className="h-4 w-4 mr-2" /> Alerts
-        </Button>
+  const renderOverviewTab = () => (
+    <div className="space-y-6">
+      {/* Quick Stats */}
+      <div className="grid grid-cols-5 gap-4">
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">Active Injuries</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{mockInjuries.length}</div>
+            <p className="text-xs text-muted-foreground mt-1">2 new this week</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">Today's Treatments</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{todaysTreatments.length}</div>
+            <p className="text-xs text-muted-foreground mt-1">Next at 14:00</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">In Rehabilitation</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{playerAvailability.rehab}</div>
+            <Badge variant="outline" className="text-xs mt-1">
+              <ArrowDown className="h-3 w-3 mr-1" />
+              -1 from last week
+            </Badge>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">Return to Play</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">2</div>
+            <p className="text-xs text-muted-foreground mt-1">This week</p>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">Team Availability</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {Math.round((playerAvailability.full / (playerAvailability.full + playerAvailability.limited + playerAvailability.individual + playerAvailability.rehab + playerAvailability.unavailable)) * 100)}%
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">Fully available</p>
+          </CardContent>
+        </Card>
       </div>
 
-      <Tabs value={tab} onValueChange={setTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4 md:grid-cols-4">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="injuries">Injuries</TabsTrigger>
-          <TabsTrigger value="rehab">Rehabilitation</TabsTrigger>
-          <TabsTrigger value="records">Records</TabsTrigger>
+      <div className="grid grid-cols-2 gap-6">
+        {/* Today's Treatment Schedule */}
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <CardTitle>Today's Treatment Schedule</CardTitle>
+              <Button size="sm">
+                <Plus className="h-4 w-4 mr-1" />
+                Add Treatment
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {todaysTreatments.slice(0, 4).map(treatment => (
+                <div key={treatment.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-accent/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="text-right">
+                      <div className="font-semibold">{treatment.time}</div>
+                      <div className="text-xs text-muted-foreground">{treatment.duration} min</div>
+                    </div>
+                    <div className="h-10 w-1 bg-gray-300 rounded-full" />
+                    <div>
+                      <div className="font-medium">{treatment.player}</div>
+                      <div className="text-sm text-muted-foreground">{treatment.type}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline" className="text-xs">
+                      {treatment.location}
+                    </Badge>
+                    <Button size="sm" variant="ghost">
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Player Availability Chart */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Player Availability Status</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie 
+                    data={pieData} 
+                    dataKey="value" 
+                    cx="50%" 
+                    cy="50%" 
+                    innerRadius={60}
+                    outerRadius={80}
+                    label={({ name, value }) => `${name}: ${value}`}
+                  >
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-4">
+              {pieData.map(item => (
+                <div key={item.name} className="flex items-center gap-2 text-sm">
+                  <div className={cn("h-3 w-3 rounded-full")} style={{ backgroundColor: item.color }} />
+                  <span>{item.name}: {item.value}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Critical Injuries */}
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle>Critical Injuries Requiring Attention</CardTitle>
+            <Button variant="outline" size="sm">
+              View All
+              <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {mockInjuries.filter(inj => inj.severity === 'severe' || inj.status === 'acute').map(injury => (
+              <div key={injury.id} className="flex items-center justify-between p-4 border rounded-lg bg-red-50">
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center">
+                    <AlertTriangle className="h-5 w-5 text-red-600" />
+                  </div>
+                  <div>
+                    <div className="font-semibold">{injury.player}</div>
+                    <div className="text-sm text-muted-foreground">{injury.injury}</div>
+                    <div className="flex items-center gap-2 mt-1">
+                      {getSeverityBadge(injury.severity)}
+                      <span className="text-xs text-muted-foreground">• {injury.dateOccurred}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-medium">ETR: {injury.estimatedReturn}</div>
+                  <Progress value={injury.progress} className="h-2 w-24 mt-1" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderInjuriesTab = () => (
+    <div className="space-y-6">
+      {/* Injury Management Tools */}
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>Injury Management</CardTitle>
+              <CardDescription>Track and manage all player injuries</CardDescription>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm">
+                <Filter className="h-4 w-4 mr-2" />
+                Filter
+              </Button>
+              <Button size="sm">
+                <Plus className="h-4 w-4 mr-2" />
+                Register New Injury
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input 
+                placeholder="Search by player name or injury type..." 
+                className="pl-10"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {mockInjuries.map(injury => (
+              <Card key={injury.id} className="hover:bg-accent/50 transition-colors cursor-pointer">
+                <CardContent className="pt-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex gap-4">
+                      <Avatar className="h-12 w-12">
+                        <AvatarFallback>{injury.player.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-semibold">{injury.player}</h3>
+                          <Badge variant="outline">#{injury.playerId}</Badge>
+                        </div>
+                        <p className="text-sm font-medium mt-1">{injury.injury}</p>
+                        <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
+                          <span>Occurred: {injury.dateOccurred}</span>
+                          <span>•</span>
+                          <span>Body Part: {injury.bodyPart}</span>
+                          <span>•</span>
+                          <span>Mechanism: {injury.mechanism}</span>
+                        </div>
+                        <div className="flex items-center gap-2 mt-3">
+                          {getSeverityBadge(injury.severity)}
+                          <Badge variant="outline" className={cn(
+                            injury.status === 'acute' && 'bg-red-100 text-red-800',
+                            injury.status === 'rehab' && 'bg-blue-100 text-blue-800',
+                            injury.status === 'rtp' && 'bg-green-100 text-green-800'
+                          )}>
+                            {injury.status === 'acute' ? 'Acute Phase' : 
+                             injury.status === 'rehab' ? 'Rehabilitation' : 
+                             injury.status === 'rtp' ? 'Return to Play' : 
+                             injury.status === 'assessment' ? 'Assessment' : injury.status}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-medium">ETR: {injury.estimatedReturn}</p>
+                      <div className="mt-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                          <span>Phase {injury.phase}/{injury.totalPhases}</span>
+                          <span>{injury.progress}%</span>
+                        </div>
+                        <Progress value={injury.progress} className="h-2 w-32" />
+                      </div>
+                      <Button size="sm" variant="outline" className="mt-3">
+                        View Details
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderTreatmentPlansTab = () => (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>Treatment Plans & Protocols</CardTitle>
+              <CardDescription>Manage treatment plans and rehabilitation protocols</CardDescription>
+            </div>
+            <Button>
+              <Plus className="h-4 w-4 mr-2" />
+              Create Treatment Plan
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 gap-6">
+            {mockInjuries.filter(inj => inj.status === 'rehab' || inj.status === 'acute').map(injury => (
+              <Card key={injury.id}>
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-lg">{injury.player}</CardTitle>
+                      <CardDescription>{injury.injury}</CardDescription>
+                    </div>
+                    {getSeverityBadge(injury.severity)}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span>Treatment Progress</span>
+                        <span>Phase {injury.phase}/{injury.totalPhases}</span>
+                      </div>
+                      <Progress value={injury.progress} className="h-2" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold">Current Phase Goals:</h4>
+                      <ul className="text-sm space-y-1">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
+                          <span>Reduce inflammation and pain</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Clock className="h-4 w-4 text-amber-600 mt-0.5" />
+                          <span>Restore range of motion to 80%</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Clock className="h-4 w-4 text-amber-600 mt-0.5" />
+                          <span>Begin light strengthening exercises</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" className="flex-1">
+                        <Clipboard className="h-4 w-4 mr-2" />
+                        Log Treatment
+                      </Button>
+                      <Button size="sm" className="flex-1">
+                        <FileText className="h-4 w-4 mr-2" />
+                        View Full Plan
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Treatment Templates */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Treatment Protocol Templates</CardTitle>
+          <CardDescription>Common treatment protocols for quick application</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { name: "ACL Rehabilitation Protocol", duration: "6-9 months", phases: 5, usage: 12 },
+              { name: "Hamstring Strain Recovery", duration: "3-6 weeks", phases: 4, usage: 28 },
+              { name: "Concussion Return-to-Play", duration: "Variable", phases: 6, usage: 8 },
+              { name: "Ankle Sprain Protocol", duration: "2-4 weeks", phases: 3, usage: 35 },
+              { name: "Shoulder Impingement", duration: "4-8 weeks", phases: 4, usage: 15 },
+              { name: "Lower Back Pain Management", duration: "4-6 weeks", phases: 3, usage: 22 }
+            ].map(template => (
+              <Card key={template.name} className="hover:bg-accent/50 transition-colors cursor-pointer">
+                <CardContent className="pt-6">
+                  <h4 className="font-medium mb-2">{template.name}</h4>
+                  <div className="space-y-1 text-sm text-muted-foreground">
+                    <p>Duration: {template.duration}</p>
+                    <p>Phases: {template.phases}</p>
+                    <p>Used {template.usage} times</p>
+                  </div>
+                  <Button size="sm" variant="outline" className="w-full mt-3">
+                    Apply Template
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderRehabilitationTab = () => (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Active Rehabilitation Programs</CardTitle>
+          <CardDescription>Monitor and update ongoing rehabilitation progress</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {mockInjuries.filter(inj => inj.status === 'rehab').map(injury => (
+              <Card key={injury.id}>
+                <CardContent className="pt-6">
+                  <div className="grid grid-cols-3 gap-6">
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">{injury.player}</h3>
+                      <p className="text-sm text-muted-foreground">{injury.injury}</p>
+                      <div className="flex items-center gap-2 mt-3">
+                        {getSeverityBadge(injury.severity)}
+                        <span className="text-sm">• Started {injury.dateOccurred}</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div>
+                        <div className="flex justify-between text-sm mb-1">
+                          <span>Overall Progress</span>
+                          <span>{injury.progress}%</span>
+                        </div>
+                        <Progress value={injury.progress} className="h-2" />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <p className="text-muted-foreground">Current Phase</p>
+                          <p className="font-medium">Phase {injury.phase}: Strengthening</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">ETR</p>
+                          <p className="font-medium">{injury.estimatedReturn}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold">Today's Activities</h4>
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 text-sm">
+                            <CheckCircle className="h-4 w-4 text-green-600" />
+                            <span>Morning physiotherapy session</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm">
+                            <Clock className="h-4 w-4 text-amber-600" />
+                            <span>Afternoon strength training (14:00)</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm">
+                            <Clock className="h-4 w-4 text-gray-400" />
+                            <span>Evening recovery session</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline">
+                          <MessageSquare className="h-4 w-4 mr-1" />
+                          Add Note
+                        </Button>
+                        <Button size="sm">
+                          Update Progress
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Return to Play Assessments */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Return to Play Assessments</CardTitle>
+          <CardDescription>Players ready for or undergoing RTP evaluation</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {mockInjuries.filter(inj => inj.status === 'rtp' || inj.progress > 80).map(injury => (
+              <div key={injury.id} className="flex items-center justify-between p-4 border rounded-lg bg-green-50">
+                <div className="flex items-center gap-4">
+                  <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <Target className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium">{injury.player}</p>
+                    <p className="text-sm text-muted-foreground">{injury.injury} • {injury.progress}% complete</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="text-right">
+                    <p className="text-sm font-medium">RTP Status</p>
+                    <p className="text-xs text-muted-foreground">Final testing phase</p>
+                  </div>
+                  <Button size="sm">
+                    Start Assessment
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderMedicalRecordsTab = () => (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle>Player Medical Records</CardTitle>
+              <CardDescription>Comprehensive medical history and documentation</CardDescription>
+            </div>
+            <div className="flex gap-2">
+              <Button variant="outline" size="sm">
+                <Upload className="h-4 w-4 mr-2" />
+                Import Records
+              </Button>
+              <Button size="sm">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Record
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="mb-4">
+            <Input 
+              placeholder="Search player medical records..." 
+              className="max-w-sm"
+            />
+          </div>
+
+          <div className="space-y-3">
+            {[
+              { player: "Erik Andersson", lastUpdate: "2024-01-15", records: 12, allergies: ["Penicillin"], conditions: ["Previous ACL surgery (2022)"] },
+              { player: "Marcus Lindberg", lastUpdate: "2024-01-12", records: 8, allergies: ["None"], conditions: ["Recurrent hamstring issues"] },
+              { player: "Viktor Nilsson", lastUpdate: "2024-01-15", records: 15, allergies: ["Latex"], conditions: ["History of concussions (2)"] },
+              { player: "Johan Bergström", lastUpdate: "2024-01-10", records: 6, allergies: ["None"], conditions: ["None"] }
+            ].map(record => (
+              <Card key={record.player} className="hover:bg-accent/50 transition-colors cursor-pointer">
+                <CardContent className="pt-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <Avatar className="h-10 w-10">
+                        <AvatarFallback>{record.player.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-medium">{record.player}</p>
+                        <p className="text-sm text-muted-foreground">Last updated: {record.lastUpdate}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <div className="text-sm">
+                        <p className="text-muted-foreground">Records</p>
+                        <p className="font-medium">{record.records}</p>
+                      </div>
+                      <div className="text-sm">
+                        <p className="text-muted-foreground">Allergies</p>
+                        <p className="font-medium">{record.allergies.join(', ')}</p>
+                      </div>
+                      <div className="text-sm max-w-xs">
+                        <p className="text-muted-foreground">Conditions</p>
+                        <p className="font-medium truncate">{record.conditions.join(', ')}</p>
+                      </div>
+                      <Button size="sm" variant="outline">
+                        <FileText className="h-4 w-4 mr-2" />
+                        View Records
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Medical Documents */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Medical Documents</CardTitle>
+          <CardDescription>Scans, reports, and medical documentation</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            {[
+              { type: "MRI Scan", player: "Erik Andersson", date: "2024-01-14", size: "2.4 MB" },
+              { type: "Surgery Report", player: "Erik Andersson", date: "2024-01-13", size: "156 KB" },
+              { type: "X-Ray Results", player: "Marcus Lindberg", date: "2024-01-12", size: "1.8 MB" },
+              { type: "CT Scan", player: "Viktor Nilsson", date: "2024-01-15", size: "3.2 MB" },
+              { type: "Blood Test Results", player: "Team-wide", date: "2024-01-10", size: "89 KB" }
+            ].map((doc, index) => (
+              <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <FileCheck className="h-5 w-5 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium text-sm">{doc.type}</p>
+                    <p className="text-xs text-muted-foreground">{doc.player} • {doc.date}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">{doc.size}</span>
+                  <Button size="sm" variant="ghost">
+                    View
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  const renderReportsTab = () => (
+    <div className="space-y-6">
+      {/* Injury Analytics */}
+      <div className="grid grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Injury Trends</CardTitle>
+            <CardDescription>Weekly injury and recovery statistics</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={recoveryTrends}>
+                  <XAxis dataKey="week" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="injuries" stroke="#ef4444" name="New Injuries" />
+                  <Line type="monotone" dataKey="recovered" stroke="#10b981" name="Recovered" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Injuries by Type</CardTitle>
+            <CardDescription>Distribution of injury categories this season</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={injuryByType}>
+                  <XAxis dataKey="type" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="count" fill="#3b82f6" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-4 gap-4">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Avg. Recovery Time</p>
+                <p className="text-2xl font-bold">3.2 weeks</p>
+              </div>
+              <Brain className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="flex items-center gap-1 mt-2">
+              <ArrowDown className="h-4 w-4 text-green-600" />
+              <span className="text-xs text-green-600">-0.5 weeks from last month</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Injury Rate</p>
+                <p className="text-2xl font-bold">2.1/month</p>
+              </div>
+              <Activity className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="flex items-center gap-1 mt-2">
+              <ArrowUp className="h-4 w-4 text-red-600" />
+              <span className="text-xs text-red-600">+0.3 from last month</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">Prevention Success</p>
+                <p className="text-2xl font-bold">78%</p>
+              </div>
+              <Shield className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="flex items-center gap-1 mt-2">
+              <ArrowUp className="h-4 w-4 text-green-600" />
+              <span className="text-xs text-green-600">+5% improvement</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-muted-foreground">RTP Success Rate</p>
+                <p className="text-2xl font-bold">92%</p>
+              </div>
+              <Target className="h-8 w-8 text-muted-foreground" />
+            </div>
+            <div className="flex items-center gap-1 mt-2">
+              <Minus className="h-4 w-4 text-gray-600" />
+              <span className="text-xs text-gray-600">No change</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Detailed Reports */}
+      <Card>
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle>Generate Reports</CardTitle>
+            <Button>
+              <BarChart3 className="h-4 w-4 mr-2" />
+              Export All Data
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { name: "Monthly Injury Report", description: "Comprehensive injury statistics for the past month", lastGenerated: "2024-01-01" },
+              { name: "Player Medical Summary", description: "Individual medical history and status reports", lastGenerated: "2024-01-05" },
+              { name: "Recovery Time Analysis", description: "Analysis of recovery times by injury type", lastGenerated: "2024-01-08" },
+              { name: "Prevention Program Effectiveness", description: "Evaluation of injury prevention initiatives", lastGenerated: "2024-01-10" }
+            ].map(report => (
+              <Card key={report.name} className="hover:bg-accent/50 transition-colors">
+                <CardContent className="pt-6">
+                  <h4 className="font-medium mb-1">{report.name}</h4>
+                  <p className="text-sm text-muted-foreground mb-3">{report.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">Last: {report.lastGenerated}</span>
+                    <Button size="sm" variant="outline">
+                      Generate
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  return (
+    <div className="p-6 max-w-7xl mx-auto">
+      <div className="mb-6 flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Medical Dashboard</h1>
+          <p className="text-muted-foreground">Manage injuries, treatments, and player health</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Bell className="h-4 w-4 mr-2" />
+            Notifications
+            <Badge className="ml-2" variant="destructive">3</Badge>
+          </Button>
+          <Button size="sm">
+            <Plus className="h-4 w-4 mr-2" />
+            Quick Actions
+          </Button>
+        </div>
+      </div>
+
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid grid-cols-6 w-full">
+          <TabsTrigger value="overview" className="flex items-center gap-2">
+            <Activity className="h-4 w-4" />
+            Overview
+          </TabsTrigger>
+          <TabsTrigger value="injuries" className="flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4" />
+            Injuries
+          </TabsTrigger>
+          <TabsTrigger value="treatment" className="flex items-center gap-2">
+            <Heart className="h-4 w-4" />
+            Treatment Plans
+          </TabsTrigger>
+          <TabsTrigger value="rehab" className="flex items-center gap-2">
+            <Zap className="h-4 w-4" />
+            Rehabilitation
+          </TabsTrigger>
+          <TabsTrigger value="records" className="flex items-center gap-2">
+            <FileText className="h-4 w-4" />
+            Medical Records
+          </TabsTrigger>
+          <TabsTrigger value="reports" className="flex items-center gap-2">
+            <BarChart3 className="h-4 w-4" />
+            Reports
+          </TabsTrigger>
         </TabsList>
 
-        {/* Overview */}
-        <TabsContent value="overview" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Appointments */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle>Today's Appointments</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {isLoading ? (<p className="text-sm text-muted-foreground py-8 text-center">Loading…</p>) : appointments.map((a) => (
-                  <div key={a.time} className="flex items-start space-x-4 border-b py-2 last:border-0">
-                    <div className="p-2 bg-amber-100 rounded">
-                      <Stethoscope className="h-4 w-4 text-amber-600" />
-                    </div>
-                    <div className="flex-1 text-sm">
-                      <p className="font-medium">{a.player}</p>
-                      <p className="text-muted-foreground text-xs">
-                        {a.time} • {a.type} • {a.location}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-              <CardFooter>
-                <Button size="sm">
-                  <Plus className="h-4 w-4 mr-2" /> Schedule
-                </Button>
-              </CardFooter>
-            </Card>
-
-            {/* Availability pie */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle>Player Availability</CardTitle>
-              </CardHeader>
-              <CardContent className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie data={pieData} dataKey="value" cx="50%" cy="50%" outerRadius={70}>
-                      {pieData.map((d) => (
-                        <Cell key={d.name} fill={d.color} />
-                      ))}
-                    </Pie>
-                  </PieChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
-
-            {/* Active injuries */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle>Active Injuries</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : injuries.map((inj) => (
-                  <div key={inj.player} className="flex justify-between text-sm border-b py-1 last:border-0">
-                    <span>{inj.player}</span>
-                    <Badge variant="outline">{inj.status}</Badge>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
+        <TabsContent value="overview" className="mt-6">
+          {renderOverviewTab()}
         </TabsContent>
 
-        {/* Injuries */}
-        <TabsContent value="injuries" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Current Injuries</CardTitle>
-              <CardDescription>Players who are currently injured or in rehabilitation.</CardDescription>
-            </CardHeader>
-            <CardContent className="divide-y">
-              {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : injuries.map((inj) => (
-                <div key={inj.player} className="flex justify-between py-2 first:pt-0 last:pb-0">
-                  <div className="space-y-0.5">
-                    <p className="font-medium leading-none">{inj.player}</p>
-                    <p className="text-xs text-muted-foreground">{inj.injury}</p>
-                  </div>
-                  <Badge variant="outline">{inj.status}</Badge>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+        <TabsContent value="injuries" className="mt-6">
+          {renderInjuriesTab()}
         </TabsContent>
 
-        {/* Rehabilitation */}
-        <TabsContent value="rehab" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Rehabilitation Progress</CardTitle>
-              <CardDescription>Overview of players currently in rehab and their progress.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : injuries
-                .filter((inj) => inj.status === "Rehab")
-                .map((inj) => (
-                  <div key={inj.player} className="space-y-1">
-                    <div className="flex justify-between">
-                      <p>{inj.player}</p>
-                      <span className="text-sm text-muted-foreground">Phase 2 / 4</span>
-                    </div>
-                    <Progress value={50} className="h-2" />
-                  </div>
-                ))}
-              {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : injuries.filter((inj) => inj.status === "Rehab").length === 0 && (
-                <p className="text-sm text-muted-foreground text-center">No players currently in rehabilitation.</p>
-              )}
-            </CardContent>
-          </Card>
+        <TabsContent value="treatment" className="mt-6">
+          {renderTreatmentPlansTab()}
         </TabsContent>
 
-        {/* Records */}
-        <TabsContent value="records" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Medical Records</CardTitle>
-              <CardDescription>Last 5 entries across the team.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : [
-                { date: "2024-05-18", player: "Oskar Lind", note: "MRI results uploaded" },
-                { date: "2024-05-17", player: "Emma Lindberg", note: "Clearance for light practice" },
-                { date: "2024-05-15", player: "Johan Berg", note: "Follow-up assessment" },
-                { date: "2024-05-14", player: "Alex Nilsson", note: "Concussion baseline test" },
-                { date: "2024-05-13", player: "Erik Johansson", note: "Physio note added" },
-              ].map((rec) => (
-                <div key={`${rec.date}-${rec.player}`} className="flex justify-between text-sm border-b py-1 last:border-0">
-                  <div>
-                    <p className="font-medium leading-none">{rec.player}</p>
-                    <p className="text-xs text-muted-foreground">{rec.note}</p>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{rec.date}</span>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+        <TabsContent value="rehab" className="mt-6">
+          {renderRehabilitationTab()}
+        </TabsContent>
+
+        <TabsContent value="records" className="mt-6">
+          {renderMedicalRecordsTab()}
+        </TabsContent>
+
+        <TabsContent value="reports" className="mt-6">
+          {renderReportsTab()}
         </TabsContent>
       </Tabs>
     </div>

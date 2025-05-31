@@ -1925,3 +1925,342 @@ export const exerciseSchema = {
 ```
 
 These technical enhancements provide advanced patterns and implementations for improving the Hockey Hub system's performance, security, and maintainability.
+
+## 7. Physical Testing System Implementation
+
+### Component Architecture Pattern
+
+The Physical Testing system demonstrates a comprehensive pattern for building data-intensive features in Hockey Hub.
+
+#### 7.1 Type-First Development
+```typescript
+// Define comprehensive types before implementation
+export interface TestData {
+  id: string;
+  playerId: string;
+  testDate: Date;
+  category: TestCategory;
+  // 60+ individual test measurements
+  verticalJump?: number;
+  broadJump?: number;
+  // ... etc
+}
+
+// Use enums for consistent categorization
+export enum TestCategory {
+  ANTHROPOMETRIC = "anthropometric",
+  POWER = "power",
+  SPEED = "speed",
+  STRENGTH = "strength",
+  AGILITY = "agility",
+  AEROBIC = "aerobic",
+  ANAEROBIC = "anaerobic",
+  SPECIFIC = "specific"
+}
+```
+
+#### 7.2 Constants and Configuration
+```typescript
+// Centralize test definitions and scientific data
+export const testOptions: Record<string, TestOption> = {
+  verticalJump: {
+    name: "Vertical Jump",
+    unit: "cm",
+    category: TestCategory.POWER,
+    equipment: ["Force plates", "Jump mat", "Vertec"],
+    description: "Countermovement jump height measurement"
+  },
+  // ... 60+ test definitions
+};
+
+// Scientific correlations for insights
+export const correlationData: CorrelationData[] = [
+  {
+    test1: "verticalJump",
+    test2: "skating",
+    correlation: -0.65,
+    significance: "high",
+    description: "Strong negative correlation with on-ice sprint times"
+  },
+  // ... more correlations
+];
+
+// Age and skill-specific normative data
+export const normativeData: NormativeData = {
+  verticalJump: {
+    elite: { excellent: 70, good: 65, average: 60, belowAverage: 55 },
+    subElite: { excellent: 65, good: 60, average: 55, belowAverage: 50 },
+    junior: { excellent: 60, good: 55, average: 50, belowAverage: 45 },
+    youth: { excellent: 50, good: 45, average: 40, belowAverage: 35 }
+  },
+  // ... normative data for all tests
+};
+```
+
+#### 7.3 Multi-Tab Form Pattern
+```typescript
+// Complex form with validation and state management
+export function PhysicalTestingForm({ playerId, onSubmit }: Props) {
+  const [activeTab, setActiveTab] = useState(0);
+  const [formData, setFormData] = useState<Partial<TestData>>({});
+  const [completedTabs, setCompletedTabs] = useState<Set<number>>(new Set());
+
+  // Tab configuration
+  const tabs = [
+    { label: "Basic Info", fields: ["testDate", "category", "notes"] },
+    { label: "Anthropometric", fields: ["height", "weight", "bodyFat"] },
+    { label: "Power Tests", fields: ["verticalJump", "broadJump"] },
+    // ... more tabs
+  ];
+
+  // Auto-save functionality
+  const debouncedSave = useMemo(
+    () => debounce((data: Partial<TestData>) => {
+      localStorage.setItem(`test-draft-${playerId}`, JSON.stringify(data));
+    }, 1000),
+    [playerId]
+  );
+
+  // Tab completion tracking
+  const checkTabCompletion = (tabIndex: number) => {
+    const tabFields = tabs[tabIndex].fields;
+    const hasAllRequired = tabFields.every(field => 
+      formData[field] !== undefined && formData[field] !== null
+    );
+    
+    if (hasAllRequired) {
+      setCompletedTabs(prev => new Set([...prev, tabIndex]));
+    }
+  };
+
+  return (
+    <Tabs value={activeTab.toString()} onValueChange={(v) => setActiveTab(parseInt(v))}>
+      <TabsList>
+        {tabs.map((tab, index) => (
+          <TabsTrigger key={index} value={index.toString()}>
+            {tab.label}
+            {completedTabs.has(index) && (
+              <CheckCircle className="ml-2 h-4 w-4 text-green-600" />
+            )}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {/* Tab content with dynamic field rendering */}
+    </Tabs>
+  );
+}
+```
+
+#### 7.4 Data Processing Utilities
+```typescript
+// Calculate percentiles based on normative data
+export function calculatePercentile(
+  testName: string,
+  value: number,
+  ageGroup: keyof NormativeData[string],
+  gender: "male" | "female"
+): number {
+  const norms = normativeData[testName]?.[ageGroup];
+  if (!norms) return 50; // Default to median if no data
+
+  // Gender-specific adjustments
+  const adjustedValue = gender === "female" 
+    ? value * (genderAdjustments[testName] || 1) 
+    : value;
+
+  // Calculate percentile based on normative ranges
+  if (adjustedValue >= norms.excellent) return 95;
+  if (adjustedValue >= norms.good) return 75;
+  if (adjustedValue >= norms.average) return 50;
+  if (adjustedValue >= norms.belowAverage) return 25;
+  return 10;
+}
+
+// Generate AI-powered recommendations
+export function generateRecommendations(
+  testData: TestData,
+  historicalData: TestData[]
+): TrainingRecommendation[] {
+  const recommendations: TrainingRecommendation[] = [];
+  
+  // Analyze weaknesses
+  Object.entries(testData).forEach(([test, value]) => {
+    if (typeof value === 'number') {
+      const percentile = calculatePercentile(test, value, 'elite', 'male');
+      
+      if (percentile < 50) {
+        recommendations.push({
+          priority: percentile < 25 ? 'high' : 'medium',
+          category: testOptions[test]?.category || 'general',
+          focus: `Improve ${testOptions[test]?.name}`,
+          rationale: `Current performance is in the ${percentile}th percentile`,
+          exercises: getRecommendedExercises(test)
+        });
+      }
+    }
+  });
+
+  // Check for imbalances
+  const imbalances = detectImbalances(testData);
+  imbalances.forEach(imbalance => {
+    recommendations.push({
+      priority: 'high',
+      category: 'injury-prevention',
+      focus: imbalance.description,
+      rationale: imbalance.rationale,
+      exercises: imbalance.correctives
+    });
+  });
+
+  return recommendations;
+}
+```
+
+#### 7.5 Dashboard Component Pattern
+```typescript
+// Comprehensive dashboard with multiple data views
+export function PhysicalTrainerDashboard() {
+  const [activeTab, setActiveTab] = useState("overview");
+  const { data, isLoading } = useTestData();
+
+  // Quick stats calculation
+  const quickStats = useMemo(() => ({
+    totalTests: data?.tests.length || 0,
+    athletesTested: new Set(data?.tests.map(t => t.playerId)).size || 0,
+    averageScore: calculateAveragePerformanceScore(data?.tests || []),
+    improvementRate: calculateImprovementRate(data?.tests || [])
+  }), [data]);
+
+  return (
+    <div className="p-6 space-y-6">
+      {/* Quick Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm">Total Tests</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{quickStats.totalTests}</div>
+            <p className="text-xs text-muted-foreground">Last 30 days</p>
+          </CardContent>
+        </Card>
+        {/* More stat cards */}
+      </div>
+
+      {/* Main Content Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="grid grid-cols-6 w-full">
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="collect">Test Collection</TabsTrigger>
+          <TabsTrigger value="analysis">Analysis</TabsTrigger>
+          <TabsTrigger value="athletes">Athletes</TabsTrigger>
+          <TabsTrigger value="protocols">Protocols</TabsTrigger>
+          <TabsTrigger value="reports">Reports</TabsTrigger>
+        </TabsList>
+        {/* Tab content with lazy loading */}
+      </Tabs>
+    </div>
+  );
+}
+```
+
+#### 7.6 Custom Hooks for Data Management
+```typescript
+// Centralized data fetching and state management
+export function useTestData() {
+  const [data, setData] = useState<{
+    tests: TestData[];
+    players: PlayerData[];
+    batches: TestBatch[];
+    teamStats: TeamStatistics;
+  } | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        
+        // In production, these would be parallel API calls
+        const [tests, players, batches, stats] = await Promise.all([
+          fetchTests(),
+          fetchPlayers(),
+          fetchTestBatches(),
+          fetchTeamStatistics()
+        ]);
+
+        setData({ tests, players, batches, teamStats: stats });
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Memoized calculations
+  const insights = useMemo(() => {
+    if (!data) return null;
+    
+    return {
+      topPerformers: identifyTopPerformers(data.tests, data.players),
+      improvements: calculateImprovements(data.tests),
+      correlations: findSignificantCorrelations(data.tests)
+    };
+  }, [data]);
+
+  return { data, isLoading, error, insights };
+}
+```
+
+#### 7.7 Visualization Patterns
+```typescript
+// Prepare data for various chart types
+export function prepareRadarData(
+  testData: Partial<TestData>,
+  normativeData: NormativeData
+): RadarDataPoint[] {
+  const categories = Object.values(TestCategory);
+  
+  return categories.map(category => {
+    const categoryTests = Object.entries(testOptions)
+      .filter(([_, opt]) => opt.category === category)
+      .map(([key, _]) => key);
+    
+    const categoryScores = categoryTests
+      .map(test => {
+        const value = testData[test];
+        if (typeof value !== 'number') return null;
+        
+        return calculatePercentile(test, value, 'elite', 'male');
+      })
+      .filter(score => score !== null);
+    
+    const avgScore = categoryScores.length > 0
+      ? categoryScores.reduce((a, b) => a + b, 0) / categoryScores.length
+      : 0;
+    
+    return {
+      category: category.charAt(0).toUpperCase() + category.slice(1),
+      value: avgScore,
+      fullMark: 100
+    };
+  });
+}
+```
+
+### Key Patterns and Lessons
+
+1. **Type-First Development**: Define comprehensive interfaces before implementation
+2. **Centralized Constants**: Keep all domain-specific data in one place
+3. **Progressive Disclosure**: Use tabs for complex forms
+4. **Smart Defaults**: Provide sensible defaults based on context
+5. **Memoized Calculations**: Optimize expensive computations
+6. **Custom Hooks**: Encapsulate complex state logic
+7. **Responsive Design**: Mobile-first with progressive enhancement
+8. **Data Validation**: Client-side validation with server-side verification
+9. **Error Boundaries**: Graceful error handling at component level
+10. **Performance Monitoring**: Track render times and optimize
