@@ -1,0 +1,187 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor AI Rules for Hockey Hub Project
+
+This document defines strict guidelines for Cursor AI when generating code for the Hockey Hub project. These rules must be followed to maintain architectural integrity, code quality, and ensure proper implementation of multilingual features and accessibility.
+
+## 1. Architecture & Service Structure
+
+### Service Boundaries
+- **RULE 1.1**: Maintain strict separation between microservices. Never combine functionalities that belong to different services.
+- **RULE 1.2**: Respect the defined port numbers for each service:
+  - API Gateway: 3000
+  - User Service: 3001
+  - Communication Service: 3002
+  - Calendar Service: 3003
+  - Training Service: 3004
+  - Medical Service: 3005
+  - Planning Service: 3006
+  - Statistics Service: 3007
+  - Payment Service: 3008
+  - Admin Service: 3009
+
+### Data Flow
+- **RULE 1.3**: Follow the established data flow patterns. Never create circular dependencies between services.
+- **RULE 1.4**: Implement the Saga pattern for distributed transactions that span multiple services.
+- **RULE 1.5**: Apply the Circuit Breaker pattern for service communications to prevent cascading failures.
+
+## 2. Code Quality & Consistency
+
+### TypeScript Rules
+- **RULE 2.1**: Always use TypeScript in strict mode (`"strict": true` in tsconfig.json).
+- **RULE 2.2**: Define explicit interfaces for all data exchanged between services.
+- **RULE 2.3**: Use proper typing; avoid `any` unless absolutely necessary.
+
+### Naming Conventions
+- **RULE 2.4**: Use consistent naming across the codebase:
+  - camelCase for variables and functions
+  - PascalCase for classes and interfaces
+  - UPPER_SNAKE_CASE for constants
+- **RULE 2.5**: For translation keys, always use dot notation naming (e.g., 'common.buttons.save').
+
+### Code Structure
+- **RULE 2.6**: Follow the Repository pattern for data access in all services.
+- **RULE 2.7**: Implement proper error handling with standardized error response structure.
+- **RULE 2.8**: Ensure all database operations include proper transaction management.
+
+## 3. Multilingual Support
+
+### Translation System
+- **RULE 3.1**: Never hardcode user-facing strings in the interface; always use translation functions.
+- **RULE 3.2**: Ensure all new features include translations for both Swedish and English.
+- **RULE 3.3**: Structure translation keys in namespaces according to functionality (e.g., 'calendar.events.create').
+
+### Internationalization
+- **RULE 3.4**: Always format dates, times, numbers, and currencies according to the user's language preference.
+- **RULE 3.5**: Implement proper sorting of data based on language-specific collation when displaying names or other alphabetical data.
+- **RULE 3.6**: Include the user's language preference in JWT tokens for cross-service availability.
+
+## 4. Design and UI
+
+### Design System
+- **RULE 4.1**: Always use shadcn/ui components from `@/components/ui/` for all UI elements.
+- **RULE 4.2**: Use HockeyAppUIComponents.tsx as a template and reference for new component implementations.
+- **RULE 4.3**: Write all styling with Tailwind CSS classes instead of inline styles or CSS.
+- **RULE 4.4**: Follow the defined color scheme in globals.css and use design tokens consistently.
+
+### Color System and Visual Language
+- **RULE 4.5**: Use the following color codes for event types:
+  - Ice training: `bg-blue-100 text-blue-800`
+  - Physical training: `bg-green-100 text-green-800`
+  - Game: `bg-red-100 text-red-800`
+  - Rehab/Medical: `bg-amber-100 text-amber-800`
+  - Meetings: `bg-purple-100 text-purple-800`
+  - Travel: `bg-indigo-100 text-indigo-800`
+- **RULE 4.6**: Use the following color codes for player status:
+  - Fully available: `bg-green-100 text-green-800`
+  - Limited: `bg-yellow-100 text-yellow-800`
+  - Individual training: `bg-orange-100 text-orange-800`
+  - Rehab: `bg-red-100 text-red-800`
+  - Unavailable: `bg-gray-100 text-gray-800`
+
+### Component Structure
+- **RULE 4.7**: Follow the pattern of compound components from shadcn/ui (Card with CardHeader, CardContent, etc.).
+- **RULE 4.8**: Use consistent spacing from Tailwind (e.g., gap-4, space-y-3, p-4, etc.).
+- **RULE 4.9**: Implement responsiveness with Tailwind's breakpoint prefixes (sm:, md:, lg:, etc.).
+- **RULE 4.10**: Use `lucide-react` as the icon library for all icons in the application.
+
+## 5. Accessibility (a11y)
+
+### WCAG 2.1 AA Compliance
+- **RULE 5.1**: Ensure all UI components meet WCAG 2.1 AA standards.
+- **RULE 5.2**: Use semantic HTML elements for proper screen reader interpretation.
+- **RULE 5.3**: Implement proper keyboard navigation for all interactive elements.
+- **RULE 5.4**: Maintain minimum contrast ratios: 4.5:1 for normal text, 3:1 for large text.
+
+### Testing
+- **RULE 5.5**: Include accessibility tests for all new UI components.
+- **RULE 5.6**: Write tests using Jest and axe-core to verify accessibility.
+
+## 6. Error Handling & Reliability
+
+### Error Structure
+- **RULE 6.1**: Use the standardized error response structure for all API errors:
+  ```typescript
+  interface ErrorResponse {
+    error: true;
+    message: string;
+    code: string;
+    category: 'AUTHENTICATION' | 'AUTHORIZATION' | 'VALIDATION' | 'RESOURCE_CONFLICT' | 'EXTERNAL_SERVICE' | 'INTERNAL_ERROR';
+    details?: Record<string, any>;
+    timestamp: string;
+    path: string;
+    transactionId: string;
+  }
+  ```
+- **RULE 6.2**: Implement proper error logging with correlation IDs for traceability.
+
+### Resilience Patterns
+- **RULE 6.3**: Implement retry mechanisms for transient failures in service communications.
+- **RULE 6.4**: Apply timeouts for all external API calls and database operations.
+- **RULE 6.5**: Include fallback strategies for critical operations when primary approaches fail.
+
+## 7. Database & Data Management
+
+### Schema Design
+- **RULE 7.1**: Follow the defined database schema design with proper relationships.
+- **RULE 7.2**: Implement database constraints at the database level, not just in application code.
+- **RULE 7.3**: Create appropriate indexes for common query patterns.
+
+### Performance
+- **RULE 7.4**: Use connection pooling for database connections.
+- **RULE 7.5**: Implement caching for frequently accessed data (Redis preferred).
+- **RULE 7.6**: Write optimized queries to avoid N+1 query problems.
+
+## 8. Frontend Development
+
+### React Practices
+- **RULE 8.1**: Use functional components with hooks instead of class components.
+- **RULE 8.2**: Apply React Testing Library for component testing.
+- **RULE 8.3**: Implement proper state management with Redux Toolkit.
+
+### UI Components
+- **RULE 8.4**: Use the established component library for consistent UI.
+- **RULE 8.5**: Ensure all components are responsive (mobile-first approach).
+- **RULE 8.6**: Build accessible components with proper ARIA attributes.
+
+### CSS Rules
+- **RULE 8.7**: Use Tailwind CSS utilities following the project's styling conventions.
+- **RULE 8.8**: Avoid inline styles; use Tailwind classes or create custom utility classes.
+
+## 9. Testing Requirements
+
+### Test Coverage
+- **RULE 9.1**: Write tests for all new features with appropriate coverage:
+  - User Service: 90% coverage
+  - Medical Service: 85% coverage 
+  - Payment Service: 85% coverage
+  - Training Service: 80% coverage
+  - Other services: 75% coverage
+
+### Test Types
+- **RULE 9.2**: Include unit tests for service logic.
+- **RULE 9.3**: Implement integration tests for service interactions.
+- **RULE 9.4**: Write accessibility tests for UI components.
+- **RULE 9.5**: Include error handling tests for negative scenarios.
+
+## 10. Implementation Rules
+
+### Feature Completeness
+- **RULE 10.1**: Ensure all features include proper validation, error handling, and tests.
+- **RULE 10.2**: Implement multilingual support for all user-facing text.
+- **RULE 10.3**: Follow the phased implementation approach as defined in the project documentation.
+
+### Code Documentation
+- **RULE 10.4**: Include JSDoc comments for public functions and interfaces.
+- **RULE 10.5**: Write clear documentation for complex algorithms or business logic.
+- **RULE 10.6**: Document any deviations from standard patterns with rationale.
+
+### When in Doubt
+- **RULE 10.7**: Refer to existing implementation patterns in the codebase.
+- **RULE 10.8**: Consult the project documentation in the memory bank.
+- **RULE 10.9**: Prioritize maintainability and readability over cleverness.
+
+Adherence to these rules is mandatory for all code generated by Cursor AI for the Hockey Hub project. Any violations must be corrected before code is committed.

@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json", // Point to the package's tsconfig
+    "extraFileExtensions": [".json"] // Allow linting of JSON files
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    // Add any specific rules or overrides here
+    // For example:
+    // "@typescript-eslint/no-explicit-any": "off"
+  }
+} 

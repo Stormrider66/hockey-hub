@@ -1,0 +1,183 @@
+name: User Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/user-service/**'
+      - '.github/workflows/user-service.yml'
+  pull_request:
+    paths:
+      - 'services/user-service/**'
+
+jobs:
+  test:
+    name: Test User Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
+          
+      - name: Enable corepack & install pnpm
+        run: |
+          corepack enable
+          
+      - name: Install dependencies (workspace)
+        run: pnpm install --frozen-lockfile --filter "user-service..."
+        
+      - name: Run linting
+        run: pnpm --filter "user-service" run lint
+        
+      - name: Run tests
+        run: pnpm --filter "user-service" run test
+        
+      - name: Test authentication flows
+        run: pnpm --filter "user-service" run test:auth
+        
+      - name: Test authorization middleware
+        run: pnpm --filter "user-service" run test:authz
+        
+  security-test:
+    name: Security Testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/user-service && npm ci
+        
+      - name: Run security tests
+        run: cd services/user-service && npm run test:security
+        
+      - name: Test password hashing
+        run: cd services/user-service && npm run test:password-security
+        
+      - name: Test JWT token security
+        run: cd services/user-service && npm run test:jwt-security
+        
+      - name: Test rate limiting
+        run: cd services/user-service && npm run test:rate-limiting
+        
+      - name: Test input validation
+        run: cd services/user-service && npm run test:input-validation
+        
+  # integration-test:
+  #   name: Integration Testing
+  #   runs-on: ubuntu-latest
+  #   
+  #   services:
+  #     postgres:
+  #       image: postgres:17
+  #       env:
+  #         POSTGRES_PASSWORD: test_password
+  #         POSTGRES_DB: hockeyhub_users_test
+  #       options: >-
+  #         --health-cmd pg_isready
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #   
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 18
+  #         
+  #     - name: Install dependencies
+  #       run: cd services/user-service && npm ci
+  #       
+  #     - name: Run database migrations
+  #       run: cd services/user-service && npm run migration:run
+  #       env:
+  #         DB_HOST: localhost
+  #         DB_PORT: 5432
+  #         DB_USERNAME: postgres
+  #         DB_PASSWORD: test_password
+  #         DB_NAME: hockeyhub_users_test
+  #         
+  #     - name: Run integration tests
+  #       run: cd services/user-service && npm run test:integration
+  #       env:
+  #         DB_HOST: localhost
+  #         DB_PORT: 5432
+  #         DB_USERNAME: postgres
+  #         DB_PASSWORD: test_password
+  #         DB_NAME: hockeyhub_users_test
+        
+  build:
+    name: Build User Service
+    needs: [test, security-test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Login to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-user-service
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+        
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/user-service
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+            
+  deploy-staging:
+    name: Deploy to Staging
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to staging environment
+        run: |
+          echo "Deploying User Service to staging..."
+          # Add actual deployment commands here
+          
+  deploy-production:
+    name: Deploy to Production
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to production environment
+        run: |
+          echo "Deploying User Service to production..."
+          # Add actual deployment commands here 

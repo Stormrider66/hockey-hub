@@ -1,0 +1,102 @@
+import request from 'supertest';
+import express, { Request, Response, NextFunction } from 'express';
+import fs from 'fs';
+import path from 'path';
+
+// Mock the medical document repository
+jest.mock('../../src/repositories/medicalDocumentRepository', () => ({
+  __esModule: true,
+  createDocument: jest.fn(),
+  getDocumentById: jest.fn(),
+  deleteDocument: jest.fn(),
+}));
+
+import * as Repo from '../../src/repositories/medicalDocumentRepository';
+import medicalDocumentRoutes from '../../src/routes/medicalDocumentRoutes';
+
+// Setup test app
+const app = express();
+app.use(express.json());
+app.use((req: Request, _res: Response, next: NextFunction) => {
+  (req as any).user = { id: 'u1', teamIds: ['t1'] };
+  next();
+});
+app.use('/api/v1', medicalDocumentRoutes);
+
+describe('Medical Document Routes', () => {
+  beforeEach(() => jest.clearAllMocks());
+
+  describe('POST /api/v1/documents', () => {
+    it('returns 201 on successful upload', async () => {
+      const created = { id: 'd1', player_id: 'p1', title: 'test.pdf', document_type: 'Report', file_path: 'uploads/medical-documents/test.pdf', file_size: 5, mime_type: 'application/pdf', injury_id: null, uploaded_by_user_id: 'u1', team_id: 't1', created_at: new Date(), updated_at: new Date() };
+      (Repo.createDocument as jest.Mock).mockResolvedValueOnce(created);
+
+      const res = await request(app)
+        .post('/api/v1/documents')
+        .field('playerId', 'p1')
+        .field('title', 'test.pdf')
+        .field('documentType', 'Report')
+        .attach('file', __filename);
+
+      expect(res.status).toBe(201);
+      expect(res.body.success).toBe(true);
+      expect(res.body.data).toEqual(created);
+      expect(Repo.createDocument).toHaveBeenCalledWith(expect.objectContaining({ playerId: 'p1', title: 'test.pdf' }));
+    });
+
+    it('returns 400 when missing file', async () => {
+      const res = await request(app)
+        .post('/api/v1/documents')
+        .field('playerId', 'p1')
+        .field('title', 'test.pdf')
+        .field('documentType', 'Report');
+      expect(res.status).toBe(400);
+    });
+  });
+
+  describe('GET /api/v1/documents/:documentId', () => {
+    it('streams file when found', async () => {
+      const tempPath = __filename;
+      const doc = { id: 'd1', player_id: 'p1', title: 'test.txt', document_type: 'Report', file_path: tempPath, file_size: 0, mime_type: 'text/plain', injury_id: null, uploaded_by_user_id: 'u1', team_id: 't1', created_at: new Date(), updated_at: new Date() };
+      (Repo.getDocumentById as jest.Mock).mockResolvedValueOnce(doc);
+
+      const res = await request(app)
+        .get('/api/v1/documents/d1')
+        .expect(200);
+
+      expect(res.headers['content-disposition']).toMatch(/attachment/);
+    });
+
+    it('returns 404 if not found', async () => {
+      (Repo.getDocumentById as jest.Mock).mockResolvedValueOnce(null);
+      await request(app)
+        .get('/api/v1/documents/d1')
+        .expect(404);
+    });
+  });
+
+  describe('DELETE /api/v1/documents/:documentId', () => {
+    it('deletes file and record when found', async () => {
+      const tempPath = __filename;
+      const doc = { id: 'd1', player_id: 'p1', title: 'test.txt', document_type: 'Report', file_path: tempPath, file_size: 0, mime_type: 'text/plain', injury_id: null, uploaded_by_user_id: 'u1', team_id: 't1', created_at: new Date(), updated_at: new Date() };
+      (Repo.getDocumentById as jest.Mock).mockResolvedValueOnce(doc);
+      (Repo.deleteDocument as jest.Mock).mockResolvedValueOnce(true);
+      const unlinkSpy = jest.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
+
+      const res = await request(app)
+        .delete('/api/v1/documents/d1')
+        .expect(200);
+
+      expect(res.body.success).toBe(true);
+      expect(unlinkSpy).toHaveBeenCalledWith(path.resolve(tempPath));
+      unlinkSpy.mockRestore();
+    });
+
+    it('returns 404 if not found', async () => {
+      (Repo.getDocumentById as jest.Mock).mockResolvedValueOnce(null);
+      await request(app)
+        .delete('/api/v1/documents/d1')
+        .expect(404);
+    });
+  });
+}); 

@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Hockey Hub Design System Guidelines
+
+## Standard Context Instructions
+- Always use designs from @codebase src/components/examples/HockeyAppUIComponents.tsx for reference
+- Use utility constants from @codebase src/lib/design-utils.ts for colors and styles
+- Follow shadcn/ui component patterns with Tailwind CSS for all UI elements
+
+## Component Import Standards
+- Always import shadcn/ui components from @/components/ui/
+- Always import icons from lucide-react
+- Import utility functions from @/lib/utils
+- Import design constants from @/lib/design-utils
+
+## Style Conventions
+- Use Tailwind utility classes instead of custom CSS
+- Use the standard color schemes for event types:
+  - Ice training: bg-blue-100 text-blue-800
+  - Physical training: bg-green-100 text-green-800
+  - Game: bg-red-100 text-red-800
+  - Rehab/Medical: bg-amber-100 text-amber-800
+  - Meetings: bg-purple-100 text-purple-800
+  - Travel: bg-indigo-100 text-indigo-800
+
+- Use standard color schemes for player status:
+  - Fully available: bg-green-100 text-green-800
+  - Limited: bg-yellow-100 text-yellow-800
+  - Individual training: bg-orange-100 text-orange-800
+  - Rehab: bg-red-100 text-red-800
+  - Unavailable: bg-gray-100 text-gray-800
+
+## Component Structure
+- Follow compound component patterns (Card with CardHeader, CardContent, etc.)
+- Implement responsive design with sm:, md:, lg: breakpoint prefixes
+- Use consistent spacing (gap-4, space-y-3, p-4)
