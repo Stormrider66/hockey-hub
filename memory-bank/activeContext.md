@@ -11,25 +11,23 @@
 - **Test Infrastructure Stabilized**: All services now have passing test suites with comprehensive Jest configurations.
 
 ### Recent Changes
-1. **Physical Testing and Analytics System Implementation (December 2024)**:
-   - **Physical Testing Components**: Created comprehensive physical testing system for physical trainers
-   - **PhysicalTrainerDashboard**: Implemented 620-line dashboard with 6 tabs (Overview, Test Collection, Analysis, Athletes, Protocols, Reports)
-   - **Type System**: Created 303-line types file with 60+ test measurements and comprehensive interfaces
-   - **Constants**: Added 595-line constants file with test definitions, correlations, normative data, and protocols
-   - **Data Handling**: Implemented utils (241 lines) for percentile calculations, recommendations, and data visualization
-   - **React Hook**: Created useTestData hook (232 lines) for data fetching with mock data
-   - **PhysicalTestingForm**: Built 481-line multi-tab form with validation and auto-save
-   - **Analytics Components**: Created TestAnalyticsPanel with correlation analysis and performance tracking
-   - **Fixed TypeScript Errors**: Resolved typos in constants, missing normativeData values, and TestProtocol field mismatches
-   - **Component Structure**: Organized features under `features/physical-trainer/` and `components/statistics-service/physical-analysis/`
+1. **Comprehensive Dashboard Upgrade (May 31, 2025)**:
+   - **Major Dashboard Updates**: Significantly enhanced 5 role-based dashboards with comprehensive features
+   - **AdminDashboard**: Expanded from basic to 1300+ lines with system metrics, organization management, and analytics
+   - **CoachDashboard**: Enhanced to 1562+ lines with team management, training planning, and performance tracking
+   - **MedicalStaffDashboard**: Upgraded to 1113+ lines with injury tracking, treatment plans, and medical analytics
+   - **PlayerDashboard**: Expanded to 1613+ lines with wellness tracking, performance metrics, and personal development
+   - **PhysicalTrainerDashboard**: Completely rebuilt with 6 tabs (Overview, Test Collection, Analysis, Athletes, Protocols, Reports)
+   - **Physical Testing System**: Created comprehensive testing and analytics system:
+     - Type System: 303-line types file with 60+ test measurements
+     - Constants: 595-line file with test definitions, correlations, normative data
+     - Utils: 241 lines for percentile calculations, AI recommendations
+     - Custom Hook: useTestData (232 lines) for data management
+     - PhysicalTestingForm: 481-line multi-tab form with validation
+   - **Component Reorganization**: Moved physical trainer components to proper directory structure
+   - **Storybook Fix**: Resolved duplicate story ID error for ParentDashboard
 
-2. **Storybook Error Resolution (December 2024)**:
-   - Fixed duplicate story ID error for ParentDashboard component
-   - Identified two ParentDashboard components with conflicting story titles
-   - Resolved by deleting `src/features/parent/ParentDashboard.stories.tsx` 
-   - Kept more complete implementation in `src/components/dashboards/`
-
-3. **Test Infrastructure Fixes (December 2024)**:
+2. **Test Infrastructure Fixes (December 2024)**:
    - **Statistics Service**: Added `--passWithNoTests` flag to Jest command for empty test suites
    - **API Gateway**: Applied same fix for empty test suites
    - **Admin Service**: Created missing `outboxDispatcher.ts` implementation and fixed Jest configuration with legacy timers
