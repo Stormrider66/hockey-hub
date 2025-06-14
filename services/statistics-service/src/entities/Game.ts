@@ -28,13 +28,13 @@ export class Game {
     @Column({ type: 'uuid' })
     awayTeamId!: UUID;
 
-    @Column({ nullable: true })
+    @Column({ type: 'integer', nullable: true })
     homeScore?: number | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'integer', nullable: true })
     awayScore?: number | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     status?: 'scheduled' | 'in_progress' | 'completed' | 'postponed' | 'cancelled';
 
     @CreateDateColumn({ type: 'timestamptz' })

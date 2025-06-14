@@ -37,7 +37,7 @@ export const apiSlice = createApi({
       
       return headers;
     },
-    // credentials: 'include', // Uncomment if using cookies for auth
+    credentials: 'include', // Send cookies on every request (auth via HttpOnly cookies)
   }),
   // Define tag types for caching and invalidation
   tagTypes: [

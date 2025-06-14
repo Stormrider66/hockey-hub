@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { getRepository, MoreThan } from 'typeorm';
+import { MoreThan } from 'typeorm';
+import AppDataSource from '../data-source';
 import { User, RefreshToken } from '../entities';
 import { RegisterDto, LoginDto, ForgotPasswordDto, ResetPasswordDto } from '../dtos/auth.dto'; // Import DTOs
 import { ConflictError, UnauthorizedError } from '../errors/authErrors'; // Import Errors
@@ -8,18 +9,12 @@ import crypto from 'crypto';
 import { sendPasswordResetEmail } from './emailService'; // Import email service function
 import logger from '../config/logger'; // Import logger
 import { getRolePermissions } from './permissionService'; // Import permission derivation logic
+import { jwtPrivateKey } from '../utils/keyManager';
 
 // --- Configuration --- //
-const ACCESS_TOKEN_SECRET = process.env.JWT_SECRET;
-const REFRESH_TOKEN_SECRET = process.env.JWT_REFRESH_SECRET;
-const ACCESS_TOKEN_EXPIRY = process.env.JWT_EXPIRY || '15m'; // Keep default for expiry
-const REFRESH_TOKEN_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '7d'; // Keep default for expiry
-
-// Validate essential configuration
-if (!ACCESS_TOKEN_SECRET || !REFRESH_TOKEN_SECRET) {
-  logger.fatal('FATAL ERROR: JWT_SECRET and JWT_REFRESH_SECRET environment variables are required.'); // Use logger.fatal
-  process.exit(1);
-}
+const ACCESS_TOKEN_EXPIRY = process.env.JWT_EXPIRY || '15m';
+const REFRESH_TOKEN_SECRET = process.env.JWT_REFRESH_SECRET || crypto.randomBytes(32).toString('hex'); // still symmetric for refresh tokens
+const REFRESH_TOKEN_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '7d';
 
 // TODO: Define interfaces for DTOs (RegisterDto, LoginDto, etc.)
 
@@ -54,7 +49,7 @@ const generateResetToken = (): { token: string; hash: string } => {
  * Request a password reset. Generates a token and sends the email.
  */
 export const forgotPassword = async (data: ForgotPasswordDto): Promise<void> => {
-  const userRepository = getRepository(User);
+  const userRepository = AppDataSource.getRepository(User);
 
   // 1. Find user by email
   const user = await userRepository.findOne({ where: { email: data.email } });
@@ -86,7 +81,7 @@ export const forgotPassword = async (data: ForgotPasswordDto): Promise<void> => 
  * Reset password using the token received via email
  */
 export const resetPassword = async (data: ResetPasswordDto): Promise<void> => {
-  const userRepository = getRepository(User);
+  const userRepository = AppDataSource.getRepository(User);
 
   // 1. Hash the provided token to compare with stored hash
   const hashedToken = crypto
@@ -117,15 +112,12 @@ export const resetPassword = async (data: ResetPasswordDto): Promise<void> => {
   await userRepository.save(user);
 
   // 5. Optionally, invalidate all refresh tokens for this user
-  const refreshTokenRepository = getRepository(RefreshToken);
-  await refreshTokenRepository.update(
-    { userId: user.id, revoked: false },
-    { revoked: true, revokedReason: 'Password changed' }
-  );
+  const refreshTokenRepository = AppDataSource.getRepository(RefreshToken);
+  await refreshTokenRepository.delete({ userId: user.id });
 };
 
 export const register = async (userData: RegisterDto): Promise<User> => {
-  const userRepository = getRepository(User);
+  const userRepository = AppDataSource.getRepository(User);
 
   // 1. Check if user already exists
   const existingUser = await userRepository.findOne({ where: { email: userData.email } });
@@ -154,13 +146,18 @@ export const register = async (userData: RegisterDto): Promise<User> => {
 };
 
 export const login = async (credentials: LoginDto): Promise<{ accessToken: string; refreshToken: string; user: Partial<User> }> => {
-  const userRepository = getRepository(User);
+  const userRepository = AppDataSource.getRepository(User);
+  
+  logger.info(`Login attempt for email: ${credentials.email}`);
 
   // 1. Find user by email, including roles and team memberships
   const user = await userRepository.findOne({
       where: { email: credentials.email },
-      relations: ['roles', 'teamMemberships', 'teamMemberships.team'] // Include team memberships and team details
+      relations: ['roles'] // Only load roles for now, not team memberships
   });
+  
+  logger.info(`User found: ${user ? 'yes' : 'no'}`);
+  
   if (!user) {
     throw new UnauthorizedError('Invalid credentials'); // Use UnauthorizedError
   }
@@ -179,17 +176,9 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
   // 4. Prepare JWT Payload
   const userRoles = user.roles?.map(role => role.name) || [];
   const userPermissions = getRolePermissions(userRoles); // Derive permissions from roles
-  const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
-  // Determine primary organization ID (e.g., from the first team or a dedicated field)
-  let userOrganizationId: string | undefined;
-  if (user.teamMemberships && user.teamMemberships.length > 0) {
-    try {
-      const firstTeam = await user.teamMemberships[0].team;
-      userOrganizationId = firstTeam?.organizationId;
-    } catch (_) {
-      // ignore
-    }
-  }
+  const userTeamIds: string[] = []; // Empty for now since we're not loading team memberships
+  // Use the user's organizationId directly
+  let userOrganizationId: string | undefined = user.organizationId || undefined;
 
   const tokenPayload: TokenPayload = {
     userId: user.id,
@@ -221,15 +210,16 @@ export const login = async (credentials: LoginDto): Promise<{ accessToken: strin
       lastName: user.lastName,
       preferredLanguage: user.preferredLanguage,
       roles: user.roles, // Or just role names
-      // teamMemberships might be too large, return only relevant parts if needed
+      organizationId: user.organizationId
+      // teamMemberships removed since we're not loading them
   };
 
   return { accessToken, refreshToken, user: returnUser };
 };
 
 export const refreshToken = async (incomingRefreshToken: string): Promise<{ accessToken: string; refreshToken: string }> => {
-  const refreshTokenRepository = getRepository(RefreshToken);
-  const userRepository = getRepository(User); // Need user repo to fetch full user details
+  const refreshTokenRepository = AppDataSource.getRepository(RefreshToken);
+  const userRepository = AppDataSource.getRepository(User); // Need user repo to fetch full user details
 
   try {
     // 1. Verify the incoming refresh token (only checks signature and expiry, payload has only userId)
@@ -237,7 +227,7 @@ export const refreshToken = async (incomingRefreshToken: string): Promise<{ acce
 
     // 2. Find the token in the database and the associated user with roles/teams
     const storedToken = await refreshTokenRepository.findOne({
-      where: { token: incomingRefreshToken, userId: decodedRefresh.userId, revoked: false },
+      where: { token: incomingRefreshToken, userId: decodedRefresh.userId },
     });
 
     if (!storedToken) {
@@ -245,37 +235,29 @@ export const refreshToken = async (incomingRefreshToken: string): Promise<{ acce
     }
     // Check expiry manually from DB record
     if (storedToken.expiresAt < new Date()) {
-      await revokeRefreshToken(storedToken.token); // Revoke expired token
+      await revokeRefreshToken(storedToken.token); // Delete expired token
       throw new UnauthorizedError('Refresh token expired');
     }
 
     // Fetch user details required for the new access token payload
     const user = await userRepository.findOne({
         where: { id: storedToken.userId },
-        relations: ['roles', 'teamMemberships', 'teamMemberships.team']
+        relations: ['roles'] // Only load roles, not team memberships
     });
 
     if (!user) {
-        await revokeRefreshToken(storedToken.token); // Revoke token if user not found
+        await revokeRefreshToken(storedToken.token); // Delete token if user not found
         throw new UnauthorizedError('User associated with token not found');
     }
 
-    // 4. Revoke the old refresh token
+    // 4. Delete the old refresh token
     await revokeRefreshToken(storedToken.token);
 
     // 5. Prepare new access token payload
     const userRoles = user.roles?.map(role => role.name) || [];
     const userPermissions = getRolePermissions(userRoles); // Derive permissions
-    const userTeamIds = user.teamMemberships?.map(tm => tm.teamId) || [];
-    let userOrganizationId: string | undefined;
-    if (user.teamMemberships && user.teamMemberships.length > 0) {
-      try {
-        const firstTeam = await user.teamMemberships[0].team;
-        userOrganizationId = firstTeam?.organizationId;
-      } catch (_) {
-        /* ignore */
-      }
-    }
+    const userTeamIds: string[] = []; // Empty for now since we're not loading team memberships
+    let userOrganizationId: string | undefined = user.organizationId || undefined;
 
     const newAccessTokenPayload: TokenPayload = {
       userId: user.id,
@@ -311,9 +293,9 @@ export const refreshToken = async (incomingRefreshToken: string): Promise<{ acce
 export const logout = async (incomingRefreshToken: string): Promise<void> => {
   try {
     await revokeRefreshToken(incomingRefreshToken);
-    logger.info('User logged out successfully (refresh token revoked).')
+    logger.info('User logged out successfully (refresh token deleted).')
   } catch (error) {
-      logger.error({ err: error }, "Error during token revocation on logout"); // Use logger.error with context
+      logger.error({ err: error }, "Error during token deletion on logout"); // Use logger.error with context
   }
 };
 
@@ -324,8 +306,13 @@ const generateAccessToken = (payload: TokenPayload): string => {
   // Ensure all payload fields are included
   return jwt.sign(
     payload,
-    ACCESS_TOKEN_SECRET,
-    { expiresIn: ACCESS_TOKEN_EXPIRY as any }
+    jwtPrivateKey,
+    {
+      algorithm: 'RS256',
+      expiresIn: ACCESS_TOKEN_EXPIRY as any,
+      issuer: 'user-service',
+      audience: 'hockeyhub-internal',
+    }
   );
 };
 
@@ -339,7 +326,7 @@ const generateRefreshToken = (payload: { userId: string }): string => {
 };
 
 const saveRefreshToken = async (userId: string, token: string): Promise<void> => {
-  const refreshTokenRepository = getRepository(RefreshToken);
+  const refreshTokenRepository = AppDataSource.getRepository(RefreshToken);
 
   // Decode expiry from the token itself
   const decoded = jwt.decode(token) as { exp?: number };
@@ -351,21 +338,20 @@ const saveRefreshToken = async (userId: string, token: string): Promise<void> =>
   const newRefreshToken = refreshTokenRepository.create({
     userId,
     token,
-    expiresAt,
-    revoked: false,
+    expiresAt
   });
   await refreshTokenRepository.save(newRefreshToken);
 };
 
 const revokeRefreshToken = async (token: string): Promise<void> => {
-    const refreshTokenRepository = getRepository(RefreshToken);
+    const refreshTokenRepository = AppDataSource.getRepository(RefreshToken);
     // Add logging for revocation attempts
-    logger.info(`Attempting to revoke refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
-    const result = await refreshTokenRepository.update({ token: token, revoked: false }, { revoked: true, revokedReason: 'Logout or Refresh' });
+    logger.info(`Attempting to delete refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
+    const result = await refreshTokenRepository.delete({ token: token });
     if (result.affected === 0) {
-        logger.warn(`Refresh token ${token ? token.substring(0, 10) + '...' : 'undefined'} not found or already revoked.`);
+        logger.warn(`Refresh token ${token ? token.substring(0, 10) + '...' : 'undefined'} not found.`);
     } else {
-        logger.info(`Successfully revoked refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
+        logger.info(`Successfully deleted refresh token: ${token ? token.substring(0, 10) + '...' : 'undefined'}`);
     }
 };
 

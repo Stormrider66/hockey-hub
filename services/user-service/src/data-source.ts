@@ -4,11 +4,28 @@ import { camelCase, snakeCase } from 'typeorm/util/StringUtils.js';
 import dotenv from 'dotenv';
 import fs from 'fs';
 
+// Import all entities explicitly
+import { User } from './entities/User';
+import { Role } from './entities/Role';
+import { Organization } from './entities/Organization';
+import { Team } from './entities/Team';
+import { TeamMember } from './entities/TeamMember';
+import { PlayerParentLink } from './entities/PlayerParentLink';
+import { RefreshToken } from './entities/RefreshToken';
+import { RolePermission } from './entities/RolePermission';
+import { Permission } from './entities/Permission';
+import { PasswordResetToken } from './entities/PasswordResetToken';
+import { EmailVerificationToken } from './entities/EmailVerificationToken';
+
+// Import all migrations explicitly
+import { V1InitBaseSchema1699999999997 } from './migrations/V1__init_base_schema';
+import { V2CreateUuidExtension1699999999998 } from './migrations/V2__create_uuid_extension';
+import { V3AuthAuxTables1699999999999 } from './migrations/V3__auth_aux_tables';
+
 // Load environment variables from .env file in current dir or project root
 dotenv.config();
 
-// Define paths relative to this data-source file
-const entitiesPath = './entities/**/*{.ts,.js}';
+// Define paths for migrations
 const migrationsPath = './migrations/**/*{.ts,.js}';
 
 const usernameEnv = process.env.DB_USERNAME || process.env.POSTGRES_USER;
@@ -36,8 +53,24 @@ export const dataSourceOptions: DataSourceOptions = {
   database: databaseEnv,
   synchronize: false, // Disable auto-schema creation - rely on migrations instead
   logging: process.env.NODE_ENV === 'development' ? ['query', 'error'] : ['error'], // Log queries in dev
-  entities: [entitiesPath],
-  migrations: [migrationsPath],
+  entities: [
+    User,
+    Role,
+    Organization,
+    Team,
+    TeamMember,
+    PlayerParentLink,
+    RefreshToken,
+    RolePermission,
+    Permission,
+    PasswordResetToken,
+    EmailVerificationToken
+  ],
+  migrations: [
+    V1InitBaseSchema1699999999997,
+    V2CreateUuidExtension1699999999998,
+    V3AuthAuxTables1699999999999
+  ],
   subscribers: [],
   // namingStrategy: new SnakeCaseNamingStrategy(), // Comment out custom strategy for now
   // ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false, // Optional: Enable SSL if needed

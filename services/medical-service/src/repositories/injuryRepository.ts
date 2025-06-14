@@ -15,6 +15,20 @@ interface FindInjuriesFilters {
     dateTo?: string;
 }
 
+export const findAll = async (): Promise<Injury[]> => {
+    const queryText = 'SELECT * FROM injuries ORDER BY date_occurred DESC';
+    
+    console.log('[DB Query] Finding all injuries:', queryText);
+    try {
+        const result: QueryResult<Injury> = await db.query(queryText, []);
+        console.log(`[DB Success] Found ${result.rows.length} total injuries`);
+        return result.rows;
+    } catch (error) {
+        console.error('[DB Error] Failed to find all injuries:', error);
+        throw new Error('Database error while fetching all injuries.');
+    }
+};
+
 export const findInjuries = async (filters: FindInjuriesFilters, limit: number, offset: number): Promise<Injury[]> => {
     let queryText = 'SELECT * FROM injuries';
     const queryParams: any[] = [filters.organizationId]; // Start with orgId

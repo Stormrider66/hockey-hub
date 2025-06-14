@@ -24,12 +24,17 @@ export const errorHandler: ErrorHandlerMiddleware = (
   const path = req.originalUrl || req.url;
   const timestamp = new Date().toISOString();
 
-  // Handle HttpException (our custom error class)
+  // Handle HttpException or HttpError (legacy) with statusCode property
   if (error instanceof HttpException) {
     statusCode = error.status;
     message = error.message;
     errorCode = error.code || errorCode;
     details = error.details;
+  } else if ((error as any)?.statusCode) {
+    statusCode = (error as any).statusCode;
+    message = error.message;
+    // Preserve error name as code if no specific code
+    errorCode = (error as any).code || error.name || errorCode;
   }
 
   // Convert to standardized error response
@@ -51,8 +56,17 @@ export const errorHandler: ErrorHandlerMiddleware = (
     code: errorCode,
     path,
     transactionId: reqId,
-    stack: error.stack
+    stack: error.stack,
+    errorName: error.name,
+    fullError: error
   });
+
+  // Also log to console for immediate visibility
+  console.error('=== ERROR DETAILS ===');
+  console.error('Error:', error.message);
+  console.error('Stack:', error.stack);
+  console.error('Full error object:', error);
+  console.error('===================');
 
   // Send formatted response to client
   res.status(statusCode).json(errorResponse);

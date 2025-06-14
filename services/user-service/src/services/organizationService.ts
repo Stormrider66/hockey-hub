@@ -36,13 +36,18 @@ export class OrganizationService {
             throw new ConflictError(`Organization name '${data.name}' already exists`);
         }
 
-        const newOrg = this.orgRepository.create({
-            ...data,
-            status: 'trial', // Start as trial by default
-            // createdById: createdByUserId // If schema supports
+        const organization = this.orgRepository.create({
+            name: data.name,
+            contactEmail: data.contactEmail,
+            contactPhone: data.contactPhone,
+            address: data.address,
+            city: data.city,
+            country: data.country,
+            primaryColor: data.primaryColor,
+            secondaryColor: data.secondaryColor
         });
 
-        const savedOrg = await this.orgRepository.save(newOrg);
+        const savedOrg = await this.orgRepository.save(organization);
         logger.info(`Organization created successfully with ID: ${savedOrg.id}`);
         // TODO: Consider assigning the creator as the first Club Admin?
         return savedOrg;

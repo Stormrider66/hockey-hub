@@ -10,21 +10,16 @@ import logger from '../config/logger';
 interface CreateTeamDto {
     name: string;
     organizationId: string;
-    category?: string;
-    season?: string;
-    logoUrl?: string;
-    primaryColor?: string;
     description?: string;
+    logoUrl?: string;
+    teamColor?: string;
 }
 
 interface UpdateTeamDto {
     name?: string;
-    category?: string;
-    season?: string;
-    logoUrl?: string;
-    primaryColor?: string;
     description?: string;
-    status?: 'active' | 'inactive' | 'archived';
+    logoUrl?: string;
+    teamColor?: string;
 }
 
 interface AddMemberDto {
@@ -41,9 +36,7 @@ interface ListTeamsOptions {
     limit?: number;
     search?: string;
     organizationId?: string; // Filter by specific organization
-    status?: 'active' | 'inactive' | 'archived';
-    category?: string;
-    sort?: 'name' | 'category' | 'createdAt';
+    sort?: 'name' | 'createdAt';
     order?: 'asc' | 'desc';
 }
 
@@ -79,7 +72,7 @@ export class TeamService {
 
         const newTeam = this.teamRepository.create({
             ...data,
-            status: 'active', // Default status
+            // status: 'active', // Default status - commented out if not in Team entity
             // createdById: createdByUserId // Add if schema supports tracking creator
         });
 
@@ -225,8 +218,6 @@ export class TeamService {
             limit = 20, 
             search, 
             organizationId, // Filter by specific organization
-            status, 
-            category, 
             sort = 'name', 
             order = 'asc'
         } = options;
@@ -236,19 +227,13 @@ export class TeamService {
             .leftJoinAndSelect('team.organization', 'organization'); // Join organization for potential filtering/display
 
         // Filtering
-        if (status) {
-            queryBuilder.andWhere('team.status = :status', { status });
-        }
-        if (category) {
-            queryBuilder.andWhere('team.category = :category', { category });
-        }
         if (organizationId) {
             // IMPORTANT: Ensure calling code provides correct organizationId based on user role
             queryBuilder.andWhere('team.organizationId = :organizationId', { organizationId });
         }
         if (search) {
             queryBuilder.andWhere(
-                '(team.name ILIKE :search OR team.shortName ILIKE :search OR organization.name ILIKE :search)',
+                '(team.name ILIKE :search OR organization.name ILIKE :search)',
                 { search: `%${search}%` }
             );
         }

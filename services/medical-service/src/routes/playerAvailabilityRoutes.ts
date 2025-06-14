@@ -7,12 +7,12 @@ const router: Router = Router();
 // Player availability status endpoints
 router.get(
   '/players/:playerId/availability',
-  authorize('rehab','coach','admin'),
+  authorize('medical_staff','coach','admin'),
   getAvailability
 );
 router.post(
   '/players/:playerId/availability',
-  authorize('rehab','coach','admin'),
+  authorize('medical_staff','coach','admin'),
   setAvailability
 );
 

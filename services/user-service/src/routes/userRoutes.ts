@@ -1,7 +1,10 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { validateRequest } from '../middleware/validateRequest';
 import { authenticateToken } from '../middleware/authenticateToken';
 import { authorize } from '../middleware/authorize';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - types provided by default import
+import asyncHandler from 'express-async-handler';
 import {
     listUsersSchema,
     getUserSchema,
@@ -29,6 +32,30 @@ router.get(
     authorize({ requiredPermissions: ['user:read'] }), // Requires general user read permission
     validateRequest(listUsersSchema), // Validate query params
     listUsersHandler
+);
+
+// GET /api/v1/users/me - Get current user's profile (must be before /:userId)
+router.get(
+    '/me',
+    asyncHandler(async (req: Request, res: Response): Promise<void> => {
+        console.log('=== /users/me route hit ===');
+        console.log('User:', !!req.user);
+        
+        if (!req.user) {
+            res.status(401).json({
+                error: true,
+                message: 'User not found on request after authentication',
+                code: 'AUTH_ERROR'
+            });
+            return;
+        }
+
+        const { permissions, ...userProfile } = req.user;
+        res.status(200).json({
+            success: true,
+            data: userProfile
+        });
+    })
 );
 
 // GET /api/v1/users/:userId - Get specific user

@@ -26,13 +26,13 @@ export class TeamGameStats {
     @Column({ type: 'uuid', nullable: true })
     opponentTeamId?: UUID | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     opponentName?: string | null;
 
     @Column({ type: 'timestamptz' })
     gameDate!: ISODateString;
 
-    @Column()
+    @Column({ type: 'boolean' })
     isHomeGame!: boolean;
 
     @Column({ type: 'varchar', length: 50, nullable: true })

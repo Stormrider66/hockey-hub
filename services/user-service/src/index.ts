@@ -6,21 +6,35 @@ dotenv.config();
 import 'reflect-metadata'; // Required for TypeORM
 import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
+
+// Extend Express Request interface to include requestId
+declare global {
+  namespace Express {
+    interface Request {
+      requestId?: string;
+    }
+  }
+}
 import helmet from 'helmet';
-import addRequestId from 'express-request-id'; // Import request-id middleware
+// import addRequestId from 'express-request-id'; // Import request-id middleware - removed due to ES module issues
 import apiRouter from './routes'; // Import main API router
+import jwksRouter from './routes/jwksRoute';
 import { errorHandler } from './middleware/errorHandler'; // Import error handler
 import AppDataSource from './data-source'; // Import the DataSource
 import logger from './config/logger'; // Import the logger
 import pinoHttp from 'pino-http'; // Import pino-http
 import { startOrgConsumer } from './workers/orgEventConsumer';
+import cookieParser from 'cookie-parser';
 
 const app: Application = express();
 const PORT = process.env.USER_SERVICE_PORT || 3001;
 
 // --- Middleware ---
-// Add request ID (must be early) – cast to RequestHandler to satisfy TS generics
-app.use(addRequestId() as unknown as express.RequestHandler);
+// Add request ID (must be early) - simple custom middleware to avoid ES module issues
+app.use((req, res, next) => {
+  req.requestId = Math.random().toString(36).substring(2, 15);
+  next();
+});
 
 // Setup HTTP logger middleware
 app.use(pinoHttp({
@@ -63,11 +77,15 @@ app.use(cors(corsOptions)); // Use configured CORS options
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // TODO: Add Logger middleware (using req.logger)
 
 // --- API Routes ---
 app.use('/api/v1', apiRouter); // Use the main router for API endpoints
+
+// JWKS endpoint (public)
+app.use('/.well-known/jwks.json', jwksRouter);
 
 // --- Health Check Route ---
 app.get('/health', (_req, res) => {

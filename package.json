@@ -9,7 +9,7 @@
     "shared/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --concurrency=15",
     "build": "turbo run build",
     "type-check": "tsc --noEmit",
     "test": "turbo run test",

@@ -89,7 +89,7 @@ export const updateTreatment = async (
 export const deleteTreatment = async (id: string): Promise<boolean> => {
     try {
         const result = await db.query('DELETE FROM treatments WHERE id = $1', [id]);
-        return result.rowCount > 0;
+        return (result.rowCount || 0) > 0;
     } catch (error) {
         console.error('[DB Error] Failed to delete treatment', id, error);
         throw new Error('Database error while deleting treatment.');

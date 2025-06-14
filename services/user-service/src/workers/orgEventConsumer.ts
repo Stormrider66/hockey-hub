@@ -46,10 +46,13 @@ export const handleOrgProvisioned = async (orgId: string) => {
     console.log('[User Service] Skeleton admin user created:', adminEmail);
   } else {
     // Ensure user has admin role
-    const hasRole = (adminUser.roles || []).some((r) => r.id === adminRole.id);
-    if (!hasRole) {
-      adminUser.roles = [...(adminUser.roles || []), adminRole];
-      await userRepo.save(adminUser);
+    if (adminRole) {
+      const adminRoleId = adminRole.id;
+      const hasRole = (adminUser.roles || []).some((r) => r.id === adminRoleId);
+      if (!hasRole) {
+        adminUser.roles = [...(adminUser.roles || []), adminRole];
+        await userRepo.save(adminUser);
+      }
     }
   }
 

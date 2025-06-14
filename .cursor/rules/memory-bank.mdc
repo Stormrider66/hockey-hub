@@ -162,6 +162,20 @@ flowchart TD
 - Evolution of project decisions
 - Tool usage patterns
 
+
+alos, i use PowerShell that uses ; instead of &&, and we need to navigate to directories properly before running a command.
+
+## 💡 Quick exemple Start Commands
+
+```bash
+# Terminal 1: Ensure Medical Service is running
+cd services/medical-service
+pnpm dev
+
+# Terminal 2: Start frontend
+cd apps/frontend
+pnpm dev
+
 The format is flexible - focus on capturing valuable insights that help me work more effectively with you and the project. Think of .cursorrules as a living document that grows smarter as we work together.
 
 REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.

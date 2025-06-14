@@ -353,9 +353,7 @@ interface ProcessedListTeamsQuery {
     limit: number;
     search?: string;
     organizationId?: string;
-    status?: 'active' | 'inactive' | 'archived';
-    category?: string;
-    sort: 'name' | 'category' | 'createdAt';
+    sort: 'name' | 'createdAt';
     order: 'asc' | 'desc';
 }
 

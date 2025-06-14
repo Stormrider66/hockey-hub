@@ -1,99 +1,176 @@
 import express, { Request, Response } from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
 import cors from 'cors';
 import helmet from 'helmet';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { authenticate } from './middleware/authMiddleware';
+import fetch from 'node-fetch';
+
+// Helper to build proxy with common settings
+function buildProxy(target: string, stripPrefix: string = '') {
+  const config: Record<string, any> = {
+    target,
+    changeOrigin: true,
+    logLevel: 'debug',
+    timeout: 10000, // 10 second timeout
+    onProxyReq: (proxyReq: any, req: any, _res: any) => {
+      // Forward cookies and other headers
+      if (req.headers.cookie) {
+        proxyReq.setHeader('Cookie', req.headers.cookie);
+      }
+      
+      // Forward Authorization header if present
+      if (req.headers.authorization) {
+        proxyReq.setHeader('Authorization', req.headers.authorization);
+      }
+      
+      // If no Authorization header but we have a validated user, add it
+      if (!req.headers.authorization && req.user && req.headers.cookie) {
+        // Extract access token from cookies and add as Bearer token
+        const cookies = req.headers.cookie.split(';').reduce((acc: any, cookie: string) => {
+          const [key, value] = cookie.trim().split('=');
+          acc[key] = value;
+          return acc;
+        }, {});
+        
+        if (cookies.accessToken) {
+          proxyReq.setHeader('Authorization', `Bearer ${cookies.accessToken}`);
+        }
+      }
+    },
+    onProxyRes: (proxyRes: any, _req: any, res: any) => {
+      // Forward Set-Cookie headers back to client
+      if (proxyRes.headers['set-cookie']) {
+        res.setHeader('Set-Cookie', proxyRes.headers['set-cookie']);
+      }
+    },
+    onError: (err: any, req: any, res: any) => {
+      console.error(`[API Gateway] Proxy error for ${req.url}:`, err.message);
+      res.status(502).json({ error: 'Service temporarily unavailable' });
+    },
+  };
+  
+  // Only add pathRewrite if stripPrefix is provided and not empty
+  if (stripPrefix) {
+    config.pathRewrite = { [stripPrefix]: '' };
+  }
+  
+  return createProxyMiddleware(config);
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Basic Middleware
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+  origin: ['http://localhost:3002', 'http://localhost:3000'], // Frontend and any other allowed origins
+  credentials: true, // Allow credentials (cookies, authorization headers)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Accept-Language'],
+})); // Enable CORS for all routes
 app.use(helmet()); // Adds various security headers
 app.use(express.json()); // Parses incoming JSON requests
 
-// --- Service Routes --- //
-
-// Simple health check endpoint
+// --- Health Check ---
 app.get('/api/gateway/health', (_req: Request, res: Response) => {
   res.status(200).json({ status: 'API Gateway is running' });
 });
 
-// Proxy requests to User Service (running on port 3001)
-app.use('/api/users', createProxyMiddleware({
-  target: 'http://localhost:3001', // Target service URL
-  changeOrigin: true, // Recommended for virtual hosted sites
-  pathRewrite: {
-    '^/api/users': '', // Remove '/api/users' prefix when forwarding
-  },
-  onProxyReq: (_proxyReq, req: Request, _res: Response) => {
-    console.log(`[API Gateway] Proxying request to User Service: ${req.method} ${req.originalUrl}`);
-    // You can add custom headers here if needed
-    // proxyReq.setHeader('X-Special-Proxy-Header', 'foobar');
-  },
-  onError: (err: Error, _req: Request, res: Response) => {
-    console.error('[API Gateway] Proxy error:', err);
-    if (!res.headersSent) {
-        res.status(500).json({ error: 'Proxy error', details: err.message });
-    }
+// --- Public Auth Routes (no JWT needed) ---
+console.log('[API Gateway] Setting up auth proxy to http://127.0.0.1:3001');
+app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
+  console.log(`[API Gateway] Manual proxy: ${req.method} ${req.url}`);
+  console.log(`[API Gateway] Headers:`, req.headers);
+  
+  // Handle preflight OPTIONS requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
   }
-}));
-
-// Proxy requests to Calendar Service (running on port 3003)
-app.use('/api/calendar', createProxyMiddleware({
-  target: 'http://localhost:3003',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api/calendar': '', // Remove '/api/calendar' prefix when forwarding
-  },
-  onProxyReq: (_proxyReq, req: Request, _res: Response) => {
-    console.log(`[API Gateway] Proxying request to Calendar Service: ${req.method} ${req.originalUrl}`);
-  },
-  onError: (err: Error, _req: Request, res: Response) => {
-    console.error('[API Gateway] Calendar Service Proxy error:', err);
-    if (!res.headersSent) {
-        res.status(500).json({ error: 'Calendar Service Proxy error', details: err.message });
-    }
+  
+  try {
+    const targetUrl = `http://127.0.0.1:3001${req.url}`;
+    console.log(`[API Gateway] Forwarding to: ${targetUrl}`);
+    
+    // Forward all headers including cookies
+    const forwardHeaders: Record<string, any> = {};
+    Object.keys(req.headers).forEach(key => {
+      if (key !== 'host') { // Don't forward host header
+        forwardHeaders[key] = req.headers[key];
+      }
+    });
+    
+    const response = await fetch(targetUrl, {
+      method: req.method,
+      headers: forwardHeaders,
+      body: req.method !== 'GET' && req.body ? JSON.stringify(req.body) : undefined,
+    });
+    
+    console.log(`[API Gateway] User Service responded with ${response.status}`);
+    
+    // Forward response status
+    res.status(response.status);
+    
+    // Forward all response headers including Set-Cookie
+    response.headers.forEach((value, key) => {
+      console.log(`[API Gateway] Forwarding header: ${key} = ${value}`);
+      if (key.toLowerCase() === 'set-cookie') {
+        // Handle Set-Cookie specially to preserve multiple values
+        const setCookieValues = response.headers.raw()['set-cookie'];
+        if (setCookieValues) {
+          res.setHeader('Set-Cookie', setCookieValues);
+          console.log(`[API Gateway] Set-Cookie forwarded:`, setCookieValues);
+        }
+      } else {
+        res.setHeader(key, value);
+      }
+    });
+    
+    const data = await response.text();
+    console.log(`[API Gateway] Response data length: ${data.length}`);
+    res.send(data);
+    
+  } catch (error) {
+    console.error(`[API Gateway] Manual proxy error:`, error);
+    res.status(502).json({ error: 'Service temporarily unavailable', service: 'user-service' });
   }
-}));
+});
 
-// Proxy requests to Training Service (running on port 3004)
-app.use('/api/v1/training', createProxyMiddleware({
-  target: 'http://localhost:3004',
-  changeOrigin: true,
-  onProxyReq: (_proxyReq, req, _res) => {
-    console.log(`[API Gateway] Proxying request to Training Service: ${req.method} ${req.originalUrl}`);
-  },
-  onError: (err: Error, _req: Request, res: Response) => {
-    console.error('[API Gateway] Training Service Proxy error:', err);
-    if (!res.headersSent) {
-        res.status(500).json({ error: 'Training Service Proxy error', details: err.message });
-    }
-  }
-}));
+// --- Authentication Middleware (protects everything below) ---
+app.use('/api', authenticate);
 
-// Proxy requests to User Service (running on port 3001)
-app.use('/api/v1/users', createProxyMiddleware({
-  target: 'http://localhost:3001',
-  changeOrigin: true,
-  pathRewrite: {
-    '^/api/v1/users': '', // strip prefix when forwarding to user-service
-  },
-  onProxyReq: (_proxyReq, req: Request, _res: Response) => {
-    console.log(`[API Gateway] Proxying request to User Service: ${req.method} ${req.originalUrl}`);
-  },
-  onError: (err: Error, _req: Request, res: Response) => {
-    console.error('[API Gateway] User Service Proxy error:', err);
-    if (!res.headersSent) {
-      res.status(500).json({ error: 'User Service Proxy error', details: err.message });
-    }
-  },
-}));
+// --- Protected Proxies ---
+// User Service (general)
+app.use('/api/v1/users', buildProxy('http://127.0.0.1:3001'));
 
-// Add proxies for other services here as they are created
-// app.use('/api/calendar', createProxyMiddleware({ target: 'http://localhost:3003', changeOrigin: true }));
-// ... etc
+// Calendar Service
+app.use('/api/v1/calendar', buildProxy('http://127.0.0.1:3003'));
 
-// Catch-all for unhandled routes (optional)
+// Training Service
+app.use('/api/v1/training', buildProxy('http://127.0.0.1:3004'));
+
+// Communication Service
+app.use('/api/v1/communication', buildProxy('http://127.0.0.1:3020'));
+
+// Medical Service
+app.use('/api/v1/medical', buildProxy('http://127.0.0.1:3005'));
+
+// Planning Service
+app.use('/api/v1/planning', buildProxy('http://127.0.0.1:3006'));
+
+// Statistics Service
+app.use('/api/v1/statistics', buildProxy('http://127.0.0.1:3007'));
+
+// Payment Service
+app.use('/api/v1/payment', buildProxy('http://127.0.0.1:3008'));
+
+// Admin Service
+app.use('/api/v1/admin', buildProxy('http://127.0.0.1:3009'));
+
+// Add more service proxies here following the same pattern...
+
+// Catch-all 404
 app.use('*', (_req: Request, res: Response) => {
   res.status(404).json({ error: 'Not Found in API Gateway' });
 });

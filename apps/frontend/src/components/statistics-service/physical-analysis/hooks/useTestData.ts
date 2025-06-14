@@ -162,10 +162,10 @@ export function useTestData(teamId?: string): UseTestDataReturn {
         
         // For now, use mock data
         setTeamData(mockTeamData);
-        setTestBatches(mockTestBatches);
-        
-        // Calculate team statistics
-        const stats: TeamStatistics = {
+          setTestBatches(mockTestBatches);
+          
+          // Calculate team statistics
+          const stats: TeamStatistics = {
           teamId: teamId || 'team1',
           averages: calculateTeamAverages(mockTeamData),
           improvements: {

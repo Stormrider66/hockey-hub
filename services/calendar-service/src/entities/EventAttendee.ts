@@ -1,8 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, Index } from 'typeorm';
 import { Event } from './Event';
 // Removed direct import of User entity from another service
-import { AttendeeStatus as AttendeeStatusEnum } from '@hockey-hub/types';
 import { UUID, ISODateString } from '@hockey-hub/types';
+
+export enum AttendeeStatus {
+    INVITED = 'invited',
+    ATTENDING = 'attending',
+    ABSENT = 'absent',
+    MAYBE = 'maybe'
+}
 
 @Entity('event_attendees')
 @Index(['eventId', 'userId'], { unique: true }) // Ensure user isn't added twice to same event
@@ -18,10 +24,10 @@ export class EventAttendee {
 
     @Column({
         type: 'enum',
-        enum: AttendeeStatusEnum,
-        default: AttendeeStatusEnum.INVITED
+        enum: AttendeeStatus,
+        default: AttendeeStatus.INVITED
     })
-    status!: AttendeeStatusEnum;
+    status!: AttendeeStatus;
 
     @Column({ type: 'text', nullable: true })
     reasonForAbsence?: string | null;

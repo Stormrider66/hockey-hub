@@ -40,6 +40,14 @@ function validate<T extends z.ZodTypeAny>(schema: T) {
   };
 }
 
+// Determine prod mode for secure cookies
+const isProd = process.env.NODE_ENV === 'production';
+const cookieOptions = {
+  httpOnly: true,
+  secure: isProd,
+  sameSite: isProd ? 'strict' as const : 'lax' as const,
+};
+
 // --- Authentication Routes --- //
 
 // POST /api/v1/auth/register
@@ -57,24 +65,86 @@ router.post(
   '/login',
   validate(loginSchemaZod),
   asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    console.log('=== LOGIN ROUTE HIT ===');
+    console.log('Request body:', req.body);
+    
     const result = await authService.login(req.body);
-    res.json({ success: true, data: result });
+
+    // Set cookies
+    const accessExpiryMs = 1000 * 60 * 15; // 15m default; keep synced with ACCESS_TOKEN_EXPIRY
+    const refreshExpiryMs = 1000 * 60 * 60 * 24 * 7; // 7d default
+
+    res.cookie('accessToken', result.accessToken, {
+      ...cookieOptions,
+      maxAge: accessExpiryMs,
+    });
+    res.cookie('refreshToken', result.refreshToken, {
+      ...cookieOptions,
+      maxAge: refreshExpiryMs,
+      path: '/api/v1/auth', // limit to auth endpoints
+    });
+
+    res.json({ 
+      success: true, 
+      data: { 
+        accessToken: result.accessToken,
+        refreshToken: result.refreshToken,
+        user: result.user 
+      } 
+    });
   })
 );
 
+// POST /api/v1/auth/test - Test route without asyncHandler
+router.post('/test', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    console.log('=== TEST ROUTE HIT ===');
+    console.log('Body:', req.body);
+    res.json({ success: true, message: 'Test route works', body: req.body });
+  } catch (error) {
+    console.error('Test route error:', error);
+    next(error);
+  }
+});
+
 // POST /api/v1/auth/refresh-token
-// No specific Zod schema needed here as we just check for req.body.refreshToken in the controller
-router.post('/refresh-token', validate(refreshSchema), asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  const tokens = await authService.refreshToken(req.body.refreshToken);
-  res.json({ success: true, data: tokens });
-}));
+router.post(
+  '/refresh-token',
+  asyncHandler(async (req: Request, res: Response) => {
+    const tokenFromCookie = req.cookies?.refreshToken;
+    const token = tokenFromCookie || req.body?.refreshToken;
+    if (!token) {
+      res.status(400).json({ error: true, message: 'Refresh token missing', code: 'REFRESH_TOKEN_REQUIRED' });
+      return;
+    }
+
+    const tokens = await authService.refreshToken(token);
+
+    // Rotate cookies
+    const accessExpiryMs = 1000 * 60 * 15;
+    const refreshExpiryMs = 1000 * 60 * 60 * 24 * 7;
+
+    res.cookie('accessToken', tokens.accessToken, { ...cookieOptions, maxAge: accessExpiryMs });
+    res.cookie('refreshToken', tokens.refreshToken, { ...cookieOptions, maxAge: refreshExpiryMs, path: '/api/v1/auth' });
+
+    res.json({ success: true });
+  })
+);
 
 // POST /api/v1/auth/logout
-// No specific Zod schema needed here as we just check for req.body.refreshToken in the controller
-router.post('/logout', validate(refreshSchema), asyncHandler(async (req: Request, res: Response): Promise<void> => {
-  await authService.logout(req.body.refreshToken);
-  res.json({ success: true, message: 'Successfully logged out' });
-}));
+router.post(
+  '/logout',
+  asyncHandler(async (req: Request, res: Response) => {
+    const token = req.cookies?.refreshToken || req.body?.refreshToken;
+    if (token) {
+      await authService.logout(token);
+    }
+    // Clear cookies
+    res.clearCookie('accessToken', { ...cookieOptions });
+    res.clearCookie('refreshToken', { ...cookieOptions, path: '/api/v1/auth' });
+    res.json({ success: true, message: 'Successfully logged out' });
+  })
+);
 
 // POST /api/v1/auth/forgot-password
 router.post(
@@ -113,24 +183,48 @@ interface SuccessResponse {
 // GET /api/v1/auth/me - Get current authenticated user's profile
 router.get(
   '/me',
+  (req, res, next) => {
+    console.log('=== /auth/me route hit ===');
+    console.log('Method:', req.method);
+    console.log('User on request:', !!req.user);
+    console.log('Headers:', Object.keys(req.headers));
+    next();
+  },
   authenticateToken,
+  (req, res, next) => {
+    console.log('=== After authenticateToken ===');
+    console.log('User authenticated:', !!req.user);
+    if (req.user) {
+      console.log('User roles:', req.user.roles);
+    }
+    next();
+  },
   // Example RBAC usage: allow any authenticated role listed below
-  checkRole('admin', 'club_admin', 'coach', 'player', 'parent', 'staff'),
-  async (req: Request, res: Response<SuccessResponse | ErrorResponse>) => {
+  checkRole('admin', 'club_admin', 'coach', 'player', 'parent', 'staff', 'medical_staff', 'physical_trainer', 'equipment_manager'),
+  (req, res, next) => {
+    console.log('=== After checkRole ===');
+    console.log('About to enter async handler');
+    next();
+  },
+  asyncHandler(async (req: Request, res: Response<SuccessResponse | ErrorResponse>): Promise<void> => {
+    console.log('=== Inside async handler ===');
     if (!req.user) {
-      return res.status(401).json({
+      console.log('ERROR: User not found after authentication');
+      res.status(401).json({
         error: true,
         message: 'User not found on request after authentication',
         code: 'AUTH_ERROR'
       });
+      return;
     }
 
+    console.log('SUCCESS: Returning user profile');
     const { permissions, ...userProfile } = req.user;
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       data: userProfile
     });
-  }
+  })
 );
 
 export default router; 

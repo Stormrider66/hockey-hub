@@ -15,7 +15,7 @@ export class InvoiceItem {
     @JoinColumn({ name: 'invoiceId' })
     invoice!: Invoice;
 
-    @Column()
+    @Column({ type: 'varchar' })
     description!: string;
 
     @Column({ type: 'integer' })
@@ -30,10 +30,10 @@ export class InvoiceItem {
     @Column({ type: 'enum', enum: CurrencyCodeEnum })
     currency!: CurrencyCodeEnum;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     productId?: string | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     subscriptionItemId?: string | null;
 
     @CreateDateColumn({ type: 'timestamptz' })

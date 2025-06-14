@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import {
   Stethoscope, Calendar, Activity, Bell, Plus, FileText,
@@ -37,10 +38,20 @@ import {
   BarChart,
   Bar,
 } from "recharts";
-import { useGetMedicalOverviewQuery } from "@/store/api/medicalApi";
+import { useMedicalData } from "./hooks/useMedicalData";
+import { MedicalDocumentUpload } from "./components/MedicalDocumentUpload";
+import { PlayerAvailabilityManager } from "./components/PlayerAvailabilityManager";
+import { TreatmentManager } from "./components/TreatmentManager";
+import { ProtocolBuilder } from "./components/ProtocolBuilder";
+import { RecoveryManagement } from "./components/RecoveryManagement";
+import { TreatmentManagement } from "./components/TreatmentManagement";
+import { InjuryRegistrationForm } from "./components/InjuryRegistrationForm";
+import { TreatmentForm } from "./components/TreatmentForm";
+import { InjuryDetailModal } from "./components/InjuryDetailModal";
+import { useGetMedicalDocumentsQuery, useGetDocumentSignedUrlQuery } from "../../store/api/medicalApi";
 
-// Mock data for comprehensive dashboard
-const mockInjuries = [
+// Note: Mock data moved to useMedicalData hook for progressive integration
+const legacyMockInjuries = [
   {
     id: 1,
     player: "Erik Andersson",
@@ -107,44 +118,69 @@ const mockInjuries = [
   }
 ];
 
-const todaysTreatments = [
-  { id: 1, time: "09:00", player: "Marcus Lindberg", type: "Physiotherapy", location: "Treatment Room", duration: 45 },
-  { id: 2, time: "10:00", player: "Erik Andersson", type: "Post-Op Assessment", location: "Medical Office", duration: 30 },
-  { id: 3, time: "11:30", player: "Viktor Nilsson", type: "Cognitive Testing", location: "Testing Room", duration: 60 },
-  { id: 4, time: "14:00", player: "Johan Bergström", type: "Return to Play Test", location: "Training Field", duration: 90 },
-  { id: 5, time: "16:00", player: "Anders Johansson", type: "Preventive Care", location: "Treatment Room", duration: 30 }
-];
-
-const playerAvailability = {
-  full: 18,
-  limited: 3,
-  individual: 2,
-  rehab: 4,
-  unavailable: 2
-};
-
-const recoveryTrends = [
-  { week: 'W1', injuries: 8, recovered: 2 },
-  { week: 'W2', injuries: 6, recovered: 3 },
-  { week: 'W3', injuries: 7, recovered: 4 },
-  { week: 'W4', injuries: 5, recovered: 5 },
-  { week: 'W5', injuries: 4, recovered: 3 },
-  { week: 'W6', injuries: 4, recovered: 2 }
-];
-
-const injuryByType = [
-  { type: 'Muscle', count: 12, percentage: 35 },
-  { type: 'Joint', count: 8, percentage: 23 },
-  { type: 'Ligament', count: 6, percentage: 18 },
-  { type: 'Bone', count: 4, percentage: 12 },
-  { type: 'Concussion', count: 3, percentage: 9 },
-  { type: 'Other', count: 1, percentage: 3 }
-];
-
 export default function MedicalStaffDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
-  const [selectedInjury, setSelectedInjury] = useState(null);
-  const { data: apiData, isLoading } = useGetMedicalOverviewQuery("senior");
+  const [selectedInjury, setSelectedInjury] = useState<any>(null);
+  const [showDocumentUpload, setShowDocumentUpload] = useState(false);
+  const [showAvailabilityManager, setShowAvailabilityManager] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState<{ id: string; name: string } | null>(null);
+  const [showProtocolBuilder, setShowProtocolBuilder] = useState(false);
+  const [showInjuryRegistration, setShowInjuryRegistration] = useState(false);
+  const [showTreatmentForm, setShowTreatmentForm] = useState(false);
+  const [selectedInjuryDetail, setSelectedInjuryDetail] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [severityFilter, setSeverityFilter] = useState("all");
+  const { data: medicalData, isLoading, error, isBackendIntegrated } = useMedicalData("senior");
+
+  // Use integrated data or fallback to legacy mock data
+  const mockInjuries = medicalData?.injuries || legacyMockInjuries;
+  
+  // Filter injuries based on search and filters
+  const filteredInjuries = mockInjuries.filter(injury => {
+    const matchesSearch = searchQuery === "" || 
+      injury.player.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      injury.injury.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      injury.bodyPart.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesStatus = statusFilter === "all" || injury.status === statusFilter;
+    const matchesSeverity = severityFilter === "all" || injury.severity === severityFilter;
+    
+    return matchesSearch && matchesStatus && matchesSeverity;
+  });
+  const todaysTreatments = medicalData?.treatments || [
+    { id: 1, time: "09:00", player: "Marcus Lindberg", type: "Physiotherapy", location: "Treatment Room", duration: 45 },
+    { id: 2, time: "10:00", player: "Erik Andersson", type: "Post-Op Assessment", location: "Medical Office", duration: 30 },
+    { id: 3, time: "11:30", player: "Viktor Nilsson", type: "Cognitive Testing", location: "Testing Room", duration: 60 },
+    { id: 4, time: "14:00", player: "Johan Bergström", type: "Return to Play Test", location: "Training Field", duration: 90 },
+    { id: 5, time: "16:00", player: "Anders Johansson", type: "Preventive Care", location: "Treatment Room", duration: 30 }
+  ];
+  const playerAvailability = medicalData?.playerAvailability || {
+    full: 18,
+    limited: 3,
+    individual: 2,
+    rehab: 4,
+    unavailable: 2
+  };
+
+  // Use integrated data or fallback to default values
+  const recoveryTrends = medicalData?.recoveryTrends || [
+    { week: 'W1', injuries: 8, recovered: 2 },
+    { week: 'W2', injuries: 6, recovered: 3 },
+    { week: 'W3', injuries: 7, recovered: 4 },
+    { week: 'W4', injuries: 5, recovered: 5 },
+    { week: 'W5', injuries: 4, recovered: 3 },
+    { week: 'W6', injuries: 4, recovered: 2 }
+  ];
+
+  const injuryByType = medicalData?.injuryByType || [
+    { type: 'Muscle', count: 12, percentage: 35 },
+    { type: 'Joint', count: 8, percentage: 23 },
+    { type: 'Ligament', count: 6, percentage: 18 },
+    { type: 'Bone', count: 4, percentage: 12 },
+    { type: 'Concussion', count: 3, percentage: 9 },
+    { type: 'Other', count: 1, percentage: 3 }
+  ];
 
   // Status color mapping
   const getStatusColor = (status: string) => {
@@ -237,17 +273,17 @@ export default function MedicalStaffDashboard() {
 
       <div className="grid grid-cols-2 gap-6">
         {/* Today's Treatment Schedule */}
-        <Card>
+            <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
               <CardTitle>Today's Treatment Schedule</CardTitle>
-              <Button size="sm">
+              <Button size="sm" onClick={() => setShowTreatmentForm(true)}>
                 <Plus className="h-4 w-4 mr-1" />
                 Add Treatment
               </Button>
             </div>
-          </CardHeader>
-          <CardContent>
+              </CardHeader>
+              <CardContent>
             <div className="space-y-3">
               {todaysTreatments.slice(0, 4).map(treatment => (
                 <div key={treatment.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-accent/50 transition-colors">
@@ -269,22 +305,22 @@ export default function MedicalStaffDashboard() {
                     <Button size="sm" variant="ghost">
                       <ChevronRight className="h-4 w-4" />
                     </Button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
 
         {/* Player Availability Chart */}
-        <Card>
+            <Card>
           <CardHeader>
             <CardTitle>Player Availability Status</CardTitle>
-          </CardHeader>
+              </CardHeader>
           <CardContent>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
                   <Pie 
                     data={pieData} 
                     dataKey="value" 
@@ -296,11 +332,11 @@ export default function MedicalStaffDashboard() {
                   >
                     {pieData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
+                      ))}
+                    </Pie>
                   <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+                  </PieChart>
+                </ResponsiveContainer>
             </div>
             <div className="grid grid-cols-2 gap-2 mt-4">
               {pieData.map(item => (
@@ -365,11 +401,31 @@ export default function MedicalStaffDashboard() {
               <CardDescription>Track and manage all player injuries</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm">
-                <Filter className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
-              <Button size="sm">
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="acute">Acute</SelectItem>
+                  <SelectItem value="assessment">Assessment</SelectItem>
+                  <SelectItem value="rehab">Rehabilitation</SelectItem>
+                  <SelectItem value="rtp">Return to Play</SelectItem>
+                </SelectContent>
+              </Select>
+              
+              <Select value={severityFilter} onValueChange={setSeverityFilter}>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Severity" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Severity</SelectItem>
+                  <SelectItem value="mild">Mild</SelectItem>
+                  <SelectItem value="moderate">Moderate</SelectItem>
+                  <SelectItem value="severe">Severe</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button size="sm" onClick={() => setShowInjuryRegistration(true)}>
                 <Plus className="h-4 w-4 mr-2" />
                 Register New Injury
               </Button>
@@ -383,12 +439,26 @@ export default function MedicalStaffDashboard() {
               <Input 
                 placeholder="Search by player name or injury type..." 
                 className="pl-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
 
           <div className="space-y-3">
-            {mockInjuries.map(injury => (
+            {filteredInjuries.length === 0 && (
+              <div className="text-center py-8 text-muted-foreground">
+                <p>No injuries match your search criteria.</p>
+                <Button variant="link" onClick={() => {
+                  setSearchQuery("");
+                  setStatusFilter("all");
+                  setSeverityFilter("all");
+                }}>
+                  Clear filters
+                </Button>
+              </div>
+            )}
+            {filteredInjuries.map(injury => (
               <Card key={injury.id} className="hover:bg-accent/50 transition-colors cursor-pointer">
                 <CardContent className="pt-6">
                   <div className="flex items-start justify-between">
@@ -433,7 +503,12 @@ export default function MedicalStaffDashboard() {
                         </div>
                         <Progress value={injury.progress} className="h-2 w-32" />
                       </div>
-                      <Button size="sm" variant="outline" className="mt-3">
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="mt-3"
+                        onClick={() => setSelectedInjuryDetail(injury)}
+                      >
                         View Details
                       </Button>
                     </div>
@@ -448,244 +523,28 @@ export default function MedicalStaffDashboard() {
   );
 
   const renderTreatmentPlansTab = () => (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Treatment Plans & Protocols</CardTitle>
-              <CardDescription>Manage treatment plans and rehabilitation protocols</CardDescription>
-            </div>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Create Treatment Plan
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 gap-6">
-            {mockInjuries.filter(inj => inj.status === 'rehab' || inj.status === 'acute').map(injury => (
-              <Card key={injury.id}>
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-lg">{injury.player}</CardTitle>
-                      <CardDescription>{injury.injury}</CardDescription>
-                    </div>
-                    {getSeverityBadge(injury.severity)}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between text-sm mb-1">
-                        <span>Treatment Progress</span>
-                        <span>Phase {injury.phase}/{injury.totalPhases}</span>
-                      </div>
-                      <Progress value={injury.progress} className="h-2" />
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-sm font-semibold">Current Phase Goals:</h4>
-                      <ul className="text-sm space-y-1">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                          <span>Reduce inflammation and pain</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Clock className="h-4 w-4 text-amber-600 mt-0.5" />
-                          <span>Restore range of motion to 80%</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Clock className="h-4 w-4 text-amber-600 mt-0.5" />
-                          <span>Begin light strengthening exercises</span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="flex-1">
-                        <Clipboard className="h-4 w-4 mr-2" />
-                        Log Treatment
-                      </Button>
-                      <Button size="sm" className="flex-1">
-                        <FileText className="h-4 w-4 mr-2" />
-                        View Full Plan
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Treatment Templates */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Treatment Protocol Templates</CardTitle>
-          <CardDescription>Common treatment protocols for quick application</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { name: "ACL Rehabilitation Protocol", duration: "6-9 months", phases: 5, usage: 12 },
-              { name: "Hamstring Strain Recovery", duration: "3-6 weeks", phases: 4, usage: 28 },
-              { name: "Concussion Return-to-Play", duration: "Variable", phases: 6, usage: 8 },
-              { name: "Ankle Sprain Protocol", duration: "2-4 weeks", phases: 3, usage: 35 },
-              { name: "Shoulder Impingement", duration: "4-8 weeks", phases: 4, usage: 15 },
-              { name: "Lower Back Pain Management", duration: "4-6 weeks", phases: 3, usage: 22 }
-            ].map(template => (
-              <Card key={template.name} className="hover:bg-accent/50 transition-colors cursor-pointer">
-                <CardContent className="pt-6">
-                  <h4 className="font-medium mb-2">{template.name}</h4>
-                  <div className="space-y-1 text-sm text-muted-foreground">
-                    <p>Duration: {template.duration}</p>
-                    <p>Phases: {template.phases}</p>
-                    <p>Used {template.usage} times</p>
-                  </div>
-                  <Button size="sm" variant="outline" className="w-full mt-3">
-                    Apply Template
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <TreatmentManager isLoading={isLoading} />
   );
 
-  const renderRehabilitationTab = () => (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Active Rehabilitation Programs</CardTitle>
-          <CardDescription>Monitor and update ongoing rehabilitation progress</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {mockInjuries.filter(inj => inj.status === 'rehab').map(injury => (
-              <Card key={injury.id}>
-                <CardContent className="pt-6">
-                  <div className="grid grid-cols-3 gap-6">
-                    <div>
-                      <h3 className="font-semibold text-lg mb-1">{injury.player}</h3>
-                      <p className="text-sm text-muted-foreground">{injury.injury}</p>
-                      <div className="flex items-center gap-2 mt-3">
-                        {getSeverityBadge(injury.severity)}
-                        <span className="text-sm">• Started {injury.dateOccurred}</span>
-                      </div>
-                    </div>
 
-                    <div className="space-y-3">
-                      <div>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>Overall Progress</span>
-                          <span>{injury.progress}%</span>
-                        </div>
-                        <Progress value={injury.progress} className="h-2" />
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <p className="text-muted-foreground">Current Phase</p>
-                          <p className="font-medium">Phase {injury.phase}: Strengthening</p>
-                        </div>
-                        <div>
-                          <p className="text-muted-foreground">ETR</p>
-                          <p className="font-medium">{injury.estimatedReturn}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-semibold">Today's Activities</h4>
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2 text-sm">
-                            <CheckCircle className="h-4 w-4 text-green-600" />
-                            <span>Morning physiotherapy session</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm">
-                            <Clock className="h-4 w-4 text-amber-600" />
-                            <span>Afternoon strength training (14:00)</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-sm">
-                            <Clock className="h-4 w-4 text-gray-400" />
-                            <span>Evening recovery session</span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="outline">
-                          <MessageSquare className="h-4 w-4 mr-1" />
-                          Add Note
-                        </Button>
-                        <Button size="sm">
-                          Update Progress
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Return to Play Assessments */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Return to Play Assessments</CardTitle>
-          <CardDescription>Players ready for or undergoing RTP evaluation</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {mockInjuries.filter(inj => inj.status === 'rtp' || inj.progress > 80).map(injury => (
-              <div key={injury.id} className="flex items-center justify-between p-4 border rounded-lg bg-green-50">
-                <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <Target className="h-5 w-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium">{injury.player}</p>
-                    <p className="text-sm text-muted-foreground">{injury.injury} • {injury.progress}% complete</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="text-right">
-                    <p className="text-sm font-medium">RTP Status</p>
-                    <p className="text-xs text-muted-foreground">Final testing phase</p>
-                  </div>
-                  <Button size="sm">
-                    Start Assessment
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
 
   const renderMedicalRecordsTab = () => (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
+          <Card>
+            <CardHeader>
           <div className="flex justify-between items-center">
             <div>
               <CardTitle>Player Medical Records</CardTitle>
               <CardDescription>Comprehensive medical history and documentation</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => setShowDocumentUpload(true)}
+              >
                 <Upload className="h-4 w-4 mr-2" />
-                Import Records
+                Upload Document
               </Button>
               <Button size="sm">
                 <Plus className="h-4 w-4 mr-2" />
@@ -693,7 +552,7 @@ export default function MedicalStaffDashboard() {
               </Button>
             </div>
           </div>
-        </CardHeader>
+            </CardHeader>
         <CardContent>
           <div className="mb-4">
             <Input 
@@ -734,25 +593,38 @@ export default function MedicalStaffDashboard() {
                         <p className="text-muted-foreground">Conditions</p>
                         <p className="font-medium truncate">{record.conditions.join(', ')}</p>
                       </div>
-                      <Button size="sm" variant="outline">
-                        <FileText className="h-4 w-4 mr-2" />
-                        View Records
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => {
+                            setSelectedPlayer({ id: record.player.toLowerCase().replace(' ', '_'), name: record.player });
+                            setShowAvailabilityManager(true);
+                          }}
+                        >
+                          <Activity className="h-4 w-4 mr-2" />
+                          Availability
+                        </Button>
+                        <Button size="sm" variant="outline">
+                          <FileText className="h-4 w-4 mr-2" />
+                          View Records
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+                ))}
           </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
 
       {/* Medical Documents */}
-      <Card>
-        <CardHeader>
+          <Card>
+            <CardHeader>
           <CardTitle>Recent Medical Documents</CardTitle>
           <CardDescription>Scans, reports, and medical documentation</CardDescription>
-        </CardHeader>
+            </CardHeader>
         <CardContent>
           <div className="space-y-2">
             {[
@@ -929,8 +801,8 @@ export default function MedicalStaffDashboard() {
               </Card>
             ))}
           </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
     </div>
   );
 
@@ -941,7 +813,12 @@ export default function MedicalStaffDashboard() {
           <h1 className="text-3xl font-bold tracking-tight">Medical Dashboard</h1>
           <p className="text-muted-foreground">Manage injuries, treatments, and player health</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <Badge variant={isBackendIntegrated ? "default" : "secondary"}>
+            {isBackendIntegrated ? "🔗 Backend Connected" : "📋 Demo Mode"}
+          </Badge>
+          {isLoading && <Badge variant="outline">Loading...</Badge>}
+          {error && <Badge variant="destructive">Connection Error</Badge>}
           <Button variant="outline" size="sm">
             <Bell className="h-4 w-4 mr-2" />
             Notifications
@@ -966,11 +843,11 @@ export default function MedicalStaffDashboard() {
           </TabsTrigger>
           <TabsTrigger value="treatment" className="flex items-center gap-2">
             <Heart className="h-4 w-4" />
-            Treatment Plans
+            Treatment Management
           </TabsTrigger>
           <TabsTrigger value="rehab" className="flex items-center gap-2">
             <Zap className="h-4 w-4" />
-            Rehabilitation
+            Recovery Management
           </TabsTrigger>
           <TabsTrigger value="records" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
@@ -991,11 +868,11 @@ export default function MedicalStaffDashboard() {
         </TabsContent>
 
         <TabsContent value="treatment" className="mt-6">
-          {renderTreatmentPlansTab()}
+          <TreatmentManagement />
         </TabsContent>
 
         <TabsContent value="rehab" className="mt-6">
-          {renderRehabilitationTab()}
+          <RecoveryManagement />
         </TabsContent>
 
         <TabsContent value="records" className="mt-6">
@@ -1006,6 +883,65 @@ export default function MedicalStaffDashboard() {
           {renderReportsTab()}
         </TabsContent>
       </Tabs>
+
+      {/* Modal Dialogs */}
+      <MedicalDocumentUpload
+        isOpen={showDocumentUpload}
+        onClose={() => setShowDocumentUpload(false)}
+      />
+
+      {showAvailabilityManager && selectedPlayer && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <PlayerAvailabilityManager
+            playerId={selectedPlayer.id}
+            playerName={selectedPlayer.name}
+            onClose={() => {
+              setShowAvailabilityManager(false);
+              setSelectedPlayer(null);
+            }}
+            onUpdate={(status) => {
+              console.log('Availability updated:', status);
+              setShowAvailabilityManager(false);
+              setSelectedPlayer(null);
+            }}
+          />
+        </div>
+      )}
+
+      <InjuryRegistrationForm
+        isOpen={showInjuryRegistration}
+        onClose={() => setShowInjuryRegistration(false)}
+        onSave={(injury) => {
+          console.log('Injury created:', injury);
+          // The injury is already saved to the backend via the form
+          // The useMedicalData hook will automatically refetch and update the UI
+        }}
+      />
+
+      {showTreatmentForm && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <TreatmentForm
+            onSave={(treatment) => {
+              console.log('Treatment scheduled:', treatment);
+              // Treatment scheduling integrated with backend via TreatmentForm component
+              // The TreatmentForm component handles the API call internally
+              setShowTreatmentForm(false);
+            }}
+            onCancel={() => setShowTreatmentForm(false)}
+          />
+        </div>
+      )}
+
+      <InjuryDetailModal
+        injury={selectedInjuryDetail}
+        isOpen={!!selectedInjuryDetail}
+        onClose={() => setSelectedInjuryDetail(null)}
+        onUpdate={(updatedInjury) => {
+          console.log('Injury updated:', updatedInjury);
+          // The injury data will be refreshed automatically
+          setSelectedInjuryDetail(null);
+        }}
+      />
     </div>
   );
 } 

@@ -42,7 +42,7 @@ const io = new SocketIOServer(server, {
     }
 });
 
-const PORT = process.env.COMMUNICATION_SERVICE_PORT || 3002;
+const PORT = process.env.COMMUNICATION_SERVICE_PORT || 3020;
 
 // --- Middleware ---
 app.use(cors());

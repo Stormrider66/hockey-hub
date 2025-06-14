@@ -5,7 +5,7 @@ import { updateTreatmentHandler, deleteTreatmentHandler } from '../controllers/i
 const router: Router = Router();
 
 // Routes for /api/v1/treatments
-router.put('/:id', authorize('rehab'), updateTreatmentHandler);
-router.delete('/:id', authorize('rehab','admin'), deleteTreatmentHandler);
+router.put('/:id', authorize('medical_staff'), updateTreatmentHandler);
+router.delete('/:id', authorize('medical_staff','admin'), deleteTreatmentHandler);
 
 export default router; 

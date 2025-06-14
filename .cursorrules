@@ -1,0 +1,213 @@
+# Hockey Hub Project Intelligence
+
+## Project Context
+Hockey Hub is a comprehensive sports management platform for ice hockey teams, built with a microservices backend (Node.js/TypeScript) and React/Next.js frontend. The system serves multiple user roles: players, coaches, parents, medical staff, physical trainers, equipment managers, club admins, and system admins.
+
+## Current Development Phase
+- **Backend**: 9 microservices implemented with core functionality
+- **Frontend**: Component development in Storybook with progressive backend integration
+- **Integration**: Phase 1 starting - Authentication and basic APIs
+
+## Key Development Patterns
+
+### Component Development Pattern
+When creating new components, follow the Physical Testing System pattern:
+1. **Type-First**: Define comprehensive TypeScript interfaces before implementation
+2. **Constants File**: Centralize all domain-specific data and configurations
+3. **Multi-Tab Forms**: Use progressive disclosure for complex data entry
+4. **Custom Hooks**: Encapsulate data fetching and state management
+5. **Utility Functions**: Create reusable helpers for calculations and transformations
+
+Example structure:
+```
+features/[feature-name]/
+├── components/
+│   ├── FeatureDashboard.tsx    # Main dashboard with tabs
+│   └── FeatureForm.tsx         # Multi-tab form component
+├── hooks/
+│   └── useFeatureData.ts       # Data fetching and state
+├── types.ts                    # Comprehensive type definitions
+├── constants.ts                # Domain-specific constants
+└── utils.ts                    # Helper functions
+```
+
+### Dashboard Implementation Pattern
+All dashboards follow this structure:
+- Quick stats cards at the top
+- Tab-based navigation for different views
+- Responsive design with mobile considerations
+- Loading states and error boundaries
+- Mock data for Storybook development
+
+### Storybook-First Development
+1. Build components in Storybook with MSW mocks
+2. Use comprehensive mock data that matches real API structure
+3. Implement loading and error states from the start
+4. Create stories for all component states
+
+### Integration Approach
+We use a hybrid approach:
+- Continue building new features in Storybook
+- Progressively integrate existing features with backend
+- Use feature flags for gradual rollout
+- Maintain both mock and real data paths
+
+## Technology Stack
+
+### Frontend
+- **Framework**: Next.js 14 with App Router
+- **UI Library**: shadcn/ui with Radix UI primitives
+- **Styling**: Tailwind CSS
+- **State Management**: Redux Toolkit with RTK Query
+- **Testing**: Jest, React Testing Library, Storybook
+- **Development**: Storybook with MSW for API mocking
+
+### Backend
+- **Runtime**: Node.js with TypeScript
+- **Framework**: Express.js
+- **Database**: PostgreSQL 17 with TypeORM
+- **Real-time**: Socket.io
+- **Message Queue**: NATS
+- **Testing**: Jest with Supertest
+
+### Shared
+- **Language**: TypeScript in strict mode
+- **Package Manager**: pnpm workspaces
+- **Monorepo Structure**: Apps and packages
+
+## Design System
+
+### Color Schemes
+Event Types:
+- Ice training: `bg-blue-100 text-blue-800`
+- Physical training: `bg-green-100 text-green-800`
+- Game: `bg-red-100 text-red-800`
+- Rehab/Medical: `bg-amber-100 text-amber-800`
+- Meetings: `bg-purple-100 text-purple-800`
+- Travel: `bg-indigo-100 text-indigo-800`
+
+Player Status:
+- Fully available: `bg-green-100 text-green-800`
+- Limited: `bg-yellow-100 text-yellow-800`
+- Individual training: `bg-orange-100 text-orange-800`
+- Rehab: `bg-red-100 text-red-800`
+- Unavailable: `bg-gray-100 text-gray-800`
+
+### Component Guidelines
+- Always use shadcn/ui components from `@/components/ui/`
+- Import icons from lucide-react
+- Use compound component patterns (Card with CardHeader, CardContent)
+- Implement responsive design with Tailwind breakpoints
+- Use consistent spacing (gap-4, space-y-3, p-4)
+
+## Development Workflow
+
+### New Feature Development
+1. Start in Storybook with mock data
+2. Define types and interfaces first
+3. Create reusable components
+4. Add comprehensive stories
+5. Implement mock API handlers in MSW
+6. Plan for future backend integration
+
+### Backend Integration
+1. Use feature flags for progressive rollout
+2. Maintain both mock and real data paths
+3. Implement error boundaries for graceful degradation
+4. Test thoroughly before removing mocks
+5. Update documentation as you go
+
+## Common Patterns
+
+### Data Fetching
+```typescript
+// Use RTK Query with proper error handling
+export const useFeatureData = () => {
+  const isIntegrated = useFeatureFlag('feature-backend');
+  
+  if (isIntegrated) {
+    return useGetFeatureQuery();
+  }
+  
+  return { data: mockData, isLoading: false, error: null };
+};
+```
+
+### Form Handling
+```typescript
+// Multi-tab forms with validation
+const [activeTab, setActiveTab] = useState(0);
+const [formData, setFormData] = useState<Partial<FormData>>({});
+const [completedTabs, setCompletedTabs] = useState<Set<number>>(new Set());
+
+// Auto-save to localStorage
+const debouncedSave = useMemo(
+  () => debounce((data: Partial<FormData>) => {
+    localStorage.setItem(`draft-${id}`, JSON.stringify(data));
+  }, 1000),
+  [id]
+);
+```
+
+### Error Handling
+```typescript
+// Consistent error boundaries
+<ErrorBoundary fallback={<ErrorFallback />}>
+  <FeatureComponent />
+</ErrorBoundary>
+```
+
+## Performance Considerations
+1. Use React.memo for expensive components
+2. Implement virtualization for long lists
+3. Lazy load heavy features
+4. Optimize bundle size with code splitting
+5. Use proper caching strategies with RTK Query
+
+## Testing Strategy
+1. Unit tests for all utilities and hooks
+2. Component tests with React Testing Library
+3. Integration tests for API connections
+4. Visual regression tests with Storybook
+5. E2E tests for critical user flows
+
+## Documentation Requirements
+1. JSDoc comments for public functions
+2. README files for each feature
+3. Storybook stories as living documentation
+4. Type definitions serve as API contracts
+5. Update memory bank for significant changes
+
+## Code Quality Standards
+1. No `any` types without strong justification
+2. Proper error handling in all async operations
+3. Consistent naming conventions (camelCase, PascalCase)
+4. Maximum component file length: 300 lines
+5. Extract reusable logic into hooks or utilities
+
+## Current Challenges & Solutions
+1. **Bundle Size**: Use dynamic imports and code splitting
+2. **Type Safety**: Maintain strict TypeScript configuration
+3. **State Management**: Use RTK Query for server state
+4. **Real-time Updates**: Implement WebSocket manager pattern
+5. **Mobile Performance**: Optimize with virtualization and lazy loading
+
+## Integration Checklist
+When integrating a feature with backend:
+- [ ] Create feature flag
+- [ ] Update API slice with real endpoints
+- [ ] Add error handling for API failures
+- [ ] Implement loading states
+- [ ] Test with real data
+- [ ] Update types if needed
+- [ ] Document any API quirks
+- [ ] Remove or conditionally disable mocks
+- [ ] Update integration tests
+- [ ] Update memory bank
+
+## Remember
+- The Physical Testing System is our gold standard for complex features
+- Always consider mobile users in your designs
+- Storybook is not just for development, it's documentation
+- Feature flags are your friend during integration
+- When in doubt, check the memory bank for context 

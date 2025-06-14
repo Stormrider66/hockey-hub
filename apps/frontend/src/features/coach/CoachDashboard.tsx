@@ -90,7 +90,7 @@ const mockPlayers = [
     number: "23", 
     status: "available", 
     gamesPlayed: 18,
-    wins: 12,
+    wins: 12, 
     losses: 4,
     otl: 2,
     gaa: 2.34,
@@ -328,7 +328,7 @@ export default function CoachDashboard() {
                 <ArrowUp className="h-3 w-3 mr-1" />
                 +0.3
               </Badge>
-            </div>
+        </div>
             <p className="text-xs text-muted-foreground mt-1">Last 5 games</p>
           </CardContent>
         </Card>
@@ -348,13 +348,13 @@ export default function CoachDashboard() {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-medium">Penalty Kill</CardTitle>
-          </CardHeader>
-          <CardContent>
+              </CardHeader>
+              <CardContent>
             <div className="text-lg font-bold">{specialTeamsStats.penaltyKill.percentage}%</div>
             <p className="text-xs text-muted-foreground mt-1">14th in league</p>
           </CardContent>
         </Card>
-      </div>
+                      </div>
 
       <div className="grid grid-cols-2 gap-6">
         {/* Today's Schedule */}
@@ -366,7 +366,7 @@ export default function CoachDashboard() {
                 <Plus className="h-4 w-4 mr-1" />
                 Add Session
               </Button>
-            </div>
+                    </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -376,7 +376,7 @@ export default function CoachDashboard() {
                     <div className="text-right">
                       <div className="font-semibold">{session.time}</div>
                       <div className="text-xs text-muted-foreground">{session.duration} min</div>
-                    </div>
+                        </div>
                     <div className={cn(
                       "h-10 w-1 rounded-full",
                       session.status === 'completed' ? 'bg-green-500' : 'bg-gray-300'
@@ -384,7 +384,7 @@ export default function CoachDashboard() {
                     <div>
                       <div className="font-medium">{session.title}</div>
                       <div className="text-sm text-muted-foreground">{session.focus}</div>
-                    </div>
+                          </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="outline" className="text-xs">
@@ -396,13 +396,13 @@ export default function CoachDashboard() {
                     )}
                     {session.type === 'meeting' && (
                       <Video className="h-4 w-4 text-purple-500" />
-                    )}
-                  </div>
-                </div>
+                        )}
+                      </div>
+                    </div>
               ))}
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              </CardContent>
+            </Card>
 
         {/* Player Status Overview */}
         <Card>
@@ -414,8 +414,8 @@ export default function CoachDashboard() {
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
-          </CardHeader>
-          <CardContent>
+              </CardHeader>
+              <CardContent>
             <div className="mb-4">
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
@@ -425,12 +425,12 @@ export default function CoachDashboard() {
                 <div>
                   <div className="text-2xl font-bold text-amber-600">{availabilityStats.limited}</div>
                   <div className="text-xs text-muted-foreground">Limited</div>
-                </div>
+                          </div>
                 <div>
                   <div className="text-2xl font-bold text-red-600">{availabilityStats.unavailable}</div>
                   <div className="text-xs text-muted-foreground">Unavailable</div>
-                </div>
-              </div>
+                        </div>
+                    </div>
             </div>
             
             <div className="space-y-2">
@@ -439,24 +439,24 @@ export default function CoachDashboard() {
                   <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
                       <AvatarFallback className="text-xs">{player.number}</AvatarFallback>
-                    </Avatar>
+                          </Avatar>
                     <div>
                       <div className="text-sm font-medium">{player.name}</div>
                       <div className="text-xs text-muted-foreground">{player.position}</div>
-                    </div>
-                  </div>
+                          </div>
+                        </div>
                   <Badge className={cn(
                     player.status === 'available' && 'bg-green-100 text-green-800',
                     player.status === 'limited' && 'bg-amber-100 text-amber-800',
                     player.status === 'unavailable' && 'bg-red-100 text-red-800'
                   )}>
                     {player.status}
-                  </Badge>
-                </div>
+                        </Badge>
+                      </div>
               ))}
-            </div>
-          </CardContent>
-        </Card>
+                </div>
+              </CardContent>
+            </Card>
       </div>
 
       {/* Recent Performance */}
@@ -464,8 +464,8 @@ export default function CoachDashboard() {
         <CardHeader>
           <CardTitle>Team Performance Trends</CardTitle>
           <CardDescription>Last 5 games analysis</CardDescription>
-        </CardHeader>
-        <CardContent>
+              </CardHeader>
+              <CardContent>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={teamPerformance}>
@@ -540,29 +540,29 @@ export default function CoachDashboard() {
                     <div className="grid grid-cols-4 gap-6 text-sm">
                       {player.position !== "Goalie" ? (
                         <>
-                          <div className="text-center">
+                  <div className="text-center">
                             <div className="font-semibold">{player.goals}</div>
                             <div className="text-xs text-muted-foreground">Goals</div>
-                          </div>
-                          <div className="text-center">
+                  </div>
+                  <div className="text-center">
                             <div className="font-semibold">{player.assists}</div>
                             <div className="text-xs text-muted-foreground">Assists</div>
-                          </div>
+                  </div>
                           <div className="text-center">
                             <div className="font-semibold">{(player.goals || 0) + (player.assists || 0)}</div>
                             <div className="text-xs text-muted-foreground">Points</div>
-                          </div>
+                </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.plusMinus && player.plusMinus > 0 ? '+' : ''}{player.plusMinus || 0}</div>
                             <div className="text-xs text-muted-foreground">+/-</div>
-                          </div>
+                  </div>
                         </>
                       ) : (
                         <>
                           <div className="text-center">
                             <div className="font-semibold">{player.wins}-{player.losses}-{player.otl}</div>
                             <div className="text-xs text-muted-foreground">Record</div>
-                          </div>
+                  </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.gaa}</div>
                             <div className="text-xs text-muted-foreground">GAA</div>
@@ -577,33 +577,33 @@ export default function CoachDashboard() {
                           </div>
                         </>
                       )}
-                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </CardContent>
+            </Card>
             ))}
           </div>
         </CardContent>
       </Card>
 
       {/* Line Combinations */}
-      <Card>
-        <CardHeader>
+            <Card>
+              <CardHeader>
           <CardTitle>Line Combinations & Performance</CardTitle>
           <CardDescription>Current lineup effectiveness</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
             {lineupCombinations.map((line, index) => (
               <Card key={index} className="hover:bg-accent/50 transition-colors cursor-pointer">
                 <CardContent className="pt-4">
                   <div className="flex items-center justify-between">
-                    <div>
+                        <div>
                       <h4 className="font-semibold">{line.name}</h4>
                       <div className="text-sm text-muted-foreground mt-1">
                         {line.forwards ? line.forwards.join(" - ") : line.defense.join(" - ")}
+                        </div>
                       </div>
-                    </div>
                     <div className="grid grid-cols-4 gap-4 text-sm">
                       <div className="text-center">
                         <div className="font-semibold">{line.iceTime}</div>
@@ -612,7 +612,7 @@ export default function CoachDashboard() {
                       <div className="text-center">
                         <div className="font-semibold text-green-600">+{line.goalsFor}</div>
                         <div className="text-xs text-muted-foreground">GF</div>
-                      </div>
+                    </div>
                       <div className="text-center">
                         <div className="font-semibold text-red-600">-{line.goalsAgainst}</div>
                         <div className="text-xs text-muted-foreground">GA</div>
@@ -625,18 +625,18 @@ export default function CoachDashboard() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
     </div>
   );
 
   const renderTrainingPlansTab = () => (
     <div className="space-y-6">
       {/* Ice Training Sessions */}
-      <Card>
-        <CardHeader>
+            <Card>
+              <CardHeader>
           <div className="flex justify-between items-center">
             <div>
               <CardTitle>Ice Training Management</CardTitle>
@@ -647,8 +647,8 @@ export default function CoachDashboard() {
               Create Session
             </Button>
           </div>
-        </CardHeader>
-        <CardContent>
+              </CardHeader>
+              <CardContent>
           <div className="grid grid-cols-2 gap-4 mb-6">
             <Card>
               <CardHeader>
@@ -664,14 +664,14 @@ export default function CoachDashboard() {
                     { name: "Game Day Morning Skate", duration: 30, drills: 4 }
                   ].map((template, index) => (
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
-                      <div>
+                        <div>
                         <p className="font-medium text-sm">{template.name}</p>
                         <p className="text-xs text-muted-foreground">{template.duration} min • {template.drills} drills</p>
                       </div>
                       <Button size="sm" variant="ghost">
                         <Play className="h-4 w-4" />
                       </Button>
-                    </div>
+                      </div>
                   ))}
                 </div>
               </CardContent>
@@ -736,17 +736,17 @@ export default function CoachDashboard() {
       </Card>
 
       {/* Practice Planning Tools */}
-      <Card>
-        <CardHeader>
+          <Card>
+            <CardHeader>
           <CardTitle>Practice Planning Tools</CardTitle>
           <CardDescription>Resources for effective training sessions</CardDescription>
-        </CardHeader>
+            </CardHeader>
         <CardContent>
           <div className="grid grid-cols-4 gap-4">
             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2">
               <Clipboard className="h-6 w-6" />
               <span className="text-xs">Drill Builder</span>
-            </Button>
+              </Button>
             <Button variant="outline" className="h-24 flex flex-col items-center justify-center gap-2">
               <Timer className="h-6 w-6" />
               <span className="text-xs">Session Timer</span>
@@ -760,16 +760,16 @@ export default function CoachDashboard() {
               <span className="text-xs">Share Plans</span>
             </Button>
           </div>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
     </div>
   );
 
   const renderGamesTab = () => (
     <div className="space-y-6">
       {/* Upcoming Games */}
-      <Card>
-        <CardHeader>
+            <Card>
+              <CardHeader>
           <div className="flex justify-between items-center">
             <CardTitle>Game Schedule & Preparation</CardTitle>
             <Button variant="outline" size="sm">
@@ -777,9 +777,9 @@ export default function CoachDashboard() {
               Full Schedule
             </Button>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
             {upcomingGames.map(game => (
               <Card key={game.id} className="hover:bg-accent/50 transition-colors">
                 <CardContent className="pt-4">
@@ -800,10 +800,10 @@ export default function CoachDashboard() {
                       <div>
                         <div className="flex items-center gap-2">
                           <h3 className="font-semibold text-lg">{game.opponent}</h3>
-                          <Badge variant={game.importance === "Playoff" ? "destructive" : "secondary"}>
-                            {game.importance}
-                          </Badge>
-                        </div>
+                      <Badge variant={game.importance === "Playoff" ? "destructive" : "secondary"}>
+                        {game.importance}
+                      </Badge>
+                    </div>
                         <p className="text-sm text-muted-foreground">
                           {game.location} • {game.venue} • {game.time}
                         </p>
@@ -825,19 +825,19 @@ export default function CoachDashboard() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
       {/* Tactical Planning */}
       <div className="grid grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
+            <Card>
+              <CardHeader>
             <CardTitle>Tactical Board</CardTitle>
             <CardDescription>Draw plays and strategies</CardDescription>
-          </CardHeader>
-          <CardContent>
+              </CardHeader>
+              <CardContent>
             <div className="h-96 border-2 border-dashed border-muted rounded-lg flex items-center justify-center">
               <div className="text-center">
                 <Snowflake className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
@@ -857,13 +857,13 @@ export default function CoachDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
-              <div>
+                      <div>
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-medium">Power Play</h4>
                   <Badge variant={specialTeamsStats.powerPlay.trend === 'up' ? 'default' : 'secondary'}>
                     {specialTeamsStats.powerPlay.percentage}%
                   </Badge>
-                </div>
+                      </div>
                 <Progress value={specialTeamsStats.powerPlay.percentage} className="h-2" />
                 <p className="text-xs text-muted-foreground mt-1">
                   {specialTeamsStats.powerPlay.goals} goals on {specialTeamsStats.powerPlay.opportunities} opportunities
@@ -875,7 +875,7 @@ export default function CoachDashboard() {
                   <h4 className="font-medium">Penalty Kill</h4>
                   <Badge variant="secondary">
                     {specialTeamsStats.penaltyKill.percentage}%
-                  </Badge>
+                      </Badge>
                 </div>
                 <Progress value={specialTeamsStats.penaltyKill.percentage} className="h-2" />
                 <p className="text-xs text-muted-foreground mt-1">
@@ -1114,11 +1114,11 @@ export default function CoachDashboard() {
                           <Badge variant="outline">{goal.progress}%</Badge>
                         </div>
                         <Progress value={goal.progress} className="h-2" />
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
             ))}
           </div>
         </CardContent>
@@ -1238,23 +1238,7 @@ export default function CoachDashboard() {
   );
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6 flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Coach Dashboard</h1>
-          <p className="text-muted-foreground">Manage your team's performance and development</p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm">
-            <MessageCircle className="h-4 w-4 mr-2" />
-            Team Chat
-          </Button>
-          <Button size="sm">
-            <Settings className="h-4 w-4 mr-2" />
-            Settings
-          </Button>
-        </div>
-      </div>
+    <div className="w-full">{/* Removed padding and max-width since it's handled by parent */}
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid grid-cols-6 w-full">

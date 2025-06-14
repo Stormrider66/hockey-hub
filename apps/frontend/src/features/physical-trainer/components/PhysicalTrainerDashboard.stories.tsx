@@ -14,4 +14,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {},
+};
+
+// Working example with session viewer integration
+export const WithSessionViewer: Story = {
+  name: 'With Working Session Viewer',
 }; 

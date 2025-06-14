@@ -50,7 +50,7 @@ export class Invoice {
     @Column({ type: 'text', nullable: true })
     notes?: string | null;
 
-    @Column({ unique: true, nullable: true })
+    @Column({ type: 'varchar', length: 255, unique: true, nullable: true })
     providerInvoiceId?: string | null;
 
     @OneToMany(() => InvoiceItem, item => item.invoice, { cascade: true, eager: false })

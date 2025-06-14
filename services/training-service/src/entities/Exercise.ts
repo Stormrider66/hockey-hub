@@ -9,7 +9,7 @@ export enum Difficulty { // Make sure 'export' is here
 
 @Entity('exercises')
 @Index(['organizationId', 'name'])
-@Index(['created_by_user_id'])
+@Index(['createdByUserId'])
 @Index(['is_public'])
 export class Exercise { // Make sure 'export' is here
     @PrimaryGeneratedColumn('uuid')

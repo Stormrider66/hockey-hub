@@ -2,8 +2,30 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Location } from './Location';
 import { EventAttendee } from './EventAttendee';
 import { EventResource } from './EventResource';
-import { EventType as EventTypeEnum, EventStatus as EventStatusEnum, EventRepetition as EventRepetitionEnum } from '@hockey-hub/types';
 import { UUID, ISODateString } from '@hockey-hub/types';
+
+export enum EventType {
+    ICE_TRAINING = 'ice-training',
+    PHYSICAL_TRAINING = 'physical-training',
+    GAME = 'game',
+    MEETING = 'meeting',
+    MEDICAL = 'medical',
+    TRAVEL = 'travel',
+    OTHER = 'other'
+}
+
+export enum EventStatus {
+    PLANNED = 'scheduled',
+    CANCELED = 'canceled',
+    COMPLETED = 'completed'
+}
+
+export enum EventRepetition {
+    NONE = 'NONE',
+    DAILY = 'DAILY',
+    WEEKLY = 'WEEKLY',
+    MONTHLY = 'MONTHLY'
+}
 
 @Entity('events')
 @Index(['organizationId', 'startTime'])
@@ -20,7 +42,7 @@ export class Event {
     @Column({ type: 'uuid', array: true, nullable: true })
     teamIds?: UUID[];
 
-    @Column()
+    @Column({ type: 'varchar' })
     title!: string;
 
     @Column({ type: 'text', nullable: true })
@@ -28,16 +50,16 @@ export class Event {
 
     @Column({
         type: 'enum',
-        enum: EventTypeEnum,
+        enum: EventType,
     })
-    eventType!: EventTypeEnum;
+    eventType!: EventType;
 
     @Column({
         type: 'enum',
-        enum: EventStatusEnum,
-        default: EventStatusEnum.PLANNED
+        enum: EventStatus,
+        default: EventStatus.PLANNED
     })
-    status!: EventStatusEnum;
+    status!: EventStatus;
 
     @Column({ type: 'datetime' })
     startTime!: ISODateString;
@@ -45,7 +67,7 @@ export class Event {
     @Column({ type: 'datetime' })
     endTime!: ISODateString;
 
-    @Column({ default: false })
+    @Column({ type: 'boolean', default: false })
     isAllDay!: boolean;
 
     @Column({ type: 'uuid', nullable: true })
@@ -76,10 +98,10 @@ export class Event {
 
     @Column({
         type: 'enum',
-        enum: EventRepetitionEnum,
-        default: EventRepetitionEnum.NONE
+        enum: EventRepetition,
+        default: EventRepetition.NONE
     })
-    repetition!: EventRepetitionEnum;
+    repetition!: EventRepetition;
 
     @Column({ type: 'datetime', nullable: true })
     repetitionEndDate?: ISODateString | null;

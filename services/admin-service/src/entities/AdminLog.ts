@@ -12,10 +12,10 @@ export class AdminLog {
     @Column({ type: 'uuid' })
     adminUserId!: UUID; // User ID of the admin performing the action
 
-    @Column()
+    @Column({ type: 'varchar' })
     action!: string; // E.g., 'CREATE_ORGANIZATION', 'UPDATE_USER_STATUS', 'DELETE_TEAM'
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     targetEntityType?: string | null; // E.g., 'Organization', 'User', 'Team'
 
     @Column({ type: 'uuid', nullable: true })

@@ -3,7 +3,7 @@ import { testOptions, normativeData } from './constants';
 
 export function calculatePercentile(
   value: number, 
-  test: string, 
+  test: string,
   skillLevel: 'elite' | 'sub-elite' | 'junior' | 'youth' = 'elite'
 ): number {
   const norms = normativeData[skillLevel]?.[test];
@@ -44,15 +44,15 @@ export function generateRecommendations(player: PlayerData): TrainingRecommendat
   if (results.verticalJump) {
     const percentile = calculatePercentile(results.verticalJump, 'verticalJump', player.skillLevel);
     if (percentile < 50) {
-      recommendations.push({
-        priority: 'high',
-        area: 'Power Development',
+    recommendations.push({
+      priority: 'high',
+      area: 'Power Development',
         suggestion: 'Vertical jump below elite standards. Implement plyometric program 2-3x/week.',
-        impact: 'Can improve initial acceleration by 3-5%',
+      impact: 'Can improve initial acceleration by 3-5%',
         exercises: ['Box jumps', 'Depth jumps', 'Jump squats', 'Single-leg bounds'],
         frequency: '2-3 times per week',
         duration: '30-45 minutes'
-      });
+    });
     }
   }
   
@@ -76,15 +76,15 @@ export function generateRecommendations(player: PlayerData): TrainingRecommendat
   if (results.sprint30m) {
     const percentile = calculatePercentile(results.sprint30m, 'sprint30m', player.skillLevel);
     if (percentile < 50) {
-      recommendations.push({
-        priority: 'medium',
-        area: 'Sprint Speed',
+    recommendations.push({
+      priority: 'medium',
+      area: 'Sprint Speed',
         suggestion: 'Off-ice sprint times can be improved. Add acceleration drills and resisted sprints.',
-        impact: 'Strong correlation with maximum skating velocity',
+      impact: 'Strong correlation with maximum skating velocity',
         exercises: ['10m accelerations', 'Resisted sprints', 'Flying 20m sprints'],
         frequency: '2 times per week',
         duration: '20-30 minutes'
-      });
+    });
     }
   }
   
@@ -92,15 +92,15 @@ export function generateRecommendations(player: PlayerData): TrainingRecommendat
   if (results.squat1RM && results.weight) {
     const relativeStrength = results.squat1RM / results.weight;
     if (relativeStrength < 1.5) {
-      recommendations.push({
-        priority: 'medium',
+    recommendations.push({
+      priority: 'medium',
         area: 'Strength Base',
         suggestion: 'Relative strength below optimal levels. Focus on building strength foundation.',
         impact: 'Foundation for power development',
         exercises: ['Back squats', 'Front squats', 'Bulgarian split squats'],
         frequency: '2-3 times per week',
         duration: '45-60 minutes'
-      });
+    });
     }
   }
   
@@ -108,15 +108,15 @@ export function generateRecommendations(player: PlayerData): TrainingRecommendat
   if (results.bodyFat) {
     const percentile = calculatePercentile(results.bodyFat, 'bodyFat', player.skillLevel);
     if (percentile < 30) {
-      recommendations.push({
-        priority: 'low',
+    recommendations.push({
+      priority: 'low',
         area: 'Body Composition',
         suggestion: 'Body fat percentage above optimal range. Consider nutritional adjustments.',
         impact: 'Improved power-to-weight ratio',
         exercises: ['High-intensity intervals', 'Metabolic conditioning'],
         frequency: '3-4 times per week',
         duration: '30-45 minutes'
-      });
+    });
     }
   }
   

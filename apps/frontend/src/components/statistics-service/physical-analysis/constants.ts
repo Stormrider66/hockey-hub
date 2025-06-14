@@ -47,8 +47,8 @@ export const testOptions: Record<string, TestOption> = {
   },
   verticalJumpNoArms: { 
     label: 'Vertical Jump (No Arms)', 
-    unit: 'cm', 
-    higher_is_better: true, 
+    unit: 'cm',
+    higher_is_better: true,
     category: 'power',
     equipment: ['Jump mat', 'Force platform'],
     protocol: 'CMJ with hands on hips'

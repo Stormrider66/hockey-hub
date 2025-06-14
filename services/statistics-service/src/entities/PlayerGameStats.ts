@@ -30,7 +30,7 @@ export class PlayerGameStats {
     @Column({ type: 'uuid', nullable: true })
     opponentTeamId?: UUID | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     opponentName?: string | null;
 
     @Column({ type: 'timestamptz' })

@@ -5,7 +5,8 @@ export type DisplayMode =
   | 'player-list'
   | 'player-program'
   | 'team-metrics'
-  | 'interval-timer';
+  | 'interval-timer'
+  | 'strength-training';
 
 export interface Interval {
   phase: 'work' | 'rest';
@@ -14,7 +15,9 @@ export interface Interval {
 
 export interface TrainingSessionViewerState {
   selectedTeamId?: string;
+  selectedTeamName?: string;
   selectedPlayerId?: string;
+  sessionCategory?: string;
   displayMode: DisplayMode;
   metricType: 'heartRate' | 'watts';
   fullScreen: boolean;
@@ -37,6 +40,12 @@ const trainingSessionViewerSlice = createSlice({
       if (action.payload) {
         state.displayMode = 'player-list';
       }
+    },
+    setTeamName(state, action: PayloadAction<string | undefined>) {
+      state.selectedTeamName = action.payload;
+    },
+    setSessionCategory(state, action: PayloadAction<string | undefined>) {
+      state.sessionCategory = action.payload;
     },
     setPlayer(state, action: PayloadAction<string | undefined>) {
       state.selectedPlayerId = action.payload;
@@ -61,6 +70,8 @@ const trainingSessionViewerSlice = createSlice({
 
 export const {
   setTeam,
+  setTeamName,
+  setSessionCategory,
   setPlayer,
   setDisplayMode,
   setMetricType,

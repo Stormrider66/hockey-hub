@@ -15,22 +15,22 @@ export class PaymentMethod {
     @Column({ type: 'uuid', nullable: true })
     organizationId?: UUID | null;
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', unique: true })
     providerId!: string; // E.g., Stripe PaymentMethod ID pm_...
 
     @Column({ type: 'enum', enum: PaymentMethodTypeEnum })
     type!: PaymentMethodTypeEnum;
 
-    @Column({ default: false })
+    @Column({ type: 'boolean', default: false })
     isDefault!: boolean;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     billingName?: string | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     cardBrand?: string | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     cardLast4?: string | null;
 
     @Column({ type: 'integer', nullable: true })
@@ -39,10 +39,10 @@ export class PaymentMethod {
     @Column({ type: 'integer', nullable: true })
     cardExpiryYear?: number | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     bankName?: string | null;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     bankLast4?: string | null;
 
     @CreateDateColumn({ type: 'timestamptz' })

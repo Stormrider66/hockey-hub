@@ -8,7 +8,7 @@ export class SubscriptionPlan {
     @PrimaryGeneratedColumn('uuid')
     id!: UUID;
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', unique: true })
     name!: string;
 
     @Column({ type: 'text', nullable: true })
@@ -26,10 +26,10 @@ export class SubscriptionPlan {
     @Column({ type: 'simple-array', nullable: true })
     features?: string[];
 
-    @Column({ default: true })
+    @Column({ type: 'boolean', default: true })
     isActive!: boolean;
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', nullable: true })
     providerPlanId?: string | null;
 
     @CreateDateColumn({ type: 'timestamptz' })

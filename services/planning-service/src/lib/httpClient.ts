@@ -1,6 +1,6 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import { CircuitBreaker } from 'opossum';
+import CircuitBreaker from 'opossum';
 
 const baseURL = process.env.API_GATEWAY_URL || process.env.USER_SERVICE_URL || 'http://localhost:3001/api/v1';
 

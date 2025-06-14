@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  UpdateDateColumn,
   ManyToOne,
   JoinColumn,
   Index,
@@ -12,7 +13,6 @@ import { User } from './User';
 @Entity('refresh_tokens')
 @Index(['userId'])
 @Index(['expiresAt'])
-@Index(['userId', 'revoked'])
 export class RefreshToken {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -34,9 +34,6 @@ export class RefreshToken {
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;
 
-  @Column({ type: 'boolean', default: false })
-  revoked!: boolean;
-
-  @Column({ name: 'revoked_reason', type: 'varchar', length: 100, nullable: true })
-  revokedReason?: string;
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp with time zone' })
+  updatedAt!: Date;
 }

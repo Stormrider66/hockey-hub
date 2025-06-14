@@ -7,6 +7,7 @@ import {
   TypedRequest,
   ErrorResponse,
 } from '../types';
+import { jwtPublicKey } from '../utils/keyManager';
 
 // Re-export the AuthenticatedUser interface for backward compatibility
 export { AuthenticatedUser };
@@ -14,12 +15,7 @@ export { AuthenticatedUser };
 // Define RequestHandler type
 type AuthRequestHandler = (req: TypedRequest, res: Response, next: NextFunction) => void;
 
-const ACCESS_TOKEN_SECRET = process.env.JWT_SECRET;
-
-if (!ACCESS_TOKEN_SECRET) {
-  logger.fatal('FATAL ERROR: JWT_SECRET environment variable is required for authentication middleware.');
-  process.exit(1);
-}
+const ACCESS_TOKEN_PUBLIC_KEY = jwtPublicKey;
 
 export const authenticateToken: AuthRequestHandler = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -36,7 +32,7 @@ export const authenticateToken: AuthRequestHandler = (req, res, next) => {
 
   try {
     // Verify the token using the public key or secret
-    const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET);
+    const decoded = jwt.verify(token, ACCESS_TOKEN_PUBLIC_KEY);
 
     // Type guard to check if decoded object has the necessary properties
     const isValidPayload = (

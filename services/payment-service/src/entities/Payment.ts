@@ -52,10 +52,10 @@ export class Payment {
     @JoinColumn({ name: 'paymentMethodId' })
     paymentMethod?: PaymentMethod | null;
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', length: 255, unique: true })
     providerPaymentId!: string; // Stripe Charge ID / PaymentIntent ID
 
-    @Column({ nullable: true })
+    @Column({ type: 'varchar', length: 255, nullable: true })
     providerPaymentMethodId?: string | null;
 
     @Column({ type: 'timestamptz' })

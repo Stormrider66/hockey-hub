@@ -5,6 +5,8 @@ import TeamSelection from './TeamSelection';
 import PlayerList from './PlayerList';
 import TeamMetrics from './TeamMetrics';
 import IntervalDisplay from './IntervalDisplay';
+import IntervalTrainingView from './IntervalTrainingView';
+import StrengthTrainingView from './StrengthTrainingView';
 
 const LIVE_METRICS_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3004/live-metrics';
 const INTERVAL_SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3004/session-intervals';
@@ -14,6 +16,7 @@ let intervalSocket: Socket | null = null;
 
 export default function TrainingSessionViewer() {
   const selectedTeamId = useAppSelector((state) => state.trainingSessionViewer.selectedTeamId);
+  const selectedTeamName = useAppSelector((state) => state.trainingSessionViewer.selectedTeamName);
   const selectedPlayerId = useAppSelector((state) => state.trainingSessionViewer.selectedPlayerId);
   const displayMode = useAppSelector((state) => state.trainingSessionViewer.displayMode);
 
@@ -54,11 +57,12 @@ export default function TrainingSessionViewer() {
   }, [displayMode, selectedPlayerId]);
 
   return (
-    <div className="w-full h-full flex flex-col p-4">
+    <div className={`w-full h-full flex flex-col ${displayMode === 'strength-training' || displayMode === 'interval-timer' ? '' : 'p-4'}`}>
       {displayMode === 'team-selection' && <TeamSelection />}
       {displayMode === 'player-list' && <PlayerList />}
       {displayMode === 'team-metrics' && <TeamMetrics socket={metricsSocket} />}
-      {displayMode === 'interval-timer' && <IntervalDisplay socket={intervalSocket} />}
+      {displayMode === 'interval-timer' && <IntervalTrainingView teamName={selectedTeamName} socket={intervalSocket} />}
+      {displayMode === 'strength-training' && <StrengthTrainingView teamName={selectedTeamName} />}
     </div>
   );
 } 

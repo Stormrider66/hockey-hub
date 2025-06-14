@@ -11,11 +11,8 @@ import {
 import { Team } from './Team';
 import { User } from './User';
 
-export type OrganizationStatus = 'active' | 'inactive' | 'trial';
-
 @Entity('organizations')
 @Index(['name'])
-@Index(['status'])
 export class Organization {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
@@ -23,10 +20,13 @@ export class Organization {
   @Column({ type: 'varchar', length: 100 })
   name!: string;
 
-  @Column({ name: 'contact_email', type: 'varchar', length: 255 })
-  contactEmail!: string;
+  @Column({ name: 'organization_number', type: 'varchar', length: 100, nullable: true })
+  organizationNumber?: string;
 
-  @Column({ name: 'contact_phone', type: 'varchar', length: 20, nullable: true })
+  @Column({ name: 'email', type: 'varchar', length: 255, nullable: true })
+  contactEmail?: string;
+
+  @Column({ name: 'phone', type: 'varchar', length: 20, nullable: true })
   contactPhone?: string;
 
   @Column({ name: 'logo_url', type: 'varchar', length: 255, nullable: true })
@@ -38,20 +38,20 @@ export class Organization {
   @Column({ type: 'varchar', length: 100, nullable: true })
   city?: string;
 
-  @Column({ type: 'varchar', length: 100, nullable: true, default: 'Sweden' })
+  @Column({ name: 'postal_code', type: 'varchar', length: 20, nullable: true })
+  postalCode?: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
   country?: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  website?: string;
 
   @Column({ name: 'primary_color', type: 'varchar', length: 7, nullable: true })
   primaryColor?: string;
 
   @Column({ name: 'secondary_color', type: 'varchar', length: 7, nullable: true })
   secondaryColor?: string;
-
-  @Column({ name: 'default_language', type: 'varchar', length: 10, default: 'sv' })
-  defaultLanguage!: string;
-
-  @Column({ type: 'enum', enum: ['active', 'inactive', 'trial'], default: 'active' })
-  status!: OrganizationStatus;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp with time zone' })
   createdAt!: Date;

@@ -32,34 +32,9 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 flex">
-          <Button
-            variant="ghost"
-            className="mr-2"
-            onClick={() => navigate("/")}
-          >
-            Home
-          </Button>
-          <Button
-            variant="ghost"
-            className="mr-2"
-            onClick={() => navigate("/calendar")}
-          >
-            Calendar
-          </Button>
-          <Button
-            variant="ghost"
-            className="mr-2"
-            onClick={() => navigate("/teams")}
-          >
-            Teams
-          </Button>
-          <Button
-            variant="ghost"
-            className="mr-2"
-            onClick={() => navigate("/fys-coach/programs")}
-          >
-            Program
-          </Button>
+          <div className="flex items-center space-x-2">
+            <span className="font-bold text-lg">Hockey Hub</span>
+          </div>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex items-center">

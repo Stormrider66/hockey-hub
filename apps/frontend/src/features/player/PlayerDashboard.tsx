@@ -352,9 +352,9 @@ export default function PlayerDashboard() {
           <Avatar className="h-16 w-16">
             <AvatarFallback className="text-lg font-bold">{playerInfo.number}</AvatarFallback>
           </Avatar>
-          <div>
+        <div>
             <h1 className="text-2xl md:text-3xl font-bold">{playerInfo.name}</h1>
-            <div className="flex items-center gap-2 mt-1">
+          <div className="flex items-center gap-2 mt-1">
               <Badge>#{playerInfo.number}</Badge>
               <Badge variant="outline">{playerInfo.position}</Badge>
               <Badge variant="outline">{playerInfo.team}</Badge>
@@ -392,10 +392,10 @@ export default function PlayerDashboard() {
                   Today's Schedule
                 </CardTitle>
                 <CardDescription>Monday, May 19, 2025</CardDescription>
-              </CardHeader>
+            </CardHeader>
               <CardContent>
                 <div className={spacing.card} role="list" aria-label="Today's events">
-                  {isLoading ? (
+              {isLoading ? (
                     <div className="py-8 text-center" role="status" aria-live="polite">
                       <div className="animate-pulse space-y-3">
                         <div className="h-4 bg-gray-200 rounded w-3/4"></div>
@@ -432,9 +432,9 @@ export default function PlayerDashboard() {
                             </p>
                           )}
                         </div>
-                      </div>
-                    ))
-                  )}
+                  </div>
+                ))
+              )}
                 </div>
               </CardContent>
             </Card>
@@ -472,8 +472,8 @@ export default function PlayerDashboard() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+            </CardContent>
+          </Card>
 
             {/* Quick Wellness Check */}
             <Card className={shadows.card}>
@@ -490,7 +490,7 @@ export default function PlayerDashboard() {
                     <div className="text-4xl font-bold text-green-600">{calculateReadinessScore()}</div>
                     <div className="absolute -top-1 -right-3">
                       <span className="text-xs text-muted-foreground">%</span>
-                    </div>
+                </div>
                   </div>
                   <p className="text-sm text-muted-foreground mt-2">
                     {calculateReadinessScore() >= 85 ? 'Excellent' : 
@@ -538,14 +538,14 @@ export default function PlayerDashboard() {
         <TabsContent value="training" className={spacing.card} role="tabpanel" aria-labelledby="training-tab">
           <div className={grids.cards}>
             {/* Assigned Training */}
-            <Card>
-              <CardHeader>
+          <Card>
+            <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Dumbbell className="h-5 w-5" aria-hidden="true" />
                   Assigned Training
                 </CardTitle>
                 <CardDescription>Current training assignments</CardDescription>
-              </CardHeader>
+            </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {training.map((t, index) => (
@@ -594,18 +594,18 @@ export default function PlayerDashboard() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+            </CardContent>
+          </Card>
 
             {/* Development Goals */}
-            <Card>
-              <CardHeader>
+          <Card>
+            <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Target className="h-5 w-5" aria-hidden="true" />
                   Development Goals
                 </CardTitle>
                 <CardDescription>Personal improvement targets</CardDescription>
-              </CardHeader>
+            </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {developmentGoals.map((goal, index) => (
@@ -632,8 +632,8 @@ export default function PlayerDashboard() {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+            </CardContent>
+          </Card>
           </div>
         </TabsContent>
 
@@ -742,16 +742,16 @@ export default function PlayerDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Daily Wellness Form */}
               <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Heart className="h-5 w-5" aria-hidden="true" />
-                    Daily Wellness Check
-                  </CardTitle>
-                  <CardDescription>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Heart className="h-5 w-5" aria-hidden="true" />
+                  Daily Wellness Check
+                </CardTitle>
+                <CardDescription>
                     Rate your wellness metrics to help optimize training
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
+                </CardDescription>
+            </CardHeader>
+              <CardContent className="space-y-6">
                   {/* HRV Section */}
                   <div className="p-4 bg-purple-50 rounded-lg space-y-4">
                     <div className="flex items-center gap-2">
@@ -760,22 +760,22 @@ export default function PlayerDashboard() {
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4">
-                      <div>
+                  <div>
                         <Label htmlFor="hrv-value">HRV (ms)</Label>
-                        <Input
+                    <Input
                           id="hrv-value"
-                          type="number"
+                      type="number"
                           min="20"
                           max="100"
                           value={wellnessForm.hrv}
                           onChange={(e) => updateWellnessField('hrv', parseInt(e.target.value) || 0)}
-                          className="mt-1"
-                        />
+                      className="mt-1"
+                    />
                         <p className="text-xs text-muted-foreground mt-1">
                           Normal range: 40-70ms
                         </p>
-                      </div>
-                      <div>
+                  </div>
+                  <div>
                         <Label htmlFor="hrv-device">Measurement Device</Label>
                         <select
                           id="hrv-device"
@@ -789,17 +789,17 @@ export default function PlayerDashboard() {
                           <option value="polar">Polar</option>
                           <option value="manual">Manual Entry</option>
                         </select>
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
                     {/* HRV Status Indicator */}
                     <div className="flex items-center justify-between p-3 bg-white rounded-md">
-                      <div>
+                  <div>
                         <p className="text-sm font-medium">HRV Status</p>
                         <p className="text-xs text-muted-foreground">
                           Compared to your baseline
                         </p>
-                      </div>
+                    </div>
                       <div className={cn(
                         "px-3 py-1 rounded-full text-sm font-medium",
                         wellnessForm.hrv >= 60 && "bg-green-100 text-green-800",
@@ -808,9 +808,9 @@ export default function PlayerDashboard() {
                       )}>
                         {wellnessForm.hrv >= 60 ? 'Optimal' : 
                          wellnessForm.hrv >= 45 ? 'Normal' : 'Low'}
-                      </div>
                     </div>
                   </div>
+                </div>
 
                   {/* Wellness Sliders */}
                   <div className="space-y-6">
@@ -827,26 +827,26 @@ export default function PlayerDashboard() {
                           <span className="text-sm font-medium">
                             {wellnessForm[metric.key as keyof typeof wellnessForm]}/10
                           </span>
-                        </div>
-                        <Slider
+                    </div>
+                      <Slider
                           value={[wellnessForm[metric.key as keyof typeof wellnessForm] as number]}
                           onValueChange={(value) => updateWellnessField(metric.key, value[0])}
-                          min={1}
-                          max={10}
-                          step={1}
+                        min={1}
+                        max={10}
+                        step={1}
                           className="cursor-pointer"
-                        />
+                      />
                         <div className="flex justify-between text-xs text-muted-foreground mt-1">
                           <span>{metric.inverse ? 'High' : 'Low'}</span>
                           <span>{metric.inverse ? 'Low' : 'High'}</span>
-                        </div>
-                      </div>
-                    ))}
+                    </div>
                   </div>
+                    ))}
+                </div>
 
                   {/* Additional Inputs */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div>
+                  <div>
                       <Label htmlFor="sleep-hours">Sleep Hours</Label>
                       <Input
                         id="sleep-hours"
@@ -858,19 +858,19 @@ export default function PlayerDashboard() {
                         onChange={(e) => updateWellnessField('sleepHours', parseFloat(e.target.value) || 0)}
                         className="mt-1"
                       />
-                    </div>
-                    <div>
-                      <Label htmlFor="body-weight">Body Weight (lbs)</Label>
-                      <Input
-                        id="body-weight"
-                        type="number"
+                  </div>
+                  <div>
+                    <Label htmlFor="body-weight">Body Weight (lbs)</Label>
+                    <Input
+                      id="body-weight"
+                      type="number"
                         min="0"
                         step="0.1"
-                        value={wellnessForm.bodyWeight}
-                        onChange={(e) => updateWellnessField('bodyWeight', parseFloat(e.target.value) || 0)}
-                        className="mt-1"
-                      />
-                    </div>
+                      value={wellnessForm.bodyWeight}
+                      onChange={(e) => updateWellnessField('bodyWeight', parseFloat(e.target.value) || 0)}
+                      className="mt-1"
+                    />
+                  </div>
                   </div>
 
                   <div>
@@ -884,41 +884,41 @@ export default function PlayerDashboard() {
                       onChange={(e) => updateWellnessField('restingHeartRate', parseInt(e.target.value) || 0)}
                       className="mt-1"
                     />
-                  </div>
+                </div>
 
-                  {/* Notes */}
-                  <div>
-                    <Label htmlFor="wellness-notes">Additional Notes</Label>
-                    <Textarea
-                      id="wellness-notes"
+                {/* Notes */}
+                <div>
+                  <Label htmlFor="wellness-notes">Additional Notes</Label>
+                  <Textarea
+                    id="wellness-notes"
                       placeholder="Any symptoms, concerns, or other notes..."
-                      value={wellnessForm.notes}
-                      onChange={(e) => updateWellnessField('notes', e.target.value)}
-                      className="mt-1"
-                      rows={3}
-                    />
-                  </div>
+                    value={wellnessForm.notes}
+                    onChange={(e) => updateWellnessField('notes', e.target.value)}
+                    className="mt-1"
+                    rows={3}
+                  />
+                </div>
 
                   {/* Submit Button */}
-                  <Button 
+                <Button 
                     className="w-full" 
-                    onClick={handleWellnessSubmit}
-                    disabled={isSubmittingWellness}
-                  >
-                    {isSubmittingWellness ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="mr-2 h-4 w-4" />
-                        Submit Wellness Check
-                      </>
-                    )}
-                  </Button>
+                  onClick={handleWellnessSubmit} 
+                  disabled={isSubmittingWellness}
+                >
+                  {isSubmittingWellness ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-4 w-4" />
+                      Submit Wellness Check
+                    </>
+                  )}
+                </Button>
                 </CardContent>
-              </Card>
+          </Card>
 
               {/* Wellness Trends Chart */}
               <Card>
@@ -1007,14 +1007,14 @@ export default function PlayerDashboard() {
             </div>
 
             {/* HRV Tracking Card */}
-            <Card>
-              <CardHeader>
+          <Card>
+            <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Activity className="h-5 w-5" />
                   HRV Analysis
                 </CardTitle>
                 <CardDescription>Heart Rate Variability trends and insights</CardDescription>
-              </CardHeader>
+            </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                   <div className="text-center p-4 bg-purple-50 rounded-lg">
@@ -1076,25 +1076,25 @@ export default function PlayerDashboard() {
                 <div className="mt-6 space-y-3">
                   <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
                     <Info className="h-5 w-5 text-blue-600 mt-0.5" />
-                    <div>
+                  <div>
                       <p className="text-sm font-medium text-blue-900">Understanding Your HRV</p>
                       <p className="text-xs text-blue-700 mt-1">
                         Higher HRV generally indicates better recovery and readiness. Your current HRV of {hrvData.current}ms is 
                         {hrvData.current >= 60 ? ' excellent for training' : hrvData.current >= 45 ? ' within normal range' : ' below optimal - consider lighter training'}.
                       </p>
-                    </div>
+                  </div>
                   </div>
                   
                   {hrvData.trend === 'down' && hrvData.trendValue > 10 && (
                     <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
                       <AlertTriangle className="h-5 w-5 text-amber-600 mt-0.5" />
-                      <div>
+                  <div>
                         <p className="text-sm font-medium text-amber-900">Declining HRV Trend</p>
                         <p className="text-xs text-amber-700 mt-1">
                           Your HRV has decreased by {hrvData.trendValue}% over the past week. Consider additional recovery time or lighter training loads.
                         </p>
-                      </div>
-                    </div>
+                  </div>
+                </div>
                   )}
                 </div>
               </CardContent>
@@ -1234,8 +1234,8 @@ export default function PlayerDashboard() {
                     </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+            </CardContent>
+          </Card>
           </div>
         </TabsContent>
 
@@ -1296,11 +1296,11 @@ export default function PlayerDashboard() {
             </div>
 
             {/* Test Categories Performance */}
-            <Card>
-              <CardHeader>
+          <Card>
+            <CardHeader>
                 <CardTitle>Physical Test Results by Category</CardTitle>
                 <CardDescription>Your latest test results compared to team goals</CardDescription>
-              </CardHeader>
+            </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
@@ -1410,7 +1410,7 @@ export default function PlayerDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={[
                         { date: 'Aug', value: 58, teamAvg: 56 },
                         { date: 'Sep', value: 60, teamAvg: 57 },
@@ -1418,15 +1418,15 @@ export default function PlayerDashboard() {
                         { date: 'Nov', value: 63, teamAvg: 59 },
                         { date: 'Dec', value: 65, teamAvg: 60 },
                       ]}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
                         <YAxis />
-                        <Tooltip />
+                  <Tooltip />
                         <Legend />
                         <Line 
-                          type="monotone" 
-                          dataKey="value" 
-                          stroke="#3b82f6" 
+                    type="monotone" 
+                    dataKey="value" 
+                    stroke="#3b82f6" 
                           name="Your Performance"
                           strokeWidth={3}
                           dot={{ r: 5 }}
@@ -1440,7 +1440,7 @@ export default function PlayerDashboard() {
                           strokeDasharray="5 5"
                         />
                       </LineChart>
-                    </ResponsiveContainer>
+              </ResponsiveContainer>
                   </div>
                   <div className="mt-4 flex items-center justify-between text-sm">
                     <div className="flex items-center gap-2">
@@ -1449,8 +1449,8 @@ export default function PlayerDashboard() {
                     </div>
                     <span className="text-muted-foreground">Since Aug 2024</span>
                   </div>
-                </CardContent>
-              </Card>
+            </CardContent>
+          </Card>
 
               {/* Team Comparison Radar */}
               <Card>

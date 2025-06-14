@@ -1,6 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
+import { DashboardHeader } from "@/components/shared/DashboardHeader";
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import trainingSessionViewerReducer, { 
+  setTeam, 
+  setTeamName, 
+  setSessionCategory, 
+  setDisplayMode,
+  setIntervals
+} from '../../trainingSessionViewer/trainingSessionViewerSlice';
+import { apiSlice } from '@/store/api/apiSlice';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -12,13 +23,25 @@ import {
   Activity, Calendar, Users, TrendingUp, Dumbbell, Clock, 
   Play, Library, TestTube2, BarChart3, User, FileText,
   Plus, ChevronRight, Timer, Heart, Zap, AlertCircle,
-  CheckCircle2, ArrowUp, ArrowDown, Minus
+  CheckCircle2, ArrowUp, ArrowDown, Minus, ArrowLeft
 } from 'lucide-react';
 // Temporarily commenting out imports that don't exist yet
 // import { useTestData } from '../hooks/useTestData';
 // import PhysicalAnalysisCharts from '../../statistics-service/physical-analysis/PhysicalAnalysisCharts';
 import PhysicalTestingForm from './PhysicalTestingForm';
+import LaunchSessionButton from '../../trainingSessionViewer/LaunchSessionButton';
+import TrainingSessionViewer from '../../trainingSessionViewer/TrainingSessionViewer';
 // import TestCollectionDashboard from '../../statistics-service/physical-analysis/TestCollectionDashboard';
+
+// Create store for session viewer with RTK-Query middleware - moved outside component
+const sessionViewerStore = configureStore({
+  reducer: {
+    trainingSessionViewer: trainingSessionViewerReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+});
 
 // Mock data for now
 const mockTestData = {
@@ -35,40 +58,114 @@ const mockTestData = {
 
 export default function PhysicalTrainerDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [showSessionViewer, setShowSessionViewer] = useState(false);
+  const [currentSession, setCurrentSession] = useState<{ team: string; type: string; teamId: string } | null>(null);
+  
   // Use mock data instead of hook for now
   const { players, testBatches, testResults } = mockTestData;
+
+  // Helper function to launch session with proper Redux state
+  const launchSession = (session: any) => {
+    // Set the session data
+    setCurrentSession({ 
+      team: session.team, 
+      type: session.type,
+      teamId: session.id.toString()
+    });
+    
+    // Dispatch Redux actions to set the team and display mode
+    sessionViewerStore.dispatch(setTeamName(session.team));
+    sessionViewerStore.dispatch(setTeam(session.id.toString()));
+    sessionViewerStore.dispatch(setSessionCategory(session.type));
+    
+    // Route to appropriate display mode based on session type
+    if (session.type === 'Strength Training') {
+      sessionViewerStore.dispatch(setDisplayMode('strength-training'));
+    } else if (session.type === 'Cardio Intervals') {
+      // Set intervals for 8x4min with 2min rest
+      const cardioIntervals = [];
+      for (let i = 0; i < 8; i++) {
+        cardioIntervals.push({ phase: 'work' as const, duration: 240 }); // 4 minutes work
+        if (i < 7) { // Don't add rest after the last work interval
+          cardioIntervals.push({ phase: 'rest' as const, duration: 120 }); // 2 minutes rest
+        }
+      }
+      sessionViewerStore.dispatch(setIntervals(cardioIntervals));
+      sessionViewerStore.dispatch(setDisplayMode('interval-timer')); // Show interval interface with team roster
+    } else {
+      sessionViewerStore.dispatch(setDisplayMode('player-list'));
+    }
+    
+    setShowSessionViewer(true);
+  };
 
   // Today's sessions mock data
   const todaysSessions = [
     {
-      id: 1,
-      time: '09:00',
-      team: 'U20 Team',
-      type: 'Strength Training',
-      location: 'Weight Room',
-      players: 18,
-      status: 'upcoming',
-      intensity: 'high'
-    },
-    {
-      id: 2,
-      time: '11:00',
+      id: 3,
+      time: '07:30',
       team: 'A-Team',
       type: 'Recovery Session',
       location: 'Gym',
       players: 22,
-      status: 'active',
-      intensity: 'low'
+      status: 'completed',
+      intensity: 'low',
+      description: 'Active recovery & mobility'
     },
     {
-      id: 3,
+      id: 2,
+      time: '09:00',
+      team: 'J20 Team',
+      type: 'Strength Training',
+      location: 'Weight Room',
+      players: 18,
+      status: 'active',
+      intensity: 'high',
+      description: 'Olympic lifts & plyometrics'
+    },
+    {
+      id: 1,
+      time: '11:00',
+      team: 'A-Team',
+      type: 'Cardio Intervals',
+      location: 'Field',
+      players: 20,
+      status: 'upcoming',
+      intensity: 'high',
+      description: 'High-intensity interval training'
+    },
+    {
+      id: 4,
       time: '14:00',
       team: 'U18 Team',
       type: 'Speed & Agility',
       location: 'Field',
       players: 16,
       status: 'upcoming',
-      intensity: 'medium'
+      intensity: 'medium',
+      description: 'Sprint drills & ladder work'
+    },
+    {
+      id: 5,
+      time: '15:30',
+      team: 'U16 Team',
+      type: 'Power Development',
+      location: 'Weight Room',
+      players: 14,
+      status: 'upcoming',
+      intensity: 'medium',
+      description: 'Explosive power training'
+    },
+    {
+      id: 6,
+      time: '17:00',
+      team: 'Individual',
+      type: 'Sprint Training',
+      location: 'Track',
+      players: 3,
+      status: 'upcoming',
+      intensity: 'high',
+      description: 'Individual sprint intervals'
     }
   ];
 
@@ -113,7 +210,9 @@ export default function PhysicalTrainerDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{todaysSessions.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">56 total players</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {todaysSessions.reduce((acc, s) => acc + s.players, 0)} total players
+            </p>
           </CardContent>
         </Card>
         
@@ -122,8 +221,12 @@ export default function PhysicalTrainerDashboard() {
             <CardTitle className="text-sm font-medium">Active Now</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">22</div>
-            <p className="text-xs text-muted-foreground mt-1">A-Team recovery</p>
+            <div className="text-2xl font-bold">
+              {todaysSessions.filter(s => s.status === 'active').reduce((acc, s) => acc + s.players, 0)}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              {todaysSessions.find(s => s.status === 'active')?.team || 'No active session'}
+            </p>
           </CardContent>
         </Card>
         
@@ -145,11 +248,15 @@ export default function PhysicalTrainerDashboard() {
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Tests This Week</CardTitle>
+            <CardTitle className="text-sm font-medium">Completed Today</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground mt-1">3 scheduled today</p>
+            <div className="text-2xl font-bold">
+              {todaysSessions.filter(s => s.status === 'completed').length}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              {todaysSessions.filter(s => s.status === 'upcoming').length} upcoming
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -176,31 +283,52 @@ export default function PhysicalTrainerDashboard() {
                   </div>
                   <div className={cn(
                     "h-12 w-1 rounded-full",
-                    session.status === 'active' ? 'bg-green-500' : 'bg-gray-300'
+                    session.status === 'active' ? 'bg-green-500' : 
+                    session.status === 'completed' ? 'bg-gray-500' : 'bg-gray-300'
                   )} />
                   <div>
                     <div className="font-medium">{session.type}</div>
                     <div className="text-sm text-muted-foreground">{session.team}</div>
+                    {session.description && (
+                      <div className="text-xs text-muted-foreground mt-0.5">{session.description}</div>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <Badge variant={session.intensity === 'high' ? 'destructive' : session.intensity === 'medium' ? 'default' : 'secondary'}>
+                  <Badge variant={
+                    session.intensity === 'high' ? 'destructive' : 
+                    session.intensity === 'medium' ? 'default' : 'secondary'
+                  }>
                     {session.intensity} intensity
                   </Badge>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Users className="h-4 w-4" />
                     {session.players}
                   </div>
-                  {session.status === 'active' ? (
-                    <Button size="sm" variant="default">
-                      <Play className="h-4 w-4 mr-1" />
-                      View Live
-                    </Button>
+                  {session.status === 'completed' ? (
+                    <Badge variant="outline" className="text-xs">
+                      <CheckCircle2 className="h-3 w-3 mr-1" />
+                      Completed
+                    </Badge>
+                  ) : session.status === 'active' ? (
+                    <LaunchSessionButton
+                      sessionType="team"
+                      teamId={session.id.toString()}
+                      teamName={session.team}
+                      sessionCategory={session.type}
+                      size="sm"
+                      onLaunch={() => launchSession(session)}
+                    />
                   ) : (
-                    <Button size="sm" variant="outline">
-                      <Timer className="h-4 w-4 mr-1" />
-                      Start Session
-                    </Button>
+                    <LaunchSessionButton
+                      sessionType="team"
+                      teamId={session.id.toString()}
+                      teamName={session.team}
+                      sessionCategory={session.type}
+                      size="sm"
+                      variant="outline"
+                      onLaunch={() => launchSession(session)}
+                    />
                   )}
                 </div>
               </div>
@@ -535,12 +663,50 @@ export default function PhysicalTrainerDashboard() {
     </div>
   );
 
+  // If showing session viewer, render it instead of the dashboard
+  if (showSessionViewer) {
+    return (
+      <Provider store={sessionViewerStore}>
+        <div className="h-screen flex flex-col">
+          <div className="border-b px-4 py-3 flex items-center justify-between bg-background">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setShowSessionViewer(false);
+                  setCurrentSession(null);
+                }}
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+              {currentSession && (
+                <div className="text-sm text-muted-foreground">
+                  {currentSession.type} • {currentSession.team}
+                </div>
+              )}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Training Session Viewer
+            </div>
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <TrainingSessionViewer />
+          </div>
+        </div>
+      </Provider>
+    );
+  }
+
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold tracking-tight">Physical Training Dashboard</h1>
-        <p className="text-muted-foreground">Manage training sessions, monitor player readiness, and track performance</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <DashboardHeader 
+        title="Physical Training Dashboard"
+        subtitle="Manage training sessions, monitor player readiness, and track performance"
+        role="physicaltrainer"
+      />
+      <div className="p-6 max-w-7xl mx-auto">
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid grid-cols-6 w-full">
@@ -594,6 +760,7 @@ export default function PhysicalTrainerDashboard() {
           {renderTemplatesTab()}
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 } 
