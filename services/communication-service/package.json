@@ -1,0 +1,46 @@
+{
+  "name": "communication-service",
+  "version": "1.0.0",
+  "description": "Handles real-time communication, chat, and notifications",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "typeorm": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts",
+    "migration:generate": "dotenv -e ./.env -- ts-node ./node_modules/typeorm/cli.js -d src/data-source.ts migration:generate src/migrations/%npm_config_name%",
+    "migration:run": "pnpm typeorm migration:run",
+    "migration:revert": "pnpm typeorm migration:revert",
+    "lint": "echo 'No lint configured for communication-service'",
+    "test:unit": "echo 'No unit tests yet for communication-service'",
+    "test:socket": "echo 'No socket tests yet for communication-service'",
+    "test:file-uploads": "echo 'No file upload tests yet for communication-service'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "socket.io": "^4.7.5",
+    "typeorm": "^0.3.20",
+    "@hockey-hub/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.14.10",
+    "@types/pg": "^8.11.12",
+    "dotenv-cli": "^8.0.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}

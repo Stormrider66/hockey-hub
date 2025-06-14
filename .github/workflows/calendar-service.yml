@@ -1,0 +1,79 @@
+name: Calendar Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/calendar-service/**'
+      - '.github/workflows/calendar-service.yml'
+  pull_request:
+    paths:
+      - 'services/calendar-service/**'
+
+jobs:
+  test:
+    name: Test Calendar Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
+          
+      - name: Enable corepack & install pnpm
+        run: |
+          corepack enable
+          
+      - name: Install dependencies (workspace)
+        run: pnpm install --frozen-lockfile --filter "calendar-service..."
+        
+      - name: Run linting
+        run: pnpm --filter "calendar-service" run lint
+        
+      - name: Run tests
+        run: pnpm --filter "calendar-service" run test
+        
+      - name: Verify resource booking conflict detection
+        run: pnpm --filter "calendar-service" run test:resource-conflicts
+        
+  build:
+    name: Build Calendar Service
+    needs: test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Login to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-calendar-service
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+        
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/calendar-service
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

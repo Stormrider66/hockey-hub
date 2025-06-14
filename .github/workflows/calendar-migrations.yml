@@ -1,0 +1,61 @@
+name: Calendar Service DB Migrations
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'services/calendar-service/**'
+  workflow_dispatch:
+
+jobs:
+  migrations:
+    runs-on: ubuntu-latest
+    env:
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: ${{ env.DB_USERNAME }}
+          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
+          POSTGRES_DB: ${{ env.DB_NAME }}
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install PNPM
+        run: npm install -g pnpm@8
+
+      - name: Install dependencies
+        working-directory: services/calendar-service
+        run: pnpm install --frozen-lockfile
+
+      - name: Build service
+        working-directory: services/calendar-service
+        run: pnpm run build
+
+      - name: Run TypeORM migrations
+        working-directory: services/calendar-service
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: ${{ env.DB_USERNAME }}
+          DB_PASSWORD: ${{ env.DB_PASSWORD }}
+          DB_NAME: ${{ env.DB_NAME }}
+          NODE_ENV: production
+        run: pnpm run migration:run 

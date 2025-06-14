@@ -1,0 +1,236 @@
+name: Training Service CI/CD
+
+on:
+  push:
+    paths:
+      - 'services/training-service/**'
+      - '.github/workflows/training-service.yml'
+  pull_request:
+    paths:
+      - 'services/training-service/**'
+
+jobs:
+  test:
+    name: Test Training Service
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
+          
+      - name: Enable corepack & install pnpm
+        run: |
+          corepack enable
+          
+      - name: Install dependencies (workspace)
+        run: pnpm install --frozen-lockfile --filter "training-service..."
+        
+      - name: Run linting
+        run: pnpm --filter "training-service" run lint
+        
+      - name: Run tests
+        run: pnpm --filter "training-service" run test
+        
+      - name: Test intensity calculations
+        run: pnpm --filter "training-service" run test:intensity
+        
+      - name: Test resource conflict detection
+        run: pnpm --filter "training-service" run test:conflicts
+        
+      - name: Test live metrics streaming
+        run: pnpm --filter "training-service" run test:live-metrics
+        
+      - name: Test session interval management
+        run: pnpm --filter "training-service" run test:intervals
+        
+      - name: Test Socket.IO authentication
+        run: pnpm --filter "training-service" run test:socket-auth
+        
+  integration-test:
+    name: Integration Testing
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: training_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:6
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/training-service && npm ci
+        
+      - name: Run database migrations
+        run: cd services/training-service && npm run migrate
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: training_test
+          
+      - name: Run integration tests
+        run: cd services/training-service && npm run test:integration
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: training_test
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
+          
+  performance-test:
+    name: Performance Testing
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: training_perf
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:6
+        ports:
+          - 6379:6379
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          
+      - name: Install dependencies
+        run: cd services/training-service && npm ci
+        
+      - name: Set up database with test data
+        run: cd services/training-service && npm run seed:perf
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USER: postgres
+          DB_PASSWORD: postgres
+          DB_NAME: training_perf
+          
+      - name: Run live metrics performance tests
+        run: cd services/training-service && npm run test:performance:metrics
+        
+      - name: Run session management load tests
+        run: cd services/training-service && npm run test:performance:sessions
+        
+      - name: Test Socket.IO connection limits
+        run: cd services/training-service && npm run test:performance:sockets
+        
+  build:
+    name: Build Training Service
+    needs: [test, integration-test, performance-test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Login to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}-training-service
+          tags: |
+            type=ref,event=branch
+            type=sha,prefix={{branch}}-
+        
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/training-service
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+            
+  deploy-staging:
+    name: Deploy to Staging
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to staging environment
+        run: |
+          echo "Deploying Training Service to staging..."
+          # Add actual deployment commands here
+          
+  deploy-production:
+    name: Deploy to Production
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy to production environment
+        run: |
+          echo "Deploying Training Service to production..."
+          # Add actual deployment commands here 
