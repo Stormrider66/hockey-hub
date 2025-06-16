@@ -31,6 +31,20 @@ import {
 } from '@/store/api/trainingApi';
 import type { Exercise, ExerciseCategory } from '@/types/exercise';
 
+// Security: Validate and sanitize URLs to prevent XSS
+function sanitizeUrl(url: string): string {
+  try {
+    const parsedUrl = new URL(url);
+    // Only allow safe protocols
+    if (['http:', 'https:'].includes(parsedUrl.protocol)) {
+      return parsedUrl.toString();
+    }
+    return '';
+  } catch {
+    return '';
+  }
+}
+
 export default function ExerciseLibraryPage() {
   const router = useRouter();
   const { data: exercises = [], isLoading, isError } = useGetExercisesQuery();
@@ -67,7 +81,9 @@ export default function ExerciseLibraryPage() {
   }
 
   async function handleSave() {
-    const payload = { name, category, videoUrl, description };
+    // Security: Sanitize URL before saving
+    const sanitizedVideoUrl = videoUrl ? sanitizeUrl(videoUrl) : '';
+    const payload = { name, category, videoUrl: sanitizedVideoUrl, description };
     try {
       if (editing) {
         await updateExercise({ id: editing.id, exercise: payload }).unwrap();
@@ -84,6 +100,17 @@ export default function ExerciseLibraryPage() {
   function handleDelete(id: string) {
     if (confirm('Delete this exercise?')) {
       deleteExercise(id);
+    }
+  }
+
+  function handlePreview(url: string) {
+    // Security: Sanitize URL before setting for preview
+    const sanitizedUrl = sanitizeUrl(url);
+    if (sanitizedUrl) {
+      setPreviewUrl(sanitizedUrl);
+      setIsPreviewOpen(true);
+    } else {
+      alert('Invalid video URL');
     }
   }
 
@@ -116,7 +143,7 @@ export default function ExerciseLibraryPage() {
                 <TableCell>
                   {ex.videoUrl ? (
                     <a
-                      href={ex.videoUrl}
+                      href={sanitizeUrl(ex.videoUrl)}
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 underline"
@@ -133,10 +160,7 @@ export default function ExerciseLibraryPage() {
                     <Button
                       size="sm"
                       variant="secondary"
-                      onClick={() => {
-                        setPreviewUrl(ex.videoUrl ?? '');
-                        setIsPreviewOpen(true);
-                      }}
+                      onClick={() => handlePreview(ex.videoUrl!)}
                     >
                       Preview
                     </Button>

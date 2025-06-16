@@ -18,10 +18,10 @@ interface FindInjuriesFilters {
 export const findAll = async (): Promise<Injury[]> => {
     const queryText = 'SELECT * FROM injuries ORDER BY date_occurred DESC';
     
-    console.log('[DB Query] Finding all injuries:', queryText);
+    console.log('[DB Query] Finding all injuries');
     try {
-        const result: QueryResult<Injury> = await db.query(queryText, []);
-        console.log(`[DB Success] Found ${result.rows.length} total injuries`);
+        const result: QueryResult<Injury> = await db.query(queryText);
+        console.log('[DB Success] Found all injuries:', { count: result.rows.length });
         return result.rows;
     } catch (error) {
         console.error('[DB Error] Failed to find all injuries:', error);
@@ -51,10 +51,10 @@ export const findInjuries = async (filters: FindInjuriesFilters, limit: number, 
     queryText += ` ORDER BY date_occurred DESC LIMIT $${paramIndex++} OFFSET $${paramIndex++}`;
     queryParams.push(limit, offset);
 
-    console.log('[DB Query] Finding injuries:', queryText, queryParams);
+    console.log('[DB Query] Finding injuries with filters:', { filters, limit, offset });
     try {
         const result: QueryResult<Injury> = await db.query(queryText, queryParams);
-        console.log(`[DB Success] Found ${result.rows.length} injuries`);
+        console.log('[DB Success] Found injuries:', { count: result.rows.length });
         return result.rows;
     } catch (error) {
         console.error('[DB Error] Failed to find injuries:', error);
@@ -81,11 +81,11 @@ export const countInjuries = async (filters: FindInjuriesFilters): Promise<numbe
         queryText += ' WHERE ' + whereClauses.join(' AND ');
     }
 
-    console.log('[DB Query] Counting injuries:', queryText, queryParams);
+    console.log('[DB Query] Counting injuries with filters:', { filters });
     try {
         const result = await db.query(queryText, queryParams);
         const count = parseInt(result.rows[0].count, 10);
-        console.log(`[DB Success] Counted ${count} injuries`);
+        console.log('[DB Success] Counted injuries:', { count });
         return count;
     } catch (error) {
         console.error('[DB Error] Failed to count injuries:', error);
@@ -98,16 +98,16 @@ export const findInjuryById = async (id: string, organizationId: string): Promis
     const queryText = 'SELECT * FROM injuries WHERE id = $1 AND organization_id = $2';
     const params = [id, organizationId];
 
-    console.log('[DB Query] Finding injury by ID:', queryText, params);
+    console.log('[DB Query] Finding injury by ID:', { id, organizationId });
     try {
         const result: QueryResult<Injury> = await db.query(queryText, params);
         if (result.rows.length === 0) {
             return null;
         }
-        console.log(`[DB Success] Found injury ${id}`);
+        console.log('[DB Success] Found injury by ID:', { id });
         return result.rows[0];
-    } catch (error) {
-        console.error(`[DB Error] Failed to find injury ${id}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to find injury by ID:', { id, error: error.message });
         throw new Error('Database error while fetching injury by ID.');
     }
 };
@@ -134,12 +134,12 @@ export const createInjury = async (data: Omit<Injury, 'id' | 'createdAt' | 'upda
         estimatedReturnDate || null, reportedByUserId || null, status
     ];
 
-    console.log('[DB Query] Creating injury:', queryText, params);
+    console.log('[DB Query] Creating injury with data:', { playerId, organizationId, bodyPart, injuryType });
     try {
         const result: QueryResult<Injury> = await db.query(queryText, params);
-        console.log('[DB Success] Injury created:', result.rows[0]);
+        console.log('[DB Success] Injury created:', { id: result.rows[0].id });
         return result.rows[0];
-    } catch (error) {
+    } catch (error: any) {
         console.error('[DB Error] Failed to create injury:', error);
         throw new Error('Database error while creating injury.');
     }
@@ -170,16 +170,16 @@ export const updateInjury = async (id: string, organizationId: string, data: Par
     const queryText = `UPDATE injuries SET ${updateFields.join(', ')} WHERE id = $${paramIndex++} AND organization_id = $${paramIndex++} RETURNING *`;
     updateParams.push(id, organizationId);
 
-    console.log('[DB Query] Updating injury:', queryText, updateParams);
+    console.log('[DB Query] Updating injury:', { id, organizationId, fieldsCount: updateFields.length });
     try {
         const result: QueryResult<Injury> = await db.query(queryText, updateParams);
         if (result.rows.length === 0) {
             return null; // Not found or not authorized
         }
-        console.log('[DB Success] Injury updated:', result.rows[0]);
+        console.log('[DB Success] Injury updated:', { id });
         return result.rows[0];
-    } catch (error) {
-        console.error(`[DB Error] Failed to update injury ${id}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to update injury:', { id, error: error.message });
         throw new Error('Database error while updating injury.');
     }
 };
@@ -191,17 +191,66 @@ export const deleteInjury = async (id: string, organizationId: string): Promise<
     const queryText = 'DELETE FROM injuries WHERE id = $1 AND organization_id = $2';
     const params = [id, organizationId];
 
-    console.log('[DB Query] Deleting injury:', queryText, params);
+    console.log('[DB Query] Deleting injury:', { id, organizationId });
     try {
         const result = await db.query(queryText, params);
         const deleted = result.rowCount ? result.rowCount > 0 : false;
-        console.log(`[DB Success] Injury ${id} deletion attempt result: ${deleted}`);
+        console.log('[DB Success] Injury deletion result:', { id, deleted });
         return deleted;
-    } catch (error) {
-        console.error(`[DB Error] Failed to delete injury ${id}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to delete injury:', { id, error: error.message });
         // Handle FK constraint errors if cascades aren't set up
         throw new Error('Database error while deleting injury.');
     }
 };
 
-// TODO: Add functions for Injury Updates, Treatments etc. 
+// Injury Updates functions
+export const findInjuryUpdatesByInjuryId = async (injuryId: string): Promise<any[]> => {
+    const queryText = `
+        SELECT 
+            iu.*
+        FROM injury_updates iu
+        WHERE iu.injury_id = $1 
+        ORDER BY iu.date DESC, iu.created_at DESC
+    `;
+    const params = [injuryId];
+
+    console.log('[DB Query] Finding injury updates:', { injuryId });
+    try {
+        const result = await db.query(queryText, params);
+        console.log('[DB Success] Found injury updates:', { injuryId, count: result.rows.length });
+        return result.rows;
+    } catch (error: any) {
+        console.error('[DB Error] Failed to find injury updates:', { injuryId, error: error.message });
+        throw new Error('Database error while fetching injury updates.');
+    }
+};
+
+export const createInjuryUpdate = async (data: {
+    injuryId: string;
+    date: Date;
+    note: string;
+    subjectiveAssessment?: string;
+    objectiveAssessment?: string;
+    createdByUserId: string;
+}): Promise<any> => {
+    const { injuryId, date, note, subjectiveAssessment, objectiveAssessment, createdByUserId } = data;
+    const queryText = `
+        INSERT INTO injury_updates (
+            injury_id, date, note, subjective_assessment, objective_assessment, created_by_user_id
+        )
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *
+    `;
+    const params = [injuryId, date, note, subjectiveAssessment || null, objectiveAssessment || null, createdByUserId];
+
+    console.log('[DB Query] Creating injury update:', { injuryId, createdByUserId });
+    try {
+        const result = await db.query(queryText, params);
+        console.log('[DB Success] Injury update created:', { injuryId, updateId: result.rows[0].id });
+        return result.rows[0];
+    } catch (error: any) {
+        console.error('[DB Error] Failed to create injury update:', { injuryId, error: error.message });
+        throw new Error('Database error while creating injury update.');
+    }
+}; 

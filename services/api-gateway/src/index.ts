@@ -3,12 +3,68 @@ import dotenv from 'dotenv';
 dotenv.config();
 import cors from 'cors';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { authenticate } from './middleware/authMiddleware';
 import fetch from 'node-fetch';
+import url from 'url';
+
+// Rate limiting configurations
+const generalRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const authRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 auth requests per windowMs
+  message: { error: 'Too many authentication attempts, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const strictRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50, // limit each IP to 50 requests per windowMs for sensitive operations
+  message: { error: 'Too many requests for this operation, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Allowed service targets for SSRF protection
+const ALLOWED_SERVICES = new Set([
+  'http://127.0.0.1:3001', // User Service
+  'http://127.0.0.1:3002', // Communication Service (updated port)
+  'http://127.0.0.1:3003', // Calendar Service
+  'http://127.0.0.1:3004', // Training Service
+  'http://127.0.0.1:3005', // Medical Service
+  'http://127.0.0.1:3006', // Planning Service
+  'http://127.0.0.1:3007', // Statistics Service
+  'http://127.0.0.1:3008', // Payment Service
+  'http://127.0.0.1:3009', // Admin Service
+]);
+
+// Validate service target to prevent SSRF
+function validateServiceTarget(targetUrl: string): boolean {
+  try {
+    const parsed = url.parse(targetUrl);
+    const baseUrl = `${parsed.protocol}//${parsed.host}`;
+    return ALLOWED_SERVICES.has(baseUrl);
+  } catch {
+    return false;
+  }
+}
 
 // Helper to build proxy with common settings
 function buildProxy(target: string, stripPrefix: string = '') {
+  // Validate target to prevent SSRF
+  if (!validateServiceTarget(target)) {
+    throw new Error(`Invalid service target: ${target}`);
+  }
+
   const config: Record<string, any> = {
     target,
     changeOrigin: true,
@@ -23,6 +79,11 @@ function buildProxy(target: string, stripPrefix: string = '') {
       // Forward Authorization header if present
       if (req.headers.authorization) {
         proxyReq.setHeader('Authorization', req.headers.authorization);
+      }
+
+      // Forward user data from JWT as a header
+      if (req.user) {
+        proxyReq.setHeader('X-User-Data', JSON.stringify(req.user));
       }
       
       // If no Authorization header but we have a validated user, add it
@@ -62,6 +123,9 @@ function buildProxy(target: string, stripPrefix: string = '') {
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Apply rate limiting to all requests
+app.use(generalRateLimit);
+
 // Basic Middleware
 app.use(cors({
   origin: ['http://localhost:3002', 'http://localhost:3000'], // Frontend and any other allowed origins
@@ -70,18 +134,19 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Accept-Language'],
 })); // Enable CORS for all routes
 app.use(helmet()); // Adds various security headers
-app.use(express.json()); // Parses incoming JSON requests
+
+// Only parse JSON for non-proxied routes (like health check)
+// Proxied routes should not have their body parsed by the gateway
 
 // --- Health Check ---
 app.get('/api/gateway/health', (_req: Request, res: Response) => {
   res.status(200).json({ status: 'API Gateway is running' });
 });
 
-// --- Public Auth Routes (no JWT needed) ---
+// --- Public Auth Routes (no JWT needed) with strict rate limiting ---
 console.log('[API Gateway] Setting up auth proxy to http://127.0.0.1:3001');
-app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
+app.all('/api/v1/auth/*', authRateLimit, express.json(), async (req: Request, res: Response) => {
   console.log(`[API Gateway] Manual proxy: ${req.method} ${req.url}`);
-  console.log(`[API Gateway] Headers:`, req.headers);
   
   // Handle preflight OPTIONS requests
   if (req.method === 'OPTIONS') {
@@ -91,6 +156,13 @@ app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
   
   try {
     const targetUrl = `http://127.0.0.1:3001${req.url}`;
+    
+    // Validate target URL to prevent SSRF
+    if (!validateServiceTarget(targetUrl)) {
+      console.error(`[API Gateway] SSRF attempt blocked: ${targetUrl}`);
+      return res.status(400).json({ error: 'Invalid request target' });
+    }
+    
     console.log(`[API Gateway] Forwarding to: ${targetUrl}`);
     
     // Forward all headers including cookies
@@ -114,13 +186,11 @@ app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
     
     // Forward all response headers including Set-Cookie
     response.headers.forEach((value, key) => {
-      console.log(`[API Gateway] Forwarding header: ${key} = ${value}`);
       if (key.toLowerCase() === 'set-cookie') {
         // Handle Set-Cookie specially to preserve multiple values
         const setCookieValues = response.headers.raw()['set-cookie'];
         if (setCookieValues) {
           res.setHeader('Set-Cookie', setCookieValues);
-          console.log(`[API Gateway] Set-Cookie forwarded:`, setCookieValues);
         }
       } else {
         res.setHeader(key, value);
@@ -128,7 +198,6 @@ app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
     });
     
     const data = await response.text();
-    console.log(`[API Gateway] Response data length: ${data.length}`);
     res.send(data);
     
   } catch (error) {
@@ -140,7 +209,10 @@ app.all('/api/v1/auth/*', async (req: Request, res: Response) => {
 // --- Authentication Middleware (protects everything below) ---
 app.use('/api', authenticate);
 
-// --- Protected Proxies ---
+// --- Protected Proxies with rate limiting ---
+// Medical Service - strip /medical prefix when forwarding
+app.use('/api/v1/medical', strictRateLimit, buildProxy('http://127.0.0.1:3005', '^/api/v1/medical'));
+
 // User Service (general)
 app.use('/api/v1/users', buildProxy('http://127.0.0.1:3001'));
 
@@ -151,10 +223,7 @@ app.use('/api/v1/calendar', buildProxy('http://127.0.0.1:3003'));
 app.use('/api/v1/training', buildProxy('http://127.0.0.1:3004'));
 
 // Communication Service
-app.use('/api/v1/communication', buildProxy('http://127.0.0.1:3020'));
-
-// Medical Service
-app.use('/api/v1/medical', buildProxy('http://127.0.0.1:3005'));
+app.use('/api/v1/communication', buildProxy('http://127.0.0.1:3002'));
 
 // Planning Service
 app.use('/api/v1/planning', buildProxy('http://127.0.0.1:3006'));
@@ -163,10 +232,10 @@ app.use('/api/v1/planning', buildProxy('http://127.0.0.1:3006'));
 app.use('/api/v1/statistics', buildProxy('http://127.0.0.1:3007'));
 
 // Payment Service
-app.use('/api/v1/payment', buildProxy('http://127.0.0.1:3008'));
+app.use('/api/v1/payment', strictRateLimit, buildProxy('http://127.0.0.1:3008'));
 
 // Admin Service
-app.use('/api/v1/admin', buildProxy('http://127.0.0.1:3009'));
+app.use('/api/v1/admin', strictRateLimit, buildProxy('http://127.0.0.1:3009'));
 
 // Add more service proxies here following the same pattern...
 

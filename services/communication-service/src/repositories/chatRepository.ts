@@ -18,14 +18,14 @@ export const isUserChatParticipant = async (userId: string, chatId: string): Pro
     const params = [userId, chatId];
 
     try {
-        console.log('[DB Query] Checking chat participation:', queryText, params);
+        console.log('[DB Query] Checking chat participation with parameters:', { userId, chatId });
         const result: QueryResult = await db.query(queryText, params);
         // Check if rowCount is not null/undefined before using it
         const isParticipant = result.rowCount ? result.rowCount > 0 : false;
-        console.log(`[DB Success] User ${userId} is participant in chat ${chatId}: ${isParticipant}`);
+        console.log('[DB Success] User participation check completed:', { userId, chatId, isParticipant });
         return isParticipant;
-    } catch (error) {
-        console.error(`[DB Error] Failed to check chat participation for user ${userId} in chat ${chatId}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to check chat participation:', { userId, chatId, error: error.message });
         // In case of error, assume user is not a participant for safety
         return false; 
     }
@@ -62,12 +62,12 @@ export const findChatsByUserId = async (userId: string, limit: number, offset: n
     const params = [userId, limit, offset];
 
     try {
-        console.log('[DB Query] Finding chats by user ID:', queryText, params);
+        console.log('[DB Query] Finding chats by user with parameters:', { userId, limit, offset });
         const result = await db.query(queryText, params);
-        console.log(`[DB Success] Found ${result.rows.length} chats for user ${userId}`);
+        console.log('[DB Success] Found chats for user:', { userId, count: result.rows.length });
         return result.rows;
-    } catch (error) {
-        console.error(`[DB Error] Failed to find chats for user ${userId}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to find chats for user:', { userId, error: error.message });
         throw new Error('Database error while fetching user chats.');
     }
 };
@@ -87,13 +87,13 @@ export const countUserChats = async (userId: string): Promise<number> => {
     const params = [userId];
 
     try {
-        console.log('[DB Query] Counting chats for user ID:', queryText, params);
+        console.log('[DB Query] Counting chats for user with parameters:', { userId });
         const result = await db.query(queryText, params);
         const count = parseInt(result.rows[0].count, 10);
-        console.log(`[DB Success] User ${userId} has ${count} chats`);
+        console.log('[DB Success] User chat count:', { userId, count });
         return count;
-    } catch (error) {
-        console.error(`[DB Error] Failed to count chats for user ${userId}:`, error);
+    } catch (error: any) {
+        console.error('[DB Error] Failed to count chats for user:', { userId, error: error.message });
         throw new Error('Database error while counting user chats.');
     }
 };

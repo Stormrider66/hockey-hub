@@ -109,27 +109,38 @@ const wellnessMetrics = [
   { key: "nutrition", label: "Nutrition Quality", icon: Apple, color: "#84cc16" },
 ];
 
-// Mock historical wellness data (30 days)
+// Generate secure random number in range [min, max)
+function secureRandom(min: number, max: number): number {
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return min + (array[0] / (0xffffffff + 1)) * (max - min);
+}
+
+// Generate secure random integer in range [min, max]
+function secureRandomInt(min: number, max: number): number {
+  return Math.floor(secureRandom(min, max + 1));
+}
+
+// Generate historical wellness data with secure random values
 const generateHistoricalData = () => {
   const data = [];
   for (let i = 29; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     data.push({
-      date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      dayOfWeek: date.toLocaleDateString('en-US', { weekday: 'short' }),
-      sleepQuality: Math.floor(Math.random() * 3) + 7,
-      energyLevel: Math.floor(Math.random() * 3) + 7,
-      mood: Math.floor(Math.random() * 3) + 7,
-      motivation: Math.floor(Math.random() * 3) + 7,
-      stressLevel: Math.floor(Math.random() * 4) + 2,
-      soreness: Math.floor(Math.random() * 4) + 2,
-      hydration: Math.floor(Math.random() * 3) + 7,
-      nutrition: Math.floor(Math.random() * 3) + 7,
-      readinessScore: Math.floor(Math.random() * 20) + 75,
-      sleepHours: Math.random() * 2 + 7,
-      hrv: Math.floor(Math.random() * 30) + 40, // HRV typically 40-70ms for athletes
-      restingHeartRate: Math.floor(Math.random() * 15) + 45, // RHR typically 45-60 for athletes
+      date: date.toISOString().split('T')[0],
+      sleepHours: secureRandom(7, 9),
+      sleepQuality: secureRandomInt(5, 10),
+      energyLevel: secureRandomInt(5, 10),
+      mood: secureRandomInt(5, 10),
+      motivation: secureRandomInt(6, 10),
+      stressLevel: secureRandomInt(2, 6),
+      soreness: secureRandomInt(2, 6),
+      hydration: secureRandomInt(7, 10),
+      nutrition: secureRandomInt(7, 10),
+      readinessScore: secureRandomInt(75, 95),
+      hrv: secureRandomInt(40, 70), // HRV typically 40-70ms for athletes
+      restingHeartRate: secureRandomInt(45, 60), // RHR typically 45-60 for athletes
     });
   }
   return data;
