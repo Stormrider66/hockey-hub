@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "ES2016", 
+    "module": "CommonJS", 
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true,
+    "noEmit": false, // Override base config
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@entities/*": ["entities/*"],
+      "@services/*": ["services/*"],
+      "@repositories/*": ["repositories/*"],
+      "@controllers/*": ["controllers/*"],
+      "@routes/*": ["routes/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"]
+    },
+    "strict": false,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false
+  },
+  "include": ["src/**/*", "ExerciseService.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+} 

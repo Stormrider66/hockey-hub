@@ -1,0 +1,9 @@
+# Ignore local dependencies and build artifacts
+node_modules
+
+# Ignore build output
+dist
+# Log files
+npm-debug.log*
+# Environment files
+.env 

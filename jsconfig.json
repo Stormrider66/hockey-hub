@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@hockey-hub/types/*": ["./shared/types/src/*"],
+      "@hockey-hub/shared-types/*": ["./shared/types/src/*"],
+      "@hockey-hub/types": ["./shared/types/src"],
+      "@hockey-hub/shared-types": ["./shared/types/src"]
+    }
+  },
+  "exclude": ["**/node_modules", "**/dist"]
+} 
