@@ -1,0 +1,11 @@
+
+> @hockey-hub/api-gateway@0.1.0 build /mnt/c/Hockey Hub/services/api-gateway
+> tsc
+
+src/index-with-monitoring.ts(17,3): error TS6133: 'createErrorContext' is declared but its value is never read.
+src/index-with-monitoring.ts(18,3): error TS6133: 'CircuitBreakerManager' is declared but its value is never read.
+src/index-with-monitoring.ts(26,3): error TS2741: Property 'name' is missing in type '{ version: string; environment: string; }' but required in type '{ name: string; version?: string | undefined; environment?: string | undefined; }'.
+src/index-with-monitoring.ts(62,43): error TS6133: 'critical' is declared but its value is never read.
+src/index-with-monitoring.ts(66,45): error TS2353: Object literal may only specify known properties, and 'timeout' does not exist in type 'RequestInit'.
+src/index-with-monitoring.ts(260,9): error TS2353: Object literal may only specify known properties, and 'timeout' does not exist in type 'RequestInit'.
+ ELIFECYCLE  Command failed with exit code 2.

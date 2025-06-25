@@ -1,0 +1,1 @@
+{"version":3,"file":"V1__init_base_schema.d.ts","sourceRoot":"","sources":["../../src/migrations/V1__init_base_schema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,WAAW,EAAsC,MAAM,SAAS,CAAC;AAE9F,qBAAa,6BAA8B,YAAW,kBAAkB;IACzD,EAAE,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;IAuT3C,IAAI,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;CAW3D"}

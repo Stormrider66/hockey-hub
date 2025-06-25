@@ -1,0 +1,13 @@
+
+> @hockey-hub/training-service@0.1.0 test C:\Hockey Hub\services\training-service
+> jest
+
+PASS test/unit/testAnalyticsController.test.ts (25.067 s)
+PASS test/integration/testAnalyticsRoutes.test.ts (27.563 s)
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+
+Test Suites: 2 passed, 2 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        34.781 s
+Ran all test suites.

@@ -1,0 +1,5 @@
+
+> @hockey-hub/api-gateway@0.1.0 test C:\Hockey Hub\services\api-gateway
+> jest --passWithNoTests
+
+No tests found, exiting with code 0
