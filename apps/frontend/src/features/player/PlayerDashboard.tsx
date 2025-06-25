@@ -148,8 +148,38 @@ const generateHistoricalData = () => {
 
 const historicalWellnessData = generateHistoricalData();
 
+// Types for wellness data
+interface WellnessData {
+  date: string;
+  sleepHours: number;
+  sleepQuality: number;
+  energyLevel: number;
+  mood: number;
+  motivation: number;
+  stressLevel: number;
+  soreness: number;
+  hydration: number;
+  nutrition: number;
+  readinessScore: number;
+  hrv: number;
+  restingHeartRate: number;
+}
+
+interface WellnessAverages {
+  sleepQuality: number;
+  energyLevel: number;
+  mood: number;
+  readinessScore: number;
+}
+
+interface WellnessInsight {
+  type: 'positive' | 'warning';
+  text: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
 // Calculate wellness insights
-const calculateWellnessInsights = (data: any[]) => {
+const calculateWellnessInsights = (data: WellnessData[]) => {
   const recent = data.slice(-7);
   const previous = data.slice(-14, -7);
   
@@ -179,21 +209,21 @@ const calculateWellnessInsights = (data: any[]) => {
   };
 };
 
-const generateInsights = (recent: any, previous: any) => {
-  const insights = [];
+const generateInsights = (recent: WellnessAverages, previous: WellnessAverages): WellnessInsight[] => {
+  const insights: WellnessInsight[] = [];
   
   if (recent.sleepQuality > previous.sleepQuality) {
-    insights.push({ type: 'positive', text: 'Your sleep quality has improved this week', icon: Moon });
+    insights.push({ type: 'positive' as const, text: 'Your sleep quality has improved this week', icon: Moon });
   } else if (recent.sleepQuality < previous.sleepQuality - 0.5) {
-    insights.push({ type: 'warning', text: 'Sleep quality declining - consider adjusting bedtime routine', icon: Moon });
+    insights.push({ type: 'warning' as const, text: 'Sleep quality declining - consider adjusting bedtime routine', icon: Moon });
   }
   
   if (recent.readinessScore > 85) {
-    insights.push({ type: 'positive', text: 'Excellent readiness scores - you\'re in peak condition', icon: Shield });
+    insights.push({ type: 'positive' as const, text: 'Excellent readiness scores - you\'re in peak condition', icon: Shield });
   }
   
   if (recent.energyLevel < 7) {
-    insights.push({ type: 'warning', text: 'Energy levels below optimal - ensure adequate recovery', icon: Battery });
+    insights.push({ type: 'warning' as const, text: 'Energy levels below optimal - ensure adequate recovery', icon: Battery });
   }
   
   return insights;
@@ -312,7 +342,7 @@ export default function PlayerDashboard() {
     }
   };
 
-  const updateWellnessField = (field: string, value: any) => {
+  const updateWellnessField = (field: string, value: number | string | string[]) => {
     setWellnessForm(prev => ({ ...prev, [field]: value }));
   };
 
@@ -723,7 +753,7 @@ export default function PlayerDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {wellnessStats.insights!.map((insight: any, index: number) => (
+                    {wellnessStats.insights!.map((insight, index) => (
                       <div key={index} className={cn(
                         "flex items-start gap-3 p-3 rounded-lg",
                         insight.type === 'positive' && "bg-green-50 border border-green-200",
