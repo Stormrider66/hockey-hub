@@ -1,0 +1,55 @@
+
+> planning-service@1.0.0 dev
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[DB] Pool created for planning database: hockeyhub_planning on localhost:5432
+[DB] Planning Service: Error during Data Source initialization: error: database "hockeyhub_planning" does not exist
+    at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+    at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+    at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+    at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+    at Socket.emit (node:events:518:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Socket.Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+  length: 104,
+  severity: 'FATAL',
+  code: '3D000',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'postinit.c',
+  line: '1032',
+  routine: 'InitPostgres'
+}
+[DB] Planning Service: Continuing with basic pool connection only
+Error: listen EADDRINUSE: address already in use :::3006
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at /mnt/c/Hockey Hub/services/planning-service/src/index.ts:114:16
+    at Generator.throw (<anonymous>)
+    at rejected (/mnt/c/Hockey Hub/services/planning-service/src/index.ts:6:65)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3006
+}
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m

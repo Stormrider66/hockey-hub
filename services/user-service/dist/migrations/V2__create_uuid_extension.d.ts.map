@@ -1,0 +1,1 @@
+{"version":3,"file":"V2__create_uuid_extension.d.ts","sourceRoot":"","sources":["../../src/migrations/V2__create_uuid_extension.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,WAAW,EAAE,MAAM,SAAS,CAAC;AAE1D,qBAAa,kCAAmC,YAAW,kBAAkB;IAC9D,EAAE,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;IAK3C,IAAI,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;CAK3D"}

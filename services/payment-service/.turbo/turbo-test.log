@@ -1,0 +1,65 @@
+
+> @hockey-hub/payment-service@0.1.0 test C:\Hockey Hub\services\payment-service
+> jest
+
+PASS src/workers/outboxDispatcher.test.ts (23.255 s)
+  Outbox Dispatcher (Payment)
+    √ marks success when publish succeeds (156 ms)
+    √ retries and marks failure after max retries (2 ms)
+
+PASS test/integration/paymentMethodRoutes.test.ts (28.57 s)
+  Payment method routes
+    √ creates payment method (407 ms)
+    √ lists methods (17 ms)
+    √ set default (57 ms)
+    √ delete method (17 ms)
+
+PASS test/integration/invoiceRoutes.test.ts (28.895 s)
+  Invoice routes
+    √ lists invoices (empty) (427 ms)
+    √ adds fake invoice to mock store (2 ms)
+    √ gets invoice by id (27 ms)
+    √ pays invoice (21 ms)
+
+  console.log
+    [Stripe] Unhandled event type undefined
+
+      at src/controllers/webhookController.ts:53:15
+
+PASS test/integration/webhookStripe.test.ts (29.347 s)
+  Stripe webhook
+    √ returns 200 for test event (249 ms)
+
+PASS test/integration/subscriptionRoutes.test.ts (29.555 s)
+  Subscription routes
+    √ creates subscription (146 ms)
+    √ lists subscriptions (22 ms)
+    √ gets subscription by id (11 ms)
+    √ updates subscription (15 ms)
+    √ cancels subscription (16 ms)
+
+  console.log
+    [Payment Service] Free Trial plan created
+
+      at src/workers/orgEventConsumer.ts:35:13
+
+  console.log
+    [Payment Service] Free trial subscription created for org org-999
+
+      at src/workers/orgEventConsumer.ts:60:11
+
+  console.log
+    [Payment Service] Org already has subscription; skipping
+
+      at src/workers/orgEventConsumer.ts:41:13
+
+PASS src/workers/orgConsumer.test.ts (30.313 s)
+  handleOrgProvisioned (Payment)
+    √ creates free trial plan and subscription when absent (108 ms)
+    √ skips if subscription exists (13 ms)
+
+Test Suites: 6 passed, 6 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        32.976 s
+Ran all test suites.

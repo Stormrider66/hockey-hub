@@ -1,0 +1,30 @@
+
+> planning-service@1.0.0 dev /mnt/c/Hockey Hub/services/planning-service
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[DB] Pool configuration - User: postgres, Password: hoc***, Database: hockeyhub_planning
+[DB] Pool created for planning database: hockeyhub_planning on localhost:5432
+query: SELECT version()
+query: SELECT * FROM current_schema()
+query: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+[DB] Planning Service: TypeORM Data Source initialized successfully
+Planning Service listening on port 3006
+[DEV] Auth bypassed - using mock user
+[DB Query] Finding season by ID: SELECT * FROM seasons WHERE id = $1 [ 'c3de7515-ce42-4a2c-a908-ef621f571053' ]
+[DB] New client connected to the planning pool
+[DB Success] Found season c3de7515-ce42-4a2c-a908-ef621f571053
+[DB Query] Finding phases for season: 
+        SELECT sp.* FROM season_phases sp
+        JOIN seasons s ON sp.season_id = s.id
+        WHERE sp.season_id = $1 AND s.organization_id = $2
+        ORDER BY sp.start_date ASC
+     [ 'c3de7515-ce42-4a2c-a908-ef621f571053', undefined ]
+[DB Success] Found 0 phases for season c3de7515-ce42-4a2c-a908-ef621f571053
+[0mGET /api/v1/seasons/c3de7515-ce42-4a2c-a908-ef621f571053/phases [32m200[0m 71.793 ms - 26[0m
+[DEV] Auth bypassed - using mock user
+[0mGET /api/v1/test/seasons?page=1&limit=20 [36m304[0m 7.537 ms - -[0m

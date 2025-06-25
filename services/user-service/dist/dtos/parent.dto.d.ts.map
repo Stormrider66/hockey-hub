@@ -1,0 +1,1 @@
+{"version":3,"file":"parent.dto.d.ts","sourceRoot":"","sources":["../../src/dtos/parent.dto.ts"],"names":[],"mappings":"AAEA,MAAM,WAAW,gBAAgB;IAC7B,QAAQ,EAAE,MAAM,CAAC;IACjB,OAAO,EAAE,MAAM,CAAC;IAChB,YAAY,CAAC,EAAE,QAAQ,GAAG,UAAU,GAAG,OAAO,CAAC;IAC/C,SAAS,CAAC,EAAE,OAAO,CAAC;CACvB;AAED,MAAM,WAAW,mBAAmB;IAChC,MAAM,EAAE,MAAM,CAAC;CAClB"}

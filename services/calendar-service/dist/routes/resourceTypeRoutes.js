@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const resourceController_1 = require("../controllers/resourceController");
+const validateRequest_1 = require("../middleware/validateRequest");
+const resourceTypeSchemas_1 = require("../validation/resourceTypeSchemas");
+const router = (0, express_1.Router)();
+router.get('/', resourceController_1.getAllResourceTypes);
+router.post('/', (0, validateRequest_1.validate)(resourceTypeSchemas_1.createResourceTypeSchema), resourceController_1.createResourceType);
+router.get('/:id', (0, validateRequest_1.validate)(resourceTypeSchemas_1.resourceTypeIdParamSchema), resourceController_1.getResourceTypeById);
+router.put('/:id', (0, validateRequest_1.validate)(resourceTypeSchemas_1.updateResourceTypeSchema), resourceController_1.updateResourceType);
+router.delete('/:id', (0, validateRequest_1.validate)(resourceTypeSchemas_1.resourceTypeIdParamSchema), resourceController_1.deleteResourceType);
+exports.default = router;

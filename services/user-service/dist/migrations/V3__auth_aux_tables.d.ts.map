@@ -1,0 +1,1 @@
+{"version":3,"file":"V3__auth_aux_tables.d.ts","sourceRoot":"","sources":["../../src/migrations/V3__auth_aux_tables.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,WAAW,EAAsC,MAAM,SAAS,CAAC;AAE9F,qBAAa,4BAA6B,YAAW,kBAAkB;IACxD,EAAE,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;IAyI3C,IAAI,CAAC,WAAW,EAAE,WAAW,GAAG,OAAO,CAAC,IAAI,CAAC;CAM3D"}

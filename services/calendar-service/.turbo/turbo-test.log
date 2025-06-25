@@ -1,0 +1,113 @@
+
+> @hockey-hub/calendar-service@0.1.0 test C:\Hockey Hub\services\calendar-service
+> jest
+
+PASS test/unit/conflictDetection.test.ts (30.737 s)
+  findConflictingEvents (unit)
+    √ returns empty array when no conflict criteria provided (182 ms)
+    √ detects resource-based conflicts (4 ms)
+    √ detects team-based conflicts (2 ms)
+    √ detects location-based conflicts (217 ms)
+
+  console.log
+    [Calendar] Default Location created
+
+      at src/workers/orgEventConsumer.ts:31:13
+
+PASS test/unit/orgConsumer.test.ts (34.975 s)
+  console.log
+    [Calendar] Default ResourceType "Ice Rink" created
+
+      at src/workers/orgEventConsumer.ts:39:13
+
+  console.log
+    [Calendar] Default Resource "Main Rink" created
+
+      at src/workers/orgEventConsumer.ts:53:13
+
+  handleOrgProvisioned
+    √ creates defaults when none exist (1044 ms)
+    √ does not create when resources already exist (11 ms)
+
+  console.log
+    [Success] Location created: {
+      id: 'a53d127e-7908-493b-80a3-199158bc4562',
+      organizationId: 'org1',
+      name: 'Main Arena',
+      description: undefined,
+      street: undefined,
+      city: undefined,
+      postalCode: undefined,
+      country: undefined,
+      stateProvince: undefined,
+      latitude: undefined,
+      longitude: undefined
+    }
+
+      at src/controllers/locationController.ts:83:17
+
+PASS test/integration/locationAndResourceRoutes.test.ts (40.448 s)
+  Location & Resource routes
+    √ creates location (3065 ms)
+    √ creates resource type (190 ms)
+    √ creates resource (14 ms)
+    √ updates resource (23 ms)
+    √ deletes resource (23 ms)
+
+  console.log
+    [Success] Location created: {
+      id: '50ceff39-3d6c-4ea2-9d8e-5d78e2558a6e',
+      organizationId: 'org1',
+      name: 'Arena',
+      description: undefined,
+      street: undefined,
+      city: undefined,
+      postalCode: undefined,
+      country: undefined,
+      stateProvince: undefined,
+      latitude: undefined,
+      longitude: undefined
+    }
+
+      at src/controllers/locationController.ts:83:17
+
+  console.error
+    [Error] Attempted to delete location 50ceff39-3d6c-4ea2-9d8e-5d78e2558a6e which is still in use.
+
+    [0m [90m 137 |[39m     } [36mcatch[39m (err) {
+     [90m 138 |[39m         [36mif[39m ((err [36mas[39m any)[33m.[39mcode [33m===[39m [32m'23503'[39m) {
+    [31m[1m>[22m[39m[90m 139 |[39m             console[33m.[39merror([32m`[Error] Attempted to delete location ${id} which is still in use.`[39m)[33m;[39m
+     [90m     |[39m                     [31m[1m^[22m[39m
+     [90m 140 |[39m             [36mreturn[39m res[33m.[39mstatus([35m409[39m)[33m.[39mjson({ error[33m:[39m [36mtrue[39m[33m,[39m code[33m:[39m [32m'RESOURCE_CONFLICT'[39m[33m,[39m message[33m:[39m [32m'Cannot delete location because it is still referenced by events or resources.'[39m })[33m;[39m
+     [90m 141 |[39m         }
+     [90m 142 |[39m         console[33m.[39merror([32m`[Error] Failed to delete location ${id}:`[39m[33m,[39m err)[33m;[39m[0m
+
+      at src/controllers/locationController.ts:139:21
+          at Generator.throw (<anonymous>)
+      at rejected (src/controllers/locationController.ts:6:65)
+
+PASS test/integration/locationAndResourceNegative.test.ts (43.293 s)
+  Negative-path validation & FK constraint checks
+    √ rejects creating location without name (191 ms)
+    √ rejects creating resource type with short name (13 ms)
+    √ rejects creating resource with missing required fields (13 ms)
+    √ rejects creating resource with invalid UUIDs (13 ms)
+    √ prevents deleting location in use by resource (FK simulated) (70 ms)
+    √ returns 404 when deleting non-existent resource (124 ms)
+
+[0mGET /health [32m200[0m 7.382 ms - 44[0m
+PASS test/health.e2e.test.ts (47.96 s)
+  Calendar Service Health Check
+    √ should return 200 OK (727 ms)
+
+PASS test/integration/eventRoutes.test.ts (47.725 s)
+  Event routes integration
+    √ creates an event when no conflicts (443 ms)
+    √ rejects create when conflicts exist (55 ms)
+
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Test Suites: 1 skipped, 6 passed, 6 of 7 total
+Tests:       1 skipped, 20 passed, 21 total
+Snapshots:   0 total
+Time:        52.171 s
+Ran all test suites.
