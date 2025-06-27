@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import { DashboardHeader } from "@/components/shared/DashboardHeader";
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import trainingSessionViewerReducer, { 
-  setTeam, 
-  setTeamName, 
-  setSessionCategory, 
-  setDisplayMode,
-  setIntervals
-} from '../../trainingSessionViewer/trainingSessionViewerSlice';
+// import { Provider } from 'react-redux';
+// import { configureStore } from '@reduxjs/toolkit';
+// import trainingSessionViewerReducer, { 
+//   setTeam, 
+//   setTeamName, 
+//   setSessionCategory, 
+//   setDisplayMode,
+//   setIntervals
+// } from '../../trainingSessionViewer/trainingSessionViewerSlice';
 import { apiSlice } from '@/store/api/apiSlice';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { 
   Activity, Calendar, Users, TrendingUp, Dumbbell, Clock, 
@@ -25,44 +26,55 @@ import {
   Plus, ChevronRight, Timer, Heart, Zap, AlertCircle,
   CheckCircle2, ArrowUp, ArrowDown, Minus, ArrowLeft
 } from 'lucide-react';
-// Temporarily commenting out imports that don't exist yet
-// import { useTestData } from '../hooks/useTestData';
-// import PhysicalAnalysisCharts from '../../statistics-service/physical-analysis/PhysicalAnalysisCharts';
+import { useTestData } from '@/hooks/useTestData';
+import PhysicalAnalysisCharts from './PhysicalAnalysisCharts';
 import PhysicalTestingForm from './PhysicalTestingForm';
-import LaunchSessionButton from '../../trainingSessionViewer/LaunchSessionButton';
-import TrainingSessionViewer from '../../trainingSessionViewer/TrainingSessionViewer';
+import LaunchSessionButton from './LaunchSessionButton';
+import TrainingSessionViewer from './TrainingSessionViewer';
+import CreateSessionModal from './CreateSessionModal';
+import { 
+  useGetSessionsQuery, 
+  useGetExercisesQuery, 
+  useGetTemplatesQuery,
+  useDeleteTemplateMutation 
+} from '@/store/api/trainingApi';
 // import TestCollectionDashboard from '../../statistics-service/physical-analysis/TestCollectionDashboard';
 
 // Create store for session viewer with RTK-Query middleware - moved outside component
-const sessionViewerStore = configureStore({
-  reducer: {
-    trainingSessionViewer: trainingSessionViewerReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
-});
-
-// Mock data for now
-const mockTestData = {
-  players: [
-    { id: '1', name: 'Erik Andersson', number: 15, position: 'Forward' },
-    { id: '2', name: 'Marcus Lindberg', number: 7, position: 'Defenseman' },
-    { id: '3', name: 'Viktor Nilsson', number: 23, position: 'Goalie' }
-  ],
-  testBatches: [
-    { id: 1, name: 'Pre-Season 2024', date: '2024-01-15', completedTests: 45, totalTests: 50 }
-  ],
-  testResults: []
-};
+// Temporarily disabled until trainingSessionViewerReducer is available
+// const sessionViewerStore = configureStore({
+//   reducer: {
+//     trainingSessionViewer: trainingSessionViewerReducer,
+//     [apiSlice.reducerPath]: apiSlice.reducer,
+//   },
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware().concat(apiSlice.middleware),
+// });
 
 export default function PhysicalTrainerDashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [showSessionViewer, setShowSessionViewer] = useState(false);
   const [currentSession, setCurrentSession] = useState<{ team: string; type: string; teamId: string } | null>(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [exerciseSearch, setExerciseSearch] = useState('');
+  const [selectedExerciseCategory, setSelectedExerciseCategory] = useState<string | undefined>(undefined);
   
-  // Use mock data instead of hook for now
-  const { players, testBatches, testResults } = mockTestData;
+  // Use the real hook now
+  const { players, testBatches, testResults, isLoading, error } = useTestData();
+  
+  // Fetch today's sessions from API
+  const today = new Date().toISOString().split('T')[0];
+  const { data: apiSessions, isLoading: sessionsLoading } = useGetSessionsQuery({ date: today });
+  
+  // Fetch exercises from API
+  const { data: exercises, isLoading: exercisesLoading } = useGetExercisesQuery({
+    category: selectedExerciseCategory,
+    search: exerciseSearch
+  });
+  
+  // Fetch templates from API
+  const { data: templates, isLoading: templatesLoading } = useGetTemplatesQuery({});
+  const [deleteTemplate] = useDeleteTemplateMutation();
 
   // Helper function to launch session with proper Redux state
   const launchSession = (session: any) => {
@@ -73,34 +85,23 @@ export default function PhysicalTrainerDashboard() {
       teamId: session.id.toString()
     });
     
-    // Dispatch Redux actions to set the team and display mode
-    sessionViewerStore.dispatch(setTeamName(session.team));
-    sessionViewerStore.dispatch(setTeam(session.id.toString()));
-    sessionViewerStore.dispatch(setSessionCategory(session.type));
-    
-    // Route to appropriate display mode based on session type
-    if (session.type === 'Strength Training') {
-      sessionViewerStore.dispatch(setDisplayMode('strength-training'));
-    } else if (session.type === 'Cardio Intervals') {
-      // Set intervals for 8x4min with 2min rest
-      const cardioIntervals = [];
-      for (let i = 0; i < 8; i++) {
-        cardioIntervals.push({ phase: 'work' as const, duration: 240 }); // 4 minutes work
-        if (i < 7) { // Don't add rest after the last work interval
-          cardioIntervals.push({ phase: 'rest' as const, duration: 120 }); // 2 minutes rest
-        }
-      }
-      sessionViewerStore.dispatch(setIntervals(cardioIntervals));
-      sessionViewerStore.dispatch(setDisplayMode('interval-timer')); // Show interval interface with team roster
-    } else {
-      sessionViewerStore.dispatch(setDisplayMode('player-list'));
-    }
-    
     setShowSessionViewer(true);
   };
 
-  // Today's sessions mock data
-  const todaysSessions = [
+  // Use API sessions if available, otherwise use mock data
+  const todaysSessions = apiSessions && apiSessions.length > 0 ? 
+    apiSessions.map(session => ({
+      id: session.id,
+      time: session.time,
+      team: session.team,
+      type: session.name,
+      location: session.location,
+      players: session.currentParticipants,
+      status: session.status === 'active' ? 'active' : 
+              session.status === 'completed' ? 'completed' : 'upcoming',
+      intensity: session.intensity,
+      description: session.description || ''
+    })) : [
     {
       id: 3,
       time: '07:30',
@@ -266,7 +267,7 @@ export default function PhysicalTrainerDashboard() {
         <CardHeader>
           <div className="flex justify-between items-center">
             <CardTitle>Today's Training Sessions</CardTitle>
-            <Button size="sm">
+            <Button size="sm" onClick={() => setShowCreateModal(true)}>
               <Plus className="h-4 w-4 mr-1" />
               New Session
             </Button>
@@ -407,7 +408,7 @@ export default function PhysicalTrainerDashboard() {
                 <Calendar className="h-4 w-4 mr-2" />
                 Schedule
               </Button>
-              <Button>
+              <Button onClick={() => setShowCreateModal(true)}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create Session
               </Button>
@@ -428,58 +429,156 @@ export default function PhysicalTrainerDashboard() {
     </div>
   );
 
-  const renderExerciseLibraryTab = () => (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Exercise Library</CardTitle>
-              <CardDescription>Manage your exercise database with videos and instructions</CardDescription>
-            </div>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Exercise
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-5 gap-4 mb-6">
-            {Object.entries(exerciseLibraryStats.byCategory).map(([category, count]) => (
-              <Card key={category}>
-                <CardContent className="pt-6">
-                  <div className="text-2xl font-bold">{count}</div>
-                  <p className="text-xs text-muted-foreground capitalize">{category} exercises</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <Badge variant="outline">
-                <Library className="h-3 w-3 mr-1" />
-                {exerciseLibraryStats.total} total exercises
-              </Badge>
-              <Badge variant="outline">
-                <Play className="h-3 w-3 mr-1" />
-                {exerciseLibraryStats.withVideos} with videos
-              </Badge>
-            </div>
-            <Input 
-              placeholder="Search exercises..." 
-              className="max-w-sm"
-            />
-          </div>
+  const renderExerciseLibraryTab = () => {
+    // Calculate stats from API data or use mock data
+    const apiExerciseStats = exercises ? {
+      total: exercises.length,
+      byCategory: exercises.reduce((acc, ex) => {
+        acc[ex.category] = (acc[ex.category] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>),
+      recentlyAdded: exercises.filter(ex => {
+        const created = new Date(ex.orderIndex); // Using orderIndex as timestamp for now
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        return created > weekAgo;
+      }).length,
+      withVideos: Math.floor(exercises.length * 0.8) // Mock 80% have videos
+    } : exerciseLibraryStats;
 
-          {/* Exercise list would go here */}
-          <div className="h-64 border rounded-lg flex items-center justify-center">
-            <p className="text-muted-foreground">Exercise list with filters and search</p>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
+    const displayStats = exercises ? apiExerciseStats : exerciseLibraryStats;
+    const displayExercises = exercises || [];
+
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>Exercise Library</CardTitle>
+                <CardDescription>Manage your exercise database with videos and instructions</CardDescription>
+              </div>
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Exercise
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-5 gap-4 mb-6">
+              {Object.entries(displayStats.byCategory).map(([category, count]) => (
+                <Card 
+                  key={category} 
+                  className={cn(
+                    "cursor-pointer transition-all hover:shadow-md",
+                    selectedExerciseCategory === category && "ring-2 ring-primary"
+                  )}
+                  onClick={() => setSelectedExerciseCategory(
+                    selectedExerciseCategory === category ? undefined : category
+                  )}
+                >
+                  <CardContent className="pt-6">
+                    <div className="text-2xl font-bold">{count}</div>
+                    <p className="text-xs text-muted-foreground capitalize">{category} exercises</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <Badge variant="outline">
+                  <Library className="h-3 w-3 mr-1" />
+                  {displayStats.total} total exercises
+                </Badge>
+                <Badge variant="outline">
+                  <Play className="h-3 w-3 mr-1" />
+                  {displayStats.withVideos} with videos
+                </Badge>
+                {selectedExerciseCategory && (
+                  <Button 
+                    variant="ghost" 
+                    size="sm"
+                    onClick={() => setSelectedExerciseCategory(undefined)}
+                  >
+                    <X className="h-3 w-3 mr-1" />
+                    Clear filter
+                  </Button>
+                )}
+              </div>
+              <Input 
+                placeholder="Search exercises..." 
+                className="max-w-sm"
+                value={exerciseSearch}
+                onChange={(e) => setExerciseSearch(e.target.value)}
+              />
+            </div>
+
+            {/* Exercise list */}
+            {exercisesLoading ? (
+              <div className="h-64 border rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                  <p className="text-sm text-muted-foreground">Loading exercises...</p>
+                </div>
+              </div>
+            ) : displayExercises.length === 0 ? (
+              <div className="h-64 border rounded-lg flex items-center justify-center">
+                <div className="text-center">
+                  <Dumbbell className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-muted-foreground">
+                    {exerciseSearch || selectedExerciseCategory ? 
+                      'No exercises found matching your criteria' : 
+                      'No exercises in the library yet'}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <ScrollArea className="h-96 border rounded-lg p-4">
+                <div className="space-y-3">
+                  {displayExercises.map((exercise) => (
+                    <Card key={exercise.id} className="hover:bg-accent/50 transition-colors">
+                      <CardContent className="pt-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                              <Dumbbell className="h-5 w-5 text-primary" />
+                            </div>
+                            <div>
+                              <h4 className="font-semibold">{exercise.name}</h4>
+                              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                <Badge variant="outline" className="text-xs">
+                                  {exercise.category}
+                                </Badge>
+                                {exercise.sets && <span>{exercise.sets} sets</span>}
+                                {exercise.reps && <span>× {exercise.reps} reps</span>}
+                                {exercise.duration && <span>{exercise.duration}s</span>}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Button variant="ghost" size="sm">
+                              <Play className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Edit
+                            </Button>
+                          </div>
+                        </div>
+                        {exercise.notes && (
+                          <p className="text-sm text-muted-foreground mt-2">{exercise.notes}</p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </ScrollArea>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
 
   const renderTestingTab = () => (
     <div className="space-y-6">
@@ -509,21 +608,7 @@ export default function PhysicalTrainerDashboard() {
         </TabsContent>
         
         <TabsContent value="analysis" className="mt-6">
-          {/* PhysicalAnalysisCharts would go here */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Performance Analysis</CardTitle>
-              <CardDescription>Charts and analytics for test results</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-96 border rounded-lg flex items-center justify-center">
-                <div className="text-center">
-                  <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-muted-foreground">Analysis charts interface</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <PhysicalAnalysisCharts />
         </TabsContent>
         
         <TabsContent value="form" className="mt-6">
@@ -610,63 +695,131 @@ export default function PhysicalTrainerDashboard() {
     </div>
   );
 
-  const renderTemplatesTab = () => (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Session Templates</CardTitle>
-              <CardDescription>Pre-built training sessions for different objectives</CardDescription>
+  const renderTemplatesTab = () => {
+    const displayTemplates = templates || sessionTemplates;
+    
+    const handleDeleteTemplate = async (templateId: string) => {
+      if (confirm('Are you sure you want to delete this template?')) {
+        try {
+          await deleteTemplate(templateId).unwrap();
+        } catch (error) {
+          console.error('Failed to delete template:', error);
+        }
+      }
+    };
+
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>Session Templates</CardTitle>
+                <CardDescription>Pre-built training sessions for different objectives</CardDescription>
+              </div>
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                Create Template
+              </Button>
             </div>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Create Template
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 gap-4">
-            {sessionTemplates.map(template => (
-              <Card key={template.id} className="hover:bg-accent/50 transition-colors cursor-pointer">
-                <CardContent className="pt-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="font-semibold">{template.name}</h3>
-                      <Badge variant="outline" className="mt-1">{template.category}</Badge>
-                    </div>
-                    <Button variant="ghost" size="sm">
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Duration</span>
-                      <span>{template.duration} min</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Exercises</span>
-                      <span>{template.exercises}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Last used</span>
-                      <span>{template.lastUsed}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
+          </CardHeader>
+          <CardContent>
+            {templatesLoading ? (
+              <div className="h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+                  <p className="text-sm text-muted-foreground">Loading templates...</p>
+                </div>
+              </div>
+            ) : displayTemplates.length === 0 ? (
+              <div className="h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-muted-foreground">No templates created yet</p>
+                  <Button className="mt-4">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create Your First Template
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4">
+                {displayTemplates.map(template => (
+                  <Card key={template.id} className="hover:bg-accent/50 transition-colors">
+                    <CardContent className="pt-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <h3 className="font-semibold">{template.name}</h3>
+                          <Badge variant="outline" className="mt-1">{template.category}</Badge>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Button 
+                            variant="ghost" 
+                            size="sm"
+                            onClick={() => {
+                              // Use template to create new session
+                              setShowCreateModal(true);
+                              // Could pre-populate form with template data
+                            }}
+                          >
+                            <Play className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="sm">
+                            <ChevronRight className="h-4 w-4" />
+                          </Button>
+                          {templates && (
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleDeleteTemplate(template.id)}
+                            >
+                              <X className="h-4 w-4 text-destructive" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Duration</span>
+                          <span>{template.duration} min</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Exercises</span>
+                          <span>{template.exercises?.length || template.exercises}</span>
+                        </div>
+                        {template.equipment && template.equipment.length > 0 && (
+                          <div className="flex justify-between">
+                            <span className="text-muted-foreground">Equipment</span>
+                            <span>{template.equipment.length} items</span>
+                          </div>
+                        )}
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Last used</span>
+                          <span>{template.lastUsed || 'Never'}</span>
+                        </div>
+                      </div>
+                      
+                      {template.description && (
+                        <p className="text-xs text-muted-foreground mt-3 line-clamp-2">
+                          {template.description}
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
 
   // If showing session viewer, render it instead of the dashboard
   if (showSessionViewer) {
     return (
-      <Provider store={sessionViewerStore}>
+      // <Provider store={sessionViewerStore}>
         <div className="h-screen flex flex-col">
           <div className="border-b px-4 py-3 flex items-center justify-between bg-background">
             <div className="flex items-center gap-4">
@@ -692,10 +845,71 @@ export default function PhysicalTrainerDashboard() {
             </div>
           </div>
           <div className="flex-1 overflow-hidden">
-            <TrainingSessionViewer />
+            <TrainingSessionViewer 
+              sessionType={currentSession?.type}
+              teamName={currentSession?.team}
+              initialIntervals={
+                currentSession?.type === 'Cardio Intervals' ? 
+                (() => {
+                  const intervals = [];
+                  for (let i = 0; i < 8; i++) {
+                    intervals.push({ phase: 'work' as const, duration: 240 }); // 4 minutes
+                    if (i < 7) {
+                      intervals.push({ phase: 'rest' as const, duration: 120 }); // 2 minutes
+                    }
+                  }
+                  return intervals;
+                })() : []
+              }
+            />
           </div>
         </div>
-      </Provider>
+      // </Provider>
+    );
+  }
+
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <DashboardHeader 
+          title="Physical Training Dashboard"
+          subtitle="Manage training sessions, monitor player readiness, and track performance"
+          role="physicaltrainer"
+        />
+        <div className="p-6 max-w-7xl mx-auto">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-muted-foreground">Loading test data...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <DashboardHeader 
+          title="Physical Training Dashboard"
+          subtitle="Manage training sessions, monitor player readiness, and track performance"
+          role="physicaltrainer"
+        />
+        <div className="p-6 max-w-7xl mx-auto">
+          <Card>
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+                <p className="text-destructive">Error loading test data</p>
+                <p className="text-sm text-muted-foreground mt-2">Please try refreshing the page</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     );
   }
 
@@ -761,6 +975,18 @@ export default function PhysicalTrainerDashboard() {
         </TabsContent>
       </Tabs>
       </div>
+
+      {/* Create Session Modal */}
+      <CreateSessionModal
+        open={showCreateModal}
+        onOpenChange={setShowCreateModal}
+        onCreateSession={(session) => {
+          console.log('New session created:', session);
+          // In a real app, this would call an API to save the session
+          // For now, just close the modal
+          setShowCreateModal(false);
+        }}
+      />
     </div>
   );
 } 

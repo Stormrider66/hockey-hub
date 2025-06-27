@@ -1,1 +1,25 @@
-{\n  \"name\": \"hockey-hub\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"workspaces\": [\n    \"apps/*\",\n    \"packages/*\",\n    \"services/*\"\n  ],\n  \"scripts\": {\n    \"dev\": \"turbo run dev\",\n    \"build\": \"turbo run build\",\n    \"test\": \"turbo run test\",\n    \"lint\": \"turbo run lint\"\n  },\n  \"devDependencies\": {\n    \"turbo\": \"^1.11.3\"\n  }\n}
+{
+  "name": "hockey-hub",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --concurrency=20",
+    "dev:frontend": "pnpm --filter hockey-hub-frontend dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "install:all": "pnpm install",
+    "claude:checkpoint": "node .claude/scripts/cli.js checkpoint",
+    "claude:summary": "node .claude/scripts/cli.js summary",
+    "claude:handoff": "node .claude/scripts/cli.js handoff",
+    "claude:load": "node .claude/scripts/cli.js load"
+  },
+  "devDependencies": {
+    "turbo": "^1.11.3"
+  }
+}

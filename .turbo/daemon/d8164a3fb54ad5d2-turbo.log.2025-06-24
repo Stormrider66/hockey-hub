@@ -1,0 +1,10 @@
+2025-06-24T13:10:16.855358Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-24T13:10:17.000099Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-24T13:11:44.193058Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-24T13:11:44.194352Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-24T13:11:47.675334Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-24T13:11:47.675372Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-24T13:11:50.187923Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-24T13:11:50.188352Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-24T13:11:50.188373Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-24T13:11:50.188651Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun

@@ -1,0 +1,70 @@
+2025-06-23T19:27:49.875126Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-23T19:27:50.372136Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-23T19:29:41.105331Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:29:41.108092Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:29:44.487100Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:29:44.487132Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:29:46.403578Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T19:29:46.403855Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:29:46.403872Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:29:46.404062Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T19:49:12.314782Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-23T19:49:12.667448Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-23T19:50:40.427916Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:50:40.430680Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:50:43.921814Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:50:43.921850Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:50:44.606433Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T19:50:44.606727Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-23T19:50:44.606743Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T19:50:44.606978Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:06:01.043475Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\routes\\testRoutes.ts")}
+2025-06-23T20:06:01.046891Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:06:48.022120Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:06:48.022320Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:06:48.099505Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:07:06.131516Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:07:06.131549Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:07:06.192315Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:37:43.428907Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:37:43.429023Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:37:43.669299Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:37:43.670921Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:37:43.670945Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:37:43.671123Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:40:35.222814Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\db\\index.ts")}
+2025-06-23T20:40:35.222853Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:40:50.126701Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\db\\index.ts")}
+2025-06-23T20:40:50.126743Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:43:18.817725Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\db\\index.ts")}
+2025-06-23T20:43:18.817757Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:44:31.921045Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:44:31.921167Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:44:32.103849Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T20:47:17.829427Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\create-seasons-table.sql"), AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T20:47:17.829471Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T20:48:16.118642Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\scripts"), AnchoredSystemPathBuf("services\\planning-service\\src\\scripts\\create-seasons-table.ts")}
+2025-06-23T20:48:16.118700Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T21:02:25.527205Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\store\\api\\planningTestApi.ts")}
+2025-06-23T21:02:25.527242Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T21:04:56.730863Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\store\\api\\planningTestApi.ts")}
+2025-06-23T21:04:56.730895Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T21:05:07.917385Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\store\\api\\planningTestApi.ts")}
+2025-06-23T21:05:07.917543Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T21:05:18.818234Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\store\\api\\planningTestApi.ts")}
+2025-06-23T21:05:18.818283Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T21:05:29.222679Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\store\\api\\planningTestApi.ts")}
+2025-06-23T21:05:29.222713Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-23T21:07:02.317201Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\repositories\\seasonRepository.ts")}
+2025-06-23T21:07:02.317247Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T21:07:02.434638Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service\\src\\repositories\\seasonRepository.ts")}
+2025-06-23T21:07:02.434654Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T21:07:02.434723Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T21:09:37.218053Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T21:09:37.218104Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T21:09:37.422242Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T21:09:37.422393Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\planning-service")}
+2025-06-23T21:09:37.422404Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("planning-service"), path: AnchoredSystemPathBuf("services\\planning-service") }}))
+2025-06-23T21:09:37.422456Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-23T21:14:38.923199Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("memory-bank\\progress.md")}
+2025-06-23T21:14:38.923224Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))

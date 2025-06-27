@@ -807,7 +807,7 @@ export default function PlayerDashboard() {
                     </div>
                       <Slider
                           value={[wellnessForm[metric.key as keyof typeof wellnessForm] as number]}
-                          onValueChange={(value) => updateWellnessField(metric.key, value[0])}
+                          onValueChange={(value: number[]) => updateWellnessField(metric.key, value[0])}
                         min={1}
                         max={10}
                         step={1}

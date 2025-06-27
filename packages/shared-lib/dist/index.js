@@ -1,24 +1,30 @@
 "use strict";
-// Entry point for the shared library
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-// Export types
-__exportStar(require("./types"), exports);
-// Export utils
-__exportStar(require("./utils"), exports);
-// Export constants (example)
-// export * from './constants'; 
-//# sourceMappingURL=index.js.map
+exports.parseJWT = exports.formatDate = exports.USER_ROLES = void 0;
+// Common constants
+exports.USER_ROLES = {
+    ADMIN: 'admin',
+    CLUB_ADMIN: 'club_admin',
+    COACH: 'coach',
+    PLAYER: 'player',
+    PARENT: 'parent',
+    MEDICAL_STAFF: 'medical_staff',
+    EQUIPMENT_MANAGER: 'equipment_manager',
+    PHYSICAL_TRAINER: 'physical_trainer'
+};
+// Utility functions
+var formatDate = function (date) {
+    return date.toISOString().split('T')[0];
+};
+exports.formatDate = formatDate;
+var parseJWT = function (token) {
+    try {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(Buffer.from(base64, 'base64').toString());
+    }
+    catch (error) {
+        return null;
+    }
+};
+exports.parseJWT = parseJWT;

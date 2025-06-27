@@ -38,7 +38,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
-import { useMedicalData } from "./hooks/useMedicalData";
+import { useMedicalData } from "@/hooks/useMedicalData";
 import { MedicalDocumentUpload } from "./components/MedicalDocumentUpload";
 import { PlayerAvailabilityManager } from "./components/PlayerAvailabilityManager";
 import { TreatmentManager } from "./components/TreatmentManager";

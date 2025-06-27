@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { logout } from "@/utils/auth";
 import {
   Card,
   CardContent,
@@ -19,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Calendar,
   MessageCircle,
@@ -48,6 +50,7 @@ import {
   ChevronRight,
   BedDouble,
   Battery,
+  LogOut,
   Frown,
   Meh,
   ArrowUp,
@@ -260,7 +263,22 @@ export default function PlayerDashboard() {
     injuries: [] as string[],
   });
 
-  const playerId = 10; // Erik Johansson's ID
+  // Get player ID from localStorage (from login response)
+  const getUserId = () => {
+    try {
+      const authToken = localStorage.getItem('authToken');
+      if (authToken && authToken !== 'mock-jwt-token') {
+        // In a real app, you'd decode the JWT to get the user ID
+        // For now, we'll use a default ID
+        return 1;
+      }
+    } catch (e) {
+      console.error('Error getting user ID:', e);
+    }
+    return 1; // Default player ID
+  };
+  
+  const playerId = getUserId();
   const { data: apiData, isLoading, error } = useGetPlayerOverviewQuery(playerId);
   const [submitWellness, { isLoading: isSubmittingWellness }] = useSubmitWellnessMutation();
   const [completeTraining] = useCompleteTrainingMutation();
@@ -316,17 +334,35 @@ export default function PlayerDashboard() {
   // Check if insights exists in wellnessStats
   const hasInsights = 'insights' in wellnessStats && Array.isArray(wellnessStats.insights) && wellnessStats.insights.length > 0;
 
+  const [wellnessSubmitSuccess, setWellnessSubmitSuccess] = useState(false);
+  
   const handleWellnessSubmit = async () => {
+    console.log("Wellness submit button clicked");
+    console.log("Submitting wellness data:", wellnessForm);
+    console.log("Player ID:", playerId);
+    
     try {
       const result = await submitWellness({
         playerId,
         entry: wellnessForm
       }).unwrap();
       
-      // Reset form or show success message
-      console.log("Wellness submitted:", result);
-    } catch (error) {
+      // Show success message
+      console.log("Wellness submitted successfully:", result);
+      setWellnessSubmitSuccess(true);
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        setWellnessSubmitSuccess(false);
+      }, 3000);
+      
+      // Optionally reset form to default values
+      // setWellnessForm({ ...initialWellnessForm });
+    } catch (error: any) {
       console.error("Failed to submit wellness:", error);
+      console.error("Error details:", error.data || error.message);
+      // Also show error message to user
+      alert(`Failed to submit wellness: ${error.data?.message || error.message || 'Unknown error'}`);
     }
   };
 
@@ -393,9 +429,9 @@ export default function PlayerDashboard() {
           <Avatar className="h-16 w-16">
             <AvatarFallback className="text-lg font-bold">{playerInfo.number}</AvatarFallback>
           </Avatar>
-        <div>
+          <div>
             <h1 className="text-2xl md:text-3xl font-bold">{playerInfo.name}</h1>
-          <div className="flex items-center gap-2 mt-1">
+            <div className="flex items-center gap-2 mt-1">
               <Badge>#{playerInfo.number}</Badge>
               <Badge variant="outline">{playerInfo.position}</Badge>
               <Badge variant="outline">{playerInfo.team}</Badge>
@@ -407,10 +443,16 @@ export default function PlayerDashboard() {
             )}
           </div>
         </div>
-        <Button size="sm" variant="outline" className={a11y.focusVisible}>
-          <MessageCircle className="mr-2 h-4 w-4" />
-          Message Coach
-        </Button>
+        <div className="flex gap-2">
+          <Button size="sm" variant="outline" className={a11y.focusVisible}>
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Message Coach
+          </Button>
+          <Button size="sm" variant="outline" onClick={logout} className={a11y.focusVisible}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </div>
       </div>
 
       {/* Tabs */}
@@ -871,7 +913,7 @@ export default function PlayerDashboard() {
                     </div>
                       <Slider
                           value={[wellnessForm[metric.key as keyof typeof wellnessForm] as number]}
-                          onValueChange={(value) => updateWellnessField(metric.key, value[0])}
+                          onValueChange={(value: number[]) => updateWellnessField(metric.key, value[0])}
                         min={1}
                         max={10}
                         step={1}
@@ -1045,6 +1087,29 @@ export default function PlayerDashboard() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Success Message - Always rendered, visibility controlled by state */}
+            <Alert 
+              className={`my-4 border-green-200 bg-green-50 transition-all duration-300 ${
+                wellnessSubmitSuccess ? 'opacity-100' : 'opacity-0 hidden'
+              }`}
+            >
+              <CheckCircle2 className="h-4 w-4 text-green-600" />
+              <AlertDescription className="text-green-800">
+                Wellness check submitted successfully! Great job staying on top of your health.
+              </AlertDescription>
+            </Alert>
+            
+            {/* Debug info */}
+            <div className="my-2 text-xs text-gray-500 bg-gray-100 p-2 rounded">
+              <div>Success state: {wellnessSubmitSuccess ? 'TRUE ✓' : 'FALSE ✗'}</div>
+              <div>Test: If you see this gray box, the area is rendering correctly</div>
+              {wellnessSubmitSuccess && (
+                <div className="mt-2 p-2 bg-green-100 text-green-800 font-bold">
+                  SUCCESS MESSAGE TEST - This should be visible when success is TRUE
+                </div>
+              )}
             </div>
 
             {/* HRV Tracking Card */}

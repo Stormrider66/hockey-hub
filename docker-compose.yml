@@ -1,1 +1,294 @@
-version: '3.8'\n\nservices:\n  # PostgreSQL Database\n  db:\n    image: postgres:17-alpine # Use PostgreSQL 17 as per database-schema.md\n    container_name: hockeyhub_db\n    restart: unless-stopped\n    environment:\n      POSTGRES_DB: ${POSTGRES_DB:-hockeyhub_dev}\n      POSTGRES_USER: ${POSTGRES_USER:-hockeyhub_user}\n      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-hockeyhub_password}\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n    ports:\n      - \"${DB_PORT:-5432}:5432\"\n    networks:\n      - hockeyhub_network\n    healthcheck:\n      test: [\"CMD-SHELL\", \"pg_isready -U ${POSTGRES_USER:-hockeyhub_user} -d ${POSTGRES_DB:-hockeyhub_dev}\"]\n      interval: 10s\n      timeout: 5s\n      retries: 5\n\n  # --- Placeholder for Backend Services --- \n  # Example User Service (to be defined later)\n  # user-service:\n  #   build:\n  #     context: ./services/user-service\n  #     dockerfile: Dockerfile\n  #   container_name: hockeyhub_user_service\n  #   ports:\n  #     - \"3001:3001\"\n  #   environment:\n  #     - DATABASE_URL=postgresql://${POSTGRES_USER:-hockeyhub_user}:${POSTGRES_PASSWORD:-hockeyhub_password}@db:5432/${POSTGRES_DB:-hockeyhub_dev}\n  #     - NODE_ENV=development\n  #   depends_on:\n  #     db: \n  #       condition: service_healthy \n  #   networks:\n  #     - hockeyhub_network\n  #   volumes:\n  #     - ./services/user-service:/usr/src/app\n  #     - /usr/src/app/node_modules # Prevent host node_modules from overwriting container's\n\n  # --- Frontend App --- \n  frontend:\n    build:\n      context: ./apps/frontend\n      dockerfile: Dockerfile\n    container_name: hockeyhub_frontend\n    ports:\n      - \"${FRONTEND_PORT:-3000}:80\" # Map host 3000 to container 80 (Nginx)\n    # No environment needed for static build unless during build stage\n    # No volumes needed for static build in production, but useful for dev\n    # environment:\n    #   - NODE_ENV=development\n    networks:\n      - hockeyhub_network\n    # Volumes for development (hot-reloading) - requires different Dockerfile setup\n    # volumes:\n    #   - ./apps/frontend:/app\n    #   - /app/node_modules\n\nvolumes:\n  postgres_data:\n    driver: local\n\nnetworks:\n  hockeyhub_network:\n    driver: bridge
+services:
+  # PostgreSQL Databases - One per service
+  
+  # Users Database
+  db-users:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_users
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_users
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_users_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_users"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Admin Database
+  db-admin:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_admin
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_admin
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_admin_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Calendar Database
+  db-calendar:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_calendar
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_calendar
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_calendar_data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_calendar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Communication Database
+  db-communication:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_communication
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_communication
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_communication_data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_communication"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Medical Database
+  db-medical:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_medical
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_medical
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_medical_data:/var/lib/postgresql/data
+    ports:
+      - "5436:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_medical"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Payment Database
+  db-payment:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_payment
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_payment
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_payment_data:/var/lib/postgresql/data
+    ports:
+      - "5437:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_payment"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Planning Database
+  db-planning:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_planning
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_planning
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_planning_data:/var/lib/postgresql/data
+    ports:
+      - "5438:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_planning"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Statistics Database
+  db-statistics:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_statistics
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_statistics
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_statistics_data:/var/lib/postgresql/data
+    ports:
+      - "5439:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_statistics"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Training Database
+  db-training:
+    image: postgres:17-alpine
+    container_name: hockeyhub_db_training
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: hockey_hub_training
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hockey_hub_password
+    volumes:
+      - postgres_training_data:/var/lib/postgresql/data
+    ports:
+      - "5440:5432"
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hockey_hub_training"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API Gateway doesn't need a database
+  # It routes requests to other services
+
+  # --- Backend Services ---
+  
+  api-gateway:
+    build:
+      context: .
+      dockerfile: services/api-gateway/Dockerfile.dev
+    container_name: hockeyhub_api_gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    depends_on:
+      - user-service
+    networks:
+      - hockeyhub_network
+    volumes:
+      - ./services/api-gateway:/usr/src/app
+      - /usr/src/app/node_modules
+  
+  user-service:
+    build:
+      context: .
+      dockerfile: services/user-service/Dockerfile.dev
+    container_name: hockeyhub_user_service
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=db-users
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=hockey_hub_password
+      - DB_NAME=hockey_hub_users
+      - JWT_SECRET=your-secret-key-here
+      - JWT_EXPIRES_IN=15m
+      - JWT_REFRESH_EXPIRES_IN=7d
+      - NODE_ENV=development
+      - PORT=3001
+    depends_on:
+      db-users:
+        condition: service_healthy
+    networks:
+      - hockeyhub_network
+    volumes:
+      - ./services/user-service:/usr/src/app
+      - /usr/src/app/node_modules
+
+  # admin-service:
+  #   build:
+  #     context: ./services/admin-service
+  #     dockerfile: Dockerfile
+  #   container_name: hockeyhub_admin_service
+  #   ports:
+  #     - "3009:3009"
+  #   environment:
+  #     - DATABASE_URL=postgresql://postgres:hockey_hub_password@db-admin:5432/hockey_hub_admin
+  #     - NODE_ENV=development
+  #   depends_on:
+  #     db-admin:
+  #       condition: service_healthy
+  #   networks:
+  #     - hockeyhub_network
+
+  # Add similar configurations for other services...
+
+  # --- Frontend App (placeholder for now) ---
+  # frontend:
+  #   build:
+  #     context: ./apps/frontend
+  #     dockerfile: Dockerfile
+  #   container_name: hockeyhub_frontend
+  #   ports:
+  #     - "${FRONTEND_PORT:-3000}:80"
+  #   networks:
+  #     - hockeyhub_network
+
+volumes:
+  postgres_users_data:
+    driver: local
+  postgres_admin_data:
+    driver: local
+  postgres_calendar_data:
+    driver: local
+  postgres_communication_data:
+    driver: local
+  postgres_medical_data:
+    driver: local
+  postgres_payment_data:
+    driver: local
+  postgres_planning_data:
+    driver: local
+  postgres_statistics_data:
+    driver: local
+  postgres_training_data:
+    driver: local
+
+networks:
+  hockeyhub_network:
+    driver: bridge

@@ -1,0 +1,465 @@
+
+> hockey-hub@0.1.0 dev /mnt/c/Hockey Hub
+> turbo run dev --concurrency=16
+
+ WARNING  Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+• Packages in scope: @hockey-hub/admin-service, @hockey-hub/api-gateway, @hockey-hub/calendar-service, @hockey-hub/ignored-types, @hockey-hub/monitoring, @hockey-hub/payment-service, @hockey-hub/shared-lib, @hockey-hub/statistics-service, @hockey-hub/training-service, @hockey-hub/translations, @hockey-hub/types, @hockey-hub/user-service, communication-service, hockey-hub-frontend, medical-service, planning-service
+• Running dev in 16 packages
+• Remote caching disabled
+@hockey-hub/admin-service:dev: cache bypass, force executing 8ce120b72b516a25
+planning-service:dev: cache bypass, force executing 2fbb89a004c3757a
+medical-service:dev: cache bypass, force executing 8557424fbb1228e4
+@hockey-hub/payment-service:dev: cache bypass, force executing 2270a110091f98cf
+@hockey-hub/types:dev: cache bypass, force executing ba3d0c69d42079b0
+@hockey-hub/user-service:dev: cache bypass, force executing c52abeebf30ec630
+@hockey-hub/calendar-service:dev: cache bypass, force executing c465da4eeaf3e5a1
+@hockey-hub/statistics-service:dev: cache bypass, force executing 3719e049d177971b
+@hockey-hub/training-service:dev: cache bypass, force executing ba5433b4a40ef327
+hockey-hub-frontend:dev: cache bypass, force executing c0f323d5bc84fa15
+@hockey-hub/api-gateway:dev: cache bypass, force executing c00b265df67fb258
+@hockey-hub/translations:dev: cache bypass, force executing c0320c27b4c5fd7f
+communication-service:dev: cache bypass, force executing ef2284d299e5ca29
+@hockey-hub/monitoring:dev: cache bypass, force executing 9757e44b6178c025
+@hockey-hub/shared-lib:dev: cache bypass, force executing 8a53f1a033922523
+medical-service:dev: 
+medical-service:dev: > medical-service@1.0.1 dev /mnt/c/Hockey Hub/services/medical-service
+medical-service:dev: > nodemon src/index.ts
+medical-service:dev: 
+@hockey-hub/user-service:dev: 
+@hockey-hub/user-service:dev: > @hockey-hub/user-service@0.1.0 dev /mnt/c/Hockey Hub/services/user-service
+@hockey-hub/user-service:dev: > ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/index.ts
+@hockey-hub/user-service:dev: 
+@hockey-hub/admin-service:dev: 
+@hockey-hub/admin-service:dev: > @hockey-hub/admin-service@0.1.0 dev /mnt/c/Hockey Hub/services/admin-service
+@hockey-hub/admin-service:dev: > ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/admin-service:dev: 
+@hockey-hub/statistics-service:dev: 
+@hockey-hub/statistics-service:dev: > @hockey-hub/statistics-service@0.1.0 dev /mnt/c/Hockey Hub/services/statistics-service
+@hockey-hub/statistics-service:dev: > ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/statistics-service:dev: 
+@hockey-hub/calendar-service:dev: 
+@hockey-hub/calendar-service:dev: > @hockey-hub/calendar-service@0.1.0 dev /mnt/c/Hockey Hub/services/calendar-service
+@hockey-hub/calendar-service:dev: > ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/calendar-service:dev: 
+@hockey-hub/payment-service:dev: 
+@hockey-hub/payment-service:dev: > @hockey-hub/payment-service@0.1.0 dev /mnt/c/Hockey Hub/services/payment-service
+@hockey-hub/payment-service:dev: > ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/payment-service:dev: 
+@hockey-hub/shared-lib:dev: 
+@hockey-hub/shared-lib:dev: > @hockey-hub/shared-lib@0.1.0 dev /mnt/c/Hockey Hub/packages/shared-lib
+@hockey-hub/shared-lib:dev: > tsc -w
+@hockey-hub/shared-lib:dev: 
+@hockey-hub/api-gateway:dev: 
+@hockey-hub/api-gateway:dev: > @hockey-hub/api-gateway@0.1.0 dev /mnt/c/Hockey Hub/services/api-gateway
+@hockey-hub/api-gateway:dev: > cross-env PORT=3000 ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/api-gateway:dev: 
+communication-service:dev: 
+communication-service:dev: > communication-service@1.0.0 dev /mnt/c/Hockey Hub/services/communication-service
+communication-service:dev: > nodemon src/index.ts
+communication-service:dev: 
+@hockey-hub/translations:dev: 
+@hockey-hub/translations:dev: > @hockey-hub/translations@0.1.0 dev /mnt/c/Hockey Hub/packages/translations
+@hockey-hub/translations:dev: > tsc -w
+@hockey-hub/translations:dev: 
+planning-service:dev: 
+planning-service:dev: > planning-service@1.0.0 dev /mnt/c/Hockey Hub/services/planning-service
+planning-service:dev: > nodemon src/index.ts
+planning-service:dev: 
+@hockey-hub/types:dev: 
+@hockey-hub/types:dev: > @hockey-hub/types@1.0.0 dev /mnt/c/Hockey Hub/shared/types
+@hockey-hub/types:dev: > tsc -w
+@hockey-hub/types:dev: 
+hockey-hub-frontend:dev: 
+hockey-hub-frontend:dev: > hockey-hub-frontend@0.1.0 dev /mnt/c/Hockey Hub/apps/frontend
+hockey-hub-frontend:dev: > next dev -p 3002
+hockey-hub-frontend:dev: 
+@hockey-hub/training-service:dev: 
+@hockey-hub/training-service:dev: > @hockey-hub/training-service@0.1.0 dev /mnt/c/Hockey Hub/services/training-service
+@hockey-hub/training-service:dev: > ts-node-dev --respawn --transpile-only src/index.ts
+@hockey-hub/training-service:dev: 
+@hockey-hub/monitoring:dev: 
+@hockey-hub/monitoring:dev: > @hockey-hub/monitoring@1.0.0 dev /mnt/c/Hockey Hub/packages/monitoring
+@hockey-hub/monitoring:dev: > tsc --watch
+@hockey-hub/monitoring:dev: 
+@hockey-hub/translations:dev: c10:39:14 PM - Starting compilation in watch mode...
+@hockey-hub/translations:dev: 
+@hockey-hub/types:dev: c10:39:14 PM - Starting compilation in watch mode...
+@hockey-hub/types:dev: 
+@hockey-hub/shared-lib:dev: c10:39:14 PM - Starting compilation in watch mode...
+@hockey-hub/shared-lib:dev: 
+@hockey-hub/monitoring:dev: c10:39:14 PM - Starting compilation in watch mode...
+@hockey-hub/monitoring:dev: 
+communication-service:dev: [33m[nodemon] 3.1.10[39m
+communication-service:dev: [33m[nodemon] to restart at any time, enter `rs`[39m
+communication-service:dev: [33m[nodemon] watching path(s): *.*[39m
+communication-service:dev: [33m[nodemon] watching extensions: ts,json[39m
+communication-service:dev: [32m[nodemon] starting `ts-node src/index.ts`[39m
+medical-service:dev: [33m[nodemon] 3.1.10[39m
+medical-service:dev: [33m[nodemon] to restart at any time, enter `rs`[39m
+medical-service:dev: [33m[nodemon] watching path(s): *.*[39m
+medical-service:dev: [33m[nodemon] watching extensions: ts,json[39m
+medical-service:dev: [32m[nodemon] starting `ts-node src/index.ts`[39m
+@hockey-hub/statistics-service:dev: [INFO] 22:39:25 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+@hockey-hub/calendar-service:dev: [INFO] 22:39:25 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+@hockey-hub/admin-service:dev: [INFO] 22:39:28 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+@hockey-hub/training-service:dev: [INFO] 22:39:29 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+@hockey-hub/user-service:dev: [INFO] 22:39:29 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.3.3)
+@hockey-hub/payment-service:dev: [INFO] 22:39:30 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+planning-service:dev: [33m[nodemon] 3.1.10[39m
+planning-service:dev: [33m[nodemon] to restart at any time, enter `rs`[39m
+planning-service:dev: [33m[nodemon] watching path(s): *.*[39m
+planning-service:dev: [33m[nodemon] watching extensions: ts,json[39m
+planning-service:dev: [32m[nodemon] starting `ts-node src/index.ts`[39m
+@hockey-hub/types:dev: 
+@hockey-hub/types:dev: 10:39:41 PM - Found 0 errors. Watching for file changes.
+@hockey-hub/api-gateway:dev: [INFO] 22:39:42 ts-node-dev ver. 1.1.8 (using ts-node ver. 9.1.1, typescript ver. 5.3.3)
+@hockey-hub/translations:dev: 
+@hockey-hub/translations:dev: 10:39:44 PM - Found 0 errors. Watching for file changes.
+@hockey-hub/shared-lib:dev: 
+@hockey-hub/shared-lib:dev: 10:39:45 PM - Found 0 errors. Watching for file changes.
+@hockey-hub/statistics-service:dev: [DB] Statistics Service: Error during Data Source initialization: error: database "hockeyhub_statistics" does not exist
+@hockey-hub/statistics-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/statistics-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/statistics-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/statistics-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/statistics-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/statistics-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/statistics-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/statistics-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/statistics-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/statistics-service:dev:   length: 106,
+@hockey-hub/statistics-service:dev:   severity: 'FATAL',
+@hockey-hub/statistics-service:dev:   code: '3D000',
+@hockey-hub/statistics-service:dev:   detail: undefined,
+@hockey-hub/statistics-service:dev:   hint: undefined,
+@hockey-hub/statistics-service:dev:   position: undefined,
+@hockey-hub/statistics-service:dev:   internalPosition: undefined,
+@hockey-hub/statistics-service:dev:   internalQuery: undefined,
+@hockey-hub/statistics-service:dev:   where: undefined,
+@hockey-hub/statistics-service:dev:   schema: undefined,
+@hockey-hub/statistics-service:dev:   table: undefined,
+@hockey-hub/statistics-service:dev:   column: undefined,
+@hockey-hub/statistics-service:dev:   dataType: undefined,
+@hockey-hub/statistics-service:dev:   constraint: undefined,
+@hockey-hub/statistics-service:dev:   file: 'postinit.c',
+@hockey-hub/statistics-service:dev:   line: '1032',
+@hockey-hub/statistics-service:dev:   routine: 'InitPostgres'
+@hockey-hub/statistics-service:dev: }
+@hockey-hub/statistics-service:dev: Statistics Service: Error during Data Source initialization: error: database "hockeyhub_statistics" does not exist
+@hockey-hub/statistics-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/statistics-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/statistics-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/statistics-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/statistics-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/statistics-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/statistics-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/statistics-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/statistics-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/statistics-service:dev:   length: 106,
+@hockey-hub/statistics-service:dev:   severity: 'FATAL',
+@hockey-hub/statistics-service:dev:   code: '3D000',
+@hockey-hub/statistics-service:dev:   detail: undefined,
+@hockey-hub/statistics-service:dev:   hint: undefined,
+@hockey-hub/statistics-service:dev:   position: undefined,
+@hockey-hub/statistics-service:dev:   internalPosition: undefined,
+@hockey-hub/statistics-service:dev:   internalQuery: undefined,
+@hockey-hub/statistics-service:dev:   where: undefined,
+@hockey-hub/statistics-service:dev:   schema: undefined,
+@hockey-hub/statistics-service:dev:   table: undefined,
+@hockey-hub/statistics-service:dev:   column: undefined,
+@hockey-hub/statistics-service:dev:   dataType: undefined,
+@hockey-hub/statistics-service:dev:   constraint: undefined,
+@hockey-hub/statistics-service:dev:   file: 'postinit.c',
+@hockey-hub/statistics-service:dev:   line: '1032',
+@hockey-hub/statistics-service:dev:   routine: 'InitPostgres'
+@hockey-hub/statistics-service:dev: }
+@hockey-hub/training-service:dev: [DB] Pool created for training database: hockeyhub_training on localhost:5432
+@hockey-hub/admin-service:dev: [DB] Admin Service: Error during Data Source initialization: Error: Connection terminated due to connection timeout
+@hockey-hub/admin-service:dev:     at Client._connectionCallback (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-pool@3.9.6_pg@8.15.6/node_modules/pg-pool/index.js:251:17)
+@hockey-hub/admin-service:dev:     at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:149:18)
+@hockey-hub/admin-service:dev:     at Object.onceWrapper (node:events:632:28)
+@hockey-hub/admin-service:dev:     ... 3 lines matching cause stack trace ...
+@hockey-hub/admin-service:dev:     at TCP.<anonymous> (node:net:351:12) {
+@hockey-hub/admin-service:dev:   [cause]: Error: Connection terminated unexpectedly
+@hockey-hub/admin-service:dev:       at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:136:73)
+@hockey-hub/admin-service:dev:       at Object.onceWrapper (node:events:632:28)
+@hockey-hub/admin-service:dev:       at Connection.emit (node:events:518:28)
+@hockey-hub/admin-service:dev:       at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/connection.js:62:12)
+@hockey-hub/admin-service:dev:       at Socket.emit (node:events:518:28)
+@hockey-hub/admin-service:dev:       at TCP.<anonymous> (node:net:351:12)
+@hockey-hub/admin-service:dev: }
+@hockey-hub/admin-service:dev: Admin Service: Error during Data Source initialization: error: database "hockeyhub_admin" does not exist
+@hockey-hub/admin-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/admin-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/admin-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/admin-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/admin-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/admin-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/admin-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/admin-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/admin-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/admin-service:dev:   length: 101,
+@hockey-hub/admin-service:dev:   severity: 'FATAL',
+@hockey-hub/admin-service:dev:   code: '3D000',
+@hockey-hub/admin-service:dev:   detail: undefined,
+@hockey-hub/admin-service:dev:   hint: undefined,
+@hockey-hub/admin-service:dev:   position: undefined,
+@hockey-hub/admin-service:dev:   internalPosition: undefined,
+@hockey-hub/admin-service:dev:   internalQuery: undefined,
+@hockey-hub/admin-service:dev:   where: undefined,
+@hockey-hub/admin-service:dev:   schema: undefined,
+@hockey-hub/admin-service:dev:   table: undefined,
+@hockey-hub/admin-service:dev:   column: undefined,
+@hockey-hub/admin-service:dev:   dataType: undefined,
+@hockey-hub/admin-service:dev:   constraint: undefined,
+@hockey-hub/admin-service:dev:   file: 'postinit.c',
+@hockey-hub/admin-service:dev:   line: '1032',
+@hockey-hub/admin-service:dev:   routine: 'InitPostgres'
+@hockey-hub/admin-service:dev: }
+communication-service:dev: [DB] Pool created for communication database: hockeyhub_communication on localhost:5432
+communication-service:dev: Communication Service (Express + Socket.IO) listening on port 3020
+@hockey-hub/api-gateway:dev: [API Gateway] Setting up auth proxy to http://127.0.0.1:3001
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3005
+@hockey-hub/api-gateway:dev: [HPM] Proxy rewrite rule created: "^/api/v1/medical" ~> ""
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3001
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3003
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3004
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3002
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3006
+@hockey-hub/api-gateway:dev: [HPM] Proxy rewrite rule created: "^/api/v1/planning" ~> ""
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3007
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3008
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [HPM] Proxy created: /  -> http://127.0.0.1:3009
+@hockey-hub/api-gateway:dev: [HPM] Subscribed to http-proxy events: [ 'error', 'proxyReq', 'proxyRes', 'close' ]
+@hockey-hub/api-gateway:dev: [API Gateway] Server listening on port 3000
+@hockey-hub/training-service:dev: [DB] Training Service: Error during Data Source initialization: Error: Connection terminated due to connection timeout
+@hockey-hub/training-service:dev:     at Client._connectionCallback (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-pool@3.9.6_pg@8.15.6/node_modules/pg-pool/index.js:251:17)
+@hockey-hub/training-service:dev:     at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:149:18)
+@hockey-hub/training-service:dev:     at Object.onceWrapper (node:events:632:28)
+@hockey-hub/training-service:dev:     ... 3 lines matching cause stack trace ...
+@hockey-hub/training-service:dev:     at TCP.<anonymous> (node:net:351:12) {
+@hockey-hub/training-service:dev:   [cause]: Error: Connection terminated unexpectedly
+@hockey-hub/training-service:dev:       at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:136:73)
+@hockey-hub/training-service:dev:       at Object.onceWrapper (node:events:632:28)
+@hockey-hub/training-service:dev:       at Connection.emit (node:events:518:28)
+@hockey-hub/training-service:dev:       at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/connection.js:62:12)
+@hockey-hub/training-service:dev:       at Socket.emit (node:events:518:28)
+@hockey-hub/training-service:dev:       at TCP.<anonymous> (node:net:351:12)
+@hockey-hub/training-service:dev: }
+@hockey-hub/training-service:dev: Error during Data Source initialization: error: database "hockeyhub_training" does not exist
+@hockey-hub/training-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/training-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/training-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/training-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/training-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/training-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/training-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/training-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/training-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/training-service:dev:   length: 104,
+@hockey-hub/training-service:dev:   severity: 'FATAL',
+@hockey-hub/training-service:dev:   code: '3D000',
+@hockey-hub/training-service:dev:   detail: undefined,
+@hockey-hub/training-service:dev:   hint: undefined,
+@hockey-hub/training-service:dev:   position: undefined,
+@hockey-hub/training-service:dev:   internalPosition: undefined,
+@hockey-hub/training-service:dev:   internalQuery: undefined,
+@hockey-hub/training-service:dev:   where: undefined,
+@hockey-hub/training-service:dev:   schema: undefined,
+@hockey-hub/training-service:dev:   table: undefined,
+@hockey-hub/training-service:dev:   column: undefined,
+@hockey-hub/training-service:dev:   dataType: undefined,
+@hockey-hub/training-service:dev:   constraint: undefined,
+@hockey-hub/training-service:dev:   file: 'postinit.c',
+@hockey-hub/training-service:dev:   line: '1032',
+@hockey-hub/training-service:dev:   routine: 'InitPostgres'
+@hockey-hub/training-service:dev: }
+@hockey-hub/calendar-service:dev: Calendar Service listening on port 3003
+@hockey-hub/calendar-service:dev: [DB] Calendar Service: Error during Data Source initialization: error: database "hockeyhub_calendar" does not exist
+@hockey-hub/calendar-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/calendar-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/calendar-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/calendar-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/calendar-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/calendar-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/calendar-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/calendar-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/calendar-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/calendar-service:dev:   length: 104,
+@hockey-hub/calendar-service:dev:   severity: 'FATAL',
+@hockey-hub/calendar-service:dev:   code: '3D000',
+@hockey-hub/calendar-service:dev:   detail: undefined,
+@hockey-hub/calendar-service:dev:   hint: undefined,
+@hockey-hub/calendar-service:dev:   position: undefined,
+@hockey-hub/calendar-service:dev:   internalPosition: undefined,
+@hockey-hub/calendar-service:dev:   internalQuery: undefined,
+@hockey-hub/calendar-service:dev:   where: undefined,
+@hockey-hub/calendar-service:dev:   schema: undefined,
+@hockey-hub/calendar-service:dev:   table: undefined,
+@hockey-hub/calendar-service:dev:   column: undefined,
+@hockey-hub/calendar-service:dev:   dataType: undefined,
+@hockey-hub/calendar-service:dev:   constraint: undefined,
+@hockey-hub/calendar-service:dev:   file: 'postinit.c',
+@hockey-hub/calendar-service:dev:   line: '1032',
+@hockey-hub/calendar-service:dev:   routine: 'InitPostgres'
+@hockey-hub/calendar-service:dev: }
+@hockey-hub/calendar-service:dev: [Calendar EventBus] connected to nats://localhost:4222
+@hockey-hub/calendar-service:dev: [Calendar EventBus] connected to nats://localhost:4222
+planning-service:dev: [DB] Pool created for planning database: hockeyhub_planning on localhost:5432
+@hockey-hub/payment-service:dev: [DB] Payment Service: Error during Data Source initialization: Error: Connection terminated due to connection timeout
+@hockey-hub/payment-service:dev:     at Client._connectionCallback (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-pool@3.9.6_pg@8.15.6/node_modules/pg-pool/index.js:251:17)
+@hockey-hub/payment-service:dev:     at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:149:18)
+@hockey-hub/payment-service:dev:     at Object.onceWrapper (node:events:632:28)
+@hockey-hub/payment-service:dev:     ... 3 lines matching cause stack trace ...
+@hockey-hub/payment-service:dev:     at TCP.<anonymous> (node:net:351:12) {
+@hockey-hub/payment-service:dev:   [cause]: Error: Connection terminated unexpectedly
+@hockey-hub/payment-service:dev:       at Connection.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/client.js:136:73)
+@hockey-hub/payment-service:dev:       at Object.onceWrapper (node:events:632:28)
+@hockey-hub/payment-service:dev:       at Connection.emit (node:events:518:28)
+@hockey-hub/payment-service:dev:       at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg@8.15.6/node_modules/pg/lib/connection.js:62:12)
+@hockey-hub/payment-service:dev:       at Socket.emit (node:events:518:28)
+@hockey-hub/payment-service:dev:       at TCP.<anonymous> (node:net:351:12)
+@hockey-hub/payment-service:dev: }
+@hockey-hub/payment-service:dev: Payment Service: Error during Data Source initialization: error: database "hockeyhub_payment" does not exist
+@hockey-hub/payment-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/payment-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/payment-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/payment-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/payment-service:dev:     at Socket.emit (node:events:518:28)
+@hockey-hub/payment-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/payment-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/payment-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/payment-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+@hockey-hub/payment-service:dev:   length: 103,
+@hockey-hub/payment-service:dev:   severity: 'FATAL',
+@hockey-hub/payment-service:dev:   code: '3D000',
+@hockey-hub/payment-service:dev:   detail: undefined,
+@hockey-hub/payment-service:dev:   hint: undefined,
+@hockey-hub/payment-service:dev:   position: undefined,
+@hockey-hub/payment-service:dev:   internalPosition: undefined,
+@hockey-hub/payment-service:dev:   internalQuery: undefined,
+@hockey-hub/payment-service:dev:   where: undefined,
+@hockey-hub/payment-service:dev:   schema: undefined,
+@hockey-hub/payment-service:dev:   table: undefined,
+@hockey-hub/payment-service:dev:   column: undefined,
+@hockey-hub/payment-service:dev:   dataType: undefined,
+@hockey-hub/payment-service:dev:   constraint: undefined,
+@hockey-hub/payment-service:dev:   file: 'postinit.c',
+@hockey-hub/payment-service:dev:   line: '1032',
+@hockey-hub/payment-service:dev:   routine: 'InitPostgres'
+@hockey-hub/payment-service:dev: }
+medical-service:dev: [DB] Password configuration status: DB_PASSWORD env var loaded
+medical-service:dev: [DB] Password validation: ✓ Expected password format
+medical-service:dev: [DB] Configuration loaded for database: hockeyhub_medical
+medical-service:dev: [DB] Connection config: {
+medical-service:dev:   database: 'hockeyhub_medical',
+medical-service:dev:   user: 'postgres',
+medical-service:dev:   host: 'localhost',
+medical-service:dev:   port: 5432,
+medical-service:dev:   passwordConfigured: true
+medical-service:dev: }
+medical-service:dev: [DB] Pool created for medical database: hockeyhub_medical on localhost:5432
+hockey-hub-frontend:dev:    ▲ Next.js 15.3.4
+hockey-hub-frontend:dev:    - Local:        http://localhost:3002
+hockey-hub-frontend:dev:    - Network:      http://10.255.255.254:3002
+hockey-hub-frontend:dev:    - Environments: .env.local
+hockey-hub-frontend:dev: 
+hockey-hub-frontend:dev:  ✓ Starting...
+@hockey-hub/monitoring:dev: 
+@hockey-hub/monitoring:dev: 10:41:39 PM - Found 0 errors. Watching for file changes.
+@hockey-hub/user-service:dev: [31mERROR[39m [2025-06-21 22:41:41.267 +0200] (3061): [36mError during server startup:[39m
+@hockey-hub/user-service:dev:     err: {
+@hockey-hub/user-service:dev:       "type": "DatabaseError",
+@hockey-hub/user-service:dev:       "message": "database \"hockeyhub_users\" does not exist",
+@hockey-hub/user-service:dev:       "stack":
+@hockey-hub/user-service:dev:           error: database "hockeyhub_users" does not exist
+@hockey-hub/user-service:dev:               at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+@hockey-hub/user-service:dev:               at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+@hockey-hub/user-service:dev:               at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+@hockey-hub/user-service:dev:               at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+@hockey-hub/user-service:dev:               at Socket.emit (node:events:518:28)
+@hockey-hub/user-service:dev:               at addChunk (node:internal/streams/readable:561:12)
+@hockey-hub/user-service:dev:               at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+@hockey-hub/user-service:dev:               at Socket.Readable.push (node:internal/streams/readable:392:5)
+@hockey-hub/user-service:dev:               at TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+@hockey-hub/user-service:dev:       "length": 101,
+@hockey-hub/user-service:dev:       "name": "error",
+@hockey-hub/user-service:dev:       "severity": "FATAL",
+@hockey-hub/user-service:dev:       "code": "3D000",
+@hockey-hub/user-service:dev:       "file": "postinit.c",
+@hockey-hub/user-service:dev:       "line": "1032",
+@hockey-hub/user-service:dev:       "routine": "InitPostgres"
+@hockey-hub/user-service:dev:     }
+medical-service:dev: [ENV DEBUG] Medical Service Environment Variables:
+medical-service:dev:   DB_NAME: hockeyhub_medical
+medical-service:dev:   MEDICAL_DB_NAME: undefined
+medical-service:dev:   POSTGRES_DB: undefined
+medical-service:dev:   DB_USERNAME: postgres
+medical-service:dev:   POSTGRES_USER: undefined
+medical-service:dev:   DB_HOST: localhost
+medical-service:dev:   DB_PORT: 5432
+medical-service:dev:   Has DB_PASSWORD: true
+medical-service:dev:   Has MEDICAL_DB_PASSWORD: false
+medical-service:dev:   Has POSTGRES_PASSWORD: false
+medical-service:dev: Medical Service listening on port 3005
+medical-service:dev: [DB] Failed to connect to medical database: Connection terminated due to connection timeout
+planning-service:dev: [DB] Planning Service: Error during Data Source initialization: error: database "hockeyhub_planning" does not exist
+planning-service:dev:     at Parser.parseErrorMessage (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:369:69)
+planning-service:dev:     at Parser.handlePacket (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:187:21)
+planning-service:dev:     at Parser.parse (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/parser.ts:102:30)
+planning-service:dev:     at Socket.<anonymous> (/mnt/c/Hockey Hub/node_modules/.pnpm/pg-protocol@1.9.5/node_modules/pg-protocol/src/index.ts:7:48)
+planning-service:dev:     at Socket.emit (node:events:518:28)
+planning-service:dev:     at Socket.emit (node:domain:489:12)
+planning-service:dev:     at addChunk (node:internal/streams/readable:561:12)
+planning-service:dev:     at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+planning-service:dev:     at Socket.Readable.push (node:internal/streams/readable:392:5)
+planning-service:dev:     at TCP.onStreamRead (node:internal/stream_base_commons:189:23) {
+planning-service:dev:   length: 104,
+planning-service:dev:   severity: 'FATAL',
+planning-service:dev:   code: '3D000',
+planning-service:dev:   detail: undefined,
+planning-service:dev:   hint: undefined,
+planning-service:dev:   position: undefined,
+planning-service:dev:   internalPosition: undefined,
+planning-service:dev:   internalQuery: undefined,
+planning-service:dev:   where: undefined,
+planning-service:dev:   schema: undefined,
+planning-service:dev:   table: undefined,
+planning-service:dev:   column: undefined,
+planning-service:dev:   dataType: undefined,
+planning-service:dev:   constraint: undefined,
+planning-service:dev:   file: 'postinit.c',
+planning-service:dev:   line: '1032',
+planning-service:dev:   routine: 'InitPostgres'
+planning-service:dev: }
+planning-service:dev: [DB] Planning Service: Continuing with basic pool connection only
+planning-service:dev: Planning Service listening on port 3006 (TypeORM disabled)
+hockey-hub-frontend:dev:  ⚠ Attempted to load /mnt/c/Hockey Hub/node_modules/.pnpm/next@15.3.4_@babel+core@7.2_81efa3bc36713abbfd8fad1dd1942228/node_modules/next/next-swc-fallback/@next/swc-linux-x64-gnu/next-swc.linux-x64-gnu.node, but it was not installed
+hockey-hub-frontend:dev:  ⚠ Attempted to load /mnt/c/Hockey Hub/node_modules/.pnpm/next@15.3.4_@babel+core@7.2_81efa3bc36713abbfd8fad1dd1942228/node_modules/next/next-swc-fallback/@next/swc-linux-x64-musl/next-swc.linux-x64-musl.node, but it was not installed
+hockey-hub-frontend:dev:  ⚠ Attempted to load @next/swc-linux-x64-gnu, but it was not installed
+hockey-hub-frontend:dev:  ⚠ Attempted to load @next/swc-linux-x64-musl, but it was not installed
+hockey-hub-frontend:dev:  ⚠ Attempted to load @next/swc-wasm-nodejs, but it was not installed
+hockey-hub-frontend:dev:  ⚠ Attempted to load @next/swc-wasm-web, but it was not installed
+hockey-hub-frontend:dev:  ⨯ Failed to load SWC binary for linux/x64, see more info here: https://nextjs.org/docs/messages/failed-loading-swc
+hockey-hub-frontend:dev: [?25h
+planning-service:dev: [DEV] Auth bypassed - using mock user
+planning-service:dev: [0mGET /health [32m200[0m 2.901 ms - 44[0m
+planning-service:dev: [DEV] Auth bypassed - using mock user
+planning-service:dev: [0mGET /api/v1/test/seasons [32m200[0m 103.249 ms - 409[0m
+planning-service:dev: [DEV] Auth bypassed - using mock user
+planning-service:dev: [0mGET /api/v1/test/seasons/550e8400-e29b-41d4-a716-446655440001/phases [32m200[0m 58.069 ms - 836[0m
+Terminated
+@hockey-hub/translations:dev: Terminated
+@hockey-hub/types:dev: Terminated
+@hockey-hub/monitoring:dev: Terminated
+@hockey-hub/shared-lib:dev: Terminated
+ ERROR  run failed: command  exited (1)
+ ELIFECYCLE  Command failed with exit code 143.

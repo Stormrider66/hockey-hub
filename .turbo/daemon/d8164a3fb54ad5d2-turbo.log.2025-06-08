@@ -1,0 +1,229 @@
+2025-06-08T08:53:42.455414Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-08T08:53:42.724135Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-08T08:55:56.263804Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T08:55:56.264866Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T08:55:57.073580Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T08:55:57.073621Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T08:55:57.242722Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T08:56:00.659410Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T08:56:00.659461Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T08:56:01.232793Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T08:56:01.233107Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T08:56:01.233124Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T08:56:01.233297Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:22:08.166494Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T09:22:08.166652Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:22:08.353638Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:22:09.471473Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T09:22:09.471527Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:22:09.768832Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:22:09.769089Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T09:22:09.769099Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:22:09.769222Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:22:09.963297Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T09:22:09.963580Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:22:10.571120Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:34:02.880967Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\coach\\calendar\\page.tsx")}
+2025-06-08T09:34:02.883370Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:34:34.366840Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\coach\\calendar\\page.tsx")}
+2025-06-08T09:34:34.366884Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:34:44.559259Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\admin"), AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\calendar\\page.tsx")}
+2025-06-08T09:34:44.559294Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:35:16.303992Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\player\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\player"), AnchoredSystemPathBuf("apps\\frontend\\app\\parent\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\parent"), AnchoredSystemPathBuf("apps\\frontend\\app\\parent\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\player\\calendar")}
+2025-06-08T09:35:16.305056Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:35:16.305477Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:47:08.863230Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin"), AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\page.tsx")}
+2025-06-08T09:47:08.863349Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:47:14.451843Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app"), AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\page.tsx")}
+2025-06-08T09:47:14.451910Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:47:14.452939Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:47:58.670273Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\ClubAdminDashboard.tsx")}
+2025-06-08T09:47:58.670403Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:48:01.091999Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\ClubAdminDashboard.tsx")}
+2025-06-08T09:48:01.092036Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:48:10.671581Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app"), AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer")}
+2025-06-08T09:48:10.671777Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:48:13.990537Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer\\page.tsx")}
+2025-06-08T09:48:13.990573Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:48:13.991197Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:49:01.957589Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\PhysicalTrainerDashboard.tsx")}
+2025-06-08T09:49:01.957638Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:49:31.446109Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager"), AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff"), AnchoredSystemPathBuf("apps\\frontend\\app"), AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards"), AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\PhysicalTrainerDashboard.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\page.tsx")}
+2025-06-08T09:49:31.446168Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:49:31.446596Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:50:20.562068Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\MedicalStaffDashboard.tsx")}
+2025-06-08T09:50:20.562207Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:50:21.290903Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards")}
+2025-06-08T09:50:21.291068Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:50:21.291855Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:50:22.878082Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\MedicalStaffDashboard.tsx")}
+2025-06-08T09:50:22.878108Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:50:36.788925Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\MedicalStaffDashboard.tsx")}
+2025-06-08T09:50:36.788999Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:50:36.791058Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:51:23.365140Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\EquipmentManagerDashboard.tsx")}
+2025-06-08T09:51:23.365187Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:51:24.931584Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards")}
+2025-06-08T09:51:24.931642Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:51:24.931881Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:51:25.860185Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\components\\dashboards\\EquipmentManagerDashboard.tsx")}
+2025-06-08T09:51:25.860221Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:52:14.461500Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff"), AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer"), AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\calendar\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin")}
+2025-06-08T09:52:14.461539Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:52:14.461806Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T09:52:15.730381Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\calendar\\page.tsx")}
+2025-06-08T09:52:15.730407Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:52:30.666889Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager"), AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\calendar"), AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\calendar\\page.tsx")}
+2025-06-08T09:52:30.666936Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T09:52:32.764792Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\calendar\\page.tsx")}
+2025-06-08T09:52:32.764834Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:00:54.186119Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\calendar\\page.tsx")}
+2025-06-08T10:00:54.188586Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:01:10.686593Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\coach\\calendar\\page.tsx")}
+2025-06-08T10:01:10.686642Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:01:25.458656Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\calendar\\page.tsx")}
+2025-06-08T10:01:25.458696Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:02:09.163094Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\player\\calendar\\page.tsx")}
+2025-06-08T10:02:09.163261Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:02:22.857201Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\parent\\calendar\\page.tsx")}
+2025-06-08T10:02:22.857239Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:02:38.374921Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\physicaltrainer\\calendar\\page.tsx")}
+2025-06-08T10:02:38.374959Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:02:55.159042Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\calendar\\page.tsx")}
+2025-06-08T10:02:55.159089Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T10:03:11.474798Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\calendar\\page.tsx")}
+2025-06-08T10:03:11.474857Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:46:53.379845Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-08T20:46:53.628328Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-08T20:54:13.816307Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:54:13.820980Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:54:18.434723Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:54:18.434764Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:54:18.435524Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T20:54:37.392313Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:54:37.392414Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:54:47.826376Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:54:47.826647Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:54:47.827050Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T20:54:53.304106Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:54:53.304188Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:55:10.096383Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:55:10.097213Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:55:17.781989Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx")}
+2025-06-08T20:55:17.782056Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T20:55:17.782403Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:00:55.304039Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:00:55.306461Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:00:55.493919Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:02:52.096469Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\physical-trainer\\components\\PhysicalTrainerDashboard.tsx")}
+2025-06-08T21:02:52.096510Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:02:53.641741Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\physical-trainer\\components\\PhysicalTrainerDashboard.tsx")}
+2025-06-08T21:02:53.641793Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:02:53.642230Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:03:07.387253Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\parent\\page.tsx")}
+2025-06-08T21:03:07.387338Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:18.067948Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\parent\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\player\\page.tsx")}
+2025-06-08T21:03:18.067985Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:18.068324Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:03:20.811234Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\page.tsx")}
+2025-06-08T21:03:20.813880Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:28.743553Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\equipmentmanager\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\coach\\page.tsx")}
+2025-06-08T21:03:28.743609Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:28.744008Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:03:35.442048Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\page.tsx")}
+2025-06-08T21:03:35.444363Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:47.035083Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\clubadmin\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\app\\chat\\page.tsx")}
+2025-06-08T21:03:47.035148Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:47.035425Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:03:51.190140Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\page.tsx")}
+2025-06-08T21:03:51.190234Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:52.406140Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\admin\\page.tsx")}
+2025-06-08T21:03:52.406170Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:03:52.406479Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:03:53.382637Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:03:53.382670Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:04:02.131949Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\app\\medicalstaff\\page.tsx"), AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:04:02.131996Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:04:02.132269Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:04:40.766873Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:04:40.785733Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:04:41.249189Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:06:25.209298Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:06:25.212018Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:06:26.741460Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:08:44.899952Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:08:44.901524Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:08:45.074248Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:11:02.085248Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:11:02.085414Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:11:02.867698Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:11:02.868713Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:11:02.868738Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:11:02.869032Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:11:05.496003Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:11:05.496160Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:11:05.672912Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:12:08.990619Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:12:08.990658Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:12:09.099289Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:15:16.513293Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:15:16.516144Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:15:16.941798Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:15:16.945397Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:15:16.945494Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:15:16.946535Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:16:08.588756Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:16:08.588861Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:16:08.807733Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:16:08.808351Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:16:08.808368Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:16:08.808577Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:17:18.099453Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:17:18.099760Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:17:18.376023Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:20:00.184620Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("_tmp_19208_336782eab4b7388cb8fc60d177c08205")}
+2025-06-08T21:20:00.185694Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:20:00.293385Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("_tmp_19208_336782eab4b7388cb8fc60d177c08205")}
+2025-06-08T21:20:00.293408Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:20:00.394488Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("_tmp_19208_336782eab4b7388cb8fc60d177c08205"), AnchoredSystemPathBuf("")}
+2025-06-08T21:20:00.394514Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:20:40.805678Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("pnpm-lock.yaml.2882393887")}
+2025-06-08T21:20:40.805846Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:20:40.939597Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("pnpm-lock.yaml.2882393887")}
+2025-06-08T21:20:40.939651Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:20:40.993999Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("node_modules"), AnchoredSystemPathBuf("pnpm-lock.yaml"), AnchoredSystemPathBuf(""), AnchoredSystemPathBuf("pnpm-lock.yaml.2882393887")}
+2025-06-08T21:20:40.994028Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-06-08T21:21:16.497229Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:21:16.497283Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:21:16.721579Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:21:16.893936Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:21:16.894083Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:21:17.385945Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:21:17.386122Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:21:17.386136Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:21:17.386298Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:21:18.187441Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:21:18.187465Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:21:18.477171Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:21:19.997069Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:21:19.997096Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:21:20.116277Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:23:35.998476Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:23:35.998721Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:23:36.216665Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:23:36.690555Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:23:36.690611Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:23:36.902842Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:23:36.903234Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\.next")}
+2025-06-08T21:23:36.903244Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:23:36.903358Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:29:07.490341Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\medical-staff\\MedicalStaffDashboard.tsx")}
+2025-06-08T21:29:07.492932Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:29:11.165850Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\medical-staff\\MedicalStaffDashboard.tsx")}
+2025-06-08T21:29:11.165914Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:29:11.166815Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-08T21:29:23.732673Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\medical-staff\\MedicalStaffDashboard.tsx")}
+2025-06-08T21:29:23.732710Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:29:36.522404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps\\frontend\\src\\features\\medical-staff\\MedicalStaffDashboard.tsx")}
+2025-06-08T21:29:36.522450Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("hockey-hub-frontend"), path: AnchoredSystemPathBuf("apps\\frontend") }}))
+2025-06-08T21:29:36.523207Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun

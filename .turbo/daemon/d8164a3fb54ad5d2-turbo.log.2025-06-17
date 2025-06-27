@@ -1,0 +1,66 @@
+2025-06-17T20:16:58.240523Z  WARN build:build_inner: turborepo_repository::package_graph::builder: Unable to calculate transitive closures: Workspace 'shared/.ignored_types' not found in lockfile
+2025-06-17T20:16:58.608460Z  WARN daemon_server: turborepo_lib::commands::daemon: daemon already running
+2025-06-17T20:17:25.552624Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\dist")}
+2025-06-17T20:17:25.552856Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:18:27.049637Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("services\\admin-service\\src\\migrations\\1672531200000-CreateOutboxMessages.ts")}
+2025-06-17T20:18:27.049676Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/admin-service"), path: AnchoredSystemPathBuf("services\\admin-service") }}))
+2025-06-17T20:20:05.945944Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\types\\express.d.ts"), AnchoredSystemPathBuf("packages\\monitoring\\src\\types")}
+2025-06-17T20:20:05.946002Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:20:06.188681Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src"), AnchoredSystemPathBuf("packages\\monitoring\\src\\types")}
+2025-06-17T20:20:06.188696Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:20:06.188733Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-17T20:20:29.052202Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:20:29.052295Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:20:36.051404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:20:36.051443Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:20:44.952877Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:20:44.953052Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:02.942950Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:21:02.942979Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:10.444211Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\health.ts")}
+2025-06-17T20:21:10.444234Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:18.145100Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\health.ts")}
+2025-06-17T20:21:18.145125Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:26.048042Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\health.ts")}
+2025-06-17T20:21:26.048102Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:42.246767Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\tracing.ts")}
+2025-06-17T20:21:42.246839Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:21:54.452558Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\tracing.ts")}
+2025-06-17T20:21:54.452589Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:02.846235Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\tracing.ts")}
+2025-06-17T20:22:02.846260Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:12.245193Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\performance.ts")}
+2025-06-17T20:22:12.245217Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:21.642793Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\performance.ts")}
+2025-06-17T20:22:21.642809Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:31.050192Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\metrics.ts")}
+2025-06-17T20:22:31.050219Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:39.453813Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:22:39.453841Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:47.157326Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:22:47.157363Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:22:55.753074Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\index.ts")}
+2025-06-17T20:22:55.753216Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:23:05.254084Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\tsconfig.json")}
+2025-06-17T20:23:05.254130Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:24:22.945875Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:24:22.946061Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:24:36.852287Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:24:36.852449Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:24:49.747995Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:24:49.748022Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:24:49.911786Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:24:49.911805Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:24:49.911837Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-06-17T20:25:12.544962Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\health.ts")}
+2025-06-17T20:25:12.544990Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:25:20.645984Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\errors.ts")}
+2025-06-17T20:25:20.646020Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:25:35.650233Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\tracing.ts")}
+2025-06-17T20:25:35.650264Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:26:46.849023Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:26:46.849049Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:26:58.753287Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\circuitBreaker.ts")}
+2025-06-17T20:26:58.753317Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))
+2025-06-17T20:27:07.443174Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages\\monitoring\\src\\health.ts")}
+2025-06-17T20:27:07.443198Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@hockey-hub/monitoring"), path: AnchoredSystemPathBuf("packages\\monitoring") }}))

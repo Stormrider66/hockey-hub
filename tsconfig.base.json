@@ -1,1 +1,20 @@
-{\n  \"compilerOptions\": {\n    // Base Options\n    \"esModuleInterop\": true,\n    \"skipLibCheck\": true,\n    \"target\": \"ES2016\",\n    \"allowJs\": true,\n    \"resolveJsonModule\": true,\n    \"moduleDetection\": \"force\",\n    \"isolatedModules\": true,\n\n    // Strictness\n    \"strict\": true,\n    \"noUnusedLocals\": true, \n    \"noUnusedParameters\": true,\n    \"noFallthroughCasesInSwitch\": true,\n    \"forceConsistentCasingInFileNames\": true,\n\n    // If using bundlers\n    \"moduleResolution\": \"node\",\n    \"jsx\": \"preserve\", // Adjust if using React/Next.js ('react-jsx' or 'react-jsxdev')\n\n    // Output\n    \"noEmit\": true // Base config doesn't output files itself\n  },\n  \"exclude\": [\"node_modules\"]\n}
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2016",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true, 
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "noEmit": true
+  },
+  "exclude": ["node_modules"]
+}
