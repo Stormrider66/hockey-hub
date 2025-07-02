@@ -103,24 +103,24 @@ io.on('connection', (socket) => {
   });
 
   // Handle workout session events
-  socket.on('session:start', (data) => {
+  socket.on('session:start', (data: { sessionId: string; startTime: Date; trainerId: string }) => {
     io.to(`session:${data.sessionId}`).emit('session:started', data);
   });
 
-  socket.on('exercise:complete', (data) => {
+  socket.on('exercise:complete', (data: { sessionId: string; exerciseId: string; playerId: string; completedAt: Date }) => {
     io.to(`session:${data.sessionId}`).emit('exercise:completed', data);
   });
 
-  socket.on('metrics:update', (data) => {
+  socket.on('metrics:update', (data: { sessionId: string; playerId: string; metrics: Record<string, number> }) => {
     io.to(`session:${data.sessionId}`).emit('metrics:updated', data);
   });
 
   // Trainer control events
-  socket.on('view:change', (data) => {
+  socket.on('view:change', (data: { sessionId: string; view: string; trainerId: string }) => {
     io.to(`session:${data.sessionId}`).emit('view:changed', data);
   });
 
-  socket.on('player:focus', (data) => {
+  socket.on('player:focus', (data: { sessionId: string; playerId: string; trainerId: string }) => {
     io.to(`session:${data.sessionId}`).emit('player:focused', data);
   });
 
@@ -137,8 +137,9 @@ const startServer = async () => {
       try {
         await initializeDatabase();
         console.log('✅ Database connected successfully');
-      } catch (dbError: any) {
-        console.error('❌ Database connection error:', dbError.message);
+      } catch (dbError: unknown) {
+        const errorMessage = dbError instanceof Error ? dbError.message : 'Unknown database error';
+        console.error('❌ Database connection error:', errorMessage);
         console.log('⚠️  Service will run without database features.');
         console.log('💡 Check your database configuration in .env file');
       }

@@ -11,7 +11,7 @@ interface UserDashboardData {
     avatar?: string;
     role: string;
     phoneNumber?: string;
-    preferences: Record<string, any>;
+    preferences: Record<string, unknown>;
     lastLogin?: Date;
     isActive: boolean;
     createdAt: Date;
@@ -24,7 +24,7 @@ interface UserDashboardData {
     primaryColor?: string;
     secondaryColor?: string;
     logo?: string;
-    settings: Record<string, any>;
+    settings: Record<string, unknown>;
     subscription: {
       plan: string;
       status: string;
@@ -149,16 +149,63 @@ interface CommunicationSummary {
 }
 
 interface StatisticsSummary {
-  recentPerformance?: any;
-  trends?: any[];
-  workload?: any;
-  wellness?: any;
-  teamPerformance?: any;
-  topScorers?: any[];
-  workloadSummary?: any;
-  workloadOverview?: any;
-  playersAtRisk?: any[];
-  organizationOverview?: any;
+  recentPerformance?: {
+    games: number;
+    wins: number;
+    losses: number;
+    goals: number;
+    assists: number;
+  };
+  trends?: Array<{
+    period: string;
+    value: number;
+    metric: string;
+  }>;
+  workload?: {
+    weekly: number;
+    monthly: number;
+    status: 'low' | 'normal' | 'high' | 'critical';
+  };
+  wellness?: {
+    average: number;
+    trend: 'up' | 'down' | 'stable';
+    alerts: number;
+  };
+  teamPerformance?: {
+    ranking: number;
+    winRate: number;
+    goalsFor: number;
+    goalsAgainst: number;
+  };
+  topScorers?: Array<{
+    playerId: string;
+    name: string;
+    goals: number;
+    assists: number;
+    points: number;
+  }>;
+  workloadSummary?: {
+    total: number;
+    average: number;
+    peak: number;
+  };
+  workloadOverview?: {
+    current: number;
+    recommended: number;
+    status: string;
+  };
+  playersAtRisk?: Array<{
+    id: string;
+    name: string;
+    riskLevel: 'low' | 'medium' | 'high';
+    factors: string[];
+  }>;
+  organizationOverview?: {
+    totalMembers: number;
+    activeTeams: number;
+    revenue: number;
+    growth: number;
+  };
 }
 
 // Create the dashboard API slice

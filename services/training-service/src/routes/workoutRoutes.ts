@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { AppDataSource } from '../config/database';
 import { CachedWorkoutSessionService } from '../services/CachedWorkoutSessionService';
 import { parsePaginationParams, authenticate, authorize, validationMiddleware } from '@hockey-hub/shared-lib';
@@ -11,7 +11,7 @@ const workoutService = new CachedWorkoutSessionService();
 router.use(authenticate);
 
 // Middleware to check database connection
-const checkDatabase = (req: any, res: any, next: any) => {
+const checkDatabase = (req: Request, res: Response, next: NextFunction) => {
   if (!AppDataSource.isInitialized) {
     return res.status(503).json({ 
       success: false, 

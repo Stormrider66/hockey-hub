@@ -52,6 +52,25 @@ import { useSearchFilesQuery, useDeleteFileMutation, useGetSignedUrlMutation } f
 import { useToast } from '@/components/ui/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
 
+// File interface
+interface FileData {
+  id: string;
+  name: string;
+  type: string;
+  size: number;
+  url: string;
+  category?: string;
+  tags?: string[];
+  createdAt: string;
+  updatedAt: string;
+  createdBy?: {
+    id: string;
+    name: string;
+  };
+  isPublic?: boolean;
+  description?: string;
+}
+
 interface FileManagerProps {
   category?: string;
   userId?: string;
@@ -60,8 +79,8 @@ interface FileManagerProps {
   viewMode?: 'grid' | 'list';
   showFilters?: boolean;
   selectable?: boolean;
-  onFileSelect?: (file: any) => void;
-  onFilesSelect?: (files: any[]) => void;
+  onFileSelect?: (file: FileData) => void;
+  onFilesSelect?: (files: FileData[]) => void;
   className?: string;
 }
 
@@ -134,7 +153,7 @@ const FileManager: React.FC<FileManagerProps> = ({
     return colors[category] || colors.other;
   };
 
-  const handleFileSelect = (file: any) => {
+  const handleFileSelect = (file: FileData) => {
     if (selectable) {
       const newSelectedFiles = new Set(selectedFiles);
       if (newSelectedFiles.has(file.id)) {
@@ -185,7 +204,7 @@ const FileManager: React.FC<FileManagerProps> = ({
     }
   };
 
-  const handleDownload = async (file: any) => {
+  const handleDownload = async (file: FileData) => {
     try {
       const { url } = await getSignedUrl({ fileId: file.id, action: 'download' }).unwrap();
       window.open(url, '_blank');
@@ -397,7 +416,7 @@ const FileManager: React.FC<FileManagerProps> = ({
             </SelectContent>
           </Select>
 
-          <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+          <Select value={sortBy} onValueChange={(value: string) => setSortBy(value)}>
             <SelectTrigger className="w-full sm:w-40">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>

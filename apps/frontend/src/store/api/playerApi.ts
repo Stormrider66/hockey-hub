@@ -1,3 +1,4 @@
+import React from 'react';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Types for API responses
@@ -80,7 +81,7 @@ interface WellnessStats {
   insights?: Array<{
     type: 'positive' | 'warning';
     text: string;
-    icon: any;
+    icon: React.ComponentType<{ className?: string }>;
   }>;
 }
 

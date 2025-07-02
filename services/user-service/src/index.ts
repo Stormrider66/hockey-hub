@@ -155,8 +155,21 @@ app.get('/api/v1/players/:id/overview', (req, res) => {
   });
 });
 
+// Define wellness entry interface
+interface WellnessEntry {
+  id: number;
+  playerId: number;
+  timestamp: string;
+  date: string;
+  sleepQuality: number;
+  energyLevel: number;
+  mood: number;
+  soreness: number;
+  hrv: number;
+}
+
 // Temporary in-memory storage for wellness data
-const wellnessData: any[] = [];
+const wellnessData: WellnessEntry[] = [];
 
 app.post('/api/v1/players/:id/wellness', (req, res) => {
   const { id: playerId } = req.params;
@@ -257,11 +270,12 @@ async function createDemoUsers() {
       try {
         await authService.register(user);
         console.log(`✅ Created demo user: ${user.email}`);
-      } catch (error: any) {
-        if (error.message.includes('already exists')) {
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        if (errorMessage.includes('already exists')) {
           console.log(`ℹ️ Demo user already exists: ${user.email}`);
         } else {
-          console.error(`❌ Failed to create demo user ${user.email}:`, error.message);
+          console.error(`❌ Failed to create demo user ${user.email}:`, errorMessage);
         }
       }
     }

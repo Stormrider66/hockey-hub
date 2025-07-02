@@ -398,11 +398,22 @@ export default function PlayerDashboard() {
       
       // Optionally reset form to default values
       // setWellnessForm({ ...initialWellnessForm });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Failed to submit wellness:", error);
-      console.error("Error details:", error.data || error.message);
-      // Also show error message to user
-      alert(`Failed to submit wellness: ${error.data?.message || error.message || 'Unknown error'}`);
+      
+      // Type-safe error handling
+      let errorMessage = 'Unknown error';
+      if (error && typeof error === 'object') {
+        if ('data' in error) {
+          const apiError = error.data as { message?: string };
+          errorMessage = apiError.message || 'API error';
+        } else if ('message' in error) {
+          errorMessage = (error as { message: string }).message;
+        }
+      }
+      
+      console.error("Error details:", errorMessage);
+      alert(`Failed to submit wellness: ${errorMessage}`);
     }
   };
 

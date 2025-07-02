@@ -6,7 +6,7 @@ export interface ApiError {
   code?: string;
   statusCode?: number;
   validationErrors?: Array<{ field: string; message: string }>;
-  details?: any;
+  details?: Record<string, unknown>;
 }
 
 export interface ErrorState {
@@ -42,24 +42,41 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
   const retryTimeoutRef = useRef<NodeJS.Timeout>();
 
   // Parse error from various sources
-  const parseError = useCallback((error: any): ApiError => {
+  const parseError = useCallback((error: unknown): ApiError => {
+    if (!error || typeof error !== 'object') {
+      return {
+        message: 'An unexpected error occurred',
+        code: 'UNKNOWN_ERROR',
+        statusCode: 500
+      };
+    }
+
     // Already formatted API error
-    if (error?.error && typeof error.error === 'object') {
-      return error.error;
+    if ('error' in error && error.error && typeof error.error === 'object') {
+      return error.error as ApiError;
     }
 
     // Axios error
-    if (error?.response?.data?.error) {
-      return error.response.data.error;
+    if ('response' in error && error.response && typeof error.response === 'object') {
+      const response = error.response as { data?: { error?: ApiError } };
+      if (response.data?.error) {
+        return response.data.error;
+      }
     }
 
     // RTK Query error
-    if (error?.data?.error) {
-      return error.data.error;
+    if ('data' in error && error.data && typeof error.data === 'object') {
+      const data = error.data as { error?: ApiError };
+      if (data.error) {
+        return data.error;
+      }
     }
 
     // Network error
-    if (error?.code === 'ERR_NETWORK' || error?.message?.includes('Network')) {
+    const errorCode = 'code' in error ? (error.code as string) : '';
+    const errorMessage = 'message' in error ? (error.message as string) : '';
+    
+    if (errorCode === 'ERR_NETWORK' || errorMessage.includes('Network')) {
       return {
         message: 'Network error. Please check your connection.',
         code: 'NETWORK_ERROR',
@@ -68,7 +85,7 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
     }
 
     // Timeout error
-    if (error?.code === 'ECONNABORTED' || error?.message?.includes('timeout')) {
+    if (errorCode === 'ECONNABORTED' || errorMessage.includes('timeout')) {
       return {
         message: 'Request timed out. Please try again.',
         code: 'TIMEOUT',
@@ -77,15 +94,18 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
     }
 
     // Generic error
+    const status = 'status' in error ? (error.status as number) : 
+                   'statusCode' in error ? (error.statusCode as number) : 500;
+
     return {
-      message: error?.message || 'An unexpected error occurred',
-      code: error?.code || 'UNKNOWN_ERROR',
-      statusCode: error?.status || error?.statusCode || 500
+      message: errorMessage || 'An unexpected error occurred',
+      code: errorCode || 'UNKNOWN_ERROR',
+      statusCode: status
     };
   }, []);
 
   // Set error
-  const setError = useCallback((error: any) => {
+  const setError = useCallback((error: unknown) => {
     const parsedError = parseError(error);
     
     setErrorState({
@@ -139,10 +159,10 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
   }, []);
 
   // Retry with exponential backoff
-  const retry = useCallback(async (retryFn: () => Promise<any>) => {
+  const retry = useCallback(async <T>(retryFn: () => Promise<T>): Promise<T | null> => {
     if (retryCount.current >= retryLimit) {
       toast.error('Maximum retry attempts reached');
-      return;
+      return null;
     }
 
     setErrorState(prev => ({ ...prev, isRetrying: true }));
@@ -159,7 +179,7 @@ export function useErrorHandler(options: UseErrorHandlerOptions = {}) {
 
     onRetry?.();
 
-    return new Promise((resolve) => {
+    return new Promise<T | null>((resolve) => {
       retryTimeoutRef.current = setTimeout(async () => {
         try {
           const result = await retryFn();

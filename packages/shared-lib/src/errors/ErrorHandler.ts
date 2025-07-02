@@ -23,7 +23,7 @@ export interface ErrorResponse {
 /**
  * Convert various error types to our custom error format
  */
-export function normalizeError(error: any, req?: Request): BaseError {
+export function normalizeError(error: unknown, req?: Request): BaseError {
   // If it's already our custom error, return it
   if (error instanceof BaseError) {
     return error;
@@ -89,7 +89,7 @@ export function normalizeError(error: any, req?: Request): BaseError {
  * Express error handler middleware
  */
 export function errorHandler(
-  error: any,
+  error: unknown,
   req: Request,
   res: Response,
   next: NextFunction
@@ -109,7 +109,7 @@ export function errorHandler(
       ip: req.ip,
       userAgent: req.get('user-agent')
     },
-    user: (req as any).user,
+    user: (req as Request & { user?: { id: string; email: string } }).user,
     correlationId: req.headers['x-correlation-id']
   };
 
@@ -143,7 +143,7 @@ export function errorHandler(
  * Async error wrapper for route handlers
  */
 export function asyncHandler(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);

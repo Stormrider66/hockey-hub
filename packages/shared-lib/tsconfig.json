@@ -1,17 +1,51 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../services/tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
+    "composite": true,
+    "noEmit": false,
+    
+    // Override for library build
+    "module": "commonjs",
+    "target": "ES2020",
+    
+    // TypeORM decorators
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
-    "noEmit": false,
-    "module": "commonjs",
-    "target": "ES2020"
+    
+    // Library specific settings
+    "strict": true,
+    "noImplicitAny": true,
+    "exactOptionalPropertyTypes": false, // Allow flexibility for DTOs
+    "noUncheckedIndexedAccess": false,
+    
+    // Path mapping for shared lib
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../../types/*"]
+    },
+    
+    // Type definitions
+    "types": ["node", "jest"],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../types",
+      "node_modules/@types"
+    ]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "../../types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
 }

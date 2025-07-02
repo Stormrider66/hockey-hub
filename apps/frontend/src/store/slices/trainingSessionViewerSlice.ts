@@ -25,7 +25,14 @@ interface PlayerProgress {
 
 interface PlayerMetrics {
   playerId: string;
-  metrics: any;
+  metrics: {
+    heartRate?: number;
+    watts?: number;
+    speed?: number;
+    distance?: number;
+    calories?: number;
+    timestamp: number;
+  };
 }
 
 interface TrainingSessionViewerState {
@@ -42,8 +49,8 @@ interface TrainingSessionViewerState {
   viewMode?: string;
   focusedPlayer?: string | null;
   activePlayers?: string[];
-  playerProgress?: Record<string, any>;
-  playerMetrics?: Record<string, any>;
+  playerProgress?: Record<string, PlayerProgress>;
+  playerMetrics?: Record<string, PlayerMetrics['metrics']>;
 }
 
 const initialState: TrainingSessionViewerState = {

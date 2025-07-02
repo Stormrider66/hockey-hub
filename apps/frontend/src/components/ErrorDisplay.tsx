@@ -7,7 +7,7 @@ export interface ErrorInfo {
   message: string;
   code?: string;
   statusCode?: number;
-  details?: any;
+  details?: string | Record<string, unknown> | Error;
   retry?: () => void;
 }
 

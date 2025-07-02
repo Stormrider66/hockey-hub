@@ -127,13 +127,13 @@ export class Notification {
   channel_data?: {
     email?: {
       template_id?: string;
-      template_data?: Record<string, any>;
+      template_data?: Record<string, unknown>;
       from_email?: string;
       reply_to?: string;
     };
     sms?: {
       template_id?: string;
-      template_data?: Record<string, any>;
+      template_data?: Record<string, unknown>;
     };
     push?: {
       icon?: string;
@@ -178,7 +178,7 @@ export class Notification {
 
   // Metadata
   @Column({ type: 'jsonb', nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @CreateDateColumn()
   created_at: Date;
@@ -186,8 +186,19 @@ export class Notification {
   @UpdateDateColumn()
   updated_at: Date;
 
-  // Virtual fields for recipient information
-  recipient?: any;
-  organization?: any;
-  team?: any;
+  // Virtual fields for recipient information (populated from external services)
+  recipient?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+  organization?: {
+    id: string;
+    name: string;
+  };
+  team?: {
+    id: string;
+    name: string;
+  };
 }

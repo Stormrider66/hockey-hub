@@ -45,8 +45,11 @@ export function SessionManagement() {
       await revokeSession({ sessionId }).unwrap();
       toast.success('Session revoked successfully');
       refetch();
-    } catch (error: any) {
-      toast.error(error?.data?.message || 'Failed to revoke session');
+    } catch (error: unknown) {
+      const errorMessage = error && typeof error === 'object' && 'data' in error 
+        ? (error.data as { message?: string })?.message 
+        : 'Failed to revoke session';
+      toast.error(errorMessage);
     } finally {
       setRevokingSessionId(null);
     }
@@ -62,8 +65,11 @@ export function SessionManagement() {
       await revokeAllSessions().unwrap();
       toast.success('All sessions revoked successfully');
       refetch();
-    } catch (error: any) {
-      toast.error(error?.data?.message || 'Failed to revoke all sessions');
+    } catch (error: unknown) {
+      const errorMessage = error && typeof error === 'object' && 'data' in error 
+        ? (error.data as { message?: string })?.message 
+        : 'Failed to revoke all sessions';
+      toast.error(errorMessage);
     } finally {
       setIsRevokingAll(false);
     }

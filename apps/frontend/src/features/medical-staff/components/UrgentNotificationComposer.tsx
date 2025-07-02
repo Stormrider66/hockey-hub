@@ -61,7 +61,7 @@ interface EscalationLevel {
 
 interface UrgentNotificationComposerProps {
   onClose?: () => void;
-  onSubmit?: (notification: any) => void;
+  onSubmit?: (notification: CreateUrgentNotificationDto) => void;
   defaultPlayerId?: string;
   defaultTeamId?: string;
 }

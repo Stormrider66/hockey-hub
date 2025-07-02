@@ -93,7 +93,7 @@ export class Invoice extends AuditableEntity {
   };
 
   @Column('jsonb', { nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @OneToMany(() => Payment, payment => payment.invoice)
   payments: Payment[];

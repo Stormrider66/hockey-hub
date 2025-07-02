@@ -199,9 +199,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const roleName = result.user.role.name.toLowerCase();
         router.push(`/${roleName}`);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       toast.dismiss('login-retry');
-      const errorMessage = err?.data?.message || err?.message || 'Failed to login';
+      
+      let errorMessage = 'Failed to login';
+      if (err && typeof err === 'object') {
+        if ('data' in err) {
+          const apiError = err.data as { message?: string };
+          errorMessage = apiError.message || 'Login failed';
+        } else if ('message' in err) {
+          errorMessage = (err as { message: string }).message;
+        }
+      }
+      
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -228,8 +238,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         toast.success('Successfully registered! Please verify your email.');
         router.push('/verify-email');
       }
-    } catch (err: any) {
-      const errorMessage = err?.data?.message || 'Failed to register';
+    } catch (err: unknown) {
+      let errorMessage = 'Failed to register';
+      if (err && typeof err === 'object' && 'data' in err) {
+        const apiError = err.data as { message?: string };
+        errorMessage = apiError.message || 'Registration failed';
+      }
+      
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -251,12 +266,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       toast.success('Successfully logged out');
       router.push('/login');
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Even if logout fails on server, clear local state
       setUser(null);
       clearStorage();
       localStorage.removeItem('current_user_id');
       
+      console.error('Logout error:', err);
       toast.error('Logout completed with errors');
       router.push('/login');
     } finally {

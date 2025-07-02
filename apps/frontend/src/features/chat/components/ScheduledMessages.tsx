@@ -139,7 +139,7 @@ const ScheduledMessages: React.FC<ScheduledMessagesProps> = ({
               key={tab.value}
               variant={selectedStatus === tab.value ? 'default' : 'ghost'}
               size="sm"
-              onClick={() => setSelectedStatus(tab.value as any)}
+              onClick={() => setSelectedStatus(tab.value as 'all' | 'pending' | 'sent' | 'failed' | 'cancelled')}
               className="flex-1"
             >
               {tab.label}

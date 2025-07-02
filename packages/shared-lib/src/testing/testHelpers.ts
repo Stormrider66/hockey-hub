@@ -52,7 +52,7 @@ export function createMockNext(): NextFunction {
 /**
  * Creates a JWT token for testing
  */
-export function createTestToken(payload: any, secret: string = 'test-secret'): string {
+export function createTestToken(payload: Record<string, unknown>, secret: string = 'test-secret'): string {
   return sign(payload, secret, { expiresIn: '1h' });
 }
 
@@ -75,7 +75,7 @@ export async function flushPromises(): Promise<void> {
 /**
  * Creates a test user object
  */
-export function createTestUser(overrides?: Partial<any>): any {
+export function createTestUser(overrides?: Partial<TestUser>): TestUser {
   return {
     id: '123',
     email: 'test@example.com',
@@ -88,10 +88,20 @@ export function createTestUser(overrides?: Partial<any>): any {
   };
 }
 
+interface TestUser {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  organizationId: string;
+  permissions: string[];
+}
+
 /**
  * Asserts that an async function throws an error
  */
-export async function expectAsyncError(fn: () => Promise<any>, errorMessage?: string | RegExp): Promise<void> {
+export async function expectAsyncError(fn: () => Promise<unknown>, errorMessage?: string | RegExp): Promise<void> {
   let error: Error | null = null;
   
   try {

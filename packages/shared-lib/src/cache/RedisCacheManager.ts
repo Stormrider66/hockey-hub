@@ -209,7 +209,7 @@ export class RedisCacheManager extends CacheManager {
   }
 
   // Hash operations
-  async hset(key: string, field: string, value: any): Promise<number> {
+  async hset<T>(key: string, field: string, value: T): Promise<number> {
     const fullKey = this.getFullKey(key);
     return await this.client.hSet(fullKey, field, JSON.stringify(value));
   }

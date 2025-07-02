@@ -61,7 +61,7 @@ export class Conversation {
   is_archived: boolean;
 
   @Column({ type: 'jsonb', nullable: true })
-  metadata?: Record<string, any> & {
+  metadata?: Record<string, unknown> & {
     // Announcement channel specific metadata
     teamId?: string;
     organizationId?: string;

@@ -8,6 +8,13 @@ import { registerActivityHandlers } from './handlers/activityHandler';
 import { SocketEventType, SocketData } from '@hockey-hub/shared-lib';
 import { logger } from '@hockey-hub/shared-lib';
 
+interface RoomUser {
+  id: string;
+  name: string;
+  avatar: string | null;
+  status: 'active' | 'idle' | 'offline';
+}
+
 // Enhanced room management
 export class SocketManager {
   private io: Server;
@@ -150,7 +157,7 @@ export class SocketManager {
 
   private registerRoomHandlers(socket: AuthenticatedSocket) {
     // Generic room join
-    socket.on(SocketEventType.ROOM_JOIN, (data: { roomType: string; roomId: string; metadata?: any }) => {
+    socket.on(SocketEventType.ROOM_JOIN, (data: { roomType: string; roomId: string; metadata?: Record<string, unknown> }) => {
       const room = `${data.roomType}:${data.roomId}`;
       
       if (this.canJoinRoom(socket, data.roomType, data.roomId)) {
@@ -286,11 +293,11 @@ export class SocketManager {
     }
   }
 
-  private getRoomUsers(roomId: string): any[] {
+  private getRoomUsers(roomId: string): RoomUser[] {
     const roomSockets = this.socketRooms.get(roomId);
     if (!roomSockets) return [];
 
-    const users: any[] = [];
+    const users: RoomUser[] = [];
     roomSockets.forEach(socketId => {
       const socketData = this.socketData.get(socketId);
       if (socketData) {
@@ -318,19 +325,19 @@ export class SocketManager {
   }
 
   // Public methods for external use
-  public broadcastToOrganization(organizationId: string, event: string, data: any) {
+  public broadcastToOrganization(organizationId: string, event: string, data: unknown) {
     this.io.to(`org:${organizationId}`).emit(event, data);
   }
 
-  public broadcastToTeam(teamId: string, event: string, data: any) {
+  public broadcastToTeam(teamId: string, event: string, data: unknown) {
     this.io.to(`team:${teamId}`).emit(event, data);
   }
 
-  public broadcastToUser(userId: string, event: string, data: any) {
+  public broadcastToUser(userId: string, event: string, data: unknown) {
     this.io.to(`user:${userId}`).emit(event, data);
   }
 
-  public broadcastToRole(organizationId: string, role: string, event: string, data: any) {
+  public broadcastToRole(organizationId: string, role: string, event: string, data: unknown) {
     this.io.to(`org:${organizationId}:role:${role}`).emit(event, data);
   }
 

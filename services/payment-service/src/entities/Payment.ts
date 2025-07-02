@@ -93,10 +93,10 @@ export class Payment extends AuditableEntity {
   stripeChargeId?: string;
 
   @Column('jsonb', { nullable: true })
-  processorResponse?: Record<string, any>;
+  processorResponse?: Record<string, unknown>;
 
   @Column('jsonb', { nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   // Computed property
   get netAmount(): number {

@@ -103,7 +103,7 @@ export class CreateEventDto {
 
   @IsOptional()
   @IsObject()
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @IsOptional()
   @IsArray()
@@ -203,7 +203,7 @@ export class UpdateEventDto {
 
   @IsOptional()
   @IsObject()
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @IsOptional()
   @IsArray()
@@ -414,23 +414,23 @@ export class CreateResourceDto {
 
   @IsOptional()
   @IsObject()
-  features?: Record<string, any>;
+  features?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  availability?: Record<string, any>;
+  availability?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  maintenanceSchedule?: Record<string, any>;
+  maintenanceSchedule?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  bookingRules?: Record<string, any>;
+  bookingRules?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @IsOptional()
   @IsBoolean()
@@ -489,23 +489,23 @@ export class UpdateResourceDto {
 
   @IsOptional()
   @IsObject()
-  features?: Record<string, any>;
+  features?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  availability?: Record<string, any>;
+  availability?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  maintenanceSchedule?: Record<string, any>;
+  maintenanceSchedule?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  bookingRules?: Record<string, any>;
+  bookingRules?: Record<string, unknown>;
 
   @IsOptional()
   @IsObject()
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @IsOptional()
   @IsBoolean()

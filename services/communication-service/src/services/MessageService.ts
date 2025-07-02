@@ -20,7 +20,7 @@ export interface SendMessageDto {
   type?: MessageType;
   reply_to_id?: string;
   attachments?: CreateAttachmentDto[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface CreateAttachmentDto {

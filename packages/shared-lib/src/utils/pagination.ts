@@ -29,7 +29,7 @@ export interface PaginationQuery {
  * Parse pagination parameters from request query
  */
 export function parsePaginationParams(
-  query: any,
+  query: Record<string, unknown>,
   defaults: { page?: number; limit?: number; maxLimit?: number } = {}
 ): PaginationQuery {
   const page = Math.max(1, parseInt(query.page) || defaults.page || 1);
@@ -111,7 +111,7 @@ export function createPaginationMeta(
   page: number,
   limit: number,
   total: number
-): PaginationResult<any>['pagination'] {
+): PaginationResult<unknown>['pagination'] {
   const pages = Math.ceil(total / limit);
   
   return {
@@ -131,7 +131,7 @@ export function generatePaginationLinks(
   baseUrl: string,
   currentPage: number,
   totalPages: number,
-  queryParams: Record<string, any> = {}
+  queryParams: Record<string, unknown> = {}
 ): {
   first?: string;
   prev?: string;
@@ -139,11 +139,16 @@ export function generatePaginationLinks(
   last?: string;
 } {
   const buildUrl = (page: number) => {
-    const params = new URLSearchParams({ ...queryParams, page: page.toString() });
+    const params = new URLSearchParams({ 
+      ...Object.fromEntries(
+        Object.entries(queryParams).map(([k, v]) => [k, String(v)])
+      ), 
+      page: page.toString() 
+    });
     return `${baseUrl}?${params.toString()}`;
   };
   
-  const links: any = {};
+  const links: Record<string, string> = {};
   
   if (currentPage > 1) {
     links.first = buildUrl(1);
@@ -179,14 +184,14 @@ export interface CursorPaginationResult<T> {
 /**
  * Encode cursor for cursor-based pagination
  */
-export function encodeCursor(data: Record<string, any>): string {
+export function encodeCursor(data: Record<string, unknown>): string {
   return Buffer.from(JSON.stringify(data)).toString('base64');
 }
 
 /**
  * Decode cursor for cursor-based pagination
  */
-export function decodeCursor(cursor: string): Record<string, any> {
+export function decodeCursor(cursor: string): Record<string, unknown> {
   try {
     return JSON.parse(Buffer.from(cursor, 'base64').toString());
   } catch {

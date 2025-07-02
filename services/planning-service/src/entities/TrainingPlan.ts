@@ -111,7 +111,7 @@ export class TrainingPlan extends AuditableEntity {
   };
 
   @Column('jsonb', { nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @OneToMany(() => PracticePlan, practice => practice.trainingPlan)
   practices: PracticePlan[];
@@ -130,10 +130,19 @@ export class TrainingPlan extends AuditableEntity {
     return (completed / this.goals.length) * 100;
   }
 
-  getCurrentPhase(currentWeek: number): any {
+  getCurrentPhase(currentWeek: number): PeriodizationPhase | null {
     if (!this.periodization?.phases) return null;
     return this.periodization.phases.find(phase => 
       currentWeek >= phase.startWeek && currentWeek <= phase.endWeek
-    );
+    ) || null;
   }
+}
+
+// Type definitions for better type safety
+interface PeriodizationPhase {
+  name: string;
+  startWeek: number;
+  endWeek: number;
+  intensity: 'low' | 'medium' | 'high' | 'peak' | 'recovery';
+  focus: string[];
 }

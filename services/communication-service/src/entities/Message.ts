@@ -63,7 +63,7 @@ export class Message {
   reply_to_id?: string;
 
   @Column({ type: 'jsonb', nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   // Encryption fields
   @Column({ default: false })
@@ -124,8 +124,13 @@ export class Message {
   @OneToMany(() => MessageReadReceipt, (receipt) => receipt.message)
   read_receipts: MessageReadReceipt[];
 
-  // Virtual fields
-  sender?: any; // Will be populated from user service
+  // Virtual fields (these are added at runtime from external sources)
+  sender?: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    avatar?: string;
+  }; // Will be populated from user service
   is_read?: boolean;
   reaction_counts?: Record<string, number>;
 }

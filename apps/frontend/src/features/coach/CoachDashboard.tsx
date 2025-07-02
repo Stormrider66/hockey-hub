@@ -65,6 +65,19 @@ import { useTranslation } from '@hockey-hub/translations';
 import { CoachChannelList } from "@/features/chat/components/CoachChannelList";
 import { usePrivateCoachChannels } from "@/hooks/usePrivateCoachChannels";
 
+// Template interface
+interface TrainingTemplate {
+  id: string;
+  name: string;
+  duration: number;
+  description: string;
+  exercises: Array<{
+    name: string;
+    duration: number;
+    type: string;
+  }>;
+}
+
 // Mock data for comprehensive dashboard
 const mockPlayers = [
   { 
@@ -690,7 +703,7 @@ export default function CoachDashboard() {
   };
 
   const renderTrainingPlansTab = () => {
-    const handleApplyTemplate = (template: any, date?: Date, time?: string) => {
+    const handleApplyTemplate = (template: TrainingTemplate, date?: Date, time?: string) => {
       // This would open a modal to create a practice based on the template
       console.log('Applying template:', template.name, date, time);
       // In a real app, this would create a calendar event and practice session
