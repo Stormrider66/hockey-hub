@@ -48,7 +48,13 @@ import { TreatmentManagement } from "./components/TreatmentManagement";
 import { InjuryRegistrationForm } from "./components/InjuryRegistrationForm";
 import { TreatmentForm } from "./components/TreatmentForm";
 import { InjuryDetailModal } from "./components/InjuryDetailModal";
+import { UrgentNotificationComposer } from "./components/UrgentNotificationComposer";
+import { UrgentNotificationCenter } from "./components/UrgentNotificationCenter";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useGetMedicalDocumentsQuery, useGetDocumentSignedUrlQuery } from "../../store/api/medicalApi";
+import { MedicalCalendarView } from "./MedicalCalendarView";
+import { AppointmentReminderSettings } from "./components/AppointmentReminderSettings";
+import { useTranslation } from '@hockey-hub/translations';
 
 // Note: Mock data moved to useMedicalData hook for progressive integration
 const legacyMockInjuries = [
@@ -119,6 +125,7 @@ const legacyMockInjuries = [
 ];
 
 export default function MedicalStaffDashboard() {
+  const { t } = useTranslation(['medical', 'common']);
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedInjury, setSelectedInjury] = useState<any>(null);
   const [showDocumentUpload, setShowDocumentUpload] = useState(false);
@@ -131,6 +138,8 @@ export default function MedicalStaffDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [severityFilter, setSeverityFilter] = useState("all");
+  const [showUrgentNotification, setShowUrgentNotification] = useState(false);
+  const [showNotificationCenter, setShowNotificationCenter] = useState(false);
   const { data: medicalData, isLoading, error, isBackendIntegrated } = useMedicalData("senior");
 
   // Use integrated data or fallback to legacy mock data
@@ -196,10 +205,10 @@ export default function MedicalStaffDashboard() {
 
   const getSeverityBadge = (severity: string) => {
     switch (severity) {
-      case 'severe': return <Badge className="bg-red-100 text-red-800">Severe</Badge>;
-      case 'moderate': return <Badge className="bg-amber-100 text-amber-800">Moderate</Badge>;
-      case 'mild': return <Badge className="bg-yellow-100 text-yellow-800">Mild</Badge>;
-      default: return <Badge>Unknown</Badge>;
+      case 'severe': return <Badge className="bg-red-100 text-red-800">{t('medical:severity.severe')}</Badge>;
+      case 'moderate': return <Badge className="bg-amber-100 text-amber-800">{t('medical:severity.moderate')}</Badge>;
+      case 'mild': return <Badge className="bg-yellow-100 text-yellow-800">{t('medical:severity.mild')}</Badge>;
+      default: return <Badge>{t('common:unknown')}</Badge>;
     }
   };
 
@@ -217,56 +226,56 @@ export default function MedicalStaffDashboard() {
       <div className="grid grid-cols-5 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Active Injuries</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('medical:overview.activeInjuries')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{mockInjuries.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">2 new this week</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('medical:overview.newThisWeek', { count: 2 })}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Today's Treatments</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('medical:overview.todaysTreatments')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{todaysTreatments.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">Next at 14:00</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('medical:overview.nextAt', { time: '14:00' })}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">In Rehabilitation</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('medical:overview.inRehabilitation')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{playerAvailability.rehab}</div>
             <Badge variant="outline" className="text-xs mt-1">
               <ArrowDown className="h-3 w-3 mr-1" />
-              -1 from last week
+              {t('medical:overview.changeFromLastWeek', { change: -1 })}
             </Badge>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Return to Play</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('medical:overview.returnToPlay')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2</div>
-            <p className="text-xs text-muted-foreground mt-1">This week</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('common:time.thisWeek')}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Team Availability</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('medical:overview.teamAvailability')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {Math.round((playerAvailability.full / (playerAvailability.full + playerAvailability.limited + playerAvailability.individual + playerAvailability.rehab + playerAvailability.unavailable)) * 100)}%
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Fully available</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('medical:overview.fullyAvailable')}</p>
           </CardContent>
         </Card>
       </div>
@@ -276,10 +285,10 @@ export default function MedicalStaffDashboard() {
             <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Today's Treatment Schedule</CardTitle>
+              <CardTitle>{t('medical:treatments.todaysSchedule')}</CardTitle>
               <Button size="sm" onClick={() => setShowTreatmentForm(true)}>
                 <Plus className="h-4 w-4 mr-1" />
-                Add Treatment
+                {t('medical:treatments.addTreatment')}
               </Button>
             </div>
               </CardHeader>
@@ -819,10 +828,22 @@ export default function MedicalStaffDashboard() {
           </Badge>
           {isLoading && <Badge variant="outline">Loading...</Badge>}
           {error && <Badge variant="destructive">Connection Error</Badge>}
-          <Button variant="outline" size="sm">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => setShowNotificationCenter(true)}
+          >
             <Bell className="h-4 w-4 mr-2" />
             Notifications
             <Badge className="ml-2" variant="destructive">3</Badge>
+          </Button>
+          <Button 
+            variant="destructive" 
+            size="sm"
+            onClick={() => setShowUrgentNotification(true)}
+          >
+            <AlertTriangle className="h-4 w-4 mr-2" />
+            Urgent Alert
           </Button>
           <Button size="sm">
             <Plus className="h-4 w-4 mr-2" />
@@ -832,10 +853,14 @@ export default function MedicalStaffDashboard() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-6 w-full">
+        <TabsList className="grid grid-cols-9 w-full">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <Activity className="h-4 w-4" />
             Overview
+          </TabsTrigger>
+          <TabsTrigger value="calendar" className="flex items-center gap-2">
+            <Calendar className="h-4 w-4" />
+            Calendar
           </TabsTrigger>
           <TabsTrigger value="injuries" className="flex items-center gap-2">
             <AlertTriangle className="h-4 w-4" />
@@ -843,24 +868,36 @@ export default function MedicalStaffDashboard() {
           </TabsTrigger>
           <TabsTrigger value="treatment" className="flex items-center gap-2">
             <Heart className="h-4 w-4" />
-            Treatment Management
+            Treatment
           </TabsTrigger>
           <TabsTrigger value="rehab" className="flex items-center gap-2">
             <Zap className="h-4 w-4" />
-            Recovery Management
+            Recovery
           </TabsTrigger>
           <TabsTrigger value="records" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
-            Medical Records
+            Records
+          </TabsTrigger>
+          <TabsTrigger value="appointments" className="flex items-center gap-2">
+            <Clock className="h-4 w-4" />
+            Appointments
           </TabsTrigger>
           <TabsTrigger value="reports" className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4" />
             Reports
           </TabsTrigger>
+          <TabsTrigger value="urgent" className="flex items-center gap-2">
+            <Bell className="h-4 w-4" />
+            Urgent Alerts
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
           {renderOverviewTab()}
+        </TabsContent>
+
+        <TabsContent value="calendar" className="mt-6">
+          <MedicalCalendarView />
         </TabsContent>
 
         <TabsContent value="injuries" className="mt-6">
@@ -879,8 +916,16 @@ export default function MedicalStaffDashboard() {
           {renderMedicalRecordsTab()}
         </TabsContent>
 
+        <TabsContent value="appointments" className="mt-6">
+          <AppointmentReminderSettings />
+        </TabsContent>
+
         <TabsContent value="reports" className="mt-6">
           {renderReportsTab()}
+        </TabsContent>
+
+        <TabsContent value="urgent" className="mt-6">
+          <UrgentNotificationCenter />
         </TabsContent>
       </Tabs>
 

@@ -1,21 +1,11 @@
-// Translation keys
-export const translations = {
-  en: {
-    common: {
-      welcome: 'Welcome',
-      logout: 'Logout',
-      save: 'Save',
-      cancel: 'Cancel'
-    }
-  },
-  sv: {
-    common: {
-      welcome: 'Välkommen',
-      logout: 'Logga ut',
-      save: 'Spara',
-      cancel: 'Avbryt'
-    }
-  }
-};
+// i18n configuration and initialization
+export { default as i18n } from './i18n/config';
+export * from './i18n/config';
+export * from './i18n/hooks';
+export { I18nProvider } from './i18n/provider';
 
-export default translations;
+// Components
+export { LanguageSwitcher, LanguageSwitcherDropdown } from './components/LanguageSwitcher';
+
+// Type exports
+export type { SupportedLanguage, Namespace } from './i18n/config';

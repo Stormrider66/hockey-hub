@@ -1,39 +1,35 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { 
+  WorkoutSession, 
+  Exercise, 
+  PlayerWorkoutLoad, 
+  WorkoutExecution, 
+  ExerciseExecution,
+  ExerciseTemplate,
+  ApiResponse 
+} from '@hockey-hub/shared-lib';
 
-// Types
-export interface TrainingSession {
-  id: string;
-  name: string;
-  type: 'strength' | 'cardio' | 'speed' | 'recovery' | 'mixed';
-  date: string;
-  time: string;
-  duration: number; // minutes
-  location: string;
-  team: string;
-  teamId?: string;
-  description?: string;
+// Re-export types for convenience
+export type { 
+  WorkoutSession, 
+  Exercise, 
+  PlayerWorkoutLoad, 
+  WorkoutExecution, 
+  ExerciseExecution,
+  ExerciseTemplate 
+};
+
+// Legacy types for compatibility
+export interface TrainingSession extends WorkoutSession {
+  name: string; // Maps to title
+  date: string; // Maps to scheduledDate
+  time: string; // Extracted from scheduledDate
+  duration: number; // Maps to estimatedDuration
+  team: string; // Team name
   maxParticipants: number;
   currentParticipants: number;
   intensity: 'low' | 'medium' | 'high' | 'max';
-  status: 'scheduled' | 'active' | 'completed' | 'cancelled';
-  exercises: Exercise[];
   equipment: string[];
-  createdBy: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface Exercise {
-  id: string;
-  name: string;
-  category: 'strength' | 'cardio' | 'flexibility' | 'agility' | 'power';
-  sets?: number;
-  reps?: number | string;
-  duration?: number; // seconds
-  rest?: number; // seconds
-  weight?: string;
-  notes?: string;
-  orderIndex: number;
 }
 
 export interface PhysicalTest {
@@ -79,19 +75,76 @@ export interface ExerciseTemplate {
   createdAt: string;
 }
 
-export interface CreateSessionRequest {
-  name: string;
-  type: string;
-  date: string;
-  time: string;
-  duration: number;
-  location: string;
-  team: string;
-  teamId?: string;
+export interface CreateWorkoutRequest {
+  title: string;
   description?: string;
+  type: 'strength' | 'cardio' | 'skill' | 'recovery' | 'mixed';
+  scheduledDate: string;
+  location: string;
+  teamId: string;
+  playerIds: string[];
+  estimatedDuration: number;
+  exercises: Omit<Exercise, 'id' | 'workoutSessionId'>[];
+  playerLoads?: Omit<PlayerWorkoutLoad, 'id' | 'workoutSessionId' | 'createdAt'>[];
+  settings?: {
+    allowIndividualLoads: boolean;
+    displayMode: 'grid' | 'focus' | 'tv';
+    showMetrics: boolean;
+    autoRotation: boolean;
+    rotationInterval: number;
+  };
+}
+
+export interface UpdateWorkoutRequest {
+  id: string;
+  data: Partial<CreateWorkoutRequest>;
+}
+
+export interface StartExecutionRequest {
+  workoutSessionId: string;
+  playerId: string;
+}
+
+export interface UpdateExecutionProgressRequest {
+  executionId: string;
+  currentExerciseIndex?: number;
+  currentSetNumber?: number;
+  completionPercentage?: number;
+  metrics?: {
+    heartRate?: number;
+    power?: number;
+    speed?: number;
+  };
+}
+
+export interface CompleteExerciseSetRequest {
+  executionId: string;
+  exerciseId: string;
+  exerciseName: string;
+  setNumber: number;
+  actualReps?: number;
+  actualWeight?: number;
+  actualDuration?: number;
+  actualDistance?: number;
+  actualPower?: number;
+  performanceMetrics?: {
+    heartRate?: number;
+    maxHeartRate?: number;
+    averagePower?: number;
+    maxPower?: number;
+    speed?: number;
+    cadence?: number;
+    rpe?: number;
+  };
+  notes?: string;
+}
+
+// Legacy compatibility
+export interface CreateSessionRequest extends CreateWorkoutRequest {
+  name: string;
+  team: string;
   maxParticipants: number;
   intensity: string;
-  exercises: Omit<Exercise, 'id'>[];
   equipment: string[];
 }
 
@@ -117,13 +170,13 @@ export interface CreateTestBatchRequest {
 }
 
 // API configuration
-const TRAINING_SERVICE_URL = process.env.NEXT_PUBLIC_TRAINING_SERVICE_URL || 'http://localhost:3004';
+const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api';
 
 // Create the API slice
 export const trainingApi = createApi({
   reducerPath: 'trainingApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${TRAINING_SERVICE_URL}/api`,
+    baseUrl: `${API_GATEWAY_URL}/training`,
     prepareHeaders: (headers, { getState }) => {
       // Get token from auth state if available
       const token = localStorage.getItem('authToken');
@@ -133,9 +186,105 @@ export const trainingApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Session', 'Test', 'TestBatch', 'Exercise', 'Template'],
+  tagTypes: ['Session', 'Test', 'TestBatch', 'Exercise', 'Template', 'Execution'],
   endpoints: (builder) => ({
-    // Training Sessions
+    // Workout Sessions (new endpoints)
+    getWorkoutSessions: builder.query<ApiResponse<WorkoutSession[]>, { date?: string; teamId?: string; playerId?: string; status?: string }>({
+      query: (params) => ({
+        url: '/training/sessions',
+        params,
+      }),
+      providesTags: ['Session'],
+      transformResponse: (response: ApiResponse<WorkoutSession[]>) => response,
+    }),
+
+    getWorkoutSessionById: builder.query<ApiResponse<WorkoutSession>, string>({
+      query: (id) => `/training/sessions/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Session', id }],
+    }),
+
+    createWorkoutSession: builder.mutation<ApiResponse<WorkoutSession>, CreateWorkoutRequest>({
+      query: (workout) => ({
+        url: '/training/sessions',
+        method: 'POST',
+        body: workout,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    updateWorkoutSession: builder.mutation<ApiResponse<WorkoutSession>, UpdateWorkoutRequest>({
+      query: ({ id, data }) => ({
+        url: `/training/sessions/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Session', id }, 'Session'],
+    }),
+
+    deleteWorkoutSession: builder.mutation<ApiResponse<void>, string>({
+      query: (id) => ({
+        url: `/training/sessions/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    updatePlayerWorkoutLoad: builder.mutation<ApiResponse<PlayerWorkoutLoad>, { sessionId: string; playerId: string; data: Partial<PlayerWorkoutLoad> }>({
+      query: ({ sessionId, playerId, data }) => ({
+        url: `/training/sessions/${sessionId}/players/${playerId}/load`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { sessionId }) => [{ type: 'Session', id: sessionId }],
+    }),
+
+    // Workout Execution
+    startWorkoutExecution: builder.mutation<ApiResponse<WorkoutExecution>, StartExecutionRequest>({
+      query: (data) => ({
+        url: '/training/executions/start',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Session', 'Execution'],
+    }),
+
+    updateExecutionProgress: builder.mutation<ApiResponse<WorkoutExecution>, UpdateExecutionProgressRequest>({
+      query: ({ executionId, ...data }) => ({
+        url: `/training/executions/${executionId}/progress`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Execution'],
+    }),
+
+    completeExerciseSet: builder.mutation<ApiResponse<ExerciseExecution>, CompleteExerciseSetRequest>({
+      query: ({ executionId, ...data }) => ({
+        url: `/training/executions/${executionId}/exercises`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Execution'],
+    }),
+
+    completeWorkoutExecution: builder.mutation<ApiResponse<WorkoutExecution>, string>({
+      query: (executionId) => ({
+        url: `/training/executions/${executionId}/complete`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Session', 'Execution'],
+    }),
+
+    getExecutionById: builder.query<ApiResponse<WorkoutExecution>, string>({
+      query: (id) => `/training/executions/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Execution', id }],
+    }),
+
+    getSessionExecutions: builder.query<ApiResponse<WorkoutExecution[]>, string>({
+      query: (sessionId) => `/training/sessions/${sessionId}/executions`,
+      providesTags: ['Execution'],
+    }),
+
+    // Legacy Training Sessions (keeping for compatibility)
     getSessions: builder.query<TrainingSession[], { date?: string; teamId?: string; status?: string }>({
       query: (params) => ({
         url: '/sessions',
@@ -353,12 +502,113 @@ export const trainingApi = createApi({
     }, string>({
       query: (teamId) => `/analytics/team/${teamId}/test-stats`,
     }),
+
+    // Training Discussions
+    createTrainingDiscussion: builder.mutation<any, {
+      sessionId: string;
+      sessionType: 'ice_practice' | 'physical_training' | 'video_review' | 'combined';
+      sessionTitle: string;
+      sessionDate: string;
+      sessionLocation?: string;
+      teamId?: string;
+      coachIds?: string[];
+      trainerIds?: string[];
+      playerIds?: string[];
+      exerciseIds?: string[];
+      metadata?: Record<string, any>;
+    }>({
+      query: (body) => ({
+        url: `${API_GATEWAY_URL}/communication/training-discussions`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    getTrainingDiscussion: builder.query<any, {
+      sessionId: string;
+      sessionType: 'ice_practice' | 'physical_training' | 'video_review' | 'combined';
+    }>({
+      query: ({ sessionId, sessionType }) => `${API_GATEWAY_URL}/communication/training-discussions/session/${sessionId}?type=${sessionType}`,
+    }),
+
+    getTrainingDiscussionById: builder.query<any, string>({
+      query: (id) => `${API_GATEWAY_URL}/communication/training-discussions/${id}`,
+    }),
+
+    getExerciseDiscussions: builder.query<any[], string>({
+      query: (trainingDiscussionId) => `${API_GATEWAY_URL}/communication/training-discussions/${trainingDiscussionId}/exercises`,
+    }),
+
+    createExerciseThread: builder.mutation<any, {
+      trainingDiscussionId: string;
+      exerciseId: string;
+      exerciseName: string;
+      exerciseDescription?: string;
+      metadata?: Record<string, any>;
+      initialFeedback?: string;
+    }>({
+      query: ({ trainingDiscussionId, initialFeedback, ...body }) => ({
+        url: `${API_GATEWAY_URL}/communication/training-discussions/${trainingDiscussionId}/exercises`,
+        method: 'POST',
+        body,
+      }),
+    }),
+
+    getActiveDiscussions: builder.query<any[], void>({
+      query: () => `${API_GATEWAY_URL}/communication/training-discussions/user/active`,
+    }),
+
+    getUpcomingDiscussions: builder.query<any[], void>({
+      query: () => `${API_GATEWAY_URL}/communication/training-discussions/organization/upcoming`,
+    }),
+
+    updateDiscussionStatus: builder.mutation<any, {
+      id: string;
+      status: 'scheduled' | 'active' | 'completed' | 'archived';
+    }>({
+      query: ({ id, status }) => ({
+        url: `${API_GATEWAY_URL}/communication/training-discussions/${id}/status`,
+        method: 'PUT',
+        body: { status },
+      }),
+    }),
+
+    activateDiscussion: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `${API_GATEWAY_URL}/communication/training-discussions/${id}/activate`,
+        method: 'POST',
+      }),
+    }),
+
+    completeDiscussion: builder.mutation<any, string>({
+      query: (id) => ({
+        url: `${API_GATEWAY_URL}/communication/training-discussions/${id}/complete`,
+        method: 'POST',
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components
 export const {
-  // Sessions
+  // New Workout Sessions
+  useGetWorkoutSessionsQuery,
+  useGetWorkoutSessionByIdQuery,
+  useCreateWorkoutSessionMutation,
+  useUpdateWorkoutSessionMutation,
+  useDeleteWorkoutSessionMutation,
+  useUpdatePlayerWorkoutLoadMutation,
+  
+  // Workout Execution
+  useStartWorkoutExecutionMutation,
+  useUpdateExecutionProgressMutation,
+  useCompleteExerciseSetMutation,
+  useCompleteWorkoutExecutionMutation,
+  useGetExecutionByIdQuery,
+  useGetSessionExecutionsQuery,
+  
+  // Legacy Sessions (for compatibility)
   useGetSessionsQuery,
   useGetSessionByIdQuery,
   useCreateSessionMutation,
@@ -395,4 +645,16 @@ export const {
   // Analytics
   useGetPlayerTestHistoryQuery,
   useGetTeamTestStatsQuery,
+  
+  // Training Discussions
+  useCreateTrainingDiscussionMutation,
+  useGetTrainingDiscussionQuery,
+  useGetTrainingDiscussionByIdQuery,
+  useGetExerciseDiscussionsQuery,
+  useCreateExerciseThreadMutation,
+  useGetActiveDiscussionsQuery,
+  useGetUpcomingDiscussionsQuery,
+  useUpdateDiscussionStatusMutation,
+  useActivateDiscussionMutation,
+  useCompleteDiscussionMutation,
 } = trainingApi;

@@ -3,9 +3,12 @@ import { AuthService } from '../services/authService';
 
 export interface AuthRequest extends Request {
   user?: {
-    userId: number;
+    userId: string;
     email: string;
-    role: string;
+    roles: string[];
+    permissions: string[];
+    organizationId?: string;
+    teamIds: string[];
   };
 }
 

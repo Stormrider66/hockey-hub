@@ -30,7 +30,7 @@ Brief description of what this service does and its role in the Hockey Hub ecosy
 
 ```bash
 cd services/[service-name]
-npm install
+pnpm install
 ```
 
 ### Environment Variables
@@ -56,14 +56,14 @@ DB_PASSWORD=postgres
 
 ```bash
 # Development
-npm run dev
+pnpm run dev
 
 # Production
-npm run build
-npm start
+pnpm run build
+pnpm start
 
 # Tests
-npm test
+pnpm test
 ```
 
 ## API Endpoints
@@ -109,7 +109,7 @@ Standard error response format.
 ## Testing
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## Deployment

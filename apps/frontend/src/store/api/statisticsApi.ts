@@ -109,13 +109,13 @@ export interface AnalyticsReport {
 }
 
 // API configuration
-const STATISTICS_SERVICE_URL = process.env.NEXT_PUBLIC_STATISTICS_SERVICE_URL || 'http://localhost:3007';
+const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api';
 
 // Create the API slice
 export const statisticsApi = createApi({
   reducerPath: 'statisticsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${STATISTICS_SERVICE_URL}/api`,
+    baseUrl: `${API_GATEWAY_URL}/statistics`,
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem('authToken');
       if (token) {

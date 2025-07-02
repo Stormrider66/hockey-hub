@@ -23,11 +23,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 import { 
   CalendarIcon, Clock, Users, MapPin, Plus, X, 
-  Dumbbell, Activity, Heart, Timer, TrendingUp
+  Dumbbell, Activity, Heart, Timer, TrendingUp,
+  UserCheck
 } from 'lucide-react';
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useCreateSessionMutation } from '@/store/api/trainingApi';
+import { useCreateEventMutation, EventType, EventVisibility } from '@/store/api/calendarApi';
+import BulkPlayerAssignment from './BulkPlayerAssignment';
 
 interface CreateSessionModalProps {
   open: boolean;
@@ -38,11 +41,14 @@ interface CreateSessionModalProps {
 interface SessionFormData {
   name: string;
   type: string;
+  category: string; // Added for specific category selection
   date: Date | undefined;
   time: string;
   duration: string;
   location: string;
   team: string;
+  coachId: string; // Added for coach assignment
+  playerIds: string[]; // Changed from team to specific players
   description: string;
   exercises: any[];
   maxParticipants: string;
@@ -89,6 +95,39 @@ const EQUIPMENT = [
   'Foam Rollers'
 ];
 
+// Mock data for coaches - in production, this would come from an API
+const COACHES = [
+  { id: '1', name: 'John Smith', role: 'Physical Trainer' },
+  { id: '2', name: 'Sarah Johnson', role: 'Physical Trainer' },
+  { id: '3', name: 'Mike Williams', role: 'Ice Coach' },
+  { id: '4', name: 'Emily Davis', role: 'Ice Coach' },
+  { id: '5', name: 'Robert Brown', role: 'Assistant Coach' },
+];
+
+// Mock data for players - in production, this would come from an API
+const PLAYERS = [
+  { id: '1', name: 'Alex Ovechkin', number: 8, team: 'A-Team' },
+  { id: '2', name: 'Sidney Crosby', number: 87, team: 'A-Team' },
+  { id: '3', name: 'Connor McDavid', number: 97, team: 'A-Team' },
+  { id: '4', name: 'Nikita Kucherov', number: 86, team: 'A-Team' },
+  { id: '5', name: 'Nathan MacKinnon', number: 29, team: 'J20 Team' },
+  { id: '6', name: 'Cale Makar', number: 8, team: 'J20 Team' },
+  { id: '7', name: 'Adam Fox', number: 23, team: 'J20 Team' },
+  { id: '8', name: 'Quinn Hughes', number: 43, team: 'U18 Team' },
+  { id: '9', name: 'Trevor Zegras', number: 11, team: 'U18 Team' },
+  { id: '10', name: 'Jack Hughes', number: 86, team: 'U18 Team' },
+];
+
+// Workout categories for different dashboard types
+const WORKOUT_CATEGORIES = [
+  { value: 'cardio', label: 'Cardio Session', description: 'HR/Watts monitoring' },
+  { value: 'strength', label: 'Strength Session', description: 'Sets/Reps tracking' },
+  { value: 'skill', label: 'Skills Training', description: 'Technical development' },
+  { value: 'interval', label: 'Interval Training', description: 'Work/Rest periods' },
+  { value: 'circuit', label: 'Circuit Training', description: 'Station rotation' },
+  { value: 'recovery', label: 'Recovery Session', description: 'Low intensity' },
+];
+
 // Sample exercise templates
 const EXERCISE_TEMPLATES = {
   strength: [
@@ -115,15 +154,20 @@ export default function CreateSessionModal({
   onCreateSession
 }: CreateSessionModalProps) {
   const [createSession, { isLoading: isCreating }] = useCreateSessionMutation();
+  const [createCalendarEvent, { isLoading: isCreatingCalendarEvent }] = useCreateEventMutation();
   const [activeTab, setActiveTab] = useState('basic');
+  const [showBulkAssignment, setShowBulkAssignment] = useState(false);
   const [formData, setFormData] = useState<SessionFormData>({
     name: '',
     type: 'strength',
+    category: 'strength',
     date: undefined,
     time: '09:00',
     duration: '60',
     location: '',
     team: '',
+    coachId: '',
+    playerIds: [],
     description: '',
     exercises: [],
     maxParticipants: '20',
@@ -158,17 +202,49 @@ export default function CreateSessionModal({
     }));
   };
 
+  const togglePlayer = (playerId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      playerIds: prev.playerIds.includes(playerId)
+        ? prev.playerIds.filter(id => id !== playerId)
+        : [...prev.playerIds, playerId]
+    }));
+  };
+
+  const selectAllPlayersFromTeam = (team: string) => {
+    const teamPlayers = PLAYERS.filter(p => p.team === team);
+    const teamPlayerIds = teamPlayers.map(p => p.id);
+    setFormData(prev => ({
+      ...prev,
+      playerIds: [...new Set([...prev.playerIds, ...teamPlayerIds])]
+    }));
+  };
+
+  const clearPlayerSelection = () => {
+    setFormData(prev => ({
+      ...prev,
+      playerIds: []
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
       // Format the data for the API
       const sessionData = {
         name: formData.name,
+        title: formData.name, // For new API
         type: formData.type,
+        category: formData.category,
         date: formData.date ? format(formData.date, 'yyyy-MM-dd') : '',
         time: formData.time,
+        scheduledDate: formData.date ? `${format(formData.date, 'yyyy-MM-dd')}T${formData.time}:00` : '',
         duration: parseInt(formData.duration),
+        estimatedDuration: parseInt(formData.duration),
         location: formData.location,
         team: formData.team,
+        teamId: formData.team, // For new API
+        coachId: formData.coachId,
+        playerIds: formData.playerIds,
         description: formData.description || '',
         maxParticipants: parseInt(formData.maxParticipants),
         intensity: formData.intensity,
@@ -177,11 +253,54 @@ export default function CreateSessionModal({
           orderIndex: index,
           category: ex.category || formData.type
         })),
-        equipment: formData.equipment
+        equipment: formData.equipment,
+        settings: {
+          allowIndividualLoads: true,
+          displayMode: formData.category === 'cardio' ? 'grid' : 'focus',
+          showMetrics: true,
+          autoRotation: formData.category === 'cardio',
+          rotationInterval: 30
+        }
       };
 
-      // Call the API
+      // Call the API to create the training session
       const result = await createSession(sessionData).unwrap();
+      
+      // Create calendar event for the training session
+      const startDateTime = formData.date ? 
+        new Date(`${format(formData.date, 'yyyy-MM-dd')}T${formData.time}:00`).toISOString() : '';
+      const endDateTime = formData.date ? 
+        new Date(new Date(startDateTime).getTime() + parseInt(formData.duration) * 60000).toISOString() : '';
+      
+      const calendarEventData = {
+        title: formData.name,
+        description: formData.description || `${formData.type} training session${formData.team ? ` for ${formData.team}` : ''}`,
+        type: EventType.TRAINING,
+        startTime: startDateTime,
+        endTime: endDateTime,
+        location: formData.location,
+        organizationId: 'org-123', // TODO: Get from context
+        teamId: formData.team,
+        createdBy: formData.coachId,
+        visibility: EventVisibility.TEAM,
+        participants: formData.playerIds.map(playerId => ({
+          userId: playerId,
+          role: 'required' as const,
+          type: 'user' as const
+        })),
+        metadata: {
+          workoutId: result.id || result.data?.id,
+          sessionType: formData.type,
+          intensity: formData.intensity,
+          equipment: formData.equipment,
+          exercises: formData.exercises.length
+        },
+        maxParticipants: parseInt(formData.maxParticipants),
+        sendReminders: true,
+        reminderMinutes: [60, 15] // 1 hour and 15 minutes before
+      };
+      
+      await createCalendarEvent(calendarEventData).unwrap();
       
       if (onCreateSession) {
         onCreateSession(result);
@@ -193,11 +312,14 @@ export default function CreateSessionModal({
       setFormData({
         name: '',
         type: 'strength',
+        category: 'strength',
         date: undefined,
         time: '09:00',
         duration: '60',
         location: '',
         team: '',
+        coachId: '',
+        playerIds: [],
         description: '',
         exercises: [],
         maxParticipants: '20',
@@ -210,9 +332,10 @@ export default function CreateSessionModal({
     }
   };
 
-  const isValid = formData.name && formData.date && formData.team && formData.location;
+  const isValid = formData.name && formData.date && formData.coachId && formData.playerIds.length > 0 && formData.location;
 
   return (
+    <>
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
@@ -261,6 +384,26 @@ export default function CreateSessionModal({
                 </div>
               </div>
 
+              {/* Workout Category */}
+              <div className="space-y-2">
+                <Label>Workout Category</Label>
+                <Select value={formData.category} onValueChange={(value) => updateFormData('category', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {WORKOUT_CATEGORIES.map(category => (
+                      <SelectItem key={category.value} value={category.value}>
+                        <div>
+                          <div className="font-medium">{category.label}</div>
+                          <div className="text-xs text-muted-foreground">{category.description}</div>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               {/* Date and Time */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -300,18 +443,21 @@ export default function CreateSessionModal({
                 </div>
               </div>
 
-              {/* Team and Location */}
+              {/* Coach and Location */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Team</Label>
-                  <Select value={formData.team} onValueChange={(value) => updateFormData('team', value)}>
+                  <Label>Coach</Label>
+                  <Select value={formData.coachId} onValueChange={(value) => updateFormData('coachId', value)}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select team" />
+                      <SelectValue placeholder="Select coach" />
                     </SelectTrigger>
                     <SelectContent>
-                      {TEAMS.map(team => (
-                        <SelectItem key={team} value={team}>
-                          {team}
+                      {COACHES.map(coach => (
+                        <SelectItem key={coach.id} value={coach.id}>
+                          <div className="flex items-center justify-between w-full">
+                            <span>{coach.name}</span>
+                            <span className="text-xs text-muted-foreground ml-2">{coach.role}</span>
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -333,6 +479,72 @@ export default function CreateSessionModal({
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+
+              {/* Player Selection */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label>Players ({formData.playerIds.length} selected)</Label>
+                  <div className="flex gap-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={clearPlayerSelection}
+                    >
+                      Clear All
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowBulkAssignment(true)}
+                    >
+                      <Users className="h-4 w-4 mr-2" />
+                      Bulk Assign
+                    </Button>
+                    <Select value="" onValueChange={(team) => selectAllPlayersFromTeam(team)}>
+                      <SelectTrigger className="w-[150px]">
+                        <SelectValue placeholder="Add team" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {TEAMS.filter(t => t !== 'Individual Training' && t !== 'All Teams').map(team => (
+                          <SelectItem key={team} value={team}>
+                            {team}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <Card>
+                  <CardContent className="pt-4">
+                    <ScrollArea className="h-[200px]">
+                      <div className="space-y-2">
+                        {TEAMS.filter(t => t !== 'Individual Training' && t !== 'All Teams').map(team => (
+                          <div key={team} className="space-y-2">
+                            <div className="font-medium text-sm text-muted-foreground">{team}</div>
+                            {PLAYERS.filter(p => p.team === team).map(player => (
+                              <div key={player.id} className="flex items-center space-x-2 ml-4">
+                                <Checkbox
+                                  checked={formData.playerIds.includes(player.id)}
+                                  onCheckedChange={() => togglePlayer(player.id)}
+                                />
+                                <label 
+                                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer flex items-center gap-2"
+                                  onClick={() => togglePlayer(player.id)}
+                                >
+                                  <span className="text-muted-foreground">#{player.number}</span>
+                                  {player.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Duration and Participants */}
@@ -484,11 +696,23 @@ export default function CreateSessionModal({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} disabled={!isValid || isCreating}>
-            {isCreating ? 'Creating...' : 'Create Session'}
+          <Button onClick={handleSubmit} disabled={!isValid || isCreating || isCreatingCalendarEvent}>
+            {isCreating || isCreatingCalendarEvent ? 'Creating...' : 'Create Session'}
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
+
+    {/* Bulk Player Assignment Modal */}
+    <BulkPlayerAssignment
+      open={showBulkAssignment}
+      onOpenChange={setShowBulkAssignment}
+      currentPlayerIds={formData.playerIds}
+      onAssign={(playerIds) => {
+        updateFormData('playerIds', playerIds);
+        setShowBulkAssignment(false);
+      }}
+    />
+    </>
   );
 }

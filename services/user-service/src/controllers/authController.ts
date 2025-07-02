@@ -88,7 +88,7 @@ export class AuthController {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      await authService.logout(req.user.userId);
+      await authService.logout(Number(req.user.userId));
       res.json({ message: 'Logged out successfully' });
     } catch (error: any) {
       console.error('Logout error:', error);
@@ -104,12 +104,69 @@ export class AuthController {
         return res.status(401).json({ error: 'Unauthorized' });
       }
 
-      const user = await authService.getMe(req.user.userId);
+      const user = await authService.getMe(Number(req.user.userId));
       res.json(user);
     } catch (error: any) {
       console.error('Get user error:', error);
       res.status(404).json({ 
         error: error.message || 'User not found' 
+      });
+    }
+  }
+
+  async forgotPassword(req: Request, res: Response) {
+    try {
+      const { email } = req.body;
+
+      await authService.forgotPassword(email);
+      
+      // Always return success to prevent email enumeration
+      res.json({ 
+        message: 'If an account exists with this email, a password reset link has been sent.' 
+      });
+    } catch (error: any) {
+      console.error('Forgot password error:', error);
+      // Don't reveal specific errors to prevent information leakage
+      res.json({ 
+        message: 'If an account exists with this email, a password reset link has been sent.' 
+      });
+    }
+  }
+
+  async resetPassword(req: Request, res: Response) {
+    try {
+      const { token, newPassword } = req.body;
+
+      await authService.resetPassword(token, newPassword);
+      
+      res.json({ 
+        message: 'Password has been reset successfully. Please log in with your new password.' 
+      });
+    } catch (error: any) {
+      console.error('Reset password error:', error);
+      res.status(400).json({ 
+        error: error.message || 'Invalid or expired reset token' 
+      });
+    }
+  }
+
+  async changePassword(req: AuthRequest, res: Response) {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      const { currentPassword, newPassword } = req.body;
+
+      await authService.changePassword(Number(req.user.userId), currentPassword, newPassword);
+      
+      res.json({ 
+        message: 'Password changed successfully' 
+      });
+    } catch (error: any) {
+      console.error('Change password error:', error);
+      res.status(400).json({ 
+        error: error.message || 'Failed to change password' 
       });
     }
   }

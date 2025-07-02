@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastCheckpoint": "2025-06-27T10:28:51.309Z",
+  "lastCheckpoint": "2025-06-27T13:30:00.000Z",
   "projectName": "Hockey Hub",
   "currentPhase": "development",
   "completedTasks": [
@@ -44,6 +44,36 @@
         "services/medical-service"
       ],
       "notes": "Full TypeScript support for all services"
+    },
+    {
+      "id": "training-001",
+      "description": "Implement enhanced training session viewer",
+      "files": [
+        "services/training-service/src/entities/*.ts",
+        "services/training-service/src/routes/*.ts",
+        "apps/frontend/src/features/physical-trainer/components/EnhancedTrainingSessionViewer.tsx",
+        "apps/frontend/src/features/player/components/WorkoutExecutor.tsx"
+      ],
+      "notes": "Complete training workflow with real-time updates"
+    },
+    {
+      "id": "websocket-001",
+      "description": "Set up WebSocket infrastructure",
+      "files": [
+        "services/training-service/src/index.ts",
+        "apps/frontend/src/contexts/TrainingSocketContext.tsx"
+      ],
+      "notes": "Socket.io integration for real-time features"
+    },
+    {
+      "id": "database-001",
+      "description": "Configure multi-database architecture",
+      "files": [
+        "docker-compose.yml",
+        "services/*/env",
+        "DATABASE-SETUP.md"
+      ],
+      "notes": "Each service has its own PostgreSQL database"
     }
   ],
   "activeTasks": [

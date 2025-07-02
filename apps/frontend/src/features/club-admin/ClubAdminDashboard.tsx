@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from '@hockey-hub/translations';
 import {
   Card,
   CardContent,
@@ -34,8 +35,10 @@ import {
 } from "recharts";
 import { addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, format, addDays, isSameMonth, isSameDay } from "date-fns";
 import { useGetClubOverviewQuery } from "@/store/api/clubAdminApi";
+import { ClubAdminCalendarView } from "./ClubAdminCalendarView";
 
 export default function ClubAdminDashboard() {
+  const { t } = useTranslation(['clubAdmin', 'common']);
   const [tab, setTab] = useState("overview");
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
 
@@ -75,24 +78,24 @@ export default function ClubAdminDashboard() {
     <div className="space-y-6 p-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Club Administration</h1>
+        <h1 className="text-3xl font-bold">{t('clubAdmin:dashboard.title')}</h1>
         <div className="flex gap-4">
           <Button size="sm" variant="outline">
-            <Bell className="h-4 w-4 mr-2" /> Alerts
+            <Bell className="h-4 w-4 mr-2" /> {t('common:navigation.alerts')}
           </Button>
           <Button size="sm" variant="outline">
-            <Settings className="h-4 w-4 mr-2" /> Settings
+            <Settings className="h-4 w-4 mr-2" /> {t('common:navigation.settings')}
           </Button>
         </div>
       </div>
 
       <Tabs value={tab} onValueChange={setTab} className="space-y-4">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="teams">Teams</TabsTrigger>
-          <TabsTrigger value="members">Members</TabsTrigger>
-          <TabsTrigger value="calendar">Calendar</TabsTrigger>
-          <TabsTrigger value="admin">Administration</TabsTrigger>
+          <TabsTrigger value="overview">{t('common:navigation.overview')}</TabsTrigger>
+          <TabsTrigger value="teams">{t('clubAdmin:teams.title')}</TabsTrigger>
+          <TabsTrigger value="members">{t('clubAdmin:members.title')}</TabsTrigger>
+          <TabsTrigger value="calendar">{t('common:navigation.calendar')}</TabsTrigger>
+          <TabsTrigger value="admin">{t('common:navigation.administration')}</TabsTrigger>
         </TabsList>
 
         {/* Overview */}
@@ -123,7 +126,7 @@ export default function ClubAdminDashboard() {
                       <div>
                         <p className="font-medium">{t.name}</p>
                         <p className="text-xs text-muted-foreground">
-                          {t.category} • {t.members} members
+                          {t.category} • {t.members} {t('clubAdmin:dashboard.stats.members').toLowerCase()}
                         </p>
                       </div>
                     </div>
@@ -133,7 +136,7 @@ export default function ClubAdminDashboard() {
               </CardContent>
               <CardFooter>
                 <Button size="sm">
-                  <Plus className="h-4 w-4 mr-2" /> Add Team
+                  <Plus className="h-4 w-4 mr-2" /> {t('clubAdmin:teams.create')}
                 </Button>
               </CardFooter>
             </Card>
@@ -141,7 +144,7 @@ export default function ClubAdminDashboard() {
             {/* Role pie */}
             <Card>
               <CardHeader>
-                <CardTitle>Members by Role</CardTitle>
+                <CardTitle>{t('clubAdmin:members.byRole')}</CardTitle>
               </CardHeader>
               <CardContent className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
@@ -232,44 +235,8 @@ export default function ClubAdminDashboard() {
         </TabsContent>
 
         {/* Calendar */}
-        <TabsContent value="calendar" className="space-y-4">
-          <Card>
-            <CardHeader className="flex justify-between items-center">
-              <Button size="icon" variant="ghost" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <CardTitle>{format(currentMonth, "MMMM yyyy")}</CardTitle>
-              <Button size="icon" variant="ghost" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-7 text-xs font-medium mb-2">
-                {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map((d) => (
-                  <div key={d} className="text-center">{d}</div>
-                ))}
-              </div>
-              {/* Calendar grid */}
-              <div className="grid grid-cols-7 gap-px bg-border text-sm">
-                {calendarDays.map((day) => {
-                  const iso = format(day, "yyyy-MM-dd");
-                  const dayEvents = eventsByDate[iso] ?? [];
-                  return (
-                    <div key={iso} className={`p-2 h-24 border bg-background ${!isSameMonth(day, currentMonth) ? "text-muted-foreground bg-muted" : ""}`}
-                    >
-                      <div className={`text-right text-xs ${isSameDay(day, new Date()) ? "font-bold text-primary" : ""}`}>{format(day, "d")}</div>
-                      {dayEvents.slice(0,2).map((ev) => (
-                        <p key={ev.title} className="truncate text-[10px] leading-tight">• {ev.title}</p>
-                      ))}
-                      {dayEvents.length > 2 && (
-                        <p className="text-[10px] text-muted-foreground">+{dayEvents.length-2} more</p>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="calendar" className="space-y-4 h-[calc(100vh-12rem)]">
+          <ClubAdminCalendarView />
         </TabsContent>
 
         {/* Administration */}

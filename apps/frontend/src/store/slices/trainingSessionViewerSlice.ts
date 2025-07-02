@@ -14,6 +14,20 @@ export interface Interval {
   duration: number; // seconds
 }
 
+interface PlayerProgress {
+  playerId: string;
+  exerciseId?: string;
+  completed?: boolean;
+  currentExerciseIndex?: number;
+  currentSetNumber?: number;
+  completionPercentage?: number;
+}
+
+interface PlayerMetrics {
+  playerId: string;
+  metrics: any;
+}
+
 interface TrainingSessionViewerState {
   selectedTeam: string | null;
   selectedTeamName: string | null;
@@ -25,6 +39,11 @@ interface TrainingSessionViewerState {
   currentIntervalIndex: number;
   intervalTimerActive: boolean;
   sessionCategory: string | null;
+  viewMode?: string;
+  focusedPlayer?: string | null;
+  activePlayers?: string[];
+  playerProgress?: Record<string, any>;
+  playerMetrics?: Record<string, any>;
 }
 
 const initialState: TrainingSessionViewerState = {
@@ -38,6 +57,11 @@ const initialState: TrainingSessionViewerState = {
   currentIntervalIndex: 0,
   intervalTimerActive: false,
   sessionCategory: null,
+  viewMode: 'grid',
+  focusedPlayer: null,
+  activePlayers: [],
+  playerProgress: {},
+  playerMetrics: {},
 };
 
 const trainingSessionViewerSlice = createSlice({
@@ -95,6 +119,36 @@ const trainingSessionViewerSlice = createSlice({
     setSessionCategory: (state, action: PayloadAction<string>) => {
       state.sessionCategory = action.payload;
     },
+    updatePlayerProgress: (state, action: PayloadAction<PlayerProgress>) => {
+      const { playerId, ...progress } = action.payload;
+      if (!state.playerProgress) state.playerProgress = {};
+      state.playerProgress[playerId] = {
+        ...state.playerProgress[playerId],
+        ...progress,
+      };
+    },
+    updatePlayerMetrics: (state, action: PayloadAction<PlayerMetrics>) => {
+      const { playerId, metrics } = action.payload;
+      if (!state.playerMetrics) state.playerMetrics = {};
+      state.playerMetrics[playerId] = metrics;
+    },
+    setViewMode: (state, action: PayloadAction<string>) => {
+      state.viewMode = action.payload;
+    },
+    setFocusedPlayer: (state, action: PayloadAction<string | null>) => {
+      state.focusedPlayer = action.payload;
+    },
+    addActivePlayer: (state, action: PayloadAction<string>) => {
+      if (!state.activePlayers) state.activePlayers = [];
+      if (!state.activePlayers.includes(action.payload)) {
+        state.activePlayers.push(action.payload);
+      }
+    },
+    removeActivePlayer: (state, action: PayloadAction<string>) => {
+      if (state.activePlayers) {
+        state.activePlayers = state.activePlayers.filter(id => id !== action.payload);
+      }
+    },
     reset: () => initialState,
   },
 });
@@ -112,7 +166,14 @@ export const {
   startIntervalTimer,
   stopIntervalTimer,
   setSessionCategory,
+  updatePlayerProgress,
+  updatePlayerMetrics,
+  setViewMode,
+  setFocusedPlayer,
+  addActivePlayer,
+  removeActivePlayer,
   reset,
 } = trainingSessionViewerSlice.actions;
 
+export { trainingSessionViewerSlice };
 export default trainingSessionViewerSlice.reducer;

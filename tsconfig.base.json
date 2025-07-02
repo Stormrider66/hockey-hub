@@ -14,7 +14,10 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "jsx": "preserve",
-    "noEmit": true
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
   },
   "exclude": ["node_modules"]
 }

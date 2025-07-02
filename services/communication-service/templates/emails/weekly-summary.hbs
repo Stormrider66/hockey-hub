@@ -1,0 +1,148 @@
+{{#> layouts/base}}
+{{#*inline "content"}}
+<h1>Your Weekly Hockey Hub Summary 📊</h1>
+
+<p style="font-size: 18px; color: #6b7280;">Week of {{weekStart}} - {{weekEnd}}</p>
+
+<p>Hi {{firstName}},</p>
+
+<p>Here's your personalized weekly summary of activities, achievements, and upcoming events in Hockey Hub.</p>
+
+{{#if highlights}}
+<div style="background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); color: white; padding: 25px; border-radius: 8px; margin: 20px 0;">
+    <h2 style="color: white; margin: 0 0 15px;">🌟 Week Highlights</h2>
+    {{#each highlights}}
+    <p style="margin: 8px 0;">• {{this}}</p>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if statistics}}
+<h2>📈 Your Statistics</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+    {{#each statistics}}
+    <div style="background-color: #f3f4f6; padding: 20px; border-radius: 6px; text-align: center;">
+        <div style="font-size: 32px; font-weight: bold; color: #1e3a8a;">{{this.value}}</div>
+        <div style="font-size: 14px; color: #6b7280; margin-top: 5px;">{{this.label}}</div>
+        {{#if this.change}}
+        <div style="font-size: 12px; margin-top: 5px; color: {{#if this.positive}}#10b981{{else}}#ef4444{{/if}};">
+            {{#if this.positive}}↑{{else}}↓{{/if}} {{this.change}}
+        </div>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if upcomingEvents}}
+<h2>📅 Upcoming Events</h2>
+<div style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
+    {{#each upcomingEvents}}
+    <div class="list-item" style="padding: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+                <strong style="color: #1e3a8a;">{{this.title}}</strong>
+                <p style="margin: 5px 0 0; color: #6b7280;">
+                    {{this.date}} at {{this.time}}<br>
+                    📍 {{this.location}}
+                </p>
+                {{#if this.notes}}
+                <p style="margin: 5px 0 0; font-size: 14px;">{{this.notes}}</p>
+                {{/if}}
+            </div>
+            {{#if this.rsvpRequired}}
+            <a href="{{this.rsvpUrl}}" class="button" style="padding: 8px 16px; font-size: 14px;">RSVP</a>
+            {{/if}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div style="text-align: center; margin: 15px 0;">
+    <a href="{{fullScheduleUrl}}" style="color: #3b82f6; text-decoration: none;">View Full Schedule →</a>
+</div>
+{{/if}}
+
+{{#if activitySummary}}
+<h2>⚡ Activity Summary</h2>
+<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+    {{#each activitySummary}}
+    <tr style="border-bottom: 1px solid #e5e7eb;">
+        <td style="padding: 12px 0;">
+            <strong>{{this.activity}}</strong>
+            {{#if this.description}}
+            <br><span style="font-size: 14px; color: #6b7280;">{{this.description}}</span>
+            {{/if}}
+        </td>
+        <td style="padding: 12px 0; text-align: right;">
+            <span class="highlight">{{this.count}}</span>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+{{/if}}
+
+{{#if teamUpdates}}
+<h2>👥 Team Updates</h2>
+{{#each teamUpdates}}
+<div class="alert alert-info" style="margin: 15px 0;">
+    <strong>{{this.title}}</strong>
+    <p style="margin: 5px 0 0;">{{this.message}}</p>
+    {{#if this.actionUrl}}
+    <a href="{{this.actionUrl}}" style="font-size: 14px;">{{this.actionText}} →</a>
+    {{/if}}
+</div>
+{{/each}}
+{{/if}}
+
+{{#if achievements}}
+<h2>🏆 Achievements & Recognition</h2>
+<div style="background-color: #fef3c7; padding: 20px; border-radius: 6px; margin: 20px 0;">
+    {{#each achievements}}
+    <div style="margin: 10px 0;">
+        <strong>{{this.title}}</strong> - {{this.recipient}}
+        {{#if this.description}}
+        <p style="margin: 5px 0 0; font-size: 14px;">{{this.description}}</p>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if recommendations}}
+<h2>💡 Recommendations for Next Week</h2>
+<ul>
+    {{#each recommendations}}
+    <li style="padding: 5px 0;">{{this}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+{{#if reminders}}
+<div class="alert alert-warning">
+    <strong>⏰ Don't Forget!</strong>
+    <ul style="margin: 10px 0 0; padding-left: 20px;">
+        {{#each reminders}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}
+
+<div class="divider"></div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <h3 style="margin-bottom: 20px;">Stay Connected</h3>
+    <a href="{{dashboardUrl}}" class="button">Go to Dashboard</a>
+    <div style="margin-top: 20px;">
+        <a href="{{mobileAppUrl}}" style="color: #3b82f6; text-decoration: none;">📱 Get the Mobile App</a>
+    </div>
+</div>
+
+<p style="color: #6b7280; font-size: 14px; margin-top: 30px;">
+    This summary is generated based on your activity from {{weekStart}} to {{weekEnd}}. You can customize what appears in your weekly summary in your <a href="{{notificationPreferencesUrl}}">notification preferences</a>.
+</p>
+
+<p>Have a great week ahead!<br>
+<strong>The Hockey Hub Team</strong></p>
+{{/inline}}
+{{/layouts/base}}

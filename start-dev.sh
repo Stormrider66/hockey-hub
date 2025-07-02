@@ -6,7 +6,7 @@ echo "============================================"
 # Check if pnpm is installed
 if ! command -v pnpm &> /dev/null; then
     echo "❌ pnpm is not installed. Please install it first:"
-    echo "   npm install -g pnpm"
+    echo "   corepack enable pnpm"
     exit 1
 fi
 
@@ -29,42 +29,42 @@ echo ""
 
 # Start Frontend
 echo "🎨 Starting Frontend (http://localhost:3002)..."
-cd apps/frontend && npm run dev &
+cd apps/frontend && pnpm run dev &
 
 # Give frontend a moment to start
 sleep 2
 
 # Start API Gateway
 echo "🌐 Starting API Gateway (http://localhost:3000)..."
-cd ../../services/api-gateway && npm run dev &
+cd ../../services/api-gateway && pnpm run dev &
 
 # Start other services
 echo "👤 Starting User Service (port 3001)..."
-cd ../user-service && npm run dev &
+cd ../user-service && pnpm run dev &
 
 echo "📧 Starting Communication Service (port 3002)..."
-cd ../communication-service && npm run dev &
+cd ../communication-service && pnpm run dev &
 
 echo "📅 Starting Calendar Service (port 3003)..."
-cd ../calendar-service && npm run dev &
+cd ../calendar-service && pnpm run dev &
 
 echo "🏃 Starting Training Service (port 3004)..."
-cd ../training-service && npm run dev &
+cd ../training-service && pnpm run dev &
 
 echo "🏥 Starting Medical Service (port 3005)..."
-cd ../medical-service && npm run dev &
+cd ../medical-service && pnpm run dev &
 
 echo "📋 Starting Planning Service (port 3006)..."
-cd ../planning-service && npm run dev &
+cd ../planning-service && pnpm run dev &
 
 echo "📊 Starting Statistics Service (port 3007)..."
-cd ../statistics-service && npm run dev &
+cd ../statistics-service && pnpm run dev &
 
 echo "💰 Starting Payment Service (port 3008)..."
-cd ../payment-service && npm run dev &
+cd ../payment-service && pnpm run dev &
 
 echo "⚙️ Starting Admin Service (port 3009)..."
-cd ../admin-service && npm run dev &
+cd ../admin-service && pnpm run dev &
 
 echo ""
 echo "✅ All services started!"

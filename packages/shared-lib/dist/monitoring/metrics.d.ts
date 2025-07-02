@@ -1,0 +1,23 @@
+export declare const metricsRegistry: any;
+export declare const httpRequestsTotal: any;
+export declare const httpRequestDuration: any;
+export declare const dbQueryDuration: any;
+export declare const dbConnectionPool: any;
+export declare const chatMessagesTotal: any;
+export declare const chatMessageQueueSize: any;
+export declare const chatEncryptionFailures: any;
+export declare const websocketConnections: any;
+export declare const websocketDisconnections: any;
+export declare const cacheHits: any;
+export declare const cacheMisses: any;
+export declare const userRegistrations: any;
+export declare const activeUsers: any;
+export declare function metricsMiddleware(req: any, res: any, next: any): void;
+export declare function trackDatabaseQuery(operation: string, table: string, duration: number): void;
+export declare function trackChatMessage(type: string, status: 'success' | 'failure'): void;
+export declare function updateWebSocketConnections(delta: number): void;
+export declare function trackWebSocketDisconnection(reason: string): void;
+export declare function trackCacheAccess(cacheName: string, hit: boolean): void;
+export declare function trackUserRegistration(role: string): void;
+export declare function updateActiveUsers(role: string, count: number): void;
+//# sourceMappingURL=metrics.d.ts.map

@@ -1,0 +1,485 @@
+openapi: 3.0.3
+info:
+  title: Hockey Hub Calendar Service API
+  description: |
+    The Calendar Service manages events, scheduling, resource booking, and calendar integration for the Hockey Hub platform.
+    This service handles event creation, recurring events, resource management, and calendar synchronization.
+  version: 1.0.0
+  contact:
+    name: Hockey Hub Development Team
+    email: dev@hockeyhub.com
+
+servers:
+  - url: http://localhost:3003
+    description: Development server
+  - url: https://api.hockeyhub.com/calendar
+    description: Production server
+
+tags:
+  - name: Events
+    description: Event management and scheduling
+  - name: Resources
+    description: Resource booking and management
+  - name: Export
+    description: Calendar export and synchronization
+  - name: Analytics
+    description: Calendar analytics and reporting
+
+security:
+  - bearerAuth: []
+
+paths:
+  # Event Management
+  /events:
+    get:
+      tags:
+        - Events
+      summary: Get events
+      description: Retrieve paginated list of events with optional filtering
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: teamId
+          in: query
+          schema:
+            type: string
+        - name: userId
+          in: query
+          schema:
+            type: string
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [practice, game, training, meeting, other]
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: Events retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Event'
+
+    post:
+      tags:
+        - Events
+      summary: Create event
+      description: Create a new calendar event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventRequest'
+      responses:
+        201:
+          description: Event created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Event'
+
+  /events/{id}:
+    get:
+      tags:
+        - Events
+      summary: Get event by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Event retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Event'
+
+    put:
+      tags:
+        - Events
+      summary: Update event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEventRequest'
+      responses:
+        200:
+          description: Event updated successfully
+
+    delete:
+      tags:
+        - Events
+      summary: Delete event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Event deleted successfully
+
+  # Resource Management
+  /resources:
+    get:
+      tags:
+        - Resources
+      summary: Get resources
+      description: Get list of available resources for booking
+      responses:
+        200:
+          description: Resources retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Resource'
+
+  /resources/{resourceId}/bookings:
+    get:
+      tags:
+        - Resources
+      summary: Get resource bookings
+      description: Get bookings for a specific resource
+      parameters:
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        200:
+          description: Resource bookings retrieved successfully
+
+    post:
+      tags:
+        - Resources
+      summary: Create resource booking
+      description: Book a resource for a specific time slot
+      parameters:
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookingRequest'
+      responses:
+        201:
+          description: Resource booked successfully
+
+  # Calendar Export
+  /export/ical/{userId}:
+    get:
+      tags:
+        - Export
+      summary: Export calendar as iCal
+      description: Export user's calendar in iCal format
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: iCal calendar data
+          content:
+            text/calendar:
+              schema:
+                type: string
+
+  /export/csv/{teamId}:
+    get:
+      tags:
+        - Export
+      summary: Export team calendar as CSV
+      description: Export team calendar in CSV format
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: CSV calendar data
+          content:
+            text/csv:
+              schema:
+                type: string
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+        - success
+
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "event_123"
+        title:
+          type: string
+          example: "Team Practice"
+        description:
+          type: string
+        type:
+          type: string
+          enum: [practice, game, training, meeting, other]
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        location:
+          type: string
+        teamId:
+          type: string
+        organizerId:
+          type: string
+        participants:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              status:
+                type: string
+                enum: [invited, accepted, declined, maybe]
+        isRecurring:
+          type: boolean
+        recurrencePattern:
+          type: object
+        resourceBookings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceBooking'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CreateEventRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [practice, game, training, meeting, other]
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        location:
+          type: string
+        teamId:
+          type: string
+        participantIds:
+          type: array
+          items:
+            type: string
+        resourceIds:
+          type: array
+          items:
+            type: string
+        isRecurring:
+          type: boolean
+        recurrencePattern:
+          type: object
+      required:
+        - title
+        - type
+        - startTime
+        - endTime
+
+    UpdateEventRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        location:
+          type: string
+        participantIds:
+          type: array
+          items:
+            type: string
+
+    Resource:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "resource_ice_rink_1"
+        name:
+          type: string
+          example: "Ice Rink 1"
+        type:
+          type: string
+          enum: [ice_rink, gym, meeting_room, equipment]
+        capacity:
+          type: integer
+        location:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+        availability:
+          type: object
+        hourlyRate:
+          type: number
+          format: float
+        isActive:
+          type: boolean
+
+    ResourceBooking:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceId:
+          type: string
+        eventId:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [confirmed, pending, cancelled]
+        cost:
+          type: number
+          format: float
+        notes:
+          type: string
+
+    CreateBookingRequest:
+      type: object
+      properties:
+        eventId:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        notes:
+          type: string
+      required:
+        - eventId
+        - startTime
+        - endTime

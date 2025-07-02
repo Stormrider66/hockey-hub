@@ -1,0 +1,1367 @@
+openapi: 3.0.3
+info:
+  title: Hockey Hub Training Service API
+  description: |
+    The Training Service manages workout sessions, exercise tracking, and training performance data for the Hockey Hub platform.
+    This service handles workout creation, execution tracking, performance analytics, and training load management.
+  version: 1.0.0
+  contact:
+    name: Hockey Hub Development Team
+    email: dev@hockeyhub.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3004
+    description: Development server
+  - url: https://api.hockeyhub.com/training
+    description: Production server
+
+tags:
+  - name: Workout Sessions
+    description: Workout session management and scheduling
+  - name: Exercise Execution
+    description: Real-time workout execution and tracking
+  - name: Templates
+    description: Exercise and workout templates
+  - name: Performance
+    description: Training performance analytics
+
+security:
+  - bearerAuth: []
+
+paths:
+  # Workout Session Management
+  /sessions:
+    get:
+      tags:
+        - Workout Sessions
+      summary: Get workout sessions
+      description: Retrieve paginated list of workout sessions with optional filtering
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: teamId
+          in: query
+          description: Filter by team ID
+          schema:
+            type: string
+            example: "team_123"
+        - name: playerId
+          in: query
+          description: Filter by player ID
+          schema:
+            type: string
+            example: "player_456"
+        - name: status
+          in: query
+          description: Filter by session status
+          schema:
+            type: string
+            enum: [scheduled, active, completed, cancelled]
+            example: "scheduled"
+        - name: type
+          in: query
+          description: Filter by workout type
+          schema:
+            type: string
+            enum: [strength, cardio, flexibility, technical]
+            example: "strength"
+        - name: date
+          in: query
+          description: Filter by date (ISO 8601)
+          schema:
+            type: string
+            format: date
+            example: "2025-07-02"
+      responses:
+        200:
+          description: Workout sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WorkoutSession'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        503:
+          $ref: '#/components/responses/ServiceUnavailable'
+
+    post:
+      tags:
+        - Workout Sessions
+      summary: Create workout session
+      description: Create a new workout session (trainers and coaches only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkoutSessionRequest'
+            examples:
+              strength_session:
+                summary: Strength training session
+                value:
+                  title: "Upper Body Strength"
+                  description: "Focus on chest, shoulders, and arms"
+                  type: "strength"
+                  scheduledDate: "2025-07-03T10:00:00Z"
+                  location: "Gym A"
+                  teamId: "team_123"
+                  playerIds: ["player_456", "player_789"]
+                  estimatedDuration: 60
+                  exercises:
+                    - name: "Bench Press"
+                      sets: 3
+                      reps: 10
+                      weight: 80
+                      restTime: 120
+                  settings:
+                    autoProgress: true
+                    trackHeartRate: true
+      responses:
+        201:
+          description: Workout session created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutSession'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+  /sessions/{id}:
+    get:
+      tags:
+        - Workout Sessions
+      summary: Get workout session by ID
+      description: Retrieve specific workout session details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+            example: "session_123"
+      responses:
+        200:
+          description: Workout session retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutSession'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      tags:
+        - Workout Sessions
+      summary: Update workout session
+      description: Update workout session details (trainers and coaches only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkoutSessionRequest'
+      responses:
+        200:
+          description: Workout session updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutSession'
+
+    delete:
+      tags:
+        - Workout Sessions
+      summary: Delete workout session
+      description: Delete workout session (trainers and coaches only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Workout session deleted successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Workout session deleted successfully"
+
+  /sessions/{sessionId}/players/{playerId}/load:
+    get:
+      tags:
+        - Workout Sessions
+      summary: Get player workout load
+      description: Get specific load adjustments for a player in a session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Player workout load retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/PlayerWorkoutLoad'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      tags:
+        - Workout Sessions
+      summary: Update player workout load
+      description: Update load modifications for a specific player (trainers only)
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePlayerLoadRequest'
+            examples:
+              load_reduction:
+                summary: Reduce load for injured player
+                value:
+                  loadModifier: 0.8
+                  exerciseModifications:
+                    - exerciseId: "bench_press"
+                      weightModifier: 0.7
+                      repModifier: 1.0
+                      notes: "Reduce weight due to shoulder soreness"
+                  notes: "Player recovering from minor shoulder injury"
+      responses:
+        200:
+          description: Player workout load updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/PlayerWorkoutLoad'
+
+  /sessions/upcoming/{playerId}:
+    get:
+      tags:
+        - Workout Sessions
+      summary: Get upcoming sessions for player
+      description: Get upcoming workout sessions for a specific player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: string
+        - name: teamId
+          in: query
+          description: Filter by team ID
+          schema:
+            type: string
+        - name: days
+          in: query
+          description: Number of days to look ahead (default: 7)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 30
+            default: 7
+      responses:
+        200:
+          description: Upcoming sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WorkoutSession'
+
+  # Workout Execution
+  /executions/start:
+    post:
+      tags:
+        - Exercise Execution
+      summary: Start workout execution
+      description: Start real-time workout execution for a player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartExecutionRequest'
+            examples:
+              start_workout:
+                summary: Start workout execution
+                value:
+                  workoutSessionId: "session_123"
+                  playerId: "player_456"
+      responses:
+        200:
+          description: Workout execution started successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutExecution'
+        400:
+          description: Workout already in progress or other validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                error: "Workout already in progress"
+
+  /executions/{id}/progress:
+    put:
+      tags:
+        - Exercise Execution
+      summary: Update execution progress
+      description: Update real-time progress of workout execution
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Execution ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProgressRequest'
+            examples:
+              progress_update:
+                summary: Progress update
+                value:
+                  currentExerciseIndex: 2
+                  currentSetNumber: 3
+                  completionPercentage: 65
+                  metrics:
+                    heartRate: 145
+                    perceivedExertion: 7
+      responses:
+        200:
+          description: Progress updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutExecution'
+
+  /executions/{executionId}/exercises:
+    post:
+      tags:
+        - Exercise Execution
+      summary: Complete exercise set
+      description: Record completion of an exercise set during workout
+      parameters:
+        - name: executionId
+          in: path
+          required: true
+          description: Execution ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteExerciseRequest'
+            examples:
+              bench_press_set:
+                summary: Complete bench press set
+                value:
+                  exerciseId: "bench_press"
+                  exerciseName: "Bench Press"
+                  setNumber: 1
+                  actualReps: 10
+                  actualWeight: 80
+                  actualDuration: 45
+                  performanceMetrics:
+                    avgHeartRate: 140
+                    maxHeartRate: 155
+                    perceivedExertion: 7
+                  notes: "Good form, full range of motion"
+      responses:
+        200:
+          description: Exercise set completed successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ExerciseExecution'
+
+  /executions/{id}/complete:
+    put:
+      tags:
+        - Exercise Execution
+      summary: Complete workout execution
+      description: Mark workout execution as completed
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Execution ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Workout execution completed successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutExecution'
+
+  /executions/{id}:
+    get:
+      tags:
+        - Exercise Execution
+      summary: Get execution details
+      description: Get detailed information about a workout execution
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Execution ID
+          schema:
+            type: string
+      responses:
+        200:
+          description: Execution details retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WorkoutExecution'
+
+  /sessions/{sessionId}/executions:
+    get:
+      tags:
+        - Exercise Execution
+      summary: Get session executions
+      description: Get all executions for a specific workout session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: Workout session ID
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Session executions retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WorkoutExecution'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+
+  # Templates (placeholder paths - implementation would include exercise templates)
+  /templates/exercises:
+    get:
+      tags:
+        - Templates
+      summary: Get exercise templates
+      description: Get list of available exercise templates
+      responses:
+        200:
+          description: Exercise templates retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ExerciseTemplate'
+
+  /templates/workouts:
+    get:
+      tags:
+        - Templates
+      summary: Get workout templates
+      description: Get list of available workout templates
+      responses:
+        200:
+          description: Workout templates retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WorkoutTemplate'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (default: 1)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of items per page (default: 20, max: 100)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+        message:
+          type: string
+          description: Optional message
+      required:
+        - success
+
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+        page:
+          type: integer
+          description: Current page number
+        limit:
+          type: integer
+          description: Items per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+      required:
+        - total
+        - page
+        - limit
+        - totalPages
+
+    # Workout Session Schemas
+    WorkoutSession:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Workout session unique identifier
+          example: "session_123"
+        title:
+          type: string
+          description: Workout session title
+          example: "Upper Body Strength"
+        description:
+          type: string
+          description: Detailed description
+          example: "Focus on chest, shoulders, and arms"
+        type:
+          type: string
+          enum: [strength, cardio, flexibility, technical, recovery]
+          description: Type of workout
+          example: "strength"
+        status:
+          type: string
+          enum: [scheduled, active, completed, cancelled]
+          description: Current status
+          example: "scheduled"
+        scheduledDate:
+          type: string
+          format: date-time
+          description: Scheduled date and time
+          example: "2025-07-03T10:00:00Z"
+        location:
+          type: string
+          description: Training location
+          example: "Gym A"
+        teamId:
+          type: string
+          description: Team ID
+          example: "team_123"
+        playerIds:
+          type: array
+          items:
+            type: string
+          description: List of player IDs
+          example: ["player_456", "player_789"]
+        createdBy:
+          type: string
+          description: Creator user ID
+          example: "trainer_001"
+        estimatedDuration:
+          type: integer
+          description: Estimated duration in minutes
+          example: 60
+        actualDuration:
+          type: integer
+          description: Actual duration in minutes
+          example: 65
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+        settings:
+          type: object
+          properties:
+            autoProgress:
+              type: boolean
+            trackHeartRate:
+              type: boolean
+            restTimers:
+              type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - type
+        - status
+        - scheduledDate
+        - teamId
+
+    Exercise:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "exercise_1"
+        name:
+          type: string
+          example: "Bench Press"
+        category:
+          type: string
+          enum: [strength, cardio, flexibility, plyometric, technical]
+          example: "strength"
+        targetMuscleGroups:
+          type: array
+          items:
+            type: string
+          example: ["chest", "shoulders", "triceps"]
+        sets:
+          type: integer
+          example: 3
+        reps:
+          type: integer
+          example: 10
+        weight:
+          type: number
+          format: float
+          example: 80.0
+        duration:
+          type: integer
+          description: Duration in seconds
+          example: 45
+        distance:
+          type: number
+          format: float
+          description: Distance in meters/kilometers
+          example: 1000.0
+        restTime:
+          type: integer
+          description: Rest time between sets in seconds
+          example: 120
+        instructions:
+          type: string
+          example: "Lower the bar to chest level, then press up explosively"
+        videoUrl:
+          type: string
+          format: uri
+          example: "https://example.com/exercises/bench-press.mp4"
+        order:
+          type: integer
+          description: Order in the workout
+          example: 1
+      required:
+        - id
+        - name
+        - category
+
+    CreateWorkoutSessionRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Workout session title
+          example: "Upper Body Strength"
+        description:
+          type: string
+          description: Detailed description
+        type:
+          type: string
+          enum: [strength, cardio, flexibility, technical, recovery]
+          description: Type of workout
+        scheduledDate:
+          type: string
+          format: date-time
+          description: Scheduled date and time
+        location:
+          type: string
+          description: Training location
+        teamId:
+          type: string
+          description: Team ID
+        playerIds:
+          type: array
+          items:
+            type: string
+          description: List of player IDs
+        estimatedDuration:
+          type: integer
+          description: Estimated duration in minutes
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+        settings:
+          type: object
+          properties:
+            autoProgress:
+              type: boolean
+            trackHeartRate:
+              type: boolean
+            restTimers:
+              type: boolean
+      required:
+        - title
+        - type
+        - scheduledDate
+        - teamId
+        - playerIds
+
+    UpdateWorkoutSessionRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [strength, cardio, flexibility, technical, recovery]
+        status:
+          type: string
+          enum: [scheduled, active, completed, cancelled]
+        scheduledDate:
+          type: string
+          format: date-time
+        location:
+          type: string
+        playerIds:
+          type: array
+          items:
+            type: string
+        settings:
+          type: object
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/Exercise'
+
+    PlayerWorkoutLoad:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "load_123"
+        sessionId:
+          type: string
+          example: "session_123"
+        playerId:
+          type: string
+          example: "player_456"
+        loadModifier:
+          type: number
+          format: float
+          description: Overall load modifier (0.5-1.5)
+          example: 0.8
+        exerciseModifications:
+          type: array
+          items:
+            type: object
+            properties:
+              exerciseId:
+                type: string
+              weightModifier:
+                type: number
+                format: float
+              repModifier:
+                type: number
+                format: float
+              notes:
+                type: string
+        notes:
+          type: string
+          description: General notes for load modification
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - sessionId
+        - playerId
+        - loadModifier
+
+    UpdatePlayerLoadRequest:
+      type: object
+      properties:
+        loadModifier:
+          type: number
+          format: float
+          description: Overall load modifier (0.5-1.5)
+          minimum: 0.5
+          maximum: 1.5
+        exerciseModifications:
+          type: array
+          items:
+            type: object
+            properties:
+              exerciseId:
+                type: string
+              weightModifier:
+                type: number
+                format: float
+              repModifier:
+                type: number
+                format: float
+              notes:
+                type: string
+        notes:
+          type: string
+          description: General notes for load modification
+      required:
+        - loadModifier
+
+    # Execution Schemas
+    WorkoutExecution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Execution unique identifier
+          example: "exec_123"
+        workoutSessionId:
+          type: string
+          description: Workout session ID
+          example: "session_123"
+        playerId:
+          type: string
+          description: Player ID
+          example: "player_456"
+        status:
+          type: string
+          enum: [in_progress, completed, cancelled]
+          description: Execution status
+          example: "in_progress"
+        startedAt:
+          type: string
+          format: date-time
+          description: Start timestamp
+          example: "2025-07-03T10:05:00Z"
+        completedAt:
+          type: string
+          format: date-time
+          description: Completion timestamp
+          example: "2025-07-03T11:10:00Z"
+        currentExerciseIndex:
+          type: integer
+          description: Current exercise index
+          example: 2
+        currentSetNumber:
+          type: integer
+          description: Current set number
+          example: 3
+        completionPercentage:
+          type: integer
+          description: Completion percentage (0-100)
+          example: 65
+        metrics:
+          type: object
+          properties:
+            totalDuration:
+              type: integer
+              description: Total duration in seconds
+            avgHeartRate:
+              type: integer
+            maxHeartRate:
+              type: integer
+            caloriesBurned:
+              type: integer
+            avgPerceivedExertion:
+              type: number
+              format: float
+        exerciseExecutions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExerciseExecution'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - workoutSessionId
+        - playerId
+        - status
+        - startedAt
+
+    ExerciseExecution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Exercise execution unique identifier
+          example: "exex_123"
+        workoutExecutionId:
+          type: string
+          description: Parent workout execution ID
+          example: "exec_123"
+        exerciseId:
+          type: string
+          description: Exercise ID
+          example: "bench_press"
+        exerciseName:
+          type: string
+          description: Exercise name
+          example: "Bench Press"
+        setNumber:
+          type: integer
+          description: Set number
+          example: 1
+        actualReps:
+          type: integer
+          description: Actual repetitions performed
+          example: 10
+        actualWeight:
+          type: number
+          format: float
+          description: Actual weight used
+          example: 80.0
+        actualDuration:
+          type: integer
+          description: Actual duration in seconds
+          example: 45
+        actualDistance:
+          type: number
+          format: float
+          description: Actual distance covered
+          example: 1000.0
+        actualPower:
+          type: number
+          format: float
+          description: Average power output
+          example: 250.0
+        performanceMetrics:
+          type: object
+          properties:
+            avgHeartRate:
+              type: integer
+            maxHeartRate:
+              type: integer
+            perceivedExertion:
+              type: integer
+              minimum: 1
+              maximum: 10
+            tempo:
+              type: string
+        notes:
+          type: string
+          description: Exercise notes
+        completedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - workoutExecutionId
+        - exerciseId
+        - exerciseName
+        - setNumber
+
+    StartExecutionRequest:
+      type: object
+      properties:
+        workoutSessionId:
+          type: string
+          description: Workout session ID
+        playerId:
+          type: string
+          description: Player ID
+      required:
+        - workoutSessionId
+        - playerId
+
+    UpdateProgressRequest:
+      type: object
+      properties:
+        currentExerciseIndex:
+          type: integer
+          description: Current exercise index
+        currentSetNumber:
+          type: integer
+          description: Current set number
+        completionPercentage:
+          type: integer
+          description: Completion percentage (0-100)
+          minimum: 0
+          maximum: 100
+        metrics:
+          type: object
+          properties:
+            heartRate:
+              type: integer
+            perceivedExertion:
+              type: integer
+              minimum: 1
+              maximum: 10
+            caloriesBurned:
+              type: integer
+
+    CompleteExerciseRequest:
+      type: object
+      properties:
+        exerciseId:
+          type: string
+          description: Exercise ID
+        exerciseName:
+          type: string
+          description: Exercise name
+        setNumber:
+          type: integer
+          description: Set number
+        actualReps:
+          type: integer
+          description: Actual repetitions performed
+        actualWeight:
+          type: number
+          format: float
+          description: Actual weight used
+        actualDuration:
+          type: integer
+          description: Actual duration in seconds
+        actualDistance:
+          type: number
+          format: float
+          description: Actual distance covered
+        actualPower:
+          type: number
+          format: float
+          description: Average power output
+        performanceMetrics:
+          type: object
+          properties:
+            avgHeartRate:
+              type: integer
+            maxHeartRate:
+              type: integer
+            perceivedExertion:
+              type: integer
+              minimum: 1
+              maximum: 10
+        notes:
+          type: string
+          description: Exercise notes
+      required:
+        - exerciseId
+        - exerciseName
+        - setNumber
+
+    # Template Schemas
+    ExerciseTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "template_bench_press"
+        name:
+          type: string
+          example: "Bench Press"
+        category:
+          type: string
+          enum: [strength, cardio, flexibility, plyometric, technical]
+        description:
+          type: string
+        instructions:
+          type: string
+        targetMuscleGroups:
+          type: array
+          items:
+            type: string
+        equipment:
+          type: array
+          items:
+            type: string
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        defaultSets:
+          type: integer
+        defaultReps:
+          type: integer
+        defaultRestTime:
+          type: integer
+
+    WorkoutTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "template_upper_body"
+        name:
+          type: string
+          example: "Upper Body Strength"
+        description:
+          type: string
+        type:
+          type: string
+          enum: [strength, cardio, flexibility, technical, recovery]
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        estimatedDuration:
+          type: integer
+        exercises:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExerciseTemplate'
+
+    # Error Schemas
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+      required:
+        - success
+        - error
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Unauthorized:
+      description: Unauthorized - Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Forbidden:
+      description: Forbidden - Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    ServiceUnavailable:
+      description: Service unavailable - Database not connected
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Database service unavailable"
+
+# WebSocket Events Documentation
+x-websocket-events:
+  description: Real-time events emitted during workout execution
+  events:
+    execution:started:
+      description: Emitted when a player starts a workout
+      payload:
+        executionId: string
+        playerId: string
+        workoutSessionId: string
+    execution:progress:
+      description: Emitted when workout progress is updated
+      payload:
+        executionId: string
+        playerId: string
+        currentExerciseIndex: integer
+        currentSetNumber: integer
+        completionPercentage: integer
+        metrics: object
+    exercise:completed:
+      description: Emitted when an exercise set is completed
+      payload:
+        executionId: string
+        playerId: string
+        exerciseId: string
+        setNumber: integer
+        performance: object
+    execution:completed:
+      description: Emitted when workout execution is completed
+      payload:
+        executionId: string
+        playerId: string
+        completedAt: string
+
+# Caching Information
+x-caching:
+  description: Training data is cached using Redis for performance
+  strategies:
+    - Workout sessions: 10 minutes TTL
+    - Player loads: 5 minutes TTL
+    - Exercise templates: 1 hour TTL
+    - Active executions: Real-time (no caching)

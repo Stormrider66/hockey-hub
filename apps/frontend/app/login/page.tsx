@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,13 +10,13 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useLoginMutation, useRegisterMutation } from "@/store/api/authApi";
+import { useAuth } from "@/hooks/useAuth";
 import { Shield, User, Mail, Lock, AlertCircle, Loader2, CheckCircle2, Users, Activity, Calendar, BarChart3, Trophy, Heart, Zap } from "lucide-react";
+import { LazySocialLoginButtons } from "@/utils/dynamicImports";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [login, { isLoading: isLoggingIn }] = useLoginMutation();
-  const [register, { isLoading: isRegistering }] = useRegisterMutation();
+  const { login, register, loading, error: authError, clearError, isAuthenticated } = useAuth();
   
   // Login form state
   const [loginForm, setLoginForm] = useState({
@@ -36,9 +36,23 @@ export default function LoginPage() {
     teamCode: ""
   });
   
-  const [error, setError] = useState("");
+  const [localError, setLocalError] = useState("");
   const [success, setSuccess] = useState("");
   const [activeTab, setActiveTab] = useState("login");
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/');
+    }
+  }, [isAuthenticated, router]);
+
+  // Update local error when auth error changes
+  useEffect(() => {
+    if (authError) {
+      setLocalError(authError);
+    }
+  }, [authError]);
 
   // Demo credentials for easy testing
   const demoCredentials = [
@@ -50,47 +64,26 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setLocalError("");
+    clearError();
     
     try {
-      const result = await login({
-        email: loginForm.email,
-        password: loginForm.password
-      }).unwrap();
-      
-      // Store auth token in both localStorage and cookies
-      if (result.access_token) {
-        localStorage.setItem("authToken", result.access_token);
-        // Set cookie for middleware authentication
-        document.cookie = `authToken=${result.access_token}; path=/; max-age=86400`; // 24 hours
-      }
-      
-      // Redirect based on user role
-      const roleRoutes: Record<string, string> = {
-        player: "/player",
-        coach: "/coach",
-        parent: "/parent",
-        medical_staff: "/medicalstaff",
-        equipment_manager: "/equipmentmanager",
-        physical_trainer: "/physicaltrainer",
-        club_admin: "/clubadmin",
-        admin: "/admin"
-      };
-      
-      const route = roleRoutes[result.user.role] || "/player";
-      router.push(route);
+      await login(loginForm.email, loginForm.password, loginForm.rememberMe);
+      // Redirect is handled by AuthContext after successful login
     } catch (err: any) {
-      setError(err.data?.message || "Invalid email or password. Please try again.");
+      // Error is already set in AuthContext, but we can add additional handling here if needed
+      console.error("Login failed:", err);
     }
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setLocalError("");
     setSuccess("");
+    clearError();
     
     if (registerForm.password !== registerForm.confirmPassword) {
-      setError("Passwords do not match");
+      setLocalError("Passwords do not match");
       return;
     }
     
@@ -100,20 +93,14 @@ export default function LoginPage() {
         password: registerForm.password,
         firstName: registerForm.firstName,
         lastName: registerForm.lastName,
-        role: registerForm.role,
-        teamCode: registerForm.teamCode
-      }).unwrap();
-      
-      setSuccess("Registration successful! Please log in with your credentials.");
-      setActiveTab("login");
-      // Pre-fill login form
-      setLoginForm({
-        email: registerForm.email,
-        password: "",
-        rememberMe: false
+        organizationId: registerForm.teamCode // Using teamCode as organizationId for now
       });
+      
+      // Registration successful - AuthContext will handle redirect
+      setSuccess("Registration successful! You will be redirected to verify your email.");
     } catch (err: any) {
-      setError(err.data?.message || "Registration failed. Please try again.");
+      // Error is already set in AuthContext
+      console.error("Registration failed:", err);
     }
   };
 
@@ -123,7 +110,8 @@ export default function LoginPage() {
       password: demo.password,
       rememberMe: false
     });
-    setError("");
+    setLocalError("");
+    clearError();
   };
 
   return (
@@ -197,10 +185,10 @@ export default function LoginPage() {
               <CardDescription>Sign in to access your dashboard</CardDescription>
             </CardHeader>
             <CardContent>
-              {error && (
+              {(localError || authError) && (
                 <Alert variant="destructive" className="mb-4">
                   <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
+                  <AlertDescription>{localError || authError}</AlertDescription>
                 </Alert>
               )}
               {success && (
@@ -266,8 +254,8 @@ export default function LoginPage() {
                         Forgot password?
                       </Link>
                     </div>
-                    <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105" disabled={isLoggingIn}>
-                      {isLoggingIn ? (
+                    <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105" disabled={loading}>
+                      {loading ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           Signing in...
@@ -277,6 +265,11 @@ export default function LoginPage() {
                       )}
                     </Button>
                   </form>
+
+                  {/* Social Login */}
+                  <div className="mt-6">
+                    <LazySocialLoginButtons disabled={loading} />
+                  </div>
 
                   {/* Demo Credentials */}
                   <div className="mt-6 pt-6 border-t">
@@ -378,8 +371,8 @@ export default function LoginPage() {
                         required
                       />
                     </div>
-                    <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105" disabled={isRegistering}>
-                      {isRegistering ? (
+                    <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105" disabled={loading}>
+                      {loading ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                           Creating account...
@@ -389,6 +382,11 @@ export default function LoginPage() {
                       )}
                     </Button>
                   </form>
+
+                  {/* Social Login */}
+                  <div className="mt-6">
+                    <LazySocialLoginButtons disabled={loading} />
+                  </div>
                 </TabsContent>
               </Tabs>
             </CardContent>

@@ -21,7 +21,8 @@ import {
   Clipboard, Edit, Activity, AlertCircle, Target, TrendingUp,
   Users, Trophy, MapPin, Snowflake, Dumbbell, FileText, BarChart3,
   CheckCircle2, ArrowUp, ArrowDown, Minus, Play, Timer, Shield,
-  Zap, Heart, Brain, Flag, Share2, Settings, Star, Gamepad2
+  Zap, Heart, Brain, Flag, Share2, Settings, Star, Gamepad2, Megaphone,
+  Lock
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -44,11 +45,25 @@ import {
   Radar
 } from "recharts";
 import { useGetCoachOverviewQuery } from "@/store/api/coachApi";
+import {
+  useGetUserDashboardDataQuery,
+  useGetUserStatisticsQuery,
+  useGetCommunicationSummaryQuery,
+  useGetStatisticsSummaryQuery,
+} from "@/store/api/dashboardApi";
+import CalendarWidget from '@/features/calendar/components/CalendarWidget';
+import IceCoachCalendarView from './components/IceCoachCalendarView';
+import PracticeTemplates from './components/PracticeTemplates';
+import { BroadcastManagement } from '@/features/chat/components/BroadcastManagement';
+import { PlayerProfileView } from './components/PlayerProfileView';
 import { 
   getEventTypeColor, 
   getStatusColor, 
   getEventTypeIconColor,
 } from "@/lib/design-utils";
+import { useTranslation } from '@hockey-hub/translations';
+import { CoachChannelList } from "@/features/chat/components/CoachChannelList";
+import { usePrivateCoachChannels } from "@/hooks/usePrivateCoachChannels";
 
 // Mock data for comprehensive dashboard
 const mockPlayers = [
@@ -272,9 +287,12 @@ const playerDevelopment = [
 ];
 
 export default function CoachDashboard() {
+  const { t } = useTranslation(['coach', 'common', 'sports']);
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedLineup, setSelectedLineup] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null);
   const { data: apiData, isLoading } = useGetCoachOverviewQuery("senior");
+  const { channels: privateChannels, loading: channelsLoading } = usePrivateCoachChannels();
 
   // Availability calculation
   const availabilityStats = {
@@ -289,37 +307,37 @@ export default function CoachDashboard() {
       <div className="grid grid-cols-6 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Next Game</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('coach:overview.nextGame')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">vs Northern Knights</div>
-            <p className="text-xs text-muted-foreground mt-1">Tomorrow, 19:00</p>
+            <div className="text-lg font-bold">{t('common:vs')} Northern Knights</div>
+            <p className="text-xs text-muted-foreground mt-1">{t('common:time.tomorrow')}, 19:00</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Team Record</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('coach:overview.teamRecord')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-lg font-bold">12-5-3</div>
-            <p className="text-xs text-muted-foreground mt-1">2nd in division</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:overview.divisionPosition', { position: 2 })}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Available Players</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('coach:overview.availablePlayers')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-lg font-bold">{availabilityStats.available}/{mockPlayers.length}</div>
-            <p className="text-xs text-muted-foreground mt-1">{availabilityStats.limited} limited</p>
+            <p className="text-xs text-muted-foreground mt-1">{availabilityStats.limited} {t('common:status.limited')}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Goals/Game</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('coach:overview.goalsPerGame')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
@@ -329,13 +347,13 @@ export default function CoachDashboard() {
                 +0.3
               </Badge>
         </div>
-            <p className="text-xs text-muted-foreground mt-1">Last 5 games</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:overview.lastGames', { count: 5 })}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Power Play</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('sports:situations.powerPlay')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-lg font-bold">{specialTeamsStats.powerPlay.percentage}%</div>
@@ -347,24 +365,31 @@ export default function CoachDashboard() {
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Penalty Kill</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('sports:situations.penaltyKill')}</CardTitle>
               </CardHeader>
               <CardContent>
             <div className="text-lg font-bold">{specialTeamsStats.penaltyKill.percentage}%</div>
-            <p className="text-xs text-muted-foreground mt-1">14th in league</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:overview.leagueRank', { rank: 14 })}</p>
           </CardContent>
         </Card>
                       </div>
 
       <div className="grid grid-cols-2 gap-6">
+        {/* Calendar Widget */}
+        <CalendarWidget 
+          organizationId="org-123" 
+          userId="coach-123"
+          days={14}
+        />
+
         {/* Today's Schedule */}
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Today's Schedule</CardTitle>
+              <CardTitle>{t('coach:todaysSchedule.title')}</CardTitle>
               <Button size="sm">
                 <Plus className="h-4 w-4 mr-1" />
-                Add Session
+                {t('coach:todaysSchedule.addSession')}
               </Button>
                     </div>
           </CardHeader>
@@ -408,9 +433,9 @@ export default function CoachDashboard() {
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Player Availability</CardTitle>
+              <CardTitle>{t('coach:playerAvailability.title')}</CardTitle>
               <Button variant="ghost" size="sm">
-                View Details
+                {t('common:actions.viewDetails')}
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
@@ -420,15 +445,15 @@ export default function CoachDashboard() {
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div>
                   <div className="text-2xl font-bold text-green-600">{availabilityStats.available}</div>
-                  <div className="text-xs text-muted-foreground">Available</div>
+                  <div className="text-xs text-muted-foreground">{t('common:status.available')}</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-amber-600">{availabilityStats.limited}</div>
-                  <div className="text-xs text-muted-foreground">Limited</div>
+                  <div className="text-xs text-muted-foreground">{t('common:status.limited')}</div>
                           </div>
                 <div>
                   <div className="text-2xl font-bold text-red-600">{availabilityStats.unavailable}</div>
-                  <div className="text-xs text-muted-foreground">Unavailable</div>
+                  <div className="text-xs text-muted-foreground">{t('common:status.unavailable')}</div>
                         </div>
                     </div>
             </div>
@@ -450,7 +475,7 @@ export default function CoachDashboard() {
                     player.status === 'limited' && 'bg-amber-100 text-amber-800',
                     player.status === 'unavailable' && 'bg-red-100 text-red-800'
                   )}>
-                    {player.status}
+                    {t(`common:status.${player.status}`)}
                         </Badge>
                       </div>
               ))}
@@ -462,8 +487,8 @@ export default function CoachDashboard() {
       {/* Recent Performance */}
       <Card>
         <CardHeader>
-          <CardTitle>Team Performance Trends</CardTitle>
-          <CardDescription>Last 5 games analysis</CardDescription>
+          <CardTitle>{t('coach:performance.trendTitle')}</CardTitle>
+          <CardDescription>{t('coach:performance.lastGamesAnalysis', { count: 5 })}</CardDescription>
               </CardHeader>
               <CardContent>
           <div className="h-64">
@@ -485,24 +510,48 @@ export default function CoachDashboard() {
     </div>
   );
 
-  const renderTeamManagementTab = () => (
-    <div className="space-y-6">
+  const renderCalendarTab = () => (
+    <div className="h-[800px]">
+      <IceCoachCalendarView
+        organizationId="org-123"
+        userId="coach-123"
+        teamId="team-senior"
+      />
+    </div>
+  );
+
+  const renderTeamManagementTab = () => {
+    // If a player is selected, show their profile
+    if (selectedPlayer) {
+      return (
+        <PlayerProfileView
+          playerId={selectedPlayer}
+          organizationId="org-123" // In real app, this would come from context
+          teamId="team-senior" // In real app, this would come from context
+          onBack={() => setSelectedPlayer(null)}
+        />
+      );
+    }
+
+    // Otherwise show the roster
+    return (
+      <div className="space-y-6">
       {/* Roster Management */}
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle>Team Roster</CardTitle>
-              <CardDescription>Player statistics and availability</CardDescription>
+              <CardTitle>{t('coach:teamManagement.rosterTitle')}</CardTitle>
+              <CardDescription>{t('coach:teamManagement.rosterDescription')}</CardDescription>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
                 <Share2 className="h-4 w-4 mr-2" />
-                Export
+                {t('common:actions.export')}
               </Button>
               <Button size="sm">
                 <Edit className="h-4 w-4 mr-2" />
-                Edit Lines
+                {t('coach:teamManagement.editLines')}
               </Button>
             </div>
           </div>
@@ -510,7 +559,11 @@ export default function CoachDashboard() {
         <CardContent>
           <div className="space-y-3">
             {mockPlayers.map(player => (
-              <Card key={player.id} className="hover:bg-accent/50 transition-colors">
+              <Card 
+                key={player.id} 
+                className="hover:bg-accent/50 transition-colors cursor-pointer"
+                onClick={() => setSelectedPlayer(player.id.toString())}
+              >
                 <CardContent className="pt-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -528,7 +581,7 @@ export default function CoachDashboard() {
                             player.status === 'limited' && 'bg-amber-100 text-amber-800',
                             player.status === 'unavailable' && 'bg-red-100 text-red-800'
                           )}>
-                            {player.status}
+                            {t(`common:status.${player.status}`)}
                           </Badge>
                           {player.toi && (
                             <span className="text-xs text-muted-foreground">TOI: {player.toi}</span>
@@ -537,47 +590,50 @@ export default function CoachDashboard() {
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-4 gap-6 text-sm">
+                    <div className="flex items-center gap-6">
+                      <div className="grid grid-cols-4 gap-6 text-sm flex-1">
                       {player.position !== "Goalie" ? (
                         <>
                   <div className="text-center">
                             <div className="font-semibold">{player.goals}</div>
-                            <div className="text-xs text-muted-foreground">Goals</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:stats.goals')}</div>
                   </div>
                   <div className="text-center">
                             <div className="font-semibold">{player.assists}</div>
-                            <div className="text-xs text-muted-foreground">Assists</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:stats.assists')}</div>
                   </div>
                           <div className="text-center">
                             <div className="font-semibold">{(player.goals || 0) + (player.assists || 0)}</div>
-                            <div className="text-xs text-muted-foreground">Points</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:stats.points')}</div>
                 </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.plusMinus && player.plusMinus > 0 ? '+' : ''}{player.plusMinus || 0}</div>
-                            <div className="text-xs text-muted-foreground">+/-</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:stats.plusMinus')}</div>
                   </div>
                         </>
                       ) : (
                         <>
                           <div className="text-center">
                             <div className="font-semibold">{player.wins}-{player.losses}-{player.otl}</div>
-                            <div className="text-xs text-muted-foreground">Record</div>
+                            <div className="text-xs text-muted-foreground">{t('common:labels.record')}</div>
                   </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.gaa}</div>
-                            <div className="text-xs text-muted-foreground">GAA</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:goalieStats.goalsAgainstAverage')}</div>
                           </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.savePercentage}</div>
-                            <div className="text-xs text-muted-foreground">SV%</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:goalieStats.savePercentage')}</div>
                           </div>
                           <div className="text-center">
                             <div className="font-semibold">{player.shutouts}</div>
-                            <div className="text-xs text-muted-foreground">SO</div>
+                            <div className="text-xs text-muted-foreground">{t('sports:goalieStats.shutouts')}</div>
                           </div>
                         </>
                       )}
-                  </div>
+                      </div>
+                      <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                    </div>
                 </div>
               </CardContent>
             </Card>
@@ -629,30 +685,41 @@ export default function CoachDashboard() {
                 </div>
               </CardContent>
             </Card>
-    </div>
-  );
+      </div>
+    );
+  };
 
-  const renderTrainingPlansTab = () => (
-    <div className="space-y-6">
-      {/* Ice Training Sessions */}
-            <Card>
-              <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Ice Training Management</CardTitle>
-              <CardDescription>Plan and organize on-ice practice sessions</CardDescription>
+  const renderTrainingPlansTab = () => {
+    const handleApplyTemplate = (template: any, date?: Date, time?: string) => {
+      // This would open a modal to create a practice based on the template
+      console.log('Applying template:', template.name, date, time);
+      // In a real app, this would create a calendar event and practice session
+    };
+
+    return (
+      <div className="space-y-6">
+        {/* Practice Templates */}
+        <PracticeTemplates onApplyTemplate={handleApplyTemplate} />
+
+        {/* Ice Training Sessions */}
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>{t('coach:training.iceTrainingTitle')}</CardTitle>
+                <CardDescription>{t('coach:training.iceTrainingDescription')}</CardDescription>
+              </div>
+              <Button>
+                <Plus className="h-4 w-4 mr-2" />
+                {t('coach:training.createSession')}
+              </Button>
             </div>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Create Session
-            </Button>
-          </div>
-              </CardHeader>
-              <CardContent>
+          </CardHeader>
+          <CardContent>
           <div className="grid grid-cols-2 gap-4 mb-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Session Templates</CardTitle>
+                <CardTitle className="text-base">{t('coach:training.sessionTemplates')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -679,7 +746,7 @@ export default function CoachDashboard() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Drill Library</CardTitle>
+                <CardTitle className="text-base">{t('coach:training.drillLibrary')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -697,7 +764,7 @@ export default function CoachDashboard() {
                   ))}
                 </div>
                 <Button variant="outline" className="w-full mt-4">
-                  Browse All Drills
+                  {t('coach:training.browseAllDrills')}
                 </Button>
               </CardContent>
             </Card>
@@ -705,7 +772,7 @@ export default function CoachDashboard() {
 
           {/* Upcoming Sessions */}
           <div>
-            <h3 className="font-semibold mb-3">This Week's Schedule</h3>
+            <h3 className="font-semibold mb-3">{t('coach:training.thisWeeksSchedule')}</h3>
             <div className="space-y-2">
               {[
                 { day: "Monday", time: "16:00", focus: "Power Play", rink: "Main" },
@@ -762,8 +829,9 @@ export default function CoachDashboard() {
           </div>
             </CardContent>
           </Card>
-    </div>
-  );
+      </div>
+    );
+  };
 
   const renderGamesTab = () => (
     <div className="space-y-6">
@@ -1237,39 +1305,169 @@ export default function CoachDashboard() {
     </div>
   );
 
+  const renderBroadcastsTab = () => (
+    <BroadcastManagement
+      teamId="team-123" // In a real app, this would come from context or props
+      organizationId="org-123"
+      coachId="coach-123"
+    />
+  );
+
+  const renderParentChannelsTab = () => (
+    <div className="space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Lock className="h-5 w-5" />
+            {t('coach:parentChannels.title', 'Private Parent Channels')}
+          </CardTitle>
+          <CardDescription>
+            {t('coach:parentChannels.description', 'Confidential communication channels with parents')}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {channelsLoading ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <p>{t('common:loading')}</p>
+            </div>
+          ) : privateChannels.length > 0 ? (
+            <CoachChannelList
+              channels={privateChannels}
+              onChannelSelect={(channelId) => {
+                // Open chat with selected channel
+                window.dispatchEvent(new CustomEvent('openChat', { detail: { channelId } }));
+              }}
+            />
+          ) : (
+            <div className="text-center py-8 text-muted-foreground">
+              <Lock className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p>{t('coach:parentChannels.noChannels', 'No parent channels available')}</p>
+              <p className="text-sm mt-1">
+                {t('coach:parentChannels.noChannelsDesc', 'Channels will be created when players are added to your team')}
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Quick Stats about Parent Communication */}
+      <div className="grid grid-cols-3 gap-4">
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">{t('coach:parentChannels.stats.activeChats', 'Active Chats')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{privateChannels.filter(c => c.unreadCount > 0).length}</div>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:parentChannels.stats.withUnreadMessages', 'With unread messages')}</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">{t('coach:parentChannels.stats.totalParents', 'Total Parents')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{privateChannels.length}</div>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:parentChannels.stats.connectedParents', 'Connected parents')}</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium">{t('coach:parentChannels.stats.pendingMeetings', 'Pending Meetings')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{privateChannels.filter(c => c.hasPendingMeetingRequest).length}</div>
+            <p className="text-xs text-muted-foreground mt-1">{t('coach:parentChannels.stats.requestsToReview', 'Requests to review')}</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Office Hours */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{t('coach:parentChannels.officeHours.title', 'Your Office Hours')}</CardTitle>
+          <CardDescription>
+            {t('coach:parentChannels.officeHours.description', 'When parents can schedule meetings with you')}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+              <div>
+                <p className="font-medium">Monday & Wednesday</p>
+                <p className="text-sm text-muted-foreground">4:00 PM - 6:00 PM</p>
+              </div>
+              <Button size="sm" variant="outline">
+                <Edit className="h-4 w-4 mr-1" />
+                {t('common:edit')}
+              </Button>
+            </div>
+            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+              <div>
+                <p className="font-medium">Friday</p>
+                <p className="text-sm text-muted-foreground">3:00 PM - 5:00 PM</p>
+              </div>
+              <Button size="sm" variant="outline">
+                <Edit className="h-4 w-4 mr-1" />
+                {t('common:edit')}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+
   return (
     <div className="w-full">{/* Removed padding and max-width since it's handled by parent */}
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-6 w-full">
+        <TabsList className="grid grid-cols-9 w-full">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <Activity className="h-4 w-4" />
-            Overview
+            {t('coach:tabs.overview')}
+          </TabsTrigger>
+          <TabsTrigger value="calendar" className="flex items-center gap-2">
+            <Calendar className="h-4 w-4" />
+            {t('coach:tabs.calendar')}
           </TabsTrigger>
           <TabsTrigger value="team" className="flex items-center gap-2">
             <Users className="h-4 w-4" />
-            Team Management
+            {t('coach:tabs.team')}
           </TabsTrigger>
           <TabsTrigger value="training" className="flex items-center gap-2">
             <Snowflake className="h-4 w-4" />
-            Training Plans
+            {t('coach:tabs.practice')}
           </TabsTrigger>
           <TabsTrigger value="games" className="flex items-center gap-2">
             <Trophy className="h-4 w-4" />
-            Games & Tactics
+            {t('coach:tabs.games')}
           </TabsTrigger>
           <TabsTrigger value="statistics" className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4" />
-            Statistics
+            {t('coach:tabs.statistics')}
           </TabsTrigger>
           <TabsTrigger value="development" className="flex items-center gap-2">
             <Target className="h-4 w-4" />
-            Development
+            {t('coach:tabs.development')}
+          </TabsTrigger>
+          <TabsTrigger value="broadcasts" className="flex items-center gap-2">
+            <Megaphone className="h-4 w-4" />
+            {t('coach:tabs.broadcasts', 'Broadcasts')}
+          </TabsTrigger>
+          <TabsTrigger value="parents" className="flex items-center gap-2">
+            <Lock className="h-4 w-4" />
+            {t('coach:tabs.parents', 'Parents')}
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
           {renderOverviewTab()}
+        </TabsContent>
+
+        <TabsContent value="calendar" className="mt-6">
+          {renderCalendarTab()}
         </TabsContent>
 
         <TabsContent value="team" className="mt-6">
@@ -1290,6 +1488,14 @@ export default function CoachDashboard() {
 
         <TabsContent value="development" className="mt-6">
           {renderDevelopmentTab()}
+        </TabsContent>
+
+        <TabsContent value="broadcasts" className="mt-6">
+          {renderBroadcastsTab()}
+        </TabsContent>
+
+        <TabsContent value="parents" className="mt-6">
+          {renderParentChannelsTab()}
         </TabsContent>
       </Tabs>
     </div>

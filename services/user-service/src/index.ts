@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import 'reflect-metadata';
 import { AppDataSource } from './config/database';
 import authRoutes from './routes/authRoutes';
+import { initializeCache, closeCache } from '@hockey-hub/shared-lib';
 // User service with real database authentication
 
 dotenv.config();
@@ -22,8 +23,32 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'user-service', port: PORT });
 });
 
+// JWKS endpoint - must be public
+app.get('/.well-known/jwks.json', async (req, res) => {
+  try {
+    const { jwtService } = await import('./services/jwtService');
+    const jwks = await jwtService.getJWKS();
+    res.json(jwks);
+  } catch (error) {
+    console.error('Error serving JWKS:', error);
+    res.status(500).json({ error: 'Failed to retrieve JWKS' });
+  }
+});
+
 // Auth routes
 app.use('/api/v1/auth', authRoutes);
+
+// Service authentication routes
+import serviceAuthRoutes from './routes/serviceAuthRoutes';
+app.use('/api/v1/service-auth', serviceAuthRoutes);
+
+// User routes
+import userRoutes from './routes/userRoutes';
+app.use('/api/v1/users', userRoutes);
+
+// Dashboard routes (optimized for all dashboards)
+import dashboardRoutes from './routes/dashboardRoutes';
+app.use('/api/dashboard', dashboardRoutes);
 
 // Player routes (temporary mock for player endpoints)
 app.get('/api/v1/players/:id/overview', (req, res) => {
@@ -186,10 +211,18 @@ app.get('/api/v1/players/:id/wellness', (req, res) => {
   });
 });
 
-// Initialize database and start server
+// Initialize database and cache, then start server
 AppDataSource.initialize()
-  .then(() => {
+  .then(async () => {
     console.log('✅ Database connected');
+    
+    // Initialize cache
+    try {
+      await initializeCache();
+      console.log('✅ Cache initialized');
+    } catch (error) {
+      console.warn('⚠️ Cache initialization failed, continuing without cache:', error);
+    }
     
     // Create default demo users on first run
     createDemoUsers();
@@ -236,3 +269,18 @@ async function createDemoUsers() {
     console.error('❌ Failed to create demo users:', error);
   }
 }
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('SIGTERM received, shutting down gracefully...');
+  await closeCache();
+  await AppDataSource.destroy();
+  process.exit(0);
+});
+
+process.on('SIGINT', async () => {
+  console.log('SIGINT received, shutting down gracefully...');
+  await closeCache();
+  await AppDataSource.destroy();
+  process.exit(0);
+});

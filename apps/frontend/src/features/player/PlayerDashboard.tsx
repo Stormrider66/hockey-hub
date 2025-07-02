@@ -2,6 +2,11 @@
 
 import React, { useState } from "react";
 import { logout } from "@/utils/auth";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useGetWorkoutSessionsQuery } from '@/store/api/trainingApi';
+import CalendarWidget from '@/features/calendar/components/CalendarWidget';
+import { useTranslation } from '@hockey-hub/translations';
 import {
   Card,
   CardContent,
@@ -61,6 +66,7 @@ import {
   Wind,
   Download,
   CheckCircle2,
+  Play,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -90,6 +96,13 @@ import {
   useSubmitWellnessMutation,
   useCompleteTrainingMutation
 } from "@/store/api/playerApi";
+import {
+  useGetUserDashboardDataQuery,
+  useGetUserStatisticsQuery,
+  useGetCommunicationSummaryQuery,
+  useGetStatisticsSummaryQuery,
+} from "@/store/api/dashboardApi";
+import { PlayerCalendarView } from "./PlayerCalendarView";
 import { 
   getEventTypeColor, 
   getStatusColor, 
@@ -235,6 +248,7 @@ const generateInsights = (recent: WellnessAverages, previous: WellnessAverages):
 const wellnessInsights = calculateWellnessInsights(historicalWellnessData);
 
 export default function PlayerDashboard() {
+  const { t } = useTranslation(['player', 'common']);
   const [tab, setTab] = useState("today");
   const [wellnessTimeRange, setWellnessTimeRange] = useState("week");
   const [hrvData, setHrvData] = useState({
@@ -263,6 +277,22 @@ export default function PlayerDashboard() {
     injuries: [] as string[],
   });
 
+  const router = useRouter();
+  
+  // Get today's date for workout query
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
+  // Mock player ID - in production this would come from auth context
+  const playerId = "player-123";
+  
+  // Query today's workouts
+  const { data: workoutsData } = useGetWorkoutSessionsQuery({
+    date: today.toISOString().split('T')[0],
+    playerId: playerId,
+    status: 'scheduled'
+  });
+
   // Get player ID from localStorage (from login response)
   const getUserId = () => {
     try {
@@ -283,15 +313,25 @@ export default function PlayerDashboard() {
   const [submitWellness, { isLoading: isSubmittingWellness }] = useSubmitWellnessMutation();
   const [completeTraining] = useCompleteTrainingMutation();
 
-  // Rich fallback data matching API structure
+  // Use new cached endpoints for improved performance
+  const { data: userDashboardData } = useGetUserDashboardDataQuery();
+  const { data: userStats } = useGetUserStatisticsQuery();
+  const { data: communicationSummary } = useGetCommunicationSummaryQuery();
+  const { data: statisticsSummary } = useGetStatisticsSummaryQuery({ 
+    type: 'player', 
+    id: playerId.toString() 
+  });
+
+  // Rich fallback data matching API structure - enhanced with cached user data
   const playerInfo = apiData?.playerInfo ?? {
-    name: "Erik Johansson",
+    name: userDashboardData?.user?.fullName || "Erik Johansson",
     number: 10,
     position: "Forward",
-    team: "Senior Team",
+    team: userDashboardData?.teams?.[0]?.name || "Senior Team",
     age: 22,
     height: "5'11\"",
-    weight: "180 lbs"
+    weight: "180 lbs",
+    organization: userDashboardData?.organization?.name
   };
 
   const schedule = apiData?.schedule ?? [
@@ -413,7 +453,7 @@ export default function PlayerDashboard() {
           <CardContent className="pt-6">
             <div className="flex items-center space-x-2 text-red-600">
               <AlertCircle className="h-5 w-5" />
-              <p>Failed to load player dashboard data. Please try again.</p>
+              <p>{t('common:messages.error')}. {t('common:actions.retry')}.</p>
             </div>
           </CardContent>
         </Card>
@@ -446,22 +486,23 @@ export default function PlayerDashboard() {
         <div className="flex gap-2">
           <Button size="sm" variant="outline" className={a11y.focusVisible}>
             <MessageCircle className="mr-2 h-4 w-4" />
-            Message Coach
+            {t('player:communication.coachMessages')}
           </Button>
           <Button size="sm" variant="outline" onClick={logout} className={a11y.focusVisible}>
             <LogOut className="mr-2 h-4 w-4" />
-            Logout
+            {t('common:navigation.logout')}
           </Button>
         </div>
       </div>
 
       {/* Tabs */}
       <Tabs value={tab} onValueChange={setTab} className={spacing.card}>
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-          <TabsTrigger value="today">Today</TabsTrigger>
-          <TabsTrigger value="training">Training</TabsTrigger>
-          <TabsTrigger value="wellness">Wellness</TabsTrigger>
-          <TabsTrigger value="performance">Performance</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+          <TabsTrigger value="today">{t('common:time.today')}</TabsTrigger>
+          <TabsTrigger value="training">{t('player:training.title')}</TabsTrigger>
+          <TabsTrigger value="wellness">{t('player:wellness.title')}</TabsTrigger>
+          <TabsTrigger value="performance">{t('player:performance.title')}</TabsTrigger>
+          <TabsTrigger value="calendar">{t('common:navigation.calendar')}</TabsTrigger>
         </TabsList>
 
         {/* ───────────  TODAY  ─────────── */}
@@ -472,7 +513,7 @@ export default function PlayerDashboard() {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" aria-hidden="true" />
-                  Today's Schedule
+                  {t('player:dashboard.todaySchedule')}
                 </CardTitle>
                 <CardDescription>Monday, May 19, 2025</CardDescription>
             </CardHeader>
@@ -497,7 +538,7 @@ export default function PlayerDashboard() {
                             <p className="font-medium text-sm">{event.title}</p>
                             <div className="flex items-center gap-2">
                               {event.mandatory && (
-                                <Badge variant="destructive" className="text-xs">Required</Badge>
+                                <Badge variant="destructive" className="text-xs">{t('common:labels.required')}</Badge>
                               )}
                               <span className="text-sm text-muted-foreground whitespace-nowrap">
                                 {event.time}
@@ -522,41 +563,72 @@ export default function PlayerDashboard() {
               </CardContent>
             </Card>
 
-            {/* Upcoming Events */}
+            {/* Today's Workouts */}
             <Card className={shadows.card}>
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" aria-hidden="true" />
-                  Upcoming Events
+                  <Dumbbell className="h-5 w-5" aria-hidden="true" />
+                  {t('player:training.todaysWorkout')}
                 </CardTitle>
-                <CardDescription>This week's activities</CardDescription>
+                <CardDescription>{t('player:training.assigned')}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className={spacing.card} role="list" aria-label="Upcoming events">
-                  {upcoming.map((event, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg" role="listitem">
-                      <div className="flex items-center space-x-3">
-                        <div className={`p-2 rounded-md ${getEventTypeColor(event.type || '')}`}>
-                          <Calendar className="h-4 w-4" aria-hidden="true" />
+                <div className={spacing.card} role="list" aria-label="Today's workouts">
+                  {workoutsData?.data && workoutsData.data.length > 0 ? (
+                    workoutsData.data.map((workout) => (
+                      <div key={workout.id} className="flex items-start space-x-4 border-b pb-3 last:border-0" role="listitem">
+                        <div className={`p-2 rounded-md bg-orange-100 text-orange-600`}>
+                          <Dumbbell className="h-4 w-4" aria-hidden="true" />
                         </div>
-                        <div>
-                          <p className="font-medium text-sm">{event.title}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {event.date} • {event.time}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                            <div>
+                              <p className="font-medium text-sm">{workout.title}</p>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                {workout.type} • {workout.estimatedDuration} min
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Badge variant="secondary" className="text-xs capitalize">
+                                {workout.status}
+                              </Badge>
+                            </div>
+                          </div>
+                          <p className="text-sm text-muted-foreground mt-1 flex items-center gap-1">
+                            <MapPin className="h-3 w-3" aria-hidden="true" />
+                            {workout.location}
                           </p>
-                          {event.location && (
-                            <p className="text-xs text-muted-foreground">{event.location}</p>
+                          {workout.description && (
+                            <p className="text-sm text-muted-foreground mt-1">
+                              {workout.description}
+                            </p>
                           )}
+                          <Button 
+                            size="sm" 
+                            className="mt-2"
+                            onClick={() => router.push(`/player/workout/${workout.id}`)}
+                          >
+                            <Play className="h-3 w-3 mr-1" />
+                            Start Workout
+                          </Button>
                         </div>
                       </div>
-                      <Badge className={getPriorityColor(event.importance || 'Medium')}>
-                        {event.importance}
-                      </Badge>
+                    ))
+                  ) : (
+                    <div className="py-4 text-center text-muted-foreground">
+                      <p className="text-sm">No workouts scheduled for today</p>
                     </div>
-                  ))}
+                  )}
                 </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            {/* Calendar Widget */}
+            <CalendarWidget 
+              organizationId="org-123" 
+              userId={playerId}
+              days={7}
+            />
 
             {/* Quick Wellness Check */}
             <Card className={shadows.card}>
@@ -727,7 +799,7 @@ export default function PlayerDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium">Current Readiness</CardTitle>
+                  <CardTitle className="text-sm font-medium">{t('player:wellness.metrics.readiness')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-green-600">{calculateReadinessScore()}%</div>
@@ -828,10 +900,10 @@ export default function PlayerDashboard() {
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="h-5 w-5" aria-hidden="true" />
-                  Daily Wellness Check
+                  {t('player:wellness.title')}
                 </CardTitle>
                 <CardDescription>
-                    Rate your wellness metrics to help optimize training
+                    {t('player:wellness.subtitle')}
                 </CardDescription>
             </CardHeader>
               <CardContent className="space-y-6">
@@ -991,12 +1063,12 @@ export default function PlayerDashboard() {
                   {isSubmittingWellness ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Submitting...
+                      {t('common:messages.processing')}...
                     </>
                   ) : (
                     <>
                       <Send className="mr-2 h-4 w-4" />
-                      Submit Wellness Check
+                      {t('player:wellness.submit')}
                     </>
                   )}
                 </Button>
@@ -1097,7 +1169,7 @@ export default function PlayerDashboard() {
             >
               <CheckCircle2 className="h-4 w-4 text-green-600" />
               <AlertDescription className="text-green-800">
-                Wellness check submitted successfully! Great job staying on top of your health.
+                {t('player:wellness.submitted')}
               </AlertDescription>
             </Alert>
             
@@ -1878,6 +1950,11 @@ export default function PlayerDashboard() {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        {/* ───────────  CALENDAR  ─────────── */}
+        <TabsContent value="calendar" className="h-[calc(100vh-16rem)]">
+          <PlayerCalendarView />
         </TabsContent>
       </Tabs>
     </div>

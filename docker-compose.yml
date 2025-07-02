@@ -190,6 +190,24 @@ services:
       timeout: 5s
       retries: 5
 
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: hockeyhub_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - hockeyhub_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
   # API Gateway doesn't need a database
   # It routes requests to other services
 
@@ -205,8 +223,11 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       - user-service
+      - redis
     networks:
       - hockeyhub_network
     volumes:
@@ -231,8 +252,12 @@ services:
       - JWT_REFRESH_EXPIRES_IN=7d
       - NODE_ENV=development
       - PORT=3001
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     depends_on:
       db-users:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - hockeyhub_network
@@ -287,6 +312,8 @@ volumes:
   postgres_statistics_data:
     driver: local
   postgres_training_data:
+    driver: local
+  redis_data:
     driver: local
 
 networks:

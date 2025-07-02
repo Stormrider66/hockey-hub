@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from '@hockey-hub/translations';
 import {
   Card,
   CardContent,
@@ -71,8 +72,10 @@ import {
   a11y,
   shadows
 } from "@/lib/design-utils";
+import { EquipmentCalendarView } from "./EquipmentCalendarView";
 
 export default function EquipmentManagerDashboard() {
+  const { t } = useTranslation(['equipment', 'common']);
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedTeam, setSelectedTeam] = useState("senior");
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
@@ -84,21 +87,21 @@ export default function EquipmentManagerDashboard() {
   const [createOrder, { isLoading: isCreatingOrder }] = useCreateOrderMutation();
 
   const teams = [
-    { id: "senior", name: "Senior Team" },
-    { id: "junior", name: "Junior A" },
-    { id: "u16", name: "U16 Boys" },
+    { id: "senior", name: t('common:teams.senior') },
+    { id: "junior", name: t('common:teams.juniorA') },
+    { id: "u16", name: t('common:teams.u16Boys') },
   ];
 
   // Rich fallback data that matches API structure
   const inventoryAlerts = apiData?.inventoryAlerts ?? [
-    { item: "Hockey Tape (White)", status: "Low Stock" as const, remaining: 5, reorderLevel: 10, category: "Consumables", supplier: "Hockey Supply Co" },
-    { item: "Practice Pucks", status: "Low Stock" as const, remaining: 12, reorderLevel: 20, category: "Practice Equipment", supplier: "Ice Sports Direct" },
-    { item: "Game Jerseys (Away, Size L)", status: "Out of Stock" as const, remaining: 0, reorderLevel: 5, category: "Game Equipment", supplier: "Team Apparel Inc" },
+    { item: "Hockey Tape (White)", status: "Low Stock" as const, remaining: 5, reorderLevel: 10, category: t('equipment:inventory.categories.accessories'), supplier: "Hockey Supply Co" },
+    { item: "Practice Pucks", status: "Low Stock" as const, remaining: 12, reorderLevel: 20, category: t('equipment:inventory.categories.training'), supplier: "Ice Sports Direct" },
+    { item: "Game Jerseys (Away, Size L)", status: "Out of Stock" as const, remaining: 0, reorderLevel: 5, category: t('equipment:inventory.categories.apparel'), supplier: "Team Apparel Inc" },
   ];
 
   const upcomingEvents = apiData?.upcomingEvents ?? [
-    { date: "Today", title: "Home Game Preparation", team: "Senior Team", time: "16:00", notes: "Set up equipment 2 hours before game", type: "preparation" as const, priority: "High" as const },
-    { date: "Tomorrow", title: "Equipment Maintenance", team: "All Teams", time: "10:00", notes: "Sharpen skates for Junior A team", type: "maintenance" as const, priority: "Medium" as const },
+    { date: t('common:time.today'), title: t('equipment:team.gameday'), team: t('common:teams.senior'), time: "16:00", notes: "Set up equipment 2 hours before game", type: "preparation" as const, priority: t('common:priority.high') as const },
+    { date: t('common:time.tomorrow'), title: t('equipment:maintenance.title'), team: t('common:teams.all'), time: "10:00", notes: "Sharpen skates for Junior A team", type: "maintenance" as const, priority: t('common:priority.medium') as const },
   ];
 
   const maintenanceSchedule = apiData?.maintenanceSchedule ?? [
@@ -174,7 +177,7 @@ export default function EquipmentManagerDashboard() {
           <CardContent className="pt-6">
             <div className="flex items-center space-x-2 text-red-600">
               <AlertCircle className="h-5 w-5" />
-              <p>Failed to load equipment dashboard data. Please try again.</p>
+              <p>{t('common:errors.loadingError')}</p>
             </div>
           </CardContent>
         </Card>
@@ -186,7 +189,7 @@ export default function EquipmentManagerDashboard() {
     <div className={`p-4 md:p-6 ${spacing.section}`}>
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold">Equipment Manager</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">{t('equipment:dashboard.title')}</h1>
         <div className="flex items-center space-x-4">
           <Select value={selectedTeam} onValueChange={setSelectedTeam}>
             <SelectTrigger className="w-[180px]">
@@ -205,12 +208,13 @@ export default function EquipmentManagerDashboard() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className={spacing.card}>
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="inventory">Inventory</TabsTrigger>
-          <TabsTrigger value="maintenance">Maintenance</TabsTrigger>
-          <TabsTrigger value="gameday">Game Day</TabsTrigger>
-          <TabsTrigger value="players">Players</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-3 md:grid-cols-6">
+          <TabsTrigger value="overview">{t('common:navigation.overview')}</TabsTrigger>
+          <TabsTrigger value="calendar">{t('common:navigation.calendar')}</TabsTrigger>
+          <TabsTrigger value="inventory">{t('equipment:inventory.title')}</TabsTrigger>
+          <TabsTrigger value="maintenance">{t('equipment:maintenance.title')}</TabsTrigger>
+          <TabsTrigger value="gameday">{t('equipment:team.gameday')}</TabsTrigger>
+          <TabsTrigger value="players">{t('common:roles.players')}</TabsTrigger>
         </TabsList>
 
         {/* ───────────  OVERVIEW  ─────────── */}
@@ -221,9 +225,9 @@ export default function EquipmentManagerDashboard() {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
                   <AlertTriangle className="h-5 w-5 text-amber-500" aria-hidden="true" />
-                  Inventory Alerts
+                  {t('equipment:inventory.lowStock')}
                 </CardTitle>
-                <CardDescription>Items requiring attention</CardDescription>
+                <CardDescription>{t('equipment:dashboard.urgentNeeds')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className={spacing.card} role="list" aria-label="Inventory alerts">
@@ -238,7 +242,7 @@ export default function EquipmentManagerDashboard() {
                       </div>
                         </div>
                       ))}
-                      <span className={a11y.srOnly}>Loading alerts...</span>
+                      <span className={a11y.srOnly}>{t('common:loading')}</span>
                     </div>
                   ) : (
                     inventoryAlerts.map((alert, index) => (
@@ -254,15 +258,15 @@ export default function EquipmentManagerDashboard() {
                           <div className="min-w-0 flex-1">
                             <p className="font-medium text-sm">{alert.item}</p>
                             <p className="text-xs text-muted-foreground">
-                              {alert.remaining} remaining • Reorder at {alert.reorderLevel}
+                              {t('equipment:inventory.remaining', { count: alert.remaining })} • {t('equipment:inventory.reorderAt', { level: alert.reorderLevel })}
                             </p>
                             <p className="text-xs text-muted-foreground">
-                              Category: {alert.category} • Supplier: {alert.supplier}
+                              {t('common:labels.category')}: {alert.category} • {t('equipment:orders.suppliers')}: {alert.supplier}
                             </p>
                           </div>
                         </div>
                         <Badge className={getPriorityColor(alert.status)} aria-label={`Status: ${alert.status}`}>
-                          {alert.status}
+                          {alert.status === 'Out of Stock' ? t('equipment:inventory.outOfStock') : t('equipment:inventory.lowStockStatus')}
                         </Badge>
                       </div>
                     ))
@@ -274,31 +278,31 @@ export default function EquipmentManagerDashboard() {
                   <DialogTrigger asChild>
                     <Button className={a11y.focusVisible}>
                       <ShoppingCart className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Create Order
-                </Button>
+                      {t('equipment:orders.createOrder')}
+                    </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[600px]">
                     <DialogHeader>
-                      <DialogTitle>Create Equipment Order</DialogTitle>
+                      <DialogTitle>{t('equipment:orders.createOrderTitle')}</DialogTitle>
                       <DialogDescription>
-                        Add items to your order. Orders will be submitted for approval.
+                        {t('equipment:orders.createOrderDescription')}
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 max-h-[400px] overflow-y-auto">
                       {orderItems.map((item, index) => (
                         <div key={index} className="grid grid-cols-12 gap-2 items-end p-3 border rounded-lg">
                           <div className="col-span-5">
-                            <Label htmlFor={`item-${index}`}>Item Name</Label>
+                            <Label htmlFor={`item-${index}`}>{t('equipment:orders.itemName')}</Label>
                             <Input
                               id={`item-${index}`}
                               value={item.name}
                               onChange={(e) => updateOrderItem(index, "name", e.target.value)}
-                              placeholder="Enter item name"
+                              placeholder={t('equipment:orders.itemNamePlaceholder')}
                               className="mt-1"
                             />
                           </div>
                           <div className="col-span-2">
-                            <Label htmlFor={`quantity-${index}`}>Qty</Label>
+                            <Label htmlFor={`quantity-${index}`}>{t('equipment:orders.quantity')}</Label>
                             <Input
                               id={`quantity-${index}`}
                               type="number"
@@ -309,7 +313,7 @@ export default function EquipmentManagerDashboard() {
                             />
                           </div>
                           <div className="col-span-3">
-                            <Label htmlFor={`priority-${index}`}>Priority</Label>
+                            <Label htmlFor={`priority-${index}`}>{t('equipment:orders.priority')}</Label>
                             <Select
                               value={item.priority}
                               onValueChange={(value) => updateOrderItem(index, "priority", value)}
@@ -318,9 +322,9 @@ export default function EquipmentManagerDashboard() {
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="High">High</SelectItem>
-                                <SelectItem value="Medium">Medium</SelectItem>
-                                <SelectItem value="Low">Low</SelectItem>
+                                <SelectItem value="High">{t('common:priority.high')}</SelectItem>
+                                <SelectItem value="Medium">{t('common:priority.medium')}</SelectItem>
+                                <SelectItem value="Low">{t('common:priority.low')}</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -332,17 +336,17 @@ export default function EquipmentManagerDashboard() {
                                 onClick={() => removeOrderItem(index)}
                                 className="w-full"
                               >
-                                Remove
+                                {t('equipment:orders.removeItem')}
                               </Button>
                             )}
                           </div>
                           <div className="col-span-12">
-                            <Label htmlFor={`notes-${index}`}>Notes (optional)</Label>
+                            <Label htmlFor={`notes-${index}`}>{t('equipment:orders.notes')}</Label>
                             <Textarea
                               id={`notes-${index}`}
                               value={item.notes}
                               onChange={(e) => updateOrderItem(index, "notes", e.target.value)}
-                              placeholder="Additional specifications or notes"
+                              placeholder={t('equipment:orders.notesPlaceholder')}
                               className="mt-1"
                               rows={2}
                             />
@@ -353,7 +357,7 @@ export default function EquipmentManagerDashboard() {
                     <div className="flex justify-between">
                       <Button variant="outline" onClick={addOrderItem}>
                         <Plus className="mr-2 h-4 w-4" />
-                        Add Item
+                        {t('equipment:orders.addItem')}
                       </Button>
                     </div>
                     <DialogFooter>
@@ -362,18 +366,18 @@ export default function EquipmentManagerDashboard() {
                         onClick={() => setIsOrderModalOpen(false)}
                         disabled={isCreatingOrder}
                       >
-                        Cancel
+                        {t('common:actions.cancel')}
                       </Button>
                       <Button onClick={handleCreateOrder} disabled={isCreatingOrder}>
                         {isCreatingOrder ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Creating...
+                            {t('equipment:orders.creating')}
                           </>
                         ) : (
                           <>
                             <ShoppingCart className="mr-2 h-4 w-4" />
-                            Create Order
+                            {t('equipment:orders.createOrder')}
                           </>
                         )}
                       </Button>
@@ -388,9 +392,9 @@ export default function EquipmentManagerDashboard() {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" aria-hidden="true" />
-                  Upcoming Events
+                  {t('equipment:events.upcoming')}
                 </CardTitle>
-                <CardDescription>Equipment-related schedule</CardDescription>
+                <CardDescription>{t('equipment:events.equipmentRelated')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className={spacing.card} role="list" aria-label="Upcoming events">
@@ -400,7 +404,7 @@ export default function EquipmentManagerDashboard() {
                         <div className="h-4 bg-gray-200 rounded w-3/4"></div>
                         <div className="h-4 bg-gray-200 rounded w-1/2"></div>
                       </div>
-                      <span className={a11y.srOnly}>Loading events...</span>
+                      <span className={a11y.srOnly}>{t('common:loading')}</span>
                     </div>
                   ) : (
                     upcomingEvents.map((event, index) => (
@@ -439,9 +443,9 @@ export default function EquipmentManagerDashboard() {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
                   <Wrench className="h-5 w-5" aria-hidden="true" />
-                  Active Tasks
+                  {t('equipment:tasks.active')}
                 </CardTitle>
-                <CardDescription>Current maintenance and tasks</CardDescription>
+                <CardDescription>{t('equipment:tasks.currentMaintenance')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className={spacing.card} role="list" aria-label="Maintenance tasks">
@@ -486,6 +490,11 @@ export default function EquipmentManagerDashboard() {
           </div>
         </TabsContent>
 
+        {/* ───────────  CALENDAR  ─────────── */}
+        <TabsContent value="calendar" className="h-[calc(100vh-250px)]" role="tabpanel" aria-labelledby="calendar-tab">
+          <EquipmentCalendarView />
+        </TabsContent>
+
         {/* ───────────  INVENTORY  ─────────── */}
         <TabsContent value="inventory" className={spacing.card} role="tabpanel" aria-labelledby="inventory-tab">
           <div className="space-y-6">
@@ -509,7 +518,7 @@ export default function EquipmentManagerDashboard() {
                         </div>
                         <div className="space-y-2">
                           <div className="flex justify-between text-xs">
-                            <span>Stock: {item.stock}/{item.total}</span>
+                            <span>{t('equipment:inventory.stock')}: {item.stock}/{item.total}</span>
                             <span>{item.location}</span>
                           </div>
                           <Progress 
@@ -531,8 +540,8 @@ export default function EquipmentManagerDashboard() {
         <TabsContent value="maintenance" className={spacing.card} role="tabpanel" aria-labelledby="maintenance-tab">
           <Card>
             <CardHeader>
-              <CardTitle>Maintenance Schedule</CardTitle>
-              <CardDescription>Regular equipment maintenance and inspections</CardDescription>
+              <CardTitle>{t('equipment:maintenance.schedule')}</CardTitle>
+              <CardDescription>{t('equipment:maintenance.title')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -544,7 +553,7 @@ export default function EquipmentManagerDashboard() {
                         {item.frequency} • {item.team}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Last done: {item.lastDone} • Assigned: {item.assignedTo}
+                        {t('equipment:tasks.lastDone')}: {item.lastDone} • {t('equipment:tasks.assigned')}: {item.assignedTo}
                       </p>
                     </div>
                     <div className="text-right">
@@ -552,7 +561,7 @@ export default function EquipmentManagerDashboard() {
                         {item.priority}
                       </Badge>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Due: {item.nextDue}
+                        {t('equipment:tasks.due')}: {item.nextDue}
                       </p>
                     </div>
                   </div>
@@ -566,8 +575,8 @@ export default function EquipmentManagerDashboard() {
         <TabsContent value="gameday" className={spacing.card} role="tabpanel" aria-labelledby="gameday-tab">
           <Card>
             <CardHeader>
-              <CardTitle>Game Day Checklist</CardTitle>
-              <CardDescription>Pre-game preparation tasks</CardDescription>
+              <CardTitle>{t('equipment:gameday.checklist')}</CardTitle>
+              <CardDescription>{t('equipment:gameday.preGame')}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -583,7 +592,7 @@ export default function EquipmentManagerDashboard() {
                     <div className="flex-1">
                       <p className="font-medium text-sm">{item.task}</p>
                       <p className="text-xs text-muted-foreground">
-                        Assigned: {item.assigned} • Deadline: {item.deadline}
+                        {t('equipment:tasks.assigned')}: {item.assigned} • {t('equipment:gameday.deadline')}: {item.deadline}
                       </p>
                       {item.notes && (
                         <p className="text-xs text-muted-foreground mt-1">{item.notes}</p>
@@ -603,16 +612,16 @@ export default function EquipmentManagerDashboard() {
         <TabsContent value="players" className={spacing.card} role="tabpanel" aria-labelledby="players-tab">
           <Card>
             <CardHeader>
-              <CardTitle>Player Equipment</CardTitle>
-              <CardDescription>Individual player equipment tracking</CardDescription>
+              <CardTitle>{t('equipment:players.equipment')}</CardTitle>
+              <CardDescription>{t('equipment:players.tracking')}</CardDescription>
             </CardHeader>
             <CardContent className="text-center py-12">
               <Users className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-              <p className="text-muted-foreground mb-4">Player equipment tracking coming soon</p>
+              <p className="text-muted-foreground mb-4">{t('equipment:players.comingSoon')}</p>
               <Button variant="outline">
                 <Plus className="mr-2 h-4 w-4" />
-                Add Equipment Record
-                </Button>
+                {t('equipment:players.addRecord')}
+              </Button>
             </CardContent>
           </Card>
         </TabsContent>

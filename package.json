@@ -11,8 +11,28 @@
     "dev": "turbo run dev --concurrency=20",
     "dev:frontend": "pnpm --filter hockey-hub-frontend dev",
     "build": "turbo run build",
+    "build:frontend": "pnpm --filter hockey-hub-frontend build",
+    "build:services": "turbo run build --filter='./services/*'",
     "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:frontend": "pnpm --filter hockey-hub-frontend test",
+    "test:e2e": "pnpm --filter hockey-hub-frontend test:e2e",
+    "test:coverage": "turbo run test:coverage",
+    "test:ci": "turbo run test:ci",
+    "coverage": "pnpm run test:coverage && pnpm run coverage:merge && pnpm run coverage:report",
+    "coverage:merge": "node scripts/merge-coverage.js",
+    "coverage:report": "node scripts/generate-coverage-report.js",
+    "coverage:badge": "node scripts/generate-coverage-badge.js",
+    "coverage:summary": "node scripts/coverage-summary.js",
     "lint": "turbo run lint",
+    "lint:report": "turbo run lint -- --format json --output-file eslint-report.json",
+    "format:check": "prettier --check '**/*.{js,jsx,ts,tsx,json,md}'",
+    "format:write": "prettier --write '**/*.{js,jsx,ts,tsx,json,md}'",
+    "type-check": "turbo run type-check",
+    "analyze": "pnpm --filter hockey-hub-frontend analyze",
+    "start:services:e2e": "NODE_ENV=e2e turbo run start --filter='./services/*' --parallel",
+    "start:services:prod": "NODE_ENV=production turbo run start --filter='./services/*' --parallel",
     "install:all": "pnpm install",
     "claude:checkpoint": "node .claude/scripts/cli.js checkpoint",
     "claude:summary": "node .claude/scripts/cli.js summary",
@@ -20,6 +40,18 @@
     "claude:load": "node .claude/scripts/cli.js load"
   },
   "devDependencies": {
-    "turbo": "^1.11.3"
+    "turbo": "^1.11.3",
+    "nyc": "^15.1.0",
+    "istanbul-lib-coverage": "^3.2.2",
+    "istanbul-lib-report": "^3.0.1",
+    "istanbul-reports": "^3.1.6",
+    "lcov-parse": "^1.0.0",
+    "badge-maker": "^3.3.1"
+  },
+  "dependencies": {
+    "i18next": "^23.16.8",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-http-backend": "^3.0.2",
+    "react-i18next": "^14.1.3"
   }
 }

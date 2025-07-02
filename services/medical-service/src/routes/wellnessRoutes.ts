@@ -1,31 +1,27 @@
 import { Router, Request, Response } from 'express';
-
+import { authenticate, authorize, validationMiddleware, parsePaginationParams } from '@hockey-hub/shared-lib';
+import { CreateWellnessEntryDto } from '@hockey-hub/shared-lib';
+import { CachedMedicalService } from '../services/CachedMedicalService';
+import { CachedWellnessRepository } from '../repositories/CachedWellnessRepository';
 const router = Router();
+const medicalService = new CachedMedicalService();
+const wellnessRepository = new CachedWellnessRepository();
 
-// Temporary in-memory storage for wellness data
-const wellnessData: any[] = [];
+// Apply authentication to all routes
+router.use(authenticate);
 
 // Submit wellness entry
-router.post('/players/:playerId/wellness', async (req: Request, res: Response) => {
+router.post('/players/:playerId/wellness', authorize(['player', 'medical_staff', 'admin']), validationMiddleware(CreateWellnessEntryDto), async (req: Request, res: Response) => {
   try {
     const { playerId } = req.params;
-    const wellnessEntry = req.body;
-    
-    // Add timestamp and player ID
-    const entry = {
-      id: Date.now(),
-      playerId: parseInt(playerId),
-      timestamp: new Date().toISOString(),
-      ...wellnessEntry
+    const wellnessData = {
+      ...req.body,
+      playerId: parseInt(playerId)
     };
     
-    // Store in memory (in production, this would go to a database)
-    wellnessData.push(entry);
+    const entry = await medicalService.submitWellnessEntry(wellnessData);
     
-    // Log the submission
-    console.log(`Wellness submission for player ${playerId}:`, entry);
-    
-    res.json({
+    res.status(201).json({
       success: true,
       message: 'Wellness data submitted successfully',
       data: entry
@@ -34,22 +30,39 @@ router.post('/players/:playerId/wellness', async (req: Request, res: Response) =
     console.error('Error submitting wellness:', error);
     res.status(500).json({
       success: false,
-      message: 'Failed to submit wellness data'
+      message: error instanceof Error ? error.message : 'Failed to submit wellness data'
     });
   }
 });
 
-// Get wellness history for a player
-router.get('/players/:playerId/wellness', async (req: Request, res: Response) => {
+// Get wellness history for a player with pagination
+router.get('/players/:playerId/wellness', authorize(['player', 'parent', 'medical_staff', 'admin', 'coach']), async (req: Request, res: Response) => {
   try {
     const { playerId } = req.params;
-    const playerWellness = wellnessData.filter(
-      entry => entry.playerId === parseInt(playerId)
+    
+    // Parse pagination parameters
+    const paginationParams = parsePaginationParams(req.query, {
+      page: 1,
+      limit: 20,
+      maxLimit: 100
+    });
+    
+    const result = await wellnessRepository.findByPlayerIdPaginated(
+      parseInt(playerId),
+      paginationParams
     );
     
     res.json({
       success: true,
-      data: playerWellness
+      data: result.data,
+      meta: {
+        total: result.pagination.total,
+        page: result.pagination.page,
+        limit: result.pagination.limit,
+        totalPages: result.pagination.pages,
+        hasNext: result.pagination.hasNext,
+        hasPrev: result.pagination.hasPrev
+      }
     });
   } catch (error) {
     console.error('Error fetching wellness:', error);
@@ -61,22 +74,86 @@ router.get('/players/:playerId/wellness', async (req: Request, res: Response) =>
 });
 
 // Get latest wellness entry for a player
-router.get('/players/:playerId/wellness/latest', async (req: Request, res: Response) => {
+router.get('/players/:playerId/wellness/latest', authorize(['player', 'parent', 'medical_staff', 'admin', 'coach']), async (req: Request, res: Response) => {
   try {
     const { playerId } = req.params;
-    const playerWellness = wellnessData
-      .filter(entry => entry.playerId === parseInt(playerId))
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    const wellness = await wellnessRepository.findLatestByPlayerId(parseInt(playerId));
     
     res.json({
       success: true,
-      data: playerWellness[0] || null
+      data: wellness
     });
   } catch (error) {
     console.error('Error fetching latest wellness:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch latest wellness data'
+    });
+  }
+});
+
+// Get wellness data for date range with pagination
+router.get('/players/:playerId/wellness/range', authorize(['player', 'parent', 'medical_staff', 'admin', 'coach']), async (req: Request, res: Response) => {
+  try {
+    const { playerId } = req.params;
+    const { startDate, endDate } = req.query;
+    
+    if (!startDate || !endDate) {
+      return res.status(400).json({
+        success: false,
+        message: 'Start date and end date are required'
+      });
+    }
+    
+    // Parse pagination parameters
+    const paginationParams = parsePaginationParams(req.query, {
+      page: 1,
+      limit: 20,
+      maxLimit: 100
+    });
+    
+    const result = await wellnessRepository.findByPlayerIdAndDateRangePaginated(
+      parseInt(playerId),
+      new Date(startDate as string),
+      new Date(endDate as string),
+      paginationParams
+    );
+    
+    res.json({
+      success: true,
+      data: result.data,
+      meta: {
+        total: result.pagination.total,
+        page: result.pagination.page,
+        limit: result.pagination.limit,
+        totalPages: result.pagination.pages,
+        hasNext: result.pagination.hasNext,
+        hasPrev: result.pagination.hasPrev
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching wellness range:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch wellness data for date range'
+    });
+  }
+});
+
+// Get team wellness summary
+router.get('/team/wellness/summary', authorize(['medical_staff', 'admin', 'coach']), async (req: Request, res: Response) => {
+  try {
+    const summary = await wellnessRepository.getTeamWellnessSummary();
+    
+    res.json({
+      success: true,
+      data: summary
+    });
+  } catch (error) {
+    console.error('Error fetching team wellness summary:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch team wellness summary'
     });
   }
 });

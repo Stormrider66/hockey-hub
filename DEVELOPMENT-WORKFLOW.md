@@ -10,7 +10,7 @@ This guide outlines the development workflow, best practices, and procedures for
 
 Before starting development, ensure you have:
 
-- Node.js 18+ and npm/pnpm
+- Node.js 18+ and pnpm
 - PostgreSQL 14+
 - Redis 7+
 - Docker and Docker Compose
@@ -29,9 +29,6 @@ cd hockey-hub
 ```bash
 # Install all dependencies (using pnpm workspaces)
 pnpm install
-
-# Or if using npm
-npm install
 ```
 
 3. **Environment Setup**
@@ -52,16 +49,16 @@ done
 docker-compose up -d postgres redis
 
 # Run migrations for each service
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 5. **Verify Setup**
 ```bash
 # Run all tests
-npm test
+pnpm test
 
 # Start development environment
-npm run dev
+pnpm run dev
 ```
 
 ## Development Environment
@@ -71,7 +68,7 @@ npm run dev
 #### Option 1: Run Everything
 ```bash
 # Start all services and frontend
-npm run dev
+pnpm run dev
 
 # This starts:
 # - Frontend on http://localhost:3002
@@ -82,13 +79,13 @@ npm run dev
 #### Option 2: Run Specific Services
 ```bash
 # Frontend only
-cd apps/frontend && npm run dev
+cd apps/frontend && pnpm run dev
 
 # Specific service
-cd services/user-service && npm run dev
+cd services/user-service && pnpm run dev
 
 # Multiple services
-npm run dev:services user-service,medical-service
+pnpm run dev:services user-service,medical-service
 ```
 
 ### Docker Development
@@ -159,16 +156,16 @@ git checkout -b feature/new-feature
 3. **Run Quality Checks**
 ```bash
 # Lint code
-npm run lint
+pnpm run lint
 
 # Run tests
-npm test
+pnpm test
 
 # Type checking
-npm run type-check
+pnpm run type-check
 
 # Build check
-npm run build
+pnpm run build
 ```
 
 4. **Commit Changes**
@@ -205,39 +202,39 @@ git push -u origin feature/new-feature
 
 ```bash
 # Run ESLint
-npm run lint
+pnpm run lint
 
 # Fix auto-fixable issues
-npm run lint:fix
+pnpm run lint:fix
 
 # Lint specific directory
-npm run lint apps/frontend
+pnpm run lint apps/frontend
 ```
 
 ### Type Checking
 
 ```bash
 # Check TypeScript types
-npm run type-check
+pnpm run type-check
 
 # Watch mode
-npm run type-check:watch
+pnpm run type-check:watch
 ```
 
 ### Testing
 
 ```bash
 # Run all tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm run test:watch
+pnpm run test:watch
 
 # Run tests with coverage
-npm run test:coverage
+pnpm run test:coverage
 
 # Run specific test file
-npm test src/components/Button.test.tsx
+pnpm test src/components/Button.test.tsx
 ```
 
 ### Pre-commit Hooks
@@ -249,7 +246,7 @@ The project uses husky for pre-commit hooks:
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm test"
+      "pre-push": "pnpm test"
     }
   },
   "lint-staged": {
@@ -265,26 +262,26 @@ The project uses husky for pre-commit hooks:
 
 ```bash
 # Create new migration
-npm run migration:create -- --name AddUserTable
+pnpm run migration:create -- --name AddUserTable
 
 # Run migrations
-npm run migration:run
+pnpm run migration:run
 
 # Revert last migration
-npm run migration:revert
+pnpm run migration:revert
 
 # Show migration status
-npm run migration:show
+pnpm run migration:show
 ```
 
 ### Seeding
 
 ```bash
 # Seed development data
-npm run db:seed
+pnpm run db:seed
 
 # Reset database (drop, create, migrate, seed)
-npm run db:reset
+pnpm run db:reset
 ```
 
 ## API Development
@@ -329,7 +326,7 @@ curl -X POST http://localhost:3000/api/auth/login \
 1. **Create Component**
 ```bash
 # Generate component boilerplate
-npm run generate:component MyComponent
+pnpm run generate:component MyComponent
 ```
 
 2. **Add Stories**
@@ -355,10 +352,10 @@ describe('MyComponent', () => {
 
 ```bash
 # Generate new Redux slice
-npm run generate:slice featureName
+pnpm run generate:slice featureName
 
 # Generate new API slice
-npm run generate:api serviceName
+pnpm run generate:api serviceName
 ```
 
 ## Debugging
@@ -405,13 +402,13 @@ logger.error('Database error', { error: err });
 
 ```bash
 # Bundle size analysis
-npm run analyze
+pnpm run analyze
 
 # Lighthouse CI
-npm run lighthouse
+pnpm run lighthouse
 
 # Performance profiling
-npm run profile
+pnpm run profile
 ```
 
 ### Database Query Monitoring
@@ -430,13 +427,13 @@ npm run profile
 
 ```bash
 # Full build test
-npm run build:all
+pnpm run build:all
 
 # Docker build test
 docker-compose build
 
 # Production environment test
-NODE_ENV=production npm start
+NODE_ENV=production pnpm start
 ```
 
 ### Security Checklist
@@ -477,10 +474,10 @@ docker-compose restart postgres
 ```bash
 # Clear node_modules and reinstall
 rm -rf node_modules
-npm install
+pnpm install
 
 # Clear build cache
-npm run clean
+pnpm run clean
 ```
 
 ## Resources

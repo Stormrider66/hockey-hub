@@ -13,12 +13,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { 
   Calendar, MessageCircle, AlertCircle, Check, ChevronRight, Map, Clock,
   UserCheck, UserX, Phone, Mail, FileText, Info, TrendingUp, Trophy,
-  Activity, Users, DollarSign, Download, Share2
+  Activity, Users, DollarSign, Download, Share2, CalendarDays
 } from 'lucide-react';
 import { 
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   BarChart, Bar, PieChart, Pie, Cell
 } from 'recharts';
+import ParentCalendarView from '@/features/parent/calendar/ParentCalendarView';
 
 export default function ParentDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -164,9 +165,10 @@ export default function ParentDashboard() {
       </div>
       
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="grid w-full grid-cols-6">
+        <TabsList className="grid w-full grid-cols-7">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="schedule">Schedule</TabsTrigger>
+          <TabsTrigger value="calendar">Calendar</TabsTrigger>
           <TabsTrigger value="performance">Performance</TabsTrigger>
           <TabsTrigger value="absences">Absences</TabsTrigger>
           <TabsTrigger value="payments">Payments</TabsTrigger>
@@ -385,6 +387,11 @@ export default function ParentDashboard() {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+        
+        {/* Calendar Tab */}
+        <TabsContent value="calendar" className="h-[800px]">
+          <ParentCalendarView />
         </TabsContent>
         
         {/* Performance Tab */}

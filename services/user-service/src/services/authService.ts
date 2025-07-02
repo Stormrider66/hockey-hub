@@ -1,9 +1,12 @@
 import { AppDataSource } from '../config/database';
 import { User, UserRole } from '../models/User';
+import { PasswordResetToken } from '../entities/PasswordResetToken';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
+import { PasswordValidator } from '../utils/passwordValidator';
 
 interface LoginCredentials {
   email: string;
@@ -27,8 +30,10 @@ interface TokenPayload {
 
 export class AuthService {
   private userRepository = AppDataSource.getRepository(User);
+  private passwordResetRepository = AppDataSource.getRepository(PasswordResetToken);
   private jwtPrivateKey: string;
   private jwtPublicKey: string;
+  private passwordValidator = new PasswordValidator();
 
   constructor() {
     // Load JWT keys
@@ -199,5 +204,124 @@ export class AuthService {
     return jwt.verify(token, this.jwtPublicKey, {
       algorithms: ['RS256']
     }) as TokenPayload;
+  }
+
+  async forgotPassword(email: string) {
+    const user = await this.userRepository.findOne({ 
+      where: { email } 
+    });
+
+    // Don't reveal if user exists or not
+    if (!user) {
+      return;
+    }
+
+    // Delete any existing reset tokens for this user
+    await this.passwordResetRepository.delete({ userId: user.id });
+
+    // Generate secure reset token
+    const token = crypto.randomBytes(32).toString('hex');
+    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+    // Create reset token with 1 hour expiry
+    const resetToken = this.passwordResetRepository.create({
+      token: hashedToken,
+      userId: user.id,
+      expiresAt: new Date(Date.now() + 3600000), // 1 hour
+      ipAddress: '', // Should be passed from controller
+      userAgent: '' // Should be passed from controller
+    });
+
+    await this.passwordResetRepository.save(resetToken);
+
+    // TODO: Send email with reset link containing the unhashed token
+    // For now, just log it (remove in production)
+    console.log(`Password reset token for ${email}: ${token}`);
+    
+    // In production, this would send an email like:
+    // await emailService.sendPasswordResetEmail(user.email, token);
+  }
+
+  async resetPassword(token: string, newPassword: string) {
+    // Hash the provided token to match stored version
+    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
+    // Find valid reset token
+    const resetToken = await this.passwordResetRepository.findOne({
+      where: {
+        token: hashedToken,
+        used: false
+      },
+      relations: ['user']
+    });
+
+    if (!resetToken) {
+      throw new Error('Invalid or expired reset token');
+    }
+
+    // Check if token has expired
+    if (resetToken.expiresAt < new Date()) {
+      throw new Error('Reset token has expired');
+    }
+
+    // Validate new password
+    const passwordValidation = this.passwordValidator.validate(newPassword);
+    if (!passwordValidation.isValid) {
+      throw new Error(`Password validation failed: ${passwordValidation.errors.join(', ')}`);
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update user password
+    const user = resetToken.user;
+    user.password = hashedPassword;
+    await this.userRepository.save(user);
+
+    // Mark token as used
+    resetToken.used = true;
+    resetToken.usedAt = new Date();
+    await this.passwordResetRepository.save(resetToken);
+
+    // Invalidate all refresh tokens for security
+    user.refreshToken = undefined;
+    await this.userRepository.save(user);
+  }
+
+  async changePassword(userId: number, currentPassword: string, newPassword: string) {
+    const user = await this.userRepository.findOne({ 
+      where: { id: userId } 
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // Verify current password
+    const isValidPassword = await bcrypt.compare(currentPassword, user.password);
+    if (!isValidPassword) {
+      throw new Error('Current password is incorrect');
+    }
+
+    // Validate new password
+    const passwordValidation = this.passwordValidator.validate(newPassword);
+    if (!passwordValidation.isValid) {
+      throw new Error(`Password validation failed: ${passwordValidation.errors.join(', ')}`);
+    }
+
+    // Make sure new password is different from current
+    const isSamePassword = await bcrypt.compare(newPassword, user.password);
+    if (isSamePassword) {
+      throw new Error('New password must be different from current password');
+    }
+
+    // Hash and save new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    
+    // Invalidate refresh token for security
+    user.refreshToken = undefined;
+    
+    await this.userRepository.save(user);
   }
 }

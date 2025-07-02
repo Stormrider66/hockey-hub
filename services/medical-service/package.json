@@ -7,7 +7,15 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "jest",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "migration:run": "node run-migrations.js",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate -d src/config/typeorm.config.ts",
+    "migration:create": "typeorm-ts-node-commonjs migration:create",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/typeorm.config.ts",
+    "migration:show": "typeorm-ts-node-commonjs migration:show -d src/config/typeorm.config.ts",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -15,6 +23,7 @@
     "helmet": "^7.0.0",
     "pg": "^8.11.3",
     "typeorm": "^0.3.17",
+    "ioredis": "^5.3.2",
     "joi": "^17.11.0",
     "aws-sdk": "^2.1500.0",
     "multer": "^1.4.5-lts.1",

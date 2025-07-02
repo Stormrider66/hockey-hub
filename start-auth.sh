@@ -10,7 +10,7 @@ lsof -ti:3001 | xargs kill -9 2>/dev/null
 # Start user service in background
 echo "Starting User Service on port 3001..."
 cd services/user-service
-DB_HOST=localhost DB_PORT=5432 DB_USER=postgres DB_PASSWORD=hockey_hub_password DB_NAME=hockey_hub_users npm run dev &
+DB_HOST=localhost DB_PORT=5432 DB_USER=postgres DB_PASSWORD=hockey_hub_password DB_NAME=hockey_hub_users pnpm run dev &
 USER_SERVICE_PID=$!
 
 # Wait for user service to start
@@ -19,7 +19,7 @@ sleep 5
 # Start API gateway in background
 echo "Starting API Gateway on port 3000..."
 cd ../api-gateway
-USER_SERVICE_URL=http://localhost:3001 npm run dev &
+USER_SERVICE_URL=http://localhost:3001 pnpm run dev &
 API_GATEWAY_PID=$!
 
 echo ""

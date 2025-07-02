@@ -1,0 +1,107 @@
+{{#> layouts/base}}
+{{#*inline "content"}}
+<h1>Welcome to Hockey Hub, {{firstName}}! 🏒</h1>
+
+<p>We're thrilled to have you join the Hockey Hub community! You're now part of the most comprehensive hockey management platform designed to streamline every aspect of your hockey organization.</p>
+
+<div class="alert alert-success">
+    <strong>Your account has been successfully created!</strong><br>
+    Role: <strong>{{role}}</strong><br>
+    Organization: <strong>{{organizationName}}</strong>
+</div>
+
+<h2>Get Started in 3 Easy Steps</h2>
+
+<div class="list-item">
+    <strong>1. Complete Your Profile</strong>
+    <p>Add your photo, contact information, and preferences to personalize your experience.</p>
+</div>
+
+<div class="list-item">
+    <strong>2. Explore Your Dashboard</strong>
+    <p>Your {{role}} dashboard gives you quick access to all the tools and information you need.</p>
+</div>
+
+<div class="list-item">
+    <strong>3. Connect with Your Team</strong>
+    <p>Start collaborating with coaches, players, and staff through our integrated communication tools.</p>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{dashboardUrl}}" class="button">Go to Your Dashboard</a>
+</div>
+
+<h2>What You Can Do with Hockey Hub</h2>
+
+{{#ifEquals role "Player"}}
+<ul style="list-style: none; padding: 0;">
+    <li style="padding: 8px 0;">✓ Track your training progress and performance metrics</li>
+    <li style="padding: 8px 0;">✓ View your schedule and RSVP to events</li>
+    <li style="padding: 8px 0;">✓ Access workout plans and training materials</li>
+    <li style="padding: 8px 0;">✓ Monitor your wellness and recovery</li>
+    <li style="padding: 8px 0;">✓ Communicate with coaches and teammates</li>
+</ul>
+{{/ifEquals}}
+
+{{#ifEquals role "Coach"}}
+<ul style="list-style: none; padding: 0;">
+    <li style="padding: 8px 0;">✓ Create and manage practice plans</li>
+    <li style="padding: 8px 0;">✓ Track player performance and development</li>
+    <li style="padding: 8px 0;">✓ Schedule games, practices, and events</li>
+    <li style="padding: 8px 0;">✓ Analyze team statistics and trends</li>
+    <li style="padding: 8px 0;">✓ Communicate with players and parents</li>
+</ul>
+{{/ifEquals}}
+
+{{#ifEquals role "Parent"}}
+<ul style="list-style: none; padding: 0;">
+    <li style="padding: 8px 0;">✓ View your child's schedule and activities</li>
+    <li style="padding: 8px 0;">✓ Track attendance and performance</li>
+    <li style="padding: 8px 0;">✓ Manage payments and registrations</li>
+    <li style="padding: 8px 0;">✓ Communicate with coaches and staff</li>
+    <li style="padding: 8px 0;">✓ Access important team information</li>
+</ul>
+{{/ifEquals}}
+
+<div class="divider"></div>
+
+<h2>Need Help?</h2>
+
+<p>Our support team is here to help you get the most out of Hockey Hub:</p>
+
+<div style="background-color: #f9fafb; padding: 20px; border-radius: 6px; margin: 20px 0;">
+    <p style="margin: 5px 0;"><strong>📧 Email:</strong> support@hockeyhub.com</p>
+    <p style="margin: 5px 0;"><strong>💬 Live Chat:</strong> Available in your dashboard</p>
+    <p style="margin: 5px 0;"><strong>📚 Help Center:</strong> <a href="{{helpUrl}}">help.hockeyhub.com</a></p>
+</div>
+
+<h2>Quick Tips</h2>
+
+<div class="alert alert-info">
+    <strong>Mobile App Available!</strong> Download the Hockey Hub mobile app for iOS and Android to stay connected on the go.
+    <div style="margin-top: 10px;">
+        <a href="{{appStoreUrl}}" style="margin-right: 10px;">
+            <img src="{{baseUrl}}/images/app-store.png" alt="Download on App Store" style="height: 40px;">
+        </a>
+        <a href="{{playStoreUrl}}">
+            <img src="{{baseUrl}}/images/google-play.png" alt="Get it on Google Play" style="height: 40px;">
+        </a>
+    </div>
+</div>
+
+<p style="margin-top: 30px;">Once again, welcome to Hockey Hub! We're excited to be part of your hockey journey.</p>
+
+<p>Best regards,<br>
+<strong>The Hockey Hub Team</strong></p>
+
+{{#if temporaryPassword}}
+<div class="alert alert-warning" style="margin-top: 30px;">
+    <strong>Important Security Notice:</strong><br>
+    A temporary password has been set for your account. Please log in and change it immediately for security purposes.
+    <div style="margin-top: 15px;">
+        <a href="{{changePasswordUrl}}" class="button button-secondary">Change Password Now</a>
+    </div>
+</div>
+{{/if}}
+{{/inline}}
+{{/layouts/base}}

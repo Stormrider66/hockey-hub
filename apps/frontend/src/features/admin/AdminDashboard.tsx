@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from '@hockey-hub/translations';
 import { useGetAdminOverviewQuery } from "@/store/api/adminApi";
 import {
   Card,
@@ -219,6 +220,7 @@ const databaseMetrics = {
 };
 
 export default function AdminDashboard() {
+  const { t } = useTranslation(['admin', 'common']);
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedService, setSelectedService] = useState(null);
   const { data: apiData, isLoading } = useGetAdminOverviewQuery();
@@ -280,7 +282,7 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Avg Response Time</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('admin:system.responseTime')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">68ms</div>
@@ -293,17 +295,17 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Error Rate</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('admin:system.errorRate')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">0.03%</div>
-            <p className="text-xs text-muted-foreground mt-1">Within SLA</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('admin:system.withinSLA')}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Database Size</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('admin:system.databaseSize')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{databaseMetrics.size}</div>
@@ -316,8 +318,8 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>System Performance (24h)</CardTitle>
-            <CardDescription>CPU, Memory usage and request volume</CardDescription>
+            <CardTitle>{t('admin:system.systemPerformance24h')}</CardTitle>
+            <CardDescription>{t('admin:system.cpuMemoryUsage')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="h-80">
@@ -340,8 +342,8 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Service Health Matrix</CardTitle>
-            <CardDescription>Real-time service status and metrics</CardDescription>
+            <CardTitle>{t('admin:system.serviceHealthMatrix')}</CardTitle>
+            <CardDescription>{t('admin:system.realTimeServiceStatus')}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">

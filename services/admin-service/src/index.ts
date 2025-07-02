@@ -2,6 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import { connectToDatabase } from './config/database';
+import { errorHandler } from '@hockey-hub/shared-lib/middleware/errorHandler';
+import { requestLogger } from '@hockey-hub/shared-lib/middleware/logging';
+import dashboardRoutes from './routes/dashboardRoutes';
 
 dotenv.config();
 
@@ -12,32 +16,41 @@ const PORT = process.env.PORT || 3009;
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(requestLogger);
 
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', service: 'admin-service', port: PORT });
 });
 
-// System config routes
+// Routes
+app.use('/api/admin', dashboardRoutes);
+
+// Legacy routes (for backward compatibility)
 app.get('/api/admin/config', (req, res) => {
   res.json({ success: true, data: { config: {} } });
 });
 
-// System health routes
 app.get('/api/admin/health/services', (req, res) => {
-  res.json({ 
-    success: true, 
-    data: { 
-      services: {
-        'user-service': 'healthy',
-        'calendar-service': 'healthy',
-        'training-service': 'healthy'
-      } 
-    } 
-  });
+  res.redirect('/api/admin/health/services');
 });
 
+// Error handling
+app.use(errorHandler);
+
 // Start server
-app.listen(PORT, () => {
-  console.log(`⚙️ Admin Service running on port ${PORT}`);
-});
+async function startServer() {
+  try {
+    await connectToDatabase();
+    
+    app.listen(PORT, () => {
+      console.log(`⚙️ Admin Service running on port ${PORT}`);
+      console.log(`📦 Redis caching enabled for admin data`);
+    });
+  } catch (error) {
+    console.error('Failed to start admin service:', error);
+    process.exit(1);
+  }
+}
+
+startServer();

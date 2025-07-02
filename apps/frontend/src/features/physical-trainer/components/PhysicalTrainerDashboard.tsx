@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslation } from '@hockey-hub/translations';
 import { DashboardHeader } from "@/components/shared/DashboardHeader";
 // import { Provider } from 'react-redux';
 // import { configureStore } from '@reduxjs/toolkit';
@@ -24,7 +25,7 @@ import {
   Activity, Calendar, Users, TrendingUp, Dumbbell, Clock, 
   Play, Library, TestTube2, BarChart3, User, FileText,
   Plus, ChevronRight, Timer, Heart, Zap, AlertCircle,
-  CheckCircle2, ArrowUp, ArrowDown, Minus, ArrowLeft
+  CheckCircle2, ArrowUp, ArrowDown, Minus, ArrowLeft, X
 } from 'lucide-react';
 import { useTestData } from '@/hooks/useTestData';
 import PhysicalAnalysisCharts from './PhysicalAnalysisCharts';
@@ -32,6 +33,9 @@ import PhysicalTestingForm from './PhysicalTestingForm';
 import LaunchSessionButton from './LaunchSessionButton';
 import TrainingSessionViewer from './TrainingSessionViewer';
 import CreateSessionModal from './CreateSessionModal';
+import CalendarWidget from '@/features/calendar/components/CalendarWidget';
+import TrainerCalendarView from './TrainerCalendarView';
+import SessionTemplates from './SessionTemplates';
 import { 
   useGetSessionsQuery, 
   useGetExercisesQuery, 
@@ -52,6 +56,7 @@ import {
 // });
 
 export default function PhysicalTrainerDashboard() {
+  const { t } = useTranslation(['physicalTrainer', 'common']);
   const [activeTab, setActiveTab] = useState('overview');
   const [showSessionViewer, setShowSessionViewer] = useState(false);
   const [currentSession, setCurrentSession] = useState<{ team: string; type: string; teamId: string } | null>(null);
@@ -207,33 +212,33 @@ export default function PhysicalTrainerDashboard() {
       <div className="grid grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Today's Sessions</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('physicalTrainer:dashboard.quickStats.todaysSessions')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{todaysSessions.length}</div>
             <p className="text-xs text-muted-foreground mt-1">
-              {todaysSessions.reduce((acc, s) => acc + s.players, 0)} total players
+              {t('physicalTrainer:dashboard.quickStats.totalPlayers', { count: todaysSessions.reduce((acc, s) => acc + s.players, 0) })}
             </p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('physicalTrainer:dashboard.quickStats.activeNow')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {todaysSessions.filter(s => s.status === 'active').reduce((acc, s) => acc + s.players, 0)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {todaysSessions.find(s => s.status === 'active')?.team || 'No active session'}
+              {todaysSessions.find(s => s.status === 'active')?.team || t('physicalTrainer:dashboard.quickStats.noActiveSession')}
             </p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Player Readiness</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('physicalTrainer:dashboard.quickStats.playerReadiness')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-2">
@@ -243,20 +248,20 @@ export default function PhysicalTrainerDashboard() {
                 +5%
               </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Team average</p>
+            <p className="text-xs text-muted-foreground mt-1">{t('physicalTrainer:dashboard.quickStats.teamAverage')}</p>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Completed Today</CardTitle>
+            <CardTitle className="text-sm font-medium">{t('physicalTrainer:dashboard.quickStats.completedToday')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {todaysSessions.filter(s => s.status === 'completed').length}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              {todaysSessions.filter(s => s.status === 'upcoming').length} upcoming
+              {t('physicalTrainer:dashboard.quickStats.upcoming', { count: todaysSessions.filter(s => s.status === 'upcoming').length })}
             </p>
           </CardContent>
         </Card>
@@ -266,10 +271,10 @@ export default function PhysicalTrainerDashboard() {
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
-            <CardTitle>Today's Training Sessions</CardTitle>
+            <CardTitle>{t('physicalTrainer:dashboard.todaySessions')}</CardTitle>
             <Button size="sm" onClick={() => setShowCreateModal(true)}>
               <Plus className="h-4 w-4 mr-1" />
-              New Session
+              {t('physicalTrainer:sessions.newSession')}
             </Button>
           </div>
         </CardHeader>
@@ -300,7 +305,7 @@ export default function PhysicalTrainerDashboard() {
                     session.intensity === 'high' ? 'destructive' : 
                     session.intensity === 'medium' ? 'default' : 'secondary'
                   }>
-                    {session.intensity} intensity
+                    {t('physicalTrainer:sessions.intensity', { level: t(`physicalTrainer:training.intensity.${session.intensity}`) })}
                   </Badge>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Users className="h-4 w-4" />
@@ -309,7 +314,7 @@ export default function PhysicalTrainerDashboard() {
                   {session.status === 'completed' ? (
                     <Badge variant="outline" className="text-xs">
                       <CheckCircle2 className="h-3 w-3 mr-1" />
-                      Completed
+                      {t('physicalTrainer:sessions.status.completed')}
                     </Badge>
                   ) : session.status === 'active' ? (
                     <LaunchSessionButton
@@ -337,6 +342,13 @@ export default function PhysicalTrainerDashboard() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Calendar Widget */}
+      <CalendarWidget 
+        organizationId="org-123" 
+        userId="trainer-123"
+        days={7}
+      />
 
       {/* Player Readiness Overview */}
       <Card>
@@ -404,7 +416,10 @@ export default function PhysicalTrainerDashboard() {
               <CardDescription>Create, schedule and manage physical training sessions</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline">
+              <Button 
+                variant="outline"
+                onClick={() => setActiveTab('calendar')}
+              >
                 <Calendar className="h-4 w-4 mr-2" />
                 Schedule
               </Button>
@@ -695,32 +710,48 @@ export default function PhysicalTrainerDashboard() {
     </div>
   );
 
+  const renderCalendarTab = () => (
+    <div className="h-[calc(100vh-16rem)]">
+      <TrainerCalendarView
+        organizationId="org-123"
+        userId="trainer-123"
+        teamId={undefined}
+      />
+    </div>
+  );
+
   const renderTemplatesTab = () => {
-    const displayTemplates = templates || sessionTemplates;
-    
-    const handleDeleteTemplate = async (templateId: string) => {
-      if (confirm('Are you sure you want to delete this template?')) {
-        try {
-          await deleteTemplate(templateId).unwrap();
-        } catch (error) {
-          console.error('Failed to delete template:', error);
-        }
-      }
+    const handleApplyTemplate = (template: any, date?: Date, time?: string) => {
+      // Create a new session based on the template
+      const sessionData = {
+        name: template.name,
+        type: template.type,
+        duration: template.duration,
+        description: template.description,
+        exercises: template.exercises,
+        date: date || new Date(),
+        time: time || '09:00',
+        targetPlayers: template.targetPlayers,
+      };
+      
+      // Open the create modal with pre-filled data
+      setShowCreateModal(true);
+      // You could also pass this data to the modal through a state
+      console.log('Applying template:', sessionData);
     };
 
     return (
       <div className="space-y-6">
+        <SessionTemplates onApplyTemplate={handleApplyTemplate} />
+        
+        {/* Legacy template display - can be removed once API is fully integrated */}
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
               <div>
-                <CardTitle>Session Templates</CardTitle>
-                <CardDescription>Pre-built training sessions for different objectives</CardDescription>
+                <CardTitle>Legacy Templates</CardTitle>
+                <CardDescription>Previous template system (will be migrated)</CardDescription>
               </div>
-              <Button>
-                <Plus className="h-4 w-4 mr-2" />
-                Create Template
-              </Button>
             </div>
           </CardHeader>
           <CardContent>
@@ -923,26 +954,30 @@ export default function PhysicalTrainerDashboard() {
       <div className="p-6 max-w-7xl mx-auto">
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-6 w-full">
+        <TabsList className="grid grid-cols-7 w-full">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <Activity className="h-4 w-4" />
             Overview
           </TabsTrigger>
+          <TabsTrigger value="calendar" className="flex items-center gap-2">
+            <Calendar className="h-4 w-4" />
+            Calendar
+          </TabsTrigger>
           <TabsTrigger value="sessions" className="flex items-center gap-2">
             <Dumbbell className="h-4 w-4" />
-            Training Sessions
+            Sessions
           </TabsTrigger>
           <TabsTrigger value="library" className="flex items-center gap-2">
             <Library className="h-4 w-4" />
-            Exercise Library
+            Exercises
           </TabsTrigger>
           <TabsTrigger value="testing" className="flex items-center gap-2">
             <TestTube2 className="h-4 w-4" />
-            Testing & Analytics
+            Testing
           </TabsTrigger>
           <TabsTrigger value="status" className="flex items-center gap-2">
             <User className="h-4 w-4" />
-            Player Status
+            Players
           </TabsTrigger>
           <TabsTrigger value="templates" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
@@ -952,6 +987,10 @@ export default function PhysicalTrainerDashboard() {
 
         <TabsContent value="overview" className="mt-6">
           {renderOverviewTab()}
+        </TabsContent>
+
+        <TabsContent value="calendar" className="mt-6">
+          {renderCalendarTab()}
         </TabsContent>
 
         <TabsContent value="sessions" className="mt-6">
