@@ -1,0 +1,142 @@
+{
+  "title": "Notifications",
+  "markAllRead": "Mark all as read",
+  "clearAll": "Clear all",
+  "settings": "Notification Settings",
+  "empty": "No notifications",
+  "loadMore": "Load more",
+  "categories": {
+    "all": "All",
+    "unread": "Unread",
+    "system": "System",
+    "team": "Team",
+    "training": "Training",
+    "medical": "Medical",
+    "calendar": "Calendar",
+    "payment": "Payment",
+    "communication": "Messages"
+  },
+  "types": {
+    "system": {
+      "welcome": "Welcome to Hockey Hub!",
+      "profileComplete": "Your profile is now complete",
+      "passwordChanged": "Your password has been changed successfully",
+      "accountVerified": "Your account has been verified",
+      "maintenanceScheduled": "System maintenance scheduled for {{date}}"
+    },
+    "team": {
+      "addedToTeam": "You've been added to {{teamName}}",
+      "removedFromTeam": "You've been removed from {{teamName}}",
+      "roleChanged": "Your role has been changed to {{role}}",
+      "teamAnnouncement": "Team announcement from {{sender}}",
+      "rosterUpdate": "Roster has been updated"
+    },
+    "training": {
+      "sessionScheduled": "Training session scheduled for {{date}}",
+      "sessionCancelled": "Training session on {{date}} has been cancelled",
+      "sessionReminder": "Training session starts in {{time}}",
+      "workoutAssigned": "New workout assigned: {{workoutName}}",
+      "workoutCompleted": "{{player}} completed workout: {{workoutName}}",
+      "performanceReport": "Your performance report is ready"
+    },
+    "medical": {
+      "appointmentScheduled": "Medical appointment scheduled for {{date}}",
+      "appointmentReminder": "Medical appointment in {{time}}",
+      "injuryUpdate": "Injury status updated for {{player}}",
+      "clearanceGranted": "{{player}} has been cleared to play",
+      "wellnessReminder": "Please submit your daily wellness check",
+      "treatmentComplete": "Treatment session completed"
+    },
+    "calendar": {
+      "eventCreated": "New event: {{eventName}}",
+      "eventUpdated": "Event updated: {{eventName}}",
+      "eventCancelled": "Event cancelled: {{eventName}}",
+      "eventReminder": "{{eventName}} starts in {{time}}",
+      "rsvpRequested": "Please RSVP for {{eventName}}",
+      "scheduleChange": "Schedule change for {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "New invoice available: {{amount}}",
+      "paymentReceived": "Payment received: {{amount}}",
+      "paymentDue": "Payment due: {{amount}} by {{date}}",
+      "paymentOverdue": "Overdue payment: {{amount}}",
+      "paymentFailed": "Payment failed for {{amount}}"
+    },
+    "communication": {
+      "newMessage": "New message from {{sender}}",
+      "mentionedInChat": "{{sender}} mentioned you in {{channel}}",
+      "addedToGroup": "You've been added to {{groupName}}",
+      "missedCall": "Missed call from {{caller}}",
+      "voicemail": "New voicemail from {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Game scheduled: {{opponent}} on {{date}}",
+      "gameReminder": "Game vs {{opponent}} starts in {{time}}",
+      "lineupPosted": "Game lineup has been posted",
+      "gameResult": "Game result: {{result}} vs {{opponent}}",
+      "statsAvailable": "Your game stats are now available"
+    },
+    "equipment": {
+      "fittingScheduled": "Equipment fitting scheduled for {{date}}",
+      "maintenanceDue": "Equipment maintenance due for {{equipment}}",
+      "orderReady": "Your equipment order is ready for pickup",
+      "returnReminder": "Please return {{equipment}} by {{date}}"
+    }
+  },
+  "actions": {
+    "view": "View",
+    "dismiss": "Dismiss",
+    "accept": "Accept",
+    "decline": "Decline",
+    "respond": "Respond",
+    "schedule": "Schedule",
+    "pay": "Pay Now",
+    "download": "Download",
+    "viewDetails": "View Details"
+  },
+  "preferences": {
+    "title": "Notification Preferences",
+    "channels": {
+      "email": "Email",
+      "push": "Push Notifications",
+      "inApp": "In-App",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Immediate",
+      "hourly": "Hourly Digest",
+      "daily": "Daily Digest",
+      "weekly": "Weekly Summary"
+    },
+    "quiet": {
+      "title": "Quiet Hours",
+      "enabled": "Enable quiet hours",
+      "from": "From",
+      "to": "To",
+      "days": "Days"
+    },
+    "types": {
+      "training": "Training Updates",
+      "medical": "Medical Reminders",
+      "calendar": "Calendar Events",
+      "team": "Team Announcements",
+      "chat": "Chat Messages",
+      "payment": "Payment Reminders",
+      "system": "System Notifications"
+    }
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}} minutes ago",
+    "hoursAgo": "{{count}} hours ago",
+    "yesterday": "Yesterday",
+    "daysAgo": "{{count}} days ago",
+    "weeksAgo": "{{count}} weeks ago"
+  },
+  "status": {
+    "sent": "Sent",
+    "delivered": "Delivered",
+    "read": "Read",
+    "failed": "Failed to send"
+  }
+}

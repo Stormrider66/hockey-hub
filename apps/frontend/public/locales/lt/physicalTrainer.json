@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Fizinio rengimo trenerio valdymo skydelis",
+    "subtitle": "Žaidėjų fizinio pasirengimo ir treniruočių valdymas",
+    "welcome": "Sveiki, {{name}}",
+    "todaySessions": "Šiandienos treniruotės",
+    "playerProgress": "Žaidėjų progreso apžvalga",
+    "quickStats": {
+      "todaysSessions": "Šiandienos užsiėmimai",
+      "activeNow": "Dabar aktyvūs",
+      "playerReadiness": "Žaidėjų pasiruošimas",
+      "completedToday": "Užbaigta šiandien",
+      "totalPlayers": "{{count}} viso žaidėjų",
+      "noActiveSession": "Nėra aktyvaus užsiėmimo",
+      "teamAverage": "Komandos vidurkis",
+      "upcoming": "{{count}} artėjančių"
+    }
+  },
+  "training": {
+    "title": "Treniruočių programos",
+    "create": "Sukurti programą",
+    "templates": "Treniruočių šablonai",
+    "active": "Aktyvios programos",
+    "scheduled": "Suplanuoti užsiėmimai",
+    "history": "Treniruočių istorija",
+    "types": {
+      "strength": "Jėgos treniruotė",
+      "cardio": "Kardio treniruotė",
+      "flexibility": "Lankstumas",
+      "agility": "Vikrumas",
+      "recovery": "Atkūrimas",
+      "rehabilitation": "Reabilitacija",
+      "testing": "Fizinio pasirengimo testavimas"
+    },
+    "intensity": {
+      "low": "Žemas",
+      "medium": "Vidutinis",
+      "moderate": "Nuosaikus",
+      "high": "Aukštas",
+      "maximum": "Maksimalus"
+    }
+  },
+  "sessions": {
+    "title": "Treniruočių užsiėmimai",
+    "schedule": "Planuoti užsiėmimą",
+    "current": "Dabartinis užsiėmimas",
+    "upcoming": "Artėjantys užsiėmimai",
+    "completed": "Užbaigti užsiėmimai",
+    "cancel": "Atšaukti užsiėmimą",
+    "reschedule": "Perplanuoti",
+    "duration": "Užsiėmimo trukmė",
+    "participants": "Dalyviai",
+    "newSession": "Naujas užsiėmimas",
+    "intensity": "{{level}} intensyvumas",
+    "status": {
+      "active": "Aktyvus",
+      "completed": "Užbaigta",
+      "upcoming": "Artėjantis"
+    },
+    "launch": "Pradėti",
+    "viewDetails": "Peržiūrėti detales"
+  },
+  "exercises": {
+    "title": "Pratimų biblioteka",
+    "search": "Ieškoti pratimų",
+    "categories": "Pratimų kategorijos",
+    "create": "Pridėti pratimą",
+    "favorite": "Mėgstami pratimai",
+    "equipment": "Reikalinga įranga",
+    "instructions": "Instrukcijos",
+    "video": "Video pamoka",
+    "categories": {
+      "upperBody": "Viršutinė kūno dalis",
+      "lowerBody": "Apatinė kūno dalis",
+      "core": "Liemuo",
+      "fullBody": "Visas kūnas",
+      "skating": "Čiuožimo specifiniai",
+      "shooting": "Metimo galia",
+      "balance": "Balansas ir stabilumas",
+      "plyometric": "Pliometriniai"
+    }
+  },
+  "workouts": {
+    "title": "Treniruočių kūrimas",
+    "create": "Sukurti treniruotę",
+    "edit": "Redaguoti treniruotę",
+    "save": "Išsaugoti treniruotę",
+    "templates": "Treniruočių šablonai",
+    "custom": "Individualios treniruotės",
+    "assign": "Priskirti žaidėjams",
+    "components": {
+      "warmup": "Apšilimas",
+      "main": "Pagrindinė dalis",
+      "cooldown": "Atvėsimas",
+      "stretching": "Tempimas"
+    },
+    "parameters": {
+      "sets": "Serijos",
+      "reps": "Pakartojimai",
+      "duration": "Trukmė",
+      "rest": "Poilsio laikas",
+      "weight": "Svoris",
+      "distance": "Atstumas",
+      "speed": "Greitis"
+    }
+  },
+  "testing": {
+    "title": "Fizinio pasirengimo testavimas",
+    "schedule": "Planuoti testą",
+    "protocols": "Testų protokolai",
+    "results": "Testų rezultatai",
+    "history": "Testavimo istorija",
+    "compare": "Palyginti rezultatus",
+    "benchmarks": "Komandos normatyvai",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprinto testas",
+      "agility": "Vikrumo testas",
+      "strength": "Jėgos testas",
+      "flexibility": "Lankstumo testas",
+      "balance": "Balanso testas",
+      "endurance": "Ištvermės testas",
+      "powerOutput": "Galios išeiga"
+    }
+  },
+  "monitoring": {
+    "title": "Rezultatų stebėjimas",
+    "metrics": "Rezultatų rodikliai",
+    "trends": "Progreso tendencijos",
+    "alerts": "Rezultatų įspėjimai",
+    "load": "Treniruočių krūvis",
+    "recovery": "Atkūrimo būsena",
+    "readiness": "Treniruočių pasiruošimas",
+    "metrics": {
+      "hrv": "Širdies ritmo variabilumas",
+      "restingHR": "Ramybės pulso dažnis",
+      "weight": "Kūno svoris",
+      "bodyFat": "Riebalų %",
+      "muscleMass": "Raumenų masė",
+      "power": "Galios išeiga",
+      "speed": "Greitis",
+      "endurance": "Ištvermė"
+    }
+  },
+  "programs": {
+    "title": "Treniruočių programos",
+    "inSeason": "Sezono programa",
+    "offSeason": "Tarpsezoninė programa",
+    "preseason": "Priešsezoninė programa",
+    "rehabilitation": "Reabilitacijos programa",
+    "maintenance": "Palaikymo programa",
+    "phases": {
+      "preparation": "Pasiruošimo fazė",
+      "building": "Kūrimo fazė",
+      "peak": "Piko fazė",
+      "recovery": "Atkūrimo fazė"
+    }
+  },
+  "analytics": {
+    "title": "Treniruočių analitika",
+    "individual": "Individuali analizė",
+    "team": "Komandos analizė",
+    "progress": "Progreso ataskaitos",
+    "comparison": "Žaidėjų palyginimas",
+    "export": "Eksportuoti duomenis",
+    "metrics": "Pagrindiniai rodikliai",
+    "insights": "Rezultatų įžvalgos"
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "feedback": "Užsiėmimo atsiliepimai",
+    "notes": "Treniruočių pastabos",
+    "recommendations": "Rekomendacijos",
+    "alerts": "Siųsti įspėjimą",
+    "report": "Progreso ataskaita",
+    "collaborate": "Bendradarbiauti su medikais"
+  }
+}

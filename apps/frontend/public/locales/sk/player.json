@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Hráčsky prehľad",
+    "subtitle": "Sledujte svoj výkon a rozvoj",
+    "welcome": "Vitajte späť, {{name}}!",
+    "todaySchedule": "Dnešný program",
+    "upcomingEvents": "Nadchádzajúce udalosti",
+    "recentPerformance": "Nedávny výkon",
+    "developmentGoals": "Rozvojové ciele"
+  },
+  "profile": {
+    "playerInfo": "Informácie o hráčovi",
+    "number": "Číslo dresu",
+    "position": "Pozícia",
+    "shoots": "Strieľa",
+    "team": "Tím",
+    "age": "Vek",
+    "height": "Výška",
+    "weight": "Váha",
+    "joined": "Pripojil sa",
+    "contractExpires": "Zmluva vyprší"
+  },
+  "wellness": {
+    "title": "Denná kontrola zdravia",
+    "subtitle": "Ako sa dnes cítite?",
+    "submit": "Odoslať zdravotné údaje",
+    "submitted": "Zdravotné údaje boli úspešne odoslané",
+    "metrics": {
+      "hrv": "Variabilita srdcovej frekvencie",
+      "sleep": "Kvalita spánku",
+      "fatigue": "Úroveň únavy",
+      "mood": "Nálada",
+      "soreness": "Bolesť svalov",
+      "stress": "Úroveň stresu",
+      "hydration": "Hydratácia",
+      "nutrition": "Kvalita výživy"
+    },
+    "scale": {
+      "poor": "Zlá",
+      "fair": "Uspokojivá",
+      "good": "Dobrá",
+      "veryGood": "Veľmi dobrá",
+      "excellent": "Vynikajúca"
+    }
+  },
+  "training": {
+    "title": "Tréningové jednotky",
+    "upcoming": "Nadchádzajúce tréningy",
+    "completed": "Dokončené tréningy",
+    "assigned": "Pridelené cvičenia",
+    "progress": "Tréningový pokrok",
+    "todaysWorkout": "Dnešný tréning",
+    "completeSession": "Dokončiť tréning",
+    "viewDetails": "Zobraziť detaily",
+    "intensity": "Intenzita",
+    "duration": "Trvanie",
+    "focus": "Zameranie",
+    "equipment": "Potrebné vybavenie",
+    "location": "Miesto",
+    "coach": "Tréner",
+    "notes": "Poznámky k tréningu"
+  },
+  "performance": {
+    "title": "Výkonnostné metriky",
+    "seasonStats": "Štatistiky sezóny",
+    "careerStats": "Kariérne štatistiky",
+    "lastGame": "Posledný zápas",
+    "average": "Priemer",
+    "total": "Celkom",
+    "trend": "Trend",
+    "improvement": "Zlepšenie",
+    "metrics": {
+      "goals": "Góly",
+      "assists": "Asistencie",
+      "points": "Body",
+      "plusMinus": "+/-",
+      "pim": "Trestné minúty",
+      "shots": "Strely",
+      "shootingPercentage": "Úspešnosť streľby %",
+      "faceoffPercentage": "Úspešnosť vhadzovania %",
+      "hits": "Hity",
+      "blocks": "Bloky",
+      "takeaways": "Odobratie puku",
+      "giveaways": "Straty puku",
+      "toi": "Čas na ľade",
+      "powerplayGoals": "Góly v presilovke",
+      "shorthandedGoals": "Góly v oslabení",
+      "gameWinningGoals": "Víťazné góly"
+    }
+  },
+  "schedule": {
+    "title": "Rozvrh",
+    "calendar": "Kalendárne zobrazenie",
+    "list": "Zoznamové zobrazenie",
+    "filters": "Filtre",
+    "types": {
+      "game": "Zápas",
+      "practice": "Tréning",
+      "training": "Individuálny tréning",
+      "meeting": "Stretnutie",
+      "medical": "Lekárska prehliadka",
+      "recovery": "Regenerácia",
+      "travel": "Cestovanie",
+      "personal": "Osobné"
+    },
+    "rsvp": {
+      "title": "Potvrdenie účasti",
+      "attending": "Zúčastním sa",
+      "notAttending": "Nezúčastním sa",
+      "maybe": "Možno",
+      "update": "Aktualizovať účasť"
+    }
+  },
+  "communication": {
+    "title": "Správy",
+    "inbox": "Doručené",
+    "sent": "Odoslané",
+    "drafts": "Koncepty",
+    "compose": "Napísať",
+    "teamChat": "Tímový chat",
+    "coachMessages": "Správy od trénera",
+    "announcements": "Oznámenia"
+  },
+  "development": {
+    "title": "Rozvojový plán",
+    "goals": "Ciele",
+    "progress": "Pokrok",
+    "skillAssessment": "Hodnotenie zručností",
+    "trainingPlan": "Tréningový plán",
+    "milestones": "Míľniky",
+    "achievements": "Úspechy",
+    "areas": {
+      "skating": "Korčuľovanie",
+      "shooting": "Streľba",
+      "passing": "Prihrávky",
+      "stickHandling": "Vedenie puku",
+      "positioning": "Postavenie",
+      "physicality": "Fyzička",
+      "mentalGame": "Mentálna hra",
+      "leadership": "Vodcovstvo"
+    }
+  },
+  "nutrition": {
+    "title": "Výživa",
+    "mealPlan": "Jedálny plán",
+    "hydration": "Sledovanie hydratácie",
+    "supplements": "Doplnky stravy",
+    "calories": "Kalórie",
+    "macros": "Makroživiny",
+    "meals": {
+      "breakfast": "Raňajky",
+      "lunch": "Obed",
+      "dinner": "Večera",
+      "snack": "Desiata",
+      "preGame": "Pred zápasom",
+      "postGame": "Po zápase"
+    }
+  },
+  "recovery": {
+    "title": "Regenerácia",
+    "status": "Stav regenerácie",
+    "activities": "Regeneračné aktivity",
+    "sleep": "Sledovanie spánku",
+    "treatment": "Ošetrenie",
+    "nextSession": "Ďalšia regenerácia",
+    "types": {
+      "massage": "Masáž",
+      "coldTub": "Ľadový kúpeľ",
+      "sauna": "Sauna",
+      "stretching": "Strečing",
+      "yoga": "Joga",
+      "physiotherapy": "Fyzioterapia"
+    }
+  }
+}

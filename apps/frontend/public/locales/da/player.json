@@ -1,0 +1,183 @@
+{
+  "dashboard": {
+    "title": "Spiller kontrolpanel",
+    "subtitle": "Velkommen tilbage, {{name}}!",
+    "overview": "Oversigt",
+    "calendar": "Kalender",
+    "wellness": "Velvære",
+    "training": "Træning",
+    "performance": "Præstation",
+    "development": "Udvikling",
+    "messages": "Beskeder",
+    "profile": "Profil"
+  },
+  "wellness": {
+    "title": "Velvære-tracking",
+    "submitWellness": "Indsend velvære",
+    "todayWellness": "Dagens velvære",
+    "wellnessHistory": "Velvære-historik",
+    "metrics": {
+      "sleep": "Søvn",
+      "fatigue": "Træthed",
+      "soreness": "Ømhed",
+      "stress": "Stress",
+      "mood": "Humør",
+      "hydration": "Hydrering",
+      "nutrition": "Ernæring",
+      "hrv": "HRV",
+      "restingHR": "Hvilepuls"
+    },
+    "sleepQuality": {
+      "poor": "Dårlig",
+      "fair": "Rimelig",
+      "good": "God",
+      "excellent": "Fremragende"
+    },
+    "levels": {
+      "veryLow": "Meget lav",
+      "low": "Lav",
+      "moderate": "Moderat",
+      "high": "Høj",
+      "veryHigh": "Meget høj"
+    },
+    "form": {
+      "title": "Daglig velvære-tjek",
+      "sleepHours": "Søvntimer",
+      "sleepQuality": "Søvnkvalitet",
+      "fatigueLevel": "Træthedsniveau",
+      "musclesoreness": "Muskelømhed",
+      "stressLevel": "Stressniveau",
+      "mood": "Generelt humør",
+      "additionalNotes": "Yderligere noter (valgfri)",
+      "submit": "Indsend velvære",
+      "success": "Velvære indsendt succesfuldt"
+    }
+  },
+  "training": {
+    "title": "Træning",
+    "todaySession": "Dagens træning",
+    "upcomingSessions": "Kommende træninger",
+    "completedSessions": "Gennemførte træninger",
+    "sessionDetails": "Træningsdetaljer",
+    "intensity": {
+      "low": "Lav intensitet",
+      "moderate": "Moderat intensitet",
+      "high": "Høj intensitet",
+      "maximum": "Maksimal intensitet"
+    },
+    "type": {
+      "ice": "Istræning",
+      "gym": "Styrketræning",
+      "cardio": "Konditionstræning",
+      "recovery": "Restitution",
+      "skills": "Færdighedstræning",
+      "tactical": "Taktisk træning",
+      "video": "Videoanalyse"
+    },
+    "completeSession": "Fuldfør træning",
+    "skipSession": "Spring over",
+    "viewDetails": "Vis detaljer",
+    "feedback": {
+      "title": "Træningsfeedback",
+      "perceivedEffort": "Oplevet anstrengelse",
+      "enjoyment": "Nydelse",
+      "comments": "Kommentarer",
+      "submit": "Indsend feedback"
+    }
+  },
+  "performance": {
+    "title": "Præstationsmetrikker",
+    "overview": "Oversigt",
+    "statistics": "Statistikker",
+    "trends": "Tendenser",
+    "comparison": "Sammenligning",
+    "goals": "Mål",
+    "achievements": "Præstationer",
+    "metrics": {
+      "points": "Point",
+      "goals": "Mål",
+      "assists": "Assists",
+      "plusMinus": "Plus/Minus",
+      "shots": "Skud",
+      "shootingPercentage": "Skudprocent",
+      "faceoffPercentage": "Face-off procent",
+      "penaltyMinutes": "Strafminutter",
+      "hits": "Tacklinger",
+      "blocks": "Blokeringer",
+      "takeaways": "Erobringer",
+      "giveaways": "Afleveringsfejl",
+      "timeOnIce": "Istid"
+    },
+    "periods": {
+      "lastGame": "Sidste kamp",
+      "last5Games": "Sidste 5 kampe",
+      "last10Games": "Sidste 10 kampe",
+      "currentMonth": "Denne måned",
+      "currentSeason": "Denne sæson",
+      "career": "Karriere"
+    }
+  },
+  "development": {
+    "title": "Udvikling",
+    "goals": "Udviklingsmål",
+    "progress": "Fremskridt",
+    "evaluations": "Evalueringer",
+    "feedback": "Feedback",
+    "skillsAssessment": "Færdighedsvurdering",
+    "areas": {
+      "skating": "Skøjteløb",
+      "shooting": "Skud",
+      "passing": "Pasninger",
+      "stickHandling": "Stav-håndtering",
+      "positioning": "Positionering",
+      "physical": "Fysisk",
+      "mental": "Mental",
+      "tactical": "Taktisk"
+    },
+    "setGoal": "Sæt mål",
+    "viewHistory": "Se historik",
+    "requestFeedback": "Anmod om feedback"
+  },
+  "schedule": {
+    "title": "Min tidsplan",
+    "today": "I dag",
+    "thisWeek": "Denne uge",
+    "nextWeek": "Næste uge",
+    "events": {
+      "practice": "Træning",
+      "game": "Kamp",
+      "meeting": "Møde",
+      "medical": "Medicinsk",
+      "fitness": "Fitness",
+      "recovery": "Restitution",
+      "teamEvent": "Holdbegivenhed",
+      "personal": "Personlig"
+    },
+    "availability": {
+      "available": "Tilgængelig",
+      "unavailable": "Utilgængelig",
+      "injured": "Skadet",
+      "sick": "Syg",
+      "personal": "Personlig"
+    },
+    "updateAvailability": "Opdater tilgængelighed",
+    "syncCalendar": "Synkroniser kalender"
+  },
+  "quickStats": {
+    "title": "Hurtig statistik",
+    "gamesPlayed": "Kampe spillet",
+    "points": "Point",
+    "avgTOI": "Gns. istid",
+    "nextGame": "Næste kamp",
+    "wellnessScore": "Velvære-score",
+    "trainingLoad": "Træningsbelastning"
+  },
+  "notifications": {
+    "newTrainingPlan": "Ny træningsplan tilgængelig",
+    "upcomingGame": "Kamp om {{time}}",
+    "wellnessReminder": "Husk at indsende din daglige velvære",
+    "coachMessage": "Ny besked fra træner",
+    "scheduleChange": "Tidsplanændring",
+    "performanceReport": "Ny præstationsrapport tilgængelig"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Fysiikkavalmentajan kojelauta",
+    "subtitle": "Pelaajien kunto ja harjoitusten hallinta",
+    "welcome": "Tervetuloa, {{name}}",
+    "todaySessions": "Päivän harjoitukset",
+    "playerProgress": "Pelaajien edistyminen",
+    "quickStats": {
+      "todaysSessions": "Päivän harjoitukset",
+      "activeNow": "Aktiivisia nyt",
+      "playerReadiness": "Pelaajien valmius",
+      "completedToday": "Suoritettu tänään",
+      "totalPlayers": "{{count}} pelaajaa yhteensä",
+      "noActiveSession": "Ei aktiivista harjoitusta",
+      "teamAverage": "Joukkueen keskiarvo",
+      "upcoming": "{{count}} tulevaa"
+    }
+  },
+  "training": {
+    "title": "Harjoitusohjelmat",
+    "create": "Luo ohjelma",
+    "templates": "Harjoituspohjat",
+    "active": "Aktiiviset ohjelmat",
+    "scheduled": "Ajoitetut harjoitukset",
+    "history": "Harjoitushistoria",
+    "types": {
+      "strength": "Voimaharjoittelu",
+      "cardio": "Kestävyysharjoittelu",
+      "flexibility": "Liikkuvuus",
+      "agility": "Ketteryys",
+      "recovery": "Palautuminen",
+      "rehabilitation": "Kuntoutus",
+      "testing": "Kuntotestaus"
+    },
+    "intensity": {
+      "low": "Matala",
+      "medium": "Keskitaso",
+      "moderate": "Kohtalainen",
+      "high": "Korkea",
+      "maximum": "Maksimi"
+    }
+  },
+  "sessions": {
+    "title": "Harjoitukset",
+    "schedule": "Ajoita harjoitus",
+    "current": "Nykyinen harjoitus",
+    "upcoming": "Tulevat harjoitukset",
+    "completed": "Suoritetut harjoitukset",
+    "cancel": "Peruuta harjoitus",
+    "reschedule": "Siirrä ajankohtaa",
+    "duration": "Harjoituksen kesto",
+    "participants": "Osallistujat",
+    "newSession": "Uusi harjoitus",
+    "intensity": "{{level}} intensiteetti",
+    "status": {
+      "active": "Aktiivinen",
+      "completed": "Suoritettu",
+      "upcoming": "Tuleva"
+    },
+    "launch": "Käynnistä",
+    "viewDetails": "Näytä tiedot"
+  },
+  "exercises": {
+    "title": "Harjoitekirjasto",
+    "search": "Hae harjoitteita",
+    "categories": "Harjoitekategoriat",
+    "create": "Lisää harjoite",
+    "favorite": "Suosikkiharjoitteet",
+    "equipment": "Tarvittavat välineet",
+    "instructions": "Ohjeet",
+    "video": "Video-opastus",
+    "categories": {
+      "upperBody": "Yläkroppa",
+      "lowerBody": "Alakroppa",
+      "core": "Keskivartalo",
+      "fullBody": "Koko keho",
+      "skating": "Luistelukohtaiset",
+      "shooting": "Laukaisuvoima",
+      "balance": "Tasapaino ja vakaus",
+      "plyometric": "Plyometriset"
+    }
+  },
+  "workouts": {
+    "title": "Harjoitusten rakentaja",
+    "create": "Luo harjoitus",
+    "edit": "Muokkaa harjoitusta",
+    "save": "Tallenna harjoitus",
+    "templates": "Harjoituspohjat",
+    "custom": "Räätälöidyt harjoitukset",
+    "assign": "Määritä pelaajille",
+    "components": {
+      "warmup": "Alkulämmittely",
+      "main": "Pääharjoitus",
+      "cooldown": "Loppuverryttely",
+      "stretching": "Venyttely"
+    },
+    "parameters": {
+      "sets": "Sarjat",
+      "reps": "Toistot",
+      "duration": "Kesto",
+      "rest": "Lepoaika",
+      "weight": "Paino",
+      "distance": "Matka",
+      "speed": "Nopeus"
+    }
+  },
+  "testing": {
+    "title": "Kuntotestaus",
+    "schedule": "Ajoita testi",
+    "protocols": "Testiprotokollat",
+    "results": "Testitulokset",
+    "history": "Testihistoria",
+    "compare": "Vertaa tuloksia",
+    "benchmarks": "Joukkueen vertailuarvot",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Pikajuoksutesti",
+      "agility": "Ketteryysstesti",
+      "strength": "Voimatesti",
+      "flexibility": "Liikkuvuustesti",
+      "balance": "Tasapainotesti",
+      "endurance": "Kestävyystesti",
+      "powerOutput": "Tehontuotto"
+    }
+  },
+  "monitoring": {
+    "title": "Suorituskyvyn seuranta",
+    "metrics": "Suorituskykymittarit",
+    "trends": "Edistymistrendit",
+    "alerts": "Suorituskykyhälytykset",
+    "load": "Harjoituskuorma",
+    "recovery": "Palautumistila",
+    "readiness": "Harjoitusvalmius",
+    "metrics": {
+      "hrv": "Sykevälivaihtelu",
+      "restingHR": "Leposyke",
+      "weight": "Paino",
+      "bodyFat": "Rasvaprosentti",
+      "muscleMass": "Lihasmassa",
+      "power": "Tehontuotto",
+      "speed": "Nopeus",
+      "endurance": "Kestävyys"
+    }
+  },
+  "programs": {
+    "title": "Harjoitusohjelmat",
+    "inSeason": "Kauden aikainen ohjelma",
+    "offSeason": "Kauden ulkopuolinen ohjelma",
+    "preseason": "Esikausiohjelma",
+    "rehabilitation": "Kuntoutusohjelma",
+    "maintenance": "Ylläpito-ohjelma",
+    "phases": {
+      "preparation": "Valmisteluvaihe",
+      "building": "Rakennusvaihe",
+      "peak": "Huippuvaihe",
+      "recovery": "Palautumisvaihe"
+    }
+  },
+  "analytics": {
+    "title": "Harjoitusanalytiikka",
+    "individual": "Yksilöanalyysi",
+    "team": "Joukkueanalyysi",
+    "progress": "Edistymisraportit",
+    "comparison": "Pelaajavertailu",
+    "export": "Vie tiedot",
+    "metrics": "Avainmittarit",
+    "insights": "Suorituskykynäkemykset"
+  },
+  "communication": {
+    "title": "Viestintä",
+    "feedback": "Harjoituspalaute",
+    "notes": "Harjoitusmuistiinpanot",
+    "recommendations": "Suositukset",
+    "alerts": "Lähetä hälytys",
+    "report": "Edistymisraportti",
+    "collaborate": "Yhteistyö lääkintähenkilöstön kanssa"
+  }
+}

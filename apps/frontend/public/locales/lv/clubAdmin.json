@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Kluba administratora panelis",
+    "subtitle": "Organizācijas vadība un pārraudzība",
+    "welcome": "Laipni lūdzam, {{name}}",
+    "organizationOverview": "Organizācijas pārskats",
+    "quickActions": "Ātrās darbības",
+    "stats": {
+      "teams": "Komandas",
+      "activeMembers": "Aktīvi biedri",
+      "coachingStaff": "Treneru personāls",
+      "upcomingEvents": "Gaidāmie notikumi",
+      "attendance": "Apmeklējums",
+      "members": "Biedri"
+    }
+  },
+  "organization": {
+    "title": "Organizācijas vadība",
+    "details": "Organizācijas detaļas",
+    "settings": "Organizācijas iestatījumi",
+    "structure": "Organizatoriskā struktūra",
+    "departments": "Nodaļas",
+    "policies": "Politikas un procedūras",
+    "branding": "Zīmols un identitāte",
+    "contact": "Kontaktinformācija"
+  },
+  "teams": {
+    "title": "Komandu vadība",
+    "all": "Visas komandas",
+    "create": "Izveidot komandu",
+    "edit": "Rediģēt komandu",
+    "delete": "Dzēst komandu",
+    "roster": "Komandu sastāvi",
+    "assignments": "Personāla norīkojumi",
+    "categories": {
+      "senior": "Senioru komandas",
+      "junior": "Junioru komandas",
+      "youth": "Jauniešu komandas",
+      "academy": "Akadēmijas komandas",
+      "womens": "Sieviešu komandas"
+    }
+  },
+  "staff": {
+    "title": "Personāla vadība",
+    "all": "Viss personāls",
+    "add": "Pievienot darbinieku",
+    "roles": "Personāla lomas",
+    "permissions": "Atļaujas",
+    "contracts": "Līgumi",
+    "evaluation": "Snieguma novērtēšana",
+    "training": "Apmācība un sertifikācija",
+    "types": {
+      "coaching": "Treneru personāls",
+      "medical": "Medicīnas personāls",
+      "administrative": "Administratīvais personāls",
+      "support": "Atbalsta personāls",
+      "volunteer": "Brīvprātīgie"
+    }
+  },
+  "facilities": {
+    "title": "Objektu vadība",
+    "overview": "Objektu pārskats",
+    "booking": "Objektu rezervēšana",
+    "maintenance": "Apkopes grafiks",
+    "calendar": "Objektu kalendārs",
+    "utilization": "Izmantošanas atskaites",
+    "types": {
+      "mainRink": "Galvenā halle",
+      "practiceRink": "Treniņu halle",
+      "gym": "Sporta zāle/Svaru zāle",
+      "meetingRooms": "Sapulču telpas",
+      "lockerRooms": "Ģērbtuves",
+      "medicalRoom": "Medicīnas telpa"
+    }
+  },
+  "finance": {
+    "title": "Finanšu vadība",
+    "overview": "Finanšu pārskats",
+    "budget": "Budžeta vadība",
+    "revenue": "Ieņēmumu avoti",
+    "expenses": "Izdevumi",
+    "reports": "Finanšu atskaites",
+    "invoicing": "Rēķinu izrakstīšana",
+    "sponsorships": "Sponsorēšana",
+    "grants": "Dotācijas un finansējums"
+  },
+  "events": {
+    "title": "Pasākumu vadība",
+    "calendar": "Pasākumu kalendārs",
+    "create": "Izveidot pasākumu",
+    "upcoming": "Gaidāmie pasākumi",
+    "past": "Pagājušie pasākumi",
+    "types": {
+      "games": "Spēles",
+      "tournaments": "Turnīri",
+      "fundraisers": "Līdzekļu vākšanas pasākumi",
+      "meetings": "Sapulces",
+      "social": "Sociālie pasākumi",
+      "training": "Treniņnometnes"
+    }
+  },
+  "communication": {
+    "title": "Komunikācija",
+    "announcements": "Paziņojumi",
+    "newsletters": "Jaunumu vēstules",
+    "social": "Sociālie mediji",
+    "website": "Mājas lapas atjauninājumi",
+    "press": "Preses relīzes",
+    "internal": "Iekšējā komunikācija",
+    "broadcast": "Apraides ziņojums"
+  },
+  "compliance": {
+    "title": "Atbilstība un pārvaldība",
+    "policies": "Politikas",
+    "procedures": "Procedūras",
+    "regulations": "Noteikumi",
+    "certifications": "Sertifikāti",
+    "audits": "Auditi",
+    "reports": "Atbilstības atskaites",
+    "training": "Atbilstības apmācība"
+  },
+  "reports": {
+    "title": "Atskaites un analīze",
+    "dashboard": "Vadības panelis",
+    "operational": "Operacionālās atskaites",
+    "financial": "Finanšu atskaites",
+    "performance": "Snieguma metrika",
+    "custom": "Pielāgotas atskaites",
+    "export": "Eksportēt datus",
+    "schedule": "Plānot atskaites"
+  },
+  "members": {
+    "title": "Biedru vadība",
+    "directory": "Biedru katalogs",
+    "registration": "Reģistrācija",
+    "renewal": "Biedra statusa atjaunošana",
+    "benefits": "Biedru priekšrocības",
+    "communication": "Biedru komunikācija",
+    "statistics": "Biedru statistika",
+    "byRole": "Biedri pēc lomām"
+  }
+}

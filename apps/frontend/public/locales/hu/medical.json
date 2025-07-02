@@ -1,0 +1,252 @@
+{
+  "dashboard": {
+    "title": "Egészségügyi",
+    "overview": "Egészségügyi áttekintés",
+    "activeInjuries": "Aktív sérülések",
+    "upcomingAppointments": "Közelgő időpontok",
+    "clearanceRequests": "Játékengedély kérelmek",
+    "recentActivity": "Legutóbbi tevékenységek"
+  },
+  "injuries": {
+    "title": "Sérülések",
+    "report": "Sérülés jelentése",
+    "list": "Sérülések listája",
+    "details": "Sérülés részletei",
+    "history": "Sérülés előzmények",
+    "types": {
+      "concussion": "Agyrázkódás",
+      "fracture": "Törés",
+      "sprain": "Ficam",
+      "strain": "Húzódás",
+      "bruise": "Zúzódás",
+      "cut": "Vágás",
+      "dislocation": "Kifordulás",
+      "other": "Egyéb"
+    },
+    "severity": {
+      "minor": "Enyhe",
+      "moderate": "Közepes",
+      "severe": "Súlyos",
+      "critical": "Kritikus"
+    },
+    "bodyParts": {
+      "head": "Fej",
+      "neck": "Nyak",
+      "shoulder": "Váll",
+      "arm": "Kar",
+      "elbow": "Könyök",
+      "wrist": "Csukló",
+      "hand": "Kéz",
+      "chest": "Mellkas",
+      "back": "Hát",
+      "hip": "Csípő",
+      "thigh": "Comb",
+      "knee": "Térd",
+      "shin": "Lábszár",
+      "ankle": "Boka",
+      "foot": "Láb"
+    },
+    "status": {
+      "active": "Aktív",
+      "healing": "Gyógyulóban",
+      "recovered": "Gyógyult",
+      "chronic": "Krónikus"
+    },
+    "fields": {
+      "player": "Játékos",
+      "date": "Dátum",
+      "type": "Típus",
+      "bodyPart": "Testrész",
+      "severity": "Súlyosság",
+      "description": "Leírás",
+      "treatment": "Kezelés",
+      "expectedReturn": "Várható visszatérés",
+      "notes": "Megjegyzések"
+    }
+  },
+  "treatments": {
+    "title": "Kezelések",
+    "schedule": "Kezelési ütemterv",
+    "history": "Kezelési előzmények",
+    "types": {
+      "physiotherapy": "Fizikoterápia",
+      "medication": "Gyógyszeres kezelés",
+      "surgery": "Műtét",
+      "rehabilitation": "Rehabilitáció",
+      "rest": "Pihenés",
+      "ice": "Jegelés",
+      "compression": "Kompresszió",
+      "elevation": "Emelés"
+    },
+    "frequency": {
+      "daily": "Naponta",
+      "twiceDaily": "Naponta kétszer",
+      "weekly": "Hetente",
+      "biweekly": "Kéthetente",
+      "asNeeded": "Szükség szerint"
+    }
+  },
+  "wellness": {
+    "title": "Wellness",
+    "check": "Wellness ellenőrzés",
+    "history": "Wellness előzmények",
+    "metrics": {
+      "sleep": "Alvás",
+      "fatigue": "Fáradtság",
+      "soreness": "Izomfájdalom",
+      "stress": "Stressz",
+      "mood": "Hangulat",
+      "hydration": "Hidratáltság",
+      "nutrition": "Táplálkozás"
+    },
+    "scale": {
+      "1": "Nagyon rossz",
+      "2": "Rossz",
+      "3": "Átlagos",
+      "4": "Jó",
+      "5": "Kiváló"
+    }
+  },
+  "clearance": {
+    "title": "Játékengedély",
+    "request": "Engedély kérése",
+    "pending": "Függőben lévő kérelmek",
+    "approved": "Jóváhagyott",
+    "denied": "Elutasított",
+    "conditional": "Feltételes",
+    "requirements": {
+      "medicalExam": "Orvosi vizsgálat",
+      "fitnesTest": "Fizikai alkalmassági teszt",
+      "doctorNote": "Orvosi igazolás",
+      "parentConsent": "Szülői beleegyezés"
+    },
+    "status": {
+      "cleared": "Játszhat",
+      "notCleared": "Nem játszhat",
+      "limited": "Korlátozottan játszhat",
+      "evaluation": "Értékelés alatt"
+    }
+  },
+  "appointments": {
+    "title": "Időpontok",
+    "schedule": "Időpont foglalás",
+    "upcoming": "Közelgő időpontok",
+    "past": "Korábbi időpontok",
+    "types": {
+      "checkup": "Ellenőrzés",
+      "treatment": "Kezelés",
+      "evaluation": "Értékelés",
+      "followup": "Kontroll",
+      "emergency": "Sürgősségi"
+    },
+    "providers": {
+      "teamDoctor": "Csapatorvos",
+      "physiotherapist": "Gyógytornász",
+      "specialist": "Szakorvos",
+      "psychologist": "Pszichológus",
+      "nutritionist": "Táplálkozási tanácsadó"
+    }
+  },
+  "records": {
+    "title": "Egészségügyi nyilvántartás",
+    "medical": "Orvosi adatok",
+    "immunization": "Védőoltások",
+    "allergies": "Allergiák",
+    "medications": "Gyógyszerek",
+    "conditions": "Krónikus betegségek",
+    "emergency": "Vészhelyzeti adatok",
+    "insurance": "Biztosítás",
+    "documents": "Dokumentumok"
+  },
+  "emergency": {
+    "title": "Vészhelyzet",
+    "contacts": "Vészhelyzeti kapcsolatok",
+    "procedures": "Vészhelyzeti eljárások",
+    "information": {
+      "primaryContact": "Elsődleges kapcsolat",
+      "secondaryContact": "Másodlagos kapcsolat",
+      "bloodType": "Vércsoport",
+      "allergies": "Allergiák",
+      "medications": "Rendszeres gyógyszerek",
+      "conditions": "Egészségi állapot"
+    }
+  },
+  "reports": {
+    "title": "Egészségügyi jelentések",
+    "injury": "Sérülési jelentés",
+    "wellness": "Wellness jelentés",
+    "team": "Csapat egészségügyi jelentés",
+    "individual": "Egyéni jelentés",
+    "generate": "Jelentés készítése",
+    "export": "Exportálás",
+    "share": "Megosztás"
+  },
+  "prevention": {
+    "title": "Sérülésmegelőzés",
+    "programs": "Megelőző programok",
+    "exercises": "Megelőző gyakorlatok",
+    "education": "Oktatás",
+    "guidelines": "Irányelvek",
+    "warmup": "Bemelegítés",
+    "cooldown": "Levezetés",
+    "stretching": "Nyújtás",
+    "strengthening": "Erősítés"
+  },
+  "rehabilitation": {
+    "title": "Rehabilitáció",
+    "programs": "Rehabilitációs programok",
+    "progress": "Haladás",
+    "exercises": "Gyakorlatok",
+    "milestones": "Mérföldkövek",
+    "phases": {
+      "acute": "Akut fázis",
+      "recovery": "Gyógyulási fázis",
+      "functional": "Funkcionális fázis",
+      "returnToPlay": "Visszatérési fázis"
+    }
+  },
+  "mental": {
+    "title": "Mentális egészség",
+    "support": "Támogatás",
+    "counseling": "Tanácsadás",
+    "resources": "Források",
+    "wellbeing": "Jóllét",
+    "stress": "Stresszkezelés",
+    "performance": "Teljesítmény szorongás",
+    "teamBuilding": "Csapatépítés"
+  },
+  "nutrition": {
+    "title": "Táplálkozás",
+    "plans": "Étrend tervek",
+    "tracking": "Étrend követés",
+    "supplements": "Táplálékkiegészítők",
+    "hydration": "Folyadékbevitel",
+    "education": "Táplálkozási oktatás",
+    "consultation": "Konzultáció"
+  },
+  "settings": {
+    "title": "Egészségügyi beállítások",
+    "privacy": "Adatvédelem",
+    "sharing": "Adatmegosztás",
+    "notifications": "Értesítések",
+    "reminders": "Emlékeztetők",
+    "permissions": "Engedélyek"
+  },
+  "actions": {
+    "report": "Jelentés",
+    "schedule": "Időpont foglalás",
+    "update": "Frissítés",
+    "clear": "Engedélyezés",
+    "restrict": "Korlátozás",
+    "refer": "Beutalás",
+    "discharge": "Elbocsátás",
+    "followup": "Utánkövetés"
+  },
+  "messages": {
+    "injuryReported": "Sérülés sikeresen jelentve",
+    "appointmentScheduled": "Időpont sikeresen lefoglalva",
+    "clearanceGranted": "Játékengedély megadva",
+    "recordUpdated": "Adatok sikeresen frissítve",
+    "reportGenerated": "Jelentés sikeresen elkészítve"
+  }
+}

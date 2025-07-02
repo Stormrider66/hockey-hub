@@ -1,0 +1,133 @@
+{
+  "dashboard": {
+    "title": "Klubbadmin översikt",
+    "subtitle": "Organisationshantering och övervakning",
+    "welcome": "Välkommen, {{name}}",
+    "organizationOverview": "Organisationsöversikt",
+    "quickActions": "Snabbåtgärder"
+  },
+  "organization": {
+    "title": "Organisationshantering",
+    "details": "Organisationsdetaljer",
+    "settings": "Organisationsinställningar",
+    "structure": "Organisationsstruktur",
+    "departments": "Avdelningar",
+    "policies": "Policyer & rutiner",
+    "branding": "Varumärke & identitet",
+    "contact": "Kontaktinformation"
+  },
+  "teams": {
+    "title": "Laghantering",
+    "all": "Alla lag",
+    "create": "Skapa lag",
+    "edit": "Redigera lag",
+    "delete": "Ta bort lag",
+    "roster": "Trupper",
+    "assignments": "Personaltilldelningar",
+    "categories": {
+      "senior": "Seniorlag",
+      "junior": "Juniorlag",
+      "youth": "Ungdomslag",
+      "academy": "Akademilag",
+      "womens": "Damlag"
+    }
+  },
+  "staff": {
+    "title": "Personalhantering",
+    "all": "All personal",
+    "add": "Lägg till personal",
+    "roles": "Personalroller",
+    "permissions": "Behörigheter",
+    "contracts": "Kontrakt",
+    "evaluation": "Resultatutvärdering",
+    "training": "Utbildning & certifiering",
+    "types": {
+      "coaching": "Tränarstab",
+      "medical": "Medicinsk personal",
+      "administrative": "Administration",
+      "support": "Stödpersonal",
+      "volunteer": "Volontärer"
+    }
+  },
+  "facilities": {
+    "title": "Anläggningshantering",
+    "overview": "Anläggningsöversikt",
+    "booking": "Anläggningsbokning",
+    "maintenance": "Underhållsschema",
+    "calendar": "Anläggningskalender",
+    "utilization": "Utnyttjanderapporter",
+    "types": {
+      "mainRink": "Huvudrink",
+      "practiceRink": "Träningsrink",
+      "gym": "Gym/styrkerum",
+      "meetingRooms": "Mötesrum",
+      "lockerRooms": "Omklädningsrum",
+      "medicalRoom": "Sjukrum"
+    }
+  },
+  "finance": {
+    "title": "Ekonomihantering",
+    "overview": "Ekonomisk översikt",
+    "budget": "Budgethantering",
+    "revenue": "Intäktsströmmar",
+    "expenses": "Utgifter",
+    "reports": "Ekonomiska rapporter",
+    "invoicing": "Fakturering",
+    "sponsorships": "Sponsring",
+    "grants": "Bidrag & finansiering"
+  },
+  "events": {
+    "title": "Evenemangshantering",
+    "calendar": "Evenemangskalender",
+    "create": "Skapa evenemang",
+    "upcoming": "Kommande evenemang",
+    "past": "Tidigare evenemang",
+    "types": {
+      "games": "Matcher",
+      "tournaments": "Turneringar",
+      "fundraisers": "Insamlingar",
+      "meetings": "Möten",
+      "social": "Sociala evenemang",
+      "training": "Träningsläger"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "announcements": "Meddelanden",
+    "newsletters": "Nyhetsbrev",
+    "social": "Sociala medier",
+    "website": "Webbplatsuppdateringar",
+    "press": "Pressmeddelanden",
+    "internal": "Intern kommunikation",
+    "broadcast": "Skicka meddelande"
+  },
+  "compliance": {
+    "title": "Regelefterlevnad & styrning",
+    "policies": "Policyer",
+    "procedures": "Rutiner",
+    "regulations": "Föreskrifter",
+    "certifications": "Certifieringar",
+    "audits": "Revisioner",
+    "reports": "Efterlevnadsrapporter",
+    "training": "Efterlevnadsutbildning"
+  },
+  "reports": {
+    "title": "Rapporter & analys",
+    "dashboard": "Ledningsöversikt",
+    "operational": "Verksamhetsrapporter",
+    "financial": "Ekonomiska rapporter",
+    "performance": "Prestationsmått",
+    "custom": "Anpassade rapporter",
+    "export": "Exportera data",
+    "schedule": "Schemalägg rapporter"
+  },
+  "members": {
+    "title": "Medlemshantering",
+    "directory": "Medlemsregister",
+    "registration": "Registrering",
+    "renewal": "Medlemsförnyelse",
+    "benefits": "Medlemsförmåner",
+    "communication": "Medlemskommunikation",
+    "statistics": "Medlemsstatistik"
+  }
+}

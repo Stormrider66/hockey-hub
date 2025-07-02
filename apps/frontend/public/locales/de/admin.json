@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Systemadministrator",
+    "subtitle": "Plattformverwaltung und -konfiguration",
+    "welcome": "Willkommen, Systemadministrator",
+    "systemStatus": "Systemstatus",
+    "alerts": "Systemwarnungen"
+  },
+  "system": {
+    "title": "Systemverwaltung",
+    "status": "Systemstatus",
+    "health": "Gesundheitsprüfung",
+    "healthScore": "Systemgesundheit",
+    "monitoring": "Systemüberwachung",
+    "logs": "Systemprotokolle",
+    "performance": "Leistungsmetriken",
+    "uptime": "Betriebszeit",
+    "resources": "Ressourcennutzung",
+    "activeUsers": "Aktive Benutzer",
+    "errorRate": "Fehlerrate",
+    "responseTime": "Antwortzeit",
+    "databaseSize": "Datenbankgröße",
+    "withinSLA": "Innerhalb SLA",
+    "systemPerformance24h": "Systemleistung (24h)",
+    "serviceHealthMatrix": "Service-Gesundheitsmatrix",
+    "cpuMemoryUsage": "CPU-, Speichernutzung und Anfragevolumen",
+    "realTimeServiceStatus": "Echtzeit-Servicestatus und Metriken"
+  },
+  "users": {
+    "title": "Benutzerverwaltung",
+    "all": "Alle Benutzer",
+    "create": "Benutzer erstellen",
+    "edit": "Benutzer bearbeiten",
+    "delete": "Benutzer löschen",
+    "roles": "Benutzerrollen",
+    "permissions": "Benutzerberechtigungen",
+    "activity": "Benutzeraktivität",
+    "sessions": "Aktive Sitzungen",
+    "audit": "Audit-Trail"
+  },
+  "organizations": {
+    "title": "Organisationsverwaltung",
+    "all": "Alle Organisationen",
+    "create": "Organisation erstellen",
+    "edit": "Organisation bearbeiten",
+    "delete": "Organisation löschen",
+    "settings": "Organisationseinstellungen",
+    "limits": "Nutzungslimits",
+    "billing": "Rechnungsinformationen"
+  },
+  "security": {
+    "title": "Sicherheitsverwaltung",
+    "settings": "Sicherheitseinstellungen",
+    "authentication": "Authentifizierung",
+    "authorization": "Autorisierung",
+    "tokens": "API-Tokens",
+    "certificates": "SSL-Zertifikate",
+    "firewall": "Firewall-Regeln",
+    "threats": "Bedrohungserkennung",
+    "incidents": "Sicherheitsvorfälle"
+  },
+  "database": {
+    "title": "Datenbankverwaltung",
+    "status": "Datenbankstatus",
+    "backup": "Backup-Verwaltung",
+    "restore": "Datenbank wiederherstellen",
+    "migrations": "Datenbankmigrationen",
+    "optimization": "Abfrageoptimierung",
+    "connections": "Verbindungspool",
+    "maintenance": "Wartungsaufgaben"
+  },
+  "services": {
+    "title": "Serviceverwaltung",
+    "status": "Servicestatus",
+    "configuration": "Servicekonfiguration",
+    "dependencies": "Abhängigkeiten",
+    "health": "Gesundheitsprüfungen",
+    "restart": "Service neu starten",
+    "logs": "Serviceprotokolle",
+    "metrics": "Servicemetriken"
+  },
+  "integrations": {
+    "title": "Integrationen",
+    "connected": "Verbundene Dienste",
+    "available": "Verfügbare Integrationen",
+    "configure": "Integration konfigurieren",
+    "test": "Verbindung testen",
+    "logs": "Integrationsprotokolle",
+    "webhooks": "Webhooks",
+    "api": "API-Verwaltung"
+  },
+  "configuration": {
+    "title": "Systemkonfiguration",
+    "general": "Allgemeine Einstellungen",
+    "email": "E-Mail-Konfiguration",
+    "storage": "Speichereinstellungen",
+    "cache": "Cache-Verwaltung",
+    "queue": "Warteschlangenkonfiguration",
+    "scheduler": "Aufgabenplaner",
+    "features": "Feature-Flags"
+  },
+  "monitoring": {
+    "title": "Systemüberwachung",
+    "dashboard": "Überwachungs-Dashboard",
+    "alerts": "Warnungskonfiguration",
+    "metrics": "Systemmetriken",
+    "logs": "Protokollanalyse",
+    "errors": "Fehlerverfolgung",
+    "performance": "Leistungsanalyse",
+    "reports": "Systemberichte"
+  },
+  "maintenance": {
+    "title": "Wartung",
+    "schedule": "Wartungsplan",
+    "tasks": "Wartungsaufgaben",
+    "updates": "Systemupdates",
+    "patches": "Sicherheitspatches",
+    "cleanup": "Datenbereinigung",
+    "optimization": "Systemoptimierung",
+    "mode": "Wartungsmodus"
+  }
+}

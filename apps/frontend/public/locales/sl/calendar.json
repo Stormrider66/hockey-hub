@@ -1,0 +1,199 @@
+{
+  "title": "Koledar",
+  "views": {
+    "month": "Mesec",
+    "week": "Teden",
+    "day": "Dan",
+    "agenda": "Seznam",
+    "list": "Seznam"
+  },
+  "navigation": {
+    "today": "Danes",
+    "previous": "Prejšnji",
+    "next": "Naslednji",
+    "currentMonth": "Trenutni mesec",
+    "goToDate": "Pojdi na datum"
+  },
+  "events": {
+    "title": "Dogodki",
+    "create": "Ustvari dogodek",
+    "edit": "Uredi dogodek",
+    "delete": "Izbriši dogodek",
+    "details": "Podrobnosti dogodka",
+    "types": {
+      "game": "Tekma",
+      "practice": "Trening",
+      "meeting": "Sestanek",
+      "tournament": "Turnir",
+      "medical": "Zdravstveni pregled",
+      "fitness": "Kondicijski trening",
+      "social": "Družabni dogodek",
+      "fundraising": "Dobrodelni dogodek",
+      "other": "Drugo"
+    },
+    "fields": {
+      "title": "Naslov",
+      "type": "Tip",
+      "date": "Datum",
+      "startTime": "Začetek",
+      "endTime": "Konec",
+      "location": "Lokacija",
+      "description": "Opis",
+      "participants": "Udeleženci",
+      "reminders": "Opomniki",
+      "recurring": "Ponavljajoč",
+      "notes": "Opombe"
+    },
+    "status": {
+      "confirmed": "Potrjeno",
+      "tentative": "Začasno",
+      "cancelled": "Preklicano",
+      "postponed": "Preloženo",
+      "completed": "Zaključeno"
+    }
+  },
+  "filters": {
+    "title": "Filtri",
+    "all": "Vsi dogodki",
+    "games": "Tekme",
+    "practices": "Treningi",
+    "meetings": "Sestanki",
+    "personal": "Osebni",
+    "team": "Ekipni",
+    "organization": "Organizacijski",
+    "byType": "Po tipu",
+    "byTeam": "Po ekipi",
+    "byLocation": "Po lokaciji"
+  },
+  "recurring": {
+    "title": "Ponavljajoči dogodki",
+    "frequency": "Pogostost",
+    "daily": "Dnevno",
+    "weekly": "Tedensko",
+    "biweekly": "Dvotedensko",
+    "monthly": "Mesečno",
+    "yearly": "Letno",
+    "custom": "Po meri",
+    "ends": "Konča se",
+    "never": "Nikoli",
+    "after": "Po",
+    "occurrences": "ponovitvah",
+    "onDate": "Na datum",
+    "weekdays": {
+      "monday": "Ponedeljek",
+      "tuesday": "Torek",
+      "wednesday": "Sreda",
+      "thursday": "Četrtek",
+      "friday": "Petek",
+      "saturday": "Sobota",
+      "sunday": "Nedelja"
+    }
+  },
+  "reminders": {
+    "title": "Opomniki",
+    "add": "Dodaj opomnik",
+    "before": "Pred dogodkom",
+    "minutes": "Minute",
+    "hours": "Ure",
+    "days": "Dni",
+    "weeks": "Tedni",
+    "notification": "Obvestilo",
+    "email": "E-pošta",
+    "sms": "SMS",
+    "push": "Potisno obvestilo"
+  },
+  "attendance": {
+    "title": "Prisotnost",
+    "confirm": "Potrdi prisotnost",
+    "decline": "Odkloni",
+    "maybe": "Morda",
+    "notResponded": "Ni odgovora",
+    "attending": "Prisotni",
+    "notAttending": "Odsotni",
+    "pending": "Čakajo odgovor",
+    "total": "Skupaj"
+  },
+  "export": {
+    "title": "Izvozi koledar",
+    "format": "Format",
+    "ical": "iCal (.ics)",
+    "pdf": "PDF",
+    "excel": "Excel",
+    "print": "Natisni",
+    "sync": "Sinhroniziraj",
+    "subscribe": "Naroči se na koledar"
+  },
+  "sharing": {
+    "title": "Deljenje",
+    "share": "Deli koledar",
+    "permissions": "Dovoljenja",
+    "view": "Ogled",
+    "edit": "Urejanje",
+    "public": "Javno",
+    "private": "Zasebno",
+    "team": "Ekipa",
+    "link": "Deli povezavo"
+  },
+  "conflicts": {
+    "title": "Konflikti",
+    "detected": "Zaznan konflikt",
+    "resolution": "Reševanje",
+    "overlap": "Prekrivanje dogodkov",
+    "doubleBooked": "Dvojna rezervacija",
+    "unavailable": "Ni na voljo",
+    "suggest": "Predlagaj drug termin"
+  },
+  "availability": {
+    "title": "Razpoložljivost",
+    "available": "Na voljo",
+    "busy": "Zaseden",
+    "away": "Odsoten",
+    "outOfOffice": "Izven pisarne",
+    "setAvailability": "Nastavi razpoložljivost",
+    "workingHours": "Delovne ure"
+  },
+  "categories": {
+    "title": "Kategorije",
+    "manage": "Upravljaj kategorije",
+    "color": "Barva",
+    "icon": "Ikona",
+    "create": "Ustvari kategorijo",
+    "edit": "Uredi kategorijo"
+  },
+  "search": {
+    "placeholder": "Išči dogodke...",
+    "results": "Rezultati iskanja",
+    "noResults": "Ni najdenih dogodkov",
+    "filters": "Iskalni filtri"
+  },
+  "actions": {
+    "create": "Ustvari",
+    "save": "Shrani",
+    "cancel": "Prekliči",
+    "delete": "Izbriši",
+    "edit": "Uredi",
+    "duplicate": "Podvoji",
+    "export": "Izvozi",
+    "print": "Natisni",
+    "share": "Deli",
+    "subscribe": "Naroči se"
+  },
+  "messages": {
+    "eventCreated": "Dogodek uspešno ustvarjen",
+    "eventUpdated": "Dogodek posodobljen",
+    "eventDeleted": "Dogodek izbrisan",
+    "eventCancelled": "Dogodek preklican",
+    "reminderSet": "Opomnik nastavljen",
+    "conflictDetected": "Zaznan konflikt terminov",
+    "synced": "Koledar sinhroniziran",
+    "exported": "Koledar izvožen",
+    "shared": "Koledar deljen",
+    "errorLoading": "Napaka pri nalaganju dogodkov"
+  },
+  "tooltips": {
+    "dragToMove": "Povleci za premik",
+    "clickToView": "Klikni za ogled",
+    "doubleClickToEdit": "Dvojni klik za urejanje",
+    "resizeToDuration": "Povleci rob za spremembo trajanja"
+  }
+}

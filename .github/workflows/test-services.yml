@@ -1,0 +1,130 @@
+name: Test All Services
+
+on:
+  pull_request:
+    paths:
+      - 'services/**'
+      - 'packages/**'
+      - '.github/workflows/**'
+  push:
+    branches: [main, develop]
+    paths:
+      - 'services/**'
+      - 'packages/**'
+
+jobs:
+  detect-changes:
+    name: Detect Changed Services
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.detect.outputs.services }}
+      packages: ${{ steps.detect.outputs.packages }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes
+        id: detect
+        run: |
+          # Get changed files
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          fi
+          
+          # Extract changed services
+          SERVICES=$(echo "$CHANGED_FILES" | grep -E '^services/[^/]+/' | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
+          echo "services=$SERVICES" >> $GITHUB_OUTPUT
+          
+          # Extract changed packages
+          PACKAGES=$(echo "$CHANGED_FILES" | grep -E '^packages/[^/]+/' | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n")[:-1]')
+          echo "packages=$PACKAGES" >> $GITHUB_OUTPUT
+          
+          echo "Changed services: $SERVICES"
+          echo "Changed packages: $PACKAGES"
+
+  test-services:
+    name: Test Service
+    needs: detect-changes
+    if: needs.detect-changes.outputs.services != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJson(needs.detect-changes.outputs.services) }}
+        test-type: [unit, integration]
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      service-name: ${{ matrix.service }}
+      test-type: ${{ matrix.test-type }}
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  test-all-services:
+    name: Test All Services
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - user-service
+          - calendar-service
+          - training-service
+          - communication-service
+          - medical-service
+          - statistics-service
+          - payment-service
+          - planning-service
+          - admin-service
+          - api-gateway
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      service-name: ${{ matrix.service }}
+      test-type: all
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+  test-packages:
+    name: Test Packages
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.packages != '[]' || contains(needs.detect-changes.outputs.services, 'api-gateway')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test shared-lib
+        if: contains(needs.detect-changes.outputs.packages, 'shared-lib') || github.ref == 'refs/heads/main'
+        working-directory: packages/shared-lib
+        run: pnpm run test --coverage
+
+      - name: Test monitoring
+        if: contains(needs.detect-changes.outputs.packages, 'monitoring') || github.ref == 'refs/heads/main'
+        working-directory: packages/monitoring
+        run: pnpm run test --coverage
+
+      - name: Test translations
+        if: contains(needs.detect-changes.outputs.packages, 'translations') || github.ref == 'refs/heads/main'
+        working-directory: packages/translations
+        run: pnpm run test --coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: packages

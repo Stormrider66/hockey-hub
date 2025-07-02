@@ -1,0 +1,142 @@
+{
+  "title": "Уведомления",
+  "markAllRead": "Отметить все как прочитанные",
+  "clearAll": "Очистить все",
+  "settings": "Настройки уведомлений",
+  "empty": "Нет уведомлений",
+  "loadMore": "Загрузить ещё",
+  "categories": {
+    "all": "Все",
+    "unread": "Непрочитанные",
+    "system": "Системные",
+    "team": "Команда",
+    "training": "Тренировки",
+    "medical": "Медицинские",
+    "calendar": "Календарь",
+    "payment": "Платежи",
+    "communication": "Сообщения"
+  },
+  "types": {
+    "system": {
+      "welcome": "Добро пожаловать в Hockey Hub!",
+      "profileComplete": "Ваш профиль теперь заполнен",
+      "passwordChanged": "Ваш пароль успешно изменён",
+      "accountVerified": "Ваш аккаунт подтверждён",
+      "maintenanceScheduled": "Техобслуживание системы запланировано на {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Вы были добавлены в {{teamName}}",
+      "removedFromTeam": "Вы были удалены из {{teamName}}",
+      "roleChanged": "Ваша роль изменена на {{role}}",
+      "teamAnnouncement": "Объявление команды от {{sender}}",
+      "rosterUpdate": "Состав был обновлён"
+    },
+    "training": {
+      "sessionScheduled": "Тренировка запланирована на {{date}}",
+      "sessionCancelled": "Тренировка {{date}} была отменена",
+      "sessionReminder": "Тренировка начнётся через {{time}}",
+      "workoutAssigned": "Назначена новая тренировка: {{workoutName}}",
+      "workoutCompleted": "{{player}} завершил тренировку: {{workoutName}}",
+      "performanceReport": "Ваш отчёт о производительности готов"
+    },
+    "medical": {
+      "appointmentScheduled": "Медицинский приём запланирован на {{date}}",
+      "appointmentReminder": "Медицинский приём через {{time}}",
+      "injuryUpdate": "Обновлён статус травмы для {{player}}",
+      "clearanceGranted": "{{player}} допущен к игре",
+      "wellnessReminder": "Пожалуйста, отправьте ежедневную проверку самочувствия",
+      "treatmentComplete": "Сеанс лечения завершён"
+    },
+    "calendar": {
+      "eventCreated": "Новое событие: {{eventName}}",
+      "eventUpdated": "Событие обновлено: {{eventName}}",
+      "eventCancelled": "Событие отменено: {{eventName}}",
+      "eventReminder": "{{eventName}} начнётся через {{time}}",
+      "rsvpRequested": "Пожалуйста, подтвердите участие в {{eventName}}",
+      "scheduleChange": "Изменение расписания на {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Новый счёт доступен: {{amount}}",
+      "paymentReceived": "Платёж получен: {{amount}}",
+      "paymentDue": "К оплате: {{amount}} до {{date}}",
+      "paymentOverdue": "Просроченный платёж: {{amount}}",
+      "paymentFailed": "Ошибка платежа на сумму {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Новое сообщение от {{sender}}",
+      "mentionedInChat": "{{sender}} упомянул вас в {{channel}}",
+      "addedToGroup": "Вы были добавлены в {{groupName}}",
+      "missedCall": "Пропущенный звонок от {{caller}}",
+      "voicemail": "Новое голосовое сообщение от {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Игра запланирована: {{opponent}} {{date}}",
+      "gameReminder": "Игра против {{opponent}} начнётся через {{time}}",
+      "lineupPosted": "Состав на игру опубликован",
+      "gameResult": "Результат игры: {{result}} против {{opponent}}",
+      "statsAvailable": "Ваша статистика игры доступна"
+    },
+    "equipment": {
+      "fittingScheduled": "Примерка экипировки запланирована на {{date}}",
+      "maintenanceDue": "Требуется обслуживание для {{equipment}}",
+      "orderReady": "Ваш заказ экипировки готов к получению",
+      "returnReminder": "Пожалуйста, верните {{equipment}} до {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Просмотр",
+    "dismiss": "Отклонить",
+    "accept": "Принять",
+    "decline": "Отказать",
+    "respond": "Ответить",
+    "schedule": "Запланировать",
+    "pay": "Оплатить сейчас",
+    "download": "Скачать",
+    "viewDetails": "Подробности"
+  },
+  "preferences": {
+    "title": "Настройки уведомлений",
+    "channels": {
+      "email": "Email",
+      "push": "Push-уведомления",
+      "inApp": "В приложении",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Немедленно",
+      "hourly": "Ежечасный дайджест",
+      "daily": "Ежедневный дайджест",
+      "weekly": "Еженедельная сводка"
+    },
+    "quiet": {
+      "title": "Тихие часы",
+      "enabled": "Включить тихие часы",
+      "from": "С",
+      "to": "До",
+      "days": "Дни"
+    },
+    "types": {
+      "training": "Обновления тренировок",
+      "medical": "Медицинские напоминания",
+      "calendar": "События календаря",
+      "team": "Объявления команды",
+      "chat": "Сообщения чата",
+      "payment": "Напоминания о платежах",
+      "system": "Системные уведомления"
+    }
+  },
+  "time": {
+    "justNow": "Только что",
+    "minutesAgo": "{{count}} минут назад",
+    "hoursAgo": "{{count}} часов назад",
+    "yesterday": "Вчера",
+    "daysAgo": "{{count}} дней назад",
+    "weeksAgo": "{{count}} недель назад"
+  },
+  "status": {
+    "sent": "Отправлено",
+    "delivered": "Доставлено",
+    "read": "Прочитано",
+    "failed": "Не удалось отправить"
+  }
+}

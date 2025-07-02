@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Physical Trainer Dashboard",
+    "subtitle": "Player fitness and training management",
+    "welcome": "Welcome, {{name}}",
+    "todaySessions": "Today's Training Sessions",
+    "playerProgress": "Player Progress Overview",
+    "quickStats": {
+      "todaysSessions": "Today's Sessions",
+      "activeNow": "Active Now",
+      "playerReadiness": "Player Readiness",
+      "completedToday": "Completed Today",
+      "totalPlayers": "{{count}} total players",
+      "noActiveSession": "No active session",
+      "teamAverage": "Team average",
+      "upcoming": "{{count}} upcoming"
+    }
+  },
+  "training": {
+    "title": "Training Programs",
+    "create": "Create Program",
+    "templates": "Training Templates",
+    "active": "Active Programs",
+    "scheduled": "Scheduled Sessions",
+    "history": "Training History",
+    "types": {
+      "strength": "Strength Training",
+      "cardio": "Cardiovascular",
+      "flexibility": "Flexibility",
+      "agility": "Agility",
+      "recovery": "Recovery",
+      "rehabilitation": "Rehabilitation",
+      "testing": "Fitness Testing"
+    },
+    "intensity": {
+      "low": "Low",
+      "medium": "Medium",
+      "moderate": "Moderate",
+      "high": "High",
+      "maximum": "Maximum"
+    }
+  },
+  "sessions": {
+    "title": "Training Sessions",
+    "schedule": "Schedule Session",
+    "current": "Current Session",
+    "upcoming": "Upcoming Sessions",
+    "completed": "Completed Sessions",
+    "cancel": "Cancel Session",
+    "reschedule": "Reschedule",
+    "duration": "Session Duration",
+    "participants": "Participants",
+    "newSession": "New Session",
+    "intensity": "{{level}} intensity",
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "upcoming": "Upcoming"
+    },
+    "launch": "Launch",
+    "viewDetails": "View Details"
+  },
+  "exercises": {
+    "title": "Exercise Library",
+    "search": "Search Exercises",
+    "categories": "Exercise Categories",
+    "create": "Add Exercise",
+    "favorite": "Favorite Exercises",
+    "equipment": "Equipment Needed",
+    "instructions": "Instructions",
+    "video": "Video Tutorial",
+    "categories": {
+      "upperBody": "Upper Body",
+      "lowerBody": "Lower Body",
+      "core": "Core",
+      "fullBody": "Full Body",
+      "skating": "Skating Specific",
+      "shooting": "Shooting Power",
+      "balance": "Balance & Stability",
+      "plyometric": "Plyometric"
+    }
+  },
+  "workouts": {
+    "title": "Workout Builder",
+    "create": "Create Workout",
+    "edit": "Edit Workout",
+    "save": "Save Workout",
+    "templates": "Workout Templates",
+    "custom": "Custom Workouts",
+    "assign": "Assign to Players",
+    "components": {
+      "warmup": "Warm-up",
+      "main": "Main Workout",
+      "cooldown": "Cool-down",
+      "stretching": "Stretching"
+    },
+    "parameters": {
+      "sets": "Sets",
+      "reps": "Repetitions",
+      "duration": "Duration",
+      "rest": "Rest Period",
+      "weight": "Weight",
+      "distance": "Distance",
+      "speed": "Speed"
+    }
+  },
+  "testing": {
+    "title": "Fitness Testing",
+    "schedule": "Schedule Test",
+    "protocols": "Test Protocols",
+    "results": "Test Results",
+    "history": "Testing History",
+    "compare": "Compare Results",
+    "benchmarks": "Team Benchmarks",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprint Test",
+      "agility": "Agility Test",
+      "strength": "Strength Test",
+      "flexibility": "Flexibility Test",
+      "balance": "Balance Test",
+      "endurance": "Endurance Test",
+      "powerOutput": "Power Output"
+    }
+  },
+  "monitoring": {
+    "title": "Performance Monitoring",
+    "metrics": "Performance Metrics",
+    "trends": "Progress Trends",
+    "alerts": "Performance Alerts",
+    "load": "Training Load",
+    "recovery": "Recovery Status",
+    "readiness": "Training Readiness",
+    "metrics": {
+      "hrv": "Heart Rate Variability",
+      "restingHR": "Resting Heart Rate",
+      "weight": "Body Weight",
+      "bodyFat": "Body Fat %",
+      "muscleMass": "Muscle Mass",
+      "power": "Power Output",
+      "speed": "Speed",
+      "endurance": "Endurance"
+    }
+  },
+  "programs": {
+    "title": "Training Programs",
+    "inSeason": "In-Season Program",
+    "offSeason": "Off-Season Program",
+    "preseason": "Pre-Season Program",
+    "rehabilitation": "Rehab Program",
+    "maintenance": "Maintenance Program",
+    "phases": {
+      "preparation": "Preparation Phase",
+      "building": "Building Phase",
+      "peak": "Peak Phase",
+      "recovery": "Recovery Phase"
+    }
+  },
+  "analytics": {
+    "title": "Training Analytics",
+    "individual": "Individual Analysis",
+    "team": "Team Analysis",
+    "progress": "Progress Reports",
+    "comparison": "Player Comparison",
+    "export": "Export Data",
+    "metrics": "Key Metrics",
+    "insights": "Performance Insights"
+  },
+  "communication": {
+    "title": "Communication",
+    "feedback": "Session Feedback",
+    "notes": "Training Notes",
+    "recommendations": "Recommendations",
+    "alerts": "Send Alert",
+    "report": "Progress Report",
+    "collaborate": "Collaborate with Medical"
+  }
+}

@@ -1,0 +1,101 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+    
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    
+    - name: Run tests with coverage
+      run: pnpm test:ci
+    
+    - name: Merge coverage reports
+      run: pnpm coverage:merge
+    
+    - name: Generate coverage reports
+      run: |
+        pnpm coverage:report
+        pnpm coverage:badge
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ./coverage
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+    
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-reports
+        path: |
+          coverage/
+          !coverage/lcov-report/
+    
+    - name: Comment PR with coverage
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          const fs = require('fs');
+          const coverage = JSON.parse(fs.readFileSync('./coverage/coverage-summary.json', 'utf8'));
+          const total = coverage.total;
+          
+          const comment = `## Test Coverage Report
+          
+          | Metric | Coverage | Details |
+          |--------|----------|---------|
+          | Lines | ${total.lines.pct.toFixed(2)}% | ${total.lines.covered}/${total.lines.total} |
+          | Statements | ${total.statements.pct.toFixed(2)}% | ${total.statements.covered}/${total.statements.total} |
+          | Functions | ${total.functions.pct.toFixed(2)}% | ${total.functions.covered}/${total.functions.total} |
+          | Branches | ${total.branches.pct.toFixed(2)}% | ${total.branches.covered}/${total.branches.total} |
+          
+          **Minimum threshold**: 80%`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+    
+    - name: Check coverage thresholds
+      run: |
+        node -e "
+        const coverage = require('./coverage/coverage-ci.json');
+        if (!coverage.passed) {
+          console.error('Coverage thresholds not met!');
+          console.error('Lines:', coverage.total.lines + '%');
+          console.error('Statements:', coverage.total.statements + '%');
+          console.error('Functions:', coverage.total.functions + '%');
+          console.error('Branches:', coverage.total.branches + '%');
+          process.exit(1);
+        }
+        console.log('All coverage thresholds met! ✅');
+        "

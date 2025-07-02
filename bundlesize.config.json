@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "path": "apps/frontend/.next/static/chunks/main-*.js",
+      "maxSize": "100 kB"
+    },
+    {
+      "path": "apps/frontend/.next/static/chunks/commons-*.js",
+      "maxSize": "150 kB"
+    },
+    {
+      "path": "apps/frontend/.next/static/chunks/framework-*.js",
+      "maxSize": "50 kB"
+    },
+    {
+      "path": "apps/frontend/.next/static/chunks/pages/_app-*.js",
+      "maxSize": "200 kB"
+    },
+    {
+      "path": "apps/frontend/.next/static/chunks/pages/**/*.js",
+      "maxSize": "100 kB"
+    },
+    {
+      "path": "apps/frontend/.next/static/css/*.css",
+      "maxSize": "50 kB"
+    }
+  ],
+  "ci": {
+    "trackBranches": ["main", "develop"],
+    "repoBranchBase": "main",
+    "buildCommand": "cd apps/frontend && pnpm run build"
+  }
+}

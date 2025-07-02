@@ -1,0 +1,117 @@
+{
+  "validation": {
+    "required": "Dette felt er påkrævet",
+    "email": {
+      "invalid": "Indtast venligst en gyldig e-mailadresse",
+      "required": "E-mailadresse er påkrævet",
+      "exists": "Denne e-mail er allerede registreret"
+    },
+    "password": {
+      "required": "Adgangskode er påkrævet",
+      "minLength": "Adgangskoden skal være mindst {{min}} tegn",
+      "maxLength": "Adgangskoden må ikke overstige {{max}} tegn",
+      "uppercase": "Adgangskoden skal indeholde mindst ét stort bogstav",
+      "lowercase": "Adgangskoden skal indeholde mindst ét lille bogstav",
+      "number": "Adgangskoden skal indeholde mindst ét tal",
+      "special": "Adgangskoden skal indeholde mindst ét specialtegn",
+      "match": "Adgangskoderne stemmer ikke overens",
+      "weak": "Adgangskoden er for svag",
+      "common": "Denne adgangskode er for almindelig"
+    },
+    "string": {
+      "minLength": "Skal være mindst {{min}} tegn",
+      "maxLength": "Må ikke overstige {{max}} tegn",
+      "pattern": "Ugyldigt format",
+      "alphanumeric": "Kun bogstaver og tal er tilladt",
+      "letters": "Kun bogstaver er tilladt",
+      "noSpecialChars": "Specialtegn er ikke tilladt"
+    },
+    "number": {
+      "required": "Et tal er påkrævet",
+      "invalid": "Indtast venligst et gyldigt tal",
+      "min": "Skal være mindst {{min}}",
+      "max": "Må ikke overstige {{max}}",
+      "integer": "Skal være et heltal",
+      "positive": "Skal være et positivt tal",
+      "negative": "Skal være et negativt tal",
+      "between": "Skal være mellem {{min}} og {{max}}"
+    },
+    "date": {
+      "required": "Dato er påkrævet",
+      "invalid": "Ugyldig dato",
+      "future": "Skal være en fremtidig dato",
+      "past": "Skal være en tidligere dato",
+      "min": "Dato skal være efter {{min}}",
+      "max": "Dato skal være før {{max}}",
+      "between": "Dato skal være mellem {{min}} og {{max}}",
+      "age": "Skal være mindst {{age}} år gammel"
+    },
+    "time": {
+      "required": "Tid er påkrævet",
+      "invalid": "Ugyldig tid",
+      "future": "Skal være et fremtidigt tidspunkt",
+      "businessHours": "Skal være inden for åbningstid"
+    },
+    "phone": {
+      "required": "Telefonnummer er påkrævet",
+      "invalid": "Ugyldigt telefonnummer",
+      "countryCode": "Inkluder venligst landekode"
+    },
+    "file": {
+      "required": "Fil er påkrævet",
+      "type": "Filtype ikke tilladt",
+      "size": "Filstørrelse må ikke overstige {{max}}MB",
+      "dimensions": "Billeddimensioner skal være {{width}}x{{height}}",
+      "ratio": "Billedforhold skal være {{ratio}}"
+    },
+    "url": {
+      "invalid": "Ugyldig URL",
+      "required": "URL er påkrævet",
+      "secure": "URL skal bruge HTTPS"
+    },
+    "custom": {
+      "teamCode": "Ugyldigt holdkode format",
+      "playerNumber": "Spillernummer skal være mellem 1 og 99",
+      "postalCode": "Ugyldigt postnummer",
+      "age": {
+        "tooYoung": "Skal være mindst {{min}} år gammel",
+        "tooOld": "Må ikke være ældre end {{max}} år"
+      },
+      "schedule": {
+        "conflict": "Tidsplankonflikt detekteret",
+        "outsideHours": "Uden for tilladte timer",
+        "tooEarly": "For tidligt (tidligst {{time}})",
+        "tooLate": "For sent (senest {{time}})"
+      },
+      "capacity": {
+        "exceeded": "Kapacitet overskredet",
+        "minimum": "Minimum {{min}} deltagere påkrævet"
+      }
+    },
+    "form": {
+      "incomplete": "Udfyld venligst alle påkrævede felter",
+      "hasErrors": "Ret venligst fejlene nedenfor",
+      "unchanged": "Ingen ændringer at gemme",
+      "unsavedChanges": "Du har ugemte ændringer"
+    },
+    "search": {
+      "minLength": "Søgeterm skal være mindst {{min}} tegn",
+      "noResults": "Ingen resultater fundet",
+      "tooManyResults": "For mange resultater, præciser venligst din søgning"
+    },
+    "selection": {
+      "required": "Foretag venligst et valg",
+      "min": "Vælg mindst {{min}} elementer",
+      "max": "Vælg højst {{max}} elementer",
+      "exact": "Vælg præcis {{count}} elementer"
+    },
+    "comparison": {
+      "startBeforeEnd": "Starttid skal være før sluttid",
+      "endAfterStart": "Sluttid skal være efter starttid",
+      "dateRange": "Ugyldig datointerval",
+      "greaterThan": "Skal være større end {{value}}",
+      "lessThan": "Skal være mindre end {{value}}",
+      "notEqual": "Må ikke være lig med {{value}}"
+    }
+  }
+}

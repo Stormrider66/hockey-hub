@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Maand",
+    "week": "Week",
+    "day": "Dag",
+    "agenda": "Agenda",
+    "workWeek": "Werkweek"
+  },
+  "navigation": {
+    "today": "Vandaag",
+    "back": "Terug",
+    "next": "Volgende",
+    "previous": "Vorige",
+    "jumpToDate": "Spring naar datum"
+  },
+  "event": {
+    "title": "Evenement",
+    "newEvent": "Nieuw evenement",
+    "editEvent": "Evenement bewerken",
+    "deleteEvent": "Evenement verwijderen",
+    "duplicateEvent": "Evenement dupliceren",
+    "allDay": "Hele dag",
+    "recurring": "Terugkerend",
+    "privateEvent": "Privé evenement",
+    "fields": {
+      "title": "Titel",
+      "description": "Beschrijving",
+      "location": "Locatie",
+      "startDate": "Startdatum",
+      "startTime": "Starttijd",
+      "endDate": "Einddatum",
+      "endTime": "Eindtijd",
+      "type": "Evenementtype",
+      "category": "Categorie",
+      "participants": "Deelnemers",
+      "resources": "Middelen",
+      "notes": "Notities",
+      "reminder": "Herinnering",
+      "color": "Kleur",
+      "attachments": "Bijlagen"
+    },
+    "types": {
+      "practice": "Training",
+      "game": "Wedstrijd",
+      "training": "Conditietraining",
+      "meeting": "Vergadering",
+      "tournament": "Toernooi",
+      "tryout": "Try-out",
+      "medical": "Medische afspraak",
+      "equipment": "Uitrustingspasbeurt",
+      "teamEvent": "Teamevenement",
+      "personal": "Persoonlijk",
+      "other": "Anders"
+    },
+    "status": {
+      "confirmed": "Bevestigd",
+      "tentative": "Voorlopig",
+      "cancelled": "Geannuleerd",
+      "postponed": "Uitgesteld",
+      "rescheduled": "Verzet"
+    }
+  },
+  "recurrence": {
+    "title": "Herhaling",
+    "none": "Herhaalt niet",
+    "daily": "Dagelijks",
+    "weekly": "Wekelijks",
+    "monthly": "Maandelijks",
+    "yearly": "Jaarlijks",
+    "custom": "Aangepast",
+    "every": "Elke",
+    "days": "dag(en)",
+    "weeks": "we(e)k(en)",
+    "months": "maand(en)",
+    "years": "ja(a)r(en)",
+    "on": "Op",
+    "onThe": "Op de",
+    "weekdays": {
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag",
+      "sunday": "Zondag"
+    },
+    "ends": {
+      "never": "Nooit",
+      "after": "Na",
+      "onDate": "Op datum",
+      "occurrences": "keer"
+    }
+  },
+  "availability": {
+    "available": "Beschikbaar",
+    "unavailable": "Niet beschikbaar",
+    "busy": "Bezet",
+    "tentative": "Voorlopig",
+    "outOfOffice": "Afwezig"
+  },
+  "conflicts": {
+    "detected": "Schemaconflict gedetecteerd",
+    "message": "Dit evenement conflicteert met:",
+    "resolution": "Hoe wil je dit oplossen?",
+    "overwrite": "Bestaande overschrijven",
+    "keepBoth": "Beide evenementen behouden",
+    "cancel": "Nieuw evenement annuleren"
+  },
+  "filters": {
+    "title": "Filters",
+    "showAll": "Alles tonen",
+    "byType": "Op type",
+    "byTeam": "Op team",
+    "byLocation": "Op locatie",
+    "myEvents": "Alleen mijn evenementen"
+  },
+  "export": {
+    "title": "Kalender exporteren",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Afdrukken"
+    },
+    "range": {
+      "all": "Alle evenementen",
+      "current": "Huidige weergave",
+      "custom": "Aangepast bereik"
+    }
+  },
+  "sharing": {
+    "title": "Kalender delen",
+    "publicLink": "Publieke link",
+    "embed": "Insluitcode",
+    "subscribe": "Abonneer URL",
+    "permissions": {
+      "view": "Alleen bekijken",
+      "edit": "Kan bewerken",
+      "admin": "Volledige toegang"
+    }
+  },
+  "reminders": {
+    "none": "Geen herinnering",
+    "atTime": "Op het tijdstip van het evenement",
+    "minutes": "{{count}} minuten van tevoren",
+    "hours": "{{count}} uur van tevoren",
+    "days": "{{count}} dagen van tevoren",
+    "custom": "Aangepast"
+  },
+  "actions": {
+    "create": "Evenement aanmaken",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "duplicate": "Dupliceren",
+    "print": "Afdrukken",
+    "export": "Exporteren",
+    "import": "Importeren",
+    "subscribe": "Abonneren",
+    "unsubscribe": "Afmelden",
+    "rsvp": "RSVP",
+    "maybeAttending": "Misschien",
+    "attending": "Aanwezig",
+    "notAttending": "Afwezig"
+  },
+  "messages": {
+    "eventCreated": "Evenement succesvol aangemaakt",
+    "eventUpdated": "Evenement succesvol bijgewerkt",
+    "eventDeleted": "Evenement succesvol verwijderd",
+    "eventDuplicated": "Evenement succesvol gedupliceerd",
+    "conflictWarning": "Dit tijdslot heeft conflicten",
+    "participantAdded": "Deelnemer toegevoegd",
+    "participantRemoved": "Deelnemer verwijderd",
+    "reminderSet": "Herinnering ingesteld",
+    "calendarShared": "Kalender succesvol gedeeld",
+    "exportComplete": "Export voltooid",
+    "importComplete": "Import voltooid"
+  },
+  "facility": {
+    "rink": "IJsbaan",
+    "mainRink": "Hoofdijsbaan",
+    "practiceRink": "Trainingsijsbaan",
+    "gym": "Sportschool",
+    "meetingRoom": "Vergaderruimte",
+    "lockerRoom": "Kleedkamer",
+    "trainingRoom": "Trainingsruimte",
+    "videoRoom": "Videoruimte",
+    "medicalRoom": "Medische ruimte"
+  },
+  "tooltips": {
+    "dragToMove": "Sleep om evenement te verplaatsen",
+    "dragToResize": "Sleep randen om grootte aan te passen",
+    "clickToEdit": "Klik om te bewerken",
+    "doubleClickToCreate": "Dubbelklik om evenement aan te maken"
+  }
+}

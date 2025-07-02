@@ -1,0 +1,145 @@
+{
+  "title": "Meddelanden",
+  "conversations": {
+    "title": "Konversationer",
+    "new": "Ny konversation",
+    "search": "Sök konversationer...",
+    "empty": "Inga konversationer än",
+    "startNew": "Starta en ny konversation"
+  },
+  "participants": {
+    "add": "Lägg till deltagare",
+    "remove": "Ta bort från konversation",
+    "search": "Sök personer...",
+    "you": "Du",
+    "typing": "skriver...",
+    "multipleTyping": "skriver...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Borta"
+  },
+  "messages": {
+    "placeholder": "Skriv ett meddelande...",
+    "send": "Skicka",
+    "edit": "Redigera meddelande",
+    "delete": "Ta bort meddelande",
+    "reply": "Svara",
+    "forward": "Vidarebefordra",
+    "copy": "Kopiera",
+    "pin": "Fäst meddelande",
+    "unpin": "Ta bort fästning",
+    "react": "Lägg till reaktion",
+    "edited": "redigerad",
+    "deleted": "Detta meddelande har tagits bort",
+    "delivered": "Levererat",
+    "read": "Läst",
+    "sending": "Skickar...",
+    "failed": "Kunde inte skicka",
+    "retry": "Försök igen"
+  },
+  "groups": {
+    "create": "Skapa grupp",
+    "name": "Gruppnamn",
+    "description": "Beskrivning (valfritt)",
+    "addMembers": "Lägg till medlemmar",
+    "settings": "Gruppinställningar",
+    "leave": "Lämna grupp",
+    "delete": "Ta bort grupp",
+    "members": "{{count}} medlemmar",
+    "admin": "Administratör",
+    "member": "Medlem"
+  },
+  "channels": {
+    "title": "Kanaler",
+    "create": "Skapa kanal",
+    "public": "Offentlig kanal",
+    "private": "Privat kanal",
+    "join": "Gå med i kanal",
+    "leave": "Lämna kanal",
+    "mute": "Tysta kanal",
+    "unmute": "Slå på ljud för kanal",
+    "types": {
+      "general": "Allmänt",
+      "announcements": "Meddelanden",
+      "team": "Lagchatt",
+      "coaches": "Tränare",
+      "parents": "Föräldrar",
+      "medical": "Medicinsk personal"
+    }
+  },
+  "attachments": {
+    "title": "Bilagor",
+    "upload": "Ladda upp fil",
+    "types": {
+      "image": "Bild",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Ljud",
+      "other": "Fil"
+    },
+    "download": "Ladda ner",
+    "preview": "Förhandsgranska",
+    "tooLarge": "Filen är för stor. Maximal storlek är {{maxSize}}",
+    "unsupported": "Filtypen stöds inte"
+  },
+  "notifications": {
+    "newMessage": "Nytt meddelande från {{sender}}",
+    "mentioned": "{{sender}} nämnde dig",
+    "groupInvite": "Du har lagts till i {{group}}",
+    "enable": "Aktivera aviseringar",
+    "disable": "Inaktivera aviseringar",
+    "sound": "Aviseringsljud",
+    "desktop": "Skrivbordsaviseringar"
+  },
+  "search": {
+    "placeholder": "Sök meddelanden...",
+    "filters": "Filter",
+    "from": "Från",
+    "to": "Till",
+    "date": "Datum",
+    "hasAttachment": "Har bilaga",
+    "results": "{{count}} resultat hittade",
+    "noResults": "Inga meddelanden hittade"
+  },
+  "settings": {
+    "title": "Chattinställningar",
+    "privacy": "Sekretess",
+    "readReceipts": "Läskvittenser",
+    "typingIndicator": "Visa när jag skriver",
+    "autoDownload": "Ladda ner media automatiskt",
+    "enterToSend": "Tryck Enter för att skicka",
+    "theme": "Chattema",
+    "fontSize": "Teckenstorlek"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Borta",
+    "busy": "Stör ej",
+    "offline": "Visa som offline",
+    "setStatus": "Ställ in status",
+    "customStatus": "Ställ in anpassad status..."
+  },
+  "actions": {
+    "startChat": "Starta chatt",
+    "viewProfile": "Visa profil",
+    "clearChat": "Rensa chatthistorik",
+    "exportChat": "Exportera chatt",
+    "reportUser": "Rapportera användare",
+    "blockUser": "Blockera användare",
+    "unblockUser": "Avblockera användare"
+  },
+  "time": {
+    "now": "nu",
+    "today": "Idag",
+    "yesterday": "Igår",
+    "daysAgo": "{{count}} dagar sedan",
+    "lastSeen": "Senast sedd {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Anslutningen förlorad. Återansluter...",
+    "sendFailed": "Kunde inte skicka meddelande",
+    "loadFailed": "Kunde inte ladda meddelanden",
+    "uploadFailed": "Kunde inte ladda upp fil",
+    "permissionDenied": "Du har inte behörighet att göra det"
+  }
+}

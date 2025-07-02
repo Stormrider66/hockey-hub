@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Šis lauks ir obligāts",
+    "email": "E-pasts ir obligāts",
+    "password": "Parole ir obligāta",
+    "firstName": "Vārds ir obligāts",
+    "lastName": "Uzvārds ir obligāts",
+    "phone": "Tālruņa numurs ir obligāts",
+    "date": "Datums ir obligāts",
+    "time": "Laiks ir obligāts",
+    "selection": "Lūdzu, veiciet izvēli"
+  },
+  "email": {
+    "invalid": "Lūdzu, ievadiet derīgu e-pasta adresi",
+    "alreadyExists": "Šis e-pasts jau ir reģistrēts"
+  },
+  "password": {
+    "tooShort": "Parolei jābūt vismaz {{min}} rakstzīmēm",
+    "tooWeak": "Parole ir pārāk vāja. Izmantojiet burtu, ciparu un simbolu kombināciju",
+    "noMatch": "Paroles nesakrīt",
+    "requiresUppercase": "Parolē jābūt vismaz vienam lielajam burtam",
+    "requiresLowercase": "Parolē jābūt vismaz vienam mazajam burtam",
+    "requiresNumber": "Parolē jābūt vismaz vienam ciparam",
+    "requiresSpecial": "Parolē jābūt vismaz vienai speciālajai rakstzīmei"
+  },
+  "string": {
+    "tooShort": "Jābūt vismaz {{min}} rakstzīmēm",
+    "tooLong": "Nedrīkst pārsniegt {{max}} rakstzīmes",
+    "invalidFormat": "Nederīgs formāts",
+    "alphanumeric": "Atļauti tikai burti un cipari",
+    "alphabetic": "Atļauti tikai burti",
+    "invalidCharacters": "Satur nederīgas rakstzīmes"
+  },
+  "number": {
+    "invalid": "Lūdzu, ievadiet derīgu skaitli",
+    "tooSmall": "Jābūt vismaz {{min}}",
+    "tooLarge": "Nedrīkst pārsniegt {{max}}",
+    "integer": "Jābūt veselam skaitlim",
+    "positive": "Jābūt pozitīvam skaitlim",
+    "negative": "Jābūt negatīvam skaitlim"
+  },
+  "date": {
+    "invalid": "Lūdzu, ievadiet derīgu datumu",
+    "beforeMin": "Datumam jābūt pēc {{min}}",
+    "afterMax": "Datumam jābūt pirms {{max}}",
+    "inPast": "Datumam jābūt pagātnē",
+    "inFuture": "Datumam jābūt nākotnē"
+  },
+  "time": {
+    "invalid": "Lūdzu, ievadiet derīgu laiku",
+    "beforeMin": "Laikam jābūt pēc {{min}}",
+    "afterMax": "Laikam jābūt pirms {{max}}"
+  },
+  "phone": {
+    "invalid": "Lūdzu, ievadiet derīgu tālruņa numuru",
+    "invalidCountryCode": "Nederīgs valsts kods"
+  },
+  "file": {
+    "tooLarge": "Faila izmēram jābūt mazākam par {{maxSize}}",
+    "invalidType": "Faila tips nav atļauts. Atļautie tipi: {{allowedTypes}}",
+    "required": "Lūdzu, izvēlieties failu",
+    "tooMany": "Pārāk daudz failu. Maksimāli atļauts: {{max}}"
+  },
+  "url": {
+    "invalid": "Lūdzu, ievadiet derīgu URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Nederīgs komandas koda formāts",
+      "notFound": "Komandas kods nav atrasts"
+    },
+    "playerNumber": {
+      "invalid": "Nederīgs spēlētāja numurs",
+      "alreadyTaken": "Šis numurs jau ir aizņemts"
+    },
+    "age": {
+      "tooYoung": "Jābūt vismaz {{min}} gadus vecam",
+      "tooOld": "Nedrīkst būt vecāks par {{max}} gadiem"
+    },
+    "schedule": {
+      "conflict": "Šis laiks konfliktē ar citu notikumu",
+      "outsideHours": "Izvēlētais laiks ir ārpus darba laika",
+      "tooSoon": "Jāplāno vismaz {{hours}} stundas iepriekš"
+    },
+    "capacity": {
+      "exceeded": "Maksimālā kapacitāte pārsniegta",
+      "minimum": "Nepieciešami vismaz {{min}} dalībnieki"
+    }
+  },
+  "form": {
+    "hasErrors": "Lūdzu, izlabojiet kļūdas zemāk",
+    "submitError": "Neizdevās iesniegt formu. Lūdzu, mēģiniet vēlreiz.",
+    "saveDraft": "Jūsu melnraksts ir saglabāts",
+    "unsavedChanges": "Jums ir nesaglabātas izmaiņas. Vai tiešām vēlaties pamest?"
+  },
+  "search": {
+    "tooShort": "Meklēšanas vaicājumam jābūt vismaz {{min}} rakstzīmēm",
+    "noResults": "Nav atrasts neviens rezultāts"
+  },
+  "selection": {
+    "minimum": "Lūdzu, izvēlieties vismaz {{min}} opciju(-as)",
+    "maximum": "Lūdzu, izvēlieties ne vairāk kā {{max}} opciju(-as)",
+    "exact": "Lūdzu, izvēlieties tieši {{count}} opciju(-as)"
+  },
+  "comparison": {
+    "mustMatch": "Laukiem jāsakrīt",
+    "mustBeDifferent": "Laukiem jābūt atšķirīgiem",
+    "startBeforeEnd": "Sākuma laikam jābūt pirms beigu laika",
+    "endAfterStart": "Beigu laikam jābūt pēc sākuma laika"
+  }
+}

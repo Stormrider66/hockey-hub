@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Administrator Systemu",
+    "subtitle": "Zarządzanie i konfiguracja platformy",
+    "welcome": "Witaj, Administratorze Systemu",
+    "systemStatus": "Status Systemu",
+    "alerts": "Alerty Systemowe"
+  },
+  "system": {
+    "title": "Zarządzanie Systemem",
+    "status": "Status Systemu",
+    "health": "Kontrola Stanu",
+    "healthScore": "Stan Systemu",
+    "monitoring": "Monitorowanie Systemu",
+    "logs": "Logi Systemowe",
+    "performance": "Metryki Wydajności",
+    "uptime": "Czas Działania",
+    "resources": "Użycie Zasobów",
+    "activeUsers": "Aktywni Użytkownicy",
+    "errorRate": "Wskaźnik Błędów",
+    "responseTime": "Czas Odpowiedzi",
+    "databaseSize": "Rozmiar Bazy Danych",
+    "withinSLA": "W Ramach SLA",
+    "systemPerformance24h": "Wydajność Systemu (24h)",
+    "serviceHealthMatrix": "Macierz Stanu Usług",
+    "cpuMemoryUsage": "Użycie CPU, pamięci i liczba żądań",
+    "realTimeServiceStatus": "Status usług i metryki w czasie rzeczywistym"
+  },
+  "users": {
+    "title": "Zarządzanie Użytkownikami",
+    "all": "Wszyscy Użytkownicy",
+    "create": "Utwórz Użytkownika",
+    "edit": "Edytuj Użytkownika",
+    "delete": "Usuń Użytkownika",
+    "roles": "Role Użytkowników",
+    "permissions": "Uprawnienia Użytkowników",
+    "activity": "Aktywność Użytkowników",
+    "sessions": "Aktywne Sesje",
+    "audit": "Dziennik Audytu"
+  },
+  "organizations": {
+    "title": "Zarządzanie Organizacjami",
+    "all": "Wszystkie Organizacje",
+    "create": "Utwórz Organizację",
+    "edit": "Edytuj Organizację",
+    "delete": "Usuń Organizację",
+    "settings": "Ustawienia Organizacji",
+    "limits": "Limity Użycia",
+    "billing": "Informacje Rozliczeniowe"
+  },
+  "security": {
+    "title": "Zarządzanie Bezpieczeństwem",
+    "settings": "Ustawienia Bezpieczeństwa",
+    "authentication": "Uwierzytelnianie",
+    "authorization": "Autoryzacja",
+    "tokens": "Tokeny API",
+    "certificates": "Certyfikaty SSL",
+    "firewall": "Reguły Zapory Sieciowej",
+    "threats": "Wykrywanie Zagrożeń",
+    "incidents": "Incydenty Bezpieczeństwa"
+  },
+  "database": {
+    "title": "Zarządzanie Bazą Danych",
+    "status": "Status Bazy Danych",
+    "backup": "Zarządzanie Kopiami Zapasowymi",
+    "restore": "Przywróć Bazę Danych",
+    "migrations": "Migracje Bazy Danych",
+    "optimization": "Optymalizacja Zapytań",
+    "connections": "Pula Połączeń",
+    "maintenance": "Zadania Konserwacyjne"
+  },
+  "services": {
+    "title": "Zarządzanie Usługami",
+    "status": "Status Usług",
+    "configuration": "Konfiguracja Usług",
+    "dependencies": "Zależności",
+    "health": "Kontrole Stanu",
+    "restart": "Restart Usługi",
+    "logs": "Logi Usług",
+    "metrics": "Metryki Usług"
+  },
+  "integrations": {
+    "title": "Integracje",
+    "connected": "Połączone Usługi",
+    "available": "Dostępne Integracje",
+    "configure": "Konfiguruj Integrację",
+    "test": "Testuj Połączenie",
+    "logs": "Logi Integracji",
+    "webhooks": "Webhooki",
+    "api": "Zarządzanie API"
+  },
+  "configuration": {
+    "title": "Konfiguracja Systemu",
+    "general": "Ustawienia Ogólne",
+    "email": "Konfiguracja Email",
+    "storage": "Ustawienia Przechowywania",
+    "cache": "Zarządzanie Pamięcią Podręczną",
+    "queue": "Konfiguracja Kolejek",
+    "scheduler": "Harmonogram Zadań",
+    "features": "Flagi Funkcji"
+  },
+  "monitoring": {
+    "title": "Monitorowanie Systemu",
+    "dashboard": "Panel Monitorowania",
+    "alerts": "Konfiguracja Alertów",
+    "metrics": "Metryki Systemowe",
+    "logs": "Analiza Logów",
+    "errors": "Śledzenie Błędów",
+    "performance": "Analiza Wydajności",
+    "reports": "Raporty Systemowe"
+  },
+  "maintenance": {
+    "title": "Konserwacja",
+    "schedule": "Harmonogram Konserwacji",
+    "tasks": "Zadania Konserwacyjne",
+    "updates": "Aktualizacje Systemu",
+    "patches": "Łatki Bezpieczeństwa",
+    "cleanup": "Czyszczenie Danych",
+    "optimization": "Optymalizacja Systemu",
+    "mode": "Tryb Konserwacji"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Pulpit Zawodnika",
+    "subtitle": "Śledź swoje wyniki i rozwój",
+    "welcome": "Witamy ponownie, {{name}}!",
+    "todaySchedule": "Dzisiejszy Harmonogram",
+    "upcomingEvents": "Nadchodzące Wydarzenia",
+    "recentPerformance": "Ostatnie Wyniki",
+    "developmentGoals": "Cele Rozwojowe"
+  },
+  "profile": {
+    "playerInfo": "Informacje o Zawodniku",
+    "number": "Numer Koszulki",
+    "position": "Pozycja",
+    "shoots": "Strzelanie",
+    "team": "Zespół",
+    "age": "Wiek",
+    "height": "Wzrost",
+    "weight": "Waga",
+    "joined": "Dołączył",
+    "contractExpires": "Kontrakt Wygasa"
+  },
+  "wellness": {
+    "title": "Codzienny Check Samopoczucia",
+    "subtitle": "Jak się dziś czujesz?",
+    "submit": "Prześlij Dane Samopoczucia",
+    "submitted": "Dane samopoczucia przesłane pomyślnie",
+    "metrics": {
+      "hrv": "Zmienność Tętna",
+      "sleep": "Jakość Snu",
+      "fatigue": "Poziom Zmęczenia",
+      "mood": "Nastrój",
+      "soreness": "Ból Mięśni",
+      "stress": "Poziom Stresu",
+      "hydration": "Nawodnienie",
+      "nutrition": "Jakość Odżywiania"
+    },
+    "scale": {
+      "poor": "Słaby",
+      "fair": "Średni",
+      "good": "Dobry",
+      "veryGood": "Bardzo Dobry",
+      "excellent": "Doskonały"
+    }
+  },
+  "training": {
+    "title": "Sesje Treningowe",
+    "upcoming": "Nadchodzące Treningi",
+    "completed": "Ukończone Sesje",
+    "assigned": "Przydzielone Ćwiczenia",
+    "progress": "Postęp Treningowy",
+    "todaysWorkout": "Dzisiejszy Trening",
+    "completeSession": "Ukończ Sesję",
+    "viewDetails": "Zobacz Szczegóły",
+    "intensity": "Intensywność",
+    "duration": "Czas Trwania",
+    "focus": "Obszar Skupienia",
+    "equipment": "Potrzebny Sprzęt",
+    "location": "Lokalizacja",
+    "coach": "Trener",
+    "notes": "Notatki z Sesji"
+  },
+  "performance": {
+    "title": "Metryki Wydajności",
+    "seasonStats": "Statystyki Sezonu",
+    "careerStats": "Statystyki Kariery",
+    "lastGame": "Ostatni Mecz",
+    "average": "Średnia",
+    "total": "Łącznie",
+    "trend": "Trend",
+    "improvement": "Poprawa",
+    "metrics": {
+      "goals": "Gole",
+      "assists": "Asysty",
+      "points": "Punkty",
+      "plusMinus": "+/-",
+      "pim": "Minuty Kar",
+      "shots": "Strzały",
+      "shootingPercentage": "% Strzałów",
+      "faceoffPercentage": "% Wznowień",
+      "hits": "Uderzenia",
+      "blocks": "Bloki",
+      "takeaways": "Odbiory",
+      "giveaways": "Straty",
+      "toi": "Czas na Lodzie",
+      "powerplayGoals": "Gole w Przewadze",
+      "shorthandedGoals": "Gole w Osłabieniu",
+      "gameWinningGoals": "Gole Zwycięskie"
+    }
+  },
+  "schedule": {
+    "title": "Harmonogram",
+    "calendar": "Widok Kalendarza",
+    "list": "Widok Listy",
+    "filters": "Filtry",
+    "types": {
+      "game": "Mecz",
+      "practice": "Trening",
+      "training": "Ćwiczenia",
+      "meeting": "Spotkanie",
+      "medical": "Medyczne",
+      "recovery": "Regeneracja",
+      "travel": "Podróż",
+      "personal": "Osobiste"
+    },
+    "rsvp": {
+      "title": "Potwierdzenie Obecności",
+      "attending": "Biorę Udział",
+      "notAttending": "Nie Biorę Udziału",
+      "maybe": "Może",
+      "update": "Aktualizuj Odpowiedź"
+    }
+  },
+  "communication": {
+    "title": "Wiadomości",
+    "inbox": "Skrzynka Odbiorcza",
+    "sent": "Wysłane",
+    "drafts": "Szkice",
+    "compose": "Napisz",
+    "teamChat": "Chat Zespołu",
+    "coachMessages": "Wiadomości Trenera",
+    "announcements": "Ogłoszenia"
+  },
+  "development": {
+    "title": "Plan Rozwoju",
+    "goals": "Cele",
+    "progress": "Postęp",
+    "skillAssessment": "Ocena Umiejętności",
+    "trainingPlan": "Plan Treningowy",
+    "milestones": "Kamienie Milowe",
+    "achievements": "Osiągnięcia",
+    "areas": {
+      "skating": "Jazda na Łyżwach",
+      "shooting": "Strzelanie",
+      "passing": "Podania",
+      "stickHandling": "Prowadzenie Krążka",
+      "positioning": "Pozycjonowanie",
+      "physicality": "Kondycja Fizyczna",
+      "mentalGame": "Gra Mentalna",
+      "leadership": "Przywództwo"
+    }
+  },
+  "nutrition": {
+    "title": "Odżywianie",
+    "mealPlan": "Plan Posiłków",
+    "hydration": "Śledzenie Nawodnienia",
+    "supplements": "Suplementy",
+    "calories": "Kalorie",
+    "macros": "Makroskładniki",
+    "meals": {
+      "breakfast": "Śniadanie",
+      "lunch": "Obiad",
+      "dinner": "Kolacja",
+      "snack": "Przekąska",
+      "preGame": "Przed Meczem",
+      "postGame": "Po Meczu"
+    }
+  },
+  "recovery": {
+    "title": "Regeneracja",
+    "status": "Status Regeneracji",
+    "activities": "Aktywności Regeneracyjne",
+    "sleep": "Śledzenie Snu",
+    "treatment": "Leczenie",
+    "nextSession": "Następna Sesja Regeneracji",
+    "types": {
+      "massage": "Masaż",
+      "coldTub": "Wanna z Zimną Wodą",
+      "sauna": "Sauna",
+      "stretching": "Rozciąganie",
+      "yoga": "Joga",
+      "physiotherapy": "Fizjoterapia"
+    }
+  }
+}

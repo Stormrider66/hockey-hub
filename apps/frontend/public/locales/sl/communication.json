@@ -1,0 +1,239 @@
+{
+  "dashboard": {
+    "title": "Komunikacija",
+    "overview": "Pregled komunikacije",
+    "recentMessages": "Nedavna sporočila",
+    "announcements": "Obvestila",
+    "unreadCount": "{{count}} neprebranih sporočil",
+    "quickActions": "Hitra dejanja"
+  },
+  "messages": {
+    "title": "Sporočila",
+    "compose": "Novo sporočilo",
+    "inbox": "Prejeta",
+    "sent": "Poslana",
+    "drafts": "Osnutki",
+    "trash": "Koš",
+    "archive": "Arhiv",
+    "search": "Iskanje sporočil",
+    "markAsRead": "Označi kot prebrano",
+    "markAsUnread": "Označi kot neprebrano",
+    "delete": "Izbriši",
+    "reply": "Odgovori",
+    "replyAll": "Odgovori vsem",
+    "forward": "Posreduj",
+    "star": "Označi z zvezdico",
+    "unstar": "Odstrani zvezdico",
+    "fields": {
+      "to": "Za",
+      "cc": "Kopija",
+      "bcc": "Skrita kopija",
+      "from": "Od",
+      "subject": "Zadeva",
+      "message": "Sporočilo",
+      "attachments": "Priloge",
+      "priority": "Prioriteta",
+      "date": "Datum"
+    },
+    "priority": {
+      "high": "Visoka",
+      "normal": "Običajna",
+      "low": "Nizka"
+    },
+    "filters": {
+      "all": "Vsa",
+      "unread": "Neprebrana",
+      "starred": "Z zvezdico",
+      "withAttachments": "S prilogami"
+    }
+  },
+  "chat": {
+    "title": "Klepet",
+    "online": "Povezan",
+    "offline": "Nepovezan",
+    "away": "Odsoten",
+    "busy": "Zaseden",
+    "typing": "{{name}} piše...",
+    "lastSeen": "Nazadnje viden: {{time}}",
+    "startConversation": "Začni pogovor",
+    "sendMessage": "Pošlji sporočilo",
+    "attachFile": "Priloži datoteko",
+    "emoji": "Emoji",
+    "voiceCall": "Glasovni klic",
+    "videoCall": "Video klic",
+    "groupChat": "Skupinski klepet",
+    "createGroup": "Ustvari skupino",
+    "addMembers": "Dodaj člane",
+    "leaveGroup": "Zapusti skupino",
+    "muteNotifications": "Utišaj obvestila",
+    "searchMessages": "Išči v sporočilih"
+  },
+  "announcements": {
+    "title": "Obvestila",
+    "create": "Novo obvestilo",
+    "edit": "Uredi obvestilo",
+    "delete": "Izbriši obvestilo",
+    "pin": "Pripni",
+    "unpin": "Odpni",
+    "categories": {
+      "general": "Splošno",
+      "urgent": "Nujno",
+      "team": "Ekipa",
+      "schedule": "Urnik",
+      "event": "Dogodek",
+      "policy": "Pravilnik",
+      "maintenance": "Vzdrževanje"
+    },
+    "audience": {
+      "all": "Vsi",
+      "players": "Igralci",
+      "coaches": "Trenerji",
+      "parents": "Starši",
+      "staff": "Osebje",
+      "specific": "Določeni prejemniki"
+    },
+    "fields": {
+      "title": "Naslov",
+      "content": "Vsebina",
+      "category": "Kategorija",
+      "audience": "Prejemniki",
+      "publishDate": "Datum objave",
+      "expiryDate": "Datum poteka",
+      "pinned": "Pripeto",
+      "attachments": "Priloge"
+    }
+  },
+  "notifications": {
+    "title": "Obvestila",
+    "all": "Vsa",
+    "unread": "Neprebrana",
+    "settings": "Nastavitve obvestil",
+    "markAllRead": "Označi vsa kot prebrana",
+    "clear": "Počisti",
+    "types": {
+      "message": "Sporočilo",
+      "announcement": "Obvestilo",
+      "event": "Dogodek",
+      "reminder": "Opomnik",
+      "alert": "Opozorilo",
+      "system": "Sistem"
+    },
+    "channels": {
+      "email": "E-pošta",
+      "push": "Potisna obvestila",
+      "sms": "SMS",
+      "inApp": "V aplikaciji"
+    },
+    "preferences": {
+      "messages": "Sporočilna obvestila",
+      "announcements": "Obvestila",
+      "events": "Obvestila dogodkov",
+      "reminders": "Opomniki",
+      "teamUpdates": "Posodobitve ekipe",
+      "scheduleChanges": "Spremembe urnika"
+    }
+  },
+  "templates": {
+    "title": "Predloge sporočil",
+    "create": "Ustvari predlogo",
+    "edit": "Uredi predlogo",
+    "delete": "Izbriši predlogo",
+    "use": "Uporabi predlogo",
+    "categories": {
+      "welcome": "Dobrodošlica",
+      "reminder": "Opomnik",
+      "announcement": "Obvestilo",
+      "invitation": "Vabilo",
+      "notification": "Obvestilo",
+      "response": "Odgovor"
+    },
+    "variables": {
+      "name": "Ime",
+      "date": "Datum",
+      "time": "Čas",
+      "location": "Lokacija",
+      "team": "Ekipa",
+      "event": "Dogodek"
+    }
+  },
+  "channels": {
+    "title": "Komunikacijski kanali",
+    "teamChannel": "Ekipni kanal",
+    "coachChannel": "Trenerski kanal",
+    "parentChannel": "Starševski kanal",
+    "staffChannel": "Kanal osebja",
+    "generalChannel": "Splošni kanal",
+    "privateChannel": "Zasebni kanal",
+    "join": "Pridruži se",
+    "leave": "Zapusti",
+    "mute": "Utišaj",
+    "unmute": "Vklopi zvok"
+  },
+  "broadcast": {
+    "title": "Množično pošiljanje",
+    "send": "Pošlji vsem",
+    "schedule": "Načrtuj pošiljanje",
+    "recipients": "Prejemniki",
+    "selectAll": "Izberi vse",
+    "deselectAll": "Počisti izbor",
+    "testSend": "Testno pošiljanje",
+    "preview": "Predogled"
+  },
+  "polls": {
+    "title": "Ankete",
+    "create": "Ustvari anketo",
+    "vote": "Glasuj",
+    "results": "Rezultati",
+    "close": "Zapri anketo",
+    "anonymous": "Anonimno glasovanje",
+    "multipleChoice": "Več možnosti",
+    "deadline": "Rok"
+  },
+  "feedback": {
+    "title": "Povratne informacije",
+    "submit": "Pošlji povratne informacije",
+    "view": "Preglej povratne informacije",
+    "respond": "Odgovori",
+    "categories": {
+      "suggestion": "Predlog",
+      "complaint": "Pritožba",
+      "praise": "Pohvala",
+      "question": "Vprašanje",
+      "other": "Drugo"
+    }
+  },
+  "settings": {
+    "title": "Nastavitve komunikacije",
+    "signature": "Podpis",
+    "autoReply": "Samodejni odgovor",
+    "blockedUsers": "Blokirani uporabniki",
+    "language": "Jezik",
+    "timezone": "Časovni pas",
+    "privacy": "Zasebnost",
+    "readReceipts": "Potrdila o branju",
+    "typingIndicator": "Indikator tipkanja"
+  },
+  "actions": {
+    "send": "Pošlji",
+    "save": "Shrani",
+    "cancel": "Prekliči",
+    "delete": "Izbriši",
+    "archive": "Arhiviraj",
+    "restore": "Obnovi",
+    "block": "Blokiraj",
+    "unblock": "Odblokiraj",
+    "report": "Prijavi",
+    "search": "Išči"
+  },
+  "messages": {
+    "sent": "Sporočilo poslano",
+    "received": "Novo sporočilo prejeto",
+    "deleted": "Sporočilo izbrisano",
+    "archived": "Sporočilo arhivirano",
+    "error": "Napaka pri pošiljanju sporočila",
+    "noMessages": "Ni sporočil",
+    "noAnnouncements": "Ni obvestil",
+    "connectionLost": "Povezava prekinjena",
+    "reconnecting": "Ponovno povezovanje..."
+  }
+}

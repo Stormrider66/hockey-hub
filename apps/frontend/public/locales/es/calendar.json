@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Mes",
+    "week": "Semana",
+    "day": "Día",
+    "agenda": "Agenda",
+    "workWeek": "Semana Laboral"
+  },
+  "navigation": {
+    "today": "Hoy",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "jumpToDate": "Ir a fecha"
+  },
+  "event": {
+    "title": "Evento",
+    "newEvent": "Nuevo Evento",
+    "editEvent": "Editar Evento",
+    "deleteEvent": "Eliminar Evento",
+    "duplicateEvent": "Duplicar Evento",
+    "allDay": "Todo el Día",
+    "recurring": "Recurrente",
+    "privateEvent": "Evento Privado",
+    "fields": {
+      "title": "Título",
+      "description": "Descripción",
+      "location": "Ubicación",
+      "startDate": "Fecha de Inicio",
+      "startTime": "Hora de Inicio",
+      "endDate": "Fecha de Fin",
+      "endTime": "Hora de Fin",
+      "type": "Tipo de Evento",
+      "category": "Categoría",
+      "participants": "Participantes",
+      "resources": "Recursos",
+      "notes": "Notas",
+      "reminder": "Recordatorio",
+      "color": "Color",
+      "attachments": "Adjuntos"
+    },
+    "types": {
+      "practice": "Práctica",
+      "game": "Partido",
+      "training": "Entrenamiento",
+      "meeting": "Reunión",
+      "tournament": "Torneo",
+      "tryout": "Prueba",
+      "medical": "Cita Médica",
+      "equipment": "Prueba de Equipamiento",
+      "teamEvent": "Evento del Equipo",
+      "personal": "Personal",
+      "other": "Otro"
+    },
+    "status": {
+      "confirmed": "Confirmado",
+      "tentative": "Tentativo",
+      "cancelled": "Cancelado",
+      "postponed": "Pospuesto",
+      "rescheduled": "Reprogramado"
+    }
+  },
+  "recurrence": {
+    "title": "Recurrencia",
+    "none": "No se repite",
+    "daily": "Diario",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "custom": "Personalizado",
+    "every": "Cada",
+    "days": "día(s)",
+    "weeks": "semana(s)",
+    "months": "mes(es)",
+    "years": "año(s)",
+    "on": "En",
+    "onThe": "En el",
+    "weekdays": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    },
+    "ends": {
+      "never": "Nunca",
+      "after": "Después de",
+      "onDate": "En la fecha",
+      "occurrences": "ocurrencias"
+    }
+  },
+  "availability": {
+    "available": "Disponible",
+    "unavailable": "No Disponible",
+    "busy": "Ocupado",
+    "tentative": "Tentativo",
+    "outOfOffice": "Fuera de la Oficina"
+  },
+  "conflicts": {
+    "detected": "Conflicto de Horario Detectado",
+    "message": "Este evento entra en conflicto con:",
+    "resolution": "¿Cómo te gustaría resolverlo?",
+    "overwrite": "Sobrescribir existente",
+    "keepBoth": "Mantener ambos eventos",
+    "cancel": "Cancelar nuevo evento"
+  },
+  "filters": {
+    "title": "Filtros",
+    "showAll": "Mostrar Todo",
+    "byType": "Por Tipo",
+    "byTeam": "Por Equipo",
+    "byLocation": "Por Ubicación",
+    "myEvents": "Solo Mis Eventos"
+  },
+  "export": {
+    "title": "Exportar Calendario",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Imprimir"
+    },
+    "range": {
+      "all": "Todos los Eventos",
+      "current": "Vista Actual",
+      "custom": "Rango Personalizado"
+    }
+  },
+  "sharing": {
+    "title": "Compartir Calendario",
+    "publicLink": "Enlace Público",
+    "embed": "Código de Inserción",
+    "subscribe": "URL de Suscripción",
+    "permissions": {
+      "view": "Solo Ver",
+      "edit": "Puede Editar",
+      "admin": "Acceso Completo"
+    }
+  },
+  "reminders": {
+    "none": "Sin recordatorio",
+    "atTime": "En el momento del evento",
+    "minutes": "{{count}} minutos antes",
+    "hours": "{{count}} horas antes",
+    "days": "{{count}} días antes",
+    "custom": "Personalizado"
+  },
+  "actions": {
+    "create": "Crear Evento",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "print": "Imprimir",
+    "export": "Exportar",
+    "import": "Importar",
+    "subscribe": "Suscribirse",
+    "unsubscribe": "Cancelar Suscripción",
+    "rsvp": "Confirmar Asistencia",
+    "maybeAttending": "Tal Vez",
+    "attending": "Asistiré",
+    "notAttending": "No Asistiré"
+  },
+  "messages": {
+    "eventCreated": "Evento creado exitosamente",
+    "eventUpdated": "Evento actualizado exitosamente",
+    "eventDeleted": "Evento eliminado exitosamente",
+    "eventDuplicated": "Evento duplicado exitosamente",
+    "conflictWarning": "Este horario tiene conflictos",
+    "participantAdded": "Participante agregado",
+    "participantRemoved": "Participante eliminado",
+    "reminderSet": "Recordatorio configurado",
+    "calendarShared": "Calendario compartido exitosamente",
+    "exportComplete": "Exportación completada",
+    "importComplete": "Importación completada"
+  },
+  "facility": {
+    "rink": "Pista de Hielo",
+    "mainRink": "Pista Principal",
+    "practiceRink": "Pista de Práctica",
+    "gym": "Gimnasio",
+    "meetingRoom": "Sala de Reuniones",
+    "lockerRoom": "Vestuario",
+    "trainingRoom": "Sala de Entrenamiento",
+    "videoRoom": "Sala de Video",
+    "medicalRoom": "Sala Médica"
+  },
+  "tooltips": {
+    "dragToMove": "Arrastra para mover el evento",
+    "dragToResize": "Arrastra los bordes para cambiar tamaño",
+    "clickToEdit": "Clic para editar",
+    "doubleClickToCreate": "Doble clic para crear evento"
+  }
+}

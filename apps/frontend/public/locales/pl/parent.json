@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Panel rodzica",
+    "subtitle": "Bądź na bieżąco z hokejową podróżą swojego dziecka",
+    "welcome": "Witaj, {{name}}!",
+    "childrenOverview": "Przegląd dzieci",
+    "upcomingEvents": "Nadchodzące wydarzenia"
+  },
+  "children": {
+    "title": "Moje dzieci",
+    "addChild": "Dodaj dziecko",
+    "profile": "Profil dziecka",
+    "schedule": "Harmonogram",
+    "performance": "Wyniki",
+    "wellness": "Zdrowie i samopoczucie",
+    "communication": "Wiadomości",
+    "details": {
+      "team": "Drużyna",
+      "position": "Pozycja",
+      "coach": "Trener",
+      "number": "Numer koszulki",
+      "age": "Grupa wiekowa"
+    }
+  },
+  "schedule": {
+    "title": "Harmonogram rodzinny",
+    "calendar": "Widok kalendarza",
+    "upcoming": "Nadchodzące wydarzenia",
+    "transportation": "Transport",
+    "conflicts": "Konflikty w harmonogramie",
+    "sync": "Synchronizuj kalendarz",
+    "export": "Eksportuj harmonogram",
+    "types": {
+      "game": "Mecz",
+      "practice": "Trening",
+      "tournament": "Turniej",
+      "teamEvent": "Wydarzenie drużynowe",
+      "meeting": "Spotkanie rodziców",
+      "fundraiser": "Zbiórka funduszy"
+    },
+    "rsvp": {
+      "title": "Potwierdź obecność",
+      "attending": "Będziemy obecni",
+      "notAttending": "Nie możemy przyjść",
+      "driving": "Mogę zabrać innych",
+      "needRide": "Potrzebujemy transportu"
+    }
+  },
+  "transportation": {
+    "title": "Koordynacja transportu",
+    "available": "Dostępni kierowcy",
+    "requests": "Prośby o podwózkę",
+    "myOffers": "Moje oferty przewozu",
+    "carpool": "Grupy wspólnych przejazdów",
+    "seats": "Dostępne miejsca",
+    "pickup": "Miejsce odbioru",
+    "dropoff": "Miejsce docelowe",
+    "time": "Czas wyjazdu"
+  },
+  "payments": {
+    "title": "Płatności i opłaty",
+    "overview": "Przegląd płatności",
+    "due": "Do zapłaty",
+    "history": "Historia płatności",
+    "upcoming": "Nadchodzące opłaty",
+    "methods": "Metody płatności",
+    "invoices": "Faktury",
+    "items": {
+      "registration": "Opłata rejestracyjna",
+      "monthly": "Składka miesięczna",
+      "equipment": "Sprzęt",
+      "tournament": "Opłata turniejowa",
+      "travel": "Wydatki podróżne",
+      "fundraising": "Zbiórka funduszy"
+    },
+    "status": {
+      "paid": "Opłacone",
+      "pending": "Oczekujące",
+      "overdue": "Zaległe",
+      "partial": "Częściowa płatność"
+    }
+  },
+  "communication": {
+    "title": "Komunikacja",
+    "messages": "Wiadomości",
+    "announcements": "Ogłoszenia drużynowe",
+    "coachMessages": "Od trenera",
+    "teamMessages": "Aktualności drużyny",
+    "emergency": "Kontakty awaryjne",
+    "directory": "Katalog drużyny",
+    "preferences": "Preferencje komunikacji"
+  },
+  "medical": {
+    "title": "Informacje medyczne",
+    "records": "Dokumentacja medyczna",
+    "allergies": "Alergie",
+    "medications": "Leki",
+    "conditions": "Schorzenia",
+    "emergency": "Kontakty awaryjne",
+    "insurance": "Informacje o ubezpieczeniu",
+    "consent": "Zgoda medyczna",
+    "injuries": "Historia kontuzji"
+  },
+  "documents": {
+    "title": "Dokumenty i formularze",
+    "required": "Wymagane dokumenty",
+    "optional": "Opcjonalne formularze",
+    "submitted": "Złożone",
+    "pending": "Oczekujące na złożenie",
+    "download": "Pobierz formularze",
+    "upload": "Prześlij dokument",
+    "types": {
+      "registration": "Formularz rejestracyjny",
+      "medical": "Formularz medyczny",
+      "waiver": "Zrzeczenie",
+      "consent": "Formularz zgody",
+      "emergency": "Kontakt awaryjny",
+      "insurance": "Karta ubezpieczenia"
+    }
+  },
+  "volunteer": {
+    "title": "Możliwości wolontariatu",
+    "signup": "Zapisz się",
+    "myShifts": "Moje dyżury wolontariackie",
+    "available": "Dostępne stanowiska",
+    "hours": "Godziny wolontariatu",
+    "requirements": "Wymagania",
+    "positions": {
+      "scorekeeper": "Sędzia zapisowy",
+      "penalty": "Obsługa ławki kar",
+      "concession": "Stoisko z przekąskami",
+      "fundraising": "Zbiórka funduszy",
+      "teamManager": "Menedżer drużyny",
+      "equipment": "Pomoc przy sprzęcie"
+    }
+  },
+  "performance": {
+    "title": "Postępy dziecka",
+    "overview": "Przegląd wyników",
+    "improvement": "Obszary do poprawy",
+    "achievements": "Ostatnie osiągnięcia",
+    "feedback": "Opinie trenera",
+    "goals": "Cele rozwojowe",
+    "attendance": "Frekwencja",
+    "effort": "Poziom zaangażowania",
+    "teamwork": "Praca zespołowa"
+  }
+}

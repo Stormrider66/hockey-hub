@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Pelaajan työpöytä",
+    "subtitle": "Seuraa suoritustasi ja kehitystäsi",
+    "welcome": "Tervetuloa takaisin, {{name}}!",
+    "todaySchedule": "Tämän päivän aikataulu",
+    "upcomingEvents": "Tulevat tapahtumat",
+    "recentPerformance": "Viimeaikainen suoritus",
+    "developmentGoals": "Kehitystavoitteet"
+  },
+  "profile": {
+    "playerInfo": "Pelaajatiedot",
+    "number": "Pelinumero",
+    "position": "Pelipaikka",
+    "shoots": "Lämärikäsi",
+    "team": "Joukkue",
+    "age": "Ikä",
+    "height": "Pituus",
+    "weight": "Paino",
+    "joined": "Liittynyt",
+    "contractExpires": "Sopimus päättyy"
+  },
+  "wellness": {
+    "title": "Päivittäinen hyvinvointikysely",
+    "subtitle": "Miten voit tänään?",
+    "submit": "Lähetä hyvinvointitiedot",
+    "submitted": "Hyvinvointitiedot lähetetty",
+    "metrics": {
+      "hrv": "Sykevälivaihtelu",
+      "sleep": "Unen laatu",
+      "fatigue": "Väsymystaso",
+      "mood": "Mieliala",
+      "soreness": "Lihaskipu",
+      "stress": "Stressitaso",
+      "hydration": "Nesteytys",
+      "nutrition": "Ravinnon laatu"
+    },
+    "scale": {
+      "poor": "Huono",
+      "fair": "Kohtalainen",
+      "good": "Hyvä",
+      "veryGood": "Erittäin hyvä",
+      "excellent": "Erinomainen"
+    }
+  },
+  "training": {
+    "title": "Harjoitukset",
+    "upcoming": "Tulevat harjoitukset",
+    "completed": "Suoritetut harjoitukset",
+    "assigned": "Määrätyt harjoitteet",
+    "progress": "Harjoittelun edistyminen",
+    "todaysWorkout": "Tämän päivän harjoitus",
+    "completeSession": "Merkitse suoritetuksi",
+    "viewDetails": "Näytä tiedot",
+    "intensity": "Intensiteetti",
+    "duration": "Kesto",
+    "focus": "Painopiste",
+    "equipment": "Tarvittavat välineet",
+    "location": "Paikka",
+    "coach": "Valmentaja",
+    "notes": "Harjoitusmuistiinpanot"
+  },
+  "performance": {
+    "title": "Suoritustilastot",
+    "seasonStats": "Kauden tilastot",
+    "careerStats": "Uratilastot",
+    "lastGame": "Viimeisin peli",
+    "average": "Keskiarvo",
+    "total": "Yhteensä",
+    "trend": "Trendi",
+    "improvement": "Parannus",
+    "metrics": {
+      "goals": "Maalit",
+      "assists": "Syötöt",
+      "points": "Pisteet",
+      "plusMinus": "+/-",
+      "pim": "Jäähyminuutit",
+      "shots": "Laukaukset",
+      "shootingPercentage": "Laukausprosentti",
+      "faceoffPercentage": "Aloitusprosentti",
+      "hits": "Taklaukset",
+      "blocks": "Blokit",
+      "takeaways": "Riistot",
+      "giveaways": "Kiekonmenetykset",
+      "toi": "Peliaika",
+      "powerplayGoals": "Ylivoimamaalit",
+      "shorthandedGoals": "Alivoimamaalit",
+      "gameWinningGoals": "Voittomaalit"
+    }
+  },
+  "schedule": {
+    "title": "Aikataulu",
+    "calendar": "Kalenterinäkymä",
+    "list": "Listanäkymä",
+    "filters": "Suodattimet",
+    "types": {
+      "game": "Peli",
+      "practice": "Joukkueharjoitus",
+      "training": "Henkilökohtainen harjoitus",
+      "meeting": "Kokous",
+      "medical": "Lääkäri",
+      "recovery": "Palautuminen",
+      "travel": "Matka",
+      "personal": "Henkilökohtainen"
+    },
+    "rsvp": {
+      "title": "Ilmoittautuminen",
+      "attending": "Osallistun",
+      "notAttending": "En osallistu",
+      "maybe": "Ehkä",
+      "update": "Päivitä vastaus"
+    }
+  },
+  "communication": {
+    "title": "Viestit",
+    "inbox": "Saapuneet",
+    "sent": "Lähetetyt",
+    "drafts": "Luonnokset",
+    "compose": "Kirjoita uusi",
+    "teamChat": "Joukkuekeskustelu",
+    "coachMessages": "Valmentajan viestit",
+    "announcements": "Tiedotteet"
+  },
+  "development": {
+    "title": "Kehityssuunnitelma",
+    "goals": "Tavoitteet",
+    "progress": "Edistyminen",
+    "skillAssessment": "Taitoarviointi",
+    "trainingPlan": "Harjoitussuunnitelma",
+    "milestones": "Virstanpylväät",
+    "achievements": "Saavutukset",
+    "areas": {
+      "skating": "Luistelu",
+      "shooting": "Laukaus",
+      "passing": "Syöttäminen",
+      "stickHandling": "Kiekonhallinta",
+      "positioning": "Sijoittuminen",
+      "physicality": "Fyysisyys",
+      "mentalGame": "Henkinen peli",
+      "leadership": "Johtajuus"
+    }
+  },
+  "nutrition": {
+    "title": "Ravinto",
+    "mealPlan": "Ateriasuunnitelma",
+    "hydration": "Nestetasapaino",
+    "supplements": "Lisäravinteet",
+    "calories": "Kalorit",
+    "macros": "Makroravinteet",
+    "meals": {
+      "breakfast": "Aamiainen",
+      "lunch": "Lounas",
+      "dinner": "Päivällinen",
+      "snack": "Välipala",
+      "preGame": "Ennen peliä",
+      "postGame": "Pelin jälkeen"
+    }
+  },
+  "recovery": {
+    "title": "Palautuminen",
+    "status": "Palautumistila",
+    "activities": "Palautumistoimet",
+    "sleep": "Unenseuranta",
+    "treatment": "Hoito",
+    "nextSession": "Seuraava palautumishetki",
+    "types": {
+      "massage": "Hieronta",
+      "coldTub": "Kylmäallas",
+      "sauna": "Sauna",
+      "stretching": "Venyttely",
+      "yoga": "Jooga",
+      "physiotherapy": "Fysioterapia"
+    }
+  }
+}

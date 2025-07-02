@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Systemadministrator",
+    "subtitle": "Plattformadministrasjon og konfigurasjon",
+    "welcome": "Velkommen, systemadministrator",
+    "systemStatus": "Systemstatus",
+    "alerts": "Systemvarsler"
+  },
+  "system": {
+    "title": "Systemadministrasjon",
+    "status": "Systemstatus",
+    "health": "Helsesjekk",
+    "healthScore": "Systemhelse",
+    "monitoring": "Systemovervåking",
+    "logs": "Systemlogger",
+    "performance": "Ytelsesmetrikk",
+    "uptime": "Oppetid",
+    "resources": "Ressursbruk",
+    "activeUsers": "Aktive brukere",
+    "errorRate": "Feilrate",
+    "responseTime": "Responstid",
+    "databaseSize": "Databasestørrelse",
+    "withinSLA": "Innenfor SLA",
+    "systemPerformance24h": "Systemytelse (24t)",
+    "serviceHealthMatrix": "Tjenestehelsevisning",
+    "cpuMemoryUsage": "CPU, minnebruk og forespørselsvolum",
+    "realTimeServiceStatus": "Sanntids tjenestestatus og metrikk"
+  },
+  "users": {
+    "title": "Brukeradministrasjon",
+    "all": "Alle brukere",
+    "create": "Opprett bruker",
+    "edit": "Rediger bruker",
+    "delete": "Slett bruker",
+    "roles": "Brukerroller",
+    "permissions": "Brukertillatelser",
+    "activity": "Brukeraktivitet",
+    "sessions": "Aktive økter",
+    "audit": "Revisjonslogg"
+  },
+  "organizations": {
+    "title": "Organisasjonsadministrasjon",
+    "all": "Alle organisasjoner",
+    "create": "Opprett organisasjon",
+    "edit": "Rediger organisasjon",
+    "delete": "Slett organisasjon",
+    "settings": "Organisasjonsinnstillinger",
+    "limits": "Bruksgrenser",
+    "billing": "Faktureringsinformasjon"
+  },
+  "security": {
+    "title": "Sikkerhetsadministrasjon",
+    "settings": "Sikkerhetsinnstillinger",
+    "authentication": "Autentisering",
+    "authorization": "Autorisasjon",
+    "tokens": "API-tokens",
+    "certificates": "SSL-sertifikater",
+    "firewall": "Brannmurregler",
+    "threats": "Trusseldeteksjon",
+    "incidents": "Sikkerhetshendelser"
+  },
+  "database": {
+    "title": "Databaseadministrasjon",
+    "status": "Databasestatus",
+    "backup": "Sikkerhetskopihåndtering",
+    "restore": "Gjenopprett database",
+    "migrations": "Databasemigrasjoner",
+    "optimization": "Spørringsoptimalisering",
+    "connections": "Tilkoblingspool",
+    "maintenance": "Vedlikeholdsoppgaver"
+  },
+  "services": {
+    "title": "Tjenesteadministrasjon",
+    "status": "Tjenestestatus",
+    "configuration": "Tjenestekonfigurasjon",
+    "dependencies": "Avhengigheter",
+    "health": "Helsesjekker",
+    "restart": "Restart tjeneste",
+    "logs": "Tjenestelogger",
+    "metrics": "Tjenestemetrikk"
+  },
+  "integrations": {
+    "title": "Integrasjoner",
+    "connected": "Tilkoblede tjenester",
+    "available": "Tilgjengelige integrasjoner",
+    "configure": "Konfigurer integrasjon",
+    "test": "Test tilkobling",
+    "logs": "Integrasjonslogger",
+    "webhooks": "Webhooks",
+    "api": "API-administrasjon"
+  },
+  "configuration": {
+    "title": "Systemkonfigurasjon",
+    "general": "Generelle innstillinger",
+    "email": "E-postkonfigurasjon",
+    "storage": "Lagringsinnstillinger",
+    "cache": "Bufferadministrasjon",
+    "queue": "Køkonfigurasjon",
+    "scheduler": "Oppgaveplanlegger",
+    "features": "Funksjonsflagg"
+  },
+  "monitoring": {
+    "title": "Systemovervåking",
+    "dashboard": "Overvåkingsdashbord",
+    "alerts": "Varslingskonfigurasjon",
+    "metrics": "Systemmetrikk",
+    "logs": "Logganalyse",
+    "errors": "Feilsporing",
+    "performance": "Ytelsesanalyse",
+    "reports": "Systemrapporter"
+  },
+  "maintenance": {
+    "title": "Vedlikehold",
+    "schedule": "Vedlikeholdsplan",
+    "tasks": "Vedlikeholdsoppgaver",
+    "updates": "Systemoppdateringer",
+    "patches": "Sikkerhetsoppdateringer",
+    "cleanup": "Dataopprydding",
+    "optimization": "Systemoptimalisering",
+    "mode": "Vedlikeholdsmodus"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Club Admin Dashboard",
+    "subtitle": "Organization management and oversight",
+    "welcome": "Welcome, {{name}}",
+    "organizationOverview": "Organization Overview",
+    "quickActions": "Quick Actions",
+    "stats": {
+      "teams": "Teams",
+      "activeMembers": "Active Members",
+      "coachingStaff": "Coaching Staff",
+      "upcomingEvents": "Upcoming Events",
+      "attendance": "Attendance",
+      "members": "Members"
+    }
+  },
+  "organization": {
+    "title": "Organization Management",
+    "details": "Organization Details",
+    "settings": "Organization Settings",
+    "structure": "Organizational Structure",
+    "departments": "Departments",
+    "policies": "Policies & Procedures",
+    "branding": "Branding & Identity",
+    "contact": "Contact Information"
+  },
+  "teams": {
+    "title": "Team Management",
+    "all": "All Teams",
+    "create": "Create Team",
+    "edit": "Edit Team",
+    "delete": "Delete Team",
+    "roster": "Team Rosters",
+    "assignments": "Staff Assignments",
+    "categories": {
+      "senior": "Senior Teams",
+      "junior": "Junior Teams",
+      "youth": "Youth Teams",
+      "academy": "Academy Teams",
+      "womens": "Women's Teams"
+    }
+  },
+  "staff": {
+    "title": "Staff Management",
+    "all": "All Staff",
+    "add": "Add Staff Member",
+    "roles": "Staff Roles",
+    "permissions": "Permissions",
+    "contracts": "Contracts",
+    "evaluation": "Performance Evaluation",
+    "training": "Training & Certification",
+    "types": {
+      "coaching": "Coaching Staff",
+      "medical": "Medical Staff",
+      "administrative": "Administrative",
+      "support": "Support Staff",
+      "volunteer": "Volunteers"
+    }
+  },
+  "facilities": {
+    "title": "Facility Management",
+    "overview": "Facilities Overview",
+    "booking": "Facility Booking",
+    "maintenance": "Maintenance Schedule",
+    "calendar": "Facility Calendar",
+    "utilization": "Utilization Reports",
+    "types": {
+      "mainRink": "Main Rink",
+      "practiceRink": "Practice Rink",
+      "gym": "Gym/Weight Room",
+      "meetingRooms": "Meeting Rooms",
+      "lockerRooms": "Locker Rooms",
+      "medicalRoom": "Medical Room"
+    }
+  },
+  "finance": {
+    "title": "Financial Management",
+    "overview": "Financial Overview",
+    "budget": "Budget Management",
+    "revenue": "Revenue Streams",
+    "expenses": "Expenses",
+    "reports": "Financial Reports",
+    "invoicing": "Invoicing",
+    "sponsorships": "Sponsorships",
+    "grants": "Grants & Funding"
+  },
+  "events": {
+    "title": "Event Management",
+    "calendar": "Event Calendar",
+    "create": "Create Event",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "types": {
+      "games": "Games",
+      "tournaments": "Tournaments",
+      "fundraisers": "Fundraisers",
+      "meetings": "Meetings",
+      "social": "Social Events",
+      "training": "Training Camps"
+    }
+  },
+  "communication": {
+    "title": "Communications",
+    "announcements": "Announcements",
+    "newsletters": "Newsletters",
+    "social": "Social Media",
+    "website": "Website Updates",
+    "press": "Press Releases",
+    "internal": "Internal Communications",
+    "broadcast": "Broadcast Message"
+  },
+  "compliance": {
+    "title": "Compliance & Governance",
+    "policies": "Policies",
+    "procedures": "Procedures",
+    "regulations": "Regulations",
+    "certifications": "Certifications",
+    "audits": "Audits",
+    "reports": "Compliance Reports",
+    "training": "Compliance Training"
+  },
+  "reports": {
+    "title": "Reports & Analytics",
+    "dashboard": "Executive Dashboard",
+    "operational": "Operational Reports",
+    "financial": "Financial Reports",
+    "performance": "Performance Metrics",
+    "custom": "Custom Reports",
+    "export": "Export Data",
+    "schedule": "Schedule Reports"
+  },
+  "members": {
+    "title": "Membership Management",
+    "directory": "Member Directory",
+    "registration": "Registration",
+    "renewal": "Membership Renewal",
+    "benefits": "Member Benefits",
+    "communication": "Member Communications",
+    "statistics": "Membership Statistics",
+    "byRole": "Members by Role"
+  }
+}

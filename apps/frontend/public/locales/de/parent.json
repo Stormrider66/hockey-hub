@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Eltern Dashboard",
+    "subtitle": "Bleiben Sie mit der Hockeyreise Ihres Kindes verbunden",
+    "welcome": "Willkommen, {{name}}!",
+    "childrenOverview": "Kinderübersicht",
+    "upcomingEvents": "Anstehende Termine"
+  },
+  "children": {
+    "title": "Meine Kinder",
+    "addChild": "Kind hinzufügen",
+    "profile": "Kinderprofil",
+    "schedule": "Zeitplan",
+    "performance": "Leistung",
+    "wellness": "Gesundheit & Wohlbefinden",
+    "communication": "Nachrichten",
+    "details": {
+      "team": "Team",
+      "position": "Position",
+      "coach": "Trainer",
+      "number": "Trikotnummer",
+      "age": "Altersgruppe"
+    }
+  },
+  "schedule": {
+    "title": "Familienzeitplan",
+    "calendar": "Kalenderansicht",
+    "upcoming": "Anstehende Termine",
+    "transportation": "Transport",
+    "conflicts": "Terminkonfl ikte",
+    "sync": "Kalender synchronisieren",
+    "export": "Zeitplan exportieren",
+    "types": {
+      "game": "Spiel",
+      "practice": "Training",
+      "tournament": "Turnier",
+      "teamEvent": "Teamveranstaltung",
+      "meeting": "Elternversammlung",
+      "fundraiser": "Spendenaktion"
+    },
+    "rsvp": {
+      "title": "Zusage für Termin",
+      "attending": "Wir werden da sein",
+      "notAttending": "Können nicht kommen",
+      "driving": "Kann andere fahren",
+      "needRide": "Benötige Transport"
+    }
+  },
+  "transportation": {
+    "title": "Transportkoordination",
+    "available": "Verfügbare Fahrer",
+    "requests": "Fahrtanfragen",
+    "myOffers": "Meine Fahrangebote",
+    "carpool": "Fahrgemeinschaften",
+    "seats": "Verfügbare Plätze",
+    "pickup": "Abholort",
+    "dropoff": "Zielort",
+    "time": "Abfahrtszeit"
+  },
+  "payments": {
+    "title": "Zahlungen & Gebühren",
+    "overview": "Zahlungsübersicht",
+    "due": "Fälliger Betrag",
+    "history": "Zahlungshistorie",
+    "upcoming": "Anstehende Gebühren",
+    "methods": "Zahlungsmethoden",
+    "invoices": "Rechnungen",
+    "items": {
+      "registration": "Anmeldegebühr",
+      "monthly": "Monatsbeiträge",
+      "equipment": "Ausrüstung",
+      "tournament": "Turniergebühr",
+      "travel": "Reisekosten",
+      "fundraising": "Spendenaktion"
+    },
+    "status": {
+      "paid": "Bezahlt",
+      "pending": "Ausstehend",
+      "overdue": "Überfällig",
+      "partial": "Teilzahlung"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "messages": "Nachrichten",
+    "announcements": "Teamankündigungen",
+    "coachMessages": "Vom Trainer",
+    "teamMessages": "Team-Updates",
+    "emergency": "Notfallkontakte",
+    "directory": "Teamverzeichnis",
+    "preferences": "Kommunikationseinstellungen"
+  },
+  "medical": {
+    "title": "Medizinische Informationen",
+    "records": "Krankenakte",
+    "allergies": "Allergien",
+    "medications": "Medikamente",
+    "conditions": "Gesundheitszustände",
+    "emergency": "Notfallkontakte",
+    "insurance": "Versicherungsinformationen",
+    "consent": "Medizinische Einwilligung",
+    "injuries": "Verletzungshistorie"
+  },
+  "documents": {
+    "title": "Dokumente & Formulare",
+    "required": "Erforderliche Dokumente",
+    "optional": "Optionale Formulare",
+    "submitted": "Eingereicht",
+    "pending": "Einreichung ausstehend",
+    "download": "Formulare herunterladen",
+    "upload": "Dokument hochladen",
+    "types": {
+      "registration": "Anmeldeformular",
+      "medical": "Medizinisches Formular",
+      "waiver": "Haftungsausschluss",
+      "consent": "Einverständniserklärung",
+      "emergency": "Notfallkontakt",
+      "insurance": "Versicherungskarte"
+    }
+  },
+  "volunteer": {
+    "title": "Freiwilligenmöglichkeiten",
+    "signup": "Anmelden",
+    "myShifts": "Meine Freiwilligenschichten",
+    "available": "Verfügbare Positionen",
+    "hours": "Freiwilligenstunden",
+    "requirements": "Anforderungen",
+    "positions": {
+      "scorekeeper": "Punktezähler",
+      "penalty": "Strafbank",
+      "concession": "Verkaufsstand",
+      "fundraising": "Spendenaktion",
+      "teamManager": "Teammanager",
+      "equipment": "Ausrüstungshelfer"
+    }
+  },
+  "performance": {
+    "title": "Fortschritt des Kindes",
+    "overview": "Leistungsübersicht",
+    "improvement": "Verbesserungsbereiche",
+    "achievements": "Kürzliche Erfolge",
+    "feedback": "Trainer-Feedback",
+    "goals": "Entwicklungsziele",
+    "attendance": "Anwesenheitsaufzeichnung",
+    "effort": "Einsatzlevel",
+    "teamwork": "Teamarbeit"
+  }
+}

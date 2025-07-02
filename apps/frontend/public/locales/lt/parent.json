@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Tėvų valdymo skydelis",
+    "subtitle": "Sekite savo vaiko ledo ritulio kelionę",
+    "welcome": "Sveiki, {{name}}!",
+    "childrenOverview": "Vaikų apžvalga",
+    "upcomingEvents": "Artėjantys renginiai"
+  },
+  "children": {
+    "title": "Mano vaikai",
+    "addChild": "Pridėti vaiką",
+    "profile": "Vaiko profilis",
+    "schedule": "Tvarkaraštis",
+    "performance": "Rezultatai",
+    "wellness": "Sveikata ir savijauta",
+    "communication": "Žinutės",
+    "details": {
+      "team": "Komanda",
+      "position": "Pozicija",
+      "coach": "Treneris",
+      "number": "Marškinėlių numeris",
+      "age": "Amžiaus grupė"
+    }
+  },
+  "schedule": {
+    "title": "Šeimos tvarkaraštis",
+    "calendar": "Kalendorinis vaizdas",
+    "upcoming": "Artėjantys renginiai",
+    "transportation": "Transportas",
+    "conflicts": "Tvarkaraščio konfliktai",
+    "sync": "Sinchronizuoti kalendorių",
+    "export": "Eksportuoti tvarkaraštį",
+    "types": {
+      "game": "Rungtynės",
+      "practice": "Treniruotė",
+      "tournament": "Turnyras",
+      "teamEvent": "Komandos renginys",
+      "meeting": "Tėvų susitikimas",
+      "fundraiser": "Labdaros renginys"
+    },
+    "rsvp": {
+      "title": "Patvirtinti dalyvavimą",
+      "attending": "Dalyvausime",
+      "notAttending": "Negalime dalyvauti",
+      "driving": "Galiu vežti kitus",
+      "needRide": "Reikia transporto"
+    }
+  },
+  "transportation": {
+    "title": "Transporto koordinavimas",
+    "available": "Galimi vairuotojai",
+    "requests": "Pavėžėjimo prašymai",
+    "myOffers": "Mano vežimo pasiūlymai",
+    "carpool": "Bendro važiavimo grupės",
+    "seats": "Laisvos vietos",
+    "pickup": "Paėmimo vieta",
+    "dropoff": "Nuvežimo vieta",
+    "time": "Išvykimo laikas"
+  },
+  "payments": {
+    "title": "Mokėjimai ir mokesčiai",
+    "overview": "Mokėjimų apžvalga",
+    "due": "Mokėtina suma",
+    "history": "Mokėjimų istorija",
+    "upcoming": "Artėjantys mokesčiai",
+    "methods": "Mokėjimo būdai",
+    "invoices": "Sąskaitos",
+    "items": {
+      "registration": "Registracijos mokestis",
+      "monthly": "Mėnesiniai mokesčiai",
+      "equipment": "Įranga",
+      "tournament": "Turnyro mokestis",
+      "travel": "Kelionės išlaidos",
+      "fundraising": "Lėšų rinkimas"
+    },
+    "status": {
+      "paid": "Apmokėta",
+      "pending": "Laukiama",
+      "overdue": "Vėluoja",
+      "partial": "Dalinis mokėjimas"
+    }
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "messages": "Žinutės",
+    "announcements": "Komandos skelbimai",
+    "coachMessages": "Trenerio žinutės",
+    "teamMessages": "Komandos atnaujinimai",
+    "emergency": "Skubūs kontaktai",
+    "directory": "Komandos katalogas",
+    "preferences": "Komunikacijos nuostatos"
+  },
+  "medical": {
+    "title": "Medicininė informacija",
+    "records": "Medicininiai įrašai",
+    "allergies": "Alergijos",
+    "medications": "Vaistai",
+    "conditions": "Medicininės būklės",
+    "emergency": "Skubios pagalbos kontaktai",
+    "insurance": "Draudimo informacija",
+    "consent": "Medicininis sutikimas",
+    "injuries": "Traumų istorija"
+  },
+  "documents": {
+    "title": "Dokumentai ir formos",
+    "required": "Privalomi dokumentai",
+    "optional": "Neprivalomi dokumentai",
+    "submitted": "Pateikta",
+    "pending": "Laukia pateikimo",
+    "download": "Atsisiųsti formas",
+    "upload": "Įkelti dokumentą",
+    "types": {
+      "registration": "Registracijos forma",
+      "medical": "Medicininė forma",
+      "waiver": "Atsakomybės atsisakymas",
+      "consent": "Sutikimo forma",
+      "emergency": "Skubūs kontaktai",
+      "insurance": "Draudimo kortelė"
+    }
+  },
+  "volunteer": {
+    "title": "Savanorystės galimybės",
+    "signup": "Registruotis",
+    "myShifts": "Mano savanorių pamainos",
+    "available": "Laisvos pozicijos",
+    "hours": "Savanorystės valandos",
+    "requirements": "Reikalavimai",
+    "positions": {
+      "scorekeeper": "Protokolininkas",
+      "penalty": "Baudos suolelis",
+      "concession": "Prekybos punktas",
+      "fundraising": "Lėšų rinkimas",
+      "teamManager": "Komandos vadovas",
+      "equipment": "Įrangos pagalbininkas"
+    }
+  },
+  "performance": {
+    "title": "Vaiko progresas",
+    "overview": "Rezultatų apžvalga",
+    "improvement": "Tobulėjimo sritys",
+    "achievements": "Naujausi pasiekimai",
+    "feedback": "Trenerio atsiliepimai",
+    "goals": "Tobulėjimo tikslai",
+    "attendance": "Lankomumo įrašai",
+    "effort": "Pastangų lygis",
+    "teamwork": "Komandinis darbas"
+  }
+}

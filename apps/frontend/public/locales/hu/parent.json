@@ -1,0 +1,220 @@
+{
+  "dashboard": {
+    "title": "Szülői vezérlőpult",
+    "welcome": "Üdvözöljük, {{name}}!",
+    "childrenOverview": "Gyermekek áttekintése",
+    "todaySchedule": "Mai program",
+    "upcomingEvents": "Közelgő események",
+    "notifications": "Értesítések",
+    "quickActions": "Gyors műveletek",
+    "messages": "Üzenetek",
+    "stats": {
+      "upcomingGames": "Következő mérkőzések",
+      "practicesThisWeek": "Edzések ezen a héten",
+      "paymentsDue": "Esedékes fizetések",
+      "unreadMessages": "Olvasatlan üzenetek"
+    }
+  },
+  "children": {
+    "title": "Gyermekek",
+    "profile": "Profil",
+    "schedule": "Menetrend",
+    "performance": "Teljesítmény",
+    "medical": "Egészségügyi",
+    "equipment": "Felszerelés",
+    "payments": "Kifizetések",
+    "documents": "Dokumentumok",
+    "progress": "Fejlődés",
+    "attendance": "Jelenlét",
+    "selectChild": "Gyermek kiválasztása",
+    "addChild": "Gyermek hozzáadása",
+    "editChild": "Gyermek szerkesztése",
+    "info": {
+      "team": "Csapat",
+      "position": "Pozíció",
+      "number": "Mezszám",
+      "coach": "Edző",
+      "age": "Életkor",
+      "category": "Korosztály"
+    }
+  },
+  "schedule": {
+    "title": "Menetrend",
+    "calendar": "Naptár",
+    "games": "Mérkőzések",
+    "practices": "Edzések",
+    "events": "Események",
+    "transportation": "Utazás",
+    "volunteers": "Önkéntesek",
+    "availability": "Elérhetőség",
+    "conflicts": "Ütközések",
+    "upcoming": "Közelgő",
+    "past": "Elmúlt",
+    "rsvp": "Visszajelzés",
+    "attending": "Részt vesz",
+    "notAttending": "Nem vesz részt",
+    "maybe": "Talán",
+    "transportation": {
+      "needRide": "Fuvar szükséges",
+      "canDrive": "Tudok vinni",
+      "seats": "Szabad helyek",
+      "pickup": "Felvétel",
+      "dropoff": "Lerakás"
+    }
+  },
+  "communication": {
+    "title": "Kommunikáció",
+    "messages": "Üzenetek",
+    "announcements": "Közlemények",
+    "teamChat": "Csapat chat",
+    "coachMessage": "Üzenet az edzőnek",
+    "teamMessage": "Csapat üzenet",
+    "compose": "Új üzenet",
+    "inbox": "Bejövő",
+    "sent": "Elküldött",
+    "drafts": "Piszkozatok",
+    "notifications": {
+      "scheduleChange": "Menetrend változás",
+      "gameReminder": "Mérkőzés emlékeztető",
+      "practiceReminder": "Edzés emlékeztető",
+      "paymentReminder": "Fizetési emlékeztető",
+      "documentRequired": "Dokumentum szükséges",
+      "medicalAlert": "Egészségügyi figyelmeztetés"
+    }
+  },
+  "payments": {
+    "title": "Kifizetések",
+    "overview": "Áttekintés",
+    "history": "Előzmények",
+    "upcoming": "Esedékes",
+    "makePayment": "Fizetés",
+    "paymentMethods": "Fizetési módok",
+    "invoices": "Számlák",
+    "receipts": "Nyugták",
+    "balance": "Egyenleg",
+    "dueDate": "Esedékesség",
+    "amount": "Összeg",
+    "status": "Állapot",
+    "paid": "Kifizetve",
+    "pending": "Függőben",
+    "overdue": "Lejárt",
+    "types": {
+      "registration": "Regisztrációs díj",
+      "monthly": "Havi díj",
+      "equipment": "Felszerelés",
+      "tournament": "Torna díj",
+      "travel": "Utazási költség",
+      "fundraising": "Adománygyűjtés",
+      "other": "Egyéb"
+    }
+  },
+  "medical": {
+    "title": "Egészségügyi",
+    "records": "Egészségügyi adatok",
+    "injuries": "Sérülések",
+    "medications": "Gyógyszerek",
+    "allergies": "Allergiák",
+    "conditions": "Egészségi állapot",
+    "emergency": "Vészhelyzeti kapcsolat",
+    "insurance": "Biztosítás",
+    "consent": "Hozzájárulás",
+    "forms": "Űrlapok",
+    "clearance": "Játékengedély",
+    "appointments": "Időpontok",
+    "updates": "Frissítések",
+    "contact": {
+      "primary": "Elsődleges kapcsolat",
+      "secondary": "Másodlagos kapcsolat",
+      "physician": "Háziorvos",
+      "phone": "Telefon",
+      "relationship": "Kapcsolat"
+    }
+  },
+  "documents": {
+    "title": "Dokumentumok",
+    "upload": "Feltöltés",
+    "download": "Letöltés",
+    "view": "Megtekintés",
+    "required": "Szükséges",
+    "optional": "Opcionális",
+    "submitted": "Beküldve",
+    "pending": "Függőben",
+    "approved": "Jóváhagyva",
+    "rejected": "Elutasítva",
+    "types": {
+      "birthCertificate": "Születési anyakönyvi kivonat",
+      "medicalClearance": "Orvosi igazolás",
+      "insurance": "Biztosítás",
+      "consent": "Szülői hozzájárulás",
+      "photo": "Fénykép",
+      "reportCard": "Bizonyítvány",
+      "other": "Egyéb"
+    }
+  },
+  "volunteers": {
+    "title": "Önkéntesség",
+    "opportunities": "Lehetőségek",
+    "schedule": "Beosztás",
+    "hours": "Órák",
+    "signup": "Jelentkezés",
+    "roles": {
+      "teamManager": "Csapatvezető",
+      "scorekeeper": "Jegyzőkönyvvezető",
+      "timekeeper": "Időmérő",
+      "driver": "Sofőr",
+      "fundraising": "Adománygyűjtés",
+      "events": "Rendezvények",
+      "concession": "Büfé",
+      "equipment": "Felszerelés kezelő"
+    }
+  },
+  "teamInfo": {
+    "title": "Csapat információ",
+    "roster": "Keret",
+    "coaches": "Edzők",
+    "staff": "Személyzet",
+    "parents": "Szülők",
+    "schedule": "Menetrend",
+    "standings": "Tabella",
+    "rules": "Szabályok",
+    "policies": "Irányelvek",
+    "handbook": "Kézikönyv",
+    "contacts": "Kapcsolatok",
+    "calendar": "Csapat naptár",
+    "news": "Hírek",
+    "photos": "Fényképek",
+    "videos": "Videók"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "profile": "Profil",
+    "notifications": "Értesítések",
+    "privacy": "Adatvédelem",
+    "language": "Nyelv",
+    "timezone": "Időzóna",
+    "emergencyContacts": "Vészhelyzeti kapcsolatok",
+    "preferences": {
+      "emailNotifications": "Email értesítések",
+      "smsNotifications": "SMS értesítések",
+      "pushNotifications": "Push értesítések",
+      "gameReminders": "Mérkőzés emlékeztetők",
+      "practiceReminders": "Edzés emlékeztetők",
+      "paymentReminders": "Fizetési emlékeztetők",
+      "scheduleChanges": "Menetrend változások",
+      "teamNews": "Csapat hírek"
+    }
+  },
+  "reports": {
+    "title": "Jelentések",
+    "progress": "Fejlődési jelentés",
+    "attendance": "Jelenléti jelentés",
+    "performance": "Teljesítmény jelentés",
+    "medical": "Egészségügyi jelentés",
+    "financial": "Pénzügyi jelentés",
+    "view": "Megtekintés",
+    "download": "Letöltés",
+    "share": "Megosztás",
+    "period": "Időszak",
+    "generate": "Jelentés készítése"
+  }
+}

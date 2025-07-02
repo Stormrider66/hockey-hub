@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Hráčský přehled",
+    "subtitle": "Sledujte svůj výkon a rozvoj",
+    "welcome": "Vítejte zpět, {{name}}!",
+    "todaySchedule": "Dnešní program",
+    "upcomingEvents": "Nadcházející události",
+    "recentPerformance": "Nedávný výkon",
+    "developmentGoals": "Rozvojové cíle"
+  },
+  "profile": {
+    "playerInfo": "Informace o hráči",
+    "number": "Číslo dresu",
+    "position": "Pozice",
+    "shoots": "Střílí",
+    "team": "Tým",
+    "age": "Věk",
+    "height": "Výška",
+    "weight": "Váha",
+    "joined": "Připojil se",
+    "contractExpires": "Smlouva vyprší"
+  },
+  "wellness": {
+    "title": "Denní kontrola zdraví",
+    "subtitle": "Jak se dnes cítíte?",
+    "submit": "Odeslat zdravotní data",
+    "submitted": "Zdravotní data byla úspěšně odeslána",
+    "metrics": {
+      "hrv": "Variabilita srdeční frekvence",
+      "sleep": "Kvalita spánku",
+      "fatigue": "Úroveň únavy",
+      "mood": "Nálada",
+      "soreness": "Bolest svalů",
+      "stress": "Úroveň stresu",
+      "hydration": "Hydratace",
+      "nutrition": "Kvalita výživy"
+    },
+    "scale": {
+      "poor": "Špatná",
+      "fair": "Uspokojivá",
+      "good": "Dobrá",
+      "veryGood": "Velmi dobrá",
+      "excellent": "Vynikající"
+    }
+  },
+  "training": {
+    "title": "Tréninkové jednotky",
+    "upcoming": "Nadcházející tréninky",
+    "completed": "Dokončené tréninky",
+    "assigned": "Přidělené cvičení",
+    "progress": "Tréninkový pokrok",
+    "todaysWorkout": "Dnešní trénink",
+    "completeSession": "Dokončit trénink",
+    "viewDetails": "Zobrazit detaily",
+    "intensity": "Intenzita",
+    "duration": "Trvání",
+    "focus": "Zaměření",
+    "equipment": "Potřebné vybavení",
+    "location": "Místo",
+    "coach": "Trenér",
+    "notes": "Poznámky k tréninku"
+  },
+  "performance": {
+    "title": "Výkonnostní metriky",
+    "seasonStats": "Statistiky sezóny",
+    "careerStats": "Kariérní statistiky",
+    "lastGame": "Poslední zápas",
+    "average": "Průměr",
+    "total": "Celkem",
+    "trend": "Trend",
+    "improvement": "Zlepšení",
+    "metrics": {
+      "goals": "Góly",
+      "assists": "Asistence",
+      "points": "Body",
+      "plusMinus": "+/-",
+      "pim": "Trestné minuty",
+      "shots": "Střely",
+      "shootingPercentage": "Úspěšnost střelby %",
+      "faceoffPercentage": "Úspěšnost vhazování %",
+      "hits": "Hity",
+      "blocks": "Bloky",
+      "takeaways": "Odebrání puku",
+      "giveaways": "Ztráty puku",
+      "toi": "Čas na ledě",
+      "powerplayGoals": "Góly v přesilovce",
+      "shorthandedGoals": "Góly v oslabení",
+      "gameWinningGoals": "Vítězné góly"
+    }
+  },
+  "schedule": {
+    "title": "Rozvrh",
+    "calendar": "Kalendářní zobrazení",
+    "list": "Seznamové zobrazení",
+    "filters": "Filtry",
+    "types": {
+      "game": "Zápas",
+      "practice": "Trénink",
+      "training": "Individuální trénink",
+      "meeting": "Schůzka",
+      "medical": "Lékařská prohlídka",
+      "recovery": "Regenerace",
+      "travel": "Cestování",
+      "personal": "Osobní"
+    },
+    "rsvp": {
+      "title": "Potvrzení účasti",
+      "attending": "Zúčastním se",
+      "notAttending": "Nezúčastním se",
+      "maybe": "Možná",
+      "update": "Aktualizovat účast"
+    }
+  },
+  "communication": {
+    "title": "Zprávy",
+    "inbox": "Doručené",
+    "sent": "Odeslané",
+    "drafts": "Koncepty",
+    "compose": "Napsat",
+    "teamChat": "Týmový chat",
+    "coachMessages": "Zprávy od trenéra",
+    "announcements": "Oznámení"
+  },
+  "development": {
+    "title": "Rozvojový plán",
+    "goals": "Cíle",
+    "progress": "Pokrok",
+    "skillAssessment": "Hodnocení dovedností",
+    "trainingPlan": "Tréninkový plán",
+    "milestones": "Milníky",
+    "achievements": "Úspěchy",
+    "areas": {
+      "skating": "Bruslení",
+      "shooting": "Střelba",
+      "passing": "Přihrávky",
+      "stickHandling": "Vedení puku",
+      "positioning": "Postavení",
+      "physicality": "Fyzička",
+      "mentalGame": "Mentální hra",
+      "leadership": "Vůdcovství"
+    }
+  },
+  "nutrition": {
+    "title": "Výživa",
+    "mealPlan": "Jídelní plán",
+    "hydration": "Sledování hydratace",
+    "supplements": "Doplňky stravy",
+    "calories": "Kalorie",
+    "macros": "Makroživiny",
+    "meals": {
+      "breakfast": "Snídaně",
+      "lunch": "Oběd",
+      "dinner": "Večeře",
+      "snack": "Svačina",
+      "preGame": "Před zápasem",
+      "postGame": "Po zápase"
+    }
+  },
+  "recovery": {
+    "title": "Regenerace",
+    "status": "Stav regenerace",
+    "activities": "Regenerační aktivity",
+    "sleep": "Sledování spánku",
+    "treatment": "Ošetření",
+    "nextSession": "Další regenerace",
+    "types": {
+      "massage": "Masáž",
+      "coldTub": "Ledová lázeň",
+      "sauna": "Sauna",
+      "stretching": "Protahování",
+      "yoga": "Jóga",
+      "physiotherapy": "Fyzioterapie"
+    }
+  }
+}

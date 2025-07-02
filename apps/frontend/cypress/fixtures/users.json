@@ -1,0 +1,53 @@
+{
+  "testUsers": {
+    "player": {
+      "id": "player1",
+      "email": "test.player@hockeyhub.com",
+      "password": "TestPlayer123!",
+      "firstName": "Test",
+      "lastName": "Player",
+      "role": "PLAYER",
+      "teamId": "team1",
+      "organizationId": "org1"
+    },
+    "coach": {
+      "id": "coach1",
+      "email": "test.coach@hockeyhub.com",
+      "password": "TestCoach123!",
+      "firstName": "Test",
+      "lastName": "Coach",
+      "role": "COACH",
+      "teamId": "team1",
+      "organizationId": "org1"
+    },
+    "parent": {
+      "id": "parent1",
+      "email": "test.parent@hockeyhub.com",
+      "password": "TestParent123!",
+      "firstName": "Test",
+      "lastName": "Parent",
+      "role": "PARENT",
+      "children": ["player1", "player2"],
+      "organizationId": "org1"
+    },
+    "medicalStaff": {
+      "id": "medical1",
+      "email": "test.medical@hockeyhub.com",
+      "password": "TestMedical123!",
+      "firstName": "Test",
+      "lastName": "Medical",
+      "role": "MEDICAL_STAFF",
+      "teamId": "team1",
+      "organizationId": "org1"
+    },
+    "admin": {
+      "id": "admin1",
+      "email": "test.admin@hockeyhub.com",
+      "password": "TestAdmin123!",
+      "firstName": "Test",
+      "lastName": "Admin",
+      "role": "ADMIN",
+      "organizationId": "org1"
+    }
+  }
+}

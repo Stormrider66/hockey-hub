@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Mesiac",
+    "week": "Týždeň",
+    "day": "Deň",
+    "agenda": "Agenda",
+    "workWeek": "Pracovný týždeň"
+  },
+  "navigation": {
+    "today": "Dnes",
+    "back": "Späť",
+    "next": "Ďalej",
+    "previous": "Predchádzajúci",
+    "jumpToDate": "Prejsť na dátum"
+  },
+  "event": {
+    "title": "Udalosť",
+    "newEvent": "Nová udalosť",
+    "editEvent": "Upraviť udalosť",
+    "deleteEvent": "Zmazať udalosť",
+    "duplicateEvent": "Duplikovať udalosť",
+    "allDay": "Celý deň",
+    "recurring": "Opakujúca sa",
+    "privateEvent": "Súkromná udalosť",
+    "fields": {
+      "title": "Názov",
+      "description": "Popis",
+      "location": "Miesto",
+      "startDate": "Dátum začiatku",
+      "startTime": "Čas začiatku",
+      "endDate": "Dátum konca",
+      "endTime": "Čas konca",
+      "type": "Typ udalosti",
+      "category": "Kategória",
+      "participants": "Účastníci",
+      "resources": "Zdroje",
+      "notes": "Poznámky",
+      "reminder": "Pripomienka",
+      "color": "Farba",
+      "attachments": "Prílohy"
+    },
+    "types": {
+      "practice": "Tréning",
+      "game": "Zápas",
+      "training": "Tréning",
+      "meeting": "Stretnutie",
+      "tournament": "Turnaj",
+      "tryout": "Výber",
+      "medical": "Lekárska prehliadka",
+      "equipment": "Skúška výstroja",
+      "teamEvent": "Tímová udalosť",
+      "personal": "Osobné",
+      "other": "Iné"
+    },
+    "status": {
+      "confirmed": "Potvrdené",
+      "tentative": "Predbežné",
+      "cancelled": "Zrušené",
+      "postponed": "Odložené",
+      "rescheduled": "Presunuté"
+    }
+  },
+  "recurrence": {
+    "title": "Opakovanie",
+    "none": "Neopakuje sa",
+    "daily": "Denne",
+    "weekly": "Týždenne",
+    "monthly": "Mesačne",
+    "yearly": "Ročne",
+    "custom": "Vlastné",
+    "every": "Každý",
+    "days": "deň/dní",
+    "weeks": "týždeň/týždňov",
+    "months": "mesiac/mesiacov",
+    "years": "rok/rokov",
+    "on": "V",
+    "onThe": "V",
+    "weekdays": {
+      "monday": "Pondelok",
+      "tuesday": "Utorok",
+      "wednesday": "Streda",
+      "thursday": "Štvrtok",
+      "friday": "Piatok",
+      "saturday": "Sobota",
+      "sunday": "Nedeľa"
+    },
+    "ends": {
+      "never": "Nikdy",
+      "after": "Po",
+      "onDate": "K dátumu",
+      "occurrences": "opakovaniach"
+    }
+  },
+  "availability": {
+    "available": "Dostupný",
+    "unavailable": "Nedostupný",
+    "busy": "Zaneprázdnený",
+    "tentative": "Predbežne",
+    "outOfOffice": "Mimo kancelárie"
+  },
+  "conflicts": {
+    "detected": "Zistený konflikt v rozvrhu",
+    "message": "Táto udalosť je v konflikte s:",
+    "resolution": "Ako chcete tento konflikt vyriešiť?",
+    "overwrite": "Prepísať existujúcu",
+    "keepBoth": "Ponechať obe udalosti",
+    "cancel": "Zrušiť novú udalosť"
+  },
+  "filters": {
+    "title": "Filtre",
+    "showAll": "Zobraziť všetko",
+    "byType": "Podľa typu",
+    "byTeam": "Podľa tímu",
+    "byLocation": "Podľa miesta",
+    "myEvents": "Iba moje udalosti"
+  },
+  "export": {
+    "title": "Exportovať kalendár",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Tlačiť"
+    },
+    "range": {
+      "all": "Všetky udalosti",
+      "current": "Aktuálne zobrazenie",
+      "custom": "Vlastný rozsah"
+    }
+  },
+  "sharing": {
+    "title": "Zdieľať kalendár",
+    "publicLink": "Verejný odkaz",
+    "embed": "Kód na vloženie",
+    "subscribe": "URL pre odber",
+    "permissions": {
+      "view": "Iba na čítanie",
+      "edit": "Možnosť úprav",
+      "admin": "Plný prístup"
+    }
+  },
+  "reminders": {
+    "none": "Bez pripomienky",
+    "atTime": "V čase udalosti",
+    "minutes": "{{count}} minút pred",
+    "hours": "{{count}} hodín pred",
+    "days": "{{count}} dní pred",
+    "custom": "Vlastné"
+  },
+  "actions": {
+    "create": "Vytvoriť udalosť",
+    "save": "Uložiť",
+    "cancel": "Zrušiť",
+    "delete": "Zmazať",
+    "edit": "Upraviť",
+    "duplicate": "Duplikovať",
+    "print": "Tlačiť",
+    "export": "Exportovať",
+    "import": "Importovať",
+    "subscribe": "Odoberať",
+    "unsubscribe": "Zrušiť odber",
+    "rsvp": "Potvrdiť účasť",
+    "maybeAttending": "Možno",
+    "attending": "Zúčastním sa",
+    "notAttending": "Nezúčastním sa"
+  },
+  "messages": {
+    "eventCreated": "Udalosť bola úspešne vytvorená",
+    "eventUpdated": "Udalosť bola úspešne aktualizovaná",
+    "eventDeleted": "Udalosť bola úspešne zmazaná",
+    "eventDuplicated": "Udalosť bola úspešne duplikovaná",
+    "conflictWarning": "Tento časový úsek má konflikty",
+    "participantAdded": "Účastník pridaný",
+    "participantRemoved": "Účastník odstránený",
+    "reminderSet": "Pripomienka nastavená",
+    "calendarShared": "Kalendár úspešne zdieľaný",
+    "exportComplete": "Export dokončený",
+    "importComplete": "Import dokončený"
+  },
+  "facility": {
+    "rink": "Ľadová plocha",
+    "mainRink": "Hlavná plocha",
+    "practiceRink": "Tréningová plocha",
+    "gym": "Posilňovňa",
+    "meetingRoom": "Zasadacia miestnosť",
+    "lockerRoom": "Šatňa",
+    "trainingRoom": "Tréningová miestnosť",
+    "videoRoom": "Video miestnosť",
+    "medicalRoom": "Zdravotnícka miestnosť"
+  },
+  "tooltips": {
+    "dragToMove": "Presuňte ťahaním",
+    "dragToResize": "Ťahaním okrajov zmeníte veľkosť",
+    "clickToEdit": "Kliknutím upravíte",
+    "doubleClickToCreate": "Dvojklikom vytvoríte udalosť"
+  }
+}

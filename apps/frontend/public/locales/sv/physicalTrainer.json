@@ -1,0 +1,158 @@
+{
+  "dashboard": {
+    "title": "Fystränare översikt",
+    "subtitle": "Spelarfitness och träningshantering",
+    "welcome": "Välkommen, {{name}}",
+    "todaySessions": "Dagens träningspass",
+    "playerProgress": "Spelarframsteg översikt"
+  },
+  "training": {
+    "title": "Träningsprogram",
+    "create": "Skapa program",
+    "templates": "Träningsmallar",
+    "active": "Aktiva program",
+    "scheduled": "Schemalagda pass",
+    "history": "Träningshistorik",
+    "types": {
+      "strength": "Styrketräning",
+      "cardio": "Konditionsträning",
+      "flexibility": "Flexibilitet",
+      "agility": "Smidighet",
+      "recovery": "Återhämtning",
+      "rehabilitation": "Rehabilitering",
+      "testing": "Konditionstester"
+    },
+    "intensity": {
+      "low": "Låg intensitet",
+      "moderate": "Måttlig intensitet",
+      "high": "Hög intensitet",
+      "maximum": "Maximal intensitet"
+    }
+  },
+  "sessions": {
+    "title": "Träningspass",
+    "schedule": "Schemalägg pass",
+    "current": "Pågående pass",
+    "upcoming": "Kommande pass",
+    "completed": "Slutförda pass",
+    "cancel": "Avboka pass",
+    "reschedule": "Omboka",
+    "duration": "Passlängd",
+    "participants": "Deltagare"
+  },
+  "exercises": {
+    "title": "Övningsbibliotek",
+    "search": "Sök övningar",
+    "categories": "Övningskategorier",
+    "create": "Lägg till övning",
+    "favorite": "Favoritövningar",
+    "equipment": "Utrustning som behövs",
+    "instructions": "Instruktioner",
+    "video": "Videoinstruktion",
+    "categories": {
+      "upperBody": "Överkropp",
+      "lowerBody": "Underkropp",
+      "core": "Bålstabilitet",
+      "fullBody": "Helkropp",
+      "skating": "Skridskospecifikt",
+      "shooting": "Skottstyrka",
+      "balance": "Balans & stabilitet",
+      "plyometric": "Plyometrisk"
+    }
+  },
+  "workouts": {
+    "title": "Träningsbyggare",
+    "create": "Skapa träningspass",
+    "edit": "Redigera träningspass",
+    "save": "Spara träningspass",
+    "templates": "Träningsmallar",
+    "custom": "Anpassade träningspass",
+    "assign": "Tilldela till spelare",
+    "components": {
+      "warmup": "Uppvärmning",
+      "main": "Huvudträning",
+      "cooldown": "Nedvarvning",
+      "stretching": "Stretching"
+    },
+    "parameters": {
+      "sets": "Set",
+      "reps": "Repetitioner",
+      "duration": "Varaktighet",
+      "rest": "Viloperiod",
+      "weight": "Vikt",
+      "distance": "Distans",
+      "speed": "Hastighet"
+    }
+  },
+  "testing": {
+    "title": "Konditionstester",
+    "schedule": "Schemalägg test",
+    "protocols": "Testprotokoll",
+    "results": "Testresultat",
+    "history": "Testhistorik",
+    "compare": "Jämför resultat",
+    "benchmarks": "Lagreferensvärden",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprinttest",
+      "agility": "Smidighetstest",
+      "strength": "Styrketest",
+      "flexibility": "Flexibilitetstest",
+      "balance": "Balanstest",
+      "endurance": "Uthållighetstest",
+      "powerOutput": "Kraftutveckling"
+    }
+  },
+  "monitoring": {
+    "title": "Prestationsövervakning",
+    "metrics": "Prestationsmått",
+    "trends": "Framstegstrender",
+    "alerts": "Prestationsvarningar",
+    "load": "Träningsbelastning",
+    "recovery": "Återhämtningsstatus",
+    "readiness": "Träningsberedskap",
+    "metrics": {
+      "hrv": "Hjärtfrekvensvariabilitet",
+      "restingHR": "Vilopuls",
+      "weight": "Kroppsvikt",
+      "bodyFat": "Kroppsfettprocent",
+      "muscleMass": "Muskelmassa",
+      "power": "Kraftutveckling",
+      "speed": "Hastighet",
+      "endurance": "Uthållighet"
+    }
+  },
+  "programs": {
+    "title": "Träningsprogram",
+    "inSeason": "Säsongsprogram",
+    "offSeason": "Försäsongsprogram",
+    "preseason": "Förberedande program",
+    "rehabilitation": "Rehabiliteringsprogram",
+    "maintenance": "Underhållsprogram",
+    "phases": {
+      "preparation": "Förberedelsefas",
+      "building": "Uppbyggnadsfas",
+      "peak": "Toppformsfas",
+      "recovery": "Återhämtningsfas"
+    }
+  },
+  "analytics": {
+    "title": "Träningsanalys",
+    "individual": "Individuell analys",
+    "team": "Laganalys",
+    "progress": "Framstegsrapporter",
+    "comparison": "Spelarjämförelse",
+    "export": "Exportera data",
+    "metrics": "Nyckelmått",
+    "insights": "Prestationsinsikter"
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "feedback": "Träningsfeedback",
+    "notes": "Träningsanteckningar",
+    "recommendations": "Rekommendationer",
+    "alerts": "Skicka varning",
+    "report": "Framstegsrapport",
+    "collaborate": "Samarbeta med medicinska teamet"
+  }
+}

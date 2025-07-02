@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Monat",
+    "week": "Woche",
+    "day": "Tag",
+    "agenda": "Agenda",
+    "workWeek": "Arbeitswoche"
+  },
+  "navigation": {
+    "today": "Heute",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "jumpToDate": "Zu Datum springen"
+  },
+  "event": {
+    "title": "Termin",
+    "newEvent": "Neuer Termin",
+    "editEvent": "Termin bearbeiten",
+    "deleteEvent": "Termin löschen",
+    "duplicateEvent": "Termin duplizieren",
+    "allDay": "Ganztägig",
+    "recurring": "Wiederkehrend",
+    "privateEvent": "Privater Termin",
+    "fields": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "location": "Ort",
+      "startDate": "Startdatum",
+      "startTime": "Startzeit",
+      "endDate": "Enddatum",
+      "endTime": "Endzeit",
+      "type": "Termintyp",
+      "category": "Kategorie",
+      "participants": "Teilnehmer",
+      "resources": "Ressourcen",
+      "notes": "Notizen",
+      "reminder": "Erinnerung",
+      "color": "Farbe",
+      "attachments": "Anhänge"
+    },
+    "types": {
+      "practice": "Training",
+      "game": "Spiel",
+      "training": "Training",
+      "meeting": "Besprechung",
+      "tournament": "Turnier",
+      "tryout": "Probetraining",
+      "medical": "Medizinischer Termin",
+      "equipment": "Ausrüstungsanprobe",
+      "teamEvent": "Teamveranstaltung",
+      "personal": "Persönlich",
+      "other": "Sonstiges"
+    },
+    "status": {
+      "confirmed": "Bestätigt",
+      "tentative": "Vorläufig",
+      "cancelled": "Abgesagt",
+      "postponed": "Verschoben",
+      "rescheduled": "Neu geplant"
+    }
+  },
+  "recurrence": {
+    "title": "Wiederholung",
+    "none": "Keine Wiederholung",
+    "daily": "Täglich",
+    "weekly": "Wöchentlich",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "custom": "Benutzerdefiniert",
+    "every": "Alle",
+    "days": "Tag(e)",
+    "weeks": "Woche(n)",
+    "months": "Monat(e)",
+    "years": "Jahr(e)",
+    "on": "Am",
+    "onThe": "Am",
+    "weekdays": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "ends": {
+      "never": "Nie",
+      "after": "Nach",
+      "onDate": "Am Datum",
+      "occurrences": "Wiederholungen"
+    }
+  },
+  "availability": {
+    "available": "Verfügbar",
+    "unavailable": "Nicht verfügbar",
+    "busy": "Beschäftigt",
+    "tentative": "Vorläufig",
+    "outOfOffice": "Abwesend"
+  },
+  "conflicts": {
+    "detected": "Terminkonflikt erkannt",
+    "message": "Dieser Termin überschneidet sich mit:",
+    "resolution": "Wie möchten Sie dies lösen?",
+    "overwrite": "Bestehenden überschreiben",
+    "keepBoth": "Beide Termine behalten",
+    "cancel": "Neuen Termin abbrechen"
+  },
+  "filters": {
+    "title": "Filter",
+    "showAll": "Alle anzeigen",
+    "byType": "Nach Typ",
+    "byTeam": "Nach Team",
+    "byLocation": "Nach Ort",
+    "myEvents": "Nur meine Termine"
+  },
+  "export": {
+    "title": "Kalender exportieren",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Drucken"
+    },
+    "range": {
+      "all": "Alle Termine",
+      "current": "Aktuelle Ansicht",
+      "custom": "Benutzerdefinierter Bereich"
+    }
+  },
+  "sharing": {
+    "title": "Kalender teilen",
+    "publicLink": "Öffentlicher Link",
+    "embed": "Einbettungscode",
+    "subscribe": "Abonnement-URL",
+    "permissions": {
+      "view": "Nur Ansicht",
+      "edit": "Kann bearbeiten",
+      "admin": "Vollzugriff"
+    }
+  },
+  "reminders": {
+    "none": "Keine Erinnerung",
+    "atTime": "Zum Zeitpunkt des Termins",
+    "minutes": "{{count}} Minuten vorher",
+    "hours": "{{count}} Stunden vorher",
+    "days": "{{count}} Tage vorher",
+    "custom": "Benutzerdefiniert"
+  },
+  "actions": {
+    "create": "Termin erstellen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "duplicate": "Duplizieren",
+    "print": "Drucken",
+    "export": "Exportieren",
+    "import": "Importieren",
+    "subscribe": "Abonnieren",
+    "unsubscribe": "Abonnement beenden",
+    "rsvp": "Zusagen",
+    "maybeAttending": "Vielleicht",
+    "attending": "Teilnehmen",
+    "notAttending": "Nicht teilnehmen"
+  },
+  "messages": {
+    "eventCreated": "Termin erfolgreich erstellt",
+    "eventUpdated": "Termin erfolgreich aktualisiert",
+    "eventDeleted": "Termin erfolgreich gelöscht",
+    "eventDuplicated": "Termin erfolgreich dupliziert",
+    "conflictWarning": "Dieser Zeitraum hat Konflikte",
+    "participantAdded": "Teilnehmer hinzugefügt",
+    "participantRemoved": "Teilnehmer entfernt",
+    "reminderSet": "Erinnerung gesetzt",
+    "calendarShared": "Kalender erfolgreich geteilt",
+    "exportComplete": "Export abgeschlossen",
+    "importComplete": "Import abgeschlossen"
+  },
+  "facility": {
+    "rink": "Eisbahn",
+    "mainRink": "Haupteisbahn",
+    "practiceRink": "Trainingseisbahn",
+    "gym": "Fitnessstudio",
+    "meetingRoom": "Besprechungsraum",
+    "lockerRoom": "Umkleideraum",
+    "trainingRoom": "Trainingsraum",
+    "videoRoom": "Videoraum",
+    "medicalRoom": "Medizinraum"
+  },
+  "tooltips": {
+    "dragToMove": "Ziehen zum Verschieben",
+    "dragToResize": "Kanten ziehen zum Ändern der Größe",
+    "clickToEdit": "Klicken zum Bearbeiten",
+    "doubleClickToCreate": "Doppelklicken zum Erstellen"
+  }
+}

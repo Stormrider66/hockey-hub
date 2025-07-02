@@ -1,0 +1,212 @@
+{
+  "dashboard": {
+    "title": "Klubadministrator kontrolpanel",
+    "subtitle": "{{organizationName}} Administration",
+    "overview": "Oversigt",
+    "teams": "Hold",
+    "members": "Medlemmer",
+    "facilities": "Faciliteter",
+    "finance": "Økonomi",
+    "events": "Begivenheder",
+    "communication": "Kommunikation",
+    "reports": "Rapporter"
+  },
+  "organization": {
+    "title": "Organisationsstyring",
+    "info": "Organisationsinfo",
+    "settings": "Indstillinger",
+    "branding": "Branding",
+    "logo": "Logo",
+    "colors": "Farver",
+    "contact": "Kontaktinformation",
+    "social": "Sociale medier",
+    "documents": "Dokumenter",
+    "policies": "Politikker"
+  },
+  "teams": {
+    "title": "Holdstyring",
+    "allTeams": "Alle hold",
+    "addTeam": "Tilføj hold",
+    "divisions": "Divisioner",
+    "ageGroups": "Aldersgrupper",
+    "rosters": "Holdopstillinger",
+    "assignments": "Tildelinger",
+    "statistics": {
+      "totalTeams": "Totale hold",
+      "totalPlayers": "Totale spillere",
+      "totalStaff": "Totalt personale",
+      "avgRosterSize": "Gns. holdstørrelse"
+    }
+  },
+  "members": {
+    "title": "Medlemsstyring",
+    "directory": "Medlemsoversigt",
+    "registration": "Registrering",
+    "renewal": "Fornyelse",
+    "categories": {
+      "players": "Spillere",
+      "coaches": "Trænere",
+      "staff": "Personale",
+      "volunteers": "Frivillige",
+      "parents": "Forældre",
+      "alumni": "Alumni"
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "pending": "Afventende",
+      "suspended": "Suspenderet",
+      "expired": "Udløbet"
+    }
+  },
+  "facilities": {
+    "title": "Facilitetsstyring",
+    "venues": "Spillesteder",
+    "booking": "Booking",
+    "maintenance": "Vedligeholdelse",
+    "availability": "Tilgængelighed",
+    "types": {
+      "rink": "Skøjtebane",
+      "gym": "Træningscenter",
+      "meetingRoom": "Mødelokale",
+      "locker": "Omklædningsrum",
+      "office": "Kontor",
+      "parking": "Parkering"
+    },
+    "schedule": {
+      "book": "Book facilitet",
+      "view": "Se tidsplan",
+      "conflicts": "Konflikter",
+      "recurring": "Gentagne bookinger"
+    }
+  },
+  "finance": {
+    "title": "Økonomistyring",
+    "overview": "Økonomioversigt",
+    "revenue": "Indtægter",
+    "expenses": "Udgifter",
+    "budget": "Budget",
+    "invoicing": "Fakturering",
+    "payments": "Betalinger",
+    "reports": "Økonomiske rapporter",
+    "categories": {
+      "membership": "Medlemskab",
+      "registration": "Registrering",
+      "equipment": "Udstyr",
+      "facilities": "Faciliteter",
+      "travel": "Rejser",
+      "events": "Begivenheder",
+      "other": "Andet"
+    },
+    "status": {
+      "paid": "Betalt",
+      "pending": "Afventende",
+      "overdue": "Forfalden",
+      "partial": "Delvis",
+      "refunded": "Refunderet"
+    }
+  },
+  "events": {
+    "title": "Begivenhedsstyring",
+    "calendar": "Begivenhedskalender",
+    "create": "Opret begivenhed",
+    "upcoming": "Kommende begivenheder",
+    "past": "Afholdte begivenheder",
+    "types": {
+      "tournament": "Turnering",
+      "fundraiser": "Fundraising",
+      "meeting": "Møde",
+      "social": "Social begivenhed",
+      "training": "Træning",
+      "camp": "Camp",
+      "tryout": "Prøvetræning"
+    },
+    "registration": {
+      "open": "Åben",
+      "closed": "Lukket",
+      "waitlist": "Venteliste",
+      "capacity": "Kapacitet"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "announcements": "Meddelelser",
+    "newsletters": "Nyhedsbreve",
+    "broadcasts": "Udsendelser",
+    "templates": "Skabeloner",
+    "recipients": {
+      "all": "Alle medlemmer",
+      "players": "Spillere",
+      "parents": "Forældre",
+      "coaches": "Trænere",
+      "staff": "Personale",
+      "specific": "Specifikke grupper"
+    },
+    "channels": {
+      "email": "E-mail",
+      "sms": "SMS",
+      "app": "App notifikation",
+      "website": "Hjemmeside"
+    }
+  },
+  "staff": {
+    "title": "Personalehåndtering",
+    "directory": "Personaleoversigt",
+    "roles": "Roller",
+    "assignments": "Tildelinger",
+    "certifications": "Certificeringer",
+    "background": "Baggrundstjek",
+    "positions": {
+      "coach": "Træner",
+      "assistant": "Assistenttræner",
+      "manager": "Manager",
+      "trainer": "Fysisk træner",
+      "medical": "Medicinsk personale",
+      "equipment": "Udstyrsansvarlig",
+      "admin": "Administrator"
+    }
+  },
+  "compliance": {
+    "title": "Overholdelse",
+    "certifications": "Certificeringer",
+    "insurance": "Forsikring",
+    "safety": "Sikkerhed",
+    "policies": "Politikker",
+    "training": "Uddannelse",
+    "audits": "Revisioner",
+    "requirements": {
+      "coaching": "Træningscertificering",
+      "safety": "Sikkerhedsprotokol",
+      "background": "Baggrundstjek",
+      "first_aid": "Førstehjælp",
+      "concussion": "Hjernerystelsesprotokol"
+    }
+  },
+  "reports": {
+    "title": "Rapporter",
+    "generate": "Generer rapport",
+    "scheduled": "Planlagte rapporter",
+    "types": {
+      "membership": "Medlemskabsrapport",
+      "financial": "Økonomisk rapport",
+      "attendance": "Fremmøderapport",
+      "facility": "Facilitetsrapport",
+      "compliance": "Overholdelsesrapport",
+      "custom": "Tilpasset rapport"
+    }
+  },
+  "quickStats": {
+    "totalMembers": "Totale medlemmer",
+    "activeTeams": "Aktive hold",
+    "upcomingEvents": "Kommende begivenheder",
+    "outstandingPayments": "Udestående betalinger",
+    "facilityUtilization": "Facilitetsudnyttelse"
+  },
+  "notifications": {
+    "newRegistration": "Ny registrering: {{name}}",
+    "paymentReceived": "Betaling modtaget: {{amount}}",
+    "eventReminder": "Begivenhed i morgen: {{event}}",
+    "facilityBooking": "Ny facilitetsbooking: {{facility}}",
+    "certificationExpiring": "Certificering udløber: {{certification}}"
+  }
+}

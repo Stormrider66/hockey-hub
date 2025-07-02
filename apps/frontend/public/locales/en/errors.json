@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Oops! Something went wrong",
+    "subtitle": "We're sorry for the inconvenience",
+    "tryAgain": "Try Again",
+    "goHome": "Go to Dashboard",
+    "contactSupport": "Contact Support"
+  },
+  "http": {
+    "400": {
+      "title": "Bad Request",
+      "message": "The request could not be understood by the server."
+    },
+    "401": {
+      "title": "Unauthorized",
+      "message": "You need to sign in to access this resource."
+    },
+    "403": {
+      "title": "Forbidden",
+      "message": "You don't have permission to access this resource."
+    },
+    "404": {
+      "title": "Page Not Found",
+      "message": "The page you're looking for doesn't exist."
+    },
+    "409": {
+      "title": "Conflict",
+      "message": "The request conflicts with the current state of the server."
+    },
+    "422": {
+      "title": "Validation Error",
+      "message": "The data provided is invalid."
+    },
+    "429": {
+      "title": "Too Many Requests",
+      "message": "You've made too many requests. Please try again later."
+    },
+    "500": {
+      "title": "Server Error",
+      "message": "An unexpected error occurred on our servers."
+    },
+    "502": {
+      "title": "Bad Gateway",
+      "message": "The server received an invalid response."
+    },
+    "503": {
+      "title": "Service Unavailable",
+      "message": "The service is temporarily unavailable. Please try again later."
+    },
+    "504": {
+      "title": "Gateway Timeout",
+      "message": "The server took too long to respond."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "No Internet Connection",
+      "message": "Please check your internet connection and try again."
+    },
+    "timeout": {
+      "title": "Request Timeout",
+      "message": "The request took too long. Please try again."
+    },
+    "connectionFailed": {
+      "title": "Connection Failed",
+      "message": "Unable to connect to the server. Please try again."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Failed to Load Data",
+      "message": "We couldn't load the requested data. Please try refreshing the page."
+    },
+    "dataSave": {
+      "title": "Failed to Save",
+      "message": "Your changes couldn't be saved. Please try again."
+    },
+    "fileUpload": {
+      "title": "Upload Failed",
+      "message": "The file couldn't be uploaded. Please check the file and try again."
+    },
+    "permissionDenied": {
+      "title": "Permission Denied",
+      "message": "You don't have permission to perform this action."
+    },
+    "sessionExpired": {
+      "title": "Session Expired",
+      "message": "Your session has expired. Please sign in again."
+    },
+    "maintenanceMode": {
+      "title": "Under Maintenance",
+      "message": "We're performing scheduled maintenance. Please check back soon."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Form Submission Error",
+      "message": "There was an error submitting the form. Please check your input and try again."
+    },
+    "validation": {
+      "title": "Validation Error",
+      "message": "Please correct the errors in the form."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Payment Failed",
+      "message": "Your payment could not be processed. Please try a different payment method."
+    },
+    "declined": {
+      "title": "Payment Declined",
+      "message": "Your payment was declined. Please check your payment details."
+    },
+    "insufficientFunds": {
+      "title": "Insufficient Funds",
+      "message": "Your payment method has insufficient funds."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Schedule Conflict",
+      "message": "This time slot conflicts with another event."
+    },
+    "bookingFailed": {
+      "title": "Booking Failed",
+      "message": "Unable to book the selected time slot."
+    },
+    "facilityUnavailable": {
+      "title": "Facility Unavailable",
+      "message": "The selected facility is not available at this time."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Training Session Not Found",
+      "message": "The training session you're looking for doesn't exist."
+    },
+    "alreadyStarted": {
+      "title": "Session Already Started",
+      "message": "This training session has already begun."
+    },
+    "capacityReached": {
+      "title": "Session Full",
+      "message": "This training session has reached maximum capacity."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Message Not Sent",
+      "message": "Your message could not be sent. Please try again."
+    },
+    "notificationFailed": {
+      "title": "Notification Failed",
+      "message": "Unable to send notifications at this time."
+    }
+  },
+  "actions": {
+    "retry": "Retry",
+    "dismiss": "Dismiss",
+    "details": "View Details",
+    "report": "Report Issue",
+    "refresh": "Refresh Page"
+  }
+}

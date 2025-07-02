@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Månad",
+    "week": "Vecka",
+    "day": "Dag",
+    "agenda": "Agenda",
+    "workWeek": "Arbetsvecka"
+  },
+  "navigation": {
+    "today": "Idag",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "previous": "Föregående",
+    "jumpToDate": "Hoppa till datum"
+  },
+  "event": {
+    "title": "Händelse",
+    "newEvent": "Ny händelse",
+    "editEvent": "Redigera händelse",
+    "deleteEvent": "Ta bort händelse",
+    "duplicateEvent": "Duplicera händelse",
+    "allDay": "Heldag",
+    "recurring": "Återkommande",
+    "privateEvent": "Privat händelse",
+    "fields": {
+      "title": "Titel",
+      "description": "Beskrivning",
+      "location": "Plats",
+      "startDate": "Startdatum",
+      "startTime": "Starttid",
+      "endDate": "Slutdatum",
+      "endTime": "Sluttid",
+      "type": "Händelsetyp",
+      "category": "Kategori",
+      "participants": "Deltagare",
+      "resources": "Resurser",
+      "notes": "Anteckningar",
+      "reminder": "Påminnelse",
+      "color": "Färg",
+      "attachments": "Bilagor"
+    },
+    "types": {
+      "practice": "Träning",
+      "game": "Match",
+      "training": "Fysträning",
+      "meeting": "Möte",
+      "tournament": "Turnering",
+      "tryout": "Uttagning",
+      "medical": "Läkartid",
+      "equipment": "Utrustningsprovning",
+      "teamEvent": "Lagevenemang",
+      "personal": "Personligt",
+      "other": "Övrigt"
+    },
+    "status": {
+      "confirmed": "Bekräftad",
+      "tentative": "Preliminär",
+      "cancelled": "Inställd",
+      "postponed": "Uppskjuten",
+      "rescheduled": "Omplanerad"
+    }
+  },
+  "recurrence": {
+    "title": "Upprepning",
+    "none": "Upprepas inte",
+    "daily": "Dagligen",
+    "weekly": "Veckovis",
+    "monthly": "Månadsvis",
+    "yearly": "Årligen",
+    "custom": "Anpassad",
+    "every": "Varje",
+    "days": "dag(ar)",
+    "weeks": "vecka/veckor",
+    "months": "månad(er)",
+    "years": "år",
+    "on": "På",
+    "onThe": "Den",
+    "weekdays": {
+      "monday": "Måndag",
+      "tuesday": "Tisdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lördag",
+      "sunday": "Söndag"
+    },
+    "ends": {
+      "never": "Aldrig",
+      "after": "Efter",
+      "onDate": "På datum",
+      "occurrences": "tillfällen"
+    }
+  },
+  "availability": {
+    "available": "Tillgänglig",
+    "unavailable": "Inte tillgänglig",
+    "busy": "Upptagen",
+    "tentative": "Preliminär",
+    "outOfOffice": "Ej på kontoret"
+  },
+  "conflicts": {
+    "detected": "Schemakonflikt upptäckt",
+    "message": "Denna händelse står i konflikt med:",
+    "resolution": "Hur vill du lösa detta?",
+    "overwrite": "Skriv över befintlig",
+    "keepBoth": "Behåll båda händelserna",
+    "cancel": "Avbryt ny händelse"
+  },
+  "filters": {
+    "title": "Filter",
+    "showAll": "Visa alla",
+    "byType": "Efter typ",
+    "byTeam": "Efter lag",
+    "byLocation": "Efter plats",
+    "myEvents": "Endast mina händelser"
+  },
+  "export": {
+    "title": "Exportera kalender",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Skriv ut"
+    },
+    "range": {
+      "all": "Alla händelser",
+      "current": "Aktuell vy",
+      "custom": "Anpassat intervall"
+    }
+  },
+  "sharing": {
+    "title": "Dela kalender",
+    "publicLink": "Offentlig länk",
+    "embed": "Inbäddningskod",
+    "subscribe": "Prenumerations-URL",
+    "permissions": {
+      "view": "Endast visa",
+      "edit": "Kan redigera",
+      "admin": "Full åtkomst"
+    }
+  },
+  "reminders": {
+    "none": "Ingen påminnelse",
+    "atTime": "Vid tidpunkt för händelse",
+    "minutes": "{{count}} minuter innan",
+    "hours": "{{count}} timmar innan",
+    "days": "{{count}} dagar innan",
+    "custom": "Anpassad"
+  },
+  "actions": {
+    "create": "Skapa händelse",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "duplicate": "Duplicera",
+    "print": "Skriv ut",
+    "export": "Exportera",
+    "import": "Importera",
+    "subscribe": "Prenumerera",
+    "unsubscribe": "Avsluta prenumeration",
+    "rsvp": "OSA",
+    "maybeAttending": "Kanske",
+    "attending": "Deltar",
+    "notAttending": "Deltar inte"
+  },
+  "messages": {
+    "eventCreated": "Händelse skapad",
+    "eventUpdated": "Händelse uppdaterad",
+    "eventDeleted": "Händelse borttagen",
+    "eventDuplicated": "Händelse duplicerad",
+    "conflictWarning": "Denna tid har konflikter",
+    "participantAdded": "Deltagare tillagd",
+    "participantRemoved": "Deltagare borttagen",
+    "reminderSet": "Påminnelse inställd",
+    "calendarShared": "Kalender delad",
+    "exportComplete": "Export slutförd",
+    "importComplete": "Import slutförd"
+  },
+  "facility": {
+    "rink": "Ishall",
+    "mainRink": "Huvudrinken",
+    "practiceRink": "Träningsrinken",
+    "gym": "Gym",
+    "meetingRoom": "Mötesrum",
+    "lockerRoom": "Omklädningsrum",
+    "trainingRoom": "Träningsrum",
+    "videoRoom": "Videosal",
+    "medicalRoom": "Sjukrum"
+  },
+  "tooltips": {
+    "dragToMove": "Dra för att flytta händelse",
+    "dragToResize": "Dra kanterna för att ändra storlek",
+    "clickToEdit": "Klicka för att redigera",
+    "doubleClickToCreate": "Dubbelklicka för att skapa händelse"
+  }
+}

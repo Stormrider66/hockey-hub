@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Füüsilise treeneri töölaud",
+    "subtitle": "Mängijate füüsilise vormi ja treeningu haldus",
+    "welcome": "Tere tulemast, {{name}}",
+    "todaySessions": "Tänased treeningud",
+    "playerProgress": "Mängijate progressi ülevaade",
+    "quickStats": {
+      "todaysSessions": "Tänased treeningud",
+      "activeNow": "Praegu aktiivne",
+      "playerReadiness": "Mängijate valmisolek",
+      "completedToday": "Täna lõpetatud",
+      "totalPlayers": "{{count}} mängijat kokku",
+      "noActiveSession": "Aktiivne treening puudub",
+      "teamAverage": "Meeskonna keskmine",
+      "upcoming": "{{count}} tulevat"
+    }
+  },
+  "training": {
+    "title": "Treeningprogrammid",
+    "create": "Loo programm",
+    "templates": "Treeningu mallid",
+    "active": "Aktiivsed programmid",
+    "scheduled": "Planeeritud treeningud",
+    "history": "Treeningu ajalugu",
+    "types": {
+      "strength": "Jõutreening",
+      "cardio": "Kardiotreening",
+      "flexibility": "Painduvus",
+      "agility": "Kiirus ja osavus",
+      "recovery": "Taastumine",
+      "rehabilitation": "Taastusravi",
+      "testing": "Füüsilise vormi testimine"
+    },
+    "intensity": {
+      "low": "Madal",
+      "medium": "Keskmine",
+      "moderate": "Mõõdukas",
+      "high": "Kõrge",
+      "maximum": "Maksimaalne"
+    }
+  },
+  "sessions": {
+    "title": "Treeningud",
+    "schedule": "Planeeri treening",
+    "current": "Käimasolev treening",
+    "upcoming": "Tulevad treeningud",
+    "completed": "Lõpetatud treeningud",
+    "cancel": "Tühista treening",
+    "reschedule": "Aja ümber",
+    "duration": "Treeningu kestus",
+    "participants": "Osalejad",
+    "newSession": "Uus treening",
+    "intensity": "{{level}} intensiivsus",
+    "status": {
+      "active": "Aktiivne",
+      "completed": "Lõpetatud",
+      "upcoming": "Tulemas"
+    },
+    "launch": "Alusta",
+    "viewDetails": "Vaata üksikasju"
+  },
+  "exercises": {
+    "title": "Harjutuste kogu",
+    "search": "Otsi harjutusi",
+    "categories": "Harjutuste kategooriad",
+    "create": "Lisa harjutus",
+    "favorite": "Lemmikhajutused",
+    "equipment": "Vajalik varustus",
+    "instructions": "Juhised",
+    "video": "Video õpetus",
+    "categories": {
+      "upperBody": "Ülakeha",
+      "lowerBody": "Alakeha",
+      "core": "Tuumik",
+      "fullBody": "Terve keha",
+      "skating": "Uisutamine",
+      "shooting": "Viske jõud",
+      "balance": "Tasakaal ja stabiilsus",
+      "plyometric": "Plüomeetria"
+    }
+  },
+  "workouts": {
+    "title": "Treeningu koostaja",
+    "create": "Loo treening",
+    "edit": "Muuda treeningut",
+    "save": "Salvesta treening",
+    "templates": "Treeningu mallid",
+    "custom": "Kohandatud treeningud",
+    "assign": "Määra mängijatele",
+    "components": {
+      "warmup": "Soojendus",
+      "main": "Põhitreening",
+      "cooldown": "Mahajahutus",
+      "stretching": "Venitamine"
+    },
+    "parameters": {
+      "sets": "Seeriad",
+      "reps": "Kordused",
+      "duration": "Kestus",
+      "rest": "Puhkeaeg",
+      "weight": "Kaal",
+      "distance": "Distants",
+      "speed": "Kiirus"
+    }
+  },
+  "testing": {
+    "title": "Füüsilise vormi testimine",
+    "schedule": "Planeeri test",
+    "protocols": "Testi protokollid",
+    "results": "Testi tulemused",
+    "history": "Testimise ajalugu",
+    "compare": "Võrdle tulemusi",
+    "benchmarks": "Meeskonna võrdlusnäitajad",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprindi test",
+      "agility": "Osavuse test",
+      "strength": "Jõu test",
+      "flexibility": "Painduvuse test",
+      "balance": "Tasakaalu test",
+      "endurance": "Vastupidavuse test",
+      "powerOutput": "Võimsuse väljund"
+    }
+  },
+  "monitoring": {
+    "title": "Soorituse jälgimine",
+    "metrics": "Soorituse näitajad",
+    "trends": "Progressi trendid",
+    "alerts": "Soorituse hoiatused",
+    "load": "Treeningkoormus",
+    "recovery": "Taastumise staatus",
+    "readiness": "Treeningu valmisolek",
+    "metrics": {
+      "hrv": "Südame löögisageduse varieeruvus",
+      "restingHR": "Puhkeoleku pulss",
+      "weight": "Kehakaal",
+      "bodyFat": "Rasvaprotsent",
+      "muscleMass": "Lihasmass",
+      "power": "Võimsus",
+      "speed": "Kiirus",
+      "endurance": "Vastupidavus"
+    }
+  },
+  "programs": {
+    "title": "Treeningprogrammid",
+    "inSeason": "Hooaja programm",
+    "offSeason": "Hooajaväline programm",
+    "preseason": "Hooajaeelne programm",
+    "rehabilitation": "Taastusravi programm",
+    "maintenance": "Säilitusprogramm",
+    "phases": {
+      "preparation": "Ettevalmistus faas",
+      "building": "Ülesehitus faas",
+      "peak": "Tippvormi faas",
+      "recovery": "Taastumise faas"
+    }
+  },
+  "analytics": {
+    "title": "Treeningu analüütika",
+    "individual": "Individuaalne analüüs",
+    "team": "Meeskonna analüüs",
+    "progress": "Progressi aruanded",
+    "comparison": "Mängijate võrdlus",
+    "export": "Ekspordi andmed",
+    "metrics": "Võtmenäitajad",
+    "insights": "Soorituse ülevaated"
+  },
+  "communication": {
+    "title": "Kommunikatsioon",
+    "feedback": "Treeningu tagasiside",
+    "notes": "Treeningu märkmed",
+    "recommendations": "Soovitused",
+    "alerts": "Saada hoiatus",
+    "report": "Progressi aruanne",
+    "collaborate": "Koostöö meditsiinitöötajatega"
+  }
+}

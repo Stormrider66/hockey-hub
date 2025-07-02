@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "This field is required",
+    "email": "Email is required",
+    "password": "Password is required",
+    "firstName": "First name is required",
+    "lastName": "Last name is required",
+    "phone": "Phone number is required",
+    "date": "Date is required",
+    "time": "Time is required",
+    "selection": "Please make a selection"
+  },
+  "email": {
+    "invalid": "Please enter a valid email address",
+    "alreadyExists": "This email is already registered"
+  },
+  "password": {
+    "tooShort": "Password must be at least {{min}} characters",
+    "tooWeak": "Password is too weak. Use a mix of letters, numbers, and symbols",
+    "noMatch": "Passwords do not match",
+    "requiresUppercase": "Password must contain at least one uppercase letter",
+    "requiresLowercase": "Password must contain at least one lowercase letter",
+    "requiresNumber": "Password must contain at least one number",
+    "requiresSpecial": "Password must contain at least one special character"
+  },
+  "string": {
+    "tooShort": "Must be at least {{min}} characters",
+    "tooLong": "Must be no more than {{max}} characters",
+    "invalidFormat": "Invalid format",
+    "alphanumeric": "Only letters and numbers are allowed",
+    "alphabetic": "Only letters are allowed",
+    "invalidCharacters": "Contains invalid characters"
+  },
+  "number": {
+    "invalid": "Please enter a valid number",
+    "tooSmall": "Must be at least {{min}}",
+    "tooLarge": "Must be no more than {{max}}",
+    "integer": "Must be a whole number",
+    "positive": "Must be a positive number",
+    "negative": "Must be a negative number"
+  },
+  "date": {
+    "invalid": "Please enter a valid date",
+    "beforeMin": "Date must be after {{min}}",
+    "afterMax": "Date must be before {{max}}",
+    "inPast": "Date must be in the past",
+    "inFuture": "Date must be in the future"
+  },
+  "time": {
+    "invalid": "Please enter a valid time",
+    "beforeMin": "Time must be after {{min}}",
+    "afterMax": "Time must be before {{max}}"
+  },
+  "phone": {
+    "invalid": "Please enter a valid phone number",
+    "invalidCountryCode": "Invalid country code"
+  },
+  "file": {
+    "tooLarge": "File size must be less than {{maxSize}}",
+    "invalidType": "File type not allowed. Allowed types: {{allowedTypes}}",
+    "required": "Please select a file",
+    "tooMany": "Too many files. Maximum allowed: {{max}}"
+  },
+  "url": {
+    "invalid": "Please enter a valid URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Invalid team code format",
+      "notFound": "Team code not found"
+    },
+    "playerNumber": {
+      "invalid": "Invalid player number",
+      "alreadyTaken": "This number is already taken"
+    },
+    "age": {
+      "tooYoung": "Must be at least {{min}} years old",
+      "tooOld": "Must be no more than {{max}} years old"
+    },
+    "schedule": {
+      "conflict": "This time conflicts with another event",
+      "outsideHours": "Selected time is outside operating hours",
+      "tooSoon": "Must be scheduled at least {{hours}} hours in advance"
+    },
+    "capacity": {
+      "exceeded": "Maximum capacity exceeded",
+      "minimum": "Minimum {{min}} participants required"
+    }
+  },
+  "form": {
+    "hasErrors": "Please correct the errors below",
+    "submitError": "Failed to submit form. Please try again.",
+    "saveDraft": "Your draft has been saved",
+    "unsavedChanges": "You have unsaved changes. Are you sure you want to leave?"
+  },
+  "search": {
+    "tooShort": "Search query must be at least {{min}} characters",
+    "noResults": "No results found"
+  },
+  "selection": {
+    "minimum": "Please select at least {{min}} option(s)",
+    "maximum": "Please select no more than {{max}} option(s)",
+    "exact": "Please select exactly {{count}} option(s)"
+  },
+  "comparison": {
+    "mustMatch": "Fields must match",
+    "mustBeDifferent": "Fields must be different",
+    "startBeforeEnd": "Start time must be before end time",
+    "endAfterStart": "End time must be after start time"
+  }
+}

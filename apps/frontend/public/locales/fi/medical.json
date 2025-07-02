@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Lääkintähenkilöstön kojelauta",
+    "subtitle": "Pelaajien terveys ja vammahallinta",
+    "welcome": "Tervetuloa, {{name}}",
+    "urgentCases": "Kiireelliset tapaukset",
+    "todayAppointments": "Päivän vastaanotot"
+  },
+  "players": {
+    "title": "Pelaajien terveystilanne",
+    "status": "Terveydentila",
+    "active": "Aktiiviset pelaajat",
+    "injured": "Loukkaantuneet pelaajat",
+    "recovery": "Toipumassa",
+    "cleared": "Äskettäin vapautetut",
+    "monitoring": "Seurannassa",
+    "search": "Hae pelaajia",
+    "filter": "Suodata tilan mukaan"
+  },
+  "injuries": {
+    "title": "Vammahallinta",
+    "current": "Nykyiset vammat",
+    "history": "Vammahistoria",
+    "report": "Ilmoita uusi vamma",
+    "update": "Päivitä vamma",
+    "severity": {
+      "minor": "Lievä",
+      "moderate": "Kohtalainen",
+      "major": "Vakava",
+      "severe": "Erittäin vakava",
+      "careerThreatening": "Uraa uhkaava"
+    },
+    "types": {
+      "concussion": "Aivotärähdys",
+      "fracture": "Murtuma",
+      "sprain": "Nyrjähdys",
+      "strain": "Venähdys",
+      "bruise": "Mustelma",
+      "cut": "Haava/Viilto",
+      "dislocation": "Sijoiltaanmeno",
+      "illness": "Sairaus"
+    },
+    "bodyParts": {
+      "head": "Pää",
+      "neck": "Kaula",
+      "shoulder": "Olkapää",
+      "arm": "Käsivarsi",
+      "elbow": "Kyynärpää",
+      "wrist": "Ranne",
+      "hand": "Käsi",
+      "back": "Selkä",
+      "chest": "Rintakehä",
+      "abdomen": "Vatsa",
+      "hip": "Lonkka",
+      "groin": "Nivunen",
+      "thigh": "Reisi",
+      "knee": "Polvi",
+      "ankle": "Nilkka",
+      "foot": "Jalkaterä"
+    }
+  },
+  "treatment": {
+    "title": "Hoitosuunnitelmat",
+    "active": "Aktiiviset hoidot",
+    "scheduled": "Ajoitetut hoitokerrat",
+    "completed": "Päättyneet hoidot",
+    "create": "Luo hoitosuunnitelma",
+    "modify": "Muokkaa suunnitelmaa",
+    "types": {
+      "physiotherapy": "Fysioterapia",
+      "massage": "Hieronta",
+      "medication": "Lääkitys",
+      "surgery": "Leikkaus",
+      "rehabilitation": "Kuntoutus",
+      "rest": "Lepo/Toipuminen",
+      "imaging": "Kuvantaminen/Skannaukset"
+    },
+    "frequency": {
+      "daily": "Päivittäin",
+      "everyOtherDay": "Joka toinen päivä",
+      "twiceWeekly": "Kahdesti viikossa",
+      "weekly": "Viikoittain",
+      "asNeeded": "Tarpeen mukaan"
+    }
+  },
+  "appointments": {
+    "title": "Lääkäriajat",
+    "schedule": "Varaa aika",
+    "upcoming": "Tulevat ajat",
+    "today": "Päivän aikataulu",
+    "calendar": "Ajanvarauskalenteri",
+    "types": {
+      "checkup": "Määräaikaistarkastus",
+      "injury": "Vamma-arviointi",
+      "followup": "Seurantakäynti",
+      "clearance": "Pelikelpoisuuden arviointi",
+      "physical": "Lääkärintarkastus",
+      "emergency": "Päivystys"
+    },
+    "duration": {
+      "15min": "15 minuuttia",
+      "30min": "30 minuuttia",
+      "45min": "45 minuuttia",
+      "60min": "1 tunti"
+    }
+  },
+  "records": {
+    "title": "Potilastiedot",
+    "history": "Sairaushistoria",
+    "allergies": "Allergiat",
+    "medications": "Nykyiset lääkitykset",
+    "conditions": "Perussairaudet",
+    "surgeries": "Aiemmat leikkaukset",
+    "family": "Sukuhistoria",
+    "documents": "Lääketieteelliset asiakirjat",
+    "upload": "Lataa asiakirja",
+    "download": "Lataa potilastiedot"
+  },
+  "clearance": {
+    "title": "Pelikelpoisuus",
+    "pending": "Odottavat arvioinnit",
+    "evaluate": "Arvioi pelaaja",
+    "protocols": "Paluuprotokollat",
+    "tests": "Vaaditut testit",
+    "approve": "Hyväksy paluu",
+    "deny": "Hylkää paluu",
+    "conditional": "Ehdollinen paluu",
+    "restrictions": "Aktiviteettirajoitukset"
+  },
+  "reports": {
+    "title": "Lääketieteelliset raportit",
+    "injury": "Vammaraportti",
+    "team": "Joukkueen terveysraportti",
+    "individual": "Henkilökohtainen raportti",
+    "insurance": "Vakuutusraportti",
+    "compliance": "Vaatimustenmukaisuusraportti",
+    "generate": "Luo raportti",
+    "export": "Vie raportti"
+  },
+  "emergency": {
+    "title": "Hätäprotokollat",
+    "contacts": "Hätäyhteystiedot",
+    "procedures": "Hätätoimenpiteet",
+    "equipment": "Ensiapuvälineet",
+    "locations": "Sairaalasijainnit",
+    "action": "Toimintasuunnitelma hätätilanteessa",
+    "call": "Hätäpuhelu"
+  },
+  "wellness": {
+    "title": "Hyvinvoinnin seuranta",
+    "daily": "Päivittäiset tarkistukset",
+    "trends": "Hyvinvointitrendit",
+    "alerts": "Hyvinvointihälytykset",
+    "metrics": {
+      "sleep": "Unen laatu",
+      "fatigue": "Väsymystaso",
+      "soreness": "Lihaskipu",
+      "mood": "Mieliala",
+      "stress": "Stressitaso",
+      "hydration": "Nesteytys"
+    }
+  }
+}

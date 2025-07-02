@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Panel de Padres",
+    "subtitle": "Mantente conectado con el viaje de hockey de tu hijo",
+    "welcome": "¡Bienvenido, {{name}}!",
+    "childrenOverview": "Resumen de Hijos",
+    "upcomingEvents": "Próximos Eventos"
+  },
+  "children": {
+    "title": "Mis Hijos",
+    "addChild": "Agregar Hijo",
+    "profile": "Perfil del Hijo",
+    "schedule": "Calendario",
+    "performance": "Rendimiento",
+    "wellness": "Salud y Bienestar",
+    "communication": "Mensajes",
+    "details": {
+      "team": "Equipo",
+      "position": "Posición",
+      "coach": "Entrenador",
+      "number": "Número de Camiseta",
+      "age": "Categoría"
+    }
+  },
+  "schedule": {
+    "title": "Calendario Familiar",
+    "calendar": "Vista de Calendario",
+    "upcoming": "Próximos Eventos",
+    "transportation": "Transporte",
+    "conflicts": "Conflictos de Horario",
+    "sync": "Sincronizar Calendario",
+    "export": "Exportar Calendario",
+    "types": {
+      "game": "Partido",
+      "practice": "Práctica",
+      "tournament": "Torneo",
+      "teamEvent": "Evento del Equipo",
+      "meeting": "Reunión de Padres",
+      "fundraiser": "Recaudación de Fondos"
+    },
+    "rsvp": {
+      "title": "Confirmar Asistencia",
+      "attending": "Asistiremos",
+      "notAttending": "No podemos asistir",
+      "driving": "Puedo llevar a otros",
+      "needRide": "Necesitamos transporte"
+    }
+  },
+  "transportation": {
+    "title": "Coordinación de Transporte",
+    "available": "Conductores Disponibles",
+    "requests": "Solicitudes de Transporte",
+    "myOffers": "Mis Ofertas de Transporte",
+    "carpool": "Grupos de Transporte Compartido",
+    "seats": "Asientos Disponibles",
+    "pickup": "Lugar de Recogida",
+    "dropoff": "Lugar de Destino",
+    "time": "Hora de Salida"
+  },
+  "payments": {
+    "title": "Pagos y Cuotas",
+    "overview": "Resumen de Pagos",
+    "due": "Monto Adeudado",
+    "history": "Historial de Pagos",
+    "upcoming": "Próximas Cuotas",
+    "methods": "Métodos de Pago",
+    "invoices": "Facturas",
+    "items": {
+      "registration": "Cuota de Inscripción",
+      "monthly": "Cuotas Mensuales",
+      "equipment": "Equipamiento",
+      "tournament": "Cuota de Torneo",
+      "travel": "Gastos de Viaje",
+      "fundraising": "Recaudación de Fondos"
+    },
+    "status": {
+      "paid": "Pagado",
+      "pending": "Pendiente",
+      "overdue": "Vencido",
+      "partial": "Pago Parcial"
+    }
+  },
+  "communication": {
+    "title": "Comunicación",
+    "messages": "Mensajes",
+    "announcements": "Anuncios del Equipo",
+    "coachMessages": "Del Entrenador",
+    "teamMessages": "Actualizaciones del Equipo",
+    "emergency": "Contactos de Emergencia",
+    "directory": "Directorio del Equipo",
+    "preferences": "Preferencias de Comunicación"
+  },
+  "medical": {
+    "title": "Información Médica",
+    "records": "Registros Médicos",
+    "allergies": "Alergias",
+    "medications": "Medicamentos",
+    "conditions": "Condiciones Médicas",
+    "emergency": "Contactos de Emergencia",
+    "insurance": "Información del Seguro",
+    "consent": "Consentimiento Médico",
+    "injuries": "Historial de Lesiones"
+  },
+  "documents": {
+    "title": "Documentos y Formularios",
+    "required": "Documentos Requeridos",
+    "optional": "Formularios Opcionales",
+    "submitted": "Enviados",
+    "pending": "Pendiente de Envío",
+    "download": "Descargar Formularios",
+    "upload": "Subir Documento",
+    "types": {
+      "registration": "Formulario de Inscripción",
+      "medical": "Formulario Médico",
+      "waiver": "Exención de Responsabilidad",
+      "consent": "Formulario de Consentimiento",
+      "emergency": "Contacto de Emergencia",
+      "insurance": "Tarjeta de Seguro"
+    }
+  },
+  "volunteer": {
+    "title": "Oportunidades de Voluntariado",
+    "signup": "Inscribirse",
+    "myShifts": "Mis Turnos de Voluntariado",
+    "available": "Posiciones Disponibles",
+    "hours": "Horas de Voluntariado",
+    "requirements": "Requisitos",
+    "positions": {
+      "scorekeeper": "Anotador",
+      "penalty": "Banco de Penalizaciones",
+      "concession": "Puesto de Concesiones",
+      "fundraising": "Recaudación de Fondos",
+      "teamManager": "Manager del Equipo",
+      "equipment": "Ayudante de Equipamiento"
+    }
+  },
+  "performance": {
+    "title": "Progreso del Hijo",
+    "overview": "Resumen de Rendimiento",
+    "improvement": "Áreas de Mejora",
+    "achievements": "Logros Recientes",
+    "feedback": "Comentarios del Entrenador",
+    "goals": "Objetivos de Desarrollo",
+    "attendance": "Registro de Asistencia",
+    "effort": "Nivel de Esfuerzo",
+    "teamwork": "Trabajo en Equipo"
+  }
+}

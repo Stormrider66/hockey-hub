@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord de l'administrateur du club",
+    "subtitle": "Gestion et supervision de l'organisation",
+    "welcome": "Bienvenue, {{name}}",
+    "organizationOverview": "Aperçu de l'organisation",
+    "quickActions": "Actions rapides",
+    "stats": {
+      "teams": "Équipes",
+      "activeMembers": "Membres actifs",
+      "coachingStaff": "Personnel d'entraînement",
+      "upcomingEvents": "Événements à venir",
+      "attendance": "Présence",
+      "members": "Membres"
+    }
+  },
+  "organization": {
+    "title": "Gestion de l'organisation",
+    "details": "Détails de l'organisation",
+    "settings": "Paramètres de l'organisation",
+    "structure": "Structure organisationnelle",
+    "departments": "Départements",
+    "policies": "Politiques et procédures",
+    "branding": "Marque et identité",
+    "contact": "Informations de contact"
+  },
+  "teams": {
+    "title": "Gestion des équipes",
+    "all": "Toutes les équipes",
+    "create": "Créer une équipe",
+    "edit": "Modifier l'équipe",
+    "delete": "Supprimer l'équipe",
+    "roster": "Alignements des équipes",
+    "assignments": "Affectations du personnel",
+    "categories": {
+      "senior": "Équipes seniors",
+      "junior": "Équipes juniors",
+      "youth": "Équipes jeunesse",
+      "academy": "Équipes académie",
+      "womens": "Équipes féminines"
+    }
+  },
+  "staff": {
+    "title": "Gestion du personnel",
+    "all": "Tout le personnel",
+    "add": "Ajouter un membre du personnel",
+    "roles": "Rôles du personnel",
+    "permissions": "Permissions",
+    "contracts": "Contrats",
+    "evaluation": "Évaluation de performance",
+    "training": "Formation et certification",
+    "types": {
+      "coaching": "Personnel d'entraînement",
+      "medical": "Personnel médical",
+      "administrative": "Administratif",
+      "support": "Personnel de soutien",
+      "volunteer": "Bénévoles"
+    }
+  },
+  "facilities": {
+    "title": "Gestion des installations",
+    "overview": "Aperçu des installations",
+    "booking": "Réservation d'installations",
+    "maintenance": "Calendrier de maintenance",
+    "calendar": "Calendrier des installations",
+    "utilization": "Rapports d'utilisation",
+    "types": {
+      "mainRink": "Patinoire principale",
+      "practiceRink": "Patinoire d'entraînement",
+      "gym": "Gymnase/Salle de musculation",
+      "meetingRooms": "Salles de réunion",
+      "lockerRooms": "Vestiaires",
+      "medicalRoom": "Salle médicale"
+    }
+  },
+  "finance": {
+    "title": "Gestion financière",
+    "overview": "Aperçu financier",
+    "budget": "Gestion du budget",
+    "revenue": "Sources de revenus",
+    "expenses": "Dépenses",
+    "reports": "Rapports financiers",
+    "invoicing": "Facturation",
+    "sponsorships": "Commandites",
+    "grants": "Subventions et financement"
+  },
+  "events": {
+    "title": "Gestion des événements",
+    "calendar": "Calendrier des événements",
+    "create": "Créer un événement",
+    "upcoming": "Événements à venir",
+    "past": "Événements passés",
+    "types": {
+      "games": "Matchs",
+      "tournaments": "Tournois",
+      "fundraisers": "Collectes de fonds",
+      "meetings": "Réunions",
+      "social": "Événements sociaux",
+      "training": "Camps d'entraînement"
+    }
+  },
+  "communication": {
+    "title": "Communications",
+    "announcements": "Annonces",
+    "newsletters": "Bulletins d'information",
+    "social": "Médias sociaux",
+    "website": "Mises à jour du site Web",
+    "press": "Communiqués de presse",
+    "internal": "Communications internes",
+    "broadcast": "Diffuser un message"
+  },
+  "compliance": {
+    "title": "Conformité et gouvernance",
+    "policies": "Politiques",
+    "procedures": "Procédures",
+    "regulations": "Règlements",
+    "certifications": "Certifications",
+    "audits": "Audits",
+    "reports": "Rapports de conformité",
+    "training": "Formation en conformité"
+  },
+  "reports": {
+    "title": "Rapports et analyses",
+    "dashboard": "Tableau de bord exécutif",
+    "operational": "Rapports opérationnels",
+    "financial": "Rapports financiers",
+    "performance": "Métriques de performance",
+    "custom": "Rapports personnalisés",
+    "export": "Exporter les données",
+    "schedule": "Planifier des rapports"
+  },
+  "members": {
+    "title": "Gestion des membres",
+    "directory": "Répertoire des membres",
+    "registration": "Inscription",
+    "renewal": "Renouvellement d'adhésion",
+    "benefits": "Avantages des membres",
+    "communication": "Communications aux membres",
+    "statistics": "Statistiques des membres",
+    "byRole": "Membres par rôle"
+  }
+}

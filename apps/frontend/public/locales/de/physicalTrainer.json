@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Athletiktrainer Dashboard",
+    "subtitle": "Spielerfitness und Trainingsmanagement",
+    "welcome": "Willkommen, {{name}}",
+    "todaySessions": "Heutige Trainingseinheiten",
+    "playerProgress": "Spielerfortschrittsübersicht",
+    "quickStats": {
+      "todaysSessions": "Heutige Einheiten",
+      "activeNow": "Jetzt aktiv",
+      "playerReadiness": "Spielerbereitschaft",
+      "completedToday": "Heute abgeschlossen",
+      "totalPlayers": "{{count}} Spieler gesamt",
+      "noActiveSession": "Keine aktive Einheit",
+      "teamAverage": "Teamdurchschnitt",
+      "upcoming": "{{count}} anstehend"
+    }
+  },
+  "training": {
+    "title": "Trainingsprogramme",
+    "create": "Programm erstellen",
+    "templates": "Trainingsvorlagen",
+    "active": "Aktive Programme",
+    "scheduled": "Geplante Einheiten",
+    "history": "Trainingshistorie",
+    "types": {
+      "strength": "Krafttraining",
+      "cardio": "Kardiovaskulär",
+      "flexibility": "Flexibilität",
+      "agility": "Agilität",
+      "recovery": "Erholung",
+      "rehabilitation": "Rehabilitation",
+      "testing": "Fitnesstests"
+    },
+    "intensity": {
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "moderate": "Moderat",
+      "high": "Hoch",
+      "maximum": "Maximum"
+    }
+  },
+  "sessions": {
+    "title": "Trainingseinheiten",
+    "schedule": "Einheit planen",
+    "current": "Aktuelle Einheit",
+    "upcoming": "Anstehende Einheiten",
+    "completed": "Abgeschlossene Einheiten",
+    "cancel": "Einheit absagen",
+    "reschedule": "Neu planen",
+    "duration": "Einheitsdauer",
+    "participants": "Teilnehmer",
+    "newSession": "Neue Einheit",
+    "intensity": "{{level}} Intensität",
+    "status": {
+      "active": "Aktiv",
+      "completed": "Abgeschlossen",
+      "upcoming": "Anstehend"
+    },
+    "launch": "Starten",
+    "viewDetails": "Details anzeigen"
+  },
+  "exercises": {
+    "title": "Übungsbibliothek",
+    "search": "Übungen suchen",
+    "categories": "Übungskategorien",
+    "create": "Übung hinzufügen",
+    "favorite": "Lieblingsübungen",
+    "equipment": "Benötigte Ausrüstung",
+    "instructions": "Anweisungen",
+    "video": "Video-Tutorial",
+    "categories": {
+      "upperBody": "Oberkörper",
+      "lowerBody": "Unterkörper",
+      "core": "Rumpf",
+      "fullBody": "Ganzkörper",
+      "skating": "Schlittschuhspezifisch",
+      "shooting": "Schusskraft",
+      "balance": "Balance & Stabilität",
+      "plyometric": "Plyometrisch"
+    }
+  },
+  "workouts": {
+    "title": "Workout-Ersteller",
+    "create": "Workout erstellen",
+    "edit": "Workout bearbeiten",
+    "save": "Workout speichern",
+    "templates": "Workout-Vorlagen",
+    "custom": "Benutzerdefinierte Workouts",
+    "assign": "Spielern zuweisen",
+    "components": {
+      "warmup": "Aufwärmen",
+      "main": "Hauptworkout",
+      "cooldown": "Abkühlen",
+      "stretching": "Dehnen"
+    },
+    "parameters": {
+      "sets": "Sätze",
+      "reps": "Wiederholungen",
+      "duration": "Dauer",
+      "rest": "Ruhepause",
+      "weight": "Gewicht",
+      "distance": "Entfernung",
+      "speed": "Geschwindigkeit"
+    }
+  },
+  "testing": {
+    "title": "Fitnesstests",
+    "schedule": "Test planen",
+    "protocols": "Testprotokolle",
+    "results": "Testergebnisse",
+    "history": "Testhistorie",
+    "compare": "Ergebnisse vergleichen",
+    "benchmarks": "Team-Benchmarks",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprint-Test",
+      "agility": "Agilitätstest",
+      "strength": "Krafttest",
+      "flexibility": "Flexibilitätstest",
+      "balance": "Gleichgewichtstest",
+      "endurance": "Ausdauertest",
+      "powerOutput": "Leistungsabgabe"
+    }
+  },
+  "monitoring": {
+    "title": "Leistungsüberwachung",
+    "metrics": "Leistungsmetriken",
+    "trends": "Fortschrittstrends",
+    "alerts": "Leistungswarnungen",
+    "load": "Trainingsbelastung",
+    "recovery": "Erholungsstatus",
+    "readiness": "Trainingsbereitschaft",
+    "metrics": {
+      "hrv": "Herzratenvariabilität",
+      "restingHR": "Ruheherzfrequenz",
+      "weight": "Körpergewicht",
+      "bodyFat": "Körperfett %",
+      "muscleMass": "Muskelmasse",
+      "power": "Leistungsabgabe",
+      "speed": "Geschwindigkeit",
+      "endurance": "Ausdauer"
+    }
+  },
+  "programs": {
+    "title": "Trainingsprogramme",
+    "inSeason": "Saisonprogramm",
+    "offSeason": "Saisonpause-Programm",
+    "preseason": "Vorsaisonprogramm",
+    "rehabilitation": "Reha-Programm",
+    "maintenance": "Erhaltungsprogramm",
+    "phases": {
+      "preparation": "Vorbereitungsphase",
+      "building": "Aufbauphase",
+      "peak": "Höchstleistungsphase",
+      "recovery": "Erholungsphase"
+    }
+  },
+  "analytics": {
+    "title": "Trainingsanalyse",
+    "individual": "Einzelanalyse",
+    "team": "Teamanalyse",
+    "progress": "Fortschrittsberichte",
+    "comparison": "Spielervergleich",
+    "export": "Daten exportieren",
+    "metrics": "Schlüsselmetriken",
+    "insights": "Leistungseinblicke"
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "feedback": "Einheits-Feedback",
+    "notes": "Trainingsnotizen",
+    "recommendations": "Empfehlungen",
+    "alerts": "Warnung senden",
+    "report": "Fortschrittsbericht",
+    "collaborate": "Mit Medizin zusammenarbeiten"
+  }
+}

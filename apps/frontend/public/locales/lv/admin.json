@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Sistēmas administrators",
+    "subtitle": "Platformas vadība un konfigurācija",
+    "welcome": "Laipni lūdzam, sistēmas administrators",
+    "systemStatus": "Sistēmas statuss",
+    "alerts": "Sistēmas brīdinājumi"
+  },
+  "system": {
+    "title": "Sistēmas vadība",
+    "status": "Sistēmas statuss",
+    "health": "Veselības pārbaude",
+    "healthScore": "Sistēmas veselība",
+    "monitoring": "Sistēmas monitorings",
+    "logs": "Sistēmas žurnāli",
+    "performance": "Veiktspējas metrika",
+    "uptime": "Darbības laiks",
+    "resources": "Resursu izmantošana",
+    "activeUsers": "Aktīvi lietotāji",
+    "errorRate": "Kļūdu līmenis",
+    "responseTime": "Atbildes laiks",
+    "databaseSize": "Datubāzes izmērs",
+    "withinSLA": "SLA ietvaros",
+    "systemPerformance24h": "Sistēmas veiktspēja (24h)",
+    "serviceHealthMatrix": "Servisu veselības matrica",
+    "cpuMemoryUsage": "CPU, atmiņas izmantojums un pieprasījumu apjoms",
+    "realTimeServiceStatus": "Reāllaika servisu statuss un metrika"
+  },
+  "users": {
+    "title": "Lietotāju vadība",
+    "all": "Visi lietotāji",
+    "create": "Izveidot lietotāju",
+    "edit": "Rediģēt lietotāju",
+    "delete": "Dzēst lietotāju",
+    "roles": "Lietotāju lomas",
+    "permissions": "Lietotāju atļaujas",
+    "activity": "Lietotāju aktivitāte",
+    "sessions": "Aktīvās sesijas",
+    "audit": "Audita pieraksti"
+  },
+  "organizations": {
+    "title": "Organizāciju vadība",
+    "all": "Visas organizācijas",
+    "create": "Izveidot organizāciju",
+    "edit": "Rediģēt organizāciju",
+    "delete": "Dzēst organizāciju",
+    "settings": "Organizācijas iestatījumi",
+    "limits": "Izmantošanas limiti",
+    "billing": "Norēķinu informācija"
+  },
+  "security": {
+    "title": "Drošības vadība",
+    "settings": "Drošības iestatījumi",
+    "authentication": "Autentifikācija",
+    "authorization": "Autorizācija",
+    "tokens": "API atslēgas",
+    "certificates": "SSL sertifikāti",
+    "firewall": "Ugunsmūra noteikumi",
+    "threats": "Draudu noteikšana",
+    "incidents": "Drošības incidenti"
+  },
+  "database": {
+    "title": "Datubāzes vadība",
+    "status": "Datubāzes statuss",
+    "backup": "Rezerves kopiju vadība",
+    "restore": "Atjaunot datubāzi",
+    "migrations": "Datubāzes migrācijas",
+    "optimization": "Vaicājumu optimizācija",
+    "connections": "Savienojumu pūls",
+    "maintenance": "Apkopes uzdevumi"
+  },
+  "services": {
+    "title": "Servisu vadība",
+    "status": "Servisu statuss",
+    "configuration": "Servisu konfigurācija",
+    "dependencies": "Atkarības",
+    "health": "Veselības pārbaudes",
+    "restart": "Restartēt servisu",
+    "logs": "Servisu žurnāli",
+    "metrics": "Servisu metrika"
+  },
+  "integrations": {
+    "title": "Integrācijas",
+    "connected": "Savienotie servisi",
+    "available": "Pieejamās integrācijas",
+    "configure": "Konfigurēt integrāciju",
+    "test": "Testēt savienojumu",
+    "logs": "Integrāciju žurnāli",
+    "webhooks": "Tīmekļa āķi",
+    "api": "API vadība"
+  },
+  "configuration": {
+    "title": "Sistēmas konfigurācija",
+    "general": "Vispārīgie iestatījumi",
+    "email": "E-pasta konfigurācija",
+    "storage": "Krātuves iestatījumi",
+    "cache": "Kešatmiņas vadība",
+    "queue": "Rindu konfigurācija",
+    "scheduler": "Uzdevumu plānotājs",
+    "features": "Funkciju karodziņi"
+  },
+  "monitoring": {
+    "title": "Sistēmas monitorings",
+    "dashboard": "Monitoringa panelis",
+    "alerts": "Brīdinājumu konfigurācija",
+    "metrics": "Sistēmas metrika",
+    "logs": "Žurnālu analīze",
+    "errors": "Kļūdu izsekošana",
+    "performance": "Veiktspējas analīze",
+    "reports": "Sistēmas atskaites"
+  },
+  "maintenance": {
+    "title": "Apkope",
+    "schedule": "Apkopes grafiks",
+    "tasks": "Apkopes uzdevumi",
+    "updates": "Sistēmas atjauninājumi",
+    "patches": "Drošības ielāpi",
+    "cleanup": "Datu tīrīšana",
+    "optimization": "Sistēmas optimizācija",
+    "mode": "Apkopes režīms"
+  }
+}

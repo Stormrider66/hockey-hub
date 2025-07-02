@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Žaidėjo valdymo skydas",
+    "subtitle": "Stebėkite savo rezultatus ir tobulėjimą",
+    "welcome": "Sveiki sugrįžę, {{name}}!",
+    "todaySchedule": "Šiandienos tvarkaraštis",
+    "upcomingEvents": "Artėjantys renginiai",
+    "recentPerformance": "Naujausi pasirodymai",
+    "developmentGoals": "Tobulėjimo tikslai"
+  },
+  "profile": {
+    "playerInfo": "Žaidėjo informacija",
+    "number": "Marškinėlių numeris",
+    "position": "Pozicija",
+    "shoots": "Metimai",
+    "team": "Komanda",
+    "age": "Amžius",
+    "height": "Ūgis",
+    "weight": "Svoris",
+    "joined": "Prisijungė",
+    "contractExpires": "Sutarties pabaiga"
+  },
+  "wellness": {
+    "title": "Kasdienė savijautos patikra",
+    "subtitle": "Kaip jaučiatės šiandien?",
+    "submit": "Pateikti savijautos duomenis",
+    "submitted": "Savijautos duomenys sėkmingai pateikti",
+    "metrics": {
+      "hrv": "Širdies ritmo variabilumas",
+      "sleep": "Miego kokybė",
+      "fatigue": "Nuovargio lygis",
+      "mood": "Nuotaika",
+      "soreness": "Raumenų skausmas",
+      "stress": "Streso lygis",
+      "hydration": "Hidratacija",
+      "nutrition": "Mitybos kokybė"
+    },
+    "scale": {
+      "poor": "Prasta",
+      "fair": "Patenkinima",
+      "good": "Gera",
+      "veryGood": "Labai gera",
+      "excellent": "Puiki"
+    }
+  },
+  "training": {
+    "title": "Treniruočių užsiėmimai",
+    "upcoming": "Artėjančios treniruotės",
+    "completed": "Užbaigti užsiėmimai",
+    "assigned": "Paskirtos treniruotės",
+    "progress": "Treniruočių progresas",
+    "todaysWorkout": "Šiandienos treniruotė",
+    "completeSession": "Užbaigti užsiėmimą",
+    "viewDetails": "Peržiūrėti detales",
+    "intensity": "Intensyvumas",
+    "duration": "Trukmė",
+    "focus": "Dėmesio sritis",
+    "equipment": "Reikalinga įranga",
+    "location": "Vieta",
+    "coach": "Treneris",
+    "notes": "Užsiėmimo pastabos"
+  },
+  "performance": {
+    "title": "Rezultatų rodikliai",
+    "seasonStats": "Sezono statistika",
+    "careerStats": "Karjeros statistika",
+    "lastGame": "Paskutinės rungtynės",
+    "average": "Vidurkis",
+    "total": "Iš viso",
+    "trend": "Tendencija",
+    "improvement": "Pagerėjimas",
+    "metrics": {
+      "goals": "Įvarčiai",
+      "assists": "Rezultatyvūs perdavimai",
+      "points": "Taškai",
+      "plusMinus": "+/-",
+      "pim": "Baudos minutės",
+      "shots": "Metimai",
+      "shootingPercentage": "Metimų %",
+      "faceoffPercentage": "Įmetimų %",
+      "hits": "Jėgos veiksmai",
+      "blocks": "Blokavimai",
+      "takeaways": "Atkovojimai",
+      "giveaways": "Praradimai",
+      "toi": "Laikas ant ledo",
+      "powerplayGoals": "Įvarčiai daugumoje",
+      "shorthandedGoals": "Įvarčiai mažumoje",
+      "gameWinningGoals": "Pergalingi įvarčiai"
+    }
+  },
+  "schedule": {
+    "title": "Tvarkaraštis",
+    "calendar": "Kalendorinis vaizdas",
+    "list": "Sąrašo vaizdas",
+    "filters": "Filtrai",
+    "types": {
+      "game": "Rungtynės",
+      "practice": "Treniruotė",
+      "training": "Fizinis pasirengimas",
+      "meeting": "Susitikimas",
+      "medical": "Medicininis apžiūra",
+      "recovery": "Atkūrimas",
+      "travel": "Kelionė",
+      "personal": "Asmeninis"
+    },
+    "rsvp": {
+      "title": "Dalyvavimo patvirtinimas",
+      "attending": "Dalyvausiu",
+      "notAttending": "Nedalyvausiu",
+      "maybe": "Galbūt",
+      "update": "Atnaujinti dalyvavimą"
+    }
+  },
+  "communication": {
+    "title": "Žinutės",
+    "inbox": "Gautos",
+    "sent": "Išsiųstos",
+    "drafts": "Juodraščiai",
+    "compose": "Kurti žinutę",
+    "teamChat": "Komandos pokalbis",
+    "coachMessages": "Trenerio žinutės",
+    "announcements": "Skelbimai"
+  },
+  "development": {
+    "title": "Tobulėjimo planas",
+    "goals": "Tikslai",
+    "progress": "Progresas",
+    "skillAssessment": "Įgūdžių vertinimas",
+    "trainingPlan": "Treniruočių planas",
+    "milestones": "Pasiekimai",
+    "achievements": "Laimėjimai",
+    "areas": {
+      "skating": "Čiuožimas",
+      "shooting": "Metimai",
+      "passing": "Perdavimai",
+      "stickHandling": "Ritulinio valdymas",
+      "positioning": "Pozicionavimasis",
+      "physicality": "Fizinė jėga",
+      "mentalGame": "Psichologinis žaidimas",
+      "leadership": "Lyderystė"
+    }
+  },
+  "nutrition": {
+    "title": "Mityba",
+    "mealPlan": "Mitybos planas",
+    "hydration": "Hidratacijos stebėjimas",
+    "supplements": "Papildai",
+    "calories": "Kalorijos",
+    "macros": "Makroelementai",
+    "meals": {
+      "breakfast": "Pusryčiai",
+      "lunch": "Pietūs",
+      "dinner": "Vakarienė",
+      "snack": "Užkandis",
+      "preGame": "Prieš rungtynes",
+      "postGame": "Po rungtynių"
+    }
+  },
+  "recovery": {
+    "title": "Atkūrimas",
+    "status": "Atkūrimo būsena",
+    "activities": "Atkūrimo veiklos",
+    "sleep": "Miego stebėjimas",
+    "treatment": "Gydymas",
+    "nextSession": "Kitas atkūrimo užsiėmimas",
+    "types": {
+      "massage": "Masažas",
+      "coldTub": "Šalta vonia",
+      "sauna": "Sauna",
+      "stretching": "Tempimas",
+      "yoga": "Joga",
+      "physiotherapy": "Fizioterapija"
+    }
+  }
+}

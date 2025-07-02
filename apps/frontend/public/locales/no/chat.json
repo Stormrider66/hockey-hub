@@ -1,0 +1,145 @@
+{
+  "title": "Meldinger",
+  "conversations": {
+    "title": "Samtaler",
+    "new": "Ny samtale",
+    "search": "Søk i samtaler...",
+    "empty": "Ingen samtaler ennå",
+    "startNew": "Start en ny samtale"
+  },
+  "participants": {
+    "add": "Legg til deltakere",
+    "remove": "Fjern fra samtale",
+    "search": "Søk personer...",
+    "you": "Du",
+    "typing": "skriver...",
+    "multipleTyping": "skriver...",
+    "online": "Pålogget",
+    "offline": "Frakoblet",
+    "away": "Borte"
+  },
+  "messages": {
+    "placeholder": "Skriv en melding...",
+    "send": "Send",
+    "edit": "Rediger melding",
+    "delete": "Slett melding",
+    "reply": "Svar",
+    "forward": "Videresend",
+    "copy": "Kopier",
+    "pin": "Fest melding",
+    "unpin": "Løsne melding",
+    "react": "Legg til reaksjon",
+    "edited": "redigert",
+    "deleted": "Denne meldingen ble slettet",
+    "delivered": "Levert",
+    "read": "Lest",
+    "sending": "Sender...",
+    "failed": "Kunne ikke sende",
+    "retry": "Prøv igjen"
+  },
+  "groups": {
+    "create": "Opprett gruppe",
+    "name": "Gruppenavn",
+    "description": "Beskrivelse (valgfritt)",
+    "addMembers": "Legg til medlemmer",
+    "settings": "Gruppeinnstillinger",
+    "leave": "Forlat gruppe",
+    "delete": "Slett gruppe",
+    "members": "{{count}} medlemmer",
+    "admin": "Administrator",
+    "member": "Medlem"
+  },
+  "channels": {
+    "title": "Kanaler",
+    "create": "Opprett kanal",
+    "public": "Offentlig kanal",
+    "private": "Privat kanal",
+    "join": "Bli med i kanal",
+    "leave": "Forlat kanal",
+    "mute": "Demp kanal",
+    "unmute": "Opphev demping",
+    "types": {
+      "general": "Generelt",
+      "announcements": "Kunngjøringer",
+      "team": "Lagchat",
+      "coaches": "Trenere",
+      "parents": "Foreldre",
+      "medical": "Medisinsk personale"
+    }
+  },
+  "attachments": {
+    "title": "Vedlegg",
+    "upload": "Last opp fil",
+    "types": {
+      "image": "Bilde",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Lyd",
+      "other": "Fil"
+    },
+    "download": "Last ned",
+    "preview": "Forhåndsvisning",
+    "tooLarge": "Filen er for stor. Maksimal størrelse er {{maxSize}}",
+    "unsupported": "Filtypen støttes ikke"
+  },
+  "notifications": {
+    "newMessage": "Ny melding fra {{sender}}",
+    "mentioned": "{{sender}} nevnte deg",
+    "groupInvite": "Du har blitt lagt til {{group}}",
+    "enable": "Aktiver varsler",
+    "disable": "Deaktiver varsler",
+    "sound": "Varslingslyd",
+    "desktop": "Skrivebordsvarsler"
+  },
+  "search": {
+    "placeholder": "Søk i meldinger...",
+    "filters": "Filtre",
+    "from": "Fra",
+    "to": "Til",
+    "date": "Dato",
+    "hasAttachment": "Har vedlegg",
+    "results": "{{count}} resultater funnet",
+    "noResults": "Ingen meldinger funnet"
+  },
+  "settings": {
+    "title": "Chatinnstillinger",
+    "privacy": "Personvern",
+    "readReceipts": "Lesebekreftelser",
+    "typingIndicator": "Vis når du skriver",
+    "autoDownload": "Automatisk nedlasting av media",
+    "enterToSend": "Trykk Enter for å sende",
+    "theme": "Chattema",
+    "fontSize": "Skriftstørrelse"
+  },
+  "status": {
+    "online": "Pålogget",
+    "away": "Borte",
+    "busy": "Ikke forstyrr",
+    "offline": "Vises som frakoblet",
+    "setStatus": "Sett status",
+    "customStatus": "Sett egendefinert status..."
+  },
+  "actions": {
+    "startChat": "Start chat",
+    "viewProfile": "Vis profil",
+    "clearChat": "Tøm chathistorikk",
+    "exportChat": "Eksporter chat",
+    "reportUser": "Rapporter bruker",
+    "blockUser": "Blokker bruker",
+    "unblockUser": "Opphev blokkering"
+  },
+  "time": {
+    "now": "nå",
+    "today": "I dag",
+    "yesterday": "I går",
+    "daysAgo": "{{count}} dager siden",
+    "lastSeen": "Sist sett {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Tilkobling tapt. Kobler til på nytt...",
+    "sendFailed": "Kunne ikke sende melding",
+    "loadFailed": "Kunne ikke laste meldinger",
+    "uploadFailed": "Kunne ikke laste opp fil",
+    "permissionDenied": "Du har ikke tillatelse til å gjøre det"
+  }
+}

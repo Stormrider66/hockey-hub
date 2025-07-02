@@ -1,0 +1,145 @@
+{
+  "title": "Sõnumid",
+  "conversations": {
+    "title": "Vestlused",
+    "new": "Uus vestlus",
+    "search": "Otsi vestlusi...",
+    "empty": "Vestlusi pole veel",
+    "startNew": "Alusta uut vestlust"
+  },
+  "participants": {
+    "add": "Lisa osalejaid",
+    "remove": "Eemalda vestlusest",
+    "search": "Otsi inimesi...",
+    "you": "Sina",
+    "typing": "kirjutab...",
+    "multipleTyping": "kirjutavad...",
+    "online": "Võrgus",
+    "offline": "Võrgust väljas",
+    "away": "Eemal"
+  },
+  "messages": {
+    "placeholder": "Kirjuta sõnum...",
+    "send": "Saada",
+    "edit": "Muuda sõnumit",
+    "delete": "Kustuta sõnum",
+    "reply": "Vasta",
+    "forward": "Edasta",
+    "copy": "Kopeeri",
+    "pin": "Kinnita sõnum",
+    "unpin": "Eemalda kinnitus",
+    "react": "Lisa reaktsioon",
+    "edited": "muudetud",
+    "deleted": "See sõnum kustutati",
+    "delivered": "Kohale toimetatud",
+    "read": "Loetud",
+    "sending": "Saatmine...",
+    "failed": "Saatmine ebaõnnestus",
+    "retry": "Proovi uuesti"
+  },
+  "groups": {
+    "create": "Loo grupp",
+    "name": "Grupi nimi",
+    "description": "Kirjeldus (valikuline)",
+    "addMembers": "Lisa liikmeid",
+    "settings": "Grupi seaded",
+    "leave": "Lahku grupist",
+    "delete": "Kustuta grupp",
+    "members": "{{count}} liiget",
+    "admin": "Administraator",
+    "member": "Liige"
+  },
+  "channels": {
+    "title": "Kanalid",
+    "create": "Loo kanal",
+    "public": "Avalik kanal",
+    "private": "Privaatne kanal",
+    "join": "Liitu kanaliga",
+    "leave": "Lahku kanalist",
+    "mute": "Vaigista kanal",
+    "unmute": "Lõpeta vaigistus",
+    "types": {
+      "general": "Üldine",
+      "announcements": "Teadaanded",
+      "team": "Meeskonna vestlus",
+      "coaches": "Treenerid",
+      "parents": "Lapsevanemad",
+      "medical": "Meditsiinipersonal"
+    }
+  },
+  "attachments": {
+    "title": "Manused",
+    "upload": "Lae fail üles",
+    "types": {
+      "image": "Pilt",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Audio",
+      "other": "Fail"
+    },
+    "download": "Lae alla",
+    "preview": "Eelvaade",
+    "tooLarge": "Fail on liiga suur. Maksimaalne suurus on {{maxSize}}",
+    "unsupported": "Failitüüp pole toetatud"
+  },
+  "notifications": {
+    "newMessage": "Uus sõnum kasutajalt {{sender}}",
+    "mentioned": "{{sender}} mainis sind",
+    "groupInvite": "Sind lisati gruppi {{group}}",
+    "enable": "Luba teavitused",
+    "disable": "Keela teavitused",
+    "sound": "Teavituse heli",
+    "desktop": "Töölaua teavitused"
+  },
+  "search": {
+    "placeholder": "Otsi sõnumeid...",
+    "filters": "Filtrid",
+    "from": "Saatja",
+    "to": "Saaja",
+    "date": "Kuupäev",
+    "hasAttachment": "Manusega",
+    "results": "Leitud {{count}} tulemust",
+    "noResults": "Sõnumeid ei leitud"
+  },
+  "settings": {
+    "title": "Vestluse seaded",
+    "privacy": "Privaatsus",
+    "readReceipts": "Lugemiskinnitus",
+    "typingIndicator": "Näita kirjutamist",
+    "autoDownload": "Laadi meedia automaatselt alla",
+    "enterToSend": "Enter saadab sõnumi",
+    "theme": "Vestluse teema",
+    "fontSize": "Fondi suurus"
+  },
+  "status": {
+    "online": "Võrgus",
+    "away": "Eemal",
+    "busy": "Ära sega",
+    "offline": "Näita võrgust väljas",
+    "setStatus": "Määra olek",
+    "customStatus": "Määra kohandatud olek..."
+  },
+  "actions": {
+    "startChat": "Alusta vestlust",
+    "viewProfile": "Vaata profiili",
+    "clearChat": "Puhasta vestluse ajalugu",
+    "exportChat": "Ekspordi vestlus",
+    "reportUser": "Teata kasutajast",
+    "blockUser": "Blokeeri kasutaja",
+    "unblockUser": "Eemalda blokeering"
+  },
+  "time": {
+    "now": "praegu",
+    "today": "Täna",
+    "yesterday": "Eile",
+    "daysAgo": "{{count}} päeva tagasi",
+    "lastSeen": "Viimati nähtud {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Ühendus katkes. Taasühendamine...",
+    "sendFailed": "Sõnumi saatmine ebaõnnestus",
+    "loadFailed": "Sõnumite laadimine ebaõnnestus",
+    "uploadFailed": "Faili üleslaadimine ebaõnnestus",
+    "permissionDenied": "Teil pole selleks õigusi"
+  }
+}

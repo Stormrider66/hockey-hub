@@ -1,0 +1,142 @@
+{
+  "title": "Teavitused",
+  "markAllRead": "Märgi kõik loetuks",
+  "clearAll": "Kustuta kõik",
+  "settings": "Teavituste seaded",
+  "empty": "Teavitusi pole",
+  "loadMore": "Lae rohkem",
+  "categories": {
+    "all": "Kõik",
+    "unread": "Lugemata",
+    "system": "Süsteem",
+    "team": "Meeskond",
+    "training": "Treening",
+    "medical": "Meditsiin",
+    "calendar": "Kalender",
+    "payment": "Makse",
+    "communication": "Sõnumid"
+  },
+  "types": {
+    "system": {
+      "welcome": "Tere tulemast Hockey Hubi!",
+      "profileComplete": "Teie profiil on nüüd täielik",
+      "passwordChanged": "Teie parool on edukalt muudetud",
+      "accountVerified": "Teie konto on kinnitatud",
+      "maintenanceScheduled": "Süsteemi hooldus on planeeritud {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Teid on lisatud meeskonda {{teamName}}",
+      "removedFromTeam": "Teid on eemaldatud meeskonnast {{teamName}}",
+      "roleChanged": "Teie roll on muudetud: {{role}}",
+      "teamAnnouncement": "Meeskonna teadaanne kasutajalt {{sender}}",
+      "rosterUpdate": "Koosseis on uuendatud"
+    },
+    "training": {
+      "sessionScheduled": "Treening on planeeritud {{date}}",
+      "sessionCancelled": "Treening {{date}} on tühistatud",
+      "sessionReminder": "Treening algab {{time}} pärast",
+      "workoutAssigned": "Uus harjutus määratud: {{workoutName}}",
+      "workoutCompleted": "{{player}} lõpetas harjutuse: {{workoutName}}",
+      "performanceReport": "Teie soorituse aruanne on valmis"
+    },
+    "medical": {
+      "appointmentScheduled": "Meditsiiniline vastuvõtt on planeeritud {{date}}",
+      "appointmentReminder": "Meditsiiniline vastuvõtt {{time}} pärast",
+      "injuryUpdate": "Vigastuse staatus uuendatud: {{player}}",
+      "clearanceGranted": "{{player}} on lubatud mängima",
+      "wellnessReminder": "Palun esitage oma päevane heaolukontroll",
+      "treatmentComplete": "Ravisessioon lõpetatud"
+    },
+    "calendar": {
+      "eventCreated": "Uus sündmus: {{eventName}}",
+      "eventUpdated": "Sündmus uuendatud: {{eventName}}",
+      "eventCancelled": "Sündmus tühistatud: {{eventName}}",
+      "eventReminder": "{{eventName}} algab {{time}} pärast",
+      "rsvpRequested": "Palun kinnitage osalemine: {{eventName}}",
+      "scheduleChange": "Ajakava muudatus: {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Uus arve saadaval: {{amount}}",
+      "paymentReceived": "Makse laekunud: {{amount}}",
+      "paymentDue": "Makse tähtaeg: {{amount}} kuupäevaks {{date}}",
+      "paymentOverdue": "Tähtaja ületanud makse: {{amount}}",
+      "paymentFailed": "Makse ebaõnnestus: {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Uus sõnum kasutajalt {{sender}}",
+      "mentionedInChat": "{{sender}} mainis teid kanalis {{channel}}",
+      "addedToGroup": "Teid on lisatud gruppi {{groupName}}",
+      "missedCall": "Vastamata kõne: {{caller}}",
+      "voicemail": "Uus kõnepost: {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Mäng planeeritud: {{opponent}} kuupäeval {{date}}",
+      "gameReminder": "Mäng vs {{opponent}} algab {{time}} pärast",
+      "lineupPosted": "Mängu koosseis on avaldatud",
+      "gameResult": "Mängu tulemus: {{result}} vs {{opponent}}",
+      "statsAvailable": "Teie mängu statistika on nüüd saadaval"
+    },
+    "equipment": {
+      "fittingScheduled": "Varustuse sobitamine planeeritud {{date}}",
+      "maintenanceDue": "Varustuse hooldus vajalik: {{equipment}}",
+      "orderReady": "Teie varustuse tellimus on valmis kättesaamiseks",
+      "returnReminder": "Palun tagastage {{equipment}} kuupäevaks {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Vaata",
+    "dismiss": "Sulge",
+    "accept": "Nõustu",
+    "decline": "Keeldu",
+    "respond": "Vasta",
+    "schedule": "Planeeri",
+    "pay": "Maksa kohe",
+    "download": "Lae alla",
+    "viewDetails": "Vaata üksikasju"
+  },
+  "preferences": {
+    "title": "Teavituste eelistused",
+    "channels": {
+      "email": "E-post",
+      "push": "Push-teavitused",
+      "inApp": "Rakendusesisesed",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Koheselt",
+      "hourly": "Tunni kokkuvõte",
+      "daily": "Päeva kokkuvõte",
+      "weekly": "Nädala kokkuvõte"
+    },
+    "quiet": {
+      "title": "Vaiksed tunnid",
+      "enabled": "Luba vaiksed tunnid",
+      "from": "Alates",
+      "to": "Kuni",
+      "days": "Päevad"
+    },
+    "types": {
+      "training": "Treeningu uuendused",
+      "medical": "Meditsiinilised meeldetuletused",
+      "calendar": "Kalendri sündmused",
+      "team": "Meeskonna teadaanded",
+      "chat": "Vestluse sõnumid",
+      "payment": "Makse meeldetuletused",
+      "system": "Süsteemi teavitused"
+    }
+  },
+  "time": {
+    "justNow": "Just praegu",
+    "minutesAgo": "{{count}} minutit tagasi",
+    "hoursAgo": "{{count}} tundi tagasi",
+    "yesterday": "Eile",
+    "daysAgo": "{{count}} päeva tagasi",
+    "weeksAgo": "{{count}} nädalat tagasi"
+  },
+  "status": {
+    "sent": "Saadetud",
+    "delivered": "Kohale toimetatud",
+    "read": "Loetud",
+    "failed": "Saatmine ebaõnnestus"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "title": "Messaggi",
+  "conversations": {
+    "title": "Conversazioni",
+    "new": "Nuova Conversazione",
+    "search": "Cerca conversazioni...",
+    "empty": "Nessuna conversazione ancora",
+    "startNew": "Inizia una nuova conversazione"
+  },
+  "participants": {
+    "add": "Aggiungi Partecipanti",
+    "remove": "Rimuovi dalla conversazione",
+    "search": "Cerca persone...",
+    "you": "Tu",
+    "typing": "sta scrivendo...",
+    "multipleTyping": "stanno scrivendo...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Assente"
+  },
+  "messages": {
+    "placeholder": "Scrivi un messaggio...",
+    "send": "Invia",
+    "edit": "Modifica messaggio",
+    "delete": "Elimina messaggio",
+    "reply": "Rispondi",
+    "forward": "Inoltra",
+    "copy": "Copia",
+    "pin": "Fissa messaggio",
+    "unpin": "Rimuovi messaggio fissato",
+    "react": "Aggiungi reazione",
+    "edited": "modificato",
+    "deleted": "Questo messaggio è stato eliminato",
+    "delivered": "Consegnato",
+    "read": "Letto",
+    "sending": "Invio...",
+    "failed": "Invio fallito",
+    "retry": "Riprova"
+  },
+  "groups": {
+    "create": "Crea Gruppo",
+    "name": "Nome Gruppo",
+    "description": "Descrizione (opzionale)",
+    "addMembers": "Aggiungi Membri",
+    "settings": "Impostazioni Gruppo",
+    "leave": "Abbandona Gruppo",
+    "delete": "Elimina Gruppo",
+    "members": "{{count}} membri",
+    "admin": "Amministratore",
+    "member": "Membro"
+  },
+  "channels": {
+    "title": "Canali",
+    "create": "Crea Canale",
+    "public": "Canale Pubblico",
+    "private": "Canale Privato",
+    "join": "Unisciti al Canale",
+    "leave": "Abbandona Canale",
+    "mute": "Silenzia Canale",
+    "unmute": "Riattiva Canale",
+    "types": {
+      "general": "Generale",
+      "announcements": "Annunci",
+      "team": "Chat di Squadra",
+      "coaches": "Allenatori",
+      "parents": "Genitori",
+      "medical": "Staff Medico"
+    }
+  },
+  "attachments": {
+    "title": "Allegati",
+    "upload": "Carica File",
+    "types": {
+      "image": "Immagine",
+      "video": "Video",
+      "document": "Documento",
+      "audio": "Audio",
+      "other": "File"
+    },
+    "download": "Scarica",
+    "preview": "Anteprima",
+    "tooLarge": "File troppo grande. Dimensione massima {{maxSize}}",
+    "unsupported": "Tipo di file non supportato"
+  },
+  "notifications": {
+    "newMessage": "Nuovo messaggio da {{sender}}",
+    "mentioned": "{{sender}} ti ha menzionato",
+    "groupInvite": "Sei stato aggiunto a {{group}}",
+    "enable": "Abilita notifiche",
+    "disable": "Disabilita notifiche",
+    "sound": "Suono notifiche",
+    "desktop": "Notifiche desktop"
+  },
+  "search": {
+    "placeholder": "Cerca messaggi...",
+    "filters": "Filtri",
+    "from": "Da",
+    "to": "A",
+    "date": "Data",
+    "hasAttachment": "Ha allegato",
+    "results": "{{count}} risultati trovati",
+    "noResults": "Nessun messaggio trovato"
+  },
+  "settings": {
+    "title": "Impostazioni Chat",
+    "privacy": "Privacy",
+    "readReceipts": "Conferme di lettura",
+    "typingIndicator": "Mostra quando stai scrivendo",
+    "autoDownload": "Download automatico media",
+    "enterToSend": "Premi Invio per inviare",
+    "theme": "Tema chat",
+    "fontSize": "Dimensione carattere"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Assente",
+    "busy": "Non disturbare",
+    "offline": "Appari offline",
+    "setStatus": "Imposta stato",
+    "customStatus": "Imposta stato personalizzato..."
+  },
+  "actions": {
+    "startChat": "Inizia Chat",
+    "viewProfile": "Visualizza Profilo",
+    "clearChat": "Cancella Cronologia Chat",
+    "exportChat": "Esporta Chat",
+    "reportUser": "Segnala Utente",
+    "blockUser": "Blocca Utente",
+    "unblockUser": "Sblocca Utente"
+  },
+  "time": {
+    "now": "ora",
+    "today": "Oggi",
+    "yesterday": "Ieri",
+    "daysAgo": "{{count}} giorni fa",
+    "lastSeen": "Ultimo accesso {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Connessione persa. Riconnessione...",
+    "sendFailed": "Invio messaggio fallito",
+    "loadFailed": "Caricamento messaggi fallito",
+    "uploadFailed": "Caricamento file fallito",
+    "permissionDenied": "Non hai il permesso per farlo"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Detta fält är obligatoriskt",
+    "email": "E-post krävs",
+    "password": "Lösenord krävs",
+    "firstName": "Förnamn krävs",
+    "lastName": "Efternamn krävs",
+    "phone": "Telefonnummer krävs",
+    "date": "Datum krävs",
+    "time": "Tid krävs",
+    "selection": "Vänligen gör ett val"
+  },
+  "email": {
+    "invalid": "Ange en giltig e-postadress",
+    "alreadyExists": "Denna e-post är redan registrerad"
+  },
+  "password": {
+    "tooShort": "Lösenordet måste vara minst {{min}} tecken",
+    "tooWeak": "Lösenordet är för svagt. Använd en blandning av bokstäver, siffror och symboler",
+    "noMatch": "Lösenorden matchar inte",
+    "requiresUppercase": "Lösenordet måste innehålla minst en versal",
+    "requiresLowercase": "Lösenordet måste innehålla minst en gemen",
+    "requiresNumber": "Lösenordet måste innehålla minst en siffra",
+    "requiresSpecial": "Lösenordet måste innehålla minst ett specialtecken"
+  },
+  "string": {
+    "tooShort": "Måste vara minst {{min}} tecken",
+    "tooLong": "Får inte vara mer än {{max}} tecken",
+    "invalidFormat": "Ogiltigt format",
+    "alphanumeric": "Endast bokstäver och siffror tillåts",
+    "alphabetic": "Endast bokstäver tillåts",
+    "invalidCharacters": "Innehåller ogiltiga tecken"
+  },
+  "number": {
+    "invalid": "Ange ett giltigt nummer",
+    "tooSmall": "Måste vara minst {{min}}",
+    "tooLarge": "Får inte vara mer än {{max}}",
+    "integer": "Måste vara ett heltal",
+    "positive": "Måste vara ett positivt tal",
+    "negative": "Måste vara ett negativt tal"
+  },
+  "date": {
+    "invalid": "Ange ett giltigt datum",
+    "beforeMin": "Datumet måste vara efter {{min}}",
+    "afterMax": "Datumet måste vara före {{max}}",
+    "inPast": "Datumet måste vara i det förflutna",
+    "inFuture": "Datumet måste vara i framtiden"
+  },
+  "time": {
+    "invalid": "Ange en giltig tid",
+    "beforeMin": "Tiden måste vara efter {{min}}",
+    "afterMax": "Tiden måste vara före {{max}}"
+  },
+  "phone": {
+    "invalid": "Ange ett giltigt telefonnummer",
+    "invalidCountryCode": "Ogiltig landskod"
+  },
+  "file": {
+    "tooLarge": "Filstorleken måste vara mindre än {{maxSize}}",
+    "invalidType": "Filtypen är inte tillåten. Tillåtna typer: {{allowedTypes}}",
+    "required": "Välj en fil",
+    "tooMany": "För många filer. Maximalt tillåtet: {{max}}"
+  },
+  "url": {
+    "invalid": "Ange en giltig URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Ogiltigt lagkodsformat",
+      "notFound": "Lagkoden hittades inte"
+    },
+    "playerNumber": {
+      "invalid": "Ogiltigt spelarnummer",
+      "alreadyTaken": "Detta nummer är redan taget"
+    },
+    "age": {
+      "tooYoung": "Måste vara minst {{min}} år gammal",
+      "tooOld": "Får inte vara mer än {{max}} år gammal"
+    },
+    "schedule": {
+      "conflict": "Denna tid står i konflikt med ett annat evenemang",
+      "outsideHours": "Vald tid är utanför öppettider",
+      "tooSoon": "Måste schemaläggas minst {{hours}} timmar i förväg"
+    },
+    "capacity": {
+      "exceeded": "Maximal kapacitet överskriden",
+      "minimum": "Minst {{min}} deltagare krävs"
+    }
+  },
+  "form": {
+    "hasErrors": "Rätta till felen nedan",
+    "submitError": "Kunde inte skicka formuläret. Försök igen.",
+    "saveDraft": "Ditt utkast har sparats",
+    "unsavedChanges": "Du har osparade ändringar. Är du säker på att du vill lämna?"
+  },
+  "search": {
+    "tooShort": "Sökfrågan måste vara minst {{min}} tecken",
+    "noResults": "Inga resultat hittades"
+  },
+  "selection": {
+    "minimum": "Välj minst {{min}} alternativ",
+    "maximum": "Välj högst {{max}} alternativ",
+    "exact": "Välj exakt {{count}} alternativ"
+  },
+  "comparison": {
+    "mustMatch": "Fälten måste matcha",
+    "mustBeDifferent": "Fälten måste vara olika",
+    "startBeforeEnd": "Starttid måste vara före sluttid",
+    "endAfterStart": "Sluttid måste vara efter starttid"
+  }
+}

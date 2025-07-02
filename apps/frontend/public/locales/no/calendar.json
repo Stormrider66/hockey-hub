@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Måned",
+    "week": "Uke",
+    "day": "Dag",
+    "agenda": "Agenda",
+    "workWeek": "Arbeidsuke"
+  },
+  "navigation": {
+    "today": "I dag",
+    "back": "Tilbake",
+    "next": "Neste",
+    "previous": "Forrige",
+    "jumpToDate": "Gå til dato"
+  },
+  "event": {
+    "title": "Hendelse",
+    "newEvent": "Ny hendelse",
+    "editEvent": "Rediger hendelse",
+    "deleteEvent": "Slett hendelse",
+    "duplicateEvent": "Dupliser hendelse",
+    "allDay": "Hele dagen",
+    "recurring": "Gjentakende",
+    "privateEvent": "Privat hendelse",
+    "fields": {
+      "title": "Tittel",
+      "description": "Beskrivelse",
+      "location": "Sted",
+      "startDate": "Startdato",
+      "startTime": "Starttid",
+      "endDate": "Sluttdato",
+      "endTime": "Sluttid",
+      "type": "Hendelsestype",
+      "category": "Kategori",
+      "participants": "Deltakere",
+      "resources": "Ressurser",
+      "notes": "Notater",
+      "reminder": "Påminnelse",
+      "color": "Farge",
+      "attachments": "Vedlegg"
+    },
+    "types": {
+      "practice": "Trening",
+      "game": "Kamp",
+      "training": "Trening",
+      "meeting": "Møte",
+      "tournament": "Turnering",
+      "tryout": "Uttak",
+      "medical": "Medisinsk avtale",
+      "equipment": "Utstyrsprøving",
+      "teamEvent": "Lagsarrangement",
+      "personal": "Personlig",
+      "other": "Annet"
+    },
+    "status": {
+      "confirmed": "Bekreftet",
+      "tentative": "Foreløpig",
+      "cancelled": "Avlyst",
+      "postponed": "Utsatt",
+      "rescheduled": "Endret tidspunkt"
+    }
+  },
+  "recurrence": {
+    "title": "Gjentakelse",
+    "none": "Gjentas ikke",
+    "daily": "Daglig",
+    "weekly": "Ukentlig",
+    "monthly": "Månedlig",
+    "yearly": "Årlig",
+    "custom": "Tilpasset",
+    "every": "Hver",
+    "days": "dag(er)",
+    "weeks": "uke(r)",
+    "months": "måned(er)",
+    "years": "år",
+    "on": "På",
+    "onThe": "Den",
+    "weekdays": {
+      "monday": "Mandag",
+      "tuesday": "Tirsdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lørdag",
+      "sunday": "Søndag"
+    },
+    "ends": {
+      "never": "Aldri",
+      "after": "Etter",
+      "onDate": "På dato",
+      "occurrences": "hendelser"
+    }
+  },
+  "availability": {
+    "available": "Tilgjengelig",
+    "unavailable": "Utilgjengelig",
+    "busy": "Opptatt",
+    "tentative": "Foreløpig",
+    "outOfOffice": "Ute av kontoret"
+  },
+  "conflicts": {
+    "detected": "Konflikt i kalenderen oppdaget",
+    "message": "Denne hendelsen er i konflikt med:",
+    "resolution": "Hvordan vil du løse dette?",
+    "overwrite": "Overskriv eksisterende",
+    "keepBoth": "Behold begge hendelser",
+    "cancel": "Avbryt ny hendelse"
+  },
+  "filters": {
+    "title": "Filtre",
+    "showAll": "Vis alle",
+    "byType": "Etter type",
+    "byTeam": "Etter lag",
+    "byLocation": "Etter sted",
+    "myEvents": "Kun mine hendelser"
+  },
+  "export": {
+    "title": "Eksporter kalender",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Skriv ut"
+    },
+    "range": {
+      "all": "Alle hendelser",
+      "current": "Nåværende visning",
+      "custom": "Tilpasset område"
+    }
+  },
+  "sharing": {
+    "title": "Del kalender",
+    "publicLink": "Offentlig lenke",
+    "embed": "Innbyggingskode",
+    "subscribe": "Abonner URL",
+    "permissions": {
+      "view": "Kun visning",
+      "edit": "Kan redigere",
+      "admin": "Full tilgang"
+    }
+  },
+  "reminders": {
+    "none": "Ingen påminnelse",
+    "atTime": "Ved hendelsestidspunkt",
+    "minutes": "{{count}} minutter før",
+    "hours": "{{count}} timer før",
+    "days": "{{count}} dager før",
+    "custom": "Tilpasset"
+  },
+  "actions": {
+    "create": "Opprett hendelse",
+    "save": "Lagre",
+    "cancel": "Avbryt",
+    "delete": "Slett",
+    "edit": "Rediger",
+    "duplicate": "Dupliser",
+    "print": "Skriv ut",
+    "export": "Eksporter",
+    "import": "Importer",
+    "subscribe": "Abonner",
+    "unsubscribe": "Avslutt abonnement",
+    "rsvp": "Svar på invitasjon",
+    "maybeAttending": "Kanskje",
+    "attending": "Deltar",
+    "notAttending": "Deltar ikke"
+  },
+  "messages": {
+    "eventCreated": "Hendelse opprettet",
+    "eventUpdated": "Hendelse oppdatert",
+    "eventDeleted": "Hendelse slettet",
+    "eventDuplicated": "Hendelse duplisert",
+    "conflictWarning": "Dette tidspunktet har konflikter",
+    "participantAdded": "Deltaker lagt til",
+    "participantRemoved": "Deltaker fjernet",
+    "reminderSet": "Påminnelse satt",
+    "calendarShared": "Kalender delt",
+    "exportComplete": "Eksport fullført",
+    "importComplete": "Import fullført"
+  },
+  "facility": {
+    "rink": "Ishall",
+    "mainRink": "Hovedbane",
+    "practiceRink": "Treningsbane",
+    "gym": "Gym",
+    "meetingRoom": "Møterom",
+    "lockerRoom": "Garderobe",
+    "trainingRoom": "Treningsrom",
+    "videoRoom": "Videorom",
+    "medicalRoom": "Medisinsk rom"
+  },
+  "tooltips": {
+    "dragToMove": "Dra for å flytte hendelse",
+    "dragToResize": "Dra kanter for å endre størrelse",
+    "clickToEdit": "Klikk for å redigere",
+    "doubleClickToCreate": "Dobbeltklikk for å opprette hendelse"
+  }
+}

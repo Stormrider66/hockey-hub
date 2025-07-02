@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Panel kondičného trénera",
+    "subtitle": "Správa kondície a tréningu hráčov",
+    "welcome": "Vitajte, {{name}}",
+    "todaySessions": "Dnešné tréningové jednotky",
+    "playerProgress": "Prehľad pokroku hráčov",
+    "quickStats": {
+      "todaysSessions": "Dnešné tréningy",
+      "activeNow": "Práve aktívne",
+      "playerReadiness": "Pripravenosť hráčov",
+      "completedToday": "Dnes dokončené",
+      "totalPlayers": "{{count}} hráčov celkom",
+      "noActiveSession": "Žiadna aktívna relácia",
+      "teamAverage": "Tímový priemer",
+      "upcoming": "{{count}} nadchádzajúcich"
+    }
+  },
+  "training": {
+    "title": "Tréningové programy",
+    "create": "Vytvoriť program",
+    "templates": "Tréningové šablóny",
+    "active": "Aktívne programy",
+    "scheduled": "Naplánované tréningy",
+    "history": "História tréningov",
+    "types": {
+      "strength": "Silový tréning",
+      "cardio": "Kardiovaskulárny",
+      "flexibility": "Flexibilita",
+      "agility": "Obratnosť",
+      "recovery": "Regenerácia",
+      "rehabilitation": "Rehabilitácia",
+      "testing": "Kondičné testy"
+    },
+    "intensity": {
+      "low": "Nízka",
+      "medium": "Stredná",
+      "moderate": "Mierna",
+      "high": "Vysoká",
+      "maximum": "Maximálna"
+    }
+  },
+  "sessions": {
+    "title": "Tréningové jednotky",
+    "schedule": "Naplánovať tréning",
+    "current": "Aktuálny tréning",
+    "upcoming": "Nadchádzajúce tréningy",
+    "completed": "Dokončené tréningy",
+    "cancel": "Zrušiť tréning",
+    "reschedule": "Preložiť",
+    "duration": "Trvanie tréningu",
+    "participants": "Účastníci",
+    "newSession": "Nový tréning",
+    "intensity": "{{level}} intenzita",
+    "status": {
+      "active": "Aktívny",
+      "completed": "Dokončený",
+      "upcoming": "Nadchádzajúci"
+    },
+    "launch": "Spustiť",
+    "viewDetails": "Zobraziť detaily"
+  },
+  "exercises": {
+    "title": "Knižnica cvičení",
+    "search": "Hľadať cvičenia",
+    "categories": "Kategórie cvičení",
+    "create": "Pridať cvičenie",
+    "favorite": "Obľúbené cvičenia",
+    "equipment": "Potrebné vybavenie",
+    "instructions": "Inštrukcie",
+    "video": "Video návod",
+    "categories": {
+      "upperBody": "Horná časť tela",
+      "lowerBody": "Dolná časť tela",
+      "core": "Jadro",
+      "fullBody": "Celé telo",
+      "skating": "Korčuľovanie",
+      "shooting": "Sila strely",
+      "balance": "Rovnováha a stabilita",
+      "plyometric": "Plyometria"
+    }
+  },
+  "workouts": {
+    "title": "Zostavovač tréningov",
+    "create": "Vytvoriť tréning",
+    "edit": "Upraviť tréning",
+    "save": "Uložiť tréning",
+    "templates": "Šablóny tréningov",
+    "custom": "Vlastné tréningy",
+    "assign": "Priradiť hráčom",
+    "components": {
+      "warmup": "Rozcvička",
+      "main": "Hlavný tréning",
+      "cooldown": "Upokojovacie cvičenia",
+      "stretching": "Strečing"
+    },
+    "parameters": {
+      "sets": "Série",
+      "reps": "Opakovania",
+      "duration": "Trvanie",
+      "rest": "Prestávka",
+      "weight": "Váha",
+      "distance": "Vzdialenosť",
+      "speed": "Rýchlosť"
+    }
+  },
+  "testing": {
+    "title": "Kondičné testovanie",
+    "schedule": "Naplánovať test",
+    "protocols": "Testovacie protokoly",
+    "results": "Výsledky testov",
+    "history": "História testovania",
+    "compare": "Porovnať výsledky",
+    "benchmarks": "Tímové štandardy",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Šprintový test",
+      "agility": "Test obratnosti",
+      "strength": "Silový test",
+      "flexibility": "Test flexibility",
+      "balance": "Test rovnováhy",
+      "endurance": "Test vytrvalosti",
+      "powerOutput": "Výkonový výstup"
+    }
+  },
+  "monitoring": {
+    "title": "Monitoring výkonu",
+    "metrics": "Metriky výkonu",
+    "trends": "Trendy pokroku",
+    "alerts": "Upozornenia na výkon",
+    "load": "Tréningová záťaž",
+    "recovery": "Stav regenerácie",
+    "readiness": "Pripravenosť na tréning",
+    "metrics": {
+      "hrv": "Variabilita srdcového rytmu",
+      "restingHR": "Pokojová frekvencia",
+      "weight": "Telesná hmotnosť",
+      "bodyFat": "Telesný tuk %",
+      "muscleMass": "Svalová hmota",
+      "power": "Výkonový výstup",
+      "speed": "Rýchlosť",
+      "endurance": "Vytrvalosť"
+    }
+  },
+  "programs": {
+    "title": "Tréningové programy",
+    "inSeason": "Program počas sezóny",
+    "offSeason": "Mimosezónny program",
+    "preseason": "Predsezónny program",
+    "rehabilitation": "Rehabilitačný program",
+    "maintenance": "Udržiavací program",
+    "phases": {
+      "preparation": "Prípravná fáza",
+      "building": "Budovacia fáza",
+      "peak": "Vrcholová fáza",
+      "recovery": "Regeneračná fáza"
+    }
+  },
+  "analytics": {
+    "title": "Tréningová analytika",
+    "individual": "Individuálna analýza",
+    "team": "Tímová analýza",
+    "progress": "Správy o pokroku",
+    "comparison": "Porovnanie hráčov",
+    "export": "Exportovať dáta",
+    "metrics": "Kľúčové metriky",
+    "insights": "Poznatky o výkone"
+  },
+  "communication": {
+    "title": "Komunikácia",
+    "feedback": "Spätná väzba z tréningu",
+    "notes": "Tréningové poznámky",
+    "recommendations": "Odporúčania",
+    "alerts": "Poslať upozornenie",
+    "report": "Správa o pokroku",
+    "collaborate": "Spolupráca s lekármi"
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Foreldre dashbord",
+    "subtitle": "Hold kontakten med ditt barns hockeyreise",
+    "welcome": "Velkommen, {{name}}!",
+    "childrenOverview": "Barneoversikt",
+    "upcomingEvents": "Kommende hendelser"
+  },
+  "children": {
+    "title": "Mine barn",
+    "addChild": "Legg til barn",
+    "profile": "Barneprofil",
+    "schedule": "Timeplan",
+    "performance": "Prestasjon",
+    "wellness": "Helse & velvære",
+    "communication": "Meldinger",
+    "details": {
+      "team": "Lag",
+      "position": "Posisjon",
+      "coach": "Trener",
+      "number": "Draktnummer",
+      "age": "Aldersgruppe"
+    }
+  },
+  "schedule": {
+    "title": "Familiekalender",
+    "calendar": "Kalendervisning",
+    "upcoming": "Kommende hendelser",
+    "transportation": "Transport",
+    "conflicts": "Timeplankonflikter",
+    "sync": "Synkroniser kalender",
+    "export": "Eksporter timeplan",
+    "types": {
+      "game": "Kamp",
+      "practice": "Trening",
+      "tournament": "Turnering",
+      "teamEvent": "Lagsarrangement",
+      "meeting": "Foreldremøte",
+      "fundraiser": "Innsamlingsaksjon"
+    },
+    "rsvp": {
+      "title": "Svar på invitasjon",
+      "attending": "Vi kommer",
+      "notAttending": "Kan ikke komme",
+      "driving": "Kan kjøre andre",
+      "needRide": "Trenger transport"
+    }
+  },
+  "transportation": {
+    "title": "Transportkoordinering",
+    "available": "Tilgjengelige sjåfører",
+    "requests": "Transportforespørsler",
+    "myOffers": "Mine kjøretilbud",
+    "carpool": "Samkjøringsgrupper",
+    "seats": "Ledige seter",
+    "pickup": "Hentested",
+    "dropoff": "Leveringssted",
+    "time": "Avreisetid"
+  },
+  "payments": {
+    "title": "Betalinger & avgifter",
+    "overview": "Betalingsoversikt",
+    "due": "Forfalt beløp",
+    "history": "Betalingshistorikk",
+    "upcoming": "Kommende avgifter",
+    "methods": "Betalingsmetoder",
+    "invoices": "Fakturaer",
+    "items": {
+      "registration": "Registreringsavgift",
+      "monthly": "Månedlig kontingent",
+      "equipment": "Utstyr",
+      "tournament": "Turneringsavgift",
+      "travel": "Reiseutgifter",
+      "fundraising": "Innsamling"
+    },
+    "status": {
+      "paid": "Betalt",
+      "pending": "Venter",
+      "overdue": "Forfalt",
+      "partial": "Delbetaling"
+    }
+  },
+  "communication": {
+    "title": "Kommunikasjon",
+    "messages": "Meldinger",
+    "announcements": "Lagsmeldinger",
+    "coachMessages": "Fra trener",
+    "teamMessages": "Lagsoppdateringer",
+    "emergency": "Nødkontakter",
+    "directory": "Lagskatalog",
+    "preferences": "Kommunikasjonspreferanser"
+  },
+  "medical": {
+    "title": "Medisinsk informasjon",
+    "records": "Medisinske journaler",
+    "allergies": "Allergier",
+    "medications": "Medisiner",
+    "conditions": "Medisinske tilstander",
+    "emergency": "Nødkontakter",
+    "insurance": "Forsikringsinfo",
+    "consent": "Medisinsk samtykke",
+    "injuries": "Skadehistorikk"
+  },
+  "documents": {
+    "title": "Dokumenter & skjemaer",
+    "required": "Påkrevde dokumenter",
+    "optional": "Valgfrie skjemaer",
+    "submitted": "Innsendt",
+    "pending": "Venter på innsending",
+    "download": "Last ned skjemaer",
+    "upload": "Last opp dokument",
+    "types": {
+      "registration": "Registreringsskjema",
+      "medical": "Medisinsk skjema",
+      "waiver": "Ansvarsfraskrivelse",
+      "consent": "Samtykkeskjema",
+      "emergency": "Nødkontakt",
+      "insurance": "Forsikringskort"
+    }
+  },
+  "volunteer": {
+    "title": "Frivilligmuligheter",
+    "signup": "Meld deg på",
+    "myShifts": "Mine frivilligvakter",
+    "available": "Tilgjengelige stillinger",
+    "hours": "Frivilligtimer",
+    "requirements": "Krav",
+    "positions": {
+      "scorekeeper": "Sekretariat",
+      "penalty": "Utvisningsboks",
+      "concession": "Kiosk",
+      "fundraising": "Innsamling",
+      "teamManager": "Lagleder",
+      "equipment": "Utstyrshjelper"
+    }
+  },
+  "performance": {
+    "title": "Barnets fremgang",
+    "overview": "Prestasjonsoversikt",
+    "improvement": "Forbedringsområder",
+    "achievements": "Nylige prestasjoner",
+    "feedback": "Trenertilbakemelding",
+    "goals": "Utviklingsmål",
+    "attendance": "Oppmøtestatistikk",
+    "effort": "Innsatsnivå",
+    "teamwork": "Lagarbeid"
+  }
+}

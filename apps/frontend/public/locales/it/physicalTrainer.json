@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Dashboard Preparatore Atletico",
+    "subtitle": "Gestione fitness e allenamento giocatori",
+    "welcome": "Benvenuto, {{name}}",
+    "todaySessions": "Sessioni di Allenamento di Oggi",
+    "playerProgress": "Panoramica Progressi Giocatori",
+    "quickStats": {
+      "todaysSessions": "Sessioni di Oggi",
+      "activeNow": "Attivi Ora",
+      "playerReadiness": "Prontezza Giocatori",
+      "completedToday": "Completate Oggi",
+      "totalPlayers": "{{count}} giocatori totali",
+      "noActiveSession": "Nessuna sessione attiva",
+      "teamAverage": "Media squadra",
+      "upcoming": "{{count}} in programma"
+    }
+  },
+  "training": {
+    "title": "Programmi di Allenamento",
+    "create": "Crea Programma",
+    "templates": "Modelli di Allenamento",
+    "active": "Programmi Attivi",
+    "scheduled": "Sessioni Programmate",
+    "history": "Storico Allenamenti",
+    "types": {
+      "strength": "Allenamento Forza",
+      "cardio": "Cardiovascolare",
+      "flexibility": "Flessibilità",
+      "agility": "Agilità",
+      "recovery": "Recupero",
+      "rehabilitation": "Riabilitazione",
+      "testing": "Test Fisici"
+    },
+    "intensity": {
+      "low": "Bassa",
+      "medium": "Media",
+      "moderate": "Moderata",
+      "high": "Alta",
+      "maximum": "Massima"
+    }
+  },
+  "sessions": {
+    "title": "Sessioni di Allenamento",
+    "schedule": "Programma Sessione",
+    "current": "Sessione Corrente",
+    "upcoming": "Sessioni Future",
+    "completed": "Sessioni Completate",
+    "cancel": "Annulla Sessione",
+    "reschedule": "Riprogramma",
+    "duration": "Durata Sessione",
+    "participants": "Partecipanti",
+    "newSession": "Nuova Sessione",
+    "intensity": "intensità {{level}}",
+    "status": {
+      "active": "Attiva",
+      "completed": "Completata",
+      "upcoming": "In Programma"
+    },
+    "launch": "Avvia",
+    "viewDetails": "Vedi Dettagli"
+  },
+  "exercises": {
+    "title": "Libreria Esercizi",
+    "search": "Cerca Esercizi",
+    "categories": "Categorie Esercizi",
+    "create": "Aggiungi Esercizio",
+    "favorite": "Esercizi Preferiti",
+    "equipment": "Attrezzatura Necessaria",
+    "instructions": "Istruzioni",
+    "video": "Tutorial Video",
+    "categories": {
+      "upperBody": "Parte Superiore",
+      "lowerBody": "Parte Inferiore",
+      "core": "Core",
+      "fullBody": "Corpo Completo",
+      "skating": "Specifici Pattinaggio",
+      "shooting": "Potenza di Tiro",
+      "balance": "Equilibrio e Stabilità",
+      "plyometric": "Pliometria"
+    }
+  },
+  "workouts": {
+    "title": "Creatore Allenamenti",
+    "create": "Crea Allenamento",
+    "edit": "Modifica Allenamento",
+    "save": "Salva Allenamento",
+    "templates": "Modelli Allenamento",
+    "custom": "Allenamenti Personalizzati",
+    "assign": "Assegna a Giocatori",
+    "components": {
+      "warmup": "Riscaldamento",
+      "main": "Allenamento Principale",
+      "cooldown": "Defaticamento",
+      "stretching": "Stretching"
+    },
+    "parameters": {
+      "sets": "Serie",
+      "reps": "Ripetizioni",
+      "duration": "Durata",
+      "rest": "Periodo di Riposo",
+      "weight": "Peso",
+      "distance": "Distanza",
+      "speed": "Velocità"
+    }
+  },
+  "testing": {
+    "title": "Test Fisici",
+    "schedule": "Programma Test",
+    "protocols": "Protocolli Test",
+    "results": "Risultati Test",
+    "history": "Storico Test",
+    "compare": "Confronta Risultati",
+    "benchmarks": "Parametri Squadra",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Test Sprint",
+      "agility": "Test Agilità",
+      "strength": "Test Forza",
+      "flexibility": "Test Flessibilità",
+      "balance": "Test Equilibrio",
+      "endurance": "Test Resistenza",
+      "powerOutput": "Potenza Erogata"
+    }
+  },
+  "monitoring": {
+    "title": "Monitoraggio Prestazioni",
+    "metrics": "Metriche Prestazioni",
+    "trends": "Tendenze Progressi",
+    "alerts": "Avvisi Prestazioni",
+    "load": "Carico di Allenamento",
+    "recovery": "Stato di Recupero",
+    "readiness": "Prontezza all'Allenamento",
+    "metrics": {
+      "hrv": "Variabilità Frequenza Cardiaca",
+      "restingHR": "Frequenza Cardiaca a Riposo",
+      "weight": "Peso Corporeo",
+      "bodyFat": "% Massa Grassa",
+      "muscleMass": "Massa Muscolare",
+      "power": "Potenza Erogata",
+      "speed": "Velocità",
+      "endurance": "Resistenza"
+    }
+  },
+  "programs": {
+    "title": "Programmi di Allenamento",
+    "inSeason": "Programma Stagionale",
+    "offSeason": "Programma Fuori Stagione",
+    "preseason": "Programma Pre-Stagione",
+    "rehabilitation": "Programma Riabilitazione",
+    "maintenance": "Programma Mantenimento",
+    "phases": {
+      "preparation": "Fase Preparazione",
+      "building": "Fase Costruzione",
+      "peak": "Fase Picco",
+      "recovery": "Fase Recupero"
+    }
+  },
+  "analytics": {
+    "title": "Analisi Allenamenti",
+    "individual": "Analisi Individuale",
+    "team": "Analisi Squadra",
+    "progress": "Report Progressi",
+    "comparison": "Confronto Giocatori",
+    "export": "Esporta Dati",
+    "metrics": "Metriche Chiave",
+    "insights": "Insights Prestazioni"
+  },
+  "communication": {
+    "title": "Comunicazione",
+    "feedback": "Feedback Sessione",
+    "notes": "Note Allenamento",
+    "recommendations": "Raccomandazioni",
+    "alerts": "Invia Avviso",
+    "report": "Report Progressi",
+    "collaborate": "Collabora con Staff Medico"
+  }
+}

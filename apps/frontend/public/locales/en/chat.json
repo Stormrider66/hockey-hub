@@ -1,0 +1,145 @@
+{
+  "title": "Messages",
+  "conversations": {
+    "title": "Conversations",
+    "new": "New Conversation",
+    "search": "Search conversations...",
+    "empty": "No conversations yet",
+    "startNew": "Start a new conversation"
+  },
+  "participants": {
+    "add": "Add Participants",
+    "remove": "Remove from conversation",
+    "search": "Search people...",
+    "you": "You",
+    "typing": "is typing...",
+    "multipleTyping": "are typing...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Away"
+  },
+  "messages": {
+    "placeholder": "Type a message...",
+    "send": "Send",
+    "edit": "Edit message",
+    "delete": "Delete message",
+    "reply": "Reply",
+    "forward": "Forward",
+    "copy": "Copy",
+    "pin": "Pin message",
+    "unpin": "Unpin message",
+    "react": "Add reaction",
+    "edited": "edited",
+    "deleted": "This message was deleted",
+    "delivered": "Delivered",
+    "read": "Read",
+    "sending": "Sending...",
+    "failed": "Failed to send",
+    "retry": "Retry"
+  },
+  "groups": {
+    "create": "Create Group",
+    "name": "Group Name",
+    "description": "Description (optional)",
+    "addMembers": "Add Members",
+    "settings": "Group Settings",
+    "leave": "Leave Group",
+    "delete": "Delete Group",
+    "members": "{{count}} members",
+    "admin": "Admin",
+    "member": "Member"
+  },
+  "channels": {
+    "title": "Channels",
+    "create": "Create Channel",
+    "public": "Public Channel",
+    "private": "Private Channel",
+    "join": "Join Channel",
+    "leave": "Leave Channel",
+    "mute": "Mute Channel",
+    "unmute": "Unmute Channel",
+    "types": {
+      "general": "General",
+      "announcements": "Announcements",
+      "team": "Team Chat",
+      "coaches": "Coaches",
+      "parents": "Parents",
+      "medical": "Medical Staff"
+    }
+  },
+  "attachments": {
+    "title": "Attachments",
+    "upload": "Upload File",
+    "types": {
+      "image": "Image",
+      "video": "Video",
+      "document": "Document",
+      "audio": "Audio",
+      "other": "File"
+    },
+    "download": "Download",
+    "preview": "Preview",
+    "tooLarge": "File is too large. Maximum size is {{maxSize}}",
+    "unsupported": "File type not supported"
+  },
+  "notifications": {
+    "newMessage": "New message from {{sender}}",
+    "mentioned": "{{sender}} mentioned you",
+    "groupInvite": "You've been added to {{group}}",
+    "enable": "Enable notifications",
+    "disable": "Disable notifications",
+    "sound": "Notification sound",
+    "desktop": "Desktop notifications"
+  },
+  "search": {
+    "placeholder": "Search messages...",
+    "filters": "Filters",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "hasAttachment": "Has attachment",
+    "results": "{{count}} results found",
+    "noResults": "No messages found"
+  },
+  "settings": {
+    "title": "Chat Settings",
+    "privacy": "Privacy",
+    "readReceipts": "Read receipts",
+    "typingIndicator": "Show when typing",
+    "autoDownload": "Auto-download media",
+    "enterToSend": "Press Enter to send",
+    "theme": "Chat theme",
+    "fontSize": "Font size"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Away",
+    "busy": "Do not disturb",
+    "offline": "Appear offline",
+    "setStatus": "Set status",
+    "customStatus": "Set custom status..."
+  },
+  "actions": {
+    "startChat": "Start Chat",
+    "viewProfile": "View Profile",
+    "clearChat": "Clear Chat History",
+    "exportChat": "Export Chat",
+    "reportUser": "Report User",
+    "blockUser": "Block User",
+    "unblockUser": "Unblock User"
+  },
+  "time": {
+    "now": "now",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "{{count}} days ago",
+    "lastSeen": "Last seen {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Connection lost. Reconnecting...",
+    "sendFailed": "Failed to send message",
+    "loadFailed": "Failed to load messages",
+    "uploadFailed": "Failed to upload file",
+    "permissionDenied": "You don't have permission to do that"
+  }
+}

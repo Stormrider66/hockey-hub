@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "See väli on kohustuslik",
+    "email": "E-post on kohustuslik",
+    "password": "Parool on kohustuslik",
+    "firstName": "Eesnimi on kohustuslik",
+    "lastName": "Perenimi on kohustuslik",
+    "phone": "Telefoninumber on kohustuslik",
+    "date": "Kuupäev on kohustuslik",
+    "time": "Kellaaeg on kohustuslik",
+    "selection": "Palun tehke valik"
+  },
+  "email": {
+    "invalid": "Palun sisestage kehtiv e-posti aadress",
+    "alreadyExists": "See e-post on juba registreeritud"
+  },
+  "password": {
+    "tooShort": "Parool peab olema vähemalt {{min}} tähemärki",
+    "tooWeak": "Parool on liiga nõrk. Kasutage tähti, numbreid ja sümboleid",
+    "noMatch": "Paroolid ei ühti",
+    "requiresUppercase": "Parool peab sisaldama vähemalt ühte suurtähte",
+    "requiresLowercase": "Parool peab sisaldama vähemalt ühte väiketähte",
+    "requiresNumber": "Parool peab sisaldama vähemalt ühte numbrit",
+    "requiresSpecial": "Parool peab sisaldama vähemalt ühte erimärki"
+  },
+  "string": {
+    "tooShort": "Peab olema vähemalt {{min}} tähemärki",
+    "tooLong": "Ei tohi olla rohkem kui {{max}} tähemärki",
+    "invalidFormat": "Vigane formaat",
+    "alphanumeric": "Lubatud on ainult tähed ja numbrid",
+    "alphabetic": "Lubatud on ainult tähed",
+    "invalidCharacters": "Sisaldab keelatud tähemärke"
+  },
+  "number": {
+    "invalid": "Palun sisestage kehtiv number",
+    "tooSmall": "Peab olema vähemalt {{min}}",
+    "tooLarge": "Ei tohi olla rohkem kui {{max}}",
+    "integer": "Peab olema täisarv",
+    "positive": "Peab olema positiivne arv",
+    "negative": "Peab olema negatiivne arv"
+  },
+  "date": {
+    "invalid": "Palun sisestage kehtiv kuupäev",
+    "beforeMin": "Kuupäev peab olema pärast {{min}}",
+    "afterMax": "Kuupäev peab olema enne {{max}}",
+    "inPast": "Kuupäev peab olema minevikus",
+    "inFuture": "Kuupäev peab olema tulevikus"
+  },
+  "time": {
+    "invalid": "Palun sisestage kehtiv kellaaeg",
+    "beforeMin": "Kellaaeg peab olema pärast {{min}}",
+    "afterMax": "Kellaaeg peab olema enne {{max}}"
+  },
+  "phone": {
+    "invalid": "Palun sisestage kehtiv telefoninumber",
+    "invalidCountryCode": "Vale riigikood"
+  },
+  "file": {
+    "tooLarge": "Faili suurus peab olema väiksem kui {{maxSize}}",
+    "invalidType": "Failitüüp pole lubatud. Lubatud tüübid: {{allowedTypes}}",
+    "required": "Palun valige fail",
+    "tooMany": "Liiga palju faile. Maksimaalselt lubatud: {{max}}"
+  },
+  "url": {
+    "invalid": "Palun sisestage kehtiv URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Vale meeskonna koodi formaat",
+      "notFound": "Meeskonna koodi ei leitud"
+    },
+    "playerNumber": {
+      "invalid": "Vale mängija number",
+      "alreadyTaken": "See number on juba võetud"
+    },
+    "age": {
+      "tooYoung": "Peab olema vähemalt {{min}} aastat vana",
+      "tooOld": "Ei tohi olla rohkem kui {{max}} aastat vana"
+    },
+    "schedule": {
+      "conflict": "See aeg kattub teise sündmusega",
+      "outsideHours": "Valitud aeg on väljaspool tööaega",
+      "tooSoon": "Peab olema planeeritud vähemalt {{hours}} tundi ette"
+    },
+    "capacity": {
+      "exceeded": "Maksimaalne mahutavus ületatud",
+      "minimum": "Minimaalselt {{min}} osalejat nõutud"
+    }
+  },
+  "form": {
+    "hasErrors": "Palun parandage allpool olevad vead",
+    "submitError": "Vormi esitamine ebaõnnestus. Palun proovige uuesti.",
+    "saveDraft": "Teie mustand on salvestatud",
+    "unsavedChanges": "Teil on salvestamata muudatusi. Kas olete kindel, et soovite lahkuda?"
+  },
+  "search": {
+    "tooShort": "Otsingusõna peab olema vähemalt {{min}} tähemärki",
+    "noResults": "Tulemusi ei leitud"
+  },
+  "selection": {
+    "minimum": "Palun valige vähemalt {{min}} valikut",
+    "maximum": "Palun valige mitte rohkem kui {{max}} valikut",
+    "exact": "Palun valige täpselt {{count}} valikut"
+  },
+  "comparison": {
+    "mustMatch": "Väljad peavad ühtima",
+    "mustBeDifferent": "Väljad peavad olema erinevad",
+    "startBeforeEnd": "Algusaeg peab olema enne lõpuaega",
+    "endAfterStart": "Lõpuaeg peab olema pärast algusaega"
+  }
+}

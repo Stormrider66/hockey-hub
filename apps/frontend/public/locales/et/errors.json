@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Ups! Midagi läks valesti",
+    "subtitle": "Vabandame ebamugavuste pärast",
+    "tryAgain": "Proovi uuesti",
+    "goHome": "Mine töölaua juurde",
+    "contactSupport": "Võta ühendust toega"
+  },
+  "http": {
+    "400": {
+      "title": "Vigane päring",
+      "message": "Server ei saanud päringust aru."
+    },
+    "401": {
+      "title": "Autoriseerimata",
+      "message": "Selle ressursi kasutamiseks peate sisse logima."
+    },
+    "403": {
+      "title": "Keelatud",
+      "message": "Teil pole õigusi selle ressursi kasutamiseks."
+    },
+    "404": {
+      "title": "Lehte ei leitud",
+      "message": "Otsitavat lehte ei eksisteeri."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Päring on vastuolus serveri praeguse olekuga."
+    },
+    "422": {
+      "title": "Valideerimise viga",
+      "message": "Esitatud andmed on vigased."
+    },
+    "429": {
+      "title": "Liiga palju päringuid",
+      "message": "Olete teinud liiga palju päringuid. Palun proovige hiljem uuesti."
+    },
+    "500": {
+      "title": "Serveri viga",
+      "message": "Meie serveris tekkis ootamatu viga."
+    },
+    "502": {
+      "title": "Halb lüüs",
+      "message": "Server sai vigase vastuse."
+    },
+    "503": {
+      "title": "Teenus pole saadaval",
+      "message": "Teenus on ajutiselt kättesaamatu. Palun proovige hiljem uuesti."
+    },
+    "504": {
+      "title": "Lüüsi ajalõpp",
+      "message": "Server ei vastanud õigeaegselt."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Internetiühendus puudub",
+      "message": "Palun kontrollige oma internetiühendust ja proovige uuesti."
+    },
+    "timeout": {
+      "title": "Päringu ajalõpp",
+      "message": "Päring võttis liiga kaua aega. Palun proovige uuesti."
+    },
+    "connectionFailed": {
+      "title": "Ühendus ebaõnnestus",
+      "message": "Serveriga ei õnnestunud ühendust luua. Palun proovige uuesti."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Andmete laadimine ebaõnnestus",
+      "message": "Me ei saanud soovitud andmeid laadida. Palun värskendage lehte."
+    },
+    "dataSave": {
+      "title": "Salvestamine ebaõnnestus",
+      "message": "Teie muudatusi ei õnnestunud salvestada. Palun proovige uuesti."
+    },
+    "fileUpload": {
+      "title": "Üleslaadimine ebaõnnestus",
+      "message": "Faili ei õnnestunud üles laadida. Palun kontrollige faili ja proovige uuesti."
+    },
+    "permissionDenied": {
+      "title": "Juurdepääs keelatud",
+      "message": "Teil pole õigusi selle toimingu sooritamiseks."
+    },
+    "sessionExpired": {
+      "title": "Sessioon aegunud",
+      "message": "Teie sessioon on aegunud. Palun logige uuesti sisse."
+    },
+    "maintenanceMode": {
+      "title": "Hooldusrežiim",
+      "message": "Teostame planeeritud hooldust. Palun tulge varsti tagasi."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Vormi esitamise viga",
+      "message": "Vormi esitamisel tekkis viga. Palun kontrollige sisestust ja proovige uuesti."
+    },
+    "validation": {
+      "title": "Valideerimise viga",
+      "message": "Palun parandage vormis olevad vead."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Makse ebaõnnestus",
+      "message": "Teie makset ei õnnestunud töödelda. Palun proovige teist makseviisi."
+    },
+    "declined": {
+      "title": "Makse tagasi lükatud",
+      "message": "Teie makse lükati tagasi. Palun kontrollige oma makseandmeid."
+    },
+    "insufficientFunds": {
+      "title": "Ebapiisavad vahendid",
+      "message": "Teie maksevahendil pole piisavalt raha."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Ajakava konflikt",
+      "message": "See ajavahemik kattub teise sündmusega."
+    },
+    "bookingFailed": {
+      "title": "Broneerimine ebaõnnestus",
+      "message": "Valitud ajavahemikku ei õnnestunud broneerida."
+    },
+    "facilityUnavailable": {
+      "title": "Rajatis pole saadaval",
+      "message": "Valitud rajatis pole sellel ajal saadaval."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Treeningut ei leitud",
+      "message": "Otsitavat treeningut ei eksisteeri."
+    },
+    "alreadyStarted": {
+      "title": "Treening juba alanud",
+      "message": "See treening on juba alanud."
+    },
+    "capacityReached": {
+      "title": "Treening täis",
+      "message": "See treening on saavutanud maksimaalse osalejate arvu."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Sõnumit ei saadetud",
+      "message": "Teie sõnumit ei õnnestunud saata. Palun proovige uuesti."
+    },
+    "notificationFailed": {
+      "title": "Teavitus ebaõnnestus",
+      "message": "Teavitusi ei saa praegu saata."
+    }
+  },
+  "actions": {
+    "retry": "Proovi uuesti",
+    "dismiss": "Sulge",
+    "details": "Vaata üksikasju",
+    "report": "Teata probleemist",
+    "refresh": "Värskenda lehte"
+  }
+}

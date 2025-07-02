@@ -1,0 +1,161 @@
+{
+  "dashboard": {
+    "title": "Materialförvaltarens översikt",
+    "subtitle": "Utrustningslager och hantering",
+    "welcome": "Välkommen, {{name}}",
+    "quickStats": "Utrustningsstatus",
+    "urgentNeeds": "Akuta utrustningsbehov"
+  },
+  "inventory": {
+    "title": "Utrustningslager",
+    "overview": "Lageröversikt",
+    "search": "Sök utrustning",
+    "filter": "Filtrera efter typ",
+    "add": "Lägg till utrustning",
+    "remove": "Ta bort utrustning",
+    "update": "Uppdatera lager",
+    "lowStock": "Lågt lager varning",
+    "categories": {
+      "protective": "Skyddsutrustning",
+      "sticks": "Hockeyklubbor",
+      "skates": "Skridskor",
+      "apparel": "Lagkläder",
+      "training": "Träningsutrustning",
+      "goalie": "Målvaktsutrustning",
+      "accessories": "Tillbehör",
+      "medical": "Medicinska förnödenheter"
+    },
+    "status": {
+      "available": "Tillgänglig",
+      "assigned": "Tilldelad",
+      "maintenance": "Under underhåll",
+      "ordered": "Beställd",
+      "damaged": "Skadad",
+      "retired": "Utrangerad"
+    }
+  },
+  "assignments": {
+    "title": "Utrustningsfördelning",
+    "player": "Spelarfördelning",
+    "team": "Lagutrustning",
+    "assign": "Tilldela utrustning",
+    "return": "Returnera utrustning",
+    "history": "Fördelningshistorik",
+    "current": "Nuvarande fördelningar",
+    "overdue": "Försenade returer"
+  },
+  "sizes": {
+    "title": "Storlekshantering",
+    "chart": "Storlekstabell",
+    "playerSizes": "Spelarstorlekar",
+    "update": "Uppdatera storlekar",
+    "fitting": "Boka provning",
+    "categories": {
+      "helmet": "Hjälm",
+      "shoulderPads": "Axelskydd",
+      "elbow": "Armbågsskydd",
+      "gloves": "Handskar",
+      "pants": "Hockeybyxor",
+      "shinGuards": "Benskydd",
+      "skates": "Skridskor",
+      "jersey": "Matchtröja",
+      "socks": "Strumpor"
+    },
+    "measurements": {
+      "xs": "Extra liten",
+      "s": "Liten",
+      "m": "Medium",
+      "l": "Stor",
+      "xl": "Extra stor",
+      "xxl": "2X stor",
+      "xxxl": "3X stor",
+      "youth": "Ungdom",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Utrustningsunderhåll",
+    "schedule": "Underhållsschema",
+    "due": "Underhåll förfallet",
+    "history": "Underhållshistorik",
+    "log": "Logga underhåll",
+    "types": {
+      "sharpening": "Skridskoslipning",
+      "repair": "Utrustningsreparation",
+      "cleaning": "Djuprengöring",
+      "inspection": "Säkerhetsinspektion",
+      "replacement": "Delutbyte"
+    },
+    "frequency": {
+      "daily": "Dagligen",
+      "weekly": "Veckovis",
+      "biweekly": "Varannan vecka",
+      "monthly": "Månadsvis",
+      "seasonal": "Säsongsvis",
+      "asNeeded": "Vid behov"
+    }
+  },
+  "orders": {
+    "title": "Utrustningsbeställningar",
+    "new": "Ny beställning",
+    "pending": "Väntande beställningar",
+    "history": "Beställningshistorik",
+    "suppliers": "Leverantörer",
+    "budget": "Utrustningsbudget",
+    "approve": "Godkänn beställning",
+    "track": "Spåra leverans",
+    "receive": "Ta emot beställning",
+    "status": {
+      "draft": "Utkast",
+      "submitted": "Inskickad",
+      "approved": "Godkänd",
+      "ordered": "Beställd",
+      "shipped": "Skickad",
+      "delivered": "Levererad",
+      "cancelled": "Avbruten"
+    }
+  },
+  "laundry": {
+    "title": "Tvätthantering",
+    "schedule": "Tvättschema",
+    "status": "Tvättstatus",
+    "pickup": "Boka hämtning",
+    "return": "Markera som återlämnad",
+    "items": {
+      "jerseys": "Matchtröjor",
+      "practice": "Träningströjor",
+      "socks": "Lagstrumpor",
+      "shells": "Byxskal",
+      "towels": "Handdukar"
+    }
+  },
+  "reports": {
+    "title": "Utrustningsrapporter",
+    "usage": "Användningsrapport",
+    "cost": "Kostnadsanalys",
+    "replacement": "Utbytesschema",
+    "playerNeeds": "Spelarutrustningsbehov",
+    "teamNeeds": "Lagutrustningsbehov",
+    "generate": "Generera rapport",
+    "export": "Exportera rapport"
+  },
+  "budget": {
+    "title": "Budgethantering",
+    "current": "Nuvarande budget",
+    "spent": "Använt belopp",
+    "remaining": "Återstående budget",
+    "projected": "Beräknade kostnader",
+    "categories": "Budget per kategori",
+    "approval": "Väntande godkännanden"
+  },
+  "team": {
+    "title": "Lagutrustning",
+    "bags": "Utrustningsväskor",
+    "medical": "Medicinväska",
+    "tools": "Utrustningsverktyg",
+    "spare": "Reservutrustning",
+    "travel": "Resechecklista",
+    "gameday": "Matchdagschecklista"
+  }
+}

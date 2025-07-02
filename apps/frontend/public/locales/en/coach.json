@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Coach Dashboard",
+    "subtitle": "Team management and performance tracking",
+    "welcome": "Welcome back, Coach {{name}}!",
+    "quickStats": "Quick Stats",
+    "todaysFocus": "Today's Focus"
+  },
+  "team": {
+    "title": "Team Management",
+    "roster": "Team Roster",
+    "lineups": "Line Combinations",
+    "availability": "Player Availability",
+    "performance": "Team Performance",
+    "statistics": "Team Statistics",
+    "playerStatus": {
+      "available": "Available",
+      "limited": "Limited",
+      "unavailable": "Unavailable",
+      "injured": "Injured",
+      "dayToDay": "Day-to-Day"
+    }
+  },
+  "practice": {
+    "title": "Practice Planning",
+    "schedule": "Practice Schedule",
+    "drills": "Drill Library",
+    "templates": "Practice Templates",
+    "planning": "Session Planning",
+    "attendance": "Attendance Tracking",
+    "intensity": "Practice Intensity",
+    "focus": {
+      "offense": "Offensive Systems",
+      "defense": "Defensive Systems",
+      "specialTeams": "Special Teams",
+      "conditioning": "Conditioning",
+      "skills": "Skill Development"
+    },
+    "types": {
+      "full": "Full Practice",
+      "optional": "Optional Skate",
+      "morning": "Morning Skate",
+      "preGame": "Pre-Game Skate",
+      "recovery": "Recovery Session"
+    }
+  },
+  "games": {
+    "title": "Game Management",
+    "schedule": "Game Schedule",
+    "preparation": "Game Preparation",
+    "tactics": "Tactical Planning",
+    "lineups": "Game Lineups",
+    "scouting": "Scouting Reports",
+    "video": "Video Analysis",
+    "stats": {
+      "goals": "Goals",
+      "assists": "Assists",
+      "shots": "Shots",
+      "saves": "Saves",
+      "faceoffs": "Faceoffs",
+      "penalties": "Penalties",
+      "hits": "Hits",
+      "blocks": "Blocks"
+    }
+  },
+  "tactics": {
+    "title": "Tactical Board",
+    "systems": "Team Systems",
+    "powerPlay": "Power Play",
+    "penaltyKill": "Penalty Kill",
+    "faceoffPlays": "Faceoff Plays",
+    "breakouts": "Breakout Patterns",
+    "forecheck": "Forecheck Systems",
+    "neutralZone": "Neutral Zone",
+    "save": "Save Tactic",
+    "load": "Load Tactic"
+  },
+  "communication": {
+    "title": "Team Communication",
+    "announcements": "Team Announcements",
+    "meetings": "Team Meetings",
+    "feedback": "Player Feedback",
+    "messages": "Direct Messages",
+    "broadcast": "Broadcast Message",
+    "schedule": "Schedule Meeting"
+  },
+  "analytics": {
+    "title": "Performance Analytics",
+    "teamMetrics": "Team Metrics",
+    "playerMetrics": "Player Metrics",
+    "trends": "Performance Trends",
+    "comparison": "Team Comparison",
+    "advanced": "Advanced Stats",
+    "reports": "Generate Reports",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Offensive Zone Starts",
+      "gaa": "Goals Against Average",
+      "svp": "Save Percentage"
+    }
+  },
+  "development": {
+    "title": "Player Development",
+    "plans": "Development Plans",
+    "progress": "Progress Tracking",
+    "goals": "Development Goals",
+    "assessments": "Skill Assessments",
+    "feedback": "Development Feedback",
+    "programs": "Training Programs"
+  },
+  "lineup": {
+    "title": "Line Management",
+    "forward": "Forward Lines",
+    "defense": "Defense Pairs",
+    "powerPlay": "Power Play Units",
+    "penaltyKill": "Penalty Kill Units",
+    "scratches": "Healthy Scratches",
+    "optimize": "Optimize Lines",
+    "save": "Save Lineup",
+    "positions": {
+      "c": "Center",
+      "lw": "Left Wing",
+      "rw": "Right Wing",
+      "ld": "Left Defense",
+      "rd": "Right Defense",
+      "g": "Goalie"
+    }
+  }
+}

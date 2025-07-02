@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Trenerdashbord",
+    "subtitle": "Lagstyring og prestasjonsoppfølging",
+    "welcome": "Velkommen tilbake, trener {{name}}!",
+    "quickStats": "Rask statistikk",
+    "todaysFocus": "Dagens fokus"
+  },
+  "team": {
+    "title": "Lagstyring",
+    "roster": "Lagets spillerstall",
+    "lineups": "Lagoppstillinger",
+    "availability": "Spillertilgjengelighet",
+    "performance": "Lagsprestasjon",
+    "statistics": "Lagsstatistikk",
+    "playerStatus": {
+      "available": "Tilgjengelig",
+      "limited": "Begrenset",
+      "unavailable": "Utilgjengelig",
+      "injured": "Skadet",
+      "dayToDay": "Dag-til-dag"
+    }
+  },
+  "practice": {
+    "title": "Treningsplanlegging",
+    "schedule": "Treningsplan",
+    "drills": "Øvelsesbibliotek",
+    "templates": "Treningsmaler",
+    "planning": "Øktplanlegging",
+    "attendance": "Oppmøtesporing",
+    "intensity": "Treningsintensitet",
+    "focus": {
+      "offense": "Offensive systemer",
+      "defense": "Defensive systemer",
+      "specialTeams": "Spesiallag",
+      "conditioning": "Kondisjon",
+      "skills": "Ferdighetsutvikling"
+    },
+    "types": {
+      "full": "Full trening",
+      "optional": "Valgfri istime",
+      "morning": "Morgenøkt",
+      "preGame": "Kampforberedelse",
+      "recovery": "Restitusjonsøkt"
+    }
+  },
+  "games": {
+    "title": "Kampledelse",
+    "schedule": "Kampprogram",
+    "preparation": "Kampforberedelse",
+    "tactics": "Taktisk planlegging",
+    "lineups": "Kampoppstillinger",
+    "scouting": "Scoutingrapporter",
+    "video": "Videoanalyse",
+    "stats": {
+      "goals": "Mål",
+      "assists": "Assists",
+      "shots": "Skudd",
+      "saves": "Redninger",
+      "faceoffs": "Dropp",
+      "penalties": "Utvisninger",
+      "hits": "Taklinger",
+      "blocks": "Blokkeringer"
+    }
+  },
+  "tactics": {
+    "title": "Taktisk tavle",
+    "systems": "Lagsystemer",
+    "powerPlay": "Overtallsspill",
+    "penaltyKill": "Undertallsspill",
+    "faceoffPlays": "Droppspill",
+    "breakouts": "Utbrudd",
+    "forecheck": "Forechecking",
+    "neutralZone": "Nøytral sone",
+    "save": "Lagre taktikk",
+    "load": "Last taktikk"
+  },
+  "communication": {
+    "title": "Lagkommunikasjon",
+    "announcements": "Lagsmeldinger",
+    "meetings": "Lagsmøter",
+    "feedback": "Spillertilbakemelding",
+    "messages": "Direktemeldinger",
+    "broadcast": "Send melding",
+    "schedule": "Planlegg møte"
+  },
+  "analytics": {
+    "title": "Prestasjonsanalyse",
+    "teamMetrics": "Lagsmetrikk",
+    "playerMetrics": "Spillermetrikk",
+    "trends": "Prestasjonstrender",
+    "comparison": "Lagssammenligning",
+    "advanced": "Avansert statistikk",
+    "reports": "Generer rapporter",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Offensive sonestarter",
+      "gaa": "Innslupne mål i snitt",
+      "svp": "Redningsprosent"
+    }
+  },
+  "development": {
+    "title": "Spillerutvikling",
+    "plans": "Utviklingsplaner",
+    "progress": "Fremgangsoppfølging",
+    "goals": "Utviklingsmål",
+    "assessments": "Ferdighetsvurderinger",
+    "feedback": "Utviklingstilbakemelding",
+    "programs": "Treningsprogrammer"
+  },
+  "lineup": {
+    "title": "Lagoppstilling",
+    "forward": "Angrepskjeder",
+    "defense": "Backpar",
+    "powerPlay": "Overtallsenheter",
+    "penaltyKill": "Undertallsenheter",
+    "scratches": "Friske reserver",
+    "optimize": "Optimaliser kjeder",
+    "save": "Lagre oppstilling",
+    "positions": {
+      "c": "Senter",
+      "lw": "Venstre kant",
+      "rw": "Høyre kant",
+      "ld": "Venstre back",
+      "rd": "Høyre back",
+      "g": "Målvakt"
+    }
+  }
+}

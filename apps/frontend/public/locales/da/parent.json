@@ -1,0 +1,159 @@
+{
+  "dashboard": {
+    "title": "Forældre kontrolpanel",
+    "subtitle": "Velkommen, {{name}}",
+    "overview": "Oversigt",
+    "schedule": "Tidsplan",
+    "payments": "Betalinger",
+    "documents": "Dokumenter",
+    "communication": "Kommunikation",
+    "volunteer": "Frivillig"
+  },
+  "children": {
+    "title": "Mine børn",
+    "addChild": "Tilføj barn",
+    "childInfo": "Barnets information",
+    "team": "Hold",
+    "coach": "Træner",
+    "nextEvent": "Næste begivenhed",
+    "performance": "Præstation",
+    "attendance": "Fremmøde",
+    "medical": "Medicinsk"
+  },
+  "schedule": {
+    "title": "Familie tidsplan",
+    "today": "I dag",
+    "thisWeek": "Denne uge",
+    "month": "Månedsvisning",
+    "transportation": "Transport",
+    "conflicts": "Konflikter",
+    "availability": "Tilgængelighed",
+    "events": {
+      "practice": "Træning",
+      "game": "Kamp",
+      "tournament": "Turnering",
+      "teamEvent": "Holdbegivenhed",
+      "meeting": "Møde",
+      "fundraiser": "Fundraiser"
+    },
+    "transportation": {
+      "title": "Transportkoordinering",
+      "driver": "Chauffør",
+      "passengers": "Passagerer",
+      "offerRide": "Tilbyd kørsel",
+      "needRide": "Behøver kørsel",
+      "seats": "Ledige pladser",
+      "pickupTime": "Afhentningstid",
+      "returnTime": "Returtid"
+    }
+  },
+  "payments": {
+    "title": "Betalinger og gebyrer",
+    "outstanding": "Udestående",
+    "upcoming": "Kommende",
+    "history": "Historik",
+    "makePayment": "Foretag betaling",
+    "paymentPlan": "Betalingsplan",
+    "types": {
+      "registration": "Registrering",
+      "monthly": "Månedlig",
+      "equipment": "Udstyr",
+      "tournament": "Turnering",
+      "travel": "Rejse",
+      "fundraising": "Fundraising",
+      "other": "Andet"
+    },
+    "status": {
+      "paid": "Betalt",
+      "pending": "Afventende",
+      "overdue": "Forfalden",
+      "partial": "Delvis",
+      "scheduled": "Planlagt"
+    }
+  },
+  "documents": {
+    "title": "Dokumenter",
+    "required": "Påkrævede dokumenter",
+    "upload": "Upload dokument",
+    "download": "Download",
+    "types": {
+      "medicalForm": "Medicinsk formular",
+      "consent": "Samtykke",
+      "insurance": "Forsikring",
+      "birthCertificate": "Fødselsattest",
+      "emergency": "Nødkontakt",
+      "photo": "Foto",
+      "other": "Andet"
+    },
+    "status": {
+      "submitted": "Indsendt",
+      "approved": "Godkendt",
+      "rejected": "Afvist",
+      "expired": "Udløbet",
+      "pending": "Afventende"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "messages": "Beskeder",
+    "announcements": "Meddelelser",
+    "newsletters": "Nyhedsbreve",
+    "contacts": "Kontakter",
+    "messageCoach": "Besked til træner",
+    "messageManager": "Besked til manager",
+    "emergencyContacts": "Nødkontakter"
+  },
+  "volunteer": {
+    "title": "Frivillige muligheder",
+    "opportunities": "Muligheder",
+    "myHours": "Mine timer",
+    "signup": "Tilmeld",
+    "requirements": "Krav",
+    "schedule": "Plan",
+    "roles": {
+      "scorekeeper": "Kampskriver",
+      "penalty": "Straffeboks",
+      "timer": "Tidtager",
+      "fundraising": "Fundraising",
+      "eventHelper": "Begivenhedshjælper",
+      "transportation": "Transport",
+      "teamManager": "Holdmanager"
+    }
+  },
+  "medical": {
+    "title": "Medicinsk information",
+    "allergies": "Allergier",
+    "medications": "Medicin",
+    "conditions": "Tilstande",
+    "injuries": "Skader",
+    "clearance": "Godkendelse",
+    "updateInfo": "Opdater info",
+    "emergencyPlan": "Nødplan"
+  },
+  "performance": {
+    "title": "Barnets præstation",
+    "attendance": "Fremmøde",
+    "improvement": "Forbedring",
+    "coachFeedback": "Træner feedback",
+    "goals": "Mål",
+    "achievements": "Præstationer",
+    "reportCard": "Karakterkort"
+  },
+  "quickActions": {
+    "title": "Hurtige handlinger",
+    "updateAvailability": "Opdater tilgængelighed",
+    "submitPayment": "Indsend betaling",
+    "messageCoach": "Besked til træner",
+    "viewSchedule": "Se tidsplan",
+    "uploadDocument": "Upload dokument",
+    "signupVolunteer": "Tilmeld som frivillig"
+  },
+  "notifications": {
+    "scheduleChange": "Tidsplanændring for {{childName}}",
+    "paymentDue": "Betaling forfalden: {{amount}}",
+    "documentRequired": "Dokument påkrævet: {{type}}",
+    "gameReminder": "Kamp i morgen: {{team}} vs {{opponent}}",
+    "practiceReminder": "Træning i dag kl. {{time}}",
+    "volunteerReminder": "Frivillig vagt: {{role}} den {{date}}"
+  }
+}

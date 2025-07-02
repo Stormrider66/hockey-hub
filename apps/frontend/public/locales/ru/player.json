@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Панель игрока",
+    "subtitle": "Отслеживайте свою производительность и развитие",
+    "welcome": "С возвращением, {{name}}!",
+    "todaySchedule": "Расписание на сегодня",
+    "upcomingEvents": "Предстоящие события",
+    "recentPerformance": "Последние результаты",
+    "developmentGoals": "Цели развития"
+  },
+  "profile": {
+    "playerInfo": "Информация об игроке",
+    "number": "Игровой номер",
+    "position": "Позиция",
+    "shoots": "Хват клюшки",
+    "team": "Команда",
+    "age": "Возраст",
+    "height": "Рост",
+    "weight": "Вес",
+    "joined": "В команде с",
+    "contractExpires": "Контракт до"
+  },
+  "wellness": {
+    "title": "Ежедневная проверка самочувствия",
+    "subtitle": "Как вы себя чувствуете сегодня?",
+    "submit": "Отправить данные о самочувствии",
+    "submitted": "Данные о самочувствии успешно отправлены",
+    "metrics": {
+      "hrv": "Вариабельность сердечного ритма",
+      "sleep": "Качество сна",
+      "fatigue": "Уровень усталости",
+      "mood": "Настроение",
+      "soreness": "Мышечная боль",
+      "stress": "Уровень стресса",
+      "hydration": "Гидратация",
+      "nutrition": "Качество питания"
+    },
+    "scale": {
+      "poor": "Плохо",
+      "fair": "Удовлетворительно",
+      "good": "Хорошо",
+      "veryGood": "Очень хорошо",
+      "excellent": "Отлично"
+    }
+  },
+  "training": {
+    "title": "Тренировочные занятия",
+    "upcoming": "Предстоящие тренировки",
+    "completed": "Завершённые занятия",
+    "assigned": "Назначенные упражнения",
+    "progress": "Прогресс тренировок",
+    "todaysWorkout": "Тренировка на сегодня",
+    "completeSession": "Завершить занятие",
+    "viewDetails": "Подробности",
+    "intensity": "Интенсивность",
+    "duration": "Продолжительность",
+    "focus": "Фокус тренировки",
+    "equipment": "Необходимое оборудование",
+    "location": "Место проведения",
+    "coach": "Тренер",
+    "notes": "Заметки о тренировке"
+  },
+  "performance": {
+    "title": "Показатели производительности",
+    "seasonStats": "Статистика сезона",
+    "careerStats": "Карьерная статистика",
+    "lastGame": "Последняя игра",
+    "average": "В среднем",
+    "total": "Всего",
+    "trend": "Тенденция",
+    "improvement": "Улучшение",
+    "metrics": {
+      "goals": "Голы",
+      "assists": "Передачи",
+      "points": "Очки",
+      "plusMinus": "+/-",
+      "pim": "Штрафные минуты",
+      "shots": "Броски",
+      "shootingPercentage": "Процент реализации",
+      "faceoffPercentage": "Процент выигранных вбрасываний",
+      "hits": "Силовые приёмы",
+      "blocks": "Блокированные броски",
+      "takeaways": "Отборы",
+      "giveaways": "Потери",
+      "toi": "Время на льду",
+      "powerplayGoals": "Голы в большинстве",
+      "shorthandedGoals": "Голы в меньшинстве",
+      "gameWinningGoals": "Победные голы"
+    }
+  },
+  "schedule": {
+    "title": "Расписание",
+    "calendar": "Календарный вид",
+    "list": "Список",
+    "filters": "Фильтры",
+    "types": {
+      "game": "Игра",
+      "practice": "Тренировка",
+      "training": "Физподготовка",
+      "meeting": "Собрание",
+      "medical": "Медосмотр",
+      "recovery": "Восстановление",
+      "travel": "Переезд",
+      "personal": "Личное"
+    },
+    "rsvp": {
+      "title": "Подтверждение участия",
+      "attending": "Буду присутствовать",
+      "notAttending": "Не смогу присутствовать",
+      "maybe": "Возможно",
+      "update": "Обновить статус"
+    }
+  },
+  "communication": {
+    "title": "Сообщения",
+    "inbox": "Входящие",
+    "sent": "Отправленные",
+    "drafts": "Черновики",
+    "compose": "Написать",
+    "teamChat": "Командный чат",
+    "coachMessages": "Сообщения от тренера",
+    "announcements": "Объявления"
+  },
+  "development": {
+    "title": "План развития",
+    "goals": "Цели",
+    "progress": "Прогресс",
+    "skillAssessment": "Оценка навыков",
+    "trainingPlan": "План тренировок",
+    "milestones": "Вехи",
+    "achievements": "Достижения",
+    "areas": {
+      "skating": "Катание",
+      "shooting": "Броски",
+      "passing": "Передачи",
+      "stickHandling": "Владение клюшкой",
+      "positioning": "Позиционирование",
+      "physicality": "Физическая игра",
+      "mentalGame": "Ментальная подготовка",
+      "leadership": "Лидерство"
+    }
+  },
+  "nutrition": {
+    "title": "Питание",
+    "mealPlan": "План питания",
+    "hydration": "Контроль гидратации",
+    "supplements": "Добавки",
+    "calories": "Калории",
+    "macros": "Макронутриенты",
+    "meals": {
+      "breakfast": "Завтрак",
+      "lunch": "Обед",
+      "dinner": "Ужин",
+      "snack": "Перекус",
+      "preGame": "Перед игрой",
+      "postGame": "После игры"
+    }
+  },
+  "recovery": {
+    "title": "Восстановление",
+    "status": "Статус восстановления",
+    "activities": "Восстановительные процедуры",
+    "sleep": "Контроль сна",
+    "treatment": "Лечение",
+    "nextSession": "Следующая процедура",
+    "types": {
+      "massage": "Массаж",
+      "coldTub": "Ледяная ванна",
+      "sauna": "Сауна",
+      "stretching": "Растяжка",
+      "yoga": "Йога",
+      "physiotherapy": "Физиотерапия"
+    }
+  }
+}

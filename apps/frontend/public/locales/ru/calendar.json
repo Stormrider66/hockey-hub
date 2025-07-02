@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Месяц",
+    "week": "Неделя",
+    "day": "День",
+    "agenda": "Повестка",
+    "workWeek": "Рабочая неделя"
+  },
+  "navigation": {
+    "today": "Сегодня",
+    "back": "Назад",
+    "next": "Далее",
+    "previous": "Предыдущий",
+    "jumpToDate": "Перейти к дате"
+  },
+  "event": {
+    "title": "Событие",
+    "newEvent": "Новое событие",
+    "editEvent": "Редактировать событие",
+    "deleteEvent": "Удалить событие",
+    "duplicateEvent": "Дублировать событие",
+    "allDay": "Весь день",
+    "recurring": "Повторяющееся",
+    "privateEvent": "Личное событие",
+    "fields": {
+      "title": "Название",
+      "description": "Описание",
+      "location": "Место",
+      "startDate": "Дата начала",
+      "startTime": "Время начала",
+      "endDate": "Дата окончания",
+      "endTime": "Время окончания",
+      "type": "Тип события",
+      "category": "Категория",
+      "participants": "Участники",
+      "resources": "Ресурсы",
+      "notes": "Заметки",
+      "reminder": "Напоминание",
+      "color": "Цвет",
+      "attachments": "Вложения"
+    },
+    "types": {
+      "practice": "Тренировка",
+      "game": "Игра",
+      "training": "Физподготовка",
+      "meeting": "Собрание",
+      "tournament": "Турнир",
+      "tryout": "Просмотр",
+      "medical": "Медицинский приём",
+      "equipment": "Примерка экипировки",
+      "teamEvent": "Командное мероприятие",
+      "personal": "Личное",
+      "other": "Другое"
+    },
+    "status": {
+      "confirmed": "Подтверждено",
+      "tentative": "Предварительно",
+      "cancelled": "Отменено",
+      "postponed": "Отложено",
+      "rescheduled": "Перенесено"
+    }
+  },
+  "recurrence": {
+    "title": "Повторение",
+    "none": "Не повторяется",
+    "daily": "Ежедневно",
+    "weekly": "Еженедельно",
+    "monthly": "Ежемесячно",
+    "yearly": "Ежегодно",
+    "custom": "Настроить",
+    "every": "Каждые",
+    "days": "день(дней)",
+    "weeks": "неделя(недель)",
+    "months": "месяц(месяцев)",
+    "years": "год(лет)",
+    "on": "В",
+    "onThe": "В",
+    "weekdays": {
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье"
+    },
+    "ends": {
+      "never": "Никогда",
+      "after": "После",
+      "onDate": "В дату",
+      "occurrences": "повторений"
+    }
+  },
+  "availability": {
+    "available": "Доступен",
+    "unavailable": "Недоступен",
+    "busy": "Занят",
+    "tentative": "Под вопросом",
+    "outOfOffice": "Вне офиса"
+  },
+  "conflicts": {
+    "detected": "Обнаружен конфликт расписания",
+    "message": "Это событие конфликтует с:",
+    "resolution": "Как вы хотите это решить?",
+    "overwrite": "Перезаписать существующее",
+    "keepBoth": "Оставить оба события",
+    "cancel": "Отменить новое событие"
+  },
+  "filters": {
+    "title": "Фильтры",
+    "showAll": "Показать все",
+    "byType": "По типу",
+    "byTeam": "По команде",
+    "byLocation": "По месту",
+    "myEvents": "Только мои события"
+  },
+  "export": {
+    "title": "Экспорт календаря",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Печать"
+    },
+    "range": {
+      "all": "Все события",
+      "current": "Текущий вид",
+      "custom": "Настроить диапазон"
+    }
+  },
+  "sharing": {
+    "title": "Поделиться календарём",
+    "publicLink": "Публичная ссылка",
+    "embed": "Код для встраивания",
+    "subscribe": "URL подписки",
+    "permissions": {
+      "view": "Только просмотр",
+      "edit": "Может редактировать",
+      "admin": "Полный доступ"
+    }
+  },
+  "reminders": {
+    "none": "Без напоминания",
+    "atTime": "В момент события",
+    "minutes": "За {{count}} минут",
+    "hours": "За {{count}} час(ов)",
+    "days": "За {{count}} день(дней)",
+    "custom": "Настроить"
+  },
+  "actions": {
+    "create": "Создать событие",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "duplicate": "Дублировать",
+    "print": "Печать",
+    "export": "Экспорт",
+    "import": "Импорт",
+    "subscribe": "Подписаться",
+    "unsubscribe": "Отписаться",
+    "rsvp": "Подтвердить участие",
+    "maybeAttending": "Возможно",
+    "attending": "Буду присутствовать",
+    "notAttending": "Не буду присутствовать"
+  },
+  "messages": {
+    "eventCreated": "Событие успешно создано",
+    "eventUpdated": "Событие успешно обновлено",
+    "eventDeleted": "Событие успешно удалено",
+    "eventDuplicated": "Событие успешно дублировано",
+    "conflictWarning": "Это время имеет конфликты",
+    "participantAdded": "Участник добавлен",
+    "participantRemoved": "Участник удалён",
+    "reminderSet": "Напоминание установлено",
+    "calendarShared": "Календарь успешно предоставлен",
+    "exportComplete": "Экспорт завершён",
+    "importComplete": "Импорт завершён"
+  },
+  "facility": {
+    "rink": "Ледовая арена",
+    "mainRink": "Основная арена",
+    "practiceRink": "Тренировочная арена",
+    "gym": "Тренажёрный зал",
+    "meetingRoom": "Конференц-зал",
+    "lockerRoom": "Раздевалка",
+    "trainingRoom": "Тренировочный зал",
+    "videoRoom": "Видеозал",
+    "medicalRoom": "Медицинский кабинет"
+  },
+  "tooltips": {
+    "dragToMove": "Перетащите для перемещения события",
+    "dragToResize": "Перетащите края для изменения размера",
+    "clickToEdit": "Нажмите для редактирования",
+    "doubleClickToCreate": "Двойной клик для создания события"
+  }
+}

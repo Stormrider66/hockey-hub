@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord parent",
+    "subtitle": "Restez connecté au parcours de hockey de votre enfant",
+    "welcome": "Bienvenue, {{name}}!",
+    "childrenOverview": "Aperçu des enfants",
+    "upcomingEvents": "Événements à venir"
+  },
+  "children": {
+    "title": "Mes enfants",
+    "addChild": "Ajouter un enfant",
+    "profile": "Profil de l'enfant",
+    "schedule": "Horaire",
+    "performance": "Performance",
+    "wellness": "Santé et bien-être",
+    "communication": "Messages",
+    "details": {
+      "team": "Équipe",
+      "position": "Position",
+      "coach": "Entraîneur",
+      "number": "Numéro de chandail",
+      "age": "Groupe d'âge"
+    }
+  },
+  "schedule": {
+    "title": "Horaire familial",
+    "calendar": "Vue calendrier",
+    "upcoming": "Événements à venir",
+    "transportation": "Transport",
+    "conflicts": "Conflits d'horaire",
+    "sync": "Synchroniser le calendrier",
+    "export": "Exporter l'horaire",
+    "types": {
+      "game": "Match",
+      "practice": "Entraînement",
+      "tournament": "Tournoi",
+      "teamEvent": "Événement d'équipe",
+      "meeting": "Réunion de parents",
+      "fundraiser": "Collecte de fonds"
+    },
+    "rsvp": {
+      "title": "RSVP pour l'événement",
+      "attending": "Nous serons présents",
+      "notAttending": "Nous ne pouvons pas y assister",
+      "driving": "Je peux conduire d'autres",
+      "needRide": "Besoin de transport"
+    }
+  },
+  "transportation": {
+    "title": "Coordination du transport",
+    "available": "Conducteurs disponibles",
+    "requests": "Demandes de transport",
+    "myOffers": "Mes offres de conduite",
+    "carpool": "Groupes de covoiturage",
+    "seats": "Places disponibles",
+    "pickup": "Lieu de ramassage",
+    "dropoff": "Lieu de dépôt",
+    "time": "Heure de départ"
+  },
+  "payments": {
+    "title": "Paiements et frais",
+    "overview": "Aperçu des paiements",
+    "due": "Montant dû",
+    "history": "Historique des paiements",
+    "upcoming": "Frais à venir",
+    "methods": "Méthodes de paiement",
+    "invoices": "Factures",
+    "items": {
+      "registration": "Frais d'inscription",
+      "monthly": "Cotisations mensuelles",
+      "equipment": "Équipement",
+      "tournament": "Frais de tournoi",
+      "travel": "Frais de voyage",
+      "fundraising": "Collecte de fonds"
+    },
+    "status": {
+      "paid": "Payé",
+      "pending": "En attente",
+      "overdue": "En retard",
+      "partial": "Paiement partiel"
+    }
+  },
+  "communication": {
+    "title": "Communication",
+    "messages": "Messages",
+    "announcements": "Annonces de l'équipe",
+    "coachMessages": "De l'entraîneur",
+    "teamMessages": "Mises à jour de l'équipe",
+    "emergency": "Contacts d'urgence",
+    "directory": "Répertoire de l'équipe",
+    "preferences": "Préférences de communication"
+  },
+  "medical": {
+    "title": "Informations médicales",
+    "records": "Dossiers médicaux",
+    "allergies": "Allergies",
+    "medications": "Médicaments",
+    "conditions": "Conditions médicales",
+    "emergency": "Contacts d'urgence",
+    "insurance": "Informations d'assurance",
+    "consent": "Consentement médical",
+    "injuries": "Historique des blessures"
+  },
+  "documents": {
+    "title": "Documents et formulaires",
+    "required": "Documents requis",
+    "optional": "Formulaires optionnels",
+    "submitted": "Soumis",
+    "pending": "En attente de soumission",
+    "download": "Télécharger les formulaires",
+    "upload": "Téléverser un document",
+    "types": {
+      "registration": "Formulaire d'inscription",
+      "medical": "Formulaire médical",
+      "waiver": "Décharge",
+      "consent": "Formulaire de consentement",
+      "emergency": "Contact d'urgence",
+      "insurance": "Carte d'assurance"
+    }
+  },
+  "volunteer": {
+    "title": "Opportunités de bénévolat",
+    "signup": "S'inscrire",
+    "myShifts": "Mes quarts de bénévolat",
+    "available": "Postes disponibles",
+    "hours": "Heures de bénévolat",
+    "requirements": "Exigences",
+    "positions": {
+      "scorekeeper": "Marqueur",
+      "penalty": "Banc des pénalités",
+      "concession": "Cantine",
+      "fundraising": "Collecte de fonds",
+      "teamManager": "Gérant d'équipe",
+      "equipment": "Assistant équipement"
+    }
+  },
+  "performance": {
+    "title": "Progrès de l'enfant",
+    "overview": "Aperçu de la performance",
+    "improvement": "Domaines d'amélioration",
+    "achievements": "Réalisations récentes",
+    "feedback": "Rétroaction de l'entraîneur",
+    "goals": "Objectifs de développement",
+    "attendance": "Registre de présence",
+    "effort": "Niveau d'effort",
+    "teamwork": "Travail d'équipe"
+  }
+}

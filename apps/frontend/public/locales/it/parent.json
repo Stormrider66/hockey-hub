@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Dashboard Genitore",
+    "subtitle": "Rimani connesso con il percorso hockeistico di tuo figlio",
+    "welcome": "Benvenuto, {{name}}!",
+    "childrenOverview": "Panoramica Figli",
+    "upcomingEvents": "Prossimi Eventi"
+  },
+  "children": {
+    "title": "I Miei Figli",
+    "addChild": "Aggiungi Figlio",
+    "profile": "Profilo Figlio",
+    "schedule": "Calendario",
+    "performance": "Prestazioni",
+    "wellness": "Salute e Benessere",
+    "communication": "Messaggi",
+    "details": {
+      "team": "Squadra",
+      "position": "Ruolo",
+      "coach": "Allenatore",
+      "number": "Numero di Maglia",
+      "age": "Categoria"
+    }
+  },
+  "schedule": {
+    "title": "Calendario Famiglia",
+    "calendar": "Vista Calendario",
+    "upcoming": "Prossimi Eventi",
+    "transportation": "Trasporti",
+    "conflicts": "Conflitti di Calendario",
+    "sync": "Sincronizza Calendario",
+    "export": "Esporta Calendario",
+    "types": {
+      "game": "Partita",
+      "practice": "Allenamento",
+      "tournament": "Torneo",
+      "teamEvent": "Evento di Squadra",
+      "meeting": "Riunione Genitori",
+      "fundraiser": "Raccolta Fondi"
+    },
+    "rsvp": {
+      "title": "Conferma Presenza",
+      "attending": "Ci saremo",
+      "notAttending": "Non possiamo venire",
+      "driving": "Posso dare un passaggio",
+      "needRide": "Abbiamo bisogno di un passaggio"
+    }
+  },
+  "transportation": {
+    "title": "Coordinamento Trasporti",
+    "available": "Autisti Disponibili",
+    "requests": "Richieste Passaggio",
+    "myOffers": "Le Mie Offerte di Trasporto",
+    "carpool": "Gruppi Car Pooling",
+    "seats": "Posti Disponibili",
+    "pickup": "Luogo di Partenza",
+    "dropoff": "Luogo di Arrivo",
+    "time": "Orario di Partenza"
+  },
+  "payments": {
+    "title": "Pagamenti e Quote",
+    "overview": "Panoramica Pagamenti",
+    "due": "Importo Dovuto",
+    "history": "Storico Pagamenti",
+    "upcoming": "Quote Future",
+    "methods": "Metodi di Pagamento",
+    "invoices": "Fatture",
+    "items": {
+      "registration": "Quota Iscrizione",
+      "monthly": "Quote Mensili",
+      "equipment": "Attrezzatura",
+      "tournament": "Quota Torneo",
+      "travel": "Spese Trasferta",
+      "fundraising": "Raccolta Fondi"
+    },
+    "status": {
+      "paid": "Pagato",
+      "pending": "In Attesa",
+      "overdue": "Scaduto",
+      "partial": "Pagamento Parziale"
+    }
+  },
+  "communication": {
+    "title": "Comunicazione",
+    "messages": "Messaggi",
+    "announcements": "Comunicati Squadra",
+    "coachMessages": "Dall'Allenatore",
+    "teamMessages": "Aggiornamenti Squadra",
+    "emergency": "Contatti di Emergenza",
+    "directory": "Rubrica Squadra",
+    "preferences": "Preferenze Comunicazione"
+  },
+  "medical": {
+    "title": "Informazioni Mediche",
+    "records": "Cartelle Mediche",
+    "allergies": "Allergie",
+    "medications": "Farmaci",
+    "conditions": "Condizioni Mediche",
+    "emergency": "Contatti di Emergenza",
+    "insurance": "Info Assicurazione",
+    "consent": "Consenso Medico",
+    "injuries": "Storico Infortuni"
+  },
+  "documents": {
+    "title": "Documenti e Moduli",
+    "required": "Documenti Richiesti",
+    "optional": "Moduli Opzionali",
+    "submitted": "Inviati",
+    "pending": "In Attesa di Invio",
+    "download": "Scarica Moduli",
+    "upload": "Carica Documento",
+    "types": {
+      "registration": "Modulo Iscrizione",
+      "medical": "Modulo Medico",
+      "waiver": "Liberatoria",
+      "consent": "Modulo Consenso",
+      "emergency": "Contatto Emergenza",
+      "insurance": "Tessera Assicurativa"
+    }
+  },
+  "volunteer": {
+    "title": "Opportunità di Volontariato",
+    "signup": "Iscriviti",
+    "myShifts": "I Miei Turni",
+    "available": "Posizioni Disponibili",
+    "hours": "Ore di Volontariato",
+    "requirements": "Requisiti",
+    "positions": {
+      "scorekeeper": "Segnapunti",
+      "penalty": "Addetto Penalità",
+      "concession": "Bar/Ristoro",
+      "fundraising": "Raccolta Fondi",
+      "teamManager": "Team Manager",
+      "equipment": "Assistente Attrezzature"
+    }
+  },
+  "performance": {
+    "title": "Progressi del Figlio",
+    "overview": "Panoramica Prestazioni",
+    "improvement": "Aree di Miglioramento",
+    "achievements": "Risultati Recenti",
+    "feedback": "Feedback Allenatore",
+    "goals": "Obiettivi di Sviluppo",
+    "attendance": "Registro Presenze",
+    "effort": "Livello di Impegno",
+    "teamwork": "Lavoro di Squadra"
+  }
+}

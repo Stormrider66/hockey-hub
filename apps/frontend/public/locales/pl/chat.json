@@ -1,0 +1,145 @@
+{
+  "title": "Wiadomości",
+  "conversations": {
+    "title": "Rozmowy",
+    "new": "Nowa rozmowa",
+    "search": "Szukaj rozmów...",
+    "empty": "Brak rozmów",
+    "startNew": "Rozpocznij nową rozmowę"
+  },
+  "participants": {
+    "add": "Dodaj uczestników",
+    "remove": "Usuń z rozmowy",
+    "search": "Szukaj osób...",
+    "you": "Ty",
+    "typing": "pisze...",
+    "multipleTyping": "piszą...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Zaraz wracam"
+  },
+  "messages": {
+    "placeholder": "Napisz wiadomość...",
+    "send": "Wyślij",
+    "edit": "Edytuj wiadomość",
+    "delete": "Usuń wiadomość",
+    "reply": "Odpowiedz",
+    "forward": "Przekaż dalej",
+    "copy": "Kopiuj",
+    "pin": "Przypnij wiadomość",
+    "unpin": "Odepnij wiadomość",
+    "react": "Dodaj reakcję",
+    "edited": "edytowano",
+    "deleted": "Ta wiadomość została usunięta",
+    "delivered": "Dostarczono",
+    "read": "Przeczytano",
+    "sending": "Wysyłanie...",
+    "failed": "Nie udało się wysłać",
+    "retry": "Spróbuj ponownie"
+  },
+  "groups": {
+    "create": "Utwórz grupę",
+    "name": "Nazwa grupy",
+    "description": "Opis (opcjonalnie)",
+    "addMembers": "Dodaj członków",
+    "settings": "Ustawienia grupy",
+    "leave": "Opuść grupę",
+    "delete": "Usuń grupę",
+    "members": "{{count}} członków",
+    "admin": "Administrator",
+    "member": "Członek"
+  },
+  "channels": {
+    "title": "Kanały",
+    "create": "Utwórz kanał",
+    "public": "Kanał publiczny",
+    "private": "Kanał prywatny",
+    "join": "Dołącz do kanału",
+    "leave": "Opuść kanał",
+    "mute": "Wycisz kanał",
+    "unmute": "Włącz powiadomienia",
+    "types": {
+      "general": "Ogólny",
+      "announcements": "Ogłoszenia",
+      "team": "Czat drużyny",
+      "coaches": "Trenerzy",
+      "parents": "Rodzice",
+      "medical": "Personel medyczny"
+    }
+  },
+  "attachments": {
+    "title": "Załączniki",
+    "upload": "Prześlij plik",
+    "types": {
+      "image": "Obraz",
+      "video": "Wideo",
+      "document": "Dokument",
+      "audio": "Audio",
+      "other": "Plik"
+    },
+    "download": "Pobierz",
+    "preview": "Podgląd",
+    "tooLarge": "Plik jest za duży. Maksymalny rozmiar to {{maxSize}}",
+    "unsupported": "Typ pliku nie jest obsługiwany"
+  },
+  "notifications": {
+    "newMessage": "Nowa wiadomość od {{sender}}",
+    "mentioned": "{{sender}} wspomniał o tobie",
+    "groupInvite": "Zostałeś dodany do {{group}}",
+    "enable": "Włącz powiadomienia",
+    "disable": "Wyłącz powiadomienia",
+    "sound": "Dźwięk powiadomienia",
+    "desktop": "Powiadomienia na pulpicie"
+  },
+  "search": {
+    "placeholder": "Szukaj wiadomości...",
+    "filters": "Filtry",
+    "from": "Od",
+    "to": "Do",
+    "date": "Data",
+    "hasAttachment": "Ma załącznik",
+    "results": "Znaleziono {{count}} wyników",
+    "noResults": "Nie znaleziono wiadomości"
+  },
+  "settings": {
+    "title": "Ustawienia czatu",
+    "privacy": "Prywatność",
+    "readReceipts": "Potwierdzenia przeczytania",
+    "typingIndicator": "Pokaż gdy piszę",
+    "autoDownload": "Automatyczne pobieranie mediów",
+    "enterToSend": "Enter wysyła wiadomość",
+    "theme": "Motyw czatu",
+    "fontSize": "Rozmiar czcionki"
+  },
+  "status": {
+    "online": "Dostępny",
+    "away": "Zaraz wracam",
+    "busy": "Nie przeszkadzać",
+    "offline": "Niewidoczny",
+    "setStatus": "Ustaw status",
+    "customStatus": "Ustaw własny status..."
+  },
+  "actions": {
+    "startChat": "Rozpocznij czat",
+    "viewProfile": "Zobacz profil",
+    "clearChat": "Wyczyść historię czatu",
+    "exportChat": "Eksportuj czat",
+    "reportUser": "Zgłoś użytkownika",
+    "blockUser": "Zablokuj użytkownika",
+    "unblockUser": "Odblokuj użytkownika"
+  },
+  "time": {
+    "now": "teraz",
+    "today": "Dzisiaj",
+    "yesterday": "Wczoraj",
+    "daysAgo": "{{count}} dni temu",
+    "lastSeen": "Ostatnio widziany {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Utracono połączenie. Ponowne łączenie...",
+    "sendFailed": "Nie udało się wysłać wiadomości",
+    "loadFailed": "Nie udało się załadować wiadomości",
+    "uploadFailed": "Nie udało się przesłać pliku",
+    "permissionDenied": "Nie masz uprawnień do tej akcji"
+  }
+}

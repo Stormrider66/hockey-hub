@@ -1,0 +1,146 @@
+{
+  "chat": {
+    "title": "Chat",
+    "conversations": "Samtaler",
+    "messages": "Beskeder",
+    "participants": "Deltagere",
+    "newConversation": "Ny samtale",
+    "searchConversations": "Søg samtaler",
+    "noConversations": "Ingen samtaler endnu"
+  },
+  "message": {
+    "typeMessage": "Skriv en besked...",
+    "send": "Send",
+    "edit": "Rediger",
+    "delete": "Slet",
+    "reply": "Svar",
+    "forward": "Videresend",
+    "copy": "Kopier",
+    "pin": "Fastgør",
+    "unpin": "Frigør",
+    "markAsRead": "Marker som læst",
+    "markAsUnread": "Marker som ulæst",
+    "edited": "redigeret",
+    "deleted": "Denne besked er blevet slettet",
+    "sending": "Sender...",
+    "delivered": "Leveret",
+    "read": "Læst",
+    "failed": "Fejlet"
+  },
+  "conversation": {
+    "withUser": "med {{user}}",
+    "withUsers": "med {{count}} personer",
+    "groupName": "Gruppenavn",
+    "addParticipants": "Tilføj deltagere",
+    "removeParticipant": "Fjern deltager",
+    "leaveConversation": "Forlad samtale",
+    "muteConversation": "Slå samtale fra",
+    "unmuteConversation": "Slå samtale til",
+    "deleteConversation": "Slet samtale",
+    "archiveConversation": "Arkiver samtale",
+    "unarchiveConversation": "Gendan samtale",
+    "conversationInfo": "Samtaleinfo"
+  },
+  "groups": {
+    "createGroup": "Opret gruppe",
+    "groupName": "Gruppenavn",
+    "groupDescription": "Gruppebeskrivelse",
+    "groupPhoto": "Gruppefoto",
+    "members": "Medlemmer",
+    "admins": "Administratorer",
+    "addMembers": "Tilføj medlemmer",
+    "makeAdmin": "Gør til administrator",
+    "removeAdmin": "Fjern administrator",
+    "removeMember": "Fjern medlem",
+    "leaveGroup": "Forlad gruppe",
+    "deleteGroup": "Slet gruppe",
+    "groupSettings": "Gruppeindstillinger"
+  },
+  "channels": {
+    "title": "Kanaler",
+    "general": "Generel",
+    "announcements": "Meddelelser",
+    "team": "Hold",
+    "coaches": "Trænere",
+    "parents": "Forældre",
+    "createChannel": "Opret kanal",
+    "joinChannel": "Deltag i kanal",
+    "leaveChannel": "Forlad kanal",
+    "channelInfo": "Kanalinfo",
+    "public": "Offentlig",
+    "private": "Privat"
+  },
+  "attachments": {
+    "title": "Vedhæftninger",
+    "addAttachment": "Tilføj vedhæftning",
+    "photo": "Foto",
+    "video": "Video",
+    "document": "Dokument",
+    "location": "Lokation",
+    "contact": "Kontakt",
+    "maxSize": "Maks. størrelse: {{size}}",
+    "unsupportedType": "Ikke-understøttet filtype"
+  },
+  "notifications": {
+    "newMessage": "Ny besked fra {{sender}}",
+    "mentionedYou": "{{user}} nævnte dig",
+    "addedToGroup": "Du blev tilføjet til {{group}}",
+    "removedFromGroup": "Du blev fjernet fra {{group}}",
+    "groupRenamed": "Gruppe omdøbt til {{name}}",
+    "userJoined": "{{user}} deltog i samtalen",
+    "userLeft": "{{user}} forlod samtalen"
+  },
+  "search": {
+    "searchMessages": "Søg beskeder",
+    "searchPeople": "Søg personer",
+    "searchGroups": "Søg grupper",
+    "searchChannels": "Søg kanaler",
+    "noResults": "Ingen resultater fundet",
+    "filters": {
+      "all": "Alle",
+      "unread": "Ulæste",
+      "mentions": "Omtaler",
+      "files": "Filer",
+      "links": "Links"
+    }
+  },
+  "settings": {
+    "title": "Chatindstillinger",
+    "notifications": "Notifikationer",
+    "privacy": "Privatliv",
+    "blocked": "Blokerede brugere",
+    "readReceipts": "Læsekvitteringer",
+    "lastSeen": "Sidst set",
+    "profilePhoto": "Profilbillede",
+    "about": "Om",
+    "enterSends": "Enter sender besked",
+    "soundNotifications": "Lydnotifikationer",
+    "desktopNotifications": "Skrivebordsnotifikationer"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Væk",
+    "busy": "Optaget",
+    "typing": "skriver...",
+    "recording": "optager...",
+    "lastSeen": "Sidst set {{time}}"
+  },
+  "actions": {
+    "startConversation": "Start samtale",
+    "viewProfile": "Se profil",
+    "clearChat": "Ryd chat",
+    "exportChat": "Eksporter chat",
+    "reportUser": "Rapporter bruger",
+    "blockUser": "Bloker bruger",
+    "unblockUser": "Fjern blokering"
+  },
+  "errors": {
+    "messageNotSent": "Besked kunne ikke sendes",
+    "connectionLost": "Forbindelse tabt",
+    "loadingFailed": "Kunne ikke indlæse beskeder",
+    "uploadFailed": "Upload fejlede",
+    "userNotFound": "Bruger ikke fundet",
+    "groupNotFound": "Gruppe ikke fundet"
+  }
+}

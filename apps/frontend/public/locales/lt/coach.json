@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Trenerio valdymo skydelis",
+    "subtitle": "Komandos valdymas ir rezultatų stebėjimas",
+    "welcome": "Sveiki sugrįžę, treneri {{name}}!",
+    "quickStats": "Greita statistika",
+    "todaysFocus": "Šiandienos dėmesys"
+  },
+  "team": {
+    "title": "Komandos valdymas",
+    "roster": "Komandos sudėtis",
+    "lineups": "Penketukų deriniai",
+    "availability": "Žaidėjų prieinamumas",
+    "performance": "Komandos rezultatai",
+    "statistics": "Komandos statistika",
+    "playerStatus": {
+      "available": "Prieinamas",
+      "limited": "Ribotas",
+      "unavailable": "Neprieinamas",
+      "injured": "Traumuotas",
+      "dayToDay": "Diena po dienos"
+    }
+  },
+  "practice": {
+    "title": "Treniruočių planavimas",
+    "schedule": "Treniruočių tvarkaraštis",
+    "drills": "Pratimų biblioteka",
+    "templates": "Treniruočių šablonai",
+    "planning": "Užsiėmimų planavimas",
+    "attendance": "Lankomumo stebėjimas",
+    "intensity": "Treniruotės intensyvumas",
+    "focus": {
+      "offense": "Puolimo sistemos",
+      "defense": "Gynybos sistemos",
+      "specialTeams": "Specialios situacijos",
+      "conditioning": "Fizinis pasirengimas",
+      "skills": "Įgūdžių tobulinimas"
+    },
+    "types": {
+      "full": "Pilna treniruotė",
+      "optional": "Neprivaloma treniruotė",
+      "morning": "Rytinė treniruotė",
+      "preGame": "Priešžaidyminė treniruotė",
+      "recovery": "Atkūrimo užsiėmimas"
+    }
+  },
+  "games": {
+    "title": "Rungtynių valdymas",
+    "schedule": "Rungtynių tvarkaraštis",
+    "preparation": "Pasiruošimas rungtynėms",
+    "tactics": "Taktinis planavimas",
+    "lineups": "Rungtynių sudėtis",
+    "scouting": "Žvalgybos ataskaitos",
+    "video": "Video analizė",
+    "stats": {
+      "goals": "Įvarčiai",
+      "assists": "Rezultatyvūs perdavimai",
+      "shots": "Metimai",
+      "saves": "Atrėmimai",
+      "faceoffs": "Įmetimai",
+      "penalties": "Baudos",
+      "hits": "Jėgos veiksmai",
+      "blocks": "Blokavimai"
+    }
+  },
+  "tactics": {
+    "title": "Taktinė lenta",
+    "systems": "Komandos sistemos",
+    "powerPlay": "Dauguma",
+    "penaltyKill": "Mažuma",
+    "faceoffPlays": "Įmetimų deriniai",
+    "breakouts": "Išsiveržimai",
+    "forecheck": "Spaudimas puolimo zonoje",
+    "neutralZone": "Neutrali zona",
+    "save": "Išsaugoti taktiką",
+    "load": "Įkelti taktiką"
+  },
+  "communication": {
+    "title": "Komandos komunikacija",
+    "announcements": "Komandos skelbimai",
+    "meetings": "Komandos susitikimai",
+    "feedback": "Žaidėjų atsiliepimai",
+    "messages": "Tiesioginės žinutės",
+    "broadcast": "Transliuoti pranešimą",
+    "schedule": "Planuoti susitikimą"
+  },
+  "analytics": {
+    "title": "Rezultatų analitika",
+    "teamMetrics": "Komandos rodikliai",
+    "playerMetrics": "Žaidėjų rodikliai",
+    "trends": "Rezultatų tendencijos",
+    "comparison": "Komandų palyginimas",
+    "advanced": "Išplėstinė statistika",
+    "reports": "Generuoti ataskaitas",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Puolimo zonos pradžios",
+      "gaa": "Praleistų įvarčių vidurkis",
+      "svp": "Atrėmimų procentas"
+    }
+  },
+  "development": {
+    "title": "Žaidėjų tobulėjimas",
+    "plans": "Tobulėjimo planai",
+    "progress": "Progreso stebėjimas",
+    "goals": "Tobulėjimo tikslai",
+    "assessments": "Įgūdžių vertinimai",
+    "feedback": "Tobulėjimo atsiliepimai",
+    "programs": "Treniruočių programos"
+  },
+  "lineup": {
+    "title": "Penketukų valdymas",
+    "forward": "Puolėjų grandys",
+    "defense": "Gynėjų poros",
+    "powerPlay": "Daugumos penketukai",
+    "penaltyKill": "Mažumos penketukai",
+    "scratches": "Neįtraukti žaidėjai",
+    "optimize": "Optimizuoti grandis",
+    "save": "Išsaugoti sudėtį",
+    "positions": {
+      "c": "Centras",
+      "lw": "Kairysis kraštas",
+      "rw": "Dešinysis kraštas",
+      "ld": "Kairysis gynėjas",
+      "rd": "Dešinysis gynėjas",
+      "g": "Vartininkas"
+    }
+  }
+}

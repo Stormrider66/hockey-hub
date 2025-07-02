@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Spieler-Dashboard",
+    "subtitle": "Verfolgen Sie Ihre Leistung und Entwicklung",
+    "welcome": "Willkommen zurück, {{name}}!",
+    "todaySchedule": "Heutiger Zeitplan",
+    "upcomingEvents": "Anstehende Termine",
+    "recentPerformance": "Aktuelle Leistung",
+    "developmentGoals": "Entwicklungsziele"
+  },
+  "profile": {
+    "playerInfo": "Spielerinformationen",
+    "number": "Trikotnummer",
+    "position": "Position",
+    "shoots": "Schusshand",
+    "team": "Team",
+    "age": "Alter",
+    "height": "Größe",
+    "weight": "Gewicht",
+    "joined": "Beigetreten",
+    "contractExpires": "Vertrag läuft aus"
+  },
+  "wellness": {
+    "title": "Täglicher Wellness-Check",
+    "subtitle": "Wie fühlen Sie sich heute?",
+    "submit": "Wellness-Daten senden",
+    "submitted": "Wellness-Daten erfolgreich übermittelt",
+    "metrics": {
+      "hrv": "Herzratenvariabilität",
+      "sleep": "Schlafqualität",
+      "fatigue": "Ermüdungsgrad",
+      "mood": "Stimmung",
+      "soreness": "Muskelkater",
+      "stress": "Stresslevel",
+      "hydration": "Flüssigkeitszufuhr",
+      "nutrition": "Ernährungsqualität"
+    },
+    "scale": {
+      "poor": "Schlecht",
+      "fair": "Mittelmäßig",
+      "good": "Gut",
+      "veryGood": "Sehr gut",
+      "excellent": "Ausgezeichnet"
+    }
+  },
+  "training": {
+    "title": "Trainingseinheiten",
+    "upcoming": "Anstehendes Training",
+    "completed": "Abgeschlossene Einheiten",
+    "assigned": "Zugewiesene Workouts",
+    "progress": "Trainingsfortschritt",
+    "todaysWorkout": "Heutiges Training",
+    "completeSession": "Einheit abschließen",
+    "viewDetails": "Details anzeigen",
+    "intensity": "Intensität",
+    "duration": "Dauer",
+    "focus": "Schwerpunkt",
+    "equipment": "Benötigte Ausrüstung",
+    "location": "Ort",
+    "coach": "Trainer",
+    "notes": "Trainingsnotizen"
+  },
+  "performance": {
+    "title": "Leistungsstatistiken",
+    "seasonStats": "Saisonstatistik",
+    "careerStats": "Karrierestatistik",
+    "lastGame": "Letztes Spiel",
+    "average": "Durchschnitt",
+    "total": "Gesamt",
+    "trend": "Trend",
+    "improvement": "Verbesserung",
+    "metrics": {
+      "goals": "Tore",
+      "assists": "Vorlagen",
+      "points": "Punkte",
+      "plusMinus": "+/-",
+      "pim": "Strafminuten",
+      "shots": "Schüsse",
+      "shootingPercentage": "Schussquote",
+      "faceoffPercentage": "Bullyquote",
+      "hits": "Checks",
+      "blocks": "Blocks",
+      "takeaways": "Puckeroberungen",
+      "giveaways": "Puckverluste",
+      "toi": "Eiszeit",
+      "powerplayGoals": "Überzahltore",
+      "shorthandedGoals": "Unterzahltore",
+      "gameWinningGoals": "Siegtore"
+    }
+  },
+  "schedule": {
+    "title": "Zeitplan",
+    "calendar": "Kalenderansicht",
+    "list": "Listenansicht",
+    "filters": "Filter",
+    "types": {
+      "game": "Spiel",
+      "practice": "Mannschaftstraining",
+      "training": "Individualtraining",
+      "meeting": "Besprechung",
+      "medical": "Medizinisch",
+      "recovery": "Regeneration",
+      "travel": "Reise",
+      "personal": "Persönlich"
+    },
+    "rsvp": {
+      "title": "Zusage",
+      "attending": "Teilnahme",
+      "notAttending": "Keine Teilnahme",
+      "maybe": "Vielleicht",
+      "update": "Antwort aktualisieren"
+    }
+  },
+  "communication": {
+    "title": "Nachrichten",
+    "inbox": "Posteingang",
+    "sent": "Gesendet",
+    "drafts": "Entwürfe",
+    "compose": "Verfassen",
+    "teamChat": "Team-Chat",
+    "coachMessages": "Trainer-Nachrichten",
+    "announcements": "Ankündigungen"
+  },
+  "development": {
+    "title": "Entwicklungsplan",
+    "goals": "Ziele",
+    "progress": "Fortschritt",
+    "skillAssessment": "Fertigkeitsbewertung",
+    "trainingPlan": "Trainingsplan",
+    "milestones": "Meilensteine",
+    "achievements": "Erfolge",
+    "areas": {
+      "skating": "Schlittschuhlaufen",
+      "shooting": "Schuss",
+      "passing": "Passen",
+      "stickHandling": "Stocktechnik",
+      "positioning": "Positionierung",
+      "physicality": "Körperlichkeit",
+      "mentalGame": "Mentales Spiel",
+      "leadership": "Führung"
+    }
+  },
+  "nutrition": {
+    "title": "Ernährung",
+    "mealPlan": "Mahlzeitenplan",
+    "hydration": "Flüssigkeitszufuhr",
+    "supplements": "Nahrungsergänzungsmittel",
+    "calories": "Kalorien",
+    "macros": "Makronährstoffe",
+    "meals": {
+      "breakfast": "Frühstück",
+      "lunch": "Mittagessen",
+      "dinner": "Abendessen",
+      "snack": "Snack",
+      "preGame": "Vor dem Spiel",
+      "postGame": "Nach dem Spiel"
+    }
+  },
+  "recovery": {
+    "title": "Regeneration",
+    "status": "Regenerationsstatus",
+    "activities": "Regenerationsaktivitäten",
+    "sleep": "Schlafüberwachung",
+    "treatment": "Behandlung",
+    "nextSession": "Nächste Regenerationseinheit",
+    "types": {
+      "massage": "Massage",
+      "coldTub": "Eisbad",
+      "sauna": "Sauna",
+      "stretching": "Dehnen",
+      "yoga": "Yoga",
+      "physiotherapy": "Physiotherapie"
+    }
+  }
+}

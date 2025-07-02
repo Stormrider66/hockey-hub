@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medicinskt team översikt",
+    "subtitle": "Spelarhälsa och skadehantering",
+    "welcome": "Välkommen, {{name}}",
+    "urgentCases": "Akuta fall",
+    "todayAppointments": "Dagens bokningar"
+  },
+  "players": {
+    "title": "Spelarhälsoöversikt",
+    "status": "Hälsostatus",
+    "active": "Aktiva spelare",
+    "injured": "Skadade spelare",
+    "recovery": "Under återhämtning",
+    "cleared": "Nyligen friskförklarade",
+    "monitoring": "Under observation",
+    "search": "Sök spelare",
+    "filter": "Filtrera efter status"
+  },
+  "injuries": {
+    "title": "Skadehantering",
+    "current": "Aktuella skador",
+    "history": "Skadehistorik",
+    "report": "Rapportera ny skada",
+    "update": "Uppdatera skada",
+    "severity": {
+      "minor": "Lindrig",
+      "moderate": "Måttlig",
+      "major": "Allvarlig",
+      "severe": "Svår",
+      "careerThreatening": "Karriärhotande"
+    },
+    "types": {
+      "concussion": "Hjärnskakning",
+      "fracture": "Fraktur",
+      "sprain": "Stukning",
+      "strain": "Sträckning",
+      "bruise": "Blåmärke",
+      "cut": "Skärsår",
+      "dislocation": "Urledvridning",
+      "illness": "Sjukdom"
+    },
+    "bodyParts": {
+      "head": "Huvud",
+      "neck": "Nacke",
+      "shoulder": "Axel",
+      "arm": "Arm",
+      "elbow": "Armbåge",
+      "wrist": "Handled",
+      "hand": "Hand",
+      "back": "Rygg",
+      "chest": "Bröst",
+      "abdomen": "Buk",
+      "hip": "Höft",
+      "groin": "Ljumske",
+      "thigh": "Lår",
+      "knee": "Knä",
+      "ankle": "Fotled",
+      "foot": "Fot"
+    }
+  },
+  "treatment": {
+    "title": "Behandlingsplaner",
+    "active": "Aktiva behandlingar",
+    "scheduled": "Schemalagda sessioner",
+    "completed": "Slutförda behandlingar",
+    "create": "Skapa behandlingsplan",
+    "modify": "Ändra plan",
+    "types": {
+      "physiotherapy": "Sjukgymnastik",
+      "massage": "Massageterapi",
+      "medication": "Medicinering",
+      "surgery": "Operation",
+      "rehabilitation": "Rehabilitering",
+      "rest": "Vila/Återhämtning",
+      "imaging": "Bilddiagnostik"
+    },
+    "frequency": {
+      "daily": "Dagligen",
+      "everyOtherDay": "Varannan dag",
+      "twiceWeekly": "Två gånger i veckan",
+      "weekly": "Veckovis",
+      "asNeeded": "Vid behov"
+    }
+  },
+  "appointments": {
+    "title": "Medicinska bokningar",
+    "schedule": "Boka tid",
+    "upcoming": "Kommande bokningar",
+    "today": "Dagens schema",
+    "calendar": "Bokningskalender",
+    "types": {
+      "checkup": "Rutinkontroll",
+      "injury": "Skadebedömning",
+      "followup": "Uppföljning",
+      "clearance": "Friskförklaring",
+      "physical": "Fysisk undersökning",
+      "emergency": "Akut"
+    },
+    "duration": {
+      "15min": "15 minuter",
+      "30min": "30 minuter",
+      "45min": "45 minuter",
+      "60min": "1 timme"
+    }
+  },
+  "records": {
+    "title": "Medicinska journaler",
+    "history": "Medicinsk historik",
+    "allergies": "Allergier",
+    "medications": "Nuvarande mediciner",
+    "conditions": "Befintliga tillstånd",
+    "surgeries": "Tidigare operationer",
+    "family": "Familjehistorik",
+    "documents": "Medicinska dokument",
+    "upload": "Ladda upp dokument",
+    "download": "Ladda ner journal"
+  },
+  "clearance": {
+    "title": "Återgång till spel",
+    "pending": "Väntande friskförklaringar",
+    "evaluate": "Utvärdera spelare",
+    "protocols": "Återgångsprotokoll",
+    "tests": "Nödvändiga tester",
+    "approve": "Godkänn återgång",
+    "deny": "Neka återgång",
+    "conditional": "Villkorad återgång",
+    "restrictions": "Aktivitetsbegränsningar"
+  },
+  "reports": {
+    "title": "Medicinska rapporter",
+    "injury": "Skaderapport",
+    "team": "Laghälsorapport",
+    "individual": "Individuell rapport",
+    "insurance": "Försäkringsrapport",
+    "compliance": "Regelefterlevnadsrapport",
+    "generate": "Generera rapport",
+    "export": "Exportera rapport"
+  },
+  "emergency": {
+    "title": "Nödprotokoll",
+    "contacts": "Nödkontakter",
+    "procedures": "Nödprocedurer",
+    "equipment": "Nödutrustning",
+    "locations": "Sjukhusplatser",
+    "action": "Handlingsplan för nödsituationer",
+    "call": "Nödsamtal"
+  },
+  "wellness": {
+    "title": "Välmåendeövervakning",
+    "daily": "Dagliga kontroller",
+    "trends": "Välmåendetrender",
+    "alerts": "Välmåendevarningar",
+    "metrics": {
+      "sleep": "Sömnkvalitet",
+      "fatigue": "Trötthetsnivå",
+      "soreness": "Muskelömhet",
+      "mood": "Humör",
+      "stress": "Stressnivå",
+      "hydration": "Vätskebalans"
+    }
+  }
+}

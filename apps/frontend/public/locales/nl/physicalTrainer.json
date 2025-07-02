@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Fysieke Trainer Dashboard",
+    "subtitle": "Spelerfitheid en trainingsbeheer",
+    "welcome": "Welkom, {{name}}",
+    "todaySessions": "Trainingssessies vandaag",
+    "playerProgress": "Overzicht spelervoortgang",
+    "quickStats": {
+      "todaysSessions": "Sessies vandaag",
+      "activeNow": "Nu actief",
+      "playerReadiness": "Spelergereedheid",
+      "completedToday": "Voltooid vandaag",
+      "totalPlayers": "{{count}} totaal spelers",
+      "noActiveSession": "Geen actieve sessie",
+      "teamAverage": "Teamgemiddelde",
+      "upcoming": "{{count}} aankomend"
+    }
+  },
+  "training": {
+    "title": "Trainingsprogramma's",
+    "create": "Programma maken",
+    "templates": "Trainingssjablonen",
+    "active": "Actieve programma's",
+    "scheduled": "Geplande sessies",
+    "history": "Trainingsgeschiedenis",
+    "types": {
+      "strength": "Krachttraining",
+      "cardio": "Cardiovasculair",
+      "flexibility": "Flexibiliteit",
+      "agility": "Behendigheid",
+      "recovery": "Herstel",
+      "rehabilitation": "Revalidatie",
+      "testing": "Fitnesstesten"
+    },
+    "intensity": {
+      "low": "Laag",
+      "medium": "Gemiddeld",
+      "moderate": "Matig",
+      "high": "Hoog",
+      "maximum": "Maximaal"
+    }
+  },
+  "sessions": {
+    "title": "Trainingssessies",
+    "schedule": "Sessie plannen",
+    "current": "Huidige sessie",
+    "upcoming": "Aankomende sessies",
+    "completed": "Voltooide sessies",
+    "cancel": "Sessie annuleren",
+    "reschedule": "Opnieuw plannen",
+    "duration": "Sessieduur",
+    "participants": "Deelnemers",
+    "newSession": "Nieuwe sessie",
+    "intensity": "{{level}} intensiteit",
+    "status": {
+      "active": "Actief",
+      "completed": "Voltooid",
+      "upcoming": "Aankomend"
+    },
+    "launch": "Starten",
+    "viewDetails": "Details bekijken"
+  },
+  "exercises": {
+    "title": "Oefeningenbibliotheek",
+    "search": "Zoek oefeningen",
+    "categories": "Oefeningencategorieën",
+    "create": "Oefening toevoegen",
+    "favorite": "Favoriete oefeningen",
+    "equipment": "Benodigde uitrusting",
+    "instructions": "Instructies",
+    "video": "Video tutorial",
+    "categories": {
+      "upperBody": "Bovenlichaam",
+      "lowerBody": "Onderlichaam",
+      "core": "Core",
+      "fullBody": "Heel lichaam",
+      "skating": "Schaatsspecifiek",
+      "shooting": "Schotkracht",
+      "balance": "Balans & Stabiliteit",
+      "plyometric": "Plyometrisch"
+    }
+  },
+  "workouts": {
+    "title": "Workout Builder",
+    "create": "Workout maken",
+    "edit": "Workout bewerken",
+    "save": "Workout opslaan",
+    "templates": "Workout sjablonen",
+    "custom": "Aangepaste workouts",
+    "assign": "Toewijzen aan spelers",
+    "components": {
+      "warmup": "Warming-up",
+      "main": "Hoofdworkout",
+      "cooldown": "Cooling-down",
+      "stretching": "Stretchen"
+    },
+    "parameters": {
+      "sets": "Sets",
+      "reps": "Herhalingen",
+      "duration": "Duur",
+      "rest": "Rustperiode",
+      "weight": "Gewicht",
+      "distance": "Afstand",
+      "speed": "Snelheid"
+    }
+  },
+  "testing": {
+    "title": "Fitnesstesten",
+    "schedule": "Test plannen",
+    "protocols": "Testprotocollen",
+    "results": "Testresultaten",
+    "history": "Testgeschiedenis",
+    "compare": "Resultaten vergelijken",
+    "benchmarks": "Teambenchmarks",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprinttest",
+      "agility": "Behendigheidstest",
+      "strength": "Krachttest",
+      "flexibility": "Flexibiliteitstest",
+      "balance": "Balanstest",
+      "endurance": "Uithoudingstest",
+      "powerOutput": "Vermogen"
+    }
+  },
+  "monitoring": {
+    "title": "Prestatiemonitoring",
+    "metrics": "Prestatiestatistieken",
+    "trends": "Voortgangstrends",
+    "alerts": "Prestatiewaarschuwingen",
+    "load": "Trainingsbelasting",
+    "recovery": "Herstelstatus",
+    "readiness": "Trainingsgereedheid",
+    "metrics": {
+      "hrv": "Hartritmevariabiliteit",
+      "restingHR": "Rusthartslag",
+      "weight": "Lichaamsgewicht",
+      "bodyFat": "Vetpercentage",
+      "muscleMass": "Spiermassa",
+      "power": "Vermogen",
+      "speed": "Snelheid",
+      "endurance": "Uithoudingsvermogen"
+    }
+  },
+  "programs": {
+    "title": "Trainingsprogramma's",
+    "inSeason": "Seizoensprogramma",
+    "offSeason": "Tussenseizoen programma",
+    "preseason": "Voorseizoen programma",
+    "rehabilitation": "Revalidatieprogramma",
+    "maintenance": "Onderhoudsprogramma",
+    "phases": {
+      "preparation": "Voorbereidingsfase",
+      "building": "Opbouwfase",
+      "peak": "Piekfase",
+      "recovery": "Herstelfase"
+    }
+  },
+  "analytics": {
+    "title": "Trainingsanalyse",
+    "individual": "Individuele analyse",
+    "team": "Teamanalyse",
+    "progress": "Voortgangsrapporten",
+    "comparison": "Spelervergelijking",
+    "export": "Data exporteren",
+    "metrics": "Belangrijke statistieken",
+    "insights": "Prestatie-inzichten"
+  },
+  "communication": {
+    "title": "Communicatie",
+    "feedback": "Sessiefeedback",
+    "notes": "Trainingsnotities",
+    "recommendations": "Aanbevelingen",
+    "alerts": "Waarschuwing versturen",
+    "report": "Voortgangsrapport",
+    "collaborate": "Samenwerken met medisch"
+  }
+}

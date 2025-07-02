@@ -1,0 +1,175 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run E2E tests every day at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: 'Browser to test'
+        required: false
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+          - edge
+          - electron
+
+env:
+  NODE_VERSION: '20.x'
+  PNPM_VERSION: 8
+
+jobs:
+  e2e-tests:
+    name: E2E Tests (${{ matrix.browser }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: hockey_hub_e2e
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup E2E databases
+        run: |
+          # Create all service databases for E2E
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE user_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE calendar_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE training_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE communication_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE medical_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE statistics_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE payment_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE planning_service_e2e;"
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE admin_service_e2e;"
+
+      - name: Build application
+        run: pnpm run build
+
+      - name: Start backend services
+        run: |
+          # Start all backend services in background
+          pnpm run start:services:e2e &
+          # Wait for services to be ready
+          sleep 30
+        env:
+          NODE_ENV: e2e
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
+          JWT_SECRET: e2e-secret-key
+          JWT_REFRESH_SECRET: e2e-refresh-secret
+
+      - name: Start frontend
+        run: |
+          cd apps/frontend
+          pnpm run start &
+          # Wait for frontend to be ready
+          npx wait-on http://localhost:3002 -t 60000
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_API_URL: http://localhost:3000
+
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: apps/frontend
+          browser: ${{ matrix.browser }}
+          record: true
+          parallel: true
+          group: 'E2E - ${{ matrix.browser }}'
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_baseUrl: http://localhost:3002
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots-${{ matrix.browser }}
+          path: apps/frontend/cypress/screenshots
+
+      - name: Upload videos on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos-${{ matrix.browser }}
+          path: apps/frontend/cypress/videos
+
+      - name: Generate E2E report
+        if: always()
+        run: |
+          echo "## E2E Test Report - ${{ matrix.browser }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Browser: ${{ matrix.browser }}" >> $GITHUB_STEP_SUMMARY
+          echo "Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY

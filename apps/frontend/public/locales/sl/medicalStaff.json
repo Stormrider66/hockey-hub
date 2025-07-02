@@ -1,0 +1,208 @@
+{
+  "dashboard": {
+    "title": "Nadzorna plošča zdravstvenega osebja",
+    "welcome": "Dobrodošli, {{name}}!",
+    "todayAppointments": "Današnji termini",
+    "activeInjuries": "Aktivne poškodbe",
+    "clearanceRequests": "Zahteve za dovoljenje za igro",
+    "upcomingAssessments": "Prihajajoče ocene",
+    "quickActions": "Hitra dejanja",
+    "stats": {
+      "totalInjuries": "Vse poškodbe",
+      "activeRecovery": "V rehabilitaciji",
+      "clearedToPlay": "Pripravljeni za igro",
+      "pendingAssessment": "Čakajo na oceno"
+    }
+  },
+  "injuries": {
+    "title": "Poškodbe",
+    "newInjury": "Nova poškodba",
+    "editInjury": "Uredi poškodbo",
+    "injuryList": "Seznam poškodb",
+    "injuryReport": "Poročilo o poškodbi",
+    "recoveryPlan": "Načrt okrevanja",
+    "timeline": "Časovnica",
+    "status": "Status",
+    "severity": "Resnost",
+    "type": "Tip",
+    "location": "Lokacija",
+    "mechanism": "Mehanizem poškodbe",
+    "diagnosis": "Diagnoza",
+    "treatment": "Zdravljenje",
+    "prognosis": "Prognoza",
+    "returnToPlay": "Vrnitev v igro",
+    "types": {
+      "concussion": "Pretres možganov",
+      "fracture": "Zlom",
+      "sprain": "Zvin",
+      "strain": "Nateg",
+      "contusion": "Udarnina",
+      "laceration": "Ureznina",
+      "dislocation": "Izpah",
+      "tendonitis": "Vnetje tetive",
+      "bursitis": "Burzitis",
+      "other": "Drugo"
+    },
+    "severity": {
+      "minor": "Lažja",
+      "moderate": "Zmerna",
+      "severe": "Huda",
+      "critical": "Kritična"
+    },
+    "status": {
+      "active": "Aktivna",
+      "recovering": "V okrevanju",
+      "cleared": "Ozdravljena",
+      "chronic": "Kronična",
+      "monitoring": "Pod nadzorom"
+    }
+  },
+  "assessments": {
+    "title": "Ocene",
+    "newAssessment": "Nova ocena",
+    "baseline": "Izhodiščna ocena",
+    "preseason": "Predsezonska",
+    "periodic": "Periodična",
+    "returnToPlay": "Vrnitev v igro",
+    "concussionProtocol": "Protokol za pretres možganov",
+    "physicalExam": "Fizični pregled",
+    "functionalTest": "Funkcionalni test",
+    "imaging": "Slikanje",
+    "labWork": "Laboratorijske preiskave",
+    "forms": {
+      "medical": "Zdravstveni obrazec",
+      "consent": "Soglasje",
+      "history": "Zdravstvena zgodovina",
+      "clearance": "Dovoljenje za igro"
+    }
+  },
+  "treatment": {
+    "title": "Zdravljenja",
+    "activeTreatments": "Aktivna zdravljenja",
+    "treatmentPlan": "Načrt zdravljenja",
+    "schedule": "Urnik zdravljenja",
+    "progress": "Napredek",
+    "modalities": "Modalitete",
+    "exercises": "Vaje",
+    "medications": "Zdravila",
+    "referrals": "Napotnice",
+    "notes": "Opombe",
+    "types": {
+      "physicalTherapy": "Fizioterapija",
+      "massage": "Masaža",
+      "ice": "Led",
+      "heat": "Toplota",
+      "ultrasound": "Ultrazvok",
+      "electricalStim": "Električna stimulacija",
+      "taping": "Tejpanje",
+      "stretching": "Raztezanje",
+      "strengthening": "Krepitev",
+      "manual": "Manualna terapija"
+    }
+  },
+  "players": {
+    "title": "Igralci",
+    "roster": "Seznam",
+    "medicalHistory": "Zdravstvena zgodovina",
+    "currentStatus": "Trenutni status",
+    "clearance": "Dovoljenje za igro",
+    "restrictions": "Omejitve",
+    "allergies": "Alergije",
+    "medications": "Zdravila",
+    "conditions": "Kronična stanja",
+    "emergency": "Nujni podatki",
+    "insurance": "Zavarovanje",
+    "status": {
+      "healthy": "Zdrav",
+      "injured": "Poškodovan",
+      "illness": "Bolan",
+      "limited": "Omejeno lahko igra",
+      "notCleared": "Ne sme igrati"
+    }
+  },
+  "wellness": {
+    "title": "Počutje",
+    "monitoring": "Spremljanje",
+    "surveys": "Ankete",
+    "metrics": "Meritve",
+    "trends": "Trendi",
+    "alerts": "Opozorila",
+    "sleep": "Spanje",
+    "nutrition": "Prehrana",
+    "hydration": "Hidracija",
+    "stress": "Stres",
+    "fatigue": "Utrujenost",
+    "mood": "Razpoloženje",
+    "soreness": "Bolečine v mišicah",
+    "energy": "Nivo energije"
+  },
+  "reports": {
+    "title": "Poročila",
+    "injuryReport": "Poročilo o poškodbah",
+    "medicalReport": "Zdravstveno poročilo",
+    "clearanceReport": "Poročilo o dovoljenju za igro",
+    "teamHealth": "Zdravje ekipe",
+    "monthlyReport": "Mesečno poročilo",
+    "seasonReport": "Sezonsko poročilo",
+    "incidentReport": "Poročilo o incidentu",
+    "generate": "Ustvari poročilo",
+    "export": "Izvozi",
+    "share": "Deli"
+  },
+  "emergency": {
+    "title": "Nujni primeri",
+    "protocols": "Protokoli",
+    "contacts": "Nujni kontakti",
+    "procedures": "Postopki",
+    "equipment": "Oprema",
+    "actionPlan": "Načrt ukrepanja",
+    "evacuation": "Evakuacija",
+    "firstAid": "Prva pomoč",
+    "aed": "AED defibrilator",
+    "spineBoard": "Deska za hrbtenico",
+    "ambulance": "Reševalno vozilo",
+    "hospital": "Bolnišnica",
+    "emergencyKit": "Komplet prve pomoči"
+  },
+  "communications": {
+    "title": "Komunikacija",
+    "teamUpdates": "Posodobitve ekipe",
+    "coachNotification": "Obvestilo trenerju",
+    "parentNotification": "Obvestilo staršem",
+    "medicalAlert": "Zdravstveno opozorilo",
+    "clearanceNotice": "Obvestilo o dovoljenju za igro",
+    "appointmentReminder": "Opomnik za termin",
+    "followUp": "Nadaljnje spremljanje",
+    "referral": "Napotnica",
+    "consultation": "Posvet"
+  },
+  "resources": {
+    "title": "Viri",
+    "protocols": "Protokoli",
+    "guidelines": "Smernice",
+    "forms": "Obrazci",
+    "education": "Izobraževanje",
+    "research": "Raziskave",
+    "contacts": "Kontakti",
+    "suppliers": "Dobavitelji",
+    "references": "Reference",
+    "training": "Usposabljanje",
+    "certification": "Certifikati"
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "profile": "Profil",
+    "preferences": "Preference",
+    "notifications": "Obvestila",
+    "privacy": "Zasebnost",
+    "templates": "Predloge",
+    "reminders": "Opomniki",
+    "alerts": {
+      "injuries": "Obvestila o poškodbah",
+      "appointments": "Obvestila o terminih",
+      "clearance": "Obvestila o dovoljenju za igro",
+      "wellness": "Opozorila o počutju",
+      "emergency": "Nujna obvestila"
+    }
+  }
+}

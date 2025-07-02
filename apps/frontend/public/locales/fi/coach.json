@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Valmentajan kojelauta",
+    "subtitle": "Joukkueen hallinta ja suorituskyvyn seuranta",
+    "welcome": "Tervetuloa takaisin, valmentaja {{name}}!",
+    "quickStats": "Pikatilastot",
+    "todaysFocus": "Päivän painopiste"
+  },
+  "team": {
+    "title": "Joukkueen hallinta",
+    "roster": "Joukkueen kokoonpano",
+    "lineups": "Kenttäkokoonpanot",
+    "availability": "Pelaajien saatavuus",
+    "performance": "Joukkueen suorituskyky",
+    "statistics": "Joukkuetilastot",
+    "playerStatus": {
+      "available": "Käytettävissä",
+      "limited": "Rajoitetusti",
+      "unavailable": "Ei käytettävissä",
+      "injured": "Loukkaantunut",
+      "dayToDay": "Päivä kerrallaan"
+    }
+  },
+  "practice": {
+    "title": "Harjoitusten suunnittelu",
+    "schedule": "Harjoitusaikataulu",
+    "drills": "Harjoitekirjasto",
+    "templates": "Harjoituspohjat",
+    "planning": "Harjoitusten suunnittelu",
+    "attendance": "Läsnäoloseuranta",
+    "intensity": "Harjoituksen intensiteetti",
+    "focus": {
+      "offense": "Hyökkäysjärjestelmät",
+      "defense": "Puolustusjärjestelmät",
+      "specialTeams": "Erikoistilanteet",
+      "conditioning": "Fysiikkaharjoittelu",
+      "skills": "Taitojen kehittäminen"
+    },
+    "types": {
+      "full": "Täysi harjoitus",
+      "optional": "Vapaaehtoinen jää",
+      "morning": "Aamuharjoitus",
+      "preGame": "Peliä edeltävä harjoitus",
+      "recovery": "Palautumisharjoitus"
+    }
+  },
+  "games": {
+    "title": "Pelien hallinta",
+    "schedule": "Otteluohjelma",
+    "preparation": "Peliin valmistautuminen",
+    "tactics": "Taktinen suunnittelu",
+    "lineups": "Pelikokoonpanot",
+    "scouting": "Vastustaja-analyysit",
+    "video": "Videoanalyysi",
+    "stats": {
+      "goals": "Maalit",
+      "assists": "Syötöt",
+      "shots": "Laukaukset",
+      "saves": "Torjunnat",
+      "faceoffs": "Aloitukset",
+      "penalties": "Jäähyt",
+      "hits": "Taklaukset",
+      "blocks": "Blokaukset"
+    }
+  },
+  "tactics": {
+    "title": "Taktinen taulu",
+    "systems": "Joukkuejärjestelmät",
+    "powerPlay": "Ylivoima",
+    "penaltyKill": "Alivoima",
+    "faceoffPlays": "Aloituskuviot",
+    "breakouts": "Irtiottokuviot",
+    "forecheck": "Ennakointijärjestelmät",
+    "neutralZone": "Keskialue",
+    "save": "Tallenna taktiikka",
+    "load": "Lataa taktiikka"
+  },
+  "communication": {
+    "title": "Joukkueviestintä",
+    "announcements": "Joukkueilmoitukset",
+    "meetings": "Joukkuepalaverit",
+    "feedback": "Pelaajapalaute",
+    "messages": "Yksityisviestit",
+    "broadcast": "Lähetä joukkueviesti",
+    "schedule": "Ajoita palaveri"
+  },
+  "analytics": {
+    "title": "Suoritusanalytiikka",
+    "teamMetrics": "Joukkuemittarit",
+    "playerMetrics": "Pelaajamittarit",
+    "trends": "Suoritustrendit",
+    "comparison": "Joukkuevertailu",
+    "advanced": "Edistyneet tilastot",
+    "reports": "Luo raportteja",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Hyökkäysalueen aloitukset",
+      "gaa": "Päästettyjen maalien keskiarvo",
+      "svp": "Torjuntaprosentti"
+    }
+  },
+  "development": {
+    "title": "Pelaajien kehittäminen",
+    "plans": "Kehityssuunnitelmat",
+    "progress": "Edistymisen seuranta",
+    "goals": "Kehitystavoitteet",
+    "assessments": "Taitoarvioinnit",
+    "feedback": "Kehityspalaute",
+    "programs": "Harjoitusohjelmat"
+  },
+  "lineup": {
+    "title": "Kenttäkokoonpanojen hallinta",
+    "forward": "Hyökkäysketjut",
+    "defense": "Puolustusparit",
+    "powerPlay": "Ylivoimayksiköt",
+    "penaltyKill": "Alivoimayksiköt",
+    "scratches": "Katsomossa",
+    "optimize": "Optimoi kentälliset",
+    "save": "Tallenna kokoonpano",
+    "positions": {
+      "c": "Keskushyökkääjä",
+      "lw": "Vasen laitahyökkääjä",
+      "rw": "Oikea laitahyökkääjä",
+      "ld": "Vasen puolustaja",
+      "rd": "Oikea puolustaja",
+      "g": "Maalivahti"
+    }
+  }
+}

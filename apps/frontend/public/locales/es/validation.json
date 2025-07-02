@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Este campo es obligatorio",
+    "email": "El correo electrónico es obligatorio",
+    "password": "La contraseña es obligatoria",
+    "firstName": "El nombre es obligatorio",
+    "lastName": "El apellido es obligatorio",
+    "phone": "El número de teléfono es obligatorio",
+    "date": "La fecha es obligatoria",
+    "time": "La hora es obligatoria",
+    "selection": "Por favor haz una selección"
+  },
+  "email": {
+    "invalid": "Por favor ingresa un correo electrónico válido",
+    "alreadyExists": "Este correo electrónico ya está registrado"
+  },
+  "password": {
+    "tooShort": "La contraseña debe tener al menos {{min}} caracteres",
+    "tooWeak": "La contraseña es muy débil. Usa una mezcla de letras, números y símbolos",
+    "noMatch": "Las contraseñas no coinciden",
+    "requiresUppercase": "La contraseña debe contener al menos una letra mayúscula",
+    "requiresLowercase": "La contraseña debe contener al menos una letra minúscula",
+    "requiresNumber": "La contraseña debe contener al menos un número",
+    "requiresSpecial": "La contraseña debe contener al menos un carácter especial"
+  },
+  "string": {
+    "tooShort": "Debe tener al menos {{min}} caracteres",
+    "tooLong": "No debe tener más de {{max}} caracteres",
+    "invalidFormat": "Formato inválido",
+    "alphanumeric": "Solo se permiten letras y números",
+    "alphabetic": "Solo se permiten letras",
+    "invalidCharacters": "Contiene caracteres inválidos"
+  },
+  "number": {
+    "invalid": "Por favor ingresa un número válido",
+    "tooSmall": "Debe ser al menos {{min}}",
+    "tooLarge": "No debe ser más de {{max}}",
+    "integer": "Debe ser un número entero",
+    "positive": "Debe ser un número positivo",
+    "negative": "Debe ser un número negativo"
+  },
+  "date": {
+    "invalid": "Por favor ingresa una fecha válida",
+    "beforeMin": "La fecha debe ser después de {{min}}",
+    "afterMax": "La fecha debe ser antes de {{max}}",
+    "inPast": "La fecha debe estar en el pasado",
+    "inFuture": "La fecha debe estar en el futuro"
+  },
+  "time": {
+    "invalid": "Por favor ingresa una hora válida",
+    "beforeMin": "La hora debe ser después de {{min}}",
+    "afterMax": "La hora debe ser antes de {{max}}"
+  },
+  "phone": {
+    "invalid": "Por favor ingresa un número de teléfono válido",
+    "invalidCountryCode": "Código de país inválido"
+  },
+  "file": {
+    "tooLarge": "El tamaño del archivo debe ser menor a {{maxSize}}",
+    "invalidType": "Tipo de archivo no permitido. Tipos permitidos: {{allowedTypes}}",
+    "required": "Por favor selecciona un archivo",
+    "tooMany": "Demasiados archivos. Máximo permitido: {{max}}"
+  },
+  "url": {
+    "invalid": "Por favor ingresa una URL válida"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Formato de código de equipo inválido",
+      "notFound": "Código de equipo no encontrado"
+    },
+    "playerNumber": {
+      "invalid": "Número de jugador inválido",
+      "alreadyTaken": "Este número ya está ocupado"
+    },
+    "age": {
+      "tooYoung": "Debe tener al menos {{min}} años",
+      "tooOld": "No debe tener más de {{max}} años"
+    },
+    "schedule": {
+      "conflict": "Este horario entra en conflicto con otro evento",
+      "outsideHours": "El horario seleccionado está fuera del horario de operación",
+      "tooSoon": "Debe programarse con al menos {{hours}} horas de anticipación"
+    },
+    "capacity": {
+      "exceeded": "Capacidad máxima excedida",
+      "minimum": "Se requieren mínimo {{min}} participantes"
+    }
+  },
+  "form": {
+    "hasErrors": "Por favor corrige los errores a continuación",
+    "submitError": "Error al enviar el formulario. Por favor intenta de nuevo.",
+    "saveDraft": "Tu borrador ha sido guardado",
+    "unsavedChanges": "Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?"
+  },
+  "search": {
+    "tooShort": "La búsqueda debe tener al menos {{min}} caracteres",
+    "noResults": "No se encontraron resultados"
+  },
+  "selection": {
+    "minimum": "Por favor selecciona al menos {{min}} opción(es)",
+    "maximum": "Por favor selecciona no más de {{max}} opción(es)",
+    "exact": "Por favor selecciona exactamente {{count}} opción(es)"
+  },
+  "comparison": {
+    "mustMatch": "Los campos deben coincidir",
+    "mustBeDifferent": "Los campos deben ser diferentes",
+    "startBeforeEnd": "La hora de inicio debe ser antes de la hora de fin",
+    "endAfterStart": "La hora de fin debe ser después de la hora de inicio"
+  }
+}

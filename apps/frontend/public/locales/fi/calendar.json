@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Kuukausi",
+    "week": "Viikko",
+    "day": "Päivä",
+    "agenda": "Agenda",
+    "workWeek": "Työviikko"
+  },
+  "navigation": {
+    "today": "Tänään",
+    "back": "Takaisin",
+    "next": "Seuraava",
+    "previous": "Edellinen",
+    "jumpToDate": "Siirry päivämäärään"
+  },
+  "event": {
+    "title": "Tapahtuma",
+    "newEvent": "Uusi tapahtuma",
+    "editEvent": "Muokkaa tapahtumaa",
+    "deleteEvent": "Poista tapahtuma",
+    "duplicateEvent": "Kopioi tapahtuma",
+    "allDay": "Koko päivä",
+    "recurring": "Toistuva",
+    "privateEvent": "Yksityinen tapahtuma",
+    "fields": {
+      "title": "Otsikko",
+      "description": "Kuvaus",
+      "location": "Sijainti",
+      "startDate": "Alkamispäivä",
+      "startTime": "Alkamisaika",
+      "endDate": "Päättymispäivä",
+      "endTime": "Päättymisaika",
+      "type": "Tapahtumatyyppi",
+      "category": "Kategoria",
+      "participants": "Osallistujat",
+      "resources": "Resurssit",
+      "notes": "Muistiinpanot",
+      "reminder": "Muistutus",
+      "color": "Väri",
+      "attachments": "Liitteet"
+    },
+    "types": {
+      "practice": "Harjoitus",
+      "game": "Peli",
+      "training": "Harjoittelu",
+      "meeting": "Palaveri",
+      "tournament": "Turnaus",
+      "tryout": "Koeharjoitus",
+      "medical": "Lääkärikäynti",
+      "equipment": "Varustesovitus",
+      "teamEvent": "Joukkuetapahtuma",
+      "personal": "Henkilökohtainen",
+      "other": "Muu"
+    },
+    "status": {
+      "confirmed": "Vahvistettu",
+      "tentative": "Alustava",
+      "cancelled": "Peruutettu",
+      "postponed": "Siirretty",
+      "rescheduled": "Uudelleen ajoitettu"
+    }
+  },
+  "recurrence": {
+    "title": "Toistuvuus",
+    "none": "Ei toistu",
+    "daily": "Päivittäin",
+    "weekly": "Viikoittain",
+    "monthly": "Kuukausittain",
+    "yearly": "Vuosittain",
+    "custom": "Mukautettu",
+    "every": "Joka",
+    "days": "päivä",
+    "weeks": "viikko",
+    "months": "kuukausi",
+    "years": "vuosi",
+    "on": "Päivinä",
+    "onThe": "Päivänä",
+    "weekdays": {
+      "monday": "Maanantai",
+      "tuesday": "Tiistai",
+      "wednesday": "Keskiviikko",
+      "thursday": "Torstai",
+      "friday": "Perjantai",
+      "saturday": "Lauantai",
+      "sunday": "Sunnuntai"
+    },
+    "ends": {
+      "never": "Ei koskaan",
+      "after": "Jälkeen",
+      "onDate": "Päivämääränä",
+      "occurrences": "kertaa"
+    }
+  },
+  "availability": {
+    "available": "Vapaa",
+    "unavailable": "Ei saatavilla",
+    "busy": "Varattu",
+    "tentative": "Alustava",
+    "outOfOffice": "Poissa"
+  },
+  "conflicts": {
+    "detected": "Aikatauluristiriita havaittu",
+    "message": "Tämä tapahtuma on päällekkäin:",
+    "resolution": "Miten haluat ratkaista tämän?",
+    "overwrite": "Korvaa olemassa oleva",
+    "keepBoth": "Säilytä molemmat tapahtumat",
+    "cancel": "Peruuta uusi tapahtuma"
+  },
+  "filters": {
+    "title": "Suodattimet",
+    "showAll": "Näytä kaikki",
+    "byType": "Tyypin mukaan",
+    "byTeam": "Joukkueen mukaan",
+    "byLocation": "Sijainnin mukaan",
+    "myEvents": "Vain omat tapahtumat"
+  },
+  "export": {
+    "title": "Vie kalenteri",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Tulosta"
+    },
+    "range": {
+      "all": "Kaikki tapahtumat",
+      "current": "Nykyinen näkymä",
+      "custom": "Mukautettu aikaväli"
+    }
+  },
+  "sharing": {
+    "title": "Jaa kalenteri",
+    "publicLink": "Julkinen linkki",
+    "embed": "Upotuskoodi",
+    "subscribe": "Tilaus-URL",
+    "permissions": {
+      "view": "Vain katselu",
+      "edit": "Voi muokata",
+      "admin": "Täydet oikeudet"
+    }
+  },
+  "reminders": {
+    "none": "Ei muistutusta",
+    "atTime": "Tapahtuman aikaan",
+    "minutes": "{{count}} minuuttia ennen",
+    "hours": "{{count}} tuntia ennen",
+    "days": "{{count}} päivää ennen",
+    "custom": "Mukautettu"
+  },
+  "actions": {
+    "create": "Luo tapahtuma",
+    "save": "Tallenna",
+    "cancel": "Peruuta",
+    "delete": "Poista",
+    "edit": "Muokkaa",
+    "duplicate": "Kopioi",
+    "print": "Tulosta",
+    "export": "Vie",
+    "import": "Tuo",
+    "subscribe": "Tilaa",
+    "unsubscribe": "Peru tilaus",
+    "rsvp": "Ilmoittaudu",
+    "maybeAttending": "Ehkä",
+    "attending": "Osallistun",
+    "notAttending": "En osallistu"
+  },
+  "messages": {
+    "eventCreated": "Tapahtuma luotu onnistuneesti",
+    "eventUpdated": "Tapahtuma päivitetty onnistuneesti",
+    "eventDeleted": "Tapahtuma poistettu onnistuneesti",
+    "eventDuplicated": "Tapahtuma kopioitu onnistuneesti",
+    "conflictWarning": "Tässä ajankohdassa on päällekkäisyyksiä",
+    "participantAdded": "Osallistuja lisätty",
+    "participantRemoved": "Osallistuja poistettu",
+    "reminderSet": "Muistutus asetettu",
+    "calendarShared": "Kalenteri jaettu onnistuneesti",
+    "exportComplete": "Vienti valmis",
+    "importComplete": "Tuonti valmis"
+  },
+  "facility": {
+    "rink": "Jäähalli",
+    "mainRink": "Pääjäähalli",
+    "practiceRink": "Harjoitusjäähalli",
+    "gym": "Kuntosali",
+    "meetingRoom": "Kokoustila",
+    "lockerRoom": "Pukuhuone",
+    "trainingRoom": "Harjoitustila",
+    "videoRoom": "Videotila",
+    "medicalRoom": "Lääkintätila"
+  },
+  "tooltips": {
+    "dragToMove": "Vedä siirtääksesi tapahtumaa",
+    "dragToResize": "Vedä reunoista muuttaaksesi kokoa",
+    "clickToEdit": "Klikkaa muokataksesi",
+    "doubleClickToCreate": "Kaksoisklikkaa luodaksesi tapahtuman"
+  }
+}

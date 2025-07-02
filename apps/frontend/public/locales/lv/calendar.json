@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Mēnesis",
+    "week": "Nedēļa",
+    "day": "Diena",
+    "agenda": "Darba kārtība",
+    "workWeek": "Darba nedēļa"
+  },
+  "navigation": {
+    "today": "Šodien",
+    "back": "Atpakaļ",
+    "next": "Nākamais",
+    "previous": "Iepriekšējais",
+    "jumpToDate": "Pāriet uz datumu"
+  },
+  "event": {
+    "title": "Notikums",
+    "newEvent": "Jauns notikums",
+    "editEvent": "Rediģēt notikumu",
+    "deleteEvent": "Dzēst notikumu",
+    "duplicateEvent": "Dublēt notikumu",
+    "allDay": "Visu dienu",
+    "recurring": "Atkārtojošs",
+    "privateEvent": "Privāts notikums",
+    "fields": {
+      "title": "Nosaukums",
+      "description": "Apraksts",
+      "location": "Vieta",
+      "startDate": "Sākuma datums",
+      "startTime": "Sākuma laiks",
+      "endDate": "Beigu datums",
+      "endTime": "Beigu laiks",
+      "type": "Notikuma tips",
+      "category": "Kategorija",
+      "participants": "Dalībnieki",
+      "resources": "Resursi",
+      "notes": "Piezīmes",
+      "reminder": "Atgādinājums",
+      "color": "Krāsa",
+      "attachments": "Pielikumi"
+    },
+    "types": {
+      "practice": "Treniņš",
+      "game": "Spēle",
+      "training": "Fiziskā sagatavotība",
+      "meeting": "Sapulce",
+      "tournament": "Turnīrs",
+      "tryout": "Atlases treniņš",
+      "medical": "Medicīniskā apskate",
+      "equipment": "Ekipējuma pielaikošana",
+      "teamEvent": "Komandas pasākums",
+      "personal": "Personīgs",
+      "other": "Cits"
+    },
+    "status": {
+      "confirmed": "Apstiprināts",
+      "tentative": "Provizoriski",
+      "cancelled": "Atcelts",
+      "postponed": "Atlikts",
+      "rescheduled": "Pārcelts"
+    }
+  },
+  "recurrence": {
+    "title": "Atkārtošanās",
+    "none": "Neatkārtojas",
+    "daily": "Katru dienu",
+    "weekly": "Katru nedēļu",
+    "monthly": "Katru mēnesi",
+    "yearly": "Katru gadu",
+    "custom": "Pielāgots",
+    "every": "Katru",
+    "days": "dienu(-as)",
+    "weeks": "nedēļu(-as)",
+    "months": "mēnesi(-šus)",
+    "years": "gadu(-us)",
+    "on": "Dienā",
+    "onThe": "Datumā",
+    "weekdays": {
+      "monday": "Pirmdiena",
+      "tuesday": "Otrdiena",
+      "wednesday": "Trešdiena",
+      "thursday": "Ceturtdiena",
+      "friday": "Piektdiena",
+      "saturday": "Sestdiena",
+      "sunday": "Svētdiena"
+    },
+    "ends": {
+      "never": "Nekad",
+      "after": "Pēc",
+      "onDate": "Datumā",
+      "occurrences": "reizēm"
+    }
+  },
+  "availability": {
+    "available": "Pieejams",
+    "unavailable": "Nepieejams",
+    "busy": "Aizņemts",
+    "tentative": "Provizoriski",
+    "outOfOffice": "Prombūtnē"
+  },
+  "conflicts": {
+    "detected": "Konstatēts grafika konflikts",
+    "message": "Šis notikums konfliktē ar:",
+    "resolution": "Kā vēlaties to atrisināt?",
+    "overwrite": "Pārrakstīt esošo",
+    "keepBoth": "Paturēt abus notikumus",
+    "cancel": "Atcelt jauno notikumu"
+  },
+  "filters": {
+    "title": "Filtri",
+    "showAll": "Rādīt visu",
+    "byType": "Pēc tipa",
+    "byTeam": "Pēc komandas",
+    "byLocation": "Pēc vietas",
+    "myEvents": "Tikai mani notikumi"
+  },
+  "export": {
+    "title": "Eksportēt kalendāru",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Drukāt"
+    },
+    "range": {
+      "all": "Visi notikumi",
+      "current": "Pašreizējais skats",
+      "custom": "Pielāgots diapazons"
+    }
+  },
+  "sharing": {
+    "title": "Dalīties ar kalendāru",
+    "publicLink": "Publiskā saite",
+    "embed": "Iegulšanas kods",
+    "subscribe": "Abonēšanas URL",
+    "permissions": {
+      "view": "Tikai skatīt",
+      "edit": "Var rediģēt",
+      "admin": "Pilna piekļuve"
+    }
+  },
+  "reminders": {
+    "none": "Nav atgādinājuma",
+    "atTime": "Notikuma laikā",
+    "minutes": "{{count}} minūtes pirms",
+    "hours": "{{count}} stundas pirms",
+    "days": "{{count}} dienas pirms",
+    "custom": "Pielāgots"
+  },
+  "actions": {
+    "create": "Izveidot notikumu",
+    "save": "Saglabāt",
+    "cancel": "Atcelt",
+    "delete": "Dzēst",
+    "edit": "Rediģēt",
+    "duplicate": "Dublēt",
+    "print": "Drukāt",
+    "export": "Eksportēt",
+    "import": "Importēt",
+    "subscribe": "Abonēt",
+    "unsubscribe": "Atteikties",
+    "rsvp": "Apstiprināt dalību",
+    "maybeAttending": "Varbūt",
+    "attending": "Piedalīšos",
+    "notAttending": "Nepiedalīšos"
+  },
+  "messages": {
+    "eventCreated": "Notikums veiksmīgi izveidots",
+    "eventUpdated": "Notikums veiksmīgi atjaunināts",
+    "eventDeleted": "Notikums veiksmīgi dzēsts",
+    "eventDuplicated": "Notikums veiksmīgi dublēts",
+    "conflictWarning": "Šim laika slotam ir konflikti",
+    "participantAdded": "Dalībnieks pievienots",
+    "participantRemoved": "Dalībnieks noņemts",
+    "reminderSet": "Atgādinājums iestatīts",
+    "calendarShared": "Kalendārs veiksmīgi koplietots",
+    "exportComplete": "Eksportēšana pabeigta",
+    "importComplete": "Importēšana pabeigta"
+  },
+  "facility": {
+    "rink": "Ledus halle",
+    "mainRink": "Galvenā halle",
+    "practiceRink": "Treniņu halle",
+    "gym": "Sporta zāle",
+    "meetingRoom": "Sapulču telpa",
+    "lockerRoom": "Ģērbtuve",
+    "trainingRoom": "Treniņu telpa",
+    "videoRoom": "Video telpa",
+    "medicalRoom": "Medicīnas telpa"
+  },
+  "tooltips": {
+    "dragToMove": "Velciet, lai pārvietotu notikumu",
+    "dragToResize": "Velciet malas, lai mainītu izmēru",
+    "clickToEdit": "Noklikšķiniet, lai rediģētu",
+    "doubleClickToCreate": "Dubultklikšķis, lai izveidotu notikumu"
+  }
+}

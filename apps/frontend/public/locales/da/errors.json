@@ -1,0 +1,106 @@
+{
+  "errors": {
+    "general": {
+      "title": "Noget gik galt",
+      "unknown": "Der opstod en ukendt fejl",
+      "tryAgain": "Prøv venligst igen",
+      "contactSupport": "Hvis problemet fortsætter, kontakt venligst support",
+      "goBack": "Gå tilbage",
+      "goHome": "Gå til forside"
+    },
+    "http": {
+      "400": "Ugyldig anmodning",
+      "401": "Ikke autoriseret",
+      "403": "Adgang nægtet",
+      "404": "Ikke fundet",
+      "409": "Konflikt",
+      "422": "Ubehandlelig enhed",
+      "429": "For mange anmodninger",
+      "500": "Intern serverfejl",
+      "502": "Dårlig gateway",
+      "503": "Tjeneste utilgængelig",
+      "504": "Gateway timeout"
+    },
+    "network": {
+      "title": "Netværksfejl",
+      "offline": "Du ser ud til at være offline",
+      "slow": "Forbindelsen er langsom",
+      "timeout": "Anmodning timeout",
+      "connectionLost": "Forbindelse tabt",
+      "checkConnection": "Tjek din internetforbindelse"
+    },
+    "auth": {
+      "invalidCredentials": "Ugyldig e-mail eller adgangskode",
+      "sessionExpired": "Din session er udløbet",
+      "accountLocked": "Din konto er blevet låst",
+      "accountNotVerified": "Din konto er ikke bekræftet",
+      "insufficientPermissions": "Du har ikke tilladelse til denne handling",
+      "tokenInvalid": "Ugyldig eller udløbet token"
+    },
+    "form": {
+      "invalidData": "Ugyldig formulardata",
+      "missingRequired": "Påkrævede felter mangler",
+      "submitFailed": "Kunne ikke indsende formularen",
+      "validationFailed": "Valideringsfejl"
+    },
+    "data": {
+      "loadFailed": "Kunne ikke indlæse data",
+      "saveFailed": "Kunne ikke gemme data",
+      "deleteFailed": "Kunne ikke slette data",
+      "updateFailed": "Kunne ikke opdatere data",
+      "notFound": "Data ikke fundet"
+    },
+    "payment": {
+      "declined": "Betaling afvist",
+      "insufficientFunds": "Utilstrækkelige midler",
+      "cardExpired": "Kort udløbet",
+      "invalidCard": "Ugyldigt kort",
+      "processingError": "Betalingsbehandlingsfejl"
+    },
+    "upload": {
+      "tooLarge": "Filen er for stor",
+      "invalidType": "Ugyldig filtype",
+      "uploadFailed": "Upload fejlede",
+      "quotaExceeded": "Lagerkvote overskredet"
+    },
+    "calendar": {
+      "conflictDetected": "Tidsplankonflikt detekteret",
+      "bookingFailed": "Kunne ikke booke",
+      "eventNotFound": "Begivenhed ikke fundet",
+      "invalidDate": "Ugyldig dato"
+    },
+    "team": {
+      "rosterFull": "Holdopstilling er fuld",
+      "playerNotFound": "Spiller ikke fundet",
+      "duplicateNumber": "Spillernummer allerede i brug",
+      "invalidPosition": "Ugyldig position"
+    },
+    "training": {
+      "sessionFull": "Træningssession er fuld",
+      "alreadyRegistered": "Allerede registreret",
+      "registrationClosed": "Registrering lukket",
+      "invalidProgram": "Ugyldigt træningsprogram"
+    },
+    "medical": {
+      "appointmentConflict": "Aftalekonflikt",
+      "recordNotFound": "Medicinsk journal ikke fundet",
+      "clearanceRequired": "Medicinsk godkendelse påkrævet",
+      "treatmentNotAvailable": "Behandling ikke tilgængelig"
+    },
+    "communication": {
+      "messageFailed": "Kunne ikke sende besked",
+      "recipientNotFound": "Modtager ikke fundet",
+      "attachmentFailed": "Vedhæftning fejlede",
+      "groupFull": "Gruppe er fuld"
+    }
+  },
+  "actions": {
+    "retry": "Prøv igen",
+    "refresh": "Genindlæs",
+    "goBack": "Gå tilbage",
+    "goHome": "Gå til forside",
+    "contactSupport": "Kontakt support",
+    "reportProblem": "Rapporter problem",
+    "dismiss": "Luk"
+  }
+}

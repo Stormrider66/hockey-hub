@@ -1,0 +1,30 @@
+apiVersion: v2
+name: hockey-hub
+description: A comprehensive hockey management platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+home: https://hockeyhub.com
+sources:
+  - https://github.com/your-org/hockey-hub
+maintainers:
+  - name: Hockey Hub Team
+    email: admin@hockeyhub.com
+keywords:
+  - hockey
+  - sports
+  - management
+  - microservices
+dependencies:
+  - name: postgresql
+    version: "12.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+  - name: redis
+    version: "17.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+  - name: nginx-ingress
+    version: "4.x.x"
+    repository: https://kubernetes.github.io/ingress-nginx
+    condition: ingress.enabled

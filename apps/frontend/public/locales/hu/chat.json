@@ -1,0 +1,145 @@
+{
+  "title": "Üzenetek",
+  "conversations": {
+    "title": "Beszélgetések",
+    "new": "Új beszélgetés",
+    "search": "Beszélgetések keresése...",
+    "empty": "Még nincsenek beszélgetések",
+    "startNew": "Új beszélgetés indítása"
+  },
+  "participants": {
+    "add": "Résztvevők hozzáadása",
+    "remove": "Eltávolítás a beszélgetésből",
+    "search": "Személyek keresése...",
+    "you": "Ön",
+    "typing": "gépel...",
+    "multipleTyping": "gépelnek...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Távol"
+  },
+  "messages": {
+    "placeholder": "Írjon üzenetet...",
+    "send": "Küldés",
+    "edit": "Üzenet szerkesztése",
+    "delete": "Üzenet törlése",
+    "reply": "Válasz",
+    "forward": "Továbbítás",
+    "copy": "Másolás",
+    "pin": "Üzenet kitűzése",
+    "unpin": "Kitűzés megszüntetése",
+    "react": "Reakció hozzáadása",
+    "edited": "szerkesztve",
+    "deleted": "Ez az üzenet törölve lett",
+    "delivered": "Kézbesítve",
+    "read": "Elolvasva",
+    "sending": "Küldés...",
+    "failed": "Küldés sikertelen",
+    "retry": "Újraküldés"
+  },
+  "groups": {
+    "create": "Csoport létrehozása",
+    "name": "Csoport neve",
+    "description": "Leírás (opcionális)",
+    "addMembers": "Tagok hozzáadása",
+    "settings": "Csoport beállítások",
+    "leave": "Kilépés a csoportból",
+    "delete": "Csoport törlése",
+    "members": "{{count}} tag",
+    "admin": "Adminisztrátor",
+    "member": "Tag"
+  },
+  "channels": {
+    "title": "Csatornák",
+    "create": "Csatorna létrehozása",
+    "public": "Nyilvános csatorna",
+    "private": "Privát csatorna",
+    "join": "Csatlakozás a csatornához",
+    "leave": "Kilépés a csatornából",
+    "mute": "Csatorna némítása",
+    "unmute": "Némítás feloldása",
+    "types": {
+      "general": "Általános",
+      "announcements": "Közlemények",
+      "team": "Csapat chat",
+      "coaches": "Edzők",
+      "parents": "Szülők",
+      "medical": "Egészségügyi személyzet"
+    }
+  },
+  "attachments": {
+    "title": "Csatolmányok",
+    "upload": "Fájl feltöltése",
+    "types": {
+      "image": "Kép",
+      "video": "Videó",
+      "document": "Dokumentum",
+      "audio": "Hang",
+      "other": "Fájl"
+    },
+    "download": "Letöltés",
+    "preview": "Előnézet",
+    "tooLarge": "A fájl túl nagy. Maximum méret: {{maxSize}}",
+    "unsupported": "Nem támogatott fájltípus"
+  },
+  "notifications": {
+    "newMessage": "Új üzenet {{sender}}-tól/től",
+    "mentioned": "{{sender}} megemlítette Önt",
+    "groupInvite": "Hozzáadták a {{group}} csoporthoz",
+    "enable": "Értesítések engedélyezése",
+    "disable": "Értesítések letiltása",
+    "sound": "Értesítési hang",
+    "desktop": "Asztali értesítések"
+  },
+  "search": {
+    "placeholder": "Üzenetek keresése...",
+    "filters": "Szűrők",
+    "from": "Feladó",
+    "to": "Címzett",
+    "date": "Dátum",
+    "hasAttachment": "Csatolmánnyal",
+    "results": "{{count}} találat",
+    "noResults": "Nem található üzenet"
+  },
+  "settings": {
+    "title": "Chat beállítások",
+    "privacy": "Adatvédelem",
+    "readReceipts": "Olvasási visszaigazolás",
+    "typingIndicator": "Gépelés jelzése",
+    "autoDownload": "Média automatikus letöltése",
+    "enterToSend": "Enter küldéshez",
+    "theme": "Chat téma",
+    "fontSize": "Betűméret"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Távol",
+    "busy": "Ne zavarj",
+    "offline": "Offline látszat",
+    "setStatus": "Állapot beállítása",
+    "customStatus": "Egyéni állapot beállítása..."
+  },
+  "actions": {
+    "startChat": "Chat indítása",
+    "viewProfile": "Profil megtekintése",
+    "clearChat": "Chat előzmények törlése",
+    "exportChat": "Chat exportálása",
+    "reportUser": "Felhasználó jelentése",
+    "blockUser": "Felhasználó letiltása",
+    "unblockUser": "Tiltás feloldása"
+  },
+  "time": {
+    "now": "most",
+    "today": "Ma",
+    "yesterday": "Tegnap",
+    "daysAgo": "{{count}} napja",
+    "lastSeen": "Utoljára látta {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Kapcsolat megszakadt. Újracsatlakozás...",
+    "sendFailed": "Üzenet küldése sikertelen",
+    "loadFailed": "Üzenetek betöltése sikertelen",
+    "uploadFailed": "Fájl feltöltése sikertelen",
+    "permissionDenied": "Nincs jogosultsága ehhez"
+  }
+}

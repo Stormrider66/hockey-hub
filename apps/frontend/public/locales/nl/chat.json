@@ -1,0 +1,145 @@
+{
+  "title": "Berichten",
+  "conversations": {
+    "title": "Gesprekken",
+    "new": "Nieuw gesprek",
+    "search": "Zoek gesprekken...",
+    "empty": "Nog geen gesprekken",
+    "startNew": "Start een nieuw gesprek"
+  },
+  "participants": {
+    "add": "Deelnemers toevoegen",
+    "remove": "Uit gesprek verwijderen",
+    "search": "Zoek personen...",
+    "you": "Jij",
+    "typing": "is aan het typen...",
+    "multipleTyping": "zijn aan het typen...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Afwezig"
+  },
+  "messages": {
+    "placeholder": "Typ een bericht...",
+    "send": "Verzenden",
+    "edit": "Bericht bewerken",
+    "delete": "Bericht verwijderen",
+    "reply": "Beantwoorden",
+    "forward": "Doorsturen",
+    "copy": "Kopiëren",
+    "pin": "Bericht vastpinnen",
+    "unpin": "Losmaken",
+    "react": "Reactie toevoegen",
+    "edited": "bewerkt",
+    "deleted": "Dit bericht is verwijderd",
+    "delivered": "Afgeleverd",
+    "read": "Gelezen",
+    "sending": "Verzenden...",
+    "failed": "Verzenden mislukt",
+    "retry": "Opnieuw proberen"
+  },
+  "groups": {
+    "create": "Groep aanmaken",
+    "name": "Groepsnaam",
+    "description": "Beschrijving (optioneel)",
+    "addMembers": "Leden toevoegen",
+    "settings": "Groepsinstellingen",
+    "leave": "Groep verlaten",
+    "delete": "Groep verwijderen",
+    "members": "{{count}} leden",
+    "admin": "Beheerder",
+    "member": "Lid"
+  },
+  "channels": {
+    "title": "Kanalen",
+    "create": "Kanaal aanmaken",
+    "public": "Openbaar kanaal",
+    "private": "Privékanaal",
+    "join": "Kanaal betreden",
+    "leave": "Kanaal verlaten",
+    "mute": "Kanaal dempen",
+    "unmute": "Dempen opheffen",
+    "types": {
+      "general": "Algemeen",
+      "announcements": "Aankondigingen",
+      "team": "Teamchat",
+      "coaches": "Coaches",
+      "parents": "Ouders",
+      "medical": "Medisch personeel"
+    }
+  },
+  "attachments": {
+    "title": "Bijlagen",
+    "upload": "Bestand uploaden",
+    "types": {
+      "image": "Afbeelding",
+      "video": "Video",
+      "document": "Document",
+      "audio": "Audio",
+      "other": "Bestand"
+    },
+    "download": "Downloaden",
+    "preview": "Voorbeeld",
+    "tooLarge": "Bestand is te groot. Maximale grootte is {{maxSize}}",
+    "unsupported": "Bestandstype wordt niet ondersteund"
+  },
+  "notifications": {
+    "newMessage": "Nieuw bericht van {{sender}}",
+    "mentioned": "{{sender}} heeft je genoemd",
+    "groupInvite": "Je bent toegevoegd aan {{group}}",
+    "enable": "Meldingen inschakelen",
+    "disable": "Meldingen uitschakelen",
+    "sound": "Meldingsgeluid",
+    "desktop": "Bureaubladmeldingen"
+  },
+  "search": {
+    "placeholder": "Zoek berichten...",
+    "filters": "Filters",
+    "from": "Van",
+    "to": "Aan",
+    "date": "Datum",
+    "hasAttachment": "Heeft bijlage",
+    "results": "{{count}} resultaten gevonden",
+    "noResults": "Geen berichten gevonden"
+  },
+  "settings": {
+    "title": "Chatinstellingen",
+    "privacy": "Privacy",
+    "readReceipts": "Leesbevestigingen",
+    "typingIndicator": "Tonen wanneer je typt",
+    "autoDownload": "Media automatisch downloaden",
+    "enterToSend": "Enter om te verzenden",
+    "theme": "Chatthema",
+    "fontSize": "Lettergrootte"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Afwezig",
+    "busy": "Niet storen",
+    "offline": "Offline verschijnen",
+    "setStatus": "Status instellen",
+    "customStatus": "Aangepaste status instellen..."
+  },
+  "actions": {
+    "startChat": "Chat starten",
+    "viewProfile": "Profiel bekijken",
+    "clearChat": "Chatgeschiedenis wissen",
+    "exportChat": "Chat exporteren",
+    "reportUser": "Gebruiker rapporteren",
+    "blockUser": "Gebruiker blokkeren",
+    "unblockUser": "Blokkering opheffen"
+  },
+  "time": {
+    "now": "nu",
+    "today": "Vandaag",
+    "yesterday": "Gisteren",
+    "daysAgo": "{{count}} dagen geleden",
+    "lastSeen": "Laatst gezien {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Verbinding verloren. Opnieuw verbinden...",
+    "sendFailed": "Bericht verzenden mislukt",
+    "loadFailed": "Berichten laden mislukt",
+    "uploadFailed": "Bestand uploaden mislukt",
+    "permissionDenied": "Je hebt geen toestemming om dat te doen"
+  }
+}

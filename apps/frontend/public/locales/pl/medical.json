@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Panel personelu medycznego",
+    "subtitle": "Zarządzanie zdrowiem i kontuzjami zawodników",
+    "welcome": "Witaj, {{name}}",
+    "urgentCases": "Pilne przypadki",
+    "todayAppointments": "Dzisiejsze wizyty"
+  },
+  "players": {
+    "title": "Przegląd zdrowia zawodników",
+    "status": "Status zdrowotny",
+    "active": "Aktywni zawodnicy",
+    "injured": "Kontuzjowani zawodnicy",
+    "recovery": "W rekonwalescencji",
+    "cleared": "Niedawno dopuszczeni",
+    "monitoring": "Pod obserwacją",
+    "search": "Szukaj zawodników",
+    "filter": "Filtruj według statusu"
+  },
+  "injuries": {
+    "title": "Zarządzanie kontuzjami",
+    "current": "Aktualne kontuzje",
+    "history": "Historia kontuzji",
+    "report": "Zgłoś nową kontuzję",
+    "update": "Aktualizuj kontuzję",
+    "severity": {
+      "minor": "Lekka",
+      "moderate": "Umiarkowana",
+      "major": "Poważna",
+      "severe": "Ciężka",
+      "careerThreatening": "Zagrażająca karierze"
+    },
+    "types": {
+      "concussion": "Wstrząśnienie mózgu",
+      "fracture": "Złamanie",
+      "sprain": "Skręcenie",
+      "strain": "Nadwyrężenie",
+      "bruise": "Stłuczenie",
+      "cut": "Rozcięcie/Rana",
+      "dislocation": "Zwichnięcie",
+      "illness": "Choroba"
+    },
+    "bodyParts": {
+      "head": "Głowa",
+      "neck": "Szyja",
+      "shoulder": "Ramię",
+      "arm": "Ręka",
+      "elbow": "Łokieć",
+      "wrist": "Nadgarstek",
+      "hand": "Dłoń",
+      "back": "Plecy",
+      "chest": "Klatka piersiowa",
+      "abdomen": "Brzuch",
+      "hip": "Biodro",
+      "groin": "Pachwina",
+      "thigh": "Udo",
+      "knee": "Kolano",
+      "ankle": "Kostka",
+      "foot": "Stopa"
+    }
+  },
+  "treatment": {
+    "title": "Plany leczenia",
+    "active": "Aktywne leczenie",
+    "scheduled": "Zaplanowane sesje",
+    "completed": "Zakończone leczenie",
+    "create": "Utwórz plan leczenia",
+    "modify": "Modyfikuj plan",
+    "types": {
+      "physiotherapy": "Fizjoterapia",
+      "massage": "Masaż leczniczy",
+      "medication": "Leki",
+      "surgery": "Operacja",
+      "rehabilitation": "Rehabilitacja",
+      "rest": "Odpoczynek/Regeneracja",
+      "imaging": "Badania obrazowe"
+    },
+    "frequency": {
+      "daily": "Codziennie",
+      "everyOtherDay": "Co drugi dzień",
+      "twiceWeekly": "Dwa razy w tygodniu",
+      "weekly": "Co tydzień",
+      "asNeeded": "W razie potrzeby"
+    }
+  },
+  "appointments": {
+    "title": "Wizyty medyczne",
+    "schedule": "Zaplanuj wizytę",
+    "upcoming": "Nadchodzące wizyty",
+    "today": "Dzisiejszy harmonogram",
+    "calendar": "Kalendarz wizyt",
+    "types": {
+      "checkup": "Badanie kontrolne",
+      "injury": "Ocena kontuzji",
+      "followup": "Wizyta kontrolna",
+      "clearance": "Zgoda na powrót do gry",
+      "physical": "Badanie fizykalne",
+      "emergency": "Nagły przypadek"
+    },
+    "duration": {
+      "15min": "15 minut",
+      "30min": "30 minut",
+      "45min": "45 minut",
+      "60min": "1 godzina"
+    }
+  },
+  "records": {
+    "title": "Dokumentacja medyczna",
+    "history": "Historia medyczna",
+    "allergies": "Alergie",
+    "medications": "Aktualne leki",
+    "conditions": "Choroby przewlekłe",
+    "surgeries": "Przebyte operacje",
+    "family": "Historia rodzinna",
+    "documents": "Dokumenty medyczne",
+    "upload": "Prześlij dokument",
+    "download": "Pobierz dokumentację"
+  },
+  "clearance": {
+    "title": "Powrót do gry",
+    "pending": "Oczekujące zgody",
+    "evaluate": "Oceń zawodnika",
+    "protocols": "Protokoły powrotu",
+    "tests": "Wymagane testy",
+    "approve": "Zatwierdź powrót",
+    "deny": "Odmów powrotu",
+    "conditional": "Warunkowy powrót",
+    "restrictions": "Ograniczenia aktywności"
+  },
+  "reports": {
+    "title": "Raporty medyczne",
+    "injury": "Raport kontuzji",
+    "team": "Raport zdrowia drużyny",
+    "individual": "Raport indywidualny",
+    "insurance": "Raport ubezpieczeniowy",
+    "compliance": "Raport zgodności",
+    "generate": "Generuj raport",
+    "export": "Eksportuj raport"
+  },
+  "emergency": {
+    "title": "Protokoły awaryjne",
+    "contacts": "Kontakty awaryjne",
+    "procedures": "Procedury awaryjne",
+    "equipment": "Sprzęt ratunkowy",
+    "locations": "Lokalizacje szpitali",
+    "action": "Plan działania w nagłych wypadkach",
+    "call": "Połączenie alarmowe"
+  },
+  "wellness": {
+    "title": "Monitorowanie samopoczucia",
+    "daily": "Codzienne zgłoszenia",
+    "trends": "Trendy samopoczucia",
+    "alerts": "Alerty zdrowotne",
+    "metrics": {
+      "sleep": "Jakość snu",
+      "fatigue": "Poziom zmęczenia",
+      "soreness": "Ból mięśni",
+      "mood": "Nastrój",
+      "stress": "Poziom stresu",
+      "hydration": "Nawodnienie"
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "calendar": {
+    "title": "Kalender",
+    "today": "I dag",
+    "month": "Måned",
+    "week": "Uge",
+    "day": "Dag",
+    "agenda": "Agenda",
+    "list": "Liste",
+    "timeline": "Tidslinje"
+  },
+  "navigation": {
+    "previous": "Forrige",
+    "next": "Næste",
+    "today": "I dag",
+    "goToDate": "Gå til dato",
+    "currentMonth": "Denne måned",
+    "currentWeek": "Denne uge"
+  },
+  "event": {
+    "title": "Begivenhed",
+    "createEvent": "Opret begivenhed",
+    "editEvent": "Rediger begivenhed",
+    "deleteEvent": "Slet begivenhed",
+    "duplicateEvent": "Dupliker begivenhed",
+    "eventDetails": "Begivenhedsdetaljer",
+    "allDay": "Hele dagen",
+    "start": "Start",
+    "end": "Slut",
+    "duration": "Varighed",
+    "location": "Lokation",
+    "description": "Beskrivelse",
+    "participants": "Deltagere",
+    "organizer": "Arrangør",
+    "category": "Kategori",
+    "reminder": "Påmindelse",
+    "notes": "Noter",
+    "attachments": "Vedhæftninger"
+  },
+  "eventTypes": {
+    "practice": "Træning",
+    "game": "Kamp",
+    "tournament": "Turnering",
+    "meeting": "Møde",
+    "medical": "Medicinsk",
+    "fitness": "Fitness",
+    "teamEvent": "Holdbegivenhed",
+    "social": "Social",
+    "fundraiser": "Fundraiser",
+    "tryout": "Prøvetræning",
+    "camp": "Camp",
+    "other": "Andet"
+  },
+  "recurrence": {
+    "title": "Gentagelse",
+    "none": "Ingen",
+    "daily": "Dagligt",
+    "weekly": "Ugentligt",
+    "biweekly": "Hver anden uge",
+    "monthly": "Månedligt",
+    "yearly": "Årligt",
+    "custom": "Tilpasset",
+    "every": "Hver",
+    "days": "dag(e)",
+    "weeks": "uge(r)",
+    "months": "måned(er)",
+    "years": "år",
+    "on": "på",
+    "endDate": "Slutdato",
+    "occurrences": "forekomster",
+    "weekdays": {
+      "monday": "Mandag",
+      "tuesday": "Tirsdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lørdag",
+      "sunday": "Søndag"
+    }
+  },
+  "availability": {
+    "title": "Tilgængelighed",
+    "available": "Tilgængelig",
+    "unavailable": "Utilgængelig",
+    "tentative": "Tentativ",
+    "busy": "Optaget",
+    "outOfOffice": "Ikke på kontoret",
+    "checkAvailability": "Tjek tilgængelighed",
+    "conflicts": "Konflikter",
+    "noConflicts": "Ingen konflikter"
+  },
+  "filters": {
+    "title": "Filtre",
+    "all": "Alle",
+    "myEvents": "Mine begivenheder",
+    "team": "Hold",
+    "category": "Kategori",
+    "location": "Lokation",
+    "participant": "Deltager",
+    "dateRange": "Datointerval",
+    "search": "Søg begivenheder"
+  },
+  "actions": {
+    "save": "Gem",
+    "cancel": "Annuller",
+    "delete": "Slet",
+    "edit": "Rediger",
+    "duplicate": "Dupliker",
+    "export": "Eksporter",
+    "import": "Importer",
+    "print": "Udskriv",
+    "share": "Del",
+    "subscribe": "Abonner",
+    "refresh": "Genindlæs",
+    "settings": "Indstillinger"
+  },
+  "views": {
+    "changeView": "Skift visning",
+    "showWeekends": "Vis weekender",
+    "showWeekNumbers": "Vis ugenumre",
+    "firstDayOfWeek": "Første dag i ugen",
+    "timeFormat": "Tidsformat",
+    "dateFormat": "Datoformat",
+    "defaultView": "Standardvisning"
+  },
+  "export": {
+    "title": "Eksporter kalender",
+    "format": "Format",
+    "dateRange": "Datointerval",
+    "includeDetails": "Inkluder detaljer",
+    "formats": {
+      "ical": "iCalendar (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "excel": "Excel"
+    }
+  },
+  "sharing": {
+    "title": "Del kalender",
+    "publicLink": "Offentligt link",
+    "privateLink": "Privat link",
+    "embed": "Indlejr",
+    "permissions": "Tilladelser",
+    "view": "Vis",
+    "edit": "Rediger",
+    "admin": "Administrator"
+  },
+  "reminders": {
+    "title": "Påmindelser",
+    "none": "Ingen",
+    "atTime": "Ved tidspunkt",
+    "minutes": "minutter før",
+    "hours": "timer før",
+    "days": "dage før",
+    "weeks": "uger før",
+    "email": "E-mail",
+    "notification": "Notifikation",
+    "sms": "SMS"
+  },
+  "conflicts": {
+    "title": "Tidsplankonflikter",
+    "detected": "Konflikt detekteret",
+    "overlapping": "Overlappende begivenheder",
+    "doubleBooked": "Dobbeltbooket",
+    "resourceConflict": "Ressourcekonflikt",
+    "resolve": "Løs konflikt",
+    "ignore": "Ignorer"
+  },
+  "facilities": {
+    "title": "Faciliteter",
+    "rink": "Skøjtebane",
+    "gym": "Træningscenter",
+    "meetingRoom": "Mødelokale",
+    "classroom": "Klasseværelse",
+    "field": "Bane",
+    "lockerRoom": "Omklædningsrum",
+    "available": "Tilgængelig",
+    "booked": "Booket",
+    "maintenance": "Vedligeholdelse"
+  },
+  "permissions": {
+    "viewOnly": "Kun visning",
+    "canEdit": "Kan redigere",
+    "canDelete": "Kan slette",
+    "canInvite": "Kan invitere",
+    "isOrganizer": "Er arrangør",
+    "isParticipant": "Er deltager"
+  },
+  "notifications": {
+    "eventCreated": "Begivenhed oprettet",
+    "eventUpdated": "Begivenhed opdateret",
+    "eventDeleted": "Begivenhed slettet",
+    "eventReminder": "Påmindelse: {{event}} om {{time}}",
+    "invitationReceived": "Du er blevet inviteret til {{event}}",
+    "invitationAccepted": "{{user}} har accepteret invitationen",
+    "invitationDeclined": "{{user}} har afvist invitationen"
+  },
+  "quickActions": {
+    "newEvent": "Ny begivenhed",
+    "goToToday": "Gå til i dag",
+    "printCalendar": "Udskriv kalender",
+    "syncCalendar": "Synkroniser kalender",
+    "calendarSettings": "Kalenderindstillinger"
+  }
+}

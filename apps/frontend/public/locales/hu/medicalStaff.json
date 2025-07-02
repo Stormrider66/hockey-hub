@@ -1,0 +1,208 @@
+{
+  "dashboard": {
+    "title": "Egészségügyi személyzet vezérlőpult",
+    "welcome": "Üdvözöljük, {{name}}!",
+    "todayAppointments": "Mai időpontok",
+    "activeInjuries": "Aktív sérülések",
+    "clearanceRequests": "Játékengedély kérelmek",
+    "upcomingAssessments": "Közelgő vizsgálatok",
+    "quickActions": "Gyors műveletek",
+    "stats": {
+      "totalInjuries": "Összes sérülés",
+      "activeRecovery": "Rehabilitáció alatt",
+      "clearedToPlay": "Játékra alkalmas",
+      "pendingAssessment": "Vizsgálatra vár"
+    }
+  },
+  "injuries": {
+    "title": "Sérülések",
+    "newInjury": "Új sérülés",
+    "editInjury": "Sérülés szerkesztése",
+    "injuryList": "Sérülések listája",
+    "injuryReport": "Sérülési jelentés",
+    "recoveryPlan": "Rehabilitációs terv",
+    "timeline": "Idősor",
+    "status": "Állapot",
+    "severity": "Súlyosság",
+    "type": "Típus",
+    "location": "Testrész",
+    "mechanism": "Sérülés mechanizmusa",
+    "diagnosis": "Diagnózis",
+    "treatment": "Kezelés",
+    "prognosis": "Prognózis",
+    "returnToPlay": "Visszatérés a játékhoz",
+    "types": {
+      "concussion": "Agyrázkódás",
+      "fracture": "Törés",
+      "sprain": "Rándulás",
+      "strain": "Húzódás",
+      "contusion": "Zúzódás",
+      "laceration": "Vágás",
+      "dislocation": "Ficam",
+      "tendonitis": "Íngyulladás",
+      "bursitis": "Ízületi tokgyulladás",
+      "other": "Egyéb"
+    },
+    "severity": {
+      "minor": "Enyhe",
+      "moderate": "Közepes",
+      "severe": "Súlyos",
+      "critical": "Kritikus"
+    },
+    "status": {
+      "active": "Aktív",
+      "recovering": "Felépülőben",
+      "cleared": "Gyógyult",
+      "chronic": "Krónikus",
+      "monitoring": "Megfigyelés alatt"
+    }
+  },
+  "assessments": {
+    "title": "Vizsgálatok",
+    "newAssessment": "Új vizsgálat",
+    "baseline": "Alapvizsgálat",
+    "preseason": "Szezon előtti",
+    "periodic": "Időszakos",
+    "returnToPlay": "Visszatérési",
+    "concussionProtocol": "Agyrázkódás protokoll",
+    "physicalExam": "Fizikális vizsgálat",
+    "functionalTest": "Funkcionális teszt",
+    "imaging": "Képalkotás",
+    "labWork": "Laborvizsgálat",
+    "forms": {
+      "medical": "Egészségügyi űrlap",
+      "consent": "Hozzájárulás",
+      "history": "Kórtörténet",
+      "clearance": "Játékengedély"
+    }
+  },
+  "treatment": {
+    "title": "Kezelések",
+    "activeTreatments": "Aktív kezelések",
+    "treatmentPlan": "Kezelési terv",
+    "schedule": "Kezelési ütemterv",
+    "progress": "Haladás",
+    "modalities": "Modalitások",
+    "exercises": "Gyakorlatok",
+    "medications": "Gyógyszerek",
+    "referrals": "Beutalók",
+    "notes": "Jegyzetek",
+    "types": {
+      "physicalTherapy": "Fizikoterápia",
+      "massage": "Masszázs",
+      "ice": "Jegelés",
+      "heat": "Melegítés",
+      "ultrasound": "Ultrahang",
+      "electricalStim": "Elektromos stimuláció",
+      "taping": "Tapasz",
+      "stretching": "Nyújtás",
+      "strengthening": "Erősítés",
+      "manual": "Manuálterápia"
+    }
+  },
+  "players": {
+    "title": "Játékosok",
+    "roster": "Keret",
+    "medicalHistory": "Kórtörténet",
+    "currentStatus": "Jelenlegi állapot",
+    "clearance": "Játékengedély",
+    "restrictions": "Korlátozások",
+    "allergies": "Allergiák",
+    "medications": "Gyógyszerek",
+    "conditions": "Krónikus betegségek",
+    "emergency": "Vészhelyzeti adatok",
+    "insurance": "Biztosítás",
+    "status": {
+      "healthy": "Egészséges",
+      "injured": "Sérült",
+      "illness": "Beteg",
+      "limited": "Korlátozottan játszhat",
+      "notCleared": "Nem játszhat"
+    }
+  },
+  "wellness": {
+    "title": "Wellness",
+    "monitoring": "Monitoring",
+    "surveys": "Felmérések",
+    "metrics": "Mérőszámok",
+    "trends": "Trendek",
+    "alerts": "Figyelmeztetések",
+    "sleep": "Alvás",
+    "nutrition": "Táplálkozás",
+    "hydration": "Hidratáció",
+    "stress": "Stressz",
+    "fatigue": "Fáradtság",
+    "mood": "Hangulat",
+    "soreness": "Izomfájdalom",
+    "energy": "Energia szint"
+  },
+  "reports": {
+    "title": "Jelentések",
+    "injuryReport": "Sérülési jelentés",
+    "medicalReport": "Orvosi jelentés",
+    "clearanceReport": "Játékengedély jelentés",
+    "teamHealth": "Csapat egészségi állapot",
+    "monthlyReport": "Havi jelentés",
+    "seasonReport": "Szezon jelentés",
+    "incidentReport": "Esemény jelentés",
+    "generate": "Jelentés készítése",
+    "export": "Exportálás",
+    "share": "Megosztás"
+  },
+  "emergency": {
+    "title": "Vészhelyzet",
+    "protocols": "Protokollok",
+    "contacts": "Vészhelyzeti kapcsolatok",
+    "procedures": "Eljárások",
+    "equipment": "Felszerelés",
+    "actionPlan": "Cselekvési terv",
+    "evacuation": "Evakuálás",
+    "firstAid": "Elsősegély",
+    "aed": "Defibrillátor",
+    "spineBoard": "Gerinchordágy",
+    "ambulance": "Mentő",
+    "hospital": "Kórház",
+    "emergencyKit": "Elsősegély készlet"
+  },
+  "communications": {
+    "title": "Kommunikáció",
+    "teamUpdates": "Csapat frissítések",
+    "coachNotification": "Edző értesítése",
+    "parentNotification": "Szülő értesítése",
+    "medicalAlert": "Egészségügyi figyelmeztetés",
+    "clearanceNotice": "Játékengedély értesítés",
+    "appointmentReminder": "Időpont emlékeztető",
+    "followUp": "Utánkövetés",
+    "referral": "Beutaló",
+    "consultation": "Konzultáció"
+  },
+  "resources": {
+    "title": "Források",
+    "protocols": "Protokollok",
+    "guidelines": "Irányelvek",
+    "forms": "Űrlapok",
+    "education": "Oktatás",
+    "research": "Kutatás",
+    "contacts": "Kapcsolatok",
+    "suppliers": "Beszállítók",
+    "references": "Hivatkozások",
+    "training": "Képzés",
+    "certification": "Tanúsítvány"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "profile": "Profil",
+    "preferences": "Preferenciák",
+    "notifications": "Értesítések",
+    "privacy": "Adatvédelem",
+    "templates": "Sablonok",
+    "reminders": "Emlékeztetők",
+    "alerts": {
+      "injuries": "Sérülés értesítések",
+      "appointments": "Időpont értesítések",
+      "clearance": "Játékengedély értesítések",
+      "wellness": "Wellness figyelmeztetések",
+      "emergency": "Vészhelyzeti értesítések"
+    }
+  }
+}

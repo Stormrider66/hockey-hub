@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Jejda! Něco se pokazilo",
+    "subtitle": "Omlouváme se za nepříjemnosti",
+    "tryAgain": "Zkusit znovu",
+    "goHome": "Přejít na panel",
+    "contactSupport": "Kontaktovat podporu"
+  },
+  "http": {
+    "400": {
+      "title": "Chybný požadavek",
+      "message": "Server nemohl porozumět požadavku."
+    },
+    "401": {
+      "title": "Neautorizováno",
+      "message": "Pro přístup k tomuto zdroji se musíte přihlásit."
+    },
+    "403": {
+      "title": "Zakázáno",
+      "message": "Nemáte oprávnění k přístupu k tomuto zdroji."
+    },
+    "404": {
+      "title": "Stránka nenalezena",
+      "message": "Stránka, kterou hledáte, neexistuje."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Požadavek je v konfliktu s aktuálním stavem serveru."
+    },
+    "422": {
+      "title": "Chyba validace",
+      "message": "Poskytnutá data jsou neplatná."
+    },
+    "429": {
+      "title": "Příliš mnoho požadavků",
+      "message": "Provedli jste příliš mnoho požadavků. Zkuste to prosím později."
+    },
+    "500": {
+      "title": "Chyba serveru",
+      "message": "Na našich serverech došlo k neočekávané chybě."
+    },
+    "502": {
+      "title": "Chybná brána",
+      "message": "Server obdržel neplatnou odpověď."
+    },
+    "503": {
+      "title": "Služba nedostupná",
+      "message": "Služba je dočasně nedostupná. Zkuste to prosím později."
+    },
+    "504": {
+      "title": "Vypršel časový limit brány",
+      "message": "Serveru trvalo příliš dlouho odpovědět."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Žádné internetové připojení",
+      "message": "Zkontrolujte prosím své internetové připojení a zkuste to znovu."
+    },
+    "timeout": {
+      "title": "Vypršel časový limit požadavku",
+      "message": "Požadavek trval příliš dlouho. Zkuste to prosím znovu."
+    },
+    "connectionFailed": {
+      "title": "Připojení selhalo",
+      "message": "Nelze se připojit k serveru. Zkuste to prosím znovu."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Načtení dat selhalo",
+      "message": "Nemohli jsme načíst požadovaná data. Zkuste prosím obnovit stránku."
+    },
+    "dataSave": {
+      "title": "Uložení selhalo",
+      "message": "Vaše změny nemohly být uloženy. Zkuste to prosím znovu."
+    },
+    "fileUpload": {
+      "title": "Nahrání selhalo",
+      "message": "Soubor nemohl být nahrán. Zkontrolujte prosím soubor a zkuste to znovu."
+    },
+    "permissionDenied": {
+      "title": "Přístup odepřen",
+      "message": "Nemáte oprávnění k provedení této akce."
+    },
+    "sessionExpired": {
+      "title": "Relace vypršela",
+      "message": "Vaše relace vypršela. Přihlaste se prosím znovu."
+    },
+    "maintenanceMode": {
+      "title": "Probíhá údržba",
+      "message": "Provádíme plánovanou údržbu. Zkuste to prosím později."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Chyba odeslání formuláře",
+      "message": "Při odesílání formuláře došlo k chybě. Zkontrolujte prosím své údaje a zkuste to znovu."
+    },
+    "validation": {
+      "title": "Chyba validace",
+      "message": "Opravte prosím chyby ve formuláři."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Platba selhala",
+      "message": "Vaše platba nemohla být zpracována. Zkuste prosím jinou platební metodu."
+    },
+    "declined": {
+      "title": "Platba zamítnuta",
+      "message": "Vaše platba byla zamítnuta. Zkontrolujte prosím své platební údaje."
+    },
+    "insufficientFunds": {
+      "title": "Nedostatek prostředků",
+      "message": "Vaše platební metoda má nedostatek prostředků."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Konflikt v rozvrhu",
+      "message": "Tento časový slot je v konfliktu s jinou událostí."
+    },
+    "bookingFailed": {
+      "title": "Rezervace selhala",
+      "message": "Nelze rezervovat vybraný časový slot."
+    },
+    "facilityUnavailable": {
+      "title": "Zařízení není k dispozici",
+      "message": "Vybrané zařízení není v tuto chvíli k dispozici."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Tréninková jednotka nenalezena",
+      "message": "Tréninková jednotka, kterou hledáte, neexistuje."
+    },
+    "alreadyStarted": {
+      "title": "Jednotka již začala",
+      "message": "Tato tréninková jednotka již začala."
+    },
+    "capacityReached": {
+      "title": "Jednotka plná",
+      "message": "Tato tréninková jednotka dosáhla maximální kapacity."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Zpráva nebyla odeslána",
+      "message": "Vaše zpráva nemohla být odeslána. Zkuste to prosím znovu."
+    },
+    "notificationFailed": {
+      "title": "Oznámení selhalo",
+      "message": "V tuto chvíli nelze odesílat oznámení."
+    }
+  },
+  "actions": {
+    "retry": "Zkusit znovu",
+    "dismiss": "Zavřít",
+    "details": "Zobrazit detaily",
+    "report": "Nahlásit problém",
+    "refresh": "Obnovit stránku"
+  }
+}

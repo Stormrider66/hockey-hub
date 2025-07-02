@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Panel kierownika sprzętu",
+    "subtitle": "Inwentarz i zarządzanie sprzętem",
+    "welcome": "Witaj, {{name}}",
+    "quickStats": "Status sprzętu",
+    "urgentNeeds": "Pilne potrzeby sprzętowe"
+  },
+  "inventory": {
+    "title": "Inwentarz sprzętu",
+    "overview": "Przegląd inwentarza",
+    "search": "Szukaj sprzętu",
+    "filter": "Filtruj według typu",
+    "add": "Dodaj sprzęt",
+    "remove": "Usuń sprzęt",
+    "update": "Aktualizuj stan magazynowy",
+    "lowStock": "Alert niskiego stanu",
+    "remaining": "Pozostało {{count}}",
+    "reorderAt": "Zamów przy {{level}}",
+    "outOfStock": "Brak na stanie",
+    "lowStockStatus": "Niski stan",
+    "stock": "Stan magazynowy",
+    "condition": {
+      "good": "Dobry",
+      "fair": "Dostateczny",
+      "poor": "Słaby"
+    },
+    "categories": {
+      "protective": "Sprzęt ochronny",
+      "sticks": "Kije hokejowe",
+      "skates": "Łyżwy",
+      "apparel": "Stroje drużynowe",
+      "training": "Sprzęt treningowy",
+      "goalie": "Sprzęt bramkarski",
+      "accessories": "Akcesoria",
+      "medical": "Materiały medyczne"
+    },
+    "status": {
+      "available": "Dostępny",
+      "assigned": "Przypisany",
+      "maintenance": "W konserwacji",
+      "ordered": "W zamówieniu",
+      "damaged": "Uszkodzony",
+      "retired": "Wycofany"
+    }
+  },
+  "assignments": {
+    "title": "Przydziały sprzętu",
+    "player": "Przydziały dla zawodników",
+    "team": "Sprzęt drużynowy",
+    "assign": "Przypisz sprzęt",
+    "return": "Zwrot sprzętu",
+    "history": "Historia przydziałów",
+    "current": "Bieżące przydziały",
+    "overdue": "Zaległe zwroty"
+  },
+  "sizes": {
+    "title": "Zarządzanie rozmiarami",
+    "chart": "Tabela rozmiarów",
+    "playerSizes": "Rozmiary zawodników",
+    "update": "Aktualizuj rozmiary",
+    "fitting": "Zaplanuj przymierzanie",
+    "categories": {
+      "helmet": "Kask",
+      "shoulderPads": "Naramienniki",
+      "elbow": "Nałokietniki",
+      "gloves": "Rękawice",
+      "pants": "Spodnie hokejowe",
+      "shinGuards": "Nagolenniki",
+      "skates": "Łyżwy",
+      "jersey": "Koszulka",
+      "socks": "Getry"
+    },
+    "measurements": {
+      "xs": "Bardzo mały",
+      "s": "Mały",
+      "m": "Średni",
+      "l": "Duży",
+      "xl": "Bardzo duży",
+      "xxl": "2X duży",
+      "xxxl": "3X duży",
+      "youth": "Młodzieżowy",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Konserwacja sprzętu",
+    "schedule": "Harmonogram konserwacji",
+    "due": "Termin konserwacji",
+    "history": "Historia konserwacji",
+    "log": "Rejestruj konserwację",
+    "types": {
+      "sharpening": "Ostrzenie łyżew",
+      "repair": "Naprawa sprzętu",
+      "cleaning": "Gruntowne czyszczenie",
+      "inspection": "Przegląd bezpieczeństwa",
+      "replacement": "Wymiana części"
+    },
+    "frequency": {
+      "daily": "Codziennie",
+      "weekly": "Co tydzień",
+      "biweekly": "Co dwa tygodnie",
+      "monthly": "Co miesiąc",
+      "seasonal": "Sezonowo",
+      "asNeeded": "W razie potrzeby"
+    }
+  },
+  "orders": {
+    "title": "Zamówienia sprzętu",
+    "new": "Nowe zamówienie",
+    "createOrder": "Utwórz zamówienie",
+    "createOrderTitle": "Utwórz zamówienie sprzętu",
+    "createOrderDescription": "Dodaj pozycje do zamówienia. Zamówienia zostaną przesłane do zatwierdzenia.",
+    "addItem": "Dodaj pozycję",
+    "removeItem": "Usuń",
+    "itemName": "Nazwa przedmiotu",
+    "itemNamePlaceholder": "Wprowadź nazwę przedmiotu",
+    "quantity": "Ilość",
+    "priority": "Priorytet",
+    "notes": "Uwagi (opcjonalne)",
+    "notesPlaceholder": "Dodatkowe specyfikacje lub uwagi",
+    "creating": "Tworzenie...",
+    "pending": "Oczekujące zamówienia",
+    "history": "Historia zamówień",
+    "suppliers": "Dostawcy",
+    "budget": "Budżet na sprzęt",
+    "approve": "Zatwierdź zamówienie",
+    "track": "Śledź przesyłkę",
+    "receive": "Odbierz zamówienie",
+    "status": {
+      "draft": "Szkic",
+      "submitted": "Złożone",
+      "approved": "Zatwierdzone",
+      "ordered": "Zamówione",
+      "shipped": "Wysłane",
+      "delivered": "Dostarczone",
+      "cancelled": "Anulowane"
+    }
+  },
+  "laundry": {
+    "title": "Zarządzanie praniem",
+    "schedule": "Harmonogram prania",
+    "status": "Status prania",
+    "pickup": "Zaplanuj odbiór",
+    "return": "Oznacz jako zwrócone",
+    "items": {
+      "jerseys": "Koszulki meczowe",
+      "practice": "Koszulki treningowe",
+      "socks": "Getry drużynowe",
+      "shells": "Spodenki",
+      "towels": "Ręczniki"
+    }
+  },
+  "reports": {
+    "title": "Raporty sprzętowe",
+    "usage": "Raport użycia",
+    "cost": "Analiza kosztów",
+    "replacement": "Harmonogram wymiany",
+    "playerNeeds": "Potrzeby sprzętowe zawodników",
+    "teamNeeds": "Potrzeby sprzętowe drużyny",
+    "generate": "Generuj raport",
+    "export": "Eksportuj raport"
+  },
+  "budget": {
+    "title": "Zarządzanie budżetem",
+    "current": "Bieżący budżet",
+    "spent": "Wydana kwota",
+    "remaining": "Pozostały budżet",
+    "projected": "Prognozowane koszty",
+    "categories": "Budżet według kategorii",
+    "approval": "Oczekujące zatwierdzenia"
+  },
+  "team": {
+    "title": "Sprzęt drużynowy",
+    "bags": "Torby na sprzęt",
+    "medical": "Apteczka",
+    "tools": "Narzędzia do sprzętu",
+    "spare": "Sprzęt zapasowy",
+    "travel": "Lista kontrolna na wyjazd",
+    "gameday": "Lista kontrolna na dzień meczu"
+  },
+  "events": {
+    "upcoming": "Nadchodzące wydarzenia",
+    "equipmentRelated": "Harmonogram związany ze sprzętem"
+  },
+  "tasks": {
+    "active": "Aktywne zadania",
+    "currentMaintenance": "Bieżąca konserwacja i zadania",
+    "assigned": "Przypisane",
+    "due": "Termin",
+    "estimatedTime": "Szac. czas",
+    "lastDone": "Ostatnio wykonane"
+  },
+  "gameday": {
+    "checklist": "Lista kontrolna na dzień meczu",
+    "preGame": "Zadania przygotowawcze przed meczem",
+    "deadline": "Termin"
+  },
+  "players": {
+    "equipment": "Sprzęt zawodników",
+    "tracking": "Śledzenie indywidualnego sprzętu zawodników",
+    "comingSoon": "Śledzenie sprzętu zawodników wkrótce dostępne",
+    "addRecord": "Dodaj rekord sprzętu"
+  }
+}

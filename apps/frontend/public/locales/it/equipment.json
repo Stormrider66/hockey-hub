@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Dashboard Responsabile Attrezzature",
+    "subtitle": "Inventario e gestione attrezzature",
+    "welcome": "Benvenuto, {{name}}",
+    "quickStats": "Stato Attrezzature",
+    "urgentNeeds": "Necessità Urgenti"
+  },
+  "inventory": {
+    "title": "Inventario Attrezzature",
+    "overview": "Panoramica Inventario",
+    "search": "Cerca Attrezzatura",
+    "filter": "Filtra per Tipo",
+    "add": "Aggiungi Attrezzatura",
+    "remove": "Rimuovi Attrezzatura",
+    "update": "Aggiorna Scorte",
+    "lowStock": "Avviso Scorte Basse",
+    "remaining": "{{count}} rimanenti",
+    "reorderAt": "Riordinare a {{level}}",
+    "outOfStock": "Esaurito",
+    "lowStockStatus": "Scorte Basse",
+    "stock": "Scorte",
+    "condition": {
+      "good": "Buono",
+      "fair": "Discreto",
+      "poor": "Scarso"
+    },
+    "categories": {
+      "protective": "Protezioni",
+      "sticks": "Bastoni da Hockey",
+      "skates": "Pattini",
+      "apparel": "Abbigliamento Squadra",
+      "training": "Attrezzatura Allenamento",
+      "goalie": "Attrezzatura Portiere",
+      "accessories": "Accessori",
+      "medical": "Forniture Mediche"
+    },
+    "status": {
+      "available": "Disponibile",
+      "assigned": "Assegnato",
+      "maintenance": "In Manutenzione",
+      "ordered": "Ordinato",
+      "damaged": "Danneggiato",
+      "retired": "Ritirato"
+    }
+  },
+  "assignments": {
+    "title": "Assegnazioni Attrezzature",
+    "player": "Assegnazioni Giocatori",
+    "team": "Attrezzatura Squadra",
+    "assign": "Assegna Attrezzatura",
+    "return": "Restituisci Attrezzatura",
+    "history": "Storico Assegnazioni",
+    "current": "Assegnazioni Attuali",
+    "overdue": "Restituzioni in Ritardo"
+  },
+  "sizes": {
+    "title": "Gestione Taglie",
+    "chart": "Tabella Taglie",
+    "playerSizes": "Taglie Giocatori",
+    "update": "Aggiorna Taglie",
+    "fitting": "Prenota Prova",
+    "categories": {
+      "helmet": "Casco",
+      "shoulderPads": "Spalline",
+      "elbow": "Gomitiere",
+      "gloves": "Guanti",
+      "pants": "Pantaloni da Hockey",
+      "shinGuards": "Parastinchi",
+      "skates": "Pattini",
+      "jersey": "Maglia",
+      "socks": "Calze"
+    },
+    "measurements": {
+      "xs": "Extra Small",
+      "s": "Small",
+      "m": "Medium",
+      "l": "Large",
+      "xl": "Extra Large",
+      "xxl": "2X Large",
+      "xxxl": "3X Large",
+      "youth": "Giovani",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Manutenzione Attrezzature",
+    "schedule": "Programma Manutenzione",
+    "due": "Manutenzione Scaduta",
+    "history": "Storico Manutenzione",
+    "log": "Registra Manutenzione",
+    "types": {
+      "sharpening": "Affilatura Pattini",
+      "repair": "Riparazione Attrezzatura",
+      "cleaning": "Pulizia Approfondita",
+      "inspection": "Ispezione Sicurezza",
+      "replacement": "Sostituzione Parti"
+    },
+    "frequency": {
+      "daily": "Giornaliera",
+      "weekly": "Settimanale",
+      "biweekly": "Bisettimanale",
+      "monthly": "Mensile",
+      "seasonal": "Stagionale",
+      "asNeeded": "Al Bisogno"
+    }
+  },
+  "orders": {
+    "title": "Ordini Attrezzature",
+    "new": "Nuovo Ordine",
+    "createOrder": "Crea Ordine",
+    "createOrderTitle": "Crea Ordine Attrezzature",
+    "createOrderDescription": "Aggiungi articoli al tuo ordine. Gli ordini saranno inviati per approvazione.",
+    "addItem": "Aggiungi Articolo",
+    "removeItem": "Rimuovi",
+    "itemName": "Nome Articolo",
+    "itemNamePlaceholder": "Inserisci nome articolo",
+    "quantity": "Qtà",
+    "priority": "Priorità",
+    "notes": "Note (opzionale)",
+    "notesPlaceholder": "Specifiche aggiuntive o note",
+    "creating": "Creazione...",
+    "pending": "Ordini in Sospeso",
+    "history": "Storico Ordini",
+    "suppliers": "Fornitori",
+    "budget": "Budget Attrezzature",
+    "approve": "Approva Ordine",
+    "track": "Traccia Spedizione",
+    "receive": "Ricevi Ordine",
+    "status": {
+      "draft": "Bozza",
+      "submitted": "Inviato",
+      "approved": "Approvato",
+      "ordered": "Ordinato",
+      "shipped": "Spedito",
+      "delivered": "Consegnato",
+      "cancelled": "Annullato"
+    }
+  },
+  "laundry": {
+    "title": "Gestione Lavanderia",
+    "schedule": "Programma Lavanderia",
+    "status": "Stato Lavanderia",
+    "pickup": "Programma Ritiro",
+    "return": "Segna come Restituito",
+    "items": {
+      "jerseys": "Maglie da Gara",
+      "practice": "Maglie Allenamento",
+      "socks": "Calze Squadra",
+      "shells": "Copri-pantaloni",
+      "towels": "Asciugamani"
+    }
+  },
+  "reports": {
+    "title": "Report Attrezzature",
+    "usage": "Report Utilizzo",
+    "cost": "Analisi Costi",
+    "replacement": "Programma Sostituzioni",
+    "playerNeeds": "Necessità Giocatori",
+    "teamNeeds": "Necessità Squadra",
+    "generate": "Genera Report",
+    "export": "Esporta Report"
+  },
+  "budget": {
+    "title": "Gestione Budget",
+    "current": "Budget Corrente",
+    "spent": "Importo Speso",
+    "remaining": "Budget Rimanente",
+    "projected": "Costi Previsti",
+    "categories": "Budget per Categoria",
+    "approval": "Approvazioni in Sospeso"
+  },
+  "team": {
+    "title": "Attrezzatura Squadra",
+    "bags": "Borse Attrezzatura",
+    "medical": "Kit Medico",
+    "tools": "Strumenti Attrezzatura",
+    "spare": "Attrezzatura di Scorta",
+    "travel": "Checklist Trasferta",
+    "gameday": "Checklist Giorno Partita"
+  },
+  "events": {
+    "upcoming": "Prossimi Eventi",
+    "equipmentRelated": "Programma legato alle attrezzature"
+  },
+  "tasks": {
+    "active": "Attività in Corso",
+    "currentMaintenance": "Manutenzione e attività correnti",
+    "assigned": "Assegnato",
+    "due": "Scadenza",
+    "estimatedTime": "Tempo Stim.",
+    "lastDone": "Ultimo completamento"
+  },
+  "gameday": {
+    "checklist": "Checklist Giorno Partita",
+    "preGame": "Attività preparazione pre-partita",
+    "deadline": "Scadenza"
+  },
+  "players": {
+    "equipment": "Attrezzatura Giocatori",
+    "tracking": "Monitoraggio attrezzatura individuale",
+    "comingSoon": "Monitoraggio attrezzatura giocatori in arrivo",
+    "addRecord": "Aggiungi Record Attrezzatura"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Treeneri töölaud",
+    "subtitle": "Meeskonna haldus ja tulemuste jälgimine",
+    "welcome": "Tere tulemast tagasi, treener {{name}}!",
+    "quickStats": "Kiirstatistika",
+    "todaysFocus": "Tänane fookus"
+  },
+  "team": {
+    "title": "Meeskonna haldus",
+    "roster": "Meeskonna koosseis",
+    "lineups": "Viisikute kombinatsioonid",
+    "availability": "Mängijate saadavus",
+    "performance": "Meeskonna sooritus",
+    "statistics": "Meeskonna statistika",
+    "playerStatus": {
+      "available": "Saadaval",
+      "limited": "Piiratud",
+      "unavailable": "Pole saadaval",
+      "injured": "Vigastatud",
+      "dayToDay": "Päev-päevalt"
+    }
+  },
+  "practice": {
+    "title": "Treeningu planeerimine",
+    "schedule": "Treeninggraafik",
+    "drills": "Harjutuste kogu",
+    "templates": "Treeningu mallid",
+    "planning": "Treeningu planeerimine",
+    "attendance": "Kohaloleku jälgimine",
+    "intensity": "Treeningu intensiivsus",
+    "focus": {
+      "offense": "Ründesüsteemid",
+      "defense": "Kaitsesüsteemid",
+      "specialTeams": "Erikoosseisud",
+      "conditioning": "Füüsiline ettevalmistus",
+      "skills": "Oskuste arendamine"
+    },
+    "types": {
+      "full": "Täistreening",
+      "optional": "Vabatahtlik jääaeg",
+      "morning": "Hommikune treening",
+      "preGame": "Mängueelne treening",
+      "recovery": "Taastumissessioon"
+    }
+  },
+  "games": {
+    "title": "Mängude haldus",
+    "schedule": "Mängugraafik",
+    "preparation": "Mänguks valmistumine",
+    "tactics": "Taktikaline planeerimine",
+    "lineups": "Mängu koosseisud",
+    "scouting": "Luure aruanded",
+    "video": "Video analüüs",
+    "stats": {
+      "goals": "Väravad",
+      "assists": "Söödud",
+      "shots": "Visked",
+      "saves": "Tõrjed",
+      "faceoffs": "Algusviske",
+      "penalties": "Karistused",
+      "hits": "Taklungid",
+      "blocks": "Blokeeringud"
+    }
+  },
+  "tactics": {
+    "title": "Taktikaline tahvel",
+    "systems": "Meeskonna süsteemid",
+    "powerPlay": "Ülekaal",
+    "penaltyKill": "Alakaal",
+    "faceoffPlays": "Algusviske kombinatsioonid",
+    "breakouts": "Väljatuleku skeemid",
+    "forecheck": "Eessurve süsteemid",
+    "neutralZone": "Neutraalala",
+    "save": "Salvesta taktika",
+    "load": "Lae taktika"
+  },
+  "communication": {
+    "title": "Meeskonna kommunikatsioon",
+    "announcements": "Meeskonna teadaanded",
+    "meetings": "Meeskonna koosolekud",
+    "feedback": "Mängijate tagasiside",
+    "messages": "Otsesõnumid",
+    "broadcast": "Üldteade",
+    "schedule": "Planeeri koosolek"
+  },
+  "analytics": {
+    "title": "Soorituse analüütika",
+    "teamMetrics": "Meeskonna näitajad",
+    "playerMetrics": "Mängijate näitajad",
+    "trends": "Soorituse trendid",
+    "comparison": "Meeskondade võrdlus",
+    "advanced": "Täiustatud statistika",
+    "reports": "Genereeri aruandeid",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Ründeala alustused",
+      "gaa": "Väravaid keskmiselt",
+      "svp": "Tõrje protsent"
+    }
+  },
+  "development": {
+    "title": "Mängijate arendamine",
+    "plans": "Arenguplaanid",
+    "progress": "Progressi jälgimine",
+    "goals": "Arengueesmärgid",
+    "assessments": "Oskuste hindamised",
+    "feedback": "Arengu tagasiside",
+    "programs": "Treeningprogrammid"
+  },
+  "lineup": {
+    "title": "Viisikute haldus",
+    "forward": "Ründeviisikud",
+    "defense": "Kaitsepaarid",
+    "powerPlay": "Ülekaaluüksused",
+    "penaltyKill": "Alakaaluüksused",
+    "scratches": "Reservis",
+    "optimize": "Optimeeri viisikud",
+    "save": "Salvesta koosseis",
+    "positions": {
+      "c": "Keskründaja",
+      "lw": "Vasak ääreründaja",
+      "rw": "Parem ääreründaja",
+      "ld": "Vasak kaitsja",
+      "rd": "Parem kaitsja",
+      "g": "Väravavaht"
+    }
+  }
+}

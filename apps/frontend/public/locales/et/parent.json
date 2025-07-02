@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Lapsevanema töölaud",
+    "subtitle": "Püsige kursis oma lapse hokiteekonnaga",
+    "welcome": "Tere tulemast, {{name}}!",
+    "childrenOverview": "Laste ülevaade",
+    "upcomingEvents": "Tulevad sündmused"
+  },
+  "children": {
+    "title": "Minu lapsed",
+    "addChild": "Lisa laps",
+    "profile": "Lapse profiil",
+    "schedule": "Ajakava",
+    "performance": "Sooritus",
+    "wellness": "Tervis ja heaolu",
+    "communication": "Sõnumid",
+    "details": {
+      "team": "Meeskond",
+      "position": "Positsioon",
+      "coach": "Treener",
+      "number": "Särgi number",
+      "age": "Vanuseklass"
+    }
+  },
+  "schedule": {
+    "title": "Pere ajakava",
+    "calendar": "Kalendrivaade",
+    "upcoming": "Tulevad sündmused",
+    "transportation": "Transport",
+    "conflicts": "Ajakava konfliktid",
+    "sync": "Sünkroniseeri kalender",
+    "export": "Ekspordi ajakava",
+    "types": {
+      "game": "Mäng",
+      "practice": "Treening",
+      "tournament": "Turniir",
+      "teamEvent": "Meeskonna üritus",
+      "meeting": "Lastevanemate koosolek",
+      "fundraiser": "Heategevusüritus"
+    },
+    "rsvp": {
+      "title": "Kinnita osalemine",
+      "attending": "Tuleme kohale",
+      "notAttending": "Ei saa tulla",
+      "driving": "Saan teisi sõidutada",
+      "needRide": "Vajan transporti"
+    }
+  },
+  "transportation": {
+    "title": "Transpordi koordineerimine",
+    "available": "Saadaolevad juhid",
+    "requests": "Sõidutaotlused",
+    "myOffers": "Minu sõidupakkumised",
+    "carpool": "Koossõidugrupid",
+    "seats": "Vabad kohad",
+    "pickup": "Pealekorje koht",
+    "dropoff": "Mahajätmise koht",
+    "time": "Väljumisaeg"
+  },
+  "payments": {
+    "title": "Maksed ja tasud",
+    "overview": "Maksete ülevaade",
+    "due": "Maksmisele kuuluv summa",
+    "history": "Maksete ajalugu",
+    "upcoming": "Tulevad tasud",
+    "methods": "Makseviisid",
+    "invoices": "Arved",
+    "items": {
+      "registration": "Registreerimistasu",
+      "monthly": "Kuutasu",
+      "equipment": "Varustus",
+      "tournament": "Turniiri tasu",
+      "travel": "Reisikulud",
+      "fundraising": "Korjandus"
+    },
+    "status": {
+      "paid": "Makstud",
+      "pending": "Ootel",
+      "overdue": "Tähtaja ületanud",
+      "partial": "Osaline makse"
+    }
+  },
+  "communication": {
+    "title": "Kommunikatsioon",
+    "messages": "Sõnumid",
+    "announcements": "Meeskonna teadaanded",
+    "coachMessages": "Treeneri sõnumid",
+    "teamMessages": "Meeskonna uudised",
+    "emergency": "Hädaabi kontaktid",
+    "directory": "Meeskonna nimekiri",
+    "preferences": "Suhtluse eelistused"
+  },
+  "medical": {
+    "title": "Meditsiiniline info",
+    "records": "Meditsiinilised dokumendid",
+    "allergies": "Allergiad",
+    "medications": "Ravimid",
+    "conditions": "Terviseseisundid",
+    "emergency": "Hädaabi kontaktid",
+    "insurance": "Kindlustuse info",
+    "consent": "Meditsiiniline nõusolek",
+    "injuries": "Vigastuste ajalugu"
+  },
+  "documents": {
+    "title": "Dokumendid ja vormid",
+    "required": "Nõutavad dokumendid",
+    "optional": "Valikulised vormid",
+    "submitted": "Esitatud",
+    "pending": "Esitamise ootel",
+    "download": "Lae vormid alla",
+    "upload": "Lae dokument üles",
+    "types": {
+      "registration": "Registreerimisvorm",
+      "medical": "Meditsiiniline vorm",
+      "waiver": "Vastutuse loovutamine",
+      "consent": "Nõusoleku vorm",
+      "emergency": "Hädaabi kontakt",
+      "insurance": "Kindlustuskaart"
+    }
+  },
+  "volunteer": {
+    "title": "Vabatahtliku võimalused",
+    "signup": "Registreeru",
+    "myShifts": "Minu vahetused",
+    "available": "Saadaolevad kohad",
+    "hours": "Vabatahtliku tunnid",
+    "requirements": "Nõuded",
+    "positions": {
+      "scorekeeper": "Sekretär",
+      "penalty": "Karistuspink",
+      "concession": "Puhvet",
+      "fundraising": "Korjandus",
+      "teamManager": "Meeskonna mänedžer",
+      "equipment": "Varustuse abiline"
+    }
+  },
+  "performance": {
+    "title": "Lapse progress",
+    "overview": "Soorituse ülevaade",
+    "improvement": "Arenguvaldkonnad",
+    "achievements": "Hiljutised saavutused",
+    "feedback": "Treeneri tagasiside",
+    "goals": "Arengueesmärgid",
+    "attendance": "Kohaloleku statistika",
+    "effort": "Pingutuse tase",
+    "teamwork": "Meeskonnatöö"
+  }
+}

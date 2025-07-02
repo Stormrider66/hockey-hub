@@ -1,0 +1,145 @@
+{
+  "title": "Ziņojumi",
+  "conversations": {
+    "title": "Sarunas",
+    "new": "Jauna saruna",
+    "search": "Meklēt sarunas...",
+    "empty": "Vēl nav sarunu",
+    "startNew": "Sākt jaunu sarunu"
+  },
+  "participants": {
+    "add": "Pievienot dalībniekus",
+    "remove": "Noņemt no sarunas",
+    "search": "Meklēt cilvēkus...",
+    "you": "Jūs",
+    "typing": "raksta...",
+    "multipleTyping": "raksta...",
+    "online": "Tiešsaistē",
+    "offline": "Bezsaistē",
+    "away": "Prombūtnē"
+  },
+  "messages": {
+    "placeholder": "Rakstiet ziņojumu...",
+    "send": "Sūtīt",
+    "edit": "Rediģēt ziņojumu",
+    "delete": "Dzēst ziņojumu",
+    "reply": "Atbildēt",
+    "forward": "Pārsūtīt",
+    "copy": "Kopēt",
+    "pin": "Piespraust ziņojumu",
+    "unpin": "Noņemt piespraušanu",
+    "react": "Pievienot reakciju",
+    "edited": "rediģēts",
+    "deleted": "Šis ziņojums tika dzēsts",
+    "delivered": "Piegādāts",
+    "read": "Izlasīts",
+    "sending": "Sūta...",
+    "failed": "Neizdevās nosūtīt",
+    "retry": "Mēģināt vēlreiz"
+  },
+  "groups": {
+    "create": "Izveidot grupu",
+    "name": "Grupas nosaukums",
+    "description": "Apraksts (neobligāts)",
+    "addMembers": "Pievienot dalībniekus",
+    "settings": "Grupas iestatījumi",
+    "leave": "Pamest grupu",
+    "delete": "Dzēst grupu",
+    "members": "{{count}} dalībnieki",
+    "admin": "Administrators",
+    "member": "Dalībnieks"
+  },
+  "channels": {
+    "title": "Kanāli",
+    "create": "Izveidot kanālu",
+    "public": "Publisks kanāls",
+    "private": "Privāts kanāls",
+    "join": "Pievienoties kanālam",
+    "leave": "Pamest kanālu",
+    "mute": "Izslēgt paziņojumus",
+    "unmute": "Ieslēgt paziņojumus",
+    "types": {
+      "general": "Vispārīgs",
+      "announcements": "Paziņojumi",
+      "team": "Komandas čats",
+      "coaches": "Treneri",
+      "parents": "Vecāki",
+      "medical": "Medicīnas personāls"
+    }
+  },
+  "attachments": {
+    "title": "Pielikumi",
+    "upload": "Augšupielādēt failu",
+    "types": {
+      "image": "Attēls",
+      "video": "Video",
+      "document": "Dokuments",
+      "audio": "Audio",
+      "other": "Fails"
+    },
+    "download": "Lejupielādēt",
+    "preview": "Priekšskatīt",
+    "tooLarge": "Fails ir pārāk liels. Maksimālais izmērs ir {{maxSize}}",
+    "unsupported": "Faila tips nav atbalstīts"
+  },
+  "notifications": {
+    "newMessage": "Jauns ziņojums no {{sender}}",
+    "mentioned": "{{sender}} pieminēja jūs",
+    "groupInvite": "Jūs tikāt pievienots {{group}}",
+    "enable": "Ieslēgt paziņojumus",
+    "disable": "Izslēgt paziņojumus",
+    "sound": "Paziņojumu skaņa",
+    "desktop": "Darbvirsmas paziņojumi"
+  },
+  "search": {
+    "placeholder": "Meklēt ziņojumus...",
+    "filters": "Filtri",
+    "from": "No",
+    "to": "Kam",
+    "date": "Datums",
+    "hasAttachment": "Ar pielikumu",
+    "results": "Atrasti {{count}} rezultāti",
+    "noResults": "Nav atrasts neviens ziņojums"
+  },
+  "settings": {
+    "title": "Čata iestatījumi",
+    "privacy": "Privātums",
+    "readReceipts": "Lasīšanas apstiprinājumi",
+    "typingIndicator": "Rādīt, kad rakstu",
+    "autoDownload": "Automātiski lejupielādēt medijus",
+    "enterToSend": "Nospiest Enter, lai sūtītu",
+    "theme": "Čata tēma",
+    "fontSize": "Fonta izmērs"
+  },
+  "status": {
+    "online": "Tiešsaistē",
+    "away": "Prombūtnē",
+    "busy": "Netraucēt",
+    "offline": "Šķist bezsaistē",
+    "setStatus": "Iestatīt statusu",
+    "customStatus": "Iestatīt pielāgotu statusu..."
+  },
+  "actions": {
+    "startChat": "Sākt čatu",
+    "viewProfile": "Skatīt profilu",
+    "clearChat": "Notīrīt čata vēsturi",
+    "exportChat": "Eksportēt čatu",
+    "reportUser": "Ziņot par lietotāju",
+    "blockUser": "Bloķēt lietotāju",
+    "unblockUser": "Atbloķēt lietotāju"
+  },
+  "time": {
+    "now": "tagad",
+    "today": "Šodien",
+    "yesterday": "Vakar",
+    "daysAgo": "Pirms {{count}} dienām",
+    "lastSeen": "Pēdējo reizi redzēts {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Savienojums zaudēts. Atkārtoti savienojas...",
+    "sendFailed": "Neizdevās nosūtīt ziņojumu",
+    "loadFailed": "Neizdevās ielādēt ziņojumus",
+    "uploadFailed": "Neizdevās augšupielādēt failu",
+    "permissionDenied": "Jums nav atļaujas to darīt"
+  }
+}

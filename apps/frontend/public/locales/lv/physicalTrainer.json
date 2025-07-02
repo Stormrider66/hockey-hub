@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Fiziskās sagatavotības trenera vadības panelis",
+    "subtitle": "Spēlētāju fiziskās sagatavotības un treniņu vadība",
+    "welcome": "Laipni lūdzam, {{name}}",
+    "todaySessions": "Šodienas treniņu nodarbības",
+    "playerProgress": "Spēlētāju progresa pārskats",
+    "quickStats": {
+      "todaysSessions": "Šodienas nodarbības",
+      "activeNow": "Aktīvi tagad",
+      "playerReadiness": "Spēlētāju gatavība",
+      "completedToday": "Pabeigts šodien",
+      "totalPlayers": "{{count}} spēlētāji kopā",
+      "noActiveSession": "Nav aktīvas nodarbības",
+      "teamAverage": "Komandas vidējais",
+      "upcoming": "{{count}} gaidāmas"
+    }
+  },
+  "training": {
+    "title": "Treniņu programmas",
+    "create": "Izveidot programmu",
+    "templates": "Treniņu veidnes",
+    "active": "Aktīvās programmas",
+    "scheduled": "Ieplānotās nodarbības",
+    "history": "Treniņu vēsture",
+    "types": {
+      "strength": "Spēka treniņš",
+      "cardio": "Kardio treniņš",
+      "flexibility": "Lokanība",
+      "agility": "Veiklība",
+      "recovery": "Atjaunošanās",
+      "rehabilitation": "Rehabilitācija",
+      "testing": "Fiziskās sagatavotības testēšana"
+    },
+    "intensity": {
+      "low": "Zema",
+      "medium": "Vidēja",
+      "moderate": "Mērena",
+      "high": "Augsta",
+      "maximum": "Maksimāla"
+    }
+  },
+  "sessions": {
+    "title": "Treniņu nodarbības",
+    "schedule": "Ieplānot nodarbību",
+    "current": "Pašreizējā nodarbība",
+    "upcoming": "Gaidāmās nodarbības",
+    "completed": "Pabeigtās nodarbības",
+    "cancel": "Atcelt nodarbību",
+    "reschedule": "Pārcelt",
+    "duration": "Nodarbības ilgums",
+    "participants": "Dalībnieki",
+    "newSession": "Jauna nodarbība",
+    "intensity": "{{level}} intensitāte",
+    "status": {
+      "active": "Aktīva",
+      "completed": "Pabeigta",
+      "upcoming": "Gaidāma"
+    },
+    "launch": "Sākt",
+    "viewDetails": "Skatīt detaļas"
+  },
+  "exercises": {
+    "title": "Vingrinājumu bibliotēka",
+    "search": "Meklēt vingrinājumus",
+    "categories": "Vingrinājumu kategorijas",
+    "create": "Pievienot vingrinājumu",
+    "favorite": "Iecienītie vingrinājumi",
+    "equipment": "Nepieciešamais inventārs",
+    "instructions": "Instrukcijas",
+    "video": "Video pamācība",
+    "categories": {
+      "upperBody": "Augšķermenis",
+      "lowerBody": "Apakšķermenis",
+      "core": "Rumpis",
+      "fullBody": "Viss ķermenis",
+      "skating": "Slidošanas specifika",
+      "shooting": "Metienu spēks",
+      "balance": "Līdzsvars un stabilitāte",
+      "plyometric": "Pliometrija"
+    }
+  },
+  "workouts": {
+    "title": "Treniņu veidotājs",
+    "create": "Izveidot treniņu",
+    "edit": "Rediģēt treniņu",
+    "save": "Saglabāt treniņu",
+    "templates": "Treniņu veidnes",
+    "custom": "Pielāgoti treniņi",
+    "assign": "Piešķirt spēlētājiem",
+    "components": {
+      "warmup": "Iesildīšanās",
+      "main": "Galvenā daļa",
+      "cooldown": "Atsildīšanās",
+      "stretching": "Stiepšanās"
+    },
+    "parameters": {
+      "sets": "Sērijas",
+      "reps": "Atkārtojumi",
+      "duration": "Ilgums",
+      "rest": "Atpūtas periods",
+      "weight": "Svars",
+      "distance": "Distance",
+      "speed": "Ātrums"
+    }
+  },
+  "testing": {
+    "title": "Fiziskās sagatavotības testēšana",
+    "schedule": "Ieplānot testu",
+    "protocols": "Testu protokoli",
+    "results": "Testu rezultāti",
+    "history": "Testēšanas vēsture",
+    "compare": "Salīdzināt rezultātus",
+    "benchmarks": "Komandas etaloni",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprinta tests",
+      "agility": "Veiklības tests",
+      "strength": "Spēka tests",
+      "flexibility": "Lokanības tests",
+      "balance": "Līdzsvara tests",
+      "endurance": "Izturības tests",
+      "powerOutput": "Jaudas izvade"
+    }
+  },
+  "monitoring": {
+    "title": "Snieguma monitorings",
+    "metrics": "Snieguma metrika",
+    "trends": "Progresa tendences",
+    "alerts": "Snieguma brīdinājumi",
+    "load": "Treniņu slodze",
+    "recovery": "Atjaunošanās statuss",
+    "readiness": "Treniņu gatavība",
+    "metrics": {
+      "hrv": "Sirdsdarbības mainīgums",
+      "restingHR": "Miera pulss",
+      "weight": "Ķermeņa svars",
+      "bodyFat": "Tauku %",
+      "muscleMass": "Muskuļu masa",
+      "power": "Jaudas izvade",
+      "speed": "Ātrums",
+      "endurance": "Izturība"
+    }
+  },
+  "programs": {
+    "title": "Treniņu programmas",
+    "inSeason": "Sezonas programma",
+    "offSeason": "Starpsezonas programma",
+    "preseason": "Pirmsezonas programma",
+    "rehabilitation": "Rehabilitācijas programma",
+    "maintenance": "Uzturēšanas programma",
+    "phases": {
+      "preparation": "Sagatavošanas fāze",
+      "building": "Veidošanas fāze",
+      "peak": "Maksimuma fāze",
+      "recovery": "Atjaunošanās fāze"
+    }
+  },
+  "analytics": {
+    "title": "Treniņu analīze",
+    "individual": "Individuālā analīze",
+    "team": "Komandas analīze",
+    "progress": "Progresa atskaites",
+    "comparison": "Spēlētāju salīdzinājums",
+    "export": "Eksportēt datus",
+    "metrics": "Galvenie rādītāji",
+    "insights": "Snieguma ieskati"
+  },
+  "communication": {
+    "title": "Komunikācija",
+    "feedback": "Nodarbības atsauksmes",
+    "notes": "Treniņu piezīmes",
+    "recommendations": "Ieteikumi",
+    "alerts": "Sūtīt brīdinājumu",
+    "report": "Progresa atskaite",
+    "collaborate": "Sadarboties ar medicīnu"
+  }
+}

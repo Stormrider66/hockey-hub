@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Varustuse halduri töölaud",
+    "subtitle": "Varustuse inventuur ja haldus",
+    "welcome": "Tere tulemast, {{name}}",
+    "quickStats": "Varustuse olek",
+    "urgentNeeds": "Pakilised varustuse vajadused"
+  },
+  "inventory": {
+    "title": "Varustuse inventuur",
+    "overview": "Inventuuri ülevaade",
+    "search": "Otsi varustust",
+    "filter": "Filtreeri tüübi järgi",
+    "add": "Lisa varustus",
+    "remove": "Eemalda varustus",
+    "update": "Uuenda laoseis",
+    "lowStock": "Madala lao hoiatus",
+    "remaining": "{{count}} alles",
+    "reorderAt": "Telli juurde tasemest {{level}}",
+    "outOfStock": "Otsas",
+    "lowStockStatus": "Madal laoseis",
+    "stock": "Laoseis",
+    "condition": {
+      "good": "Hea",
+      "fair": "Rahuldav",
+      "poor": "Kehv"
+    },
+    "categories": {
+      "protective": "Kaitsevarustus",
+      "sticks": "Hokikepid",
+      "skates": "Uisud",
+      "apparel": "Meeskonna riietus",
+      "training": "Treeningvarustus",
+      "goalie": "Väravavahi varustus",
+      "accessories": "Lisavarustus",
+      "medical": "Meditsiinivarustus"
+    },
+    "status": {
+      "available": "Saadaval",
+      "assigned": "Määratud",
+      "maintenance": "Hoolduses",
+      "ordered": "Tellitud",
+      "damaged": "Kahjustatud",
+      "retired": "Kasutusest kõrvaldatud"
+    }
+  },
+  "assignments": {
+    "title": "Varustuse määramised",
+    "player": "Mängijate määramised",
+    "team": "Meeskonna varustus",
+    "assign": "Määra varustus",
+    "return": "Tagasta varustus",
+    "history": "Määramiste ajalugu",
+    "current": "Praegused määramised",
+    "overdue": "Tähtaja ületanud tagastused"
+  },
+  "sizes": {
+    "title": "Suuruste haldus",
+    "chart": "Suuruste tabel",
+    "playerSizes": "Mängijate suurused",
+    "update": "Uuenda suurusi",
+    "fitting": "Planeeri sobitamine",
+    "categories": {
+      "helmet": "Kiiver",
+      "shoulderPads": "Õlakaitsmed",
+      "elbow": "Küünarnukikaitsmed",
+      "gloves": "Kindad",
+      "pants": "Hokipüksid",
+      "shinGuards": "Säärekaitsmed",
+      "skates": "Uisud",
+      "jersey": "Särk",
+      "socks": "Sokid"
+    },
+    "measurements": {
+      "xs": "Väga väike",
+      "s": "Väike",
+      "m": "Keskmine",
+      "l": "Suur",
+      "xl": "Väga suur",
+      "xxl": "2X suur",
+      "xxxl": "3X suur",
+      "youth": "Noored",
+      "junior": "Juunior",
+      "senior": "Seenior"
+    }
+  },
+  "maintenance": {
+    "title": "Varustuse hooldus",
+    "schedule": "Hooldusgraafik",
+    "due": "Hooldus vajalik",
+    "history": "Hoolduse ajalugu",
+    "log": "Logi hooldus",
+    "types": {
+      "sharpening": "Uiskude teritamine",
+      "repair": "Varustuse parandus",
+      "cleaning": "Põhjalik puhastus",
+      "inspection": "Ohutuskontroll",
+      "replacement": "Osade vahetamine"
+    },
+    "frequency": {
+      "daily": "Iga päev",
+      "weekly": "Iga nädal",
+      "biweekly": "Iga kahe nädala tagant",
+      "monthly": "Iga kuu",
+      "seasonal": "Hooajaline",
+      "asNeeded": "Vastavalt vajadusele"
+    }
+  },
+  "orders": {
+    "title": "Varustuse tellimused",
+    "new": "Uus tellimus",
+    "createOrder": "Loo tellimus",
+    "createOrderTitle": "Loo varustuse tellimus",
+    "createOrderDescription": "Lisa tellimuse artiklid. Tellimused saadetakse kinnitamiseks.",
+    "addItem": "Lisa artikkel",
+    "removeItem": "Eemalda",
+    "itemName": "Artikli nimetus",
+    "itemNamePlaceholder": "Sisesta artikli nimetus",
+    "quantity": "Kogus",
+    "priority": "Prioriteet",
+    "notes": "Märkmed (valikuline)",
+    "notesPlaceholder": "Lisaspetsifikatsioonid või märkmed",
+    "creating": "Loomisel...",
+    "pending": "Ootel tellimused",
+    "history": "Tellimuste ajalugu",
+    "suppliers": "Tarnijad",
+    "budget": "Varustuse eelarve",
+    "approve": "Kinnita tellimus",
+    "track": "Jälgi saadetist",
+    "receive": "Võta tellimus vastu",
+    "status": {
+      "draft": "Mustand",
+      "submitted": "Esitatud",
+      "approved": "Kinnitatud",
+      "ordered": "Tellitud",
+      "shipped": "Saadetud",
+      "delivered": "Kohale toimetatud",
+      "cancelled": "Tühistatud"
+    }
+  },
+  "laundry": {
+    "title": "Pesupesemise haldus",
+    "schedule": "Pesugraafik",
+    "status": "Pesu olek",
+    "pickup": "Planeeri korjamine",
+    "return": "Märgi tagastatuks",
+    "items": {
+      "jerseys": "Mängusärgid",
+      "practice": "Treeningsärgid",
+      "socks": "Meeskonna sokid",
+      "shells": "Püksikatted",
+      "towels": "Rätikud"
+    }
+  },
+  "reports": {
+    "title": "Varustuse aruanded",
+    "usage": "Kasutuse aruanne",
+    "cost": "Kuluanalüüs",
+    "replacement": "Vahetusgraafik",
+    "playerNeeds": "Mängijate varustuse vajadused",
+    "teamNeeds": "Meeskonna varustuse vajadused",
+    "generate": "Genereeri aruanne",
+    "export": "Ekspordi aruanne"
+  },
+  "budget": {
+    "title": "Eelarve haldus",
+    "current": "Praegune eelarve",
+    "spent": "Kulutatud summa",
+    "remaining": "Järelejäänud eelarve",
+    "projected": "Prognoositavad kulud",
+    "categories": "Eelarve kategooriate kaupa",
+    "approval": "Ootel kinnitused"
+  },
+  "team": {
+    "title": "Meeskonna varustus",
+    "bags": "Varustuskotid",
+    "medical": "Meditsiiniline komplekt",
+    "tools": "Varustuse tööriistad",
+    "spare": "Varuvarustus",
+    "travel": "Reisi kontrollnimekiri",
+    "gameday": "Mängupäeva kontrollnimekiri"
+  },
+  "events": {
+    "upcoming": "Tulevad sündmused",
+    "equipmentRelated": "Varustusega seotud ajakava"
+  },
+  "tasks": {
+    "active": "Aktiivsed ülesanded",
+    "currentMaintenance": "Praegused hooldused ja ülesanded",
+    "assigned": "Määratud",
+    "due": "Tähtaeg",
+    "estimatedTime": "Hinnanguline aeg",
+    "lastDone": "Viimati tehtud"
+  },
+  "gameday": {
+    "checklist": "Mängupäeva kontrollnimekiri",
+    "preGame": "Mängueelsed ettevalmistused",
+    "deadline": "Tähtaeg"
+  },
+  "players": {
+    "equipment": "Mängijate varustus",
+    "tracking": "Individuaalne varustuse jälgimine",
+    "comingSoon": "Mängijate varustuse jälgimine tulekul",
+    "addRecord": "Lisa varustuse kirje"
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "dashboard": {
+    "title": "Pénzügyek",
+    "overview": "Pénzügyi áttekintés",
+    "balance": "Egyenleg",
+    "recentTransactions": "Legutóbbi tranzakciók",
+    "upcomingPayments": "Esedékes kifizetések",
+    "quickActions": "Gyors műveletek"
+  },
+  "payments": {
+    "title": "Kifizetések",
+    "make": "Fizetés",
+    "history": "Fizetési előzmények",
+    "pending": "Függőben lévő",
+    "completed": "Befejezett",
+    "failed": "Sikertelen",
+    "scheduled": "Ütemezett",
+    "recurring": "Ismétlődő",
+    "methods": {
+      "card": "Bankkártya",
+      "bank": "Banki átutalás",
+      "cash": "Készpénz",
+      "check": "Csekk",
+      "online": "Online fizetés",
+      "other": "Egyéb"
+    },
+    "status": {
+      "pending": "Függőben",
+      "processing": "Feldolgozás alatt",
+      "completed": "Befejezett",
+      "failed": "Sikertelen",
+      "cancelled": "Lemondva",
+      "refunded": "Visszatérítve"
+    }
+  },
+  "invoices": {
+    "title": "Számlák",
+    "generate": "Számla készítése",
+    "view": "Számla megtekintése",
+    "download": "Számla letöltése",
+    "send": "Számla küldése",
+    "paid": "Kifizetett",
+    "unpaid": "Kifizetetlen",
+    "overdue": "Lejárt",
+    "partial": "Részben kifizetett",
+    "fields": {
+      "number": "Számlaszám",
+      "date": "Dátum",
+      "dueDate": "Esedékesség",
+      "amount": "Összeg",
+      "tax": "ÁFA",
+      "total": "Végösszeg",
+      "status": "Állapot",
+      "items": "Tételek"
+    }
+  },
+  "fees": {
+    "title": "Díjak",
+    "registration": "Regisztrációs díj",
+    "membership": "Tagdíj",
+    "monthly": "Havi díj",
+    "annual": "Éves díj",
+    "tournament": "Torna díj",
+    "equipment": "Felszerelés díj",
+    "travel": "Utazási költség",
+    "insurance": "Biztosítási díj",
+    "late": "Késedelmi díj",
+    "processing": "Kezelési költség",
+    "categories": {
+      "mandatory": "Kötelező",
+      "optional": "Opcionális",
+      "oneTime": "Egyszeri",
+      "recurring": "Ismétlődő"
+    }
+  },
+  "billing": {
+    "title": "Számlázás",
+    "cycle": "Számlázási ciklus",
+    "address": "Számlázási cím",
+    "contact": "Számlázási kapcsolat",
+    "preferences": "Számlázási beállítások",
+    "automatic": "Automatikus számlázás",
+    "manual": "Manuális számlázás",
+    "frequency": {
+      "monthly": "Havi",
+      "quarterly": "Negyedéves",
+      "semiAnnual": "Féléves",
+      "annual": "Éves"
+    }
+  },
+  "discounts": {
+    "title": "Kedvezmények",
+    "apply": "Kedvezmény alkalmazása",
+    "code": "Kedvezmény kód",
+    "percentage": "Százalékos kedvezmény",
+    "fixed": "Fix összegű kedvezmény",
+    "sibling": "Testvér kedvezmény",
+    "earlyBird": "Korai regisztrációs kedvezmény",
+    "loyalty": "Hűség kedvezmény",
+    "volume": "Mennyiségi kedvezmény",
+    "scholarship": "Ösztöndíj"
+  },
+  "refunds": {
+    "title": "Visszatérítések",
+    "request": "Visszatérítés kérése",
+    "process": "Visszatérítés feldolgozása",
+    "approved": "Jóváhagyott",
+    "denied": "Elutasított",
+    "partial": "Részleges visszatérítés",
+    "full": "Teljes visszatérítés",
+    "policy": "Visszatérítési szabályzat",
+    "reasons": {
+      "injury": "Sérülés",
+      "relocation": "Költözés",
+      "dissatisfaction": "Elégedetlenség",
+      "error": "Hiba",
+      "other": "Egyéb"
+    }
+  },
+  "reports": {
+    "title": "Pénzügyi jelentések",
+    "revenue": "Bevétel jelentés",
+    "expense": "Kiadás jelentés",
+    "balance": "Egyenleg jelentés",
+    "outstanding": "Kintlévőségek",
+    "forecast": "Előrejelzés",
+    "tax": "Adó jelentés",
+    "audit": "Audit jelentés",
+    "custom": "Egyéni jelentés",
+    "export": "Exportálás",
+    "period": {
+      "daily": "Napi",
+      "weekly": "Heti",
+      "monthly": "Havi",
+      "quarterly": "Negyedéves",
+      "annual": "Éves"
+    }
+  },
+  "budget": {
+    "title": "Költségvetés",
+    "create": "Költségvetés készítése",
+    "edit": "Költségvetés szerkesztése",
+    "tracking": "Költségvetés követés",
+    "categories": "Kategóriák",
+    "allocated": "Tervezett",
+    "spent": "Elköltött",
+    "remaining": "Fennmaradó",
+    "variance": "Eltérés"
+  },
+  "fundraising": {
+    "title": "Adománygyűjtés",
+    "campaigns": "Kampányok",
+    "donations": "Adományok",
+    "sponsors": "Szponzorok",
+    "events": "Események",
+    "goals": "Célok",
+    "progress": "Haladás",
+    "donors": "Adományozók",
+    "thank": "Köszönetnyilvánítás"
+  },
+  "sponsorship": {
+    "title": "Szponzoráció",
+    "packages": "Szponzori csomagok",
+    "benefits": "Előnyök",
+    "agreements": "Megállapodások",
+    "renewal": "Megújítás",
+    "levels": {
+      "platinum": "Platina",
+      "gold": "Arany",
+      "silver": "Ezüst",
+      "bronze": "Bronz"
+    }
+  },
+  "transactions": {
+    "title": "Tranzakciók",
+    "id": "Tranzakció azonosító",
+    "date": "Dátum",
+    "type": "Típus",
+    "amount": "Összeg",
+    "description": "Leírás",
+    "reference": "Hivatkozás",
+    "method": "Fizetési mód",
+    "status": "Állapot",
+    "details": "Részletek"
+  },
+  "settings": {
+    "title": "Pénzügyi beállítások",
+    "currency": "Pénznem",
+    "taxRate": "ÁFA kulcs",
+    "paymentMethods": "Fizetési módok",
+    "notifications": "Értesítések",
+    "reminders": "Fizetési emlékeztetők",
+    "autopay": "Automatikus fizetés",
+    "receipts": "Nyugták"
+  },
+  "actions": {
+    "pay": "Fizetés",
+    "invoice": "Számlázás",
+    "refund": "Visszatérítés",
+    "cancel": "Lemondás",
+    "export": "Exportálás",
+    "print": "Nyomtatás",
+    "email": "Email küldése",
+    "remind": "Emlékeztető küldése",
+    "reconcile": "Egyeztetés"
+  },
+  "messages": {
+    "paymentSuccessful": "Sikeres fizetés",
+    "paymentFailed": "Sikertelen fizetés",
+    "invoiceSent": "Számla elküldve",
+    "refundProcessed": "Visszatérítés feldolgozva",
+    "reminderSent": "Emlékeztető elküldve",
+    "balanceUpdated": "Egyenleg frissítve",
+    "overdue": "{{count}} lejárt tétel",
+    "confirmPayment": "Biztosan kifizeti a {{amount}} összeget?",
+    "confirmRefund": "Biztosan visszatéríti a {{amount}} összeget?"
+  }
+}

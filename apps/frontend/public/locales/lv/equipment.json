@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Ekipējuma menedžera vadības panelis",
+    "subtitle": "Ekipējuma inventārs un vadība",
+    "welcome": "Laipni lūdzam, {{name}}",
+    "quickStats": "Ekipējuma statuss",
+    "urgentNeeds": "Steidzamas ekipējuma vajadzības"
+  },
+  "inventory": {
+    "title": "Ekipējuma inventārs",
+    "overview": "Inventāra pārskats",
+    "search": "Meklēt ekipējumu",
+    "filter": "Filtrēt pēc tipa",
+    "add": "Pievienot ekipējumu",
+    "remove": "Noņemt ekipējumu",
+    "update": "Atjaunināt krājumus",
+    "lowStock": "Zemu krājumu brīdinājums",
+    "remaining": "Atlikuši {{count}}",
+    "reorderAt": "Pasūtīt, kad {{level}}",
+    "outOfStock": "Nav noliktavā",
+    "lowStockStatus": "Zemi krājumi",
+    "stock": "Krājumi",
+    "condition": {
+      "good": "Labs",
+      "fair": "Apmierinošs",
+      "poor": "Slikts"
+    },
+    "categories": {
+      "protective": "Aizsargekipējums",
+      "sticks": "Hokeja nūjas",
+      "skates": "Slidas",
+      "apparel": "Komandas apģērbs",
+      "training": "Treniņu ekipējums",
+      "goalie": "Vārtsarga ekipējums",
+      "accessories": "Aksesuāri",
+      "medical": "Medicīniskie piederumi"
+    },
+    "status": {
+      "available": "Pieejams",
+      "assigned": "Piešķirts",
+      "maintenance": "Apkopē",
+      "ordered": "Pasūtīts",
+      "damaged": "Bojāts",
+      "retired": "Norakstīts"
+    }
+  },
+  "assignments": {
+    "title": "Ekipējuma piešķiršana",
+    "player": "Spēlētāju piešķīrumi",
+    "team": "Komandas ekipējums",
+    "assign": "Piešķirt ekipējumu",
+    "return": "Atgriezt ekipējumu",
+    "history": "Piešķīrumu vēsture",
+    "current": "Pašreizējie piešķīrumi",
+    "overdue": "Nokavētie atgriešanas termiņi"
+  },
+  "sizes": {
+    "title": "Izmēru vadība",
+    "chart": "Izmēru tabula",
+    "playerSizes": "Spēlētāju izmēri",
+    "update": "Atjaunināt izmērus",
+    "fitting": "Ieplānot pielaikošanu",
+    "categories": {
+      "helmet": "Ķivere",
+      "shoulderPads": "Plecu aizsargi",
+      "elbow": "Elkoņu aizsargi",
+      "gloves": "Cimdi",
+      "pants": "Hokeja bikses",
+      "shinGuards": "Kāju aizsargi",
+      "skates": "Slidas",
+      "jersey": "Krekls",
+      "socks": "Getras"
+    },
+    "measurements": {
+      "xs": "Ļoti mazs",
+      "s": "Mazs",
+      "m": "Vidējs",
+      "l": "Liels",
+      "xl": "Ļoti liels",
+      "xxl": "2X liels",
+      "xxxl": "3X liels",
+      "youth": "Jauniešu",
+      "junior": "Junioru",
+      "senior": "Senioru"
+    }
+  },
+  "maintenance": {
+    "title": "Ekipējuma apkope",
+    "schedule": "Apkopes grafiks",
+    "due": "Apkope nepieciešama",
+    "history": "Apkopes vēsture",
+    "log": "Reģistrēt apkopi",
+    "types": {
+      "sharpening": "Slidu asināšana",
+      "repair": "Ekipējuma remonts",
+      "cleaning": "Dziļā tīrīšana",
+      "inspection": "Drošības pārbaude",
+      "replacement": "Daļu nomaiņa"
+    },
+    "frequency": {
+      "daily": "Katru dienu",
+      "weekly": "Katru nedēļu",
+      "biweekly": "Katru otro nedēļu",
+      "monthly": "Katru mēnesi",
+      "seasonal": "Sezonāli",
+      "asNeeded": "Pēc nepieciešamības"
+    }
+  },
+  "orders": {
+    "title": "Ekipējuma pasūtījumi",
+    "new": "Jauns pasūtījums",
+    "createOrder": "Izveidot pasūtījumu",
+    "createOrderTitle": "Izveidot ekipējuma pasūtījumu",
+    "createOrderDescription": "Pievienojiet preces pasūtījumam. Pasūtījumi tiks iesniegti apstiprināšanai.",
+    "addItem": "Pievienot preci",
+    "removeItem": "Noņemt",
+    "itemName": "Preces nosaukums",
+    "itemNamePlaceholder": "Ievadiet preces nosaukumu",
+    "quantity": "Daudzums",
+    "priority": "Prioritāte",
+    "notes": "Piezīmes (neobligāts)",
+    "notesPlaceholder": "Papildu specifikācijas vai piezīmes",
+    "creating": "Izveido...",
+    "pending": "Gaidāmie pasūtījumi",
+    "history": "Pasūtījumu vēsture",
+    "suppliers": "Piegādātāji",
+    "budget": "Ekipējuma budžets",
+    "approve": "Apstiprināt pasūtījumu",
+    "track": "Izsekot sūtījumu",
+    "receive": "Saņemt pasūtījumu",
+    "status": {
+      "draft": "Melnraksts",
+      "submitted": "Iesniegts",
+      "approved": "Apstiprināts",
+      "ordered": "Pasūtīts",
+      "shipped": "Nosūtīts",
+      "delivered": "Piegādāts",
+      "cancelled": "Atcelts"
+    }
+  },
+  "laundry": {
+    "title": "Veļas mazgāšanas vadība",
+    "schedule": "Mazgāšanas grafiks",
+    "status": "Veļas statuss",
+    "pickup": "Ieplānot savākšanu",
+    "return": "Atzīmēt kā atgrieztu",
+    "items": {
+      "jerseys": "Spēļu krekli",
+      "practice": "Treniņu krekli",
+      "socks": "Komandas getras",
+      "shells": "Bikšu pārvalki",
+      "towels": "Dvieļi"
+    }
+  },
+  "reports": {
+    "title": "Ekipējuma atskaites",
+    "usage": "Lietošanas atskaite",
+    "cost": "Izmaksu analīze",
+    "replacement": "Nomaiņas grafiks",
+    "playerNeeds": "Spēlētāju ekipējuma vajadzības",
+    "teamNeeds": "Komandas ekipējuma vajadzības",
+    "generate": "Ģenerēt atskaiti",
+    "export": "Eksportēt atskaiti"
+  },
+  "budget": {
+    "title": "Budžeta vadība",
+    "current": "Pašreizējais budžets",
+    "spent": "Iztērētā summa",
+    "remaining": "Atlikušais budžets",
+    "projected": "Prognozētās izmaksas",
+    "categories": "Budžets pēc kategorijām",
+    "approval": "Gaida apstiprinājumu"
+  },
+  "team": {
+    "title": "Komandas ekipējums",
+    "bags": "Ekipējuma somas",
+    "medical": "Medicīnas komplekts",
+    "tools": "Ekipējuma rīki",
+    "spare": "Rezerves ekipējums",
+    "travel": "Ceļojuma kontrolsaraksts",
+    "gameday": "Spēles dienas kontrolsaraksts"
+  },
+  "events": {
+    "upcoming": "Gaidāmie notikumi",
+    "equipmentRelated": "Ar ekipējumu saistīts grafiks"
+  },
+  "tasks": {
+    "active": "Aktīvi uzdevumi",
+    "currentMaintenance": "Pašreizējā apkope un uzdevumi",
+    "assigned": "Piešķirts",
+    "due": "Termiņš",
+    "estimatedTime": "Aprēķ. laiks",
+    "lastDone": "Pēdējo reizi veikts"
+  },
+  "gameday": {
+    "checklist": "Spēles dienas kontrolsaraksts",
+    "preGame": "Pirmsspēles sagatavošanas uzdevumi",
+    "deadline": "Termiņš"
+  },
+  "players": {
+    "equipment": "Spēlētāju ekipējums",
+    "tracking": "Individuālā spēlētāja ekipējuma izsekošana",
+    "comingSoon": "Spēlētāju ekipējuma izsekošana drīzumā",
+    "addRecord": "Pievienot ekipējuma ierakstu"
+  }
+}

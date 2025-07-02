@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Vereinsadministrator Dashboard",
+    "subtitle": "Organisationsverwaltung und -überwachung",
+    "welcome": "Willkommen, {{name}}",
+    "organizationOverview": "Organisationsübersicht",
+    "quickActions": "Schnellaktionen",
+    "stats": {
+      "teams": "Teams",
+      "activeMembers": "Aktive Mitglieder",
+      "coachingStaff": "Trainerstab",
+      "upcomingEvents": "Anstehende Veranstaltungen",
+      "attendance": "Anwesenheit",
+      "members": "Mitglieder"
+    }
+  },
+  "organization": {
+    "title": "Organisationsverwaltung",
+    "details": "Organisationsdetails",
+    "settings": "Organisationseinstellungen",
+    "structure": "Organisationsstruktur",
+    "departments": "Abteilungen",
+    "policies": "Richtlinien & Verfahren",
+    "branding": "Markenidentität",
+    "contact": "Kontaktinformationen"
+  },
+  "teams": {
+    "title": "Teamverwaltung",
+    "all": "Alle Teams",
+    "create": "Team erstellen",
+    "edit": "Team bearbeiten",
+    "delete": "Team löschen",
+    "roster": "Teamkader",
+    "assignments": "Personalzuweisungen",
+    "categories": {
+      "senior": "Seniorenteams",
+      "junior": "Juniorenteams",
+      "youth": "Jugendteams",
+      "academy": "Akademieteams",
+      "womens": "Frauenteams"
+    }
+  },
+  "staff": {
+    "title": "Personalverwaltung",
+    "all": "Alle Mitarbeiter",
+    "add": "Mitarbeiter hinzufügen",
+    "roles": "Personalrollen",
+    "permissions": "Berechtigungen",
+    "contracts": "Verträge",
+    "evaluation": "Leistungsbewertung",
+    "training": "Schulung & Zertifizierung",
+    "types": {
+      "coaching": "Trainerstab",
+      "medical": "Medizinisches Personal",
+      "administrative": "Verwaltung",
+      "support": "Unterstützungspersonal",
+      "volunteer": "Freiwillige"
+    }
+  },
+  "facilities": {
+    "title": "Anlagenverwaltung",
+    "overview": "Anlagenübersicht",
+    "booking": "Anlagenbuchung",
+    "maintenance": "Wartungsplan",
+    "calendar": "Anlagenkalender",
+    "utilization": "Nutzungsberichte",
+    "types": {
+      "mainRink": "Haupteisbahn",
+      "practiceRink": "Trainingseisbahn",
+      "gym": "Fitnessstudio/Kraftraum",
+      "meetingRooms": "Besprechungsräume",
+      "lockerRooms": "Umkleideräume",
+      "medicalRoom": "Medizinraum"
+    }
+  },
+  "finance": {
+    "title": "Finanzverwaltung",
+    "overview": "Finanzübersicht",
+    "budget": "Budgetverwaltung",
+    "revenue": "Einnahmequellen",
+    "expenses": "Ausgaben",
+    "reports": "Finanzberichte",
+    "invoicing": "Rechnungsstellung",
+    "sponsorships": "Sponsoring",
+    "grants": "Zuschüsse & Förderungen"
+  },
+  "events": {
+    "title": "Veranstaltungsverwaltung",
+    "calendar": "Veranstaltungskalender",
+    "create": "Veranstaltung erstellen",
+    "upcoming": "Anstehende Veranstaltungen",
+    "past": "Vergangene Veranstaltungen",
+    "types": {
+      "games": "Spiele",
+      "tournaments": "Turniere",
+      "fundraisers": "Spendenaktionen",
+      "meetings": "Versammlungen",
+      "social": "Gesellschaftliche Veranstaltungen",
+      "training": "Trainingslager"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "announcements": "Ankündigungen",
+    "newsletters": "Newsletter",
+    "social": "Soziale Medien",
+    "website": "Website-Updates",
+    "press": "Pressemitteilungen",
+    "internal": "Interne Kommunikation",
+    "broadcast": "Nachricht senden"
+  },
+  "compliance": {
+    "title": "Compliance & Governance",
+    "policies": "Richtlinien",
+    "procedures": "Verfahren",
+    "regulations": "Vorschriften",
+    "certifications": "Zertifizierungen",
+    "audits": "Audits",
+    "reports": "Compliance-Berichte",
+    "training": "Compliance-Schulung"
+  },
+  "reports": {
+    "title": "Berichte & Analysen",
+    "dashboard": "Executive Dashboard",
+    "operational": "Betriebsberichte",
+    "financial": "Finanzberichte",
+    "performance": "Leistungsmetriken",
+    "custom": "Benutzerdefinierte Berichte",
+    "export": "Daten exportieren",
+    "schedule": "Berichte planen"
+  },
+  "members": {
+    "title": "Mitgliederverwaltung",
+    "directory": "Mitgliederverzeichnis",
+    "registration": "Registrierung",
+    "renewal": "Mitgliedschaftserneuerung",
+    "benefits": "Mitgliedervorteile",
+    "communication": "Mitgliederkommunikation",
+    "statistics": "Mitgliedsstatistiken",
+    "byRole": "Mitglieder nach Rolle"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "title": "Správy",
+  "conversations": {
+    "title": "Konverzácie",
+    "new": "Nová konverzácia",
+    "search": "Hľadať konverzácie...",
+    "empty": "Zatiaľ žiadne konverzácie",
+    "startNew": "Začať novú konverzáciu"
+  },
+  "participants": {
+    "add": "Pridať účastníkov",
+    "remove": "Odstrániť z konverzácie",
+    "search": "Hľadať ľudí...",
+    "you": "Vy",
+    "typing": "píše...",
+    "multipleTyping": "píšu...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Neprítomný"
+  },
+  "messages": {
+    "placeholder": "Napíšte správu...",
+    "send": "Odoslať",
+    "edit": "Upraviť správu",
+    "delete": "Zmazať správu",
+    "reply": "Odpovedať",
+    "forward": "Preposlať",
+    "copy": "Kopírovať",
+    "pin": "Pripnúť správu",
+    "unpin": "Odopnúť správu",
+    "react": "Pridať reakciu",
+    "edited": "upravené",
+    "deleted": "Táto správa bola zmazaná",
+    "delivered": "Doručené",
+    "read": "Prečítané",
+    "sending": "Odosiela sa...",
+    "failed": "Odoslanie zlyhalo",
+    "retry": "Skúsiť znova"
+  },
+  "groups": {
+    "create": "Vytvoriť skupinu",
+    "name": "Názov skupiny",
+    "description": "Popis (voliteľné)",
+    "addMembers": "Pridať členov",
+    "settings": "Nastavenia skupiny",
+    "leave": "Opustiť skupinu",
+    "delete": "Zmazať skupinu",
+    "members": "{{count}} členov",
+    "admin": "Administrátor",
+    "member": "Člen"
+  },
+  "channels": {
+    "title": "Kanály",
+    "create": "Vytvoriť kanál",
+    "public": "Verejný kanál",
+    "private": "Súkromný kanál",
+    "join": "Pripojiť sa ku kanálu",
+    "leave": "Opustiť kanál",
+    "mute": "Stlmiť kanál",
+    "unmute": "Zrušiť stlmenie kanálu",
+    "types": {
+      "general": "Všeobecné",
+      "announcements": "Oznámenia",
+      "team": "Tímový chat",
+      "coaches": "Tréneri",
+      "parents": "Rodičia",
+      "medical": "Zdravotnícky personál"
+    }
+  },
+  "attachments": {
+    "title": "Prílohy",
+    "upload": "Nahrať súbor",
+    "types": {
+      "image": "Obrázok",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Audio",
+      "other": "Súbor"
+    },
+    "download": "Stiahnuť",
+    "preview": "Náhľad",
+    "tooLarge": "Súbor je príliš veľký. Maximálna veľkosť je {{maxSize}}",
+    "unsupported": "Typ súboru nie je podporovaný"
+  },
+  "notifications": {
+    "newMessage": "Nová správa od {{sender}}",
+    "mentioned": "{{sender}} vás spomenul",
+    "groupInvite": "Boli ste pridaný do {{group}}",
+    "enable": "Povoliť upozornenia",
+    "disable": "Zakázať upozornenia",
+    "sound": "Zvuk upozornenia",
+    "desktop": "Upozornenia na ploche"
+  },
+  "search": {
+    "placeholder": "Hľadať správy...",
+    "filters": "Filtre",
+    "from": "Od",
+    "to": "Komu",
+    "date": "Dátum",
+    "hasAttachment": "Má prílohu",
+    "results": "Nájdené {{count}} výsledkov",
+    "noResults": "Žiadne správy nenájdené"
+  },
+  "settings": {
+    "title": "Nastavenia chatu",
+    "privacy": "Súkromie",
+    "readReceipts": "Potvrdenia o prečítaní",
+    "typingIndicator": "Zobrazovať keď píšem",
+    "autoDownload": "Automatické sťahovanie médií",
+    "enterToSend": "Stlačte Enter na odoslanie",
+    "theme": "Téma chatu",
+    "fontSize": "Veľkosť písma"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Neprítomný",
+    "busy": "Nerušiť",
+    "offline": "Zobraziť ako offline",
+    "setStatus": "Nastaviť stav",
+    "customStatus": "Nastaviť vlastný stav..."
+  },
+  "actions": {
+    "startChat": "Začať chat",
+    "viewProfile": "Zobraziť profil",
+    "clearChat": "Vymazať históriu chatu",
+    "exportChat": "Exportovať chat",
+    "reportUser": "Nahlásiť používateľa",
+    "blockUser": "Zablokovať používateľa",
+    "unblockUser": "Odblokovať používateľa"
+  },
+  "time": {
+    "now": "teraz",
+    "today": "Dnes",
+    "yesterday": "Včera",
+    "daysAgo": "pred {{count}} dňami",
+    "lastSeen": "Naposledy videný {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Spojenie stratené. Opätovné pripájanie...",
+    "sendFailed": "Nepodarilo sa odoslať správu",
+    "loadFailed": "Nepodarilo sa načítať správy",
+    "uploadFailed": "Nepodarilo sa nahrať súbor",
+    "permissionDenied": "Na to nemáte oprávnenie"
+  }
+}

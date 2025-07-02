@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Tämä kenttä on pakollinen",
+    "email": "Sähköpostiosoite on pakollinen",
+    "password": "Salasana on pakollinen",
+    "firstName": "Etunimi on pakollinen",
+    "lastName": "Sukunimi on pakollinen",
+    "phone": "Puhelinnumero on pakollinen",
+    "date": "Päivämäärä on pakollinen",
+    "time": "Aika on pakollinen",
+    "selection": "Tee valinta"
+  },
+  "email": {
+    "invalid": "Anna kelvollinen sähköpostiosoite",
+    "alreadyExists": "Tämä sähköpostiosoite on jo rekisteröity"
+  },
+  "password": {
+    "tooShort": "Salasanan on oltava vähintään {{min}} merkkiä",
+    "tooWeak": "Salasana on liian heikko. Käytä kirjaimia, numeroita ja symboleja",
+    "noMatch": "Salasanat eivät täsmää",
+    "requiresUppercase": "Salasanassa on oltava vähintään yksi iso kirjain",
+    "requiresLowercase": "Salasanassa on oltava vähintään yksi pieni kirjain",
+    "requiresNumber": "Salasanassa on oltava vähintään yksi numero",
+    "requiresSpecial": "Salasanassa on oltava vähintään yksi erikoismerkki"
+  },
+  "string": {
+    "tooShort": "Vähintään {{min}} merkkiä",
+    "tooLong": "Enintään {{max}} merkkiä",
+    "invalidFormat": "Virheellinen muoto",
+    "alphanumeric": "Vain kirjaimia ja numeroita sallittu",
+    "alphabetic": "Vain kirjaimia sallittu",
+    "invalidCharacters": "Sisältää virheellisiä merkkejä"
+  },
+  "number": {
+    "invalid": "Anna kelvollinen numero",
+    "tooSmall": "Vähintään {{min}}",
+    "tooLarge": "Enintään {{max}}",
+    "integer": "Täytyy olla kokonaisluku",
+    "positive": "Täytyy olla positiivinen luku",
+    "negative": "Täytyy olla negatiivinen luku"
+  },
+  "date": {
+    "invalid": "Anna kelvollinen päivämäärä",
+    "beforeMin": "Päivämäärän on oltava {{min}} jälkeen",
+    "afterMax": "Päivämäärän on oltava ennen {{max}}",
+    "inPast": "Päivämäärän on oltava menneisyydessä",
+    "inFuture": "Päivämäärän on oltava tulevaisuudessa"
+  },
+  "time": {
+    "invalid": "Anna kelvollinen aika",
+    "beforeMin": "Ajan on oltava {{min}} jälkeen",
+    "afterMax": "Ajan on oltava ennen {{max}}"
+  },
+  "phone": {
+    "invalid": "Anna kelvollinen puhelinnumero",
+    "invalidCountryCode": "Virheellinen maatunnus"
+  },
+  "file": {
+    "tooLarge": "Tiedoston koko saa olla enintään {{maxSize}}",
+    "invalidType": "Tiedostotyyppi ei ole sallittu. Sallitut tyypit: {{allowedTypes}}",
+    "required": "Valitse tiedosto",
+    "tooMany": "Liian monta tiedostoa. Maksimi: {{max}}"
+  },
+  "url": {
+    "invalid": "Anna kelvollinen URL-osoite"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Virheellinen joukkuekoodin muoto",
+      "notFound": "Joukkuekoodia ei löydy"
+    },
+    "playerNumber": {
+      "invalid": "Virheellinen pelaajan numero",
+      "alreadyTaken": "Tämä numero on jo käytössä"
+    },
+    "age": {
+      "tooYoung": "Vähintään {{min}} vuotta",
+      "tooOld": "Enintään {{max}} vuotta"
+    },
+    "schedule": {
+      "conflict": "Tämä aika on päällekkäin toisen tapahtuman kanssa",
+      "outsideHours": "Valittu aika on aukioloaikojen ulkopuolella",
+      "tooSoon": "Varaus on tehtävä vähintään {{hours}} tuntia etukäteen"
+    },
+    "capacity": {
+      "exceeded": "Maksimimäärä ylitetty",
+      "minimum": "Vähintään {{min}} osallistujaa vaaditaan"
+    }
+  },
+  "form": {
+    "hasErrors": "Korjaa alla olevat virheet",
+    "submitError": "Lomakkeen lähetys epäonnistui. Yritä uudelleen.",
+    "saveDraft": "Luonnoksesi on tallennettu",
+    "unsavedChanges": "Sinulla on tallentamattomia muutoksia. Haluatko varmasti poistua?"
+  },
+  "search": {
+    "tooShort": "Hakusanan on oltava vähintään {{min}} merkkiä",
+    "noResults": "Ei hakutuloksia"
+  },
+  "selection": {
+    "minimum": "Valitse vähintään {{min}} vaihtoehtoa",
+    "maximum": "Valitse enintään {{max}} vaihtoehtoa",
+    "exact": "Valitse tasan {{count}} vaihtoehtoa"
+  },
+  "comparison": {
+    "mustMatch": "Kenttien on täsmättävä",
+    "mustBeDifferent": "Kenttien on oltava erilaisia",
+    "startBeforeEnd": "Alkuajan on oltava ennen loppuaikaa",
+    "endAfterStart": "Loppuajan on oltava alkuajan jälkeen"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "dashboard": {
+    "title": "Udstyrsansvarlig kontrolpanel",
+    "subtitle": "Udstyrsstyring for {{teamName}}",
+    "overview": "Oversigt",
+    "inventory": "Lager",
+    "assignments": "Tildelinger",
+    "maintenance": "Vedligeholdelse",
+    "orders": "Ordrer",
+    "budget": "Budget",
+    "calendar": "Kalender"
+  },
+  "inventory": {
+    "title": "Lagerstyring",
+    "totalItems": "Totale enheder",
+    "categories": "Kategorier",
+    "search": "Søg udstyr",
+    "addItem": "Tilføj udstyr",
+    "importInventory": "Importer lager",
+    "exportInventory": "Eksporter lager",
+    "lowStock": "Lav beholdning",
+    "outOfStock": "Udsolgt",
+    "categories": {
+      "protective": "Beskyttelsesudstyr",
+      "sticks": "Stave",
+      "skates": "Skøjter",
+      "apparel": "Beklædning",
+      "goalie": "Målmandsudstyr",
+      "training": "Træningsudstyr",
+      "accessories": "Tilbehør",
+      "maintenance": "Vedligeholdelsesudstyr"
+    },
+    "status": {
+      "available": "Tilgængelig",
+      "assigned": "Tildelt",
+      "maintenance": "Vedligeholdelse",
+      "retired": "Kasseret",
+      "ordered": "Bestilt",
+      "lost": "Tabt"
+    }
+  },
+  "equipment": {
+    "helmet": "Hjelm",
+    "visor": "Visir",
+    "cage": "Gitter",
+    "shoulderPads": "Skulderbeskyttere",
+    "elbowPads": "Albuebeskyttere",
+    "gloves": "Handsker",
+    "pants": "Bukser",
+    "shinPads": "Benbeskyttere",
+    "skates": "Skøjter",
+    "stick": "Stav",
+    "jersey": "Trøje",
+    "socks": "Sokker",
+    "bag": "Taske",
+    "helmet_goalie": "Målmandshjelm",
+    "chestProtector": "Brystbeskytter",
+    "legPads": "Målmandsbenbeskyttere",
+    "blocker": "Blokkerhandske",
+    "glove_goalie": "Fanghandske",
+    "stick_goalie": "Målmandsstav"
+  },
+  "sizes": {
+    "title": "Størrelser",
+    "youth": "Ungdom",
+    "junior": "Junior",
+    "intermediate": "Mellem",
+    "senior": "Senior",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "xlarge": "X-Large",
+    "xxlarge": "XX-Large",
+    "custom": "Specialfremstillet"
+  },
+  "assignments": {
+    "title": "Udstyrsstildelinger",
+    "assigned": "Tildelt udstyr",
+    "unassigned": "Ikke-tildelt udstyr",
+    "assignEquipment": "Tildel udstyr",
+    "returnEquipment": "Returner udstyr",
+    "playerAssignments": "Spillertildelinger",
+    "history": "Tildelingshistorik",
+    "bulkAssign": "Massetildeling",
+    "due": "Forfalden",
+    "overdue": "Forsinket"
+  },
+  "maintenance": {
+    "title": "Vedligeholdelse",
+    "scheduled": "Planlagt vedligeholdelse",
+    "urgent": "Akut vedligeholdelse",
+    "history": "Vedligeholdelseshistorik",
+    "schedule": "Planlæg vedligeholdelse",
+    "types": {
+      "sharpen": "Slibning",
+      "repair": "Reparation",
+      "replace": "Udskiftning",
+      "clean": "Rengøring",
+      "inspect": "Inspektion",
+      "sanitize": "Desinfektion"
+    },
+    "priority": {
+      "low": "Lav",
+      "medium": "Mellem",
+      "high": "Høj",
+      "urgent": "Akut"
+    }
+  },
+  "orders": {
+    "title": "Ordrestyring",
+    "pending": "Afventende ordrer",
+    "completed": "Fuldførte ordrer",
+    "createOrder": "Opret ordre",
+    "trackOrder": "Spor ordre",
+    "suppliers": "Leverandører",
+    "status": {
+      "draft": "Kladde",
+      "submitted": "Indsendt",
+      "approved": "Godkendt",
+      "ordered": "Bestilt",
+      "shipped": "Afsendt",
+      "delivered": "Leveret",
+      "cancelled": "Annulleret"
+    }
+  },
+  "budget": {
+    "title": "Budget",
+    "allocated": "Tildelt",
+    "spent": "Brugt",
+    "remaining": "Resterende",
+    "categories": "Kategorier",
+    "forecast": "Prognose",
+    "reports": "Rapporter",
+    "approvals": "Godkendelser"
+  },
+  "laundry": {
+    "title": "Vaskerihåndtering",
+    "schedule": "Vaskeskema",
+    "loads": "Vaske",
+    "items": {
+      "jerseys": "Trøjer",
+      "socks": "Sokker",
+      "undergarments": "Undertøj",
+      "towels": "Håndklæder",
+      "practice": "Træningstøj"
+    },
+    "status": {
+      "dirty": "Snavset",
+      "washing": "Vaskes",
+      "drying": "Tørres",
+      "clean": "Rent",
+      "distributed": "Uddelt"
+    }
+  },
+  "team": {
+    "title": "Holdudstyr",
+    "home": "Hjemmeudstyr",
+    "away": "Udeudstyr",
+    "alternate": "Alternativt udstyr",
+    "practice": "Træningsudstyr",
+    "warmup": "Opvarmningsudstyr",
+    "bags": "Holdtasker",
+    "medical": "Medicinsk udstyr",
+    "training": "Træningsudstyr"
+  },
+  "events": {
+    "title": "Udstyrshændelser",
+    "fitting": "Tilpasning",
+    "distribution": "Uddeling",
+    "collection": "Indsamling",
+    "inspection": "Inspektion",
+    "teamPhoto": "Holdfoto",
+    "equipmentDay": "Udstyrsdag"
+  },
+  "reports": {
+    "title": "Rapporter",
+    "inventory": "Lagerrapport",
+    "assignments": "Tildelingsrapport",
+    "maintenance": "Vedligeholdelsesrapport",
+    "budget": "Budgetrapport",
+    "usage": "Forbrugsrapport",
+    "generate": "Generer rapport"
+  },
+  "quickActions": {
+    "assignEquipment": "Tildel udstyr",
+    "scheduleMaintenance": "Planlæg vedligeholdelse",
+    "createOrder": "Opret ordre",
+    "checkIn": "Tjek ind",
+    "checkOut": "Tjek ud",
+    "reportIssue": "Rapporter problem"
+  },
+  "notifications": {
+    "lowStock": "Lav beholdning: {{item}}",
+    "maintenanceDue": "Vedligeholdelse forfalden: {{item}}",
+    "orderDelivered": "Ordre leveret: {{orderNumber}}",
+    "equipmentOverdue": "Udstyr forsinket: {{playerName}}",
+    "fittingScheduled": "Tilpasning planlagt: {{date}}"
+  }
+}

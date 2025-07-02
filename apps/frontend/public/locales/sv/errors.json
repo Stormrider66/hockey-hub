@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Oj! Något gick fel",
+    "subtitle": "Vi beklagar besväret",
+    "tryAgain": "Försök igen",
+    "goHome": "Gå till instrumentpanel",
+    "contactSupport": "Kontakta support"
+  },
+  "http": {
+    "400": {
+      "title": "Felaktig begäran",
+      "message": "Servern kunde inte förstå begäran."
+    },
+    "401": {
+      "title": "Obehörig",
+      "message": "Du måste logga in för att komma åt denna resurs."
+    },
+    "403": {
+      "title": "Förbjuden",
+      "message": "Du har inte behörighet att komma åt denna resurs."
+    },
+    "404": {
+      "title": "Sidan hittades inte",
+      "message": "Sidan du letar efter finns inte."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Begäran står i konflikt med serverns nuvarande tillstånd."
+    },
+    "422": {
+      "title": "Valideringsfel",
+      "message": "De angivna uppgifterna är ogiltiga."
+    },
+    "429": {
+      "title": "För många förfrågningar",
+      "message": "Du har gjort för många förfrågningar. Försök igen senare."
+    },
+    "500": {
+      "title": "Serverfel",
+      "message": "Ett oväntat fel uppstod på våra servrar."
+    },
+    "502": {
+      "title": "Felaktig gateway",
+      "message": "Servern mottog ett ogiltigt svar."
+    },
+    "503": {
+      "title": "Tjänsten är inte tillgänglig",
+      "message": "Tjänsten är tillfälligt otillgänglig. Försök igen senare."
+    },
+    "504": {
+      "title": "Gateway-timeout",
+      "message": "Servern tog för lång tid att svara."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Ingen internetanslutning",
+      "message": "Kontrollera din internetanslutning och försök igen."
+    },
+    "timeout": {
+      "title": "Timeout för begäran",
+      "message": "Begäran tog för lång tid. Försök igen."
+    },
+    "connectionFailed": {
+      "title": "Anslutningen misslyckades",
+      "message": "Kunde inte ansluta till servern. Försök igen."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Kunde inte ladda data",
+      "message": "Vi kunde inte ladda de begärda uppgifterna. Försök uppdatera sidan."
+    },
+    "dataSave": {
+      "title": "Kunde inte spara",
+      "message": "Dina ändringar kunde inte sparas. Försök igen."
+    },
+    "fileUpload": {
+      "title": "Uppladdningen misslyckades",
+      "message": "Filen kunde inte laddas upp. Kontrollera filen och försök igen."
+    },
+    "permissionDenied": {
+      "title": "Åtkomst nekad",
+      "message": "Du har inte behörighet att utföra denna åtgärd."
+    },
+    "sessionExpired": {
+      "title": "Sessionen har gått ut",
+      "message": "Din session har gått ut. Vänligen logga in igen."
+    },
+    "maintenanceMode": {
+      "title": "Under underhåll",
+      "message": "Vi utför schemalagt underhåll. Försök igen snart."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Formulärsändningsfel",
+      "message": "Det uppstod ett fel vid sändning av formuläret. Kontrollera dina uppgifter och försök igen."
+    },
+    "validation": {
+      "title": "Valideringsfel",
+      "message": "Rätta till felen i formuläret."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Betalningen misslyckades",
+      "message": "Din betalning kunde inte behandlas. Försök med en annan betalningsmetod."
+    },
+    "declined": {
+      "title": "Betalningen avvisades",
+      "message": "Din betalning avvisades. Kontrollera dina betalningsuppgifter."
+    },
+    "insufficientFunds": {
+      "title": "Otillräckliga medel",
+      "message": "Din betalningsmetod har otillräckliga medel."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Schemakonflikt",
+      "message": "Denna tid står i konflikt med ett annat evenemang."
+    },
+    "bookingFailed": {
+      "title": "Bokningen misslyckades",
+      "message": "Kunde inte boka den valda tiden."
+    },
+    "facilityUnavailable": {
+      "title": "Anläggningen är inte tillgänglig",
+      "message": "Den valda anläggningen är inte tillgänglig vid denna tid."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Träningspass hittades inte",
+      "message": "Träningspasset du letar efter finns inte."
+    },
+    "alreadyStarted": {
+      "title": "Passet har redan börjat",
+      "message": "Detta träningspass har redan påbörjats."
+    },
+    "capacityReached": {
+      "title": "Passet är fullt",
+      "message": "Detta träningspass har nått maximal kapacitet."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Meddelandet skickades inte",
+      "message": "Ditt meddelande kunde inte skickas. Försök igen."
+    },
+    "notificationFailed": {
+      "title": "Aviseringen misslyckades",
+      "message": "Kunde inte skicka aviseringar just nu."
+    }
+  },
+  "actions": {
+    "retry": "Försök igen",
+    "dismiss": "Avfärda",
+    "details": "Visa detaljer",
+    "report": "Rapportera problem",
+    "refresh": "Uppdatera sidan"
+  }
+}

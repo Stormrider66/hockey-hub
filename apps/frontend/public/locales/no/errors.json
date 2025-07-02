@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Oops! Noe gikk galt",
+    "subtitle": "Vi beklager ulempen",
+    "tryAgain": "Prøv igjen",
+    "goHome": "Gå til dashbord",
+    "contactSupport": "Kontakt support"
+  },
+  "http": {
+    "400": {
+      "title": "Ugyldig forespørsel",
+      "message": "Forespørselen kunne ikke forstås av serveren."
+    },
+    "401": {
+      "title": "Uautorisert",
+      "message": "Du må logge inn for å få tilgang til denne ressursen."
+    },
+    "403": {
+      "title": "Forbudt",
+      "message": "Du har ikke tilgang til denne ressursen."
+    },
+    "404": {
+      "title": "Side ikke funnet",
+      "message": "Siden du leter etter eksisterer ikke."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Forespørselen er i konflikt med serverens nåværende tilstand."
+    },
+    "422": {
+      "title": "Valideringsfeil",
+      "message": "De oppgitte dataene er ugyldige."
+    },
+    "429": {
+      "title": "For mange forespørsler",
+      "message": "Du har gjort for mange forespørsler. Vennligst prøv igjen senere."
+    },
+    "500": {
+      "title": "Serverfeil",
+      "message": "En uventet feil oppstod på våre servere."
+    },
+    "502": {
+      "title": "Ugyldig gateway",
+      "message": "Serveren mottok et ugyldig svar."
+    },
+    "503": {
+      "title": "Tjeneste utilgjengelig",
+      "message": "Tjenesten er midlertidig utilgjengelig. Vennligst prøv igjen senere."
+    },
+    "504": {
+      "title": "Gateway timeout",
+      "message": "Serveren brukte for lang tid på å svare."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Ingen internettforbindelse",
+      "message": "Vennligst sjekk internettforbindelsen din og prøv igjen."
+    },
+    "timeout": {
+      "title": "Forespørsel timeout",
+      "message": "Forespørselen tok for lang tid. Vennligst prøv igjen."
+    },
+    "connectionFailed": {
+      "title": "Tilkobling mislyktes",
+      "message": "Kunne ikke koble til serveren. Vennligst prøv igjen."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Kunne ikke laste data",
+      "message": "Vi kunne ikke laste de forespurte dataene. Vennligst prøv å oppdatere siden."
+    },
+    "dataSave": {
+      "title": "Kunne ikke lagre",
+      "message": "Endringene dine kunne ikke lagres. Vennligst prøv igjen."
+    },
+    "fileUpload": {
+      "title": "Opplasting mislyktes",
+      "message": "Filen kunne ikke lastes opp. Vennligst sjekk filen og prøv igjen."
+    },
+    "permissionDenied": {
+      "title": "Tilgang nektet",
+      "message": "Du har ikke tillatelse til å utføre denne handlingen."
+    },
+    "sessionExpired": {
+      "title": "Økt utløpt",
+      "message": "Økten din har utløpt. Vennligst logg inn igjen."
+    },
+    "maintenanceMode": {
+      "title": "Under vedlikehold",
+      "message": "Vi utfører planlagt vedlikehold. Vennligst kom tilbake senere."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Skjemainnsendingsfeil",
+      "message": "Det oppstod en feil ved innsending av skjemaet. Vennligst sjekk inndata og prøv igjen."
+    },
+    "validation": {
+      "title": "Valideringsfeil",
+      "message": "Vennligst rett feilene i skjemaet."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Betaling mislyktes",
+      "message": "Betalingen din kunne ikke behandles. Vennligst prøv en annen betalingsmetode."
+    },
+    "declined": {
+      "title": "Betaling avvist",
+      "message": "Betalingen din ble avvist. Vennligst sjekk betalingsdetaljene dine."
+    },
+    "insufficientFunds": {
+      "title": "Utilstrekkelige midler",
+      "message": "Betalingsmetoden din har utilstrekkelige midler."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Tidsplankonflikt",
+      "message": "Dette tidsrommet er i konflikt med en annen hendelse."
+    },
+    "bookingFailed": {
+      "title": "Booking mislyktes",
+      "message": "Kunne ikke booke det valgte tidsrommet."
+    },
+    "facilityUnavailable": {
+      "title": "Anlegg utilgjengelig",
+      "message": "Det valgte anlegget er ikke tilgjengelig på dette tidspunktet."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Treningsøkt ikke funnet",
+      "message": "Treningsøkten du leter etter eksisterer ikke."
+    },
+    "alreadyStarted": {
+      "title": "Økt allerede startet",
+      "message": "Denne treningsøkten har allerede begynt."
+    },
+    "capacityReached": {
+      "title": "Økt full",
+      "message": "Denne treningsøkten har nådd maksimal kapasitet."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Melding ikke sendt",
+      "message": "Meldingen din kunne ikke sendes. Vennligst prøv igjen."
+    },
+    "notificationFailed": {
+      "title": "Varsel mislyktes",
+      "message": "Kunne ikke sende varsler på dette tidspunktet."
+    }
+  },
+  "actions": {
+    "retry": "Prøv igjen",
+    "dismiss": "Lukk",
+    "details": "Se detaljer",
+    "report": "Rapporter problem",
+    "refresh": "Oppdater side"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Ausrüstungsverwalter Dashboard",
+    "subtitle": "Ausrüstungsinventar und -verwaltung",
+    "welcome": "Willkommen, {{name}}",
+    "quickStats": "Ausrüstungsstatus",
+    "urgentNeeds": "Dringender Ausrüstungsbedarf"
+  },
+  "inventory": {
+    "title": "Ausrüstungsinventar",
+    "overview": "Inventarübersicht",
+    "search": "Ausrüstung suchen",
+    "filter": "Nach Typ filtern",
+    "add": "Ausrüstung hinzufügen",
+    "remove": "Ausrüstung entfernen",
+    "update": "Bestand aktualisieren",
+    "lowStock": "Niedriger Lagerbestand",
+    "remaining": "{{count}} verbleibend",
+    "reorderAt": "Nachbestellen bei {{level}}",
+    "outOfStock": "Nicht vorrätig",
+    "lowStockStatus": "Niedriger Bestand",
+    "stock": "Bestand",
+    "condition": {
+      "good": "Gut",
+      "fair": "Akzeptabel",
+      "poor": "Schlecht"
+    },
+    "categories": {
+      "protective": "Schutzausrüstung",
+      "sticks": "Hockeyschläger",
+      "skates": "Schlittschuhe",
+      "apparel": "Teambekleidung",
+      "training": "Trainingsausrüstung",
+      "goalie": "Torwartausrüstung",
+      "accessories": "Zubehör",
+      "medical": "Medizinische Versorgung"
+    },
+    "status": {
+      "available": "Verfügbar",
+      "assigned": "Zugewiesen",
+      "maintenance": "In Wartung",
+      "ordered": "Bestellt",
+      "damaged": "Beschädigt",
+      "retired": "Ausgemustert"
+    }
+  },
+  "assignments": {
+    "title": "Ausrüstungszuweisungen",
+    "player": "Spielerzuweisungen",
+    "team": "Teamausrüstung",
+    "assign": "Ausrüstung zuweisen",
+    "return": "Ausrüstung zurückgeben",
+    "history": "Zuweisungshistorie",
+    "current": "Aktuelle Zuweisungen",
+    "overdue": "Überfällige Rückgaben"
+  },
+  "sizes": {
+    "title": "Größenverwaltung",
+    "chart": "Größentabelle",
+    "playerSizes": "Spielergrößen",
+    "update": "Größen aktualisieren",
+    "fitting": "Anprobe vereinbaren",
+    "categories": {
+      "helmet": "Helm",
+      "shoulderPads": "Schulterschutz",
+      "elbow": "Ellbogenschutz",
+      "gloves": "Handschuhe",
+      "pants": "Hockeyhose",
+      "shinGuards": "Schienbeinschoner",
+      "skates": "Schlittschuhe",
+      "jersey": "Trikot",
+      "socks": "Socken"
+    },
+    "measurements": {
+      "xs": "Extra Klein",
+      "s": "Klein",
+      "m": "Mittel",
+      "l": "Groß",
+      "xl": "Extra Groß",
+      "xxl": "2X Groß",
+      "xxxl": "3X Groß",
+      "youth": "Jugend",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Ausrüstungswartung",
+    "schedule": "Wartungsplan",
+    "due": "Wartung fällig",
+    "history": "Wartungshistorie",
+    "log": "Wartung protokollieren",
+    "types": {
+      "sharpening": "Schlittschuhschleifen",
+      "repair": "Ausrüstungsreparatur",
+      "cleaning": "Tiefenreinigung",
+      "inspection": "Sicherheitsinspektion",
+      "replacement": "Teileaustausch"
+    },
+    "frequency": {
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "biweekly": "Zweiwöchentlich",
+      "monthly": "Monatlich",
+      "seasonal": "Saisonal",
+      "asNeeded": "Nach Bedarf"
+    }
+  },
+  "orders": {
+    "title": "Ausrüstungsbestellungen",
+    "new": "Neue Bestellung",
+    "createOrder": "Bestellung erstellen",
+    "createOrderTitle": "Ausrüstungsbestellung erstellen",
+    "createOrderDescription": "Fügen Sie Artikel zu Ihrer Bestellung hinzu. Bestellungen werden zur Genehmigung eingereicht.",
+    "addItem": "Artikel hinzufügen",
+    "removeItem": "Entfernen",
+    "itemName": "Artikelname",
+    "itemNamePlaceholder": "Artikelnamen eingeben",
+    "quantity": "Menge",
+    "priority": "Priorität",
+    "notes": "Notizen (optional)",
+    "notesPlaceholder": "Zusätzliche Spezifikationen oder Notizen",
+    "creating": "Erstelle...",
+    "pending": "Ausstehende Bestellungen",
+    "history": "Bestellhistorie",
+    "suppliers": "Lieferanten",
+    "budget": "Ausrüstungsbudget",
+    "approve": "Bestellung genehmigen",
+    "track": "Sendung verfolgen",
+    "receive": "Bestellung erhalten",
+    "status": {
+      "draft": "Entwurf",
+      "submitted": "Eingereicht",
+      "approved": "Genehmigt",
+      "ordered": "Bestellt",
+      "shipped": "Verschickt",
+      "delivered": "Geliefert",
+      "cancelled": "Storniert"
+    }
+  },
+  "laundry": {
+    "title": "Wäscheverwaltung",
+    "schedule": "Wäscheplan",
+    "status": "Wäschestatus",
+    "pickup": "Abholung planen",
+    "return": "Als zurückgegeben markieren",
+    "items": {
+      "jerseys": "Spieltrikots",
+      "practice": "Trainingstrikots",
+      "socks": "Teamsocken",
+      "shells": "Hosenshells",
+      "towels": "Handtücher"
+    }
+  },
+  "reports": {
+    "title": "Ausrüstungsberichte",
+    "usage": "Nutzungsbericht",
+    "cost": "Kostenanalyse",
+    "replacement": "Austauschplan",
+    "playerNeeds": "Spielerausrüstungsbedarf",
+    "teamNeeds": "Teamausrüstungsbedarf",
+    "generate": "Bericht erstellen",
+    "export": "Bericht exportieren"
+  },
+  "budget": {
+    "title": "Budgetverwaltung",
+    "current": "Aktuelles Budget",
+    "spent": "Ausgegeben",
+    "remaining": "Verbleibendes Budget",
+    "projected": "Prognostizierte Kosten",
+    "categories": "Budget nach Kategorie",
+    "approval": "Ausstehende Genehmigungen"
+  },
+  "team": {
+    "title": "Teamausrüstung",
+    "bags": "Ausrüstungstaschen",
+    "medical": "Medizinkoffer",
+    "tools": "Ausrüstungswerkzeuge",
+    "spare": "Ersatzausrüstung",
+    "travel": "Reise-Checkliste",
+    "gameday": "Spieltag-Checkliste"
+  },
+  "events": {
+    "upcoming": "Anstehende Termine",
+    "equipmentRelated": "Ausrüstungsbezogener Zeitplan"
+  },
+  "tasks": {
+    "active": "Aktive Aufgaben",
+    "currentMaintenance": "Aktuelle Wartungen und Aufgaben",
+    "assigned": "Zugewiesen",
+    "due": "Fällig",
+    "estimatedTime": "Geschätzte Zeit",
+    "lastDone": "Zuletzt erledigt"
+  },
+  "gameday": {
+    "checklist": "Spieltag-Checkliste",
+    "preGame": "Vorspiel-Vorbereitungsaufgaben",
+    "deadline": "Frist"
+  },
+  "players": {
+    "equipment": "Spielerausrüstung",
+    "tracking": "Individuelle Spielerausrüstungsverfolgung",
+    "comingSoon": "Spielerausrüstungsverfolgung kommt bald",
+    "addRecord": "Ausrüstungsaufzeichnung hinzufügen"
+  }
+}

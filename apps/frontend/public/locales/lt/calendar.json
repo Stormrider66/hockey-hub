@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Mėnuo",
+    "week": "Savaitė",
+    "day": "Diena",
+    "agenda": "Darbotvarkė",
+    "workWeek": "Darbo savaitė"
+  },
+  "navigation": {
+    "today": "Šiandien",
+    "back": "Atgal",
+    "next": "Kitas",
+    "previous": "Ankstesnis",
+    "jumpToDate": "Pereiti į datą"
+  },
+  "event": {
+    "title": "Renginys",
+    "newEvent": "Naujas renginys",
+    "editEvent": "Redaguoti renginį",
+    "deleteEvent": "Ištrinti renginį",
+    "duplicateEvent": "Kopijuoti renginį",
+    "allDay": "Visa diena",
+    "recurring": "Pasikartojantis",
+    "privateEvent": "Privatus renginys",
+    "fields": {
+      "title": "Pavadinimas",
+      "description": "Aprašymas",
+      "location": "Vieta",
+      "startDate": "Pradžios data",
+      "startTime": "Pradžios laikas",
+      "endDate": "Pabaigos data",
+      "endTime": "Pabaigos laikas",
+      "type": "Renginio tipas",
+      "category": "Kategorija",
+      "participants": "Dalyviai",
+      "resources": "Ištekliai",
+      "notes": "Pastabos",
+      "reminder": "Priminimas",
+      "color": "Spalva",
+      "attachments": "Priedai"
+    },
+    "types": {
+      "practice": "Treniruotė",
+      "game": "Rungtynės",
+      "training": "Fizinis pasirengimas",
+      "meeting": "Susitikimas",
+      "tournament": "Turnyras",
+      "tryout": "Atranka",
+      "medical": "Medicininis apsilankymas",
+      "equipment": "Įrangos pritaikymas",
+      "teamEvent": "Komandos renginys",
+      "personal": "Asmeninis",
+      "other": "Kita"
+    },
+    "status": {
+      "confirmed": "Patvirtinta",
+      "tentative": "Preliminaru",
+      "cancelled": "Atšaukta",
+      "postponed": "Atidėta",
+      "rescheduled": "Perkelta"
+    }
+  },
+  "recurrence": {
+    "title": "Pasikartojimas",
+    "none": "Nesikartoja",
+    "daily": "Kasdien",
+    "weekly": "Kas savaitę",
+    "monthly": "Kas mėnesį",
+    "yearly": "Kas metus",
+    "custom": "Pasirinktinis",
+    "every": "Kas",
+    "days": "dieną(-as)",
+    "weeks": "savaitę(-es)",
+    "months": "mėnesį(-ius)",
+    "years": "metus",
+    "on": "Kai",
+    "onThe": "Kai",
+    "weekdays": {
+      "monday": "Pirmadienis",
+      "tuesday": "Antradienis",
+      "wednesday": "Trečiadienis",
+      "thursday": "Ketvirtadienis",
+      "friday": "Penktadienis",
+      "saturday": "Šeštadienis",
+      "sunday": "Sekmadienis"
+    },
+    "ends": {
+      "never": "Niekada",
+      "after": "Po",
+      "onDate": "Datoje",
+      "occurrences": "kartų"
+    }
+  },
+  "availability": {
+    "available": "Laisvas",
+    "unavailable": "Užimtas",
+    "busy": "Užsiėmęs",
+    "tentative": "Preliminariai",
+    "outOfOffice": "Išvykęs"
+  },
+  "conflicts": {
+    "detected": "Aptiktas tvarkaraščio konfliktas",
+    "message": "Šis renginys kertasi su:",
+    "resolution": "Kaip norite tai išspręsti?",
+    "overwrite": "Perrašyti esamą",
+    "keepBoth": "Palikti abu renginius",
+    "cancel": "Atšaukti naują renginį"
+  },
+  "filters": {
+    "title": "Filtrai",
+    "showAll": "Rodyti viską",
+    "byType": "Pagal tipą",
+    "byTeam": "Pagal komandą",
+    "byLocation": "Pagal vietą",
+    "myEvents": "Tik mano renginiai"
+  },
+  "export": {
+    "title": "Eksportuoti kalendorių",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Spausdinti"
+    },
+    "range": {
+      "all": "Visi renginiai",
+      "current": "Dabartinis vaizdas",
+      "custom": "Pasirinktinis intervalas"
+    }
+  },
+  "sharing": {
+    "title": "Dalintis kalendoriumi",
+    "publicLink": "Vieša nuoroda",
+    "embed": "Įterpimo kodas",
+    "subscribe": "Prenumeratos URL",
+    "permissions": {
+      "view": "Tik peržiūra",
+      "edit": "Gali redaguoti",
+      "admin": "Pilna prieiga"
+    }
+  },
+  "reminders": {
+    "none": "Be priminimo",
+    "atTime": "Renginio metu",
+    "minutes": "Prieš {{count}} min.",
+    "hours": "Prieš {{count}} val.",
+    "days": "Prieš {{count}} d.",
+    "custom": "Pasirinktinis"
+  },
+  "actions": {
+    "create": "Sukurti renginį",
+    "save": "Išsaugoti",
+    "cancel": "Atšaukti",
+    "delete": "Ištrinti",
+    "edit": "Redaguoti",
+    "duplicate": "Kopijuoti",
+    "print": "Spausdinti",
+    "export": "Eksportuoti",
+    "import": "Importuoti",
+    "subscribe": "Prenumeruoti",
+    "unsubscribe": "Atsisakyti prenumeratos",
+    "rsvp": "Patvirtinti dalyvavimą",
+    "maybeAttending": "Galbūt",
+    "attending": "Dalyvausiu",
+    "notAttending": "Nedalyvausiu"
+  },
+  "messages": {
+    "eventCreated": "Renginys sėkmingai sukurtas",
+    "eventUpdated": "Renginys sėkmingai atnaujintas",
+    "eventDeleted": "Renginys sėkmingai ištrintas",
+    "eventDuplicated": "Renginys sėkmingai nukopijuotas",
+    "conflictWarning": "Šis laiko tarpas turi konfliktų",
+    "participantAdded": "Dalyvis pridėtas",
+    "participantRemoved": "Dalyvis pašalintas",
+    "reminderSet": "Priminimas nustatytas",
+    "calendarShared": "Kalendorius sėkmingai pasidalintas",
+    "exportComplete": "Eksportavimas baigtas",
+    "importComplete": "Importavimas baigtas"
+  },
+  "facility": {
+    "rink": "Ledo arena",
+    "mainRink": "Pagrindinė arena",
+    "practiceRink": "Treniruočių arena",
+    "gym": "Sporto salė",
+    "meetingRoom": "Susitikimų kambarys",
+    "lockerRoom": "Persirengimo kambarys",
+    "trainingRoom": "Treniruočių salė",
+    "videoRoom": "Video kambarys",
+    "medicalRoom": "Medicinos kabinetas"
+  },
+  "tooltips": {
+    "dragToMove": "Tempkite, kad perkeltumėte renginį",
+    "dragToResize": "Tempkite kraštus, kad pakeistumėte dydį",
+    "clickToEdit": "Spustelėkite, kad redaguotumėte",
+    "doubleClickToCreate": "Dukart spustelėkite, kad sukurtumėte renginį"
+  }
+}

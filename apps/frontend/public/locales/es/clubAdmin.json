@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Panel del Administrador del Club",
+    "subtitle": "Gestión y supervisión de la organización",
+    "welcome": "Bienvenido, {{name}}",
+    "organizationOverview": "Resumen de la Organización",
+    "quickActions": "Acciones Rápidas",
+    "stats": {
+      "teams": "Equipos",
+      "activeMembers": "Miembros Activos",
+      "coachingStaff": "Personal de Entrenamiento",
+      "upcomingEvents": "Próximos Eventos",
+      "attendance": "Asistencia",
+      "members": "Miembros"
+    }
+  },
+  "organization": {
+    "title": "Gestión de la Organización",
+    "details": "Detalles de la Organización",
+    "settings": "Configuración de la Organización",
+    "structure": "Estructura Organizacional",
+    "departments": "Departamentos",
+    "policies": "Políticas y Procedimientos",
+    "branding": "Marca e Identidad",
+    "contact": "Información de Contacto"
+  },
+  "teams": {
+    "title": "Gestión de Equipos",
+    "all": "Todos los Equipos",
+    "create": "Crear Equipo",
+    "edit": "Editar Equipo",
+    "delete": "Eliminar Equipo",
+    "roster": "Plantillas de Equipos",
+    "assignments": "Asignaciones de Personal",
+    "categories": {
+      "senior": "Equipos Senior",
+      "junior": "Equipos Junior",
+      "youth": "Equipos Juveniles",
+      "academy": "Equipos de Academia",
+      "womens": "Equipos Femeninos"
+    }
+  },
+  "staff": {
+    "title": "Gestión del Personal",
+    "all": "Todo el Personal",
+    "add": "Agregar Miembro del Personal",
+    "roles": "Roles del Personal",
+    "permissions": "Permisos",
+    "contracts": "Contratos",
+    "evaluation": "Evaluación de Desempeño",
+    "training": "Capacitación y Certificación",
+    "types": {
+      "coaching": "Personal de Entrenamiento",
+      "medical": "Personal Médico",
+      "administrative": "Administrativo",
+      "support": "Personal de Apoyo",
+      "volunteer": "Voluntarios"
+    }
+  },
+  "facilities": {
+    "title": "Gestión de Instalaciones",
+    "overview": "Resumen de Instalaciones",
+    "booking": "Reserva de Instalaciones",
+    "maintenance": "Calendario de Mantenimiento",
+    "calendar": "Calendario de Instalaciones",
+    "utilization": "Reportes de Utilización",
+    "types": {
+      "mainRink": "Pista Principal",
+      "practiceRink": "Pista de Práctica",
+      "gym": "Gimnasio/Sala de Pesas",
+      "meetingRooms": "Salas de Reuniones",
+      "lockerRooms": "Vestuarios",
+      "medicalRoom": "Sala Médica"
+    }
+  },
+  "finance": {
+    "title": "Gestión Financiera",
+    "overview": "Resumen Financiero",
+    "budget": "Gestión de Presupuesto",
+    "revenue": "Fuentes de Ingresos",
+    "expenses": "Gastos",
+    "reports": "Reportes Financieros",
+    "invoicing": "Facturación",
+    "sponsorships": "Patrocinios",
+    "grants": "Subvenciones y Financiamiento"
+  },
+  "events": {
+    "title": "Gestión de Eventos",
+    "calendar": "Calendario de Eventos",
+    "create": "Crear Evento",
+    "upcoming": "Próximos Eventos",
+    "past": "Eventos Pasados",
+    "types": {
+      "games": "Partidos",
+      "tournaments": "Torneos",
+      "fundraisers": "Recaudación de Fondos",
+      "meetings": "Reuniones",
+      "social": "Eventos Sociales",
+      "training": "Campamentos de Entrenamiento"
+    }
+  },
+  "communication": {
+    "title": "Comunicaciones",
+    "announcements": "Anuncios",
+    "newsletters": "Boletines",
+    "social": "Redes Sociales",
+    "website": "Actualizaciones del Sitio Web",
+    "press": "Comunicados de Prensa",
+    "internal": "Comunicaciones Internas",
+    "broadcast": "Enviar Mensaje General"
+  },
+  "compliance": {
+    "title": "Cumplimiento y Gobernanza",
+    "policies": "Políticas",
+    "procedures": "Procedimientos",
+    "regulations": "Regulaciones",
+    "certifications": "Certificaciones",
+    "audits": "Auditorías",
+    "reports": "Reportes de Cumplimiento",
+    "training": "Capacitación en Cumplimiento"
+  },
+  "reports": {
+    "title": "Reportes y Análisis",
+    "dashboard": "Panel Ejecutivo",
+    "operational": "Reportes Operacionales",
+    "financial": "Reportes Financieros",
+    "performance": "Métricas de Rendimiento",
+    "custom": "Reportes Personalizados",
+    "export": "Exportar Datos",
+    "schedule": "Programar Reportes"
+  },
+  "members": {
+    "title": "Gestión de Membresías",
+    "directory": "Directorio de Miembros",
+    "registration": "Registro",
+    "renewal": "Renovación de Membresía",
+    "benefits": "Beneficios de Miembros",
+    "communication": "Comunicaciones a Miembros",
+    "statistics": "Estadísticas de Membresía",
+    "byRole": "Miembros por Rol"
+  }
+}

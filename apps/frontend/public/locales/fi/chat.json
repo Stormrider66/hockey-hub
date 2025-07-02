@@ -1,0 +1,145 @@
+{
+  "title": "Viestit",
+  "conversations": {
+    "title": "Keskustelut",
+    "new": "Uusi keskustelu",
+    "search": "Hae keskusteluja...",
+    "empty": "Ei keskusteluja vielä",
+    "startNew": "Aloita uusi keskustelu"
+  },
+  "participants": {
+    "add": "Lisää osallistujia",
+    "remove": "Poista keskustelusta",
+    "search": "Hae henkilöitä...",
+    "you": "Sinä",
+    "typing": "kirjoittaa...",
+    "multipleTyping": "kirjoittavat...",
+    "online": "Paikalla",
+    "offline": "Poissa",
+    "away": "Poissa"
+  },
+  "messages": {
+    "placeholder": "Kirjoita viesti...",
+    "send": "Lähetä",
+    "edit": "Muokkaa viestiä",
+    "delete": "Poista viesti",
+    "reply": "Vastaa",
+    "forward": "Välitä",
+    "copy": "Kopioi",
+    "pin": "Kiinnitä viesti",
+    "unpin": "Poista kiinnitys",
+    "react": "Lisää reaktio",
+    "edited": "muokattu",
+    "deleted": "Tämä viesti on poistettu",
+    "delivered": "Toimitettu",
+    "read": "Luettu",
+    "sending": "Lähetetään...",
+    "failed": "Lähetys epäonnistui",
+    "retry": "Yritä uudelleen"
+  },
+  "groups": {
+    "create": "Luo ryhmä",
+    "name": "Ryhmän nimi",
+    "description": "Kuvaus (valinnainen)",
+    "addMembers": "Lisää jäseniä",
+    "settings": "Ryhmäasetukset",
+    "leave": "Poistu ryhmästä",
+    "delete": "Poista ryhmä",
+    "members": "{{count}} jäsentä",
+    "admin": "Ylläpitäjä",
+    "member": "Jäsen"
+  },
+  "channels": {
+    "title": "Kanavat",
+    "create": "Luo kanava",
+    "public": "Julkinen kanava",
+    "private": "Yksityinen kanava",
+    "join": "Liity kanavalle",
+    "leave": "Poistu kanavalta",
+    "mute": "Mykistä kanava",
+    "unmute": "Poista mykistys",
+    "types": {
+      "general": "Yleinen",
+      "announcements": "Ilmoitukset",
+      "team": "Joukkuechat",
+      "coaches": "Valmentajat",
+      "parents": "Vanhemmat",
+      "medical": "Lääkintähenkilöstö"
+    }
+  },
+  "attachments": {
+    "title": "Liitteet",
+    "upload": "Lataa tiedosto",
+    "types": {
+      "image": "Kuva",
+      "video": "Video",
+      "document": "Asiakirja",
+      "audio": "Ääni",
+      "other": "Tiedosto"
+    },
+    "download": "Lataa",
+    "preview": "Esikatselu",
+    "tooLarge": "Tiedosto on liian suuri. Maksimikoko on {{maxSize}}",
+    "unsupported": "Tiedostotyyppiä ei tueta"
+  },
+  "notifications": {
+    "newMessage": "Uusi viesti käyttäjältä {{sender}}",
+    "mentioned": "{{sender}} mainitsi sinut",
+    "groupInvite": "Sinut on lisätty ryhmään {{group}}",
+    "enable": "Ota ilmoitukset käyttöön",
+    "disable": "Poista ilmoitukset käytöstä",
+    "sound": "Ilmoitusääni",
+    "desktop": "Työpöytäilmoitukset"
+  },
+  "search": {
+    "placeholder": "Hae viestejä...",
+    "filters": "Suodattimet",
+    "from": "Lähettäjä",
+    "to": "Vastaanottaja",
+    "date": "Päivämäärä",
+    "hasAttachment": "Sisältää liitteen",
+    "results": "{{count}} tulosta löytyi",
+    "noResults": "Viestejä ei löytynyt"
+  },
+  "settings": {
+    "title": "Chat-asetukset",
+    "privacy": "Yksityisyys",
+    "readReceipts": "Lukukuittaukset",
+    "typingIndicator": "Näytä kirjoitusilmoitus",
+    "autoDownload": "Lataa media automaattisesti",
+    "enterToSend": "Enter lähettää viestin",
+    "theme": "Chat-teema",
+    "fontSize": "Fonttikoko"
+  },
+  "status": {
+    "online": "Paikalla",
+    "away": "Poissa",
+    "busy": "Älä häiritse",
+    "offline": "Näytä poissa olevana",
+    "setStatus": "Aseta tila",
+    "customStatus": "Aseta mukautettu tila..."
+  },
+  "actions": {
+    "startChat": "Aloita keskustelu",
+    "viewProfile": "Näytä profiili",
+    "clearChat": "Tyhjennä keskusteluhistoria",
+    "exportChat": "Vie keskustelu",
+    "reportUser": "Ilmianna käyttäjä",
+    "blockUser": "Estä käyttäjä",
+    "unblockUser": "Poista esto"
+  },
+  "time": {
+    "now": "nyt",
+    "today": "Tänään",
+    "yesterday": "Eilen",
+    "daysAgo": "{{count}} päivää sitten",
+    "lastSeen": "Nähty viimeksi {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Yhteys katkennut. Yhdistetään uudelleen...",
+    "sendFailed": "Viestin lähetys epäonnistui",
+    "loadFailed": "Viestien lataus epäonnistui",
+    "uploadFailed": "Tiedoston lataus epäonnistui",
+    "permissionDenied": "Sinulla ei ole oikeutta tehdä tätä"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "dashboard": {
+    "title": "Zdravstvena nadzorna plošča",
+    "overview": "Zdravstveni pregled",
+    "activeInjuries": "Aktivne poškodbe",
+    "upcomingAppointments": "Prihajajoči termini",
+    "clearanceRequests": "Zahteve za dovoljenje",
+    "quickActions": "Hitra dejanja"
+  },
+  "injuries": {
+    "title": "Poškodbe",
+    "register": "Registriraj poškodbo",
+    "list": "Seznam poškodb",
+    "active": "Aktivne",
+    "recovered": "Ozdravljene",
+    "chronic": "Kronične",
+    "details": "Podrobnosti poškodbe",
+    "type": "Tip poškodbe",
+    "severity": "Resnost",
+    "location": "Lokacija",
+    "dateOfInjury": "Datum poškodbe",
+    "expectedReturn": "Pričakovana vrnitev",
+    "treatment": "Zdravljenje",
+    "status": "Status",
+    "notes": "Opombe",
+    "history": "Zgodovina"
+  },
+  "treatments": {
+    "title": "Zdravljenja",
+    "active": "Aktivna zdravljenja",
+    "scheduled": "Načrtovana",
+    "completed": "Zaključena",
+    "types": {
+      "physiotherapy": "Fizioterapija",
+      "medication": "Zdravila",
+      "surgery": "Operacija",
+      "rehabilitation": "Rehabilitacija",
+      "rest": "Počitek",
+      "other": "Drugo"
+    },
+    "frequency": "Pogostost",
+    "duration": "Trajanje",
+    "provider": "Izvajalec",
+    "location": "Lokacija",
+    "cost": "Strošek",
+    "effectiveness": "Učinkovitost"
+  },
+  "appointments": {
+    "title": "Termini",
+    "schedule": "Načrtuj termin",
+    "upcoming": "Prihajajoči",
+    "past": "Pretekli",
+    "types": {
+      "checkup": "Pregled",
+      "treatment": "Zdravljenje",
+      "assessment": "Ocena",
+      "clearance": "Dovoljenje za igro",
+      "emergency": "Nujen",
+      "followUp": "Kontrola"
+    },
+    "with": "Pri",
+    "location": "Lokacija",
+    "duration": "Trajanje",
+    "reminder": "Opomnik",
+    "notes": "Opombe"
+  },
+  "medications": {
+    "title": "Zdravila",
+    "current": "Trenutna zdravila",
+    "history": "Zgodovina zdravil",
+    "name": "Ime zdravila",
+    "dosage": "Odmerek",
+    "frequency": "Pogostost",
+    "startDate": "Začetek",
+    "endDate": "Konec",
+    "prescribedBy": "Predpisal",
+    "reason": "Razlog",
+    "sideEffects": "Stranski učinki",
+    "allergies": "Alergije"
+  },
+  "assessments": {
+    "title": "Ocene",
+    "physical": "Fizična ocena",
+    "mental": "Psihološka ocena",
+    "fitness": "Kondicijska ocena",
+    "clearance": "Ocena za dovoljenje",
+    "baseline": "Izhodiščna ocena",
+    "periodic": "Periodična ocena",
+    "returnToPlay": "Ocena za vrnitev",
+    "results": "Rezultati",
+    "recommendations": "Priporočila"
+  },
+  "clearance": {
+    "title": "Dovoljenje za igro",
+    "status": {
+      "cleared": "Odobren za igro",
+      "notCleared": "Ni odobren",
+      "conditional": "Pogojno odobren",
+      "pending": "V obravnavi"
+    },
+    "request": "Zahtevaj dovoljenje",
+    "review": "Pregled",
+    "conditions": "Pogoji",
+    "restrictions": "Omejitve",
+    "validUntil": "Veljavno do",
+    "reviewedBy": "Pregledal",
+    "notes": "Opombe"
+  },
+  "wellness": {
+    "title": "Počutje",
+    "daily": "Dnevno počutje",
+    "tracking": "Sledenje",
+    "metrics": {
+      "sleep": "Spanje",
+      "fatigue": "Utrujenost",
+      "soreness": "Bolečine",
+      "mood": "Razpoloženje",
+      "stress": "Stres",
+      "hydration": "Hidracija",
+      "nutrition": "Prehrana"
+    },
+    "trends": "Trendi",
+    "alerts": "Opozorila"
+  },
+  "records": {
+    "title": "Zdravstveni karton",
+    "personalInfo": "Osebni podatki",
+    "medicalHistory": "Zdravstvena zgodovina",
+    "familyHistory": "Družinska anamneza",
+    "allergies": "Alergije",
+    "conditions": "Kronična stanja",
+    "surgeries": "Operacije",
+    "vaccinations": "Cepljenja",
+    "insurance": "Zavarovanje",
+    "emergencyContacts": "Nujni kontakti"
+  },
+  "emergency": {
+    "title": "Nujna pomoč",
+    "contacts": "Nujni kontakti",
+    "procedures": "Nujni postopki",
+    "equipment": "Nujna oprema",
+    "protocols": "Protokoli",
+    "location": "Lokacija",
+    "nearest": {
+      "hospital": "Najbližja bolnišnica",
+      "clinic": "Najbližja klinika",
+      "pharmacy": "Najbližja lekarna"
+    }
+  },
+  "reports": {
+    "title": "Poročila",
+    "injury": "Poročilo o poškodbi",
+    "medical": "Zdravstveno poročilo",
+    "fitness": "Kondicijsko poročilo",
+    "team": "Poročilo o zdravju ekipe",
+    "individual": "Individualno poročilo",
+    "generate": "Ustvari poročilo",
+    "export": "Izvozi",
+    "share": "Deli"
+  },
+  "prevention": {
+    "title": "Preprečevanje",
+    "programs": "Preventivni programi",
+    "education": "Izobraževanje",
+    "screening": "Presejalni testi",
+    "riskAssessment": "Ocena tveganja",
+    "guidelines": "Smernice",
+    "exercises": "Preventivne vaje",
+    "equipment": "Zaščitna oprema"
+  },
+  "rehabilitation": {
+    "title": "Rehabilitacija",
+    "programs": "Rehabilitacijski programi",
+    "progress": "Napredek",
+    "exercises": "Vaje",
+    "milestones": "Mejniki",
+    "phases": {
+      "acute": "Akutna faza",
+      "recovery": "Faza okrevanja",
+      "functional": "Funkcionalna faza",
+      "returnToSport": "Vrnitev v šport"
+    }
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "withCoaches": "S trenerji",
+    "withPlayers": "Z igralci",
+    "withParents": "S starši",
+    "reports": "Poročila",
+    "updates": "Posodobitve",
+    "notifications": "Obvestila"
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "preferences": "Preference",
+    "notifications": "Obvestila",
+    "privacy": "Zasebnost",
+    "protocols": "Protokoli",
+    "templates": "Predloge"
+  },
+  "actions": {
+    "registerInjury": "Registriraj poškodbo",
+    "scheduleAppointment": "Načrtuj termin",
+    "requestClearance": "Zahtevaj dovoljenje",
+    "updateStatus": "Posodobi status",
+    "generateReport": "Ustvari poročilo",
+    "viewHistory": "Poglej zgodovino",
+    "addNote": "Dodaj opombo",
+    "exportRecords": "Izvozi kartoteko"
+  },
+  "messages": {
+    "injuryRegistered": "Poškodba uspešno registrirana",
+    "appointmentScheduled": "Termin načrtovan",
+    "clearanceGranted": "Dovoljenje za igro odobreno",
+    "clearanceDenied": "Dovoljenje za igro zavrnjeno",
+    "statusUpdated": "Status posodobljen",
+    "reportGenerated": "Poročilo ustvarjeno",
+    "recordsExported": "Kartoteka izvožena",
+    "highRiskAlert": "Opozorilo: Visoko tveganje pri {{player}}",
+    "returnToPlayReady": "{{player}} pripravljen za vrnitev",
+    "treatmentCompleted": "Zdravljenje zaključeno za {{player}}"
+  }
+}

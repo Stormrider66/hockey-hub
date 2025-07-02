@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Hups! Jotain meni pieleen",
+    "subtitle": "Pahoittelemme häiriötä",
+    "tryAgain": "Yritä uudelleen",
+    "goHome": "Siirry kojelaudalle",
+    "contactSupport": "Ota yhteyttä tukeen"
+  },
+  "http": {
+    "400": {
+      "title": "Virheellinen pyyntö",
+      "message": "Palvelin ei ymmärtänyt pyyntöä."
+    },
+    "401": {
+      "title": "Ei valtuuksia",
+      "message": "Sinun täytyy kirjautua sisään käyttääksesi tätä resurssia."
+    },
+    "403": {
+      "title": "Kielletty",
+      "message": "Sinulla ei ole oikeutta käyttää tätä resurssia."
+    },
+    "404": {
+      "title": "Sivua ei löydy",
+      "message": "Etsimääsi sivua ei ole olemassa."
+    },
+    "409": {
+      "title": "Ristiriita",
+      "message": "Pyyntö on ristiriidassa palvelimen nykyisen tilan kanssa."
+    },
+    "422": {
+      "title": "Validointivirhe",
+      "message": "Annetut tiedot ovat virheellisiä."
+    },
+    "429": {
+      "title": "Liian monta pyyntöä",
+      "message": "Olet tehnyt liian monta pyyntöä. Yritä myöhemmin uudelleen."
+    },
+    "500": {
+      "title": "Palvelinvirhe",
+      "message": "Palvelimella tapahtui odottamaton virhe."
+    },
+    "502": {
+      "title": "Virheellinen yhdyskäytävä",
+      "message": "Palvelin vastaanotti virheellisen vastauksen."
+    },
+    "503": {
+      "title": "Palvelu ei saatavilla",
+      "message": "Palvelu on tilapäisesti pois käytöstä. Yritä myöhemmin uudelleen."
+    },
+    "504": {
+      "title": "Yhdyskäytävän aikakatkaisu",
+      "message": "Palvelin ei vastannut ajoissa."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Ei internet-yhteyttä",
+      "message": "Tarkista internet-yhteytesi ja yritä uudelleen."
+    },
+    "timeout": {
+      "title": "Pyynnön aikakatkaisu",
+      "message": "Pyyntö kesti liian kauan. Yritä uudelleen."
+    },
+    "connectionFailed": {
+      "title": "Yhteys epäonnistui",
+      "message": "Palvelimeen yhdistäminen epäonnistui. Yritä uudelleen."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Tietojen lataus epäonnistui",
+      "message": "Pyydettyjen tietojen lataaminen epäonnistui. Yritä päivittää sivu."
+    },
+    "dataSave": {
+      "title": "Tallennus epäonnistui",
+      "message": "Muutoksiasi ei voitu tallentaa. Yritä uudelleen."
+    },
+    "fileUpload": {
+      "title": "Lähetys epäonnistui",
+      "message": "Tiedostoa ei voitu lähettää. Tarkista tiedosto ja yritä uudelleen."
+    },
+    "permissionDenied": {
+      "title": "Lupa evätty",
+      "message": "Sinulla ei ole oikeutta suorittaa tätä toimintoa."
+    },
+    "sessionExpired": {
+      "title": "Istunto vanhentunut",
+      "message": "Istuntosi on vanhentunut. Kirjaudu sisään uudelleen."
+    },
+    "maintenanceMode": {
+      "title": "Huoltotila",
+      "message": "Suoritamme määräaikaishuoltoa. Tarkista tilanne pian uudelleen."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Lomakkeen lähetysvirhe",
+      "message": "Lomakkeen lähettämisessä tapahtui virhe. Tarkista syötteet ja yritä uudelleen."
+    },
+    "validation": {
+      "title": "Validointivirhe",
+      "message": "Korjaa lomakkeen virheet."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Maksu epäonnistui",
+      "message": "Maksuasi ei voitu käsitellä. Kokeile toista maksutapaa."
+    },
+    "declined": {
+      "title": "Maksu hylätty",
+      "message": "Maksusi hylättiin. Tarkista maksutiedot."
+    },
+    "insufficientFunds": {
+      "title": "Riittämätön kate",
+      "message": "Maksutavallasi ei ole riittävästi katetta."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Aikatauluristiriita",
+      "message": "Tämä aika on päällekkäin toisen tapahtuman kanssa."
+    },
+    "bookingFailed": {
+      "title": "Varaus epäonnistui",
+      "message": "Valittua aikaa ei voitu varata."
+    },
+    "facilityUnavailable": {
+      "title": "Tila ei saatavilla",
+      "message": "Valittu tila ei ole saatavilla tähän aikaan."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Harjoitusta ei löydy",
+      "message": "Etsimääsi harjoitusta ei ole olemassa."
+    },
+    "alreadyStarted": {
+      "title": "Harjoitus jo alkanut",
+      "message": "Tämä harjoitus on jo alkanut."
+    },
+    "capacityReached": {
+      "title": "Harjoitus täynnä",
+      "message": "Tämä harjoitus on saavuttanut maksimimäärän."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Viestiä ei lähetetty",
+      "message": "Viestiäsi ei voitu lähettää. Yritä uudelleen."
+    },
+    "notificationFailed": {
+      "title": "Ilmoitus epäonnistui",
+      "message": "Ilmoituksia ei voida lähettää tällä hetkellä."
+    }
+  },
+  "actions": {
+    "retry": "Yritä uudelleen",
+    "dismiss": "Sulje",
+    "details": "Näytä tiedot",
+    "report": "Ilmoita ongelmasta",
+    "refresh": "Päivitä sivu"
+  }
+}

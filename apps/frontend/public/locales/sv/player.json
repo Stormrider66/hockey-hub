@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Spelarens översikt",
+    "subtitle": "Följ din prestation och utveckling",
+    "welcome": "Välkommen tillbaka, {{name}}!",
+    "todaySchedule": "Dagens schema",
+    "upcomingEvents": "Kommande händelser",
+    "recentPerformance": "Senaste prestationer",
+    "developmentGoals": "Utvecklingsmål"
+  },
+  "profile": {
+    "playerInfo": "Spelarinformation",
+    "number": "Tröjnummer",
+    "position": "Position",
+    "shoots": "Skjuter",
+    "team": "Lag",
+    "age": "Ålder",
+    "height": "Längd",
+    "weight": "Vikt",
+    "joined": "Gick med",
+    "contractExpires": "Kontrakt går ut"
+  },
+  "wellness": {
+    "title": "Daglig hälsokontroll",
+    "subtitle": "Hur mår du idag?",
+    "submit": "Skicka hälsodata",
+    "submitted": "Hälsodata skickades framgångsrikt",
+    "metrics": {
+      "hrv": "Hjärtfrekvensvariabilitet",
+      "sleep": "Sömnkvalitet",
+      "fatigue": "Trötthetsnivå",
+      "mood": "Humör",
+      "soreness": "Muskelömhet",
+      "stress": "Stressnivå",
+      "hydration": "Hydrering",
+      "nutrition": "Näringskvalitet"
+    },
+    "scale": {
+      "poor": "Dålig",
+      "fair": "Okej",
+      "good": "Bra",
+      "veryGood": "Mycket bra",
+      "excellent": "Utmärkt"
+    }
+  },
+  "training": {
+    "title": "Träningspass",
+    "upcoming": "Kommande träning",
+    "completed": "Slutförda pass",
+    "assigned": "Tilldelade träningspass",
+    "progress": "Träningsframsteg",
+    "todaysWorkout": "Dagens träning",
+    "completeSession": "Slutför pass",
+    "viewDetails": "Visa detaljer",
+    "intensity": "Intensitet",
+    "duration": "Varaktighet",
+    "focus": "Fokusområde",
+    "equipment": "Utrustning som behövs",
+    "location": "Plats",
+    "coach": "Tränare",
+    "notes": "Passanteckningar"
+  },
+  "performance": {
+    "title": "Prestationsmått",
+    "seasonStats": "Säsongsstatistik",
+    "careerStats": "Karriärstatistik",
+    "lastGame": "Senaste matchen",
+    "average": "Genomsnitt",
+    "total": "Totalt",
+    "trend": "Trend",
+    "improvement": "Förbättring",
+    "metrics": {
+      "goals": "Mål",
+      "assists": "Assist",
+      "points": "Poäng",
+      "plusMinus": "+/-",
+      "pim": "Utvisningsminuter",
+      "shots": "Skott",
+      "shootingPercentage": "Skott %",
+      "faceoffPercentage": "Tekning %",
+      "hits": "Tacklingar",
+      "blocks": "Blockeringar",
+      "takeaways": "Puckerövringar",
+      "giveaways": "Puckförluster",
+      "toi": "Istid",
+      "powerplayGoals": "PP-mål",
+      "shorthandedGoals": "SH-mål",
+      "gameWinningGoals": "Matchavgörande mål"
+    }
+  },
+  "schedule": {
+    "title": "Schema",
+    "calendar": "Kalendervy",
+    "list": "Listvy",
+    "filters": "Filter",
+    "types": {
+      "game": "Match",
+      "practice": "Träning",
+      "training": "Fysträning",
+      "meeting": "Möte",
+      "medical": "Medicinsk",
+      "recovery": "Återhämtning",
+      "travel": "Resa",
+      "personal": "Personlig"
+    },
+    "rsvp": {
+      "title": "OSA",
+      "attending": "Deltar",
+      "notAttending": "Deltar inte",
+      "maybe": "Kanske",
+      "update": "Uppdatera OSA"
+    }
+  },
+  "communication": {
+    "title": "Meddelanden",
+    "inbox": "Inkorg",
+    "sent": "Skickat",
+    "drafts": "Utkast",
+    "compose": "Skriv nytt",
+    "teamChat": "Lagchatt",
+    "coachMessages": "Tränarmeddelanden",
+    "announcements": "Meddelanden"
+  },
+  "development": {
+    "title": "Utvecklingsplan",
+    "goals": "Mål",
+    "progress": "Framsteg",
+    "skillAssessment": "Färdighetsbedömning",
+    "trainingPlan": "Träningsplan",
+    "milestones": "Milstolpar",
+    "achievements": "Prestationer",
+    "areas": {
+      "skating": "Skridskoåkning",
+      "shooting": "Skott",
+      "passing": "Passningar",
+      "stickHandling": "Klubbteknik",
+      "positioning": "Positionering",
+      "physicality": "Fysik",
+      "mentalGame": "Mental styrka",
+      "leadership": "Ledarskap"
+    }
+  },
+  "nutrition": {
+    "title": "Kost",
+    "mealPlan": "Måltidsplan",
+    "hydration": "Vätskebalans",
+    "supplements": "Kosttillskott",
+    "calories": "Kalorier",
+    "macros": "Makronäringsämnen",
+    "meals": {
+      "breakfast": "Frukost",
+      "lunch": "Lunch",
+      "dinner": "Middag",
+      "snack": "Mellanmål",
+      "preGame": "Före match",
+      "postGame": "Efter match"
+    }
+  },
+  "recovery": {
+    "title": "Återhämtning",
+    "status": "Återhämtningsstatus",
+    "activities": "Återhämtningsaktiviteter",
+    "sleep": "Sömnspårning",
+    "treatment": "Behandling",
+    "nextSession": "Nästa återhämtningspass",
+    "types": {
+      "massage": "Massage",
+      "coldTub": "Isbad",
+      "sauna": "Bastu",
+      "stretching": "Stretching",
+      "yoga": "Yoga",
+      "physiotherapy": "Sjukgymnastik"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "title": "Nachrichten",
+  "conversations": {
+    "title": "Unterhaltungen",
+    "new": "Neue Unterhaltung",
+    "search": "Unterhaltungen durchsuchen...",
+    "empty": "Noch keine Unterhaltungen",
+    "startNew": "Neue Unterhaltung beginnen"
+  },
+  "participants": {
+    "add": "Teilnehmer hinzufügen",
+    "remove": "Aus Unterhaltung entfernen",
+    "search": "Personen suchen...",
+    "you": "Sie",
+    "typing": "schreibt...",
+    "multipleTyping": "schreiben...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Abwesend"
+  },
+  "messages": {
+    "placeholder": "Nachricht eingeben...",
+    "send": "Senden",
+    "edit": "Nachricht bearbeiten",
+    "delete": "Nachricht löschen",
+    "reply": "Antworten",
+    "forward": "Weiterleiten",
+    "copy": "Kopieren",
+    "pin": "Nachricht anheften",
+    "unpin": "Nachricht lösen",
+    "react": "Reaktion hinzufügen",
+    "edited": "bearbeitet",
+    "deleted": "Diese Nachricht wurde gelöscht",
+    "delivered": "Zugestellt",
+    "read": "Gelesen",
+    "sending": "Wird gesendet...",
+    "failed": "Senden fehlgeschlagen",
+    "retry": "Wiederholen"
+  },
+  "groups": {
+    "create": "Gruppe erstellen",
+    "name": "Gruppenname",
+    "description": "Beschreibung (optional)",
+    "addMembers": "Mitglieder hinzufügen",
+    "settings": "Gruppeneinstellungen",
+    "leave": "Gruppe verlassen",
+    "delete": "Gruppe löschen",
+    "members": "{{count}} Mitglieder",
+    "admin": "Administrator",
+    "member": "Mitglied"
+  },
+  "channels": {
+    "title": "Kanäle",
+    "create": "Kanal erstellen",
+    "public": "Öffentlicher Kanal",
+    "private": "Privater Kanal",
+    "join": "Kanal beitreten",
+    "leave": "Kanal verlassen",
+    "mute": "Kanal stummschalten",
+    "unmute": "Stummschaltung aufheben",
+    "types": {
+      "general": "Allgemein",
+      "announcements": "Ankündigungen",
+      "team": "Team-Chat",
+      "coaches": "Trainer",
+      "parents": "Eltern",
+      "medical": "Medizinisches Personal"
+    }
+  },
+  "attachments": {
+    "title": "Anhänge",
+    "upload": "Datei hochladen",
+    "types": {
+      "image": "Bild",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Audio",
+      "other": "Datei"
+    },
+    "download": "Herunterladen",
+    "preview": "Vorschau",
+    "tooLarge": "Datei ist zu groß. Maximale Größe ist {{maxSize}}",
+    "unsupported": "Dateityp wird nicht unterstützt"
+  },
+  "notifications": {
+    "newMessage": "Neue Nachricht von {{sender}}",
+    "mentioned": "{{sender}} hat Sie erwähnt",
+    "groupInvite": "Sie wurden zu {{group}} hinzugefügt",
+    "enable": "Benachrichtigungen aktivieren",
+    "disable": "Benachrichtigungen deaktivieren",
+    "sound": "Benachrichtigungston",
+    "desktop": "Desktop-Benachrichtigungen"
+  },
+  "search": {
+    "placeholder": "Nachrichten durchsuchen...",
+    "filters": "Filter",
+    "from": "Von",
+    "to": "An",
+    "date": "Datum",
+    "hasAttachment": "Hat Anhang",
+    "results": "{{count}} Ergebnisse gefunden",
+    "noResults": "Keine Nachrichten gefunden"
+  },
+  "settings": {
+    "title": "Chat-Einstellungen",
+    "privacy": "Privatsphäre",
+    "readReceipts": "Lesebestätigungen",
+    "typingIndicator": "Schreibanzeige",
+    "autoDownload": "Medien automatisch herunterladen",
+    "enterToSend": "Enter zum Senden drücken",
+    "theme": "Chat-Design",
+    "fontSize": "Schriftgröße"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Abwesend",
+    "busy": "Nicht stören",
+    "offline": "Als offline anzeigen",
+    "setStatus": "Status setzen",
+    "customStatus": "Benutzerdefinierten Status setzen..."
+  },
+  "actions": {
+    "startChat": "Chat starten",
+    "viewProfile": "Profil anzeigen",
+    "clearChat": "Chatverlauf löschen",
+    "exportChat": "Chat exportieren",
+    "reportUser": "Benutzer melden",
+    "blockUser": "Benutzer blockieren",
+    "unblockUser": "Blockierung aufheben"
+  },
+  "time": {
+    "now": "jetzt",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "daysAgo": "vor {{count}} Tagen",
+    "lastSeen": "Zuletzt gesehen {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Verbindung verloren. Verbindung wird wiederhergestellt...",
+    "sendFailed": "Nachricht konnte nicht gesendet werden",
+    "loadFailed": "Nachrichten konnten nicht geladen werden",
+    "uploadFailed": "Datei konnte nicht hochgeladen werden",
+    "permissionDenied": "Sie haben keine Berechtigung dafür"
+  }
+}

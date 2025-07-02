@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Dashboard Allenatore",
+    "subtitle": "Gestione squadra e monitoraggio prestazioni",
+    "welcome": "Bentornato, Allenatore {{name}}!",
+    "quickStats": "Statistiche Rapide",
+    "todaysFocus": "Focus di Oggi"
+  },
+  "team": {
+    "title": "Gestione Squadra",
+    "roster": "Rosa della Squadra",
+    "lineups": "Formazioni",
+    "availability": "Disponibilità Giocatori",
+    "performance": "Prestazioni Squadra",
+    "statistics": "Statistiche Squadra",
+    "playerStatus": {
+      "available": "Disponibile",
+      "limited": "Limitato",
+      "unavailable": "Non Disponibile",
+      "injured": "Infortunato",
+      "dayToDay": "Da Valutare"
+    }
+  },
+  "practice": {
+    "title": "Pianificazione Allenamenti",
+    "schedule": "Programma Allenamenti",
+    "drills": "Libreria Esercizi",
+    "templates": "Modelli di Allenamento",
+    "planning": "Pianificazione Sessione",
+    "attendance": "Registro Presenze",
+    "intensity": "Intensità Allenamento",
+    "focus": {
+      "offense": "Sistemi Offensivi",
+      "defense": "Sistemi Difensivi",
+      "specialTeams": "Squadre Speciali",
+      "conditioning": "Preparazione Fisica",
+      "skills": "Sviluppo Abilità"
+    },
+    "types": {
+      "full": "Allenamento Completo",
+      "optional": "Allenamento Facoltativo",
+      "morning": "Allenamento Mattutino",
+      "preGame": "Rifinitura Pre-Partita",
+      "recovery": "Sessione di Recupero"
+    }
+  },
+  "games": {
+    "title": "Gestione Partite",
+    "schedule": "Calendario Partite",
+    "preparation": "Preparazione Partita",
+    "tactics": "Pianificazione Tattica",
+    "lineups": "Formazioni Partita",
+    "scouting": "Rapporti di Scouting",
+    "video": "Analisi Video",
+    "stats": {
+      "goals": "Gol",
+      "assists": "Assist",
+      "shots": "Tiri",
+      "saves": "Parate",
+      "faceoffs": "Ingaggi",
+      "penalties": "Penalità",
+      "hits": "Contrasti",
+      "blocks": "Tiri Bloccati"
+    }
+  },
+  "tactics": {
+    "title": "Lavagna Tattica",
+    "systems": "Sistemi di Squadra",
+    "powerPlay": "Superiorità Numerica",
+    "penaltyKill": "Inferiorità Numerica",
+    "faceoffPlays": "Schemi su Ingaggio",
+    "breakouts": "Schemi di Uscita",
+    "forecheck": "Sistemi di Forecheck",
+    "neutralZone": "Zona Neutra",
+    "save": "Salva Tattica",
+    "load": "Carica Tattica"
+  },
+  "communication": {
+    "title": "Comunicazione Squadra",
+    "announcements": "Comunicati Squadra",
+    "meetings": "Riunioni di Squadra",
+    "feedback": "Feedback Giocatori",
+    "messages": "Messaggi Diretti",
+    "broadcast": "Invia Messaggio a Tutti",
+    "schedule": "Programma Riunione"
+  },
+  "analytics": {
+    "title": "Analisi Prestazioni",
+    "teamMetrics": "Metriche di Squadra",
+    "playerMetrics": "Metriche Giocatori",
+    "trends": "Tendenze Prestazioni",
+    "comparison": "Confronto Squadre",
+    "advanced": "Statistiche Avanzate",
+    "reports": "Genera Report",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Partenze Zona Offensiva",
+      "gaa": "Media Gol Subiti",
+      "svp": "Percentuale Parate"
+    }
+  },
+  "development": {
+    "title": "Sviluppo Giocatori",
+    "plans": "Piani di Sviluppo",
+    "progress": "Monitoraggio Progressi",
+    "goals": "Obiettivi di Sviluppo",
+    "assessments": "Valutazioni Abilità",
+    "feedback": "Feedback Sviluppo",
+    "programs": "Programmi di Allenamento"
+  },
+  "lineup": {
+    "title": "Gestione Linee",
+    "forward": "Linee di Attacco",
+    "defense": "Coppie Difensive",
+    "powerPlay": "Unità Superiorità",
+    "penaltyKill": "Unità Inferiorità",
+    "scratches": "Esclusi",
+    "optimize": "Ottimizza Linee",
+    "save": "Salva Formazione",
+    "positions": {
+      "c": "Centro",
+      "lw": "Ala Sinistra",
+      "rw": "Ala Destra",
+      "ld": "Difensore Sinistro",
+      "rd": "Difensore Destro",
+      "g": "Portiere"
+    }
+  }
+}

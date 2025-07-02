@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medicīnas personāla vadības panelis",
+    "subtitle": "Spēlētāju veselība un traumu vadība",
+    "welcome": "Laipni lūdzam, {{name}}",
+    "urgentCases": "Steidzami gadījumi",
+    "todayAppointments": "Šodienas pieraksti"
+  },
+  "players": {
+    "title": "Spēlētāju veselības pārskats",
+    "status": "Veselības statuss",
+    "active": "Aktīvi spēlētāji",
+    "injured": "Savainoti spēlētāji",
+    "recovery": "Atveseļošanās procesā",
+    "cleared": "Nesen atgriezušies",
+    "monitoring": "Novērošanā",
+    "search": "Meklēt spēlētājus",
+    "filter": "Filtrēt pēc statusa"
+  },
+  "injuries": {
+    "title": "Traumu vadība",
+    "current": "Pašreizējās traumas",
+    "history": "Traumu vēsture",
+    "report": "Ziņot par jaunu traumu",
+    "update": "Atjaunināt traumu",
+    "severity": {
+      "minor": "Viegla",
+      "moderate": "Vidēja",
+      "major": "Smaga",
+      "severe": "Ļoti smaga",
+      "careerThreatening": "Karjeru apdraudoša"
+    },
+    "types": {
+      "concussion": "Smadzeņu satricinājums",
+      "fracture": "Lūzums",
+      "sprain": "Sastiepums",
+      "strain": "Savilkums",
+      "bruise": "Sasitums",
+      "cut": "Griezums/Plēsta brūce",
+      "dislocation": "Izmežģījums",
+      "illness": "Slimība"
+    },
+    "bodyParts": {
+      "head": "Galva",
+      "neck": "Kakls",
+      "shoulder": "Plecs",
+      "arm": "Roka",
+      "elbow": "Elkonis",
+      "wrist": "Plaukstas locītava",
+      "hand": "Plauksta",
+      "back": "Mugura",
+      "chest": "Krūtis",
+      "abdomen": "Vēders",
+      "hip": "Gūža",
+      "groin": "Cirkšņa apvidus",
+      "thigh": "Augšstilbs",
+      "knee": "Celis",
+      "ankle": "Potīte",
+      "foot": "Pēda"
+    }
+  },
+  "treatment": {
+    "title": "Ārstēšanas plāni",
+    "active": "Aktīvā ārstēšana",
+    "scheduled": "Ieplānotās sesijas",
+    "completed": "Pabeigta ārstēšana",
+    "create": "Izveidot ārstēšanas plānu",
+    "modify": "Modificēt plānu",
+    "types": {
+      "physiotherapy": "Fizioterapija",
+      "massage": "Masāžas terapija",
+      "medication": "Medikamenti",
+      "surgery": "Operācija",
+      "rehabilitation": "Rehabilitācija",
+      "rest": "Atpūta/Atveseļošanās",
+      "imaging": "Attēldiagnostika/Skenēšana"
+    },
+    "frequency": {
+      "daily": "Katru dienu",
+      "everyOtherDay": "Katru otro dienu",
+      "twiceWeekly": "Divas reizes nedēļā",
+      "weekly": "Reizi nedēļā",
+      "asNeeded": "Pēc nepieciešamības"
+    }
+  },
+  "appointments": {
+    "title": "Medicīniskie pieraksti",
+    "schedule": "Ieplānot pierakstu",
+    "upcoming": "Gaidāmie pieraksti",
+    "today": "Šodienas grafiks",
+    "calendar": "Pierakstu kalendārs",
+    "types": {
+      "checkup": "Regulārā pārbaude",
+      "injury": "Traumas novērtēšana",
+      "followup": "Atkārtota apskate",
+      "clearance": "Atgriešanās spēlē atļauja",
+      "physical": "Fiziskā pārbaude",
+      "emergency": "Neatliekamā palīdzība"
+    },
+    "duration": {
+      "15min": "15 minūtes",
+      "30min": "30 minūtes",
+      "45min": "45 minūtes",
+      "60min": "1 stunda"
+    }
+  },
+  "records": {
+    "title": "Medicīniskie ieraksti",
+    "history": "Medicīniskā vēsture",
+    "allergies": "Alerģijas",
+    "medications": "Pašreizējie medikamenti",
+    "conditions": "Esošās saslimšanas",
+    "surgeries": "Iepriekšējās operācijas",
+    "family": "Ģimenes vēsture",
+    "documents": "Medicīniskie dokumenti",
+    "upload": "Augšupielādēt dokumentu",
+    "download": "Lejupielādēt ierakstus"
+  },
+  "clearance": {
+    "title": "Atgriešanās spēlē",
+    "pending": "Gaidāmās atļaujas",
+    "evaluate": "Novērtēt spēlētāju",
+    "protocols": "Atgriešanās protokoli",
+    "tests": "Nepieciešamie testi",
+    "approve": "Apstiprināt atgriešanos",
+    "deny": "Noraidīt atgriešanos",
+    "conditional": "Nosacīta atgriešanās",
+    "restrictions": "Aktivitāšu ierobežojumi"
+  },
+  "reports": {
+    "title": "Medicīniskās atskaites",
+    "injury": "Traumu atskaite",
+    "team": "Komandas veselības atskaite",
+    "individual": "Individuālā atskaite",
+    "insurance": "Apdrošināšanas atskaite",
+    "compliance": "Atbilstības atskaite",
+    "generate": "Ģenerēt atskaiti",
+    "export": "Eksportēt atskaiti"
+  },
+  "emergency": {
+    "title": "Ārkārtas protokoli",
+    "contacts": "Ārkārtas kontakti",
+    "procedures": "Ārkārtas procedūras",
+    "equipment": "Ārkārtas aprīkojums",
+    "locations": "Slimnīcu atrašanās vietas",
+    "action": "Ārkārtas rīcības plāns",
+    "call": "Ārkārtas zvans"
+  },
+  "wellness": {
+    "title": "Labsajūtas monitorings",
+    "daily": "Ikdienas pārbaudes",
+    "trends": "Labsajūtas tendences",
+    "alerts": "Labsajūtas brīdinājumi",
+    "metrics": {
+      "sleep": "Miega kvalitāte",
+      "fatigue": "Noguruma līmenis",
+      "soreness": "Muskuļu sāpīgums",
+      "mood": "Garastāvoklis",
+      "stress": "Stresa līmenis",
+      "hydration": "Hidratācija"
+    }
+  }
+}

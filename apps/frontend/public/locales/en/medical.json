@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medical Staff Dashboard",
+    "subtitle": "Player health and injury management",
+    "welcome": "Welcome, {{name}}",
+    "urgentCases": "Urgent Cases",
+    "todayAppointments": "Today's Appointments"
+  },
+  "players": {
+    "title": "Player Health Overview",
+    "status": "Health Status",
+    "active": "Active Players",
+    "injured": "Injured Players",
+    "recovery": "In Recovery",
+    "cleared": "Recently Cleared",
+    "monitoring": "Under Monitoring",
+    "search": "Search Players",
+    "filter": "Filter by Status"
+  },
+  "injuries": {
+    "title": "Injury Management",
+    "current": "Current Injuries",
+    "history": "Injury History",
+    "report": "Report New Injury",
+    "update": "Update Injury",
+    "severity": {
+      "minor": "Minor",
+      "moderate": "Moderate",
+      "major": "Major",
+      "severe": "Severe",
+      "careerThreatening": "Career Threatening"
+    },
+    "types": {
+      "concussion": "Concussion",
+      "fracture": "Fracture",
+      "sprain": "Sprain",
+      "strain": "Strain",
+      "bruise": "Bruise",
+      "cut": "Cut/Laceration",
+      "dislocation": "Dislocation",
+      "illness": "Illness"
+    },
+    "bodyParts": {
+      "head": "Head",
+      "neck": "Neck",
+      "shoulder": "Shoulder",
+      "arm": "Arm",
+      "elbow": "Elbow",
+      "wrist": "Wrist",
+      "hand": "Hand",
+      "back": "Back",
+      "chest": "Chest",
+      "abdomen": "Abdomen",
+      "hip": "Hip",
+      "groin": "Groin",
+      "thigh": "Thigh",
+      "knee": "Knee",
+      "ankle": "Ankle",
+      "foot": "Foot"
+    }
+  },
+  "treatment": {
+    "title": "Treatment Plans",
+    "active": "Active Treatments",
+    "scheduled": "Scheduled Sessions",
+    "completed": "Completed Treatments",
+    "create": "Create Treatment Plan",
+    "modify": "Modify Plan",
+    "types": {
+      "physiotherapy": "Physiotherapy",
+      "massage": "Massage Therapy",
+      "medication": "Medication",
+      "surgery": "Surgery",
+      "rehabilitation": "Rehabilitation",
+      "rest": "Rest/Recovery",
+      "imaging": "Imaging/Scans"
+    },
+    "frequency": {
+      "daily": "Daily",
+      "everyOtherDay": "Every Other Day",
+      "twiceWeekly": "Twice Weekly",
+      "weekly": "Weekly",
+      "asNeeded": "As Needed"
+    }
+  },
+  "appointments": {
+    "title": "Medical Appointments",
+    "schedule": "Schedule Appointment",
+    "upcoming": "Upcoming Appointments",
+    "today": "Today's Schedule",
+    "calendar": "Appointment Calendar",
+    "types": {
+      "checkup": "Regular Checkup",
+      "injury": "Injury Assessment",
+      "followup": "Follow-up",
+      "clearance": "Return to Play Clearance",
+      "physical": "Physical Exam",
+      "emergency": "Emergency"
+    },
+    "duration": {
+      "15min": "15 minutes",
+      "30min": "30 minutes",
+      "45min": "45 minutes",
+      "60min": "1 hour"
+    }
+  },
+  "records": {
+    "title": "Medical Records",
+    "history": "Medical History",
+    "allergies": "Allergies",
+    "medications": "Current Medications",
+    "conditions": "Pre-existing Conditions",
+    "surgeries": "Previous Surgeries",
+    "family": "Family History",
+    "documents": "Medical Documents",
+    "upload": "Upload Document",
+    "download": "Download Records"
+  },
+  "clearance": {
+    "title": "Return to Play",
+    "pending": "Pending Clearances",
+    "evaluate": "Evaluate Player",
+    "protocols": "Return Protocols",
+    "tests": "Required Tests",
+    "approve": "Approve Return",
+    "deny": "Deny Return",
+    "conditional": "Conditional Return",
+    "restrictions": "Activity Restrictions"
+  },
+  "reports": {
+    "title": "Medical Reports",
+    "injury": "Injury Report",
+    "team": "Team Health Report",
+    "individual": "Individual Report",
+    "insurance": "Insurance Report",
+    "compliance": "Compliance Report",
+    "generate": "Generate Report",
+    "export": "Export Report"
+  },
+  "emergency": {
+    "title": "Emergency Protocols",
+    "contacts": "Emergency Contacts",
+    "procedures": "Emergency Procedures",
+    "equipment": "Emergency Equipment",
+    "locations": "Hospital Locations",
+    "action": "Emergency Action Plan",
+    "call": "Emergency Call"
+  },
+  "wellness": {
+    "title": "Wellness Monitoring",
+    "daily": "Daily Check-ins",
+    "trends": "Wellness Trends",
+    "alerts": "Wellness Alerts",
+    "metrics": {
+      "sleep": "Sleep Quality",
+      "fatigue": "Fatigue Level",
+      "soreness": "Muscle Soreness",
+      "mood": "Mood",
+      "stress": "Stress Level",
+      "hydration": "Hydration"
+    }
+  }
+}

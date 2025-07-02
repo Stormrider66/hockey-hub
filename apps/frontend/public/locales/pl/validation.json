@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "To pole jest wymagane",
+    "email": "Email jest wymagany",
+    "password": "Hasło jest wymagane",
+    "firstName": "Imię jest wymagane",
+    "lastName": "Nazwisko jest wymagane",
+    "phone": "Numer telefonu jest wymagany",
+    "date": "Data jest wymagana",
+    "time": "Czas jest wymagany",
+    "selection": "Proszę dokonać wyboru"
+  },
+  "email": {
+    "invalid": "Proszę wprowadzić prawidłowy adres email",
+    "alreadyExists": "Ten email jest już zarejestrowany"
+  },
+  "password": {
+    "tooShort": "Hasło musi mieć co najmniej {{min}} znaków",
+    "tooWeak": "Hasło jest zbyt słabe. Użyj kombinacji liter, cyfr i symboli",
+    "noMatch": "Hasła nie pasują do siebie",
+    "requiresUppercase": "Hasło musi zawierać co najmniej jedną wielką literę",
+    "requiresLowercase": "Hasło musi zawierać co najmniej jedną małą literę",
+    "requiresNumber": "Hasło musi zawierać co najmniej jedną cyfrę",
+    "requiresSpecial": "Hasło musi zawierać co najmniej jeden znak specjalny"
+  },
+  "string": {
+    "tooShort": "Musi mieć co najmniej {{min}} znaków",
+    "tooLong": "Może mieć maksymalnie {{max}} znaków",
+    "invalidFormat": "Nieprawidłowy format",
+    "alphanumeric": "Dozwolone są tylko litery i cyfry",
+    "alphabetic": "Dozwolone są tylko litery",
+    "invalidCharacters": "Zawiera nieprawidłowe znaki"
+  },
+  "number": {
+    "invalid": "Proszę wprowadzić prawidłową liczbę",
+    "tooSmall": "Musi wynosić co najmniej {{min}}",
+    "tooLarge": "Może wynosić maksymalnie {{max}}",
+    "integer": "Musi być liczbą całkowitą",
+    "positive": "Musi być liczbą dodatnią",
+    "negative": "Musi być liczbą ujemną"
+  },
+  "date": {
+    "invalid": "Proszę wprowadzić prawidłową datę",
+    "beforeMin": "Data musi być po {{min}}",
+    "afterMax": "Data musi być przed {{max}}",
+    "inPast": "Data musi być w przeszłości",
+    "inFuture": "Data musi być w przyszłości"
+  },
+  "time": {
+    "invalid": "Proszę wprowadzić prawidłową godzinę",
+    "beforeMin": "Godzina musi być po {{min}}",
+    "afterMax": "Godzina musi być przed {{max}}"
+  },
+  "phone": {
+    "invalid": "Proszę wprowadzić prawidłowy numer telefonu",
+    "invalidCountryCode": "Nieprawidłowy kod kraju"
+  },
+  "file": {
+    "tooLarge": "Rozmiar pliku musi być mniejszy niż {{maxSize}}",
+    "invalidType": "Niedozwolony typ pliku. Dozwolone typy: {{allowedTypes}}",
+    "required": "Proszę wybrać plik",
+    "tooMany": "Za dużo plików. Maksymalna dozwolona liczba: {{max}}"
+  },
+  "url": {
+    "invalid": "Proszę wprowadzić prawidłowy adres URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Nieprawidłowy format kodu drużyny",
+      "notFound": "Kod drużyny nie został znaleziony"
+    },
+    "playerNumber": {
+      "invalid": "Nieprawidłowy numer zawodnika",
+      "alreadyTaken": "Ten numer jest już zajęty"
+    },
+    "age": {
+      "tooYoung": "Minimalny wiek to {{min}} lat",
+      "tooOld": "Maksymalny wiek to {{max}} lat"
+    },
+    "schedule": {
+      "conflict": "Ten termin koliduje z innym wydarzeniem",
+      "outsideHours": "Wybrany czas jest poza godzinami pracy",
+      "tooSoon": "Należy zaplanować z co najmniej {{hours}} godzinnym wyprzedzeniem"
+    },
+    "capacity": {
+      "exceeded": "Przekroczono maksymalną pojemność",
+      "minimum": "Wymagana minimalna liczba uczestników: {{min}}"
+    }
+  },
+  "form": {
+    "hasErrors": "Proszę poprawić poniższe błędy",
+    "submitError": "Nie udało się przesłać formularza. Spróbuj ponownie.",
+    "saveDraft": "Twój szkic został zapisany",
+    "unsavedChanges": "Masz niezapisane zmiany. Czy na pewno chcesz wyjść?"
+  },
+  "search": {
+    "tooShort": "Zapytanie musi mieć co najmniej {{min}} znaków",
+    "noResults": "Nie znaleziono wyników"
+  },
+  "selection": {
+    "minimum": "Proszę wybrać co najmniej {{min}} opcji",
+    "maximum": "Proszę wybrać maksymalnie {{max}} opcji",
+    "exact": "Proszę wybrać dokładnie {{count}} opcji"
+  },
+  "comparison": {
+    "mustMatch": "Pola muszą się zgadzać",
+    "mustBeDifferent": "Pola muszą się różnić",
+    "startBeforeEnd": "Czas rozpoczęcia musi być przed czasem zakończenia",
+    "endAfterStart": "Czas zakończenia musi być po czasie rozpoczęcia"
+  }
+}

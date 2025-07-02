@@ -1,0 +1,142 @@
+{
+  "title": "Pranešimai",
+  "markAllRead": "Pažymėti visus kaip perskaitytus",
+  "clearAll": "Išvalyti visus",
+  "settings": "Pranešimų nustatymai",
+  "empty": "Nėra pranešimų",
+  "loadMore": "Įkelti daugiau",
+  "categories": {
+    "all": "Visi",
+    "unread": "Neperskaityti",
+    "system": "Sistema",
+    "team": "Komanda",
+    "training": "Treniruotės",
+    "medical": "Medicina",
+    "calendar": "Kalendorius",
+    "payment": "Mokėjimai",
+    "communication": "Žinutės"
+  },
+  "types": {
+    "system": {
+      "welcome": "Sveiki atvykę į Hockey Hub!",
+      "profileComplete": "Jūsų profilis dabar užpildytas",
+      "passwordChanged": "Jūsų slaptažodis sėkmingai pakeistas",
+      "accountVerified": "Jūsų paskyra patvirtinta",
+      "maintenanceScheduled": "Sistemos priežiūra suplanuota {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Jūs buvote pridėtas į {{teamName}}",
+      "removedFromTeam": "Jūs buvote pašalintas iš {{teamName}}",
+      "roleChanged": "Jūsų vaidmuo pakeistas į {{role}}",
+      "teamAnnouncement": "Komandos skelbimas nuo {{sender}}",
+      "rosterUpdate": "Sudėtis atnaujinta"
+    },
+    "training": {
+      "sessionScheduled": "Treniruotė suplanuota {{date}}",
+      "sessionCancelled": "Treniruotė {{date}} atšaukta",
+      "sessionReminder": "Treniruotė prasideda po {{time}}",
+      "workoutAssigned": "Nauja treniruotė paskirta: {{workoutName}}",
+      "workoutCompleted": "{{player}} užbaigė treniruotę: {{workoutName}}",
+      "performanceReport": "Jūsų rezultatų ataskaita paruošta"
+    },
+    "medical": {
+      "appointmentScheduled": "Medicininis apsilankymas suplanuotas {{date}}",
+      "appointmentReminder": "Medicininis apsilankymas po {{time}}",
+      "injuryUpdate": "Traumos būsena atnaujinta: {{player}}",
+      "clearanceGranted": "{{player}} leista žaisti",
+      "wellnessReminder": "Prašome pateikti kasdienę savijautos patikrą",
+      "treatmentComplete": "Gydymo seansas užbaigtas"
+    },
+    "calendar": {
+      "eventCreated": "Naujas renginys: {{eventName}}",
+      "eventUpdated": "Renginys atnaujintas: {{eventName}}",
+      "eventCancelled": "Renginys atšauktas: {{eventName}}",
+      "eventReminder": "{{eventName}} prasideda po {{time}}",
+      "rsvpRequested": "Prašome patvirtinti dalyvavimą: {{eventName}}",
+      "scheduleChange": "Tvarkaraščio pakeitimas {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Nauja sąskaita: {{amount}}",
+      "paymentReceived": "Mokėjimas gautas: {{amount}}",
+      "paymentDue": "Mokėtina suma: {{amount}} iki {{date}}",
+      "paymentOverdue": "Vėluojantis mokėjimas: {{amount}}",
+      "paymentFailed": "Mokėjimas nepavyko: {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Nauja žinutė nuo {{sender}}",
+      "mentionedInChat": "{{sender}} paminėjo jus {{channel}}",
+      "addedToGroup": "Jūs buvote pridėtas į {{groupName}}",
+      "missedCall": "Praleistas skambutis nuo {{caller}}",
+      "voicemail": "Naujas balso pranešimas nuo {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Rungtynės suplanuotos: {{opponent}} {{date}}",
+      "gameReminder": "Rungtynės prieš {{opponent}} prasideda po {{time}}",
+      "lineupPosted": "Rungtynių sudėtis paskelbta",
+      "gameResult": "Rungtynių rezultatas: {{result}} prieš {{opponent}}",
+      "statsAvailable": "Jūsų rungtynių statistika prieinama"
+    },
+    "equipment": {
+      "fittingScheduled": "Įrangos matavimas suplanuotas {{date}}",
+      "maintenanceDue": "Įrangos priežiūra reikalinga: {{equipment}}",
+      "orderReady": "Jūsų įrangos užsakymas paruoštas atsiėmimui",
+      "returnReminder": "Prašome grąžinti {{equipment}} iki {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Peržiūrėti",
+    "dismiss": "Atmesti",
+    "accept": "Priimti",
+    "decline": "Atmesti",
+    "respond": "Atsakyti",
+    "schedule": "Planuoti",
+    "pay": "Mokėti dabar",
+    "download": "Atsisiųsti",
+    "viewDetails": "Peržiūrėti detales"
+  },
+  "preferences": {
+    "title": "Pranešimų nuostatos",
+    "channels": {
+      "email": "El. paštas",
+      "push": "Push pranešimai",
+      "inApp": "Programėlėje",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Nedelsiant",
+      "hourly": "Kas valandą",
+      "daily": "Dienos apžvalga",
+      "weekly": "Savaitės santrauka"
+    },
+    "quiet": {
+      "title": "Tylos valandos",
+      "enabled": "Įjungti tylos valandas",
+      "from": "Nuo",
+      "to": "Iki",
+      "days": "Dienos"
+    },
+    "types": {
+      "training": "Treniruočių atnaujinimai",
+      "medical": "Medicininiai priminimai",
+      "calendar": "Kalendoriaus renginiai",
+      "team": "Komandos skelbimai",
+      "chat": "Pokalbių žinutės",
+      "payment": "Mokėjimų priminimai",
+      "system": "Sistemos pranešimai"
+    }
+  },
+  "time": {
+    "justNow": "Ką tik",
+    "minutesAgo": "prieš {{count}} min.",
+    "hoursAgo": "prieš {{count}} val.",
+    "yesterday": "Vakar",
+    "daysAgo": "prieš {{count}} d.",
+    "weeksAgo": "prieš {{count}} sav."
+  },
+  "status": {
+    "sent": "Išsiųsta",
+    "delivered": "Pristatyta",
+    "read": "Perskaityta",
+    "failed": "Nepavyko išsiųsti"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Utstyrsansvarlig dashbord",
+    "subtitle": "Utstyrslager og administrasjon",
+    "welcome": "Velkommen, {{name}}",
+    "quickStats": "Utstyrsstatus",
+    "urgentNeeds": "Hastebehov for utstyr"
+  },
+  "inventory": {
+    "title": "Utstyrslager",
+    "overview": "Lageroversikt",
+    "search": "Søk utstyr",
+    "filter": "Filtrer etter type",
+    "add": "Legg til utstyr",
+    "remove": "Fjern utstyr",
+    "update": "Oppdater lager",
+    "lowStock": "Lavt lager varsel",
+    "remaining": "{{count}} gjenstående",
+    "reorderAt": "Bestill ved {{level}}",
+    "outOfStock": "Utsolgt",
+    "lowStockStatus": "Lavt lager",
+    "stock": "Lager",
+    "condition": {
+      "good": "God",
+      "fair": "Grei",
+      "poor": "Dårlig"
+    },
+    "categories": {
+      "protective": "Beskyttelsesutstyr",
+      "sticks": "Hockeykøller",
+      "skates": "Skøyter",
+      "apparel": "Lagbekledning",
+      "training": "Treningsutstyr",
+      "goalie": "Målvaktsutstyr",
+      "accessories": "Tilbehør",
+      "medical": "Medisinsk utstyr"
+    },
+    "status": {
+      "available": "Tilgjengelig",
+      "assigned": "Tildelt",
+      "maintenance": "Under vedlikehold",
+      "ordered": "Under bestilling",
+      "damaged": "Skadet",
+      "retired": "Utfaset"
+    }
+  },
+  "assignments": {
+    "title": "Utstyrstildelinger",
+    "player": "Spillertildelinger",
+    "team": "Lagsutstyr",
+    "assign": "Tildel utstyr",
+    "return": "Returner utstyr",
+    "history": "Tildelingshistorikk",
+    "current": "Nåværende tildelinger",
+    "overdue": "Forfalte returer"
+  },
+  "sizes": {
+    "title": "Størrelsesadministrasjon",
+    "chart": "Størrelsesguide",
+    "playerSizes": "Spillerstørrelser",
+    "update": "Oppdater størrelser",
+    "fitting": "Planlegg tilpasning",
+    "categories": {
+      "helmet": "Hjelm",
+      "shoulderPads": "Skulderpadder",
+      "elbow": "Albuebeskyttere",
+      "gloves": "Hansker",
+      "pants": "Hockeybukser",
+      "shinGuards": "Leggbeskyttere",
+      "skates": "Skøyter",
+      "jersey": "Drakt",
+      "socks": "Sokker"
+    },
+    "measurements": {
+      "xs": "Ekstra liten",
+      "s": "Liten",
+      "m": "Medium",
+      "l": "Stor",
+      "xl": "Ekstra stor",
+      "xxl": "2X stor",
+      "xxxl": "3X stor",
+      "youth": "Ungdom",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Utstyrsvedlikehold",
+    "schedule": "Vedlikeholdsplan",
+    "due": "Forfalt vedlikehold",
+    "history": "Vedlikeholdshistorikk",
+    "log": "Logg vedlikehold",
+    "types": {
+      "sharpening": "Skøytesliping",
+      "repair": "Utstyrsreparasjon",
+      "cleaning": "Dyprengjøring",
+      "inspection": "Sikkerhetsinspeksjon",
+      "replacement": "Delutskiftning"
+    },
+    "frequency": {
+      "daily": "Daglig",
+      "weekly": "Ukentlig",
+      "biweekly": "Annenhver uke",
+      "monthly": "Månedlig",
+      "seasonal": "Sesongbasert",
+      "asNeeded": "Ved behov"
+    }
+  },
+  "orders": {
+    "title": "Utstyrsbestillinger",
+    "new": "Ny bestilling",
+    "createOrder": "Opprett bestilling",
+    "createOrderTitle": "Opprett utstyrsbestilling",
+    "createOrderDescription": "Legg til varer i bestillingen din. Bestillinger vil bli sendt til godkjenning.",
+    "addItem": "Legg til vare",
+    "removeItem": "Fjern",
+    "itemName": "Varenavn",
+    "itemNamePlaceholder": "Skriv inn varenavn",
+    "quantity": "Ant",
+    "priority": "Prioritet",
+    "notes": "Notater (valgfritt)",
+    "notesPlaceholder": "Tilleggsspesifikasjoner eller notater",
+    "creating": "Oppretter...",
+    "pending": "Ventende bestillinger",
+    "history": "Bestillingshistorikk",
+    "suppliers": "Leverandører",
+    "budget": "Utstyrsbudsjett",
+    "approve": "Godkjenn bestilling",
+    "track": "Spor forsendelse",
+    "receive": "Motta bestilling",
+    "status": {
+      "draft": "Utkast",
+      "submitted": "Sendt inn",
+      "approved": "Godkjent",
+      "ordered": "Bestilt",
+      "shipped": "Sendt",
+      "delivered": "Levert",
+      "cancelled": "Kansellert"
+    }
+  },
+  "laundry": {
+    "title": "Vaskeriadministrasjon",
+    "schedule": "Vaskeriplan",
+    "status": "Vaskeristatus",
+    "pickup": "Planlegg henting",
+    "return": "Marker som returnert",
+    "items": {
+      "jerseys": "Kampdrakter",
+      "practice": "Treningsdrakter",
+      "socks": "Lagsokker",
+      "shells": "Bukseskall",
+      "towels": "Håndklær"
+    }
+  },
+  "reports": {
+    "title": "Utstyrsrapporter",
+    "usage": "Bruksrapport",
+    "cost": "Kostnadsanalyse",
+    "replacement": "Utskiftningsplan",
+    "playerNeeds": "Spillerutstyrsbehov",
+    "teamNeeds": "Lagsutstyrsbehov",
+    "generate": "Generer rapport",
+    "export": "Eksporter rapport"
+  },
+  "budget": {
+    "title": "Budsjettadministrasjon",
+    "current": "Gjeldende budsjett",
+    "spent": "Brukt beløp",
+    "remaining": "Gjenstående budsjett",
+    "projected": "Forventede kostnader",
+    "categories": "Budsjett per kategori",
+    "approval": "Ventende godkjenninger"
+  },
+  "team": {
+    "title": "Lagsutstyr",
+    "bags": "Utstyrsbager",
+    "medical": "Medisinsk utstyr",
+    "tools": "Utstyrsverktøy",
+    "spare": "Reserveutstyr",
+    "travel": "Reisesjekkliste",
+    "gameday": "Kampdagsjekkliste"
+  },
+  "events": {
+    "upcoming": "Kommende hendelser",
+    "equipmentRelated": "Utstyrsrelatert timeplan"
+  },
+  "tasks": {
+    "active": "Aktive oppgaver",
+    "currentMaintenance": "Nåværende vedlikehold og oppgaver",
+    "assigned": "Tildelt",
+    "due": "Forfaller",
+    "estimatedTime": "Est. tid",
+    "lastDone": "Sist utført"
+  },
+  "gameday": {
+    "checklist": "Kampdagssjekkliste",
+    "preGame": "Forberedelser før kamp",
+    "deadline": "Frist"
+  },
+  "players": {
+    "equipment": "Spillerutstyr",
+    "tracking": "Individuell spillerutstyrssporing",
+    "comingSoon": "Spillerutstyrssporing kommer snart",
+    "addRecord": "Legg til utstyrsregistrering"
+  }
+}

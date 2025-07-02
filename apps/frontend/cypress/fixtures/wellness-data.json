@@ -1,0 +1,29 @@
+{
+  "validWellnessData": {
+    "sleepQuality": 8,
+    "sleepHours": 7.5,
+    "fatigue": 3,
+    "soreness": 4,
+    "stress": 2,
+    "mood": 8,
+    "hrv": 65,
+    "restingHeartRate": 58,
+    "weight": 185,
+    "notes": "Feeling good, ready for practice"
+  },
+  "partialWellnessData": {
+    "sleepQuality": 6,
+    "sleepHours": 6,
+    "fatigue": 5,
+    "soreness": 5
+  },
+  "invalidWellnessData": {
+    "sleepQuality": 15,
+    "sleepHours": 30,
+    "fatigue": -5,
+    "soreness": 12,
+    "hrv": -10,
+    "restingHeartRate": 300,
+    "weight": -50
+  }
+}

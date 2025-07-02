@@ -1,0 +1,145 @@
+{
+  "title": "Messages",
+  "conversations": {
+    "title": "Conversations",
+    "new": "Nouvelle conversation",
+    "search": "Rechercher des conversations...",
+    "empty": "Aucune conversation pour le moment",
+    "startNew": "Commencer une nouvelle conversation"
+  },
+  "participants": {
+    "add": "Ajouter des participants",
+    "remove": "Retirer de la conversation",
+    "search": "Rechercher des personnes...",
+    "you": "Vous",
+    "typing": "est en train d'écrire...",
+    "multipleTyping": "sont en train d'écrire...",
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "away": "Absent"
+  },
+  "messages": {
+    "placeholder": "Tapez un message...",
+    "send": "Envoyer",
+    "edit": "Modifier le message",
+    "delete": "Supprimer le message",
+    "reply": "Répondre",
+    "forward": "Transférer",
+    "copy": "Copier",
+    "pin": "Épingler le message",
+    "unpin": "Désépingler le message",
+    "react": "Ajouter une réaction",
+    "edited": "modifié",
+    "deleted": "Ce message a été supprimé",
+    "delivered": "Livré",
+    "read": "Lu",
+    "sending": "Envoi...",
+    "failed": "Échec de l'envoi",
+    "retry": "Réessayer"
+  },
+  "groups": {
+    "create": "Créer un groupe",
+    "name": "Nom du groupe",
+    "description": "Description (optionnel)",
+    "addMembers": "Ajouter des membres",
+    "settings": "Paramètres du groupe",
+    "leave": "Quitter le groupe",
+    "delete": "Supprimer le groupe",
+    "members": "{{count}} membres",
+    "admin": "Admin",
+    "member": "Membre"
+  },
+  "channels": {
+    "title": "Canaux",
+    "create": "Créer un canal",
+    "public": "Canal public",
+    "private": "Canal privé",
+    "join": "Rejoindre le canal",
+    "leave": "Quitter le canal",
+    "mute": "Mettre en sourdine",
+    "unmute": "Réactiver le son",
+    "types": {
+      "general": "Général",
+      "announcements": "Annonces",
+      "team": "Discussion d'équipe",
+      "coaches": "Entraîneurs",
+      "parents": "Parents",
+      "medical": "Personnel médical"
+    }
+  },
+  "attachments": {
+    "title": "Pièces jointes",
+    "upload": "Téléverser un fichier",
+    "types": {
+      "image": "Image",
+      "video": "Vidéo",
+      "document": "Document",
+      "audio": "Audio",
+      "other": "Fichier"
+    },
+    "download": "Télécharger",
+    "preview": "Aperçu",
+    "tooLarge": "Le fichier est trop volumineux. La taille maximale est {{maxSize}}",
+    "unsupported": "Type de fichier non pris en charge"
+  },
+  "notifications": {
+    "newMessage": "Nouveau message de {{sender}}",
+    "mentioned": "{{sender}} vous a mentionné",
+    "groupInvite": "Vous avez été ajouté à {{group}}",
+    "enable": "Activer les notifications",
+    "disable": "Désactiver les notifications",
+    "sound": "Son de notification",
+    "desktop": "Notifications de bureau"
+  },
+  "search": {
+    "placeholder": "Rechercher des messages...",
+    "filters": "Filtres",
+    "from": "De",
+    "to": "À",
+    "date": "Date",
+    "hasAttachment": "Avec pièce jointe",
+    "results": "{{count}} résultats trouvés",
+    "noResults": "Aucun message trouvé"
+  },
+  "settings": {
+    "title": "Paramètres de discussion",
+    "privacy": "Confidentialité",
+    "readReceipts": "Accusés de lecture",
+    "typingIndicator": "Afficher quand j'écris",
+    "autoDownload": "Téléchargement automatique des médias",
+    "enterToSend": "Appuyer sur Entrée pour envoyer",
+    "theme": "Thème de discussion",
+    "fontSize": "Taille de police"
+  },
+  "status": {
+    "online": "En ligne",
+    "away": "Absent",
+    "busy": "Ne pas déranger",
+    "offline": "Apparaître hors ligne",
+    "setStatus": "Définir le statut",
+    "customStatus": "Définir un statut personnalisé..."
+  },
+  "actions": {
+    "startChat": "Commencer une discussion",
+    "viewProfile": "Voir le profil",
+    "clearChat": "Effacer l'historique de discussion",
+    "exportChat": "Exporter la discussion",
+    "reportUser": "Signaler l'utilisateur",
+    "blockUser": "Bloquer l'utilisateur",
+    "unblockUser": "Débloquer l'utilisateur"
+  },
+  "time": {
+    "now": "maintenant",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "daysAgo": "Il y a {{count}} jours",
+    "lastSeen": "Vu pour la dernière fois {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Connexion perdue. Reconnexion...",
+    "sendFailed": "Échec de l'envoi du message",
+    "loadFailed": "Échec du chargement des messages",
+    "uploadFailed": "Échec du téléversement du fichier",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela"
+  }
+}

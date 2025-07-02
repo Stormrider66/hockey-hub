@@ -1,0 +1,265 @@
+# Default values for hockey-hub
+# This is a YAML-formatted file.
+
+# Global configuration
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+
+# Image configuration
+image:
+  registry: docker.io
+  repository: hockey-hub
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+# Replica counts
+replicaCount:
+  frontend: 2
+  apiGateway: 2
+  userService: 1
+  communicationService: 1
+  calendarService: 1
+  trainingService: 1
+  medicalService: 1
+  planningService: 1
+  statisticsService: 1
+  paymentService: 1
+  adminService: 1
+  fileService: 1
+
+# Service configuration
+service:
+  type: ClusterIP
+  ports:
+    frontend: 3002
+    apiGateway: 3000
+    userService: 3001
+    communicationService: 3002
+    calendarService: 3003
+    trainingService: 3004
+    medicalService: 3005
+    planningService: 3006
+    statisticsService: 3007
+    paymentService: 3008
+    adminService: 3009
+    fileService: 3010
+
+# Ingress configuration
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "1000"
+  hosts:
+    - host: hockeyhub.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: nginx
+    - host: api.hockeyhub.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: api-gateway
+  tls:
+    - secretName: hockey-hub-tls
+      hosts:
+        - hockeyhub.com
+        - api.hockeyhub.com
+
+# Resource configuration
+resources:
+  frontend:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+  apiGateway:
+    requests:
+      memory: "1Gi"
+      cpu: "500m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"
+  services:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
+
+# Auto-scaling configuration
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}
+
+# Environment variables
+env:
+  NODE_ENV: production
+  LOG_LEVEL: info
+  CORS_ORIGIN: "https://hockeyhub.com"
+  RATE_LIMIT_MAX_REQUESTS: "1000"
+  RATE_LIMIT_WINDOW_MS: "60000"
+  EMAIL_FROM: "noreply@hockeyhub.com"
+  AWS_REGION: "us-east-1"
+  AWS_S3_BUCKET: "hockey-hub-uploads"
+  MAX_FILE_SIZE: "10485760"
+  ALLOWED_FILE_TYPES: "image/jpeg,image/png,image/gif,application/pdf"
+
+# Secrets configuration
+secrets:
+  # These should be provided via external secret management
+  dbPassword: ""
+  jwtSecret: ""
+  jwtPublicKey: ""
+  redisPassword: ""
+  encryptionKey: ""
+  smtpPassword: ""
+  awsAccessKeyId: ""
+  awsSecretAccessKey: ""
+  stripeSecretKey: ""
+  twilioAuthToken: ""
+  grafanaPassword: ""
+
+# Database configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "changeme"
+    database: "hockey_hub"
+  primary:
+    persistence:
+      enabled: true
+      size: 100Gi
+      storageClass: "fast-ssd"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "4Gi"
+        cpu: "2"
+
+# Redis configuration
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    password: "changeme"
+  master:
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClass: "fast-ssd"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "250m"
+      limits:
+        memory: "2Gi"
+        cpu: "500m"
+
+# Monitoring configuration
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+    retention: "15d"
+    storageSize: "50Gi"
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+  grafana:
+    enabled: true
+    adminPassword: "changeme"
+    persistence:
+      enabled: true
+      size: "10Gi"
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "250m"
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
+  alertmanager:
+    enabled: true
+    config:
+      global:
+        smtp_smarthost: 'smtp.sendgrid.net:587'
+        smtp_from: 'alerts@hockeyhub.com'
+      route:
+        group_by: ['alertname']
+        group_wait: 10s
+        group_interval: 10s
+        repeat_interval: 1h
+        receiver: 'web.hook'
+      receivers:
+      - name: 'web.hook'
+        email_configs:
+        - to: 'admin@hockeyhub.com'
+          subject: 'Hockey Hub Alert'
+
+# Backup configuration
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention: "30d"
+  storage:
+    type: "s3"
+    bucket: "hockey-hub-backups"
+    region: "us-east-1"
+
+# Network policies
+networkPolicy:
+  enabled: true
+  ingress:
+    enabled: true
+  egress:
+    enabled: true
+
+# Pod security
+podSecurityPolicy:
+  enabled: true
+
+# Service mesh (optional)
+serviceMesh:
+  enabled: false
+  type: "istio"  # or "linkerd"
+
+# Migration jobs
+migration:
+  enabled: true
+  image:
+    repository: hockey-hub/migration
+    tag: "latest"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "250m"

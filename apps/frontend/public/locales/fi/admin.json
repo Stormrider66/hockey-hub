@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Järjestelmän ylläpitäjä",
+    "subtitle": "Alustan hallinta ja konfigurointi",
+    "welcome": "Tervetuloa, järjestelmän ylläpitäjä",
+    "systemStatus": "Järjestelmän tila",
+    "alerts": "Järjestelmähälytykset"
+  },
+  "system": {
+    "title": "Järjestelmän hallinta",
+    "status": "Järjestelmän tila",
+    "health": "Terveystarkastus",
+    "healthScore": "Järjestelmän terveys",
+    "monitoring": "Järjestelmän valvonta",
+    "logs": "Järjestelmälokit",
+    "performance": "Suorituskykymittarit",
+    "uptime": "Käytettävyysaika",
+    "resources": "Resurssien käyttö",
+    "activeUsers": "Aktiiviset käyttäjät",
+    "errorRate": "Virhetaso",
+    "responseTime": "Vasteaika",
+    "databaseSize": "Tietokannan koko",
+    "withinSLA": "SLA:n sisällä",
+    "systemPerformance24h": "Järjestelmän suorituskyky (24h)",
+    "serviceHealthMatrix": "Palveluiden terveysmatriisi",
+    "cpuMemoryUsage": "CPU:n ja muistin käyttö sekä pyyntömäärä",
+    "realTimeServiceStatus": "Reaaliaikainen palvelutila ja mittarit"
+  },
+  "users": {
+    "title": "Käyttäjähallinta",
+    "all": "Kaikki käyttäjät",
+    "create": "Luo käyttäjä",
+    "edit": "Muokkaa käyttäjää",
+    "delete": "Poista käyttäjä",
+    "roles": "Käyttäjäroolit",
+    "permissions": "Käyttöoikeudet",
+    "activity": "Käyttäjäaktiviteetti",
+    "sessions": "Aktiiviset istunnot",
+    "audit": "Tarkastusloki"
+  },
+  "organizations": {
+    "title": "Organisaatiohallinta",
+    "all": "Kaikki organisaatiot",
+    "create": "Luo organisaatio",
+    "edit": "Muokkaa organisaatiota",
+    "delete": "Poista organisaatio",
+    "settings": "Organisaation asetukset",
+    "limits": "Käyttörajat",
+    "billing": "Laskutustiedot"
+  },
+  "security": {
+    "title": "Tietoturvahallinta",
+    "settings": "Tietoturva-asetukset",
+    "authentication": "Todentaminen",
+    "authorization": "Valtuutus",
+    "tokens": "API-avaimet",
+    "certificates": "SSL-sertifikaatit",
+    "firewall": "Palomuurisäännöt",
+    "threats": "Uhkien tunnistus",
+    "incidents": "Tietoturvapoikkeamat"
+  },
+  "database": {
+    "title": "Tietokantahallinta",
+    "status": "Tietokannan tila",
+    "backup": "Varmuuskopiohallinta",
+    "restore": "Palauta tietokanta",
+    "migrations": "Tietokantamigraatiot",
+    "optimization": "Kyselyoptimointi",
+    "connections": "Yhteysallas",
+    "maintenance": "Huoltotehtävät"
+  },
+  "services": {
+    "title": "Palveluhallinta",
+    "status": "Palvelun tila",
+    "configuration": "Palvelun konfigurointi",
+    "dependencies": "Riippuvuudet",
+    "health": "Terveystarkastukset",
+    "restart": "Käynnistä palvelu uudelleen",
+    "logs": "Palvelulokit",
+    "metrics": "Palvelumittarit"
+  },
+  "integrations": {
+    "title": "Integraatiot",
+    "connected": "Yhdistetyt palvelut",
+    "available": "Saatavilla olevat integraatiot",
+    "configure": "Konfiguroi integraatio",
+    "test": "Testaa yhteys",
+    "logs": "Integraatiolokit",
+    "webhooks": "Webhookit",
+    "api": "API-hallinta"
+  },
+  "configuration": {
+    "title": "Järjestelmäkonfiguraatio",
+    "general": "Yleiset asetukset",
+    "email": "Sähköpostikonfiguraatio",
+    "storage": "Tallennusasetukset",
+    "cache": "Välimuistihallinta",
+    "queue": "Jonokonfiguraatio",
+    "scheduler": "Tehtävien ajastin",
+    "features": "Ominaisuusliput"
+  },
+  "monitoring": {
+    "title": "Järjestelmän valvonta",
+    "dashboard": "Valvontakojelauta",
+    "alerts": "Hälytyskonfiguraatio",
+    "metrics": "Järjestelmämittarit",
+    "logs": "Lokianalyysi",
+    "errors": "Virheseuranta",
+    "performance": "Suorituskykyanalyysi",
+    "reports": "Järjestelmäraportit"
+  },
+  "maintenance": {
+    "title": "Ylläpito",
+    "schedule": "Ylläpitoaikataulu",
+    "tasks": "Ylläpitotehtävät",
+    "updates": "Järjestelmäpäivitykset",
+    "patches": "Tietoturvakorjaukset",
+    "cleanup": "Tietojen siivous",
+    "optimization": "Järjestelmän optimointi",
+    "mode": "Ylläpitotila"
+  }
+}
