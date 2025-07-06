@@ -43,6 +43,13 @@ export const TrainingSocketProvider: React.FC<TrainingSocketProviderProps> = ({ 
   const TRAINING_SERVICE_URL = process.env.NEXT_PUBLIC_TRAINING_SERVICE_URL || 'http://localhost:3004';
 
   useEffect(() => {
+    // Skip WebSocket connection in mock mode
+    const isMockMode = process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true';
+    if (isMockMode) {
+      console.log('Mock mode enabled, skipping training socket connection');
+      return;
+    }
+
     // Initialize socket connection
     const newSocket = io(TRAINING_SERVICE_URL, {
       transports: ['websocket'],

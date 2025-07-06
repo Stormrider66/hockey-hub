@@ -28,7 +28,7 @@ export interface FileUploadOptions {
     allowedExtensions?: string[];
     scanForVirus?: boolean;
 }
-export declare function validateFileUpload(options?: FileUploadOptions): (req: Request, res: Response, next: NextFunction) => any;
+export declare function validateFileUpload(options?: FileUploadOptions): (req: Request, res: Response, next: NextFunction) => void | Response<any, Record<string, any>>;
 /**
  * Create a combined sanitization and validation middleware
  */

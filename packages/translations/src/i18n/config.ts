@@ -70,7 +70,7 @@ export const languageDetectorOptions = {
   cookieDomain: 'myDomain',
   
   // Optional htmlTag with lang attribute, the default is:
-  htmlTag: document.documentElement,
+  htmlTag: typeof document !== 'undefined' ? document.documentElement : undefined,
   
   // Optional set cookie options
   cookieOptions: { path: '/', sameSite: 'strict' as const }

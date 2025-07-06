@@ -37,3 +37,4 @@ var SocketEventType;
     SocketEventType["RECONNECT_SUCCESS"] = "reconnect:success";
     SocketEventType["RECONNECT_FAILED"] = "reconnect:failed";
 })(SocketEventType || (exports.SocketEventType = SocketEventType = {}));
+//# sourceMappingURL=socket-events.js.map

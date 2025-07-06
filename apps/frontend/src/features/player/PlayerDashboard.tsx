@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { logout } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useGetWorkoutSessionsQuery } from '@/store/api/trainingApi';
 import CalendarWidget from '@/features/calendar/components/CalendarWidget';
 import { useTranslation } from '@hockey-hub/translations';
+import { useWellnessChartData, useOptimizedChart } from '@/hooks/useWellnessChartData';
+import { LazyChart } from '@/components/charts/LazyChart';
+import { OptimizedResponsiveContainer } from '@/components/charts/OptimizedResponsiveContainer';
 import {
   Card,
   CardContent,
@@ -20,6 +23,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import { SafeProgress } from '@/components/ui/SafeProgress';
+import OptimizedChart from '@/components/charts/OptimizedChart';
+import { capProgress } from '@/utils/chartOptimization';
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -138,9 +144,10 @@ function secureRandomInt(min: number, max: number): number {
 }
 
 // Generate historical wellness data with secure random values
-const generateHistoricalData = () => {
+const generateHistoricalData = (days: number = 30) => {
   const data = [];
-  for (let i = 29; i >= 0; i--) {
+  const maxDays = Math.min(days, 90); // Limit to 90 days max
+  for (let i = maxDays - 1; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     data.push({
@@ -161,8 +168,6 @@ const generateHistoricalData = () => {
   }
   return data;
 };
-
-const historicalWellnessData = generateHistoricalData();
 
 // Types for wellness data
 interface WellnessData {
@@ -245,12 +250,38 @@ const generateInsights = (recent: WellnessAverages, previous: WellnessAverages):
   return insights;
 };
 
-const wellnessInsights = calculateWellnessInsights(historicalWellnessData);
-
 export default function PlayerDashboard() {
   const { t } = useTranslation(['player', 'common']);
   const [tab, setTab] = useState("today");
   const [wellnessTimeRange, setWellnessTimeRange] = useState("week");
+  
+  // Refs for debounce and submission state
+  const submitTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  
+  // Chart container refs for optimization
+  const wellnessTrendsChartRef = useRef<HTMLDivElement>(null);
+  const hrvChartRef = useRef<HTMLDivElement>(null);
+  const readinessChartRef = useRef<HTMLDivElement>(null);
+  const sleepChartRef = useRef<HTMLDivElement>(null);
+  const radarChartRef = useRef<HTMLDivElement>(null);
+  
+  // Memoize historical data generation to prevent recreation on every render
+  const historicalWellnessData = useMemo(() => generateHistoricalData(30), []);
+  
+  // Memoize wellness insights calculation
+  const wellnessInsights = useMemo(
+    () => calculateWellnessInsights(historicalWellnessData),
+    [historicalWellnessData]
+  );
+  
+  // Use optimized chart hooks
+  useOptimizedChart(wellnessTrendsChartRef);
+  useOptimizedChart(hrvChartRef);
+  useOptimizedChart(readinessChartRef);
+  useOptimizedChart(sleepChartRef);
+  useOptimizedChart(radarChartRef);
   const [hrvData, setHrvData] = useState({
     current: 55,
     sevenDayAvg: 52,
@@ -375,46 +406,79 @@ export default function PlayerDashboard() {
   const hasInsights = 'insights' in wellnessStats && Array.isArray(wellnessStats.insights) && wellnessStats.insights.length > 0;
 
   const [wellnessSubmitSuccess, setWellnessSubmitSuccess] = useState(false);
+  const successTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   const handleWellnessSubmit = async () => {
-    console.log("Wellness submit button clicked");
-    console.log("Submitting wellness data:", wellnessForm);
-    console.log("Player ID:", playerId);
-    
-    try {
-      const result = await submitWellness({
-        playerId,
-        entry: wellnessForm
-      }).unwrap();
-      
-      // Show success message
-      console.log("Wellness submitted successfully:", result);
-      setWellnessSubmitSuccess(true);
-      
-      // Hide success message after 3 seconds
-      setTimeout(() => {
-        setWellnessSubmitSuccess(false);
-      }, 3000);
-      
-      // Optionally reset form to default values
-      // setWellnessForm({ ...initialWellnessForm });
-    } catch (error: unknown) {
-      console.error("Failed to submit wellness:", error);
-      
-      // Type-safe error handling
-      let errorMessage = 'Unknown error';
-      if (error && typeof error === 'object') {
-        if ('data' in error) {
-          const apiError = error.data as { message?: string };
-          errorMessage = apiError.message || 'API error';
-        } else if ('message' in error) {
-          errorMessage = (error as { message: string }).message;
-        }
-      }
-      
-      console.error("Error details:", errorMessage);
-      alert(`Failed to submit wellness: ${errorMessage}`);
+    // Prevent rapid submissions with debounce
+    if (isSubmitting) {
+      console.log("Submission already in progress, ignoring...");
+      return;
     }
+    
+    // Clear any existing timeout
+    if (submitTimeoutRef.current) {
+      clearTimeout(submitTimeoutRef.current);
+    }
+    
+    // Set debounce timeout
+    submitTimeoutRef.current = setTimeout(async () => {
+      console.log("Wellness submit button clicked");
+      console.log("Submitting wellness data:", wellnessForm);
+      console.log("Player ID:", playerId);
+      
+      setIsSubmitting(true);
+      setSubmissionError(null);
+      
+      try {
+        const result = await submitWellness({
+          playerId,
+          entry: wellnessForm
+        }).unwrap();
+        
+        // Show success message
+        console.log("Wellness submitted successfully:", result);
+        setWellnessSubmitSuccess(true);
+        
+        // Clear any existing success timeout
+        if (successTimeoutRef.current) {
+          clearTimeout(successTimeoutRef.current);
+        }
+        
+        // Hide success message after 5 seconds (extended from 3s)
+        successTimeoutRef.current = setTimeout(() => {
+          setWellnessSubmitSuccess(false);
+        }, 5000);
+        
+        // Optional: Show a confirmation dialog
+        // if (window.confirm('Wellness data submitted successfully! Would you like to view your wellness trends?')) {
+        //   setTab('wellness');
+        // }
+        
+      } catch (error: unknown) {
+        console.error("Failed to submit wellness:", error);
+        
+        // Type-safe error handling
+        let errorMessage = 'Failed to submit wellness data';
+        if (error && typeof error === 'object') {
+          if ('data' in error) {
+            const apiError = error.data as { message?: string; error?: string };
+            errorMessage = apiError.message || apiError.error || 'Failed to submit wellness data';
+          } else if ('message' in error) {
+            errorMessage = (error as { message: string }).message;
+          }
+        }
+        
+        console.error("Error details:", errorMessage);
+        setSubmissionError(errorMessage);
+        
+        // Auto-clear error after 5 seconds
+        setTimeout(() => {
+          setSubmissionError(null);
+        }, 5000);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }, 300); // 300ms debounce delay
   };
 
   const handleTrainingComplete = async (trainingTitle: string) => {
@@ -429,33 +493,89 @@ export default function PlayerDashboard() {
     }
   };
 
-  const updateWellnessField = (field: string, value: number | string | string[]) => {
+  const updateWellnessField = useCallback((field: string, value: number | string | string[]) => {
     setWellnessForm(prev => ({ ...prev, [field]: value }));
-  };
+  }, []);
 
-  // Calculate current readiness score
-  const calculateReadinessScore = () => {
+  // Calculate current readiness score - memoized to prevent recalculation
+  const calculateReadinessScore = useMemo(() => {
     const positive = (wellnessForm.sleepQuality + wellnessForm.energyLevel + wellnessForm.mood + wellnessForm.motivation + wellnessForm.hydration + wellnessForm.nutrition) / 6;
     const negative = (wellnessForm.stressLevel + wellnessForm.soreness) / 2;
     // Include HRV in the calculation (normalized to 0-10 scale)
     const hrvScore = Math.min(10, Math.max(0, (wellnessForm.hrv - 30) / 7));
     return Math.round(((positive * 8) + (hrvScore * 2) - (negative * 5) + 50) * 0.9);
-  };
+  }, [wellnessForm]);
 
-  // Get wellness data for selected time range
-  const getWellnessDataForRange = () => {
+  // Cache for quarter data to prevent regeneration
+  const quarterDataCache = useRef<WellnessData[] | null>(null);
+  
+  // Memoize wellness data for selected time range to prevent unnecessary recalculations
+  const getWellnessDataForRange = useCallback(() => {
     switch (wellnessTimeRange) {
       case 'week':
         return historicalWellnessData.slice(-7);
       case 'month':
         return historicalWellnessData;
       case 'quarter':
-        // For demo, just repeat the data
-        return [...historicalWellnessData, ...historicalWellnessData, ...historicalWellnessData].slice(0, 90);
+        // Use cached data if available, otherwise generate once
+        if (!quarterDataCache.current) {
+          quarterDataCache.current = generateHistoricalData(90);
+        }
+        return quarterDataCache.current;
       default:
         return historicalWellnessData.slice(-7);
     }
-  };
+  }, [wellnessTimeRange, historicalWellnessData]);
+  
+  // Clear quarter data cache when switching away from quarter view
+  useEffect(() => {
+    if (wellnessTimeRange !== 'quarter' && quarterDataCache.current) {
+      quarterDataCache.current = null;
+    }
+  }, [wellnessTimeRange]);
+  
+  // Memoize the chart data to prevent recreating on every render
+  const rawChartData = useMemo(() => getWellnessDataForRange(), [getWellnessDataForRange]);
+  
+  // Use wellness chart data hook for memory management with LTTB optimization
+  const { data: chartData, cleanup: cleanupChartData, originalSize, optimizedSize } = useWellnessChartData(rawChartData, {
+    maxDataPoints: 90,
+    enableAutoCleanup: true,
+    optimizationMethod: 'lttb',
+    xKey: 'date',
+    yKey: 'sleepQuality'
+  });
+  
+  // Cleanup on tab change to free memory
+  useEffect(() => {
+    return () => {
+      if (tab !== 'wellness') {
+        cleanupChartData();
+      }
+    };
+  }, [tab, cleanupChartData]);
+  
+  // Global cleanup on component unmount
+  useEffect(() => {
+    return () => {
+      // Clear all chart data and caches
+      cleanupChartData();
+      quarterDataCache.current = null;
+      
+      // Clear any pending timeouts
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current);
+      }
+      if (successTimeoutRef.current) {
+        clearTimeout(successTimeoutRef.current);
+      }
+      
+      // Force garbage collection hint (browser may ignore)
+      if (window.gc) {
+        window.gc();
+      }
+    };
+  }, [cleanupChartData]);
 
   if (error) {
     return (
@@ -494,30 +614,37 @@ export default function PlayerDashboard() {
             )}
           </div>
         </div>
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" className={a11y.focusVisible}>
-            <MessageCircle className="mr-2 h-4 w-4" />
-            {t('player:communication.coachMessages')}
+        <div className="flex gap-2 flex-wrap">
+          <Button 
+            size="sm" 
+            variant="outline" 
+            onClick={() => router.push('/chat')}
+            className={cn(a11y.focusVisible, "min-w-fit")}
+          >
+            <MessageCircle className="mr-1 sm:mr-2 h-4 w-4" />
+            <span className="hidden sm:inline">{t('player:communication.coachMessages')}</span>
+            <span className="sm:hidden">Messages</span>
           </Button>
-          <Button size="sm" variant="outline" onClick={logout} className={a11y.focusVisible}>
-            <LogOut className="mr-2 h-4 w-4" />
-            {t('common:navigation.logout')}
+          <Button size="sm" variant="outline" onClick={logout} className={cn(a11y.focusVisible, "min-w-fit")}>
+            <LogOut className="mr-1 sm:mr-2 h-4 w-4" />
+            <span className="hidden sm:inline">{t('common:navigation.logout')}</span>
+            <span className="sm:hidden">Logout</span>
           </Button>
         </div>
       </div>
 
       {/* Tabs */}
       <Tabs value={tab} onValueChange={setTab} className={spacing.card}>
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
-          <TabsTrigger value="today">{t('common:time.today')}</TabsTrigger>
-          <TabsTrigger value="training">{t('player:training.title')}</TabsTrigger>
-          <TabsTrigger value="wellness">{t('player:wellness.title')}</TabsTrigger>
-          <TabsTrigger value="performance">{t('player:performance.title')}</TabsTrigger>
-          <TabsTrigger value="calendar">{t('common:navigation.calendar')}</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5" role="tablist">
+          <TabsTrigger value="today" id="today-tab" aria-controls="today-panel">{t('common:time.today')}</TabsTrigger>
+          <TabsTrigger value="training" id="training-tab" aria-controls="training-panel">{t('player:training.title')}</TabsTrigger>
+          <TabsTrigger value="wellness" id="wellness-tab" aria-controls="wellness-panel">{t('player:wellness.title')}</TabsTrigger>
+          <TabsTrigger value="performance" id="performance-tab" aria-controls="performance-panel">{t('player:performance.title')}</TabsTrigger>
+          <TabsTrigger value="calendar" id="calendar-tab" aria-controls="calendar-panel">{t('common:navigation.calendar')}</TabsTrigger>
         </TabsList>
 
         {/* ───────────  TODAY  ─────────── */}
-        <TabsContent value="today" className={spacing.card} role="tabpanel" aria-labelledby="today-tab">
+        <TabsContent value="today" className={spacing.card} role="tabpanel" id="today-panel" aria-labelledby="today-tab">
           <div className={grids.dashboard}>
             {/* Today's Schedule */}
             <Card className={shadows.card}>
@@ -542,7 +669,15 @@ export default function PlayerDashboard() {
                     schedule.map((event, index) => (
                       <div key={index} className="flex items-start space-x-4 border-b pb-3 last:border-0" role="listitem">
                         <div className={`p-2 rounded-md ${getEventTypeColor(event.type || '')}`}>
-                          <Clock className="h-4 w-4" aria-hidden="true" />
+                          {event.type === 'meeting' ? (
+                            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                          ) : event.type === 'ice-training' ? (
+                            <Activity className="h-4 w-4" aria-hidden="true" />
+                          ) : event.type === 'physical-training' ? (
+                            <Dumbbell className="h-4 w-4" aria-hidden="true" />
+                          ) : (
+                            <Clock className="h-4 w-4" aria-hidden="true" />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
@@ -561,7 +696,7 @@ export default function PlayerDashboard() {
                             {event.location}
                           </p>
                           {event.notes && (
-                            <p className="mt-2 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                            <p className="mt-2 text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded break-words">
                               <span className={a11y.srOnly}>Note: </span>
                               {event.notes}
                             </p>
@@ -653,15 +788,15 @@ export default function PlayerDashboard() {
               <CardContent>
                 <div className="text-center py-4">
                   <div className="relative inline-flex">
-                    <div className="text-4xl font-bold text-green-600">{calculateReadinessScore()}</div>
+                    <div className="text-4xl font-bold text-green-600 tabular-nums">{calculateReadinessScore}</div>
                     <div className="absolute -top-1 -right-3">
                       <span className="text-xs text-muted-foreground">%</span>
                 </div>
                   </div>
                   <p className="text-sm text-muted-foreground mt-2">
-                    {calculateReadinessScore() >= 85 ? 'Excellent' : 
-                     calculateReadinessScore() >= 70 ? 'Good' : 
-                     calculateReadinessScore() >= 55 ? 'Fair' : 'Low'} Readiness
+                    {calculateReadinessScore >= 85 ? 'Excellent' : 
+                     calculateReadinessScore >= 70 ? 'Good' : 
+                     calculateReadinessScore >= 55 ? 'Fair' : 'Low'} Readiness
                   </p>
                 </div>
                 <div className="space-y-2 mt-4">
@@ -690,7 +825,16 @@ export default function PlayerDashboard() {
                 <Button 
                   className="w-full mt-4" 
                   variant="outline"
-                  onClick={() => setTab('wellness')}
+                  onClick={() => {
+                    setTab('wellness');
+                    // Small delay to ensure tab change completes before potential scroll
+                    setTimeout(() => {
+                      const wellnessForm = document.getElementById('wellness-form');
+                      if (wellnessForm) {
+                        wellnessForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }, 100);
+                  }}
                 >
                   Update Wellness
                   <ChevronRight className="ml-2 h-4 w-4" />
@@ -701,7 +845,7 @@ export default function PlayerDashboard() {
         </TabsContent>
 
         {/* ───────────  TRAINING  ─────────── */}
-        <TabsContent value="training" className={spacing.card} role="tabpanel" aria-labelledby="training-tab">
+        <TabsContent value="training" className={spacing.card} role="tabpanel" id="training-panel" aria-labelledby="training-tab">
           <div className={grids.cards}>
             {/* Assigned Training */}
           <Card>
@@ -724,7 +868,7 @@ export default function PlayerDashboard() {
                             </Badge>
                             <p className="font-medium">{t.title}</p>
                           </div>
-                          <p className="text-sm text-muted-foreground mb-2">{t.description}</p>
+                          <p className="text-sm text-muted-foreground mb-2 break-words md:break-normal">{t.description}</p>
                           <div className="text-xs text-muted-foreground space-y-1">
                             <p>Due: {t.due} • Estimated: {t.estimatedTime}</p>
                             <p>Assigned by: {t.assignedBy}</p>
@@ -736,12 +880,13 @@ export default function PlayerDashboard() {
                       </div>
                       <div className="space-y-2">
                         <Progress value={t.progress} className="h-2" aria-label={`Progress: ${t.progress}%`} />
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap">
                           <Button 
                             size="sm" 
                             variant="outline" 
                             onClick={() => handleTrainingComplete(t.title)}
                             disabled={t.progress === 100}
+                            className="min-w-[120px] sm:min-w-0"
                           >
                             {t.progress === 100 ? (
                               <>
@@ -789,7 +934,7 @@ export default function PlayerDashboard() {
                           <p className="font-medium text-sm">{goal.goal}</p>
                           <p className="text-xs text-muted-foreground mt-1">Target: {goal.target}</p>
                           {goal.notes && (
-                            <p className="text-xs text-muted-foreground mt-1">{goal.notes}</p>
+                            <p className="text-xs text-muted-foreground mt-1 break-words md:break-normal">{goal.notes}</p>
                           )}
                         </div>
                         <span className="text-sm font-medium">{goal.progress}%</span>
@@ -804,7 +949,7 @@ export default function PlayerDashboard() {
         </TabsContent>
 
         {/* ───────────  WELLNESS  ─────────── */}
-        <TabsContent value="wellness" className={spacing.card} role="tabpanel" aria-labelledby="wellness-tab">
+        <TabsContent value="wellness" className={spacing.card} role="tabpanel" id="wellness-panel" aria-labelledby="wellness-tab">
           <div className="space-y-6">
             {/* Wellness Overview Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -813,9 +958,9 @@ export default function PlayerDashboard() {
                   <CardTitle className="text-sm font-medium">{t('player:wellness.metrics.readiness')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600">{calculateReadinessScore()}%</div>
+                  <div className="text-2xl font-bold text-green-600 tabular-nums">{calculateReadinessScore}%</div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {calculateReadinessScore() >= 85 ? 'Peak performance ready' : 'Good to train'}
+                    {calculateReadinessScore >= 85 ? 'Peak performance ready' : 'Good to train'}
                   </p>
                 </CardContent>
               </Card>
@@ -825,7 +970,7 @@ export default function PlayerDashboard() {
                   <CardTitle className="text-sm font-medium">7-Day Average</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{Math.round(wellnessInsights.averages.readinessScore)}%</div>
+                  <div className="text-2xl font-bold tabular-nums">{Math.round(wellnessInsights.averages.readinessScore)}%</div>
                   <div className="flex items-center gap-1 mt-1">
                     {wellnessInsights.trends.readinessScore > 0 ? (
                       <ArrowUp className="h-3 w-3 text-green-600" />
@@ -851,7 +996,7 @@ export default function PlayerDashboard() {
                   <CardTitle className="text-sm font-medium">Sleep Average</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{wellnessInsights.averages.sleepQuality.toFixed(1)}/10</div>
+                  <div className="text-2xl font-bold tabular-nums">{wellnessInsights.averages.sleepQuality.toFixed(1)}/10</div>
                   <p className="text-xs text-muted-foreground mt-1">Past 7 days</p>
                 </CardContent>
               </Card>
@@ -907,7 +1052,7 @@ export default function PlayerDashboard() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Daily Wellness Form */}
-              <Card>
+              <Card id="wellness-form">
             <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="h-5 w-5" aria-hidden="true" />
@@ -1000,7 +1145,11 @@ export default function PlayerDashboard() {
                         min={1}
                         max={10}
                         step={1}
-                          className="cursor-pointer"
+                          className="cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          aria-label={`${metric.label}: ${wellnessForm[metric.key as keyof typeof wellnessForm]} out of 10`}
+                          aria-valuemin={1}
+                          aria-valuemax={10}
+                          aria-valuenow={wellnessForm[metric.key as keyof typeof wellnessForm] as number}
                       />
                         <div className="flex justify-between text-xs text-muted-foreground mt-1">
                           <span>{metric.inverse ? 'High' : 'Low'}</span>
@@ -1060,18 +1209,28 @@ export default function PlayerDashboard() {
                       placeholder="Any symptoms, concerns, or other notes..."
                     value={wellnessForm.notes}
                     onChange={(e) => updateWellnessField('notes', e.target.value)}
-                    className="mt-1"
+                    className="mt-1 resize-none"
                     rows={3}
+                    style={{ minHeight: '80px' }}
                   />
+                </div>
+                
+                {/* Submission tip */}
+                <div className="mb-3 p-3 bg-blue-50 rounded-lg">
+                  <p className="text-xs text-blue-700 flex items-start gap-2">
+                    <Info className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                    <span>Daily wellness tracking helps optimize your training and recovery. Submit your data each morning for best results.</span>
+                  </p>
                 </div>
 
                   {/* Submit Button */}
                 <Button 
-                    className="w-full" 
+                    className="w-full focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" 
                   onClick={handleWellnessSubmit} 
-                  disabled={isSubmittingWellness}
+                  disabled={isSubmittingWellness || isSubmitting}
+                  aria-busy={isSubmittingWellness || isSubmitting}
                 >
-                  {isSubmittingWellness ? (
+                  {(isSubmittingWellness || isSubmitting) ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       {t('common:messages.processing')}...
@@ -1120,78 +1279,56 @@ export default function PlayerDashboard() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-80">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={getWellnessDataForRange()}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis 
-                          dataKey="date" 
-                          tick={{ fontSize: 12 }}
-                          interval={wellnessTimeRange === 'week' ? 0 : wellnessTimeRange === 'month' ? 5 : 15}
-                        />
-                        <YAxis domain={[0, 10]} />
-                        <Tooltip />
-                        <Legend />
-                        <Line 
-                          type="monotone" 
-                          dataKey="sleepQuality" 
-                          stroke="#6366f1" 
-                          name="Sleep"
-                          strokeWidth={2}
-                          dot={{ r: 3 }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="energyLevel" 
-                          stroke="#10b981" 
-                          name="Energy"
-                          strokeWidth={2}
-                          dot={{ r: 3 }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="mood" 
-                          stroke="#f59e0b" 
-                          name="Mood"
-                          strokeWidth={2}
-                          dot={{ r: 3 }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="soreness" 
-                          stroke="#ef4444" 
-                          name="Soreness"
-                          strokeWidth={2}
-                          strokeDasharray="5 5"
-                          dot={{ r: 3 }}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                  <div className="h-80" ref={wellnessTrendsChartRef}>
+                    <OptimizedChart
+                      data={chartData}
+                      type="line"
+                      xKey="date"
+                      yKeys={['sleepQuality', 'energyLevel', 'mood', 'soreness']}
+                      height={320}
+                      maxDataPoints={100}
+                      colors={['#6366f1', '#10b981', '#f59e0b', '#ef4444']}
+                      xAxisFormatter={(value) => {
+                        const date = new Date(value);
+                        return wellnessTimeRange === 'week' 
+                          ? date.toLocaleDateString('en', { weekday: 'short' })
+                          : date.toLocaleDateString('en', { month: 'short', day: 'numeric' });
+                      }}
+                      yAxisFormatter={(value) => value.toFixed(1)}
+                      tooltipFormatter={(value) => `${value.toFixed(1)}/10`}
+                      onDataOptimized={(original, optimized) => {
+                        if (original > 100) {
+                          console.log(`Wellness chart optimized: ${original} → ${optimized} points`);
+                        }
+                      }}
+                    />
                   </div>
                 </CardContent>
               </Card>
             </div>
-
-            {/* Success Message - Always rendered, visibility controlled by state */}
-            <Alert 
-              className={`my-4 border-green-200 bg-green-50 transition-all duration-300 ${
-                wellnessSubmitSuccess ? 'opacity-100' : 'opacity-0 hidden'
-              }`}
-            >
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
-              <AlertDescription className="text-green-800">
-                {t('player:wellness.submitted')}
-              </AlertDescription>
-            </Alert>
             
-            {/* Debug info */}
-            <div className="my-2 text-xs text-gray-500 bg-gray-100 p-2 rounded">
-              <div>Success state: {wellnessSubmitSuccess ? 'TRUE ✓' : 'FALSE ✗'}</div>
-              <div>Test: If you see this gray box, the area is rendering correctly</div>
+            {/* Success/Error Messages - Positioned after the form cards for better visibility */}
+            <div className="mt-6">
               {wellnessSubmitSuccess && (
-                <div className="mt-2 p-2 bg-green-100 text-green-800 font-bold">
-                  SUCCESS MESSAGE TEST - This should be visible when success is TRUE
-                </div>
+                <Alert className="border-green-200 bg-green-50">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  <AlertDescription className="text-green-800">
+                    <span className="font-semibold">{t('player:wellness.submitted')}</span>
+                    <br />
+                    <span className="text-sm">Your wellness data has been recorded successfully. Keep up the great work on tracking your health!</span>
+                  </AlertDescription>
+                </Alert>
+              )}
+              
+              {submissionError && (
+                <Alert className="mt-4 border-red-200 bg-red-50">
+                  <AlertCircle className="h-4 w-4 text-red-600" />
+                  <AlertDescription className="text-red-800">
+                    <span className="font-semibold">Submission Error</span>
+                    <br />
+                    <span className="text-sm">{submissionError}</span>
+                  </AlertDescription>
+                </Alert>
               )}
             </div>
 
@@ -1208,15 +1345,15 @@ export default function PlayerDashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                   <div className="text-center p-4 bg-purple-50 rounded-lg">
                     <p className="text-sm text-muted-foreground">Current HRV</p>
-                    <p className="text-2xl font-bold text-purple-600">{hrvData.current}ms</p>
+                    <p className="text-2xl font-bold text-purple-600 tabular-nums">{hrvData.current}ms</p>
                   </div>
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
                     <p className="text-sm text-muted-foreground">7-Day Average</p>
-                    <p className="text-2xl font-bold text-blue-600">{hrvData.sevenDayAvg}ms</p>
+                    <p className="text-2xl font-bold text-blue-600 tabular-nums">{hrvData.sevenDayAvg}ms</p>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
                     <p className="text-sm text-muted-foreground">30-Day Average</p>
-                    <p className="text-2xl font-bold text-green-600">{hrvData.thirtyDayAvg}ms</p>
+                    <p className="text-2xl font-bold text-green-600 tabular-nums">{hrvData.thirtyDayAvg}ms</p>
                   </div>
                   <div className="text-center p-4 bg-amber-50 rounded-lg">
                     <p className="text-sm text-muted-foreground">Trend</p>
@@ -1224,7 +1361,7 @@ export default function PlayerDashboard() {
                       {hrvData.trend === 'up' && <ArrowUp className="h-5 w-5 text-green-600" />}
                       {hrvData.trend === 'down' && <ArrowDown className="h-5 w-5 text-red-600" />}
                       {hrvData.trend === 'stable' && <Equal className="h-5 w-5 text-gray-600" />}
-                      <p className="text-xl font-bold">
+                      <p className="text-xl font-bold tabular-nums">
                         {hrvData.trendValue}%
                       </p>
                     </div>
@@ -1232,9 +1369,9 @@ export default function PlayerDashboard() {
                 </div>
 
                 {/* HRV Chart */}
-                <div className="h-64">
+                <div className="h-64" ref={hrvChartRef}>
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={getWellnessDataForRange()}>
+                    <AreaChart data={chartData}>
                       <defs>
                         <linearGradient id="colorHRV" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.8}/>
@@ -1298,9 +1435,9 @@ export default function PlayerDashboard() {
                   <CardDescription>Your overall readiness over time</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48">
+                  <div className="h-48" ref={readinessChartRef}>
                     <ResponsiveContainer width="100%" height="100%">
-                      <AreaChart data={getWellnessDataForRange()}>
+                      <AreaChart data={chartData}>
                         <defs>
                           <linearGradient id="colorReadiness" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
@@ -1335,9 +1472,9 @@ export default function PlayerDashboard() {
                   <CardDescription>Hours and quality tracking</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48">
+                  <div className="h-48" ref={sleepChartRef}>
                     <ResponsiveContainer width="100%" height="100%">
-                      <ComposedChart data={getWellnessDataForRange().slice(-7)}>
+                      <ComposedChart data={chartData.slice(-7)}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="dayOfWeek" tick={{ fontSize: 11 }} />
                         <YAxis yAxisId="left" domain={[0, 12]} />
@@ -1365,7 +1502,7 @@ export default function PlayerDashboard() {
                   <CardDescription>Today's metrics visualization</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-48">
+                  <div className="h-48" ref={radarChartRef}>
                     <ResponsiveContainer width="100%" height="100%">
                       <RadarChart data={[
                         { metric: 'Sleep', value: wellnessForm.sleepQuality },
@@ -1429,7 +1566,7 @@ export default function PlayerDashboard() {
         </TabsContent>
 
         {/* ───────────  PERFORMANCE  ─────────── */}
-        <TabsContent value="performance" className={spacing.card} role="tabpanel" aria-labelledby="performance-tab">
+        <TabsContent value="performance" className={spacing.card} role="tabpanel" id="performance-panel" aria-labelledby="performance-tab">
           <div className="space-y-6">
             {/* Performance Overview Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -1439,10 +1576,10 @@ export default function PlayerDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-blue-600">87.5</div>
+                    <div className="text-2xl font-bold text-blue-600 tabular-nums">87.5</div>
                     <Badge variant="outline" className="text-xs">
                       <ArrowUp className="h-3 w-3 text-green-600 mr-1" />
-                      +3.2
+                      <span className="tabular-nums">+3.2</span>
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">Performance index</p>
@@ -1466,7 +1603,7 @@ export default function PlayerDashboard() {
                 <CardContent>
                   <div className="flex items-center gap-2">
                     <Trophy className="h-5 w-5 text-amber-600" />
-                    <span className="text-2xl font-bold">5th</span>
+                    <span className="text-2xl font-bold tabular-nums">5th</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">Out of 22 players</p>
                 </CardContent>
@@ -1477,7 +1614,7 @@ export default function PlayerDashboard() {
                   <CardTitle className="text-sm font-medium">Goal Achievement</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-green-600">78%</div>
+                  <div className="text-2xl font-bold text-green-600 tabular-nums">78%</div>
                   <Progress value={78} className="h-2 mt-2" />
                   <p className="text-xs text-muted-foreground mt-1">4 of 5 goals met</p>
                 </CardContent>
@@ -1546,14 +1683,16 @@ export default function PlayerDashboard() {
                           <div key={test.name} className="space-y-1">
                             <div className="flex justify-between text-sm">
                               <span className="text-muted-foreground">{test.name}</span>
-                              <span className="font-medium">
+                              <span className="font-medium tabular-nums">
                                 {test.value}{test.unit}
                               </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Progress 
-                                value={(test.value / test.goal) * 100} 
+                              <SafeProgress 
+                                value={test.value}
+                                max={test.goal}
                                 className="h-2 flex-1"
+                                showOverflow={true}
                               />
                               <Badge 
                                 variant="outline" 
@@ -1589,7 +1728,10 @@ export default function PlayerDashboard() {
                       <CardTitle>Performance Trends</CardTitle>
                       <CardDescription>Track your progress over time</CardDescription>
                     </div>
-                    <select className="text-sm border rounded px-2 py-1">
+                    <select 
+                      className="text-sm border rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      aria-label="Select performance metric to display"
+                    >
                       <option>Vertical Jump</option>
                       <option>10m Sprint</option>
                       <option>Squat 1RM</option>
@@ -1599,37 +1741,26 @@ export default function PlayerDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={[
+                    <OptimizedChart
+                      data={[
                         { date: 'Aug', value: 58, teamAvg: 56 },
                         { date: 'Sep', value: 60, teamAvg: 57 },
                         { date: 'Oct', value: 62, teamAvg: 58 },
                         { date: 'Nov', value: 63, teamAvg: 59 },
                         { date: 'Dec', value: 65, teamAvg: 60 },
-                      ]}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                        <YAxis />
-                  <Tooltip />
-                        <Legend />
-                        <Line 
-                    type="monotone" 
-                    dataKey="value" 
-                    stroke="#3b82f6" 
-                          name="Your Performance"
-                          strokeWidth={3}
-                          dot={{ r: 5 }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="teamAvg" 
-                          stroke="#94a3b8" 
-                          name="Team Average"
-                          strokeWidth={2}
-                          strokeDasharray="5 5"
-                        />
-                      </LineChart>
-              </ResponsiveContainer>
+                      ]}
+                      type="line"
+                      xKey="date"
+                      yKeys={['value', 'teamAvg']}
+                      height={256}
+                      maxDataPoints={100}
+                      colors={['#3b82f6', '#94a3b8']}
+                      showGrid={true}
+                      showLegend={true}
+                      onDataOptimized={(original, optimized) => {
+                        console.log(`Performance chart: ${original} → ${optimized} points`);
+                      }}
+                    />
                   </div>
                   <div className="mt-4 flex items-center justify-between text-sm">
                     <div className="flex items-center gap-2">
@@ -1744,7 +1875,7 @@ export default function PlayerDashboard() {
                               <div key={test.name} className="flex items-center justify-between p-3 bg-muted/30 rounded">
                                 <div className="flex-1">
                                   <p className="font-medium text-sm">{test.name}</p>
-                                  <p className="text-2xl font-bold mt-1">
+                                  <p className="text-2xl font-bold mt-1 tabular-nums">
                                     {test.value}{test.unit}
                                   </p>
                                 </div>
@@ -1752,7 +1883,7 @@ export default function PlayerDashboard() {
                                   <div className="text-right">
                                     <p className="text-xs text-muted-foreground">Change</p>
                                     <p className={cn(
-                                      "font-medium",
+                                      "font-medium tabular-nums",
                                       test.change > 0 ? "text-green-600" : "text-red-600"
                                     )}>
                                       {test.change > 0 && '+'}{test.change}{test.unit}
@@ -1760,7 +1891,7 @@ export default function PlayerDashboard() {
                                   </div>
                                   <div className="text-right">
                                     <p className="text-xs text-muted-foreground">Team Rank</p>
-                                    <p className="font-medium">#{test.rank}</p>
+                                    <p className="font-medium tabular-nums">#{test.rank}</p>
                                   </div>
                                 </div>
                               </div>
@@ -1964,7 +2095,7 @@ export default function PlayerDashboard() {
         </TabsContent>
 
         {/* ───────────  CALENDAR  ─────────── */}
-        <TabsContent value="calendar" className="h-[calc(100vh-16rem)]">
+        <TabsContent value="calendar" className="h-[calc(100vh-16rem)]" role="tabpanel" id="calendar-panel" aria-labelledby="calendar-tab">
           <PlayerCalendarView />
         </TabsContent>
       </Tabs>

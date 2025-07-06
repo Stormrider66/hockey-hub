@@ -84,3 +84,4 @@ class ServiceClient {
     }
 }
 exports.ServiceClient = ServiceClient;
+//# sourceMappingURL=ServiceClient.js.map

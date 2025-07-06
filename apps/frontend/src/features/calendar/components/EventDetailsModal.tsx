@@ -120,8 +120,11 @@ export default function EventDetailsModal({
             <div>
               <DialogTitle className="text-2xl">{event.title}</DialogTitle>
               <DialogDescription className="mt-2">
-                <Badge variant="secondary">{eventTypeLabels[event.type]}</Badge>
+                {eventTypeLabels[event.type]}
               </DialogDescription>
+              <Badge variant="secondary" className="mt-2">
+                {eventTypeLabels[event.type]}
+              </Badge>
             </div>
             {canEdit && (
               <div className="flex gap-2">

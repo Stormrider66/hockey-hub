@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { UserPicker } from '@/components/ui/user-picker';
+import UserPicker from '@/components/ui/user-picker';
 import { CalendarIcon, Clock, MapPin, Users, Globe, AlertCircle } from 'lucide-react';
 import { format, addHours, parseISO } from 'date-fns';
 import { toast } from 'react-hot-toast';

@@ -36,28 +36,28 @@ export declare class TestServer {
 export declare function createTestClient(baseURL: string): {
     get: (path: string, options?: any) => Promise<{
         status: number;
-        data: any;
+        data: unknown;
         headers: {
             [k: string]: string;
         };
     }>;
     post: (path: string, data?: any, options?: any) => Promise<{
         status: number;
-        data: any;
+        data: unknown;
         headers: {
             [k: string]: string;
         };
     }>;
     put: (path: string, data?: any, options?: any) => Promise<{
         status: number;
-        data: any;
+        data: unknown;
         headers: {
             [k: string]: string;
         };
     }>;
     delete: (path: string, options?: any) => Promise<{
         status: number;
-        data: any;
+        data: unknown;
         headers: {
             [k: string]: string;
         };

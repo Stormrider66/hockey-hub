@@ -28,6 +28,14 @@ export enum EventStatus {
   POSTPONED = 'postponed'
 }
 
+export enum ParticipantStatus {
+  ACCEPTED = 'accepted',
+  DECLINED = 'declined',
+  TENTATIVE = 'tentative',
+  PENDING = 'pending',
+  NO_RESPONSE = 'no_response'
+}
+
 export interface EventParticipant {
   userId: string;
   role?: 'organizer' | 'attendee' | 'coach' | 'parent';
@@ -73,6 +81,9 @@ export interface Event extends CreateEventDto {
   participantCount?: number;
   resourceBookings?: any[];
 }
+
+// Type alias for CalendarEvent (used in components)
+export type CalendarEvent = Event;
 
 export interface EventConflict {
   hasConflict: boolean;
@@ -167,6 +178,35 @@ export const calendarApi = createApi({
       }),
     }),
 
+    // Check conflicts (alias for CalendarView component)
+    checkConflicts: builder.mutation<EventConflict, {
+      startTime: string;
+      endTime: string;
+      participantIds: string[];
+      excludeEventId?: string;
+    }>({
+      query: (data) => ({
+        url: '/events/check-conflicts',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    // Get events by date range
+    getEventsByDateRange: builder.query<Event[], {
+      startDate: string;
+      endDate: string;
+      teamId?: string;
+      organizationId?: string;
+      participantId?: string;
+    }>({
+      query: (params) => ({
+        url: '/events/date-range',
+        params,
+      }),
+      providesTags: ['Event'],
+    }),
+
     // Get upcoming events
     getUpcomingEvents: builder.query<Event[], {
       userId?: string;
@@ -202,6 +242,35 @@ export const calendarApi = createApi({
         baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api',
       }),
     }),
+
+    // Update participant status
+    updateParticipantStatus: builder.mutation<void, {
+      eventId: string;
+      participantId: string;
+      status: ParticipantStatus;
+    }>({
+      query: ({ eventId, participantId, status }) => ({
+        url: `/events/${eventId}/participants/${participantId}/status`,
+        method: 'PATCH',
+        body: { status },
+      }),
+      invalidatesTags: (result, error, { eventId }) => [{ type: 'Event', id: eventId }, 'Event'],
+    }),
+
+    // Get calendar events (alias for player calendar view)
+    getCalendarEvents: builder.query<Event[], {
+      playerId?: string;
+      includeTeamEvents?: boolean;
+      includePersonal?: boolean;
+      startDate?: string;
+      endDate?: string;
+    }>({
+      query: (params) => ({
+        url: '/events/calendar',
+        params,
+      }),
+      providesTags: ['Event'],
+    }),
   }),
 });
 
@@ -213,7 +282,11 @@ export const {
   useUpdateEventMutation,
   useDeleteEventMutation,
   useCheckEventConflictsMutation,
+  useCheckConflictsMutation,
+  useGetEventsByDateRangeQuery,
   useGetUpcomingEventsQuery,
   useCreateRecurringEventMutation,
   useGetUserTeamsQuery,
+  useUpdateParticipantStatusMutation,
+  useGetCalendarEventsQuery,
 } = calendarApi;

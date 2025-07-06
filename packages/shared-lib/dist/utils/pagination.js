@@ -82,7 +82,10 @@ exports.createPaginationMeta = createPaginationMeta;
  */
 function generatePaginationLinks(baseUrl, currentPage, totalPages, queryParams = {}) {
     const buildUrl = (page) => {
-        const params = new URLSearchParams({ ...queryParams, page: page.toString() });
+        const params = new URLSearchParams({
+            ...Object.fromEntries(Object.entries(queryParams).map(([k, v]) => [k, String(v)])),
+            page: page.toString()
+        });
         return `${baseUrl}?${params.toString()}`;
     };
     const links = {};
@@ -154,3 +157,4 @@ async function paginateWithCursor(queryBuilder, options, cursorField = 'createdA
     };
 }
 exports.paginateWithCursor = paginateWithCursor;
+//# sourceMappingURL=pagination.js.map

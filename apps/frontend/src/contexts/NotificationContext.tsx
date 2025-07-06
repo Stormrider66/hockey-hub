@@ -149,6 +149,13 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
 
   // Initialize Socket.io connection
   useEffect(() => {
+    // Skip WebSocket connection in mock mode
+    const isMockMode = process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true';
+    if (isMockMode) {
+      console.log('Mock mode enabled, skipping notification socket connection');
+      return;
+    }
+
     const token = localStorage.getItem('access_token');
     const userId = localStorage.getItem('current_user_id');
     

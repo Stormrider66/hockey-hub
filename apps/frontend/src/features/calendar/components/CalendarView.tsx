@@ -20,7 +20,6 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import '../styles/calendar.css';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CalendarIcon, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
@@ -45,10 +44,24 @@ const locales = {
   'en-US': enUS,
 };
 
+// Custom formats for the calendar
+const formats = {
+  dateFormat: 'dd',
+  dayFormat: 'EEE dd',  // Short day name + date for week view
+  weekdayFormat: 'EEEE', // Full day name for month view
+  monthHeaderFormat: 'MMMM yyyy',
+  dayHeaderFormat: 'EEEE, MMMM d',
+  timeGutterFormat: 'HH:mm',
+  eventTimeRangeFormat: ({ start, end }: { start: Date; end: Date }, culture: any, localizer: any) =>
+    `${localizer.format(start, 'HH:mm', culture)} - ${localizer.format(end, 'HH:mm', culture)}`,
+  dayRangeHeaderFormat: ({ start, end }: { start: Date; end: Date }, culture: any, localizer: any) =>
+    `${localizer.format(start, 'MMMM d', culture)} - ${localizer.format(end, 'd, yyyy', culture)}`
+};
+
 const localizer = dateFnsLocalizer({
   format: dateFnsFormat,
   parse,
-  startOfWeek: dateFnsStartOfWeek,
+  startOfWeek: (date: Date) => dateFnsStartOfWeek(date, { weekStartsOn: 1 }), // 1 = Monday
   getDay,
   locales,
 });
@@ -80,7 +93,7 @@ interface CalendarEventWithStyle extends BigCalendarEvent {
   resource: CalendarEvent;
 }
 
-export default function CalendarView({
+function CalendarView({
   organizationId,
   teamId,
   userId,
@@ -105,12 +118,12 @@ export default function CalendarView({
 
     switch (view) {
       case 'month':
-        start = startOfWeek(startOfMonth(date));
-        end = endOfWeek(endOfMonth(date));
+        start = startOfWeek(startOfMonth(date), { weekStartsOn: 1 });
+        end = endOfWeek(endOfMonth(date), { weekStartsOn: 1 });
         break;
       case 'week':
-        start = startOfWeek(date);
-        end = endOfWeek(date);
+        start = startOfWeek(date, { weekStartsOn: 1 });
+        end = endOfWeek(date, { weekStartsOn: 1 });
         break;
       case 'day':
         start = new Date(date);
@@ -153,7 +166,63 @@ export default function CalendarView({
 
   // Transform and filter events for react-big-calendar
   const events: CalendarEventWithStyle[] = useMemo(() => {
-    if (!eventsData?.data) return [];
+    // If no data, show some mock events for testing
+    if (!eventsData?.data || eventsData.data.length === 0) {
+      const today = new Date();
+      const mockEvents = [];
+      
+      // Add some events for the current week
+      for (let i = 0; i < 7; i++) {
+        const eventDate = new Date(today);
+        eventDate.setDate(today.getDate() + i);
+        
+        if (i % 2 === 0) {
+          mockEvents.push({
+            id: `training-${i}`,
+            title: `Training Session ${i + 1}`,
+            start: new Date(eventDate.setHours(9, 0, 0, 0)),
+            end: new Date(eventDate.setHours(11, 0, 0, 0)),
+            allDay: false,
+            resource: {
+              id: `training-${i}`,
+              title: `Training Session ${i + 1}`,
+              type: EventType.TRAINING,
+              startTime: new Date(eventDate.setHours(9, 0, 0, 0)).toISOString(),
+              endTime: new Date(eventDate.setHours(11, 0, 0, 0)).toISOString(),
+              organizationId,
+              createdBy: 'coach',
+              status: 'scheduled' as any,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            }
+          });
+        }
+        
+        if (i === 3) {
+          mockEvents.push({
+            id: 'meeting-1',
+            title: 'Team Meeting',
+            start: new Date(eventDate.setHours(14, 0, 0, 0)),
+            end: new Date(eventDate.setHours(15, 30, 0, 0)),
+            allDay: false,
+            resource: {
+              id: 'meeting-1',
+              title: 'Team Meeting',
+              type: EventType.MEETING,
+              startTime: new Date(eventDate.setHours(14, 0, 0, 0)).toISOString(),
+              endTime: new Date(eventDate.setHours(15, 30, 0, 0)).toISOString(),
+              organizationId,
+              createdBy: 'coach',
+              status: 'scheduled' as any,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString()
+            }
+          });
+        }
+      }
+      
+      return mockEvents;
+    }
 
     return eventsData.data
       .filter(event => {
@@ -166,14 +235,20 @@ export default function CalendarView({
         if (selectedTeamFilter === 'no-team') return !event.teamId;
         return event.teamId === selectedTeamFilter;
       })
-      .map((event) => ({
-        id: event.id,
-        title: event.title,
-        start: new Date(event.startTime),
-        end: new Date(event.endTime),
-        allDay: event.allDay,
-        resource: event,
-      }));
+      .map((event) => {
+        const startDate = new Date(event.startTime);
+        const endDate = new Date(event.endTime);
+        const timeStr = event.allDay ? '' : ` (${format(startDate, 'HH:mm')})`;
+        
+        return {
+          id: event.id,
+          title: `${event.title}${timeStr}`,
+          start: startDate,
+          end: endDate,
+          allDay: event.allDay || false,
+          resource: event,
+        };
+      });
   }, [eventsData, userPermissions, selectedTeamFilter]);
 
   // Event style getter
@@ -285,99 +360,91 @@ export default function CalendarView({
     [updateEvent, userId]
   );
 
-  // Custom toolbar
+  // Custom toolbar - Optimized single-line layout
   const CustomToolbar = ({ label, onNavigate, onView }: any) => (
-    <div className="space-y-3 mb-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
+    <div className="mb-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        {/* Left side - Navigation and title */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center">
             <Button
               variant="outline"
-              size="icon"
+              size="sm"
               onClick={() => onNavigate('PREV')}
+              className="h-8 w-8 p-0"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
             <Button
               variant="outline"
+              size="sm"
               onClick={() => onNavigate('TODAY')}
+              className="h-8 px-3"
             >
               Today
             </Button>
             <Button
               variant="outline"
-              size="icon"
+              size="sm"
               onClick={() => onNavigate('NEXT')}
+              className="h-8 w-8 p-0"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
-          <h2 className="text-xl font-semibold">{label}</h2>
+          <h2 className="text-lg font-semibold px-2">{label}</h2>
         </div>
-        <div className="flex items-center gap-2">
+        
+        {/* Right side - Actions and filters */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {/* Team Filter - more compact */}
+          <Select value={selectedTeamFilter} onValueChange={setSelectedTeamFilter}>
+            <SelectTrigger className="w-40 h-8 text-sm">
+              <SelectValue placeholder="All Events" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Events</SelectItem>
+              <SelectItem value="personal">Personal</SelectItem>
+              <SelectItem value="no-team">No Team</SelectItem>
+              {availableTeams.length > 0 && (
+                <>
+                  <div className="px-2 py-1 text-xs font-semibold text-muted-foreground">Teams</div>
+                  {availableTeams.map(team => (
+                    <SelectItem key={team} value={team}>
+                      {team}
+                    </SelectItem>
+                  ))}
+                </>
+              )}
+            </SelectContent>
+          </Select>
+          
+          {/* View selector with icons */}
           <Select value={view} onValueChange={(value: View) => onView(value)}>
-            <SelectTrigger className="w-32">
+            <SelectTrigger className="w-32 h-8 text-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="month">Month</SelectItem>
-              <SelectItem value="week">Week</SelectItem>
-              <SelectItem value="day">Day</SelectItem>
-              <SelectItem value="agenda">Agenda</SelectItem>
+              <SelectItem value="month">📅 Month</SelectItem>
+              <SelectItem value="week">📊 Week (Time Grid)</SelectItem>
+              <SelectItem value="day">📋 Day (Hourly)</SelectItem>
+              <SelectItem value="agenda">📝 List</SelectItem>
             </SelectContent>
           </Select>
-          <Button onClick={() => setIsCreateModalOpen(true)}>
-            <Plus className="h-4 w-4 mr-2" />
-            New Event
+          
+          {/* New Event button - smaller */}
+          <Button size="sm" onClick={() => setIsCreateModalOpen(true)} className="h-8">
+            <Plus className="h-3 w-3 mr-1" />
+            New
           </Button>
         </div>
-      </div>
-      
-      {/* Team Filter */}
-      <div className="flex items-center gap-2">
-        <span className="text-sm text-muted-foreground">Filter by team:</span>
-        <Select value={selectedTeamFilter} onValueChange={setSelectedTeamFilter}>
-          <SelectTrigger className="w-48">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Events</SelectItem>
-            <SelectItem value="personal">Personal Only</SelectItem>
-            <SelectItem value="no-team">No Team Assigned</SelectItem>
-            {availableTeams.length > 0 && (
-              <>
-                <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">Teams</div>
-                {availableTeams.map(team => (
-                  <SelectItem key={team} value={team}>
-                    {team}
-                  </SelectItem>
-                ))}
-              </>
-            )}
-          </SelectContent>
-        </Select>
-        {selectedTeamFilter !== 'all' && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSelectedTeamFilter('all')}
-          >
-            Clear filter
-          </Button>
-        )}
       </div>
     </div>
   );
 
   return (
-    <div className="h-full">
-      <Card className="p-6 h-full">
-        <div className="flex items-center gap-2 mb-4">
-          <CalendarIcon className="h-5 w-5" />
-          <h1 className="text-2xl font-bold">Calendar</h1>
-        </div>
-
-        <div className="h-[calc(100%-4rem)]">
+    <div>
+        <div>
           <DragAndDropCalendar
             localizer={localizer}
             events={events}
@@ -387,6 +454,7 @@ export default function CalendarView({
             onSelectSlot={handleSelectSlot}
             onSelectEvent={handleSelectEvent}
             selectable
+            defaultView="month"
             view={view}
             onView={handleViewChange}
             date={date}
@@ -395,20 +463,26 @@ export default function CalendarView({
             components={{
               toolbar: CustomToolbar,
             }}
-            formats={{
-              dayFormat: 'ddd MM/DD',
-              weekdayFormat: 'ddd',
-              dayHeaderFormat: 'dddd MMM DD',
-              monthHeaderFormat: 'MMMM YYYY',
-            }}
+            formats={formats}
             // Drag and drop props
             draggableAccessor={() => true}
             resizable
             onEventDrop={handleEventDrop}
             onEventResize={handleEventResize}
+            // Layout props
+            popup
+            showMultiDayTimes={false}
+            step={30}
+            timeslots={2}
+            views={['month', 'week', 'day', 'agenda']}
+            // Show max 3 events per day in month view before "show more"
+            dayLayoutAlgorithm="no-overlap"
+            max={3}
+            // Week/Day view settings
+            min={new Date(0, 0, 0, 7, 0, 0)}
+            max={new Date(0, 0, 0, 22, 0, 0)}
           />
         </div>
-      </Card>
 
       {/* Event Details Modal */}
       {selectedEvent && (
@@ -440,3 +514,5 @@ export default function CalendarView({
     </div>
   );
 }
+
+export { CalendarView };

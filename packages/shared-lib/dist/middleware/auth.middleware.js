@@ -220,3 +220,4 @@ function createAuthMiddleware(config) {
     return new SharedAuthMiddleware(config);
 }
 exports.createAuthMiddleware = createAuthMiddleware;
+//# sourceMappingURL=auth.middleware.js.map

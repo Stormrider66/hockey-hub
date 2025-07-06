@@ -19,3 +19,4 @@ __exportStar(require("./mockFactory"), exports);
 __exportStar(require("./testDatabase"), exports);
 __exportStar(require("./testDatabaseFactory"), exports);
 __exportStar(require("./testServer"), exports);
+//# sourceMappingURL=index.js.map

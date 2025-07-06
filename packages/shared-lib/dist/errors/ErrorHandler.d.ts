@@ -20,15 +20,15 @@ export interface ErrorResponse {
 /**
  * Convert various error types to our custom error format
  */
-export declare function normalizeError(error: any, req?: Request): BaseError;
+export declare function normalizeError(error: unknown, req?: Request): BaseError;
 /**
  * Express error handler middleware
  */
-export declare function errorHandler(error: any, req: Request, res: Response, next: NextFunction): void;
+export declare function errorHandler(error: unknown, req: Request, res: Response, next: NextFunction): void;
 /**
  * Async error wrapper for route handlers
  */
-export declare function asyncHandler(fn: (req: Request, res: Response, next: NextFunction) => Promise<any>): (req: Request, res: Response, next: NextFunction) => void;
+export declare function asyncHandler(fn: (req: Request, res: Response, next: NextFunction) => Promise<unknown>): (req: Request, res: Response, next: NextFunction) => void;
 /**
  * Not found error handler (404)
  */

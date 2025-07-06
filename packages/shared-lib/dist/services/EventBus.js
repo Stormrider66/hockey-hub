@@ -86,3 +86,4 @@ exports.MedicalEvents = {
     TREATMENT_SCHEDULED: 'medical.treatment.scheduled',
     PLAYER_STATUS_CHANGED: 'medical.player.status.changed',
 };
+//# sourceMappingURL=EventBus.js.map

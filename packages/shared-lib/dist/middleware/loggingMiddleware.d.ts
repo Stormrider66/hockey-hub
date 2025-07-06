@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../utils/Logger';
 declare module 'express' {
     interface Request {
@@ -15,7 +16,7 @@ export interface LoggingOptions {
 /**
  * Create logging middleware for Express applications
  */
-export declare function createLoggingMiddleware(options: LoggingOptions): (req: Request, res: Response, next: NextFunction) => any;
+export declare function createLoggingMiddleware(options: LoggingOptions): (req: Request, res: Response, next: NextFunction) => void;
 /**
  * Error logging middleware
  */

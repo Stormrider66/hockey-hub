@@ -222,3 +222,4 @@ class RedisCacheManager extends CacheManager_1.CacheManager {
 }
 exports.RedisCacheManager = RedisCacheManager;
 RedisCacheManager.instance = null;
+//# sourceMappingURL=RedisCacheManager.js.map

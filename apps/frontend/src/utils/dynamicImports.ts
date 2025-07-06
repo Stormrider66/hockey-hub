@@ -1,22 +1,32 @@
 import dynamic from 'next/dynamic';
-import { ComponentType } from 'react';
+import { ComponentType, createElement } from 'react';
 
 // Loading component for auth pages
-const AuthPageLoading = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-solid border-blue-600 border-r-transparent"></div>
-      <p className="mt-4 text-gray-600">Loading...</p>
-    </div>
-  </div>
-);
+const AuthPageLoading = () => {
+  return createElement(
+    'div',
+    { className: 'min-h-screen flex items-center justify-center' },
+    createElement(
+      'div',
+      { className: 'text-center' },
+      createElement('div', {
+        className: 'inline-block animate-spin rounded-full h-12 w-12 border-4 border-solid border-blue-600 border-r-transparent'
+      }),
+      createElement('p', { className: 'mt-4 text-gray-600' }, 'Loading...')
+    )
+  );
+};
 
 // Loading component for components
-const ComponentLoading = () => (
-  <div className="flex items-center justify-center p-4">
-    <div className="animate-spin rounded-full h-8 w-8 border-2 border-solid border-blue-600 border-r-transparent"></div>
-  </div>
-);
+const ComponentLoading = () => {
+  return createElement(
+    'div',
+    { className: 'flex items-center justify-center p-4' },
+    createElement('div', {
+      className: 'animate-spin rounded-full h-8 w-8 border-2 border-solid border-blue-600 border-r-transparent'
+    })
+  );
+};
 
 // Dynamic import helper with loading state
 export function lazyLoadComponent<T extends ComponentType<any>>(

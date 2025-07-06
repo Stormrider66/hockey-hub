@@ -13,13 +13,23 @@ class PushNotificationService {
   private isSupported: boolean;
 
   constructor() {
-    this.isSupported = this.checkSupport();
+    // Only check support on client side
+    if (typeof window !== 'undefined') {
+      this.isSupported = this.checkSupport();
+    } else {
+      this.isSupported = false;
+    }
   }
 
   /**
    * Check if push notifications are supported
    */
   private checkSupport(): boolean {
+    // Ensure we're on the client side
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return false;
+    }
+    
     return 'serviceWorker' in navigator && 
            'PushManager' in window && 
            'Notification' in window;
@@ -278,6 +288,16 @@ class PushNotificationService {
     notification: boolean;
     overall: boolean;
   } {
+    // Return false for all on server side
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') {
+      return {
+        serviceWorker: false,
+        pushManager: false,
+        notification: false,
+        overall: false
+      };
+    }
+    
     return {
       serviceWorker: 'serviceWorker' in navigator,
       pushManager: 'PushManager' in window,

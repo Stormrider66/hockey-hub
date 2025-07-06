@@ -165,3 +165,4 @@ class NatsEventBus extends EventBus_1.EventBus {
     }
 }
 exports.NatsEventBus = NatsEventBus;
+//# sourceMappingURL=NatsEventBus.js.map

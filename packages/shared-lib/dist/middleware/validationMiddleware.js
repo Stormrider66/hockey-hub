@@ -166,3 +166,4 @@ function validate(config) {
     };
 }
 exports.validate = validate;
+//# sourceMappingURL=validationMiddleware.js.map

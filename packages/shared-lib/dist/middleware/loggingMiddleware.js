@@ -134,3 +134,4 @@ function errorLoggingMiddleware(serviceName) {
     };
 }
 exports.errorLoggingMiddleware = errorLoggingMiddleware;
+//# sourceMappingURL=loggingMiddleware.js.map

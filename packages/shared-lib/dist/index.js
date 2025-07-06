@@ -66,3 +66,4 @@ const parseJWT = (token) => {
     }
 };
 exports.parseJWT = parseJWT;
+//# sourceMappingURL=index.js.map

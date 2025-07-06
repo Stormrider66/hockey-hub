@@ -23,9 +23,11 @@ import { systemAnnouncementApi } from './api/systemAnnouncementApi';
 import { moderationApi } from './api/moderationApi';
 import { eventConversationApi } from './api/eventConversationApi';
 import { performanceApi } from './api/performanceApi';
+import { coachApi } from './api/coachApi';
 import trainingSessionViewerReducer from './slices/trainingSessionViewerSlice';
 import chatReducer from './slices/chatSlice';
 import socketReducer from './slices/socketSlice';
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
@@ -53,9 +55,11 @@ export const store = configureStore({
     [moderationApi.reducerPath]: moderationApi.reducer,
     [eventConversationApi.reducerPath]: eventConversationApi.reducer,
     [performanceApi.reducerPath]: performanceApi.reducer,
+    [coachApi.reducerPath]: coachApi.reducer,
     trainingSessionViewer: trainingSessionViewerReducer,
     chat: chatReducer,
     socket: socketReducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -82,7 +86,8 @@ export const store = configureStore({
       systemAnnouncementApi.middleware,
       moderationApi.middleware,
       eventConversationApi.middleware,
-      performanceApi.middleware
+      performanceApi.middleware,
+      coachApi.middleware
     ),
 });
 

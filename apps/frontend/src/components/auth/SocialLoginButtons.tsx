@@ -143,3 +143,4 @@ export function SocialLoginButtons({ onSuccess, disabled }: SocialLoginButtonsPr
     </div>
   );
 }
+export default SocialLoginButtons;

@@ -155,3 +155,4 @@ __decorate([
     (0, decorators_1.IsUUID)(),
     __metadata("design:type", String)
 ], TeamScheduleValidation.prototype, "defaultLocationId", void 0);
+//# sourceMappingURL=team.validation.js.map

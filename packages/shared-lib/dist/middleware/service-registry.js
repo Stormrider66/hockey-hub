@@ -206,3 +206,4 @@ function validateServiceRequest(apiKey, serviceName, requiredPermission) {
     return { valid: true, service };
 }
 exports.validateServiceRequest = validateServiceRequest;
+//# sourceMappingURL=service-registry.js.map

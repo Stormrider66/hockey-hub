@@ -139,3 +139,4 @@ function updateActiveUsers(role, count) {
     exports.activeUsers.set({ role }, count);
 }
 exports.updateActiveUsers = updateActiveUsers;
+//# sourceMappingURL=metrics.js.map

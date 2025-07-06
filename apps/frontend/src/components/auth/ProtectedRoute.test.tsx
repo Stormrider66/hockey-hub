@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { ProtectedRoute } from './ProtectedRoute';
-import { authSlice } from '../../store/slices/authSlice';
+import authReducer from '../../store/slices/authSlice';
 
 // Create a test store
 const createTestStore = (authState = {}) => {
   return configureStore({
     reducer: {
-      auth: authSlice.reducer
+      auth: authReducer
     },
     preloadedState: {
       auth: {

@@ -144,3 +144,4 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], OrganizationSettingsValidation.prototype, "timezone", void 0);
+//# sourceMappingURL=organization.validation.js.map

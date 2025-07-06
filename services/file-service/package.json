@@ -36,10 +36,10 @@
     "uuid": "^9.0.1",
     "mime-types": "^2.1.35",
     "file-type": "^19.0.0",
-    "clamav.js": "^1.0.3",
+    "clamav.js": "^0.12.0",
     "winston": "^3.11.0",
     "axios": "^1.6.2",
-    "@hockey-hub/shared-lib": "^1.0.0"
+    "@hockey-hub/shared-lib": "workspace:*"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",

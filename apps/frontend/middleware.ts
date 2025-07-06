@@ -19,6 +19,11 @@ const authRoutes = ['/login', '/register'];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
+  // Skip middleware in mock mode - auth is handled client-side
+  if (process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true') {
+    return NextResponse.next();
+  }
+  
   // Check if the current route is protected
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
   const isAuthRoute = authRoutes.some(route => pathname.startsWith(route));

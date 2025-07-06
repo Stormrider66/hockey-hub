@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 // Dashboard data types
 interface UserDashboardData {
@@ -208,19 +209,22 @@ interface StatisticsSummary {
   };
 }
 
-// Create the dashboard API slice
-export const dashboardApi = createApi({
-  reducerPath: 'dashboardApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api/dashboard',
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('authToken') || localStorage.getItem('access_token');
-      if (token) {
+// Create base query with mock support
+const baseQuery = fetchBaseQuery({
+  baseUrl: '/api/dashboard',
+  prepareHeaders: (headers) => {
+    const token = localStorage.getItem('authToken') || localStorage.getItem('access_token');
+    if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
       return headers;
     },
-  }),
+});
+
+// Create the dashboard API slice
+export const dashboardApi = createApi({
+  reducerPath: 'dashboardApi',
+  baseQuery: createMockEnabledBaseQuery(baseQuery),
   tagTypes: ['UserData', 'Statistics', 'QuickAccess', 'Notifications', 'Communication'],
   endpoints: (builder) => ({
     // Get complete user dashboard data (cached for 5 minutes)
@@ -271,7 +275,7 @@ export const dashboardApi = createApi({
         baseUrl: '/api/statistics/dashboard',
       }),
       providesTags: ['Statistics'],
-      keepUnusedDataFor: type === 'admin' ? 600 : type === 'coach' ? 300 : 180,
+      keepUnusedDataFor: 300, // 5 minutes default cache
     }),
 
     // Invalidate all dashboard caches (useful after updates)

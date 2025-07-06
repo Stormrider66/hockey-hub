@@ -317,6 +317,7 @@ export const selectActiveConversationId = (state: { chat: ChatState }) => state.
 export const selectIsChatOpen = (state: { chat: ChatState }) => state.chat.isChatOpen;
 export const selectIsConnected = (state: { chat: ChatState }) => state.chat.isConnected;
 export const selectTotalUnreadCount = (state: { chat: ChatState }) => state.chat.totalUnreadCount;
+export const selectSearchQuery = (state: { chat: ChatState }) => state.chat.searchQuery;
 export const selectUnreadCount = (conversationId: string) => (state: { chat: ChatState }) => 
   state.chat.unreadCounts[conversationId] || 0;
 export const selectTypingUsersForConversation = (conversationId: string) => (state: { chat: ChatState }) =>

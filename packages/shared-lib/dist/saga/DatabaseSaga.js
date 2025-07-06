@@ -144,3 +144,4 @@ __decorate([
 exports.SagaExecutionEntity = SagaExecutionEntity = __decorate([
     (0, typeorm_1.Entity)('saga_executions')
 ], SagaExecutionEntity);
+//# sourceMappingURL=DatabaseSaga.js.map

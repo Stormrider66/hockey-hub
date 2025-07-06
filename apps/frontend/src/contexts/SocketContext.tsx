@@ -39,6 +39,13 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
   // Auto-connect when user is authenticated
   useEffect(() => {
+    // Skip socket connection in mock mode
+    const isMockMode = process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true';
+    if (isMockMode) {
+      console.log('Mock mode enabled, skipping general socket connection');
+      return;
+    }
+
     if (user && token && !socketService.isConnected()) {
       console.log('🔌 Auto-connecting socket for user:', user.email);
       socketService.connect(token);

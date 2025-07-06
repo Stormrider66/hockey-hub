@@ -31,3 +31,4 @@ class BaseError extends Error {
     }
 }
 exports.BaseError = BaseError;
+//# sourceMappingURL=BaseError.js.map

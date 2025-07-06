@@ -97,6 +97,13 @@ export const ChatSocketProvider: React.FC<ChatSocketProviderProps> = ({
 
   // Initialize socket connection
   const initializeSocket = useCallback(() => {
+    // Skip socket connection in mock mode
+    const isMockMode = process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true';
+    if (isMockMode) {
+      console.log('Mock mode enabled, skipping chat socket connection');
+      return;
+    }
+
     const token = getAuthToken();
     if (!token || socket?.connected) return;
 

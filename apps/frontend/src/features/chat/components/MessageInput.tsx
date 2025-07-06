@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Send, Paperclip, Smile, X, Image, Eye, EyeOff, Lock, Unlock, Mic, Video, Clock, MapPin, Calendar, Hash, FileText, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SimpleFileButton } from './SimpleFileButton';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,7 @@ import { AudioRecordingData } from '@/services/AudioRecordingService';
 import ScheduleMessageModal from './ScheduleMessageModal';
 import { LocationShare } from './LocationShare';
 import { CreateEventModal } from './CreateEventModal';
+import EmojiPicker from './EmojiPicker';
 
 interface MessageInputProps {
   conversationId: string;
@@ -34,6 +36,7 @@ interface MessageInputProps {
   placeholder?: string;
   className?: string;
   isEncrypted?: boolean;
+  disableAutoFocus?: boolean;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({
@@ -51,6 +54,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   placeholder = "Type a message...",
   className,
   isEncrypted = false,
+  disableAutoFocus = false,
 }) => {
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -193,10 +197,12 @@ const MessageInput: React.FC<MessageInputProps> = ({
       }
     }
 
-    // Focus back to input
-    setTimeout(() => {
-      textareaRef.current?.focus();
-    }, 50);
+    // Focus back to input (only if auto-focus is not disabled)
+    if (!disableAutoFocus) {
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 50);
+    }
   }, [message, disabled, onSendMessage, replyToMessage?.id, isTyping, onTypingStop]);
 
   // Handle key press
@@ -209,8 +215,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
 
   // Handle file selection
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('File input changed, files:', e.target.files);
     const files = Array.from(e.target.files || []);
     if (files.length > 0 && onFileSelect) {
+      console.log('Calling onFileSelect with files:', files);
       onFileSelect(files);
     }
     // Reset file input
@@ -302,13 +310,63 @@ const MessageInput: React.FC<MessageInputProps> = ({
         break;
     }
     
-    // Focus back to input
-    setTimeout(() => {
-      textareaRef.current?.focus();
-    }, 50);
+    // Focus back to input (only if auto-focus is not disabled)
+    if (!disableAutoFocus) {
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 50);
+    }
   }, []);
 
+  const handleEmojiSelect = useCallback((emoji: string) => {
+    if (textareaRef.current) {
+      const textarea = textareaRef.current;
+      const start = textarea.selectionStart || 0;
+      const end = textarea.selectionEnd || 0;
+      const newMessage = message.slice(0, start) + emoji + message.slice(end);
+      setMessage(newMessage);
+      
+      // Set cursor position after emoji
+      setTimeout(() => {
+        const newPosition = start + emoji.length;
+        textarea.setSelectionRange(newPosition, newPosition);
+        textarea.focus();
+      }, 0);
+    } else {
+      // Fallback: just append emoji to the end
+      setMessage(message + emoji);
+    }
+  }, [message]);
+
   const canSend = message.trim().length > 0 && !disabled;
+
+  // Debug log to check recorder states
+  useEffect(() => {
+    console.log('MessageInput states:', {
+      showVoiceRecorder,
+      showVideoRecorder,
+      disabled,
+      message
+    });
+  }, [showVoiceRecorder, showVideoRecorder, disabled, message]);
+
+  // Add global click listener for debugging
+  useEffect(() => {
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('button') || target.tagName === 'BUTTON') {
+        console.log('Global click on button detected:', {
+          tagName: target.tagName,
+          className: target.className,
+          id: target.id,
+          innerText: target.innerText?.substring(0, 20)
+        });
+      }
+    };
+    
+    document.addEventListener('click', handleGlobalClick, true);
+    return () => document.removeEventListener('click', handleGlobalClick, true);
+  }, []);
 
   return (
     <div className={cn("border-t bg-background", className)}>
@@ -356,17 +414,22 @@ const MessageInput: React.FC<MessageInputProps> = ({
         />
       ) : (
         /* Input area */
-        <div className="flex items-end gap-2 p-3">
+        <div className="flex flex-col gap-2 p-3">
+        <div className="flex items-end gap-2">
         {/* File attachment button */}
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={() => fileInputRef.current?.click()}
-          disabled={disabled}
-          className="h-8 w-8 p-0 shrink-0"
-        >
-          <Paperclip className="h-4 w-4" />
-        </Button>
+        <div className="shrink-0">
+          <SimpleFileButton 
+            onFileSelect={(files) => {
+              console.log('SimpleFileButton onFileSelect called with:', files);
+              if (onFileSelect) {
+                onFileSelect(files);
+              } else {
+                console.log('No onFileSelect handler provided');
+              }
+            }}
+            disabled={disabled}
+          />
+        </div>
 
         {/* Message input with preview */}
         <div className="flex-1 relative">
@@ -420,15 +483,21 @@ const MessageInput: React.FC<MessageInputProps> = ({
           </Button>
         )}
 
-        {/* Emoji button (placeholder for future) */}
-        <Button
-          size="sm"
-          variant="ghost"
-          disabled={disabled}
-          className="h-8 w-8 p-0 shrink-0"
-        >
-          <Smile className="h-4 w-4" />
-        </Button>
+        {/* Emoji button */}
+        <EmojiPicker
+          onEmojiSelect={handleEmojiSelect}
+          trigger={
+            <Button
+              size="sm"
+              variant="ghost"
+              disabled={disabled}
+              className="h-8 w-8 p-0 shrink-0"
+              title="Add emoji"
+            >
+              <Smile className="h-4 w-4" />
+            </Button>
+          }
+        />
 
         {/* Voice recording button */}
         {onSendVoiceNote && (
@@ -508,17 +577,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* Hidden file input */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          multiple
-          accept="image/*,.pdf,.doc,.docx,.txt"
-          onChange={handleFileSelect}
-          className="hidden"
-        />
+        </div>
       </div>
       )}
+
 
       {/* Typing indicator status (for debugging) */}
       {process.env.NODE_ENV === 'development' && isTyping && (

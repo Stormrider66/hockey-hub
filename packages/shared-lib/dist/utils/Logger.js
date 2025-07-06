@@ -200,3 +200,4 @@ class LoggerFactory {
 }
 exports.LoggerFactory = LoggerFactory;
 LoggerFactory.loggers = new Map();
+//# sourceMappingURL=Logger.js.map

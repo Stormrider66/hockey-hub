@@ -3,23 +3,41 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function HomePage() {
   const router = useRouter();
+  const { isAuthenticated, loading, user } = useAuth();
 
   useEffect(() => {
-    // Check if user is authenticated
-    const authToken = localStorage.getItem("authToken");
+    // Wait for auth to finish loading
+    if (loading) return;
     
-    if (authToken) {
-      // In a real app, decode the token to get user role
-      // For now, redirect to player dashboard
-      router.push("/player");
+    if (isAuthenticated && user) {
+      // Redirect based on user role
+      const roleToPath: Record<string, string> = {
+        'player': '/player',
+        'coach': '/coach',
+        'parent': '/parent',
+        'medical staff': '/medical-staff',
+        'medical_staff': '/medical-staff',
+        'equipment manager': '/equipment-manager',
+        'equipment_manager': '/equipment-manager',
+        'physical trainer': '/physical-trainer',
+        'physical_trainer': '/physical-trainer',
+        'club admin': '/club-admin',
+        'club_admin': '/club-admin',
+        'admin': '/admin'
+      };
+      
+      const roleName = user.role?.name?.toLowerCase() || 'player';
+      const path = roleToPath[roleName] || '/player';
+      router.push(path);
     } else {
       // Redirect to login if not authenticated
       router.push("/login");
     }
-  }, [router]);
+  }, [isAuthenticated, loading, user, router]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">

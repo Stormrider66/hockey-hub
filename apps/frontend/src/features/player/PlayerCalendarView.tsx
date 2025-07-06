@@ -36,9 +36,8 @@ export function PlayerCalendarView() {
   const [showSyncModal, setShowSyncModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [selectedSlot, setSelectedSlot] = useState<{ start: Date; end: Date } | null>(null);
-  const [viewFilter, setViewFilter] = useState("all");
+  const [eventTypeFilter, setEventTypeFilter] = useState("all");
   const [showConflicts, setShowConflicts] = useState(true);
-  const [showPersonalOnly, setShowPersonalOnly] = useState(false);
 
   // Get player's events
   const { data: events } = useGetCalendarEventsQuery({
@@ -51,24 +50,19 @@ export function PlayerCalendarView() {
   const { data: playerData } = useGetPlayerOverviewQuery('current');
   const playerTeam = playerData?.info?.team || 'Senior Team';
 
-  // Filter events
+  // Filter events by type
   const filteredEvents = React.useMemo(() => {
     if (!events) return [];
     
     let filtered = [...events];
     
-    // Apply view filter
-    if (viewFilter !== 'all') {
-      filtered = filtered.filter(e => e.type === viewFilter);
-    }
-    
-    // Apply personal only filter
-    if (showPersonalOnly) {
-      filtered = filtered.filter(e => e.metadata?.isPersonal || e.createdBy === 'current');
+    // Apply event type filter
+    if (eventTypeFilter !== 'all') {
+      filtered = filtered.filter(e => e.type === eventTypeFilter);
     }
     
     return filtered;
-  }, [events, viewFilter, showPersonalOnly]);
+  }, [events, eventTypeFilter]);
 
   // Count events by RSVP status
   const rsvpCounts = React.useMemo(() => {
@@ -174,42 +168,37 @@ export function PlayerCalendarView() {
   };
 
   return (
-    <div className="relative h-full flex flex-col">
-      {/* Header with Actions */}
-      <div className="mb-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <Calendar className="h-6 w-6" />
-            My Calendar
-          </h2>
-          <div className="flex items-center gap-2">
-            {rsvpCounts.pending > 0 && (
-              <Badge variant="outline" className="gap-1 text-amber-600 border-amber-600">
-                <AlertCircle className="h-3 w-3" />
-                {rsvpCounts.pending} Pending RSVP
-              </Badge>
-            )}
-            {conflicts.length > 0 && showConflicts && (
-              <Badge variant="outline" className="gap-1 text-red-600 border-red-600">
-                <AlertCircle className="h-3 w-3" />
-                {conflicts.length} Conflicts
-              </Badge>
-            )}
-            <Badge variant="outline" className="gap-1">
-              <CheckCircle className="h-3 w-3" />
-              {rsvpCounts.accepted} Confirmed
+    <div className="relative">
+      {/* Simplified Actions Bar - integrated with Calendar */}
+      <div className="mb-2 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          {rsvpCounts.pending > 0 && (
+            <Badge variant="outline" className="gap-1 text-amber-600 border-amber-600">
+              <AlertCircle className="h-3 w-3" />
+              {rsvpCounts.pending} Pending
             </Badge>
-          </div>
+          )}
+          {conflicts.length > 0 && showConflicts && (
+            <Badge variant="outline" className="gap-1 text-red-600 border-red-600">
+              <AlertCircle className="h-3 w-3" />
+              {conflicts.length} Conflicts
+            </Badge>
+          )}
+          <Badge variant="outline" className="gap-1">
+            <CheckCircle className="h-3 w-3" />
+            {rsvpCounts.accepted} Confirmed
+          </Badge>
         </div>
 
         <div className="flex items-center gap-2">
-          {/* View Filter */}
-          <Select value={viewFilter} onValueChange={setViewFilter}>
-            <SelectTrigger className="w-40">
-              <SelectValue placeholder="Filter events" />
+          {/* Event Type Filter - renamed to avoid confusion */}
+          <Select value={eventTypeFilter} onValueChange={setEventTypeFilter}>
+            <SelectTrigger className="w-36 h-8 text-sm">
+              <Filter className="h-3 w-3 mr-1" />
+              <SelectValue placeholder="Event Type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Events</SelectItem>
+              <SelectItem value="all">All Types</SelectItem>
               <SelectItem value="training">Training</SelectItem>
               <SelectItem value="game">Games</SelectItem>
               <SelectItem value="medical">Medical</SelectItem>
@@ -218,23 +207,13 @@ export function PlayerCalendarView() {
             </SelectContent>
           </Select>
 
-          {/* Personal Only Toggle */}
-          <div className="flex items-center gap-2 px-3 py-1 border rounded-md">
-            <Switch
-              checked={showPersonalOnly}
-              onCheckedChange={setShowPersonalOnly}
-              id="personal-only"
-            />
-            <label htmlFor="personal-only" className="text-sm">Personal Only</label>
-          </div>
-
           {/* Quick Actions Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="gap-2">
+              <Button size="sm" variant="outline" className="gap-2">
                 <Plus className="h-4 w-4" />
-                Actions
-                <ChevronDown className="h-4 w-4" />
+                Quick Actions
+                <ChevronDown className="h-3 w-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -282,7 +261,7 @@ export function PlayerCalendarView() {
 
       {/* RSVP Alert for Pending Events */}
       {rsvpCounts.pending > 0 && (
-        <Card className="mb-4 p-3 border-amber-200 bg-amber-50">
+        <Card className="mb-2 p-2 border-amber-200 bg-amber-50">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Bell className="h-5 w-5 text-amber-600" />
@@ -305,16 +284,12 @@ export function PlayerCalendarView() {
       )}
 
       {/* Main Calendar */}
-      <div className="flex-1 relative">
+      <div>
         <CalendarView
-          events={filteredEvents}
-          onSelectSlot={handleSelectSlot}
-          onSelectEvent={handleSelectEvent}
-          eventStyleGetter={getPlayerEventStyle}
-          views={['month', 'week', 'day', 'agenda']}
-          defaultView="week"
-          step={30}
-          timeslots={2}
+          organizationId="org-1"
+          teamId="team-1"
+          userId="current"
+          userRole="player"
         />
       </div>
 

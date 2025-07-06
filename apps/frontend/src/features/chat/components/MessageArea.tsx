@@ -21,6 +21,7 @@ interface MessageAreaProps {
   onShowConversationList: () => void;
   showBackButton?: boolean;
   className?: string;
+  disableAutoFocus?: boolean;
 }
 
 const MessageArea: React.FC<MessageAreaProps> = ({
@@ -28,6 +29,7 @@ const MessageArea: React.FC<MessageAreaProps> = ({
   onShowConversationList,
   showBackButton = false,
   className,
+  disableAutoFocus = false,
 }) => {
   const dispatch = useDispatch();
   const messageListRef = useRef<any>(null);
@@ -153,9 +155,58 @@ const MessageArea: React.FC<MessageAreaProps> = ({
     console.log('Typing stopped');
   };
   
-  const handleFileSelect = (files: File[]) => {
-    // TODO: Handle file uploads
-    console.log('Files selected:', files);
+  const handleFileSelect = async (files: File[]) => {
+    try {
+      for (const file of files) {
+        // Create a preview URL for the file
+        const url = URL.createObjectURL(file);
+        
+        // Convert file to base64 for sending (in a real app, you'd upload to a server)
+        const reader = new FileReader();
+        const base64 = await new Promise<string>((resolve, reject) => {
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+        
+        // Create attachment data
+        const attachment = {
+          url,
+          fileName: file.name,
+          fileType: file.type,
+          fileSize: file.size,
+        };
+        
+        // Determine message type based on file type
+        const messageType = file.type.startsWith('image/') ? 'image' : 'file';
+        
+        // Send message with attachment
+        await sendMessage({
+          conversationId,
+          content: file.name, // Use filename as message content
+          type: messageType,
+          attachments: [attachment],
+          metadata: {
+            base64File: base64, // Include base64 for backend to process
+          },
+        }).unwrap();
+      }
+      
+      toast({
+        title: 'Files sent',
+        description: `${files.length} file${files.length > 1 ? 's' : ''} sent successfully.`,
+      });
+      
+      // Refetch messages to get the latest
+      refetchMessages();
+    } catch (error) {
+      console.error('Failed to send files:', error);
+      toast({
+        title: 'Failed to send files',
+        description: 'There was an error uploading your files. Please try again.',
+        variant: 'destructive',
+      });
+    }
   };
   
   const handleSendVoiceNote = async (audioData: AudioRecordingData) => {
@@ -432,6 +483,7 @@ const MessageArea: React.FC<MessageAreaProps> = ({
         onCancelReply={handleCancelReply}
         disabled={isSendingMessage}
         placeholder="Type a message..."
+        disableAutoFocus={disableAutoFocus}
       />
       
       {/* Search Result Navigator */}

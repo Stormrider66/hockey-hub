@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 // Notification types (matching backend enums)
 export enum NotificationType {
@@ -167,18 +168,21 @@ export interface NotificationListResponse {
 // API configuration
 const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api';
 
+// Create base query with mock support
+const baseQuery = fetchBaseQuery({
+  baseUrl: `${API_GATEWAY_URL}/communication/notifications`,
+  prepareHeaders: (headers) => {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
 export const notificationApi = createApi({
   reducerPath: 'notificationApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_GATEWAY_URL}/communication/notifications`,
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: createMockEnabledBaseQuery(baseQuery),
   tagTypes: ['Notification', 'NotificationPreference', 'NotificationStats'],
   endpoints: (builder) => ({
     // Get notifications list
@@ -200,6 +204,12 @@ export const notificationApi = createApi({
     // Get notification stats
     getNotificationStats: builder.query<NotificationStats, void>({
       query: () => '/stats',
+      providesTags: ['NotificationStats'],
+    }),
+
+    // Get unread count
+    getUnreadCount: builder.query<{ count: number }, void>({
+      query: () => '/unread-count',
       providesTags: ['NotificationStats'],
     }),
 
@@ -275,6 +285,7 @@ export const notificationApi = createApi({
 export const {
   useGetNotificationsQuery,
   useGetNotificationStatsQuery,
+  useGetUnreadCountQuery,
   useCreateNotificationMutation,
   useCreateBulkNotificationsMutation,
   useMarkAsReadMutation,

@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { isMockMode } from '@/utils/mockAuth';
+import { mockBaseQuery } from './mockAuthApi';
 
 export interface LoginRequest {
   email: string;
@@ -121,17 +123,19 @@ export interface RevokeSessionResponse {
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api/auth',
-    credentials: 'include', // Always include cookies
-    prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: isMockMode() 
+    ? mockBaseQuery 
+    : fetchBaseQuery({
+        baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api/auth',
+        credentials: 'include', // Always include cookies
+        prepareHeaders: (headers, { getState }) => {
+          const token = localStorage.getItem('access_token');
+          if (token) {
+            headers.set('authorization', `Bearer ${token}`);
+          }
+          return headers;
+        },
+      }),
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginRequest>({
       query: (credentials) => ({

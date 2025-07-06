@@ -1,5 +1,6 @@
 import React from 'react';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 // Types for API responses
 interface PlayerInfo {
@@ -126,19 +127,22 @@ interface CompleteTrainingRequest {
 }
 
 // Create the API slice
+// Create base query with mock support
+const baseQuery = fetchBaseQuery({ 
+  baseUrl: process.env.NEXT_PUBLIC_API_URL || '/api/v1',
+  prepareHeaders: (headers) => {
+    // Add any auth headers here if needed
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
 export const playerApi = createApi({
   reducerPath: 'playerApi',
-  baseQuery: fetchBaseQuery({ 
-    baseUrl: '/api/v1',
-    prepareHeaders: (headers) => {
-      // Add any auth headers here if needed
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: createMockEnabledBaseQuery(baseQuery),
   tagTypes: ['PlayerOverview', 'Wellness', 'Training'],
   endpoints: (builder) => ({
     getPlayerOverview: builder.query<PlayerOverviewResponse, number>({

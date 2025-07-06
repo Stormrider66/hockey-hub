@@ -71,11 +71,20 @@ export default function CalendarWidget({
             <p className="text-sm">No upcoming events</p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-3" role="list" aria-label="Upcoming events list">
             {upcomingEvents.map((event) => (
               <div
                 key={event.id}
-                className="flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors"
+                className="flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2"
+                tabIndex={0}
+                role="article"
+                aria-label={`Event: ${event.title} on ${format(new Date(event.startTime), 'MMM d, h:mm a')}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    // You could add navigation to event details here
+                    e.preventDefault();
+                  }
+                }}
               >
                 <div
                   className={`w-1 h-full rounded-full ${
@@ -93,14 +102,14 @@ export default function CalendarWidget({
                   </div>
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
+                      <Clock className="h-3 w-3" aria-hidden="true" />
                       <span>
                         {format(new Date(event.startTime), 'MMM d, h:mm a')}
                       </span>
                     </div>
                     {event.location && (
                       <div className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
+                        <MapPin className="h-3 w-3" aria-hidden="true" />
                         <span className="truncate max-w-[100px]">
                           {event.location}
                         </span>

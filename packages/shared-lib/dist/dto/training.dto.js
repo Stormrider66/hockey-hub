@@ -479,3 +479,4 @@ __decorate([
     (0, class_transformer_1.Type)(() => UpdateExerciseDto),
     __metadata("design:type", Array)
 ], UpdateWorkoutSessionDto.prototype, "exercises", void 0);
+//# sourceMappingURL=training.dto.js.map

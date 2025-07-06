@@ -284,3 +284,4 @@ __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], ParentChildRelationshipValidation.prototype, "isPrimaryContact", void 0);
+//# sourceMappingURL=user.validation.js.map

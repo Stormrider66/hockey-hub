@@ -405,3 +405,4 @@ __decorate([
     (0, class_validator_1.IsDateString)(),
     __metadata("design:type", String)
 ], WellnessDateRangeDto.prototype, "endDate", void 0);
+//# sourceMappingURL=medical.dto.js.map

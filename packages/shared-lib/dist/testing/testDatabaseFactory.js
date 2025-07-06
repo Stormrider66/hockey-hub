@@ -211,3 +211,4 @@ const setupTestDatabase = (serviceName, entities) => {
     };
 };
 exports.setupTestDatabase = setupTestDatabase;
+//# sourceMappingURL=testDatabaseFactory.js.map

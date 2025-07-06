@@ -716,3 +716,4 @@ __decorate([
     (0, class_validator_1.MaxLength)(500),
     __metadata("design:type", String)
 ], CancelBookingDto.prototype, "reason", void 0);
+//# sourceMappingURL=calendar.dto.js.map

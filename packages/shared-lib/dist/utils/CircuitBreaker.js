@@ -159,3 +159,4 @@ class CircuitBreakerFactory {
 }
 exports.CircuitBreakerFactory = CircuitBreakerFactory;
 CircuitBreakerFactory.breakers = new Map();
+//# sourceMappingURL=CircuitBreaker.js.map

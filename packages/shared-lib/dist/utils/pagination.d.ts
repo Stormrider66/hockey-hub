@@ -24,7 +24,7 @@ export interface PaginationQuery {
 /**
  * Parse pagination parameters from request query
  */
-export declare function parsePaginationParams(query: any, defaults?: {
+export declare function parsePaginationParams(query: Record<string, unknown>, defaults?: {
     page?: number;
     limit?: number;
     maxLimit?: number;
@@ -40,11 +40,11 @@ export declare function paginateArray<T>(items: T[], options: PaginationOptions)
 /**
  * Create pagination metadata
  */
-export declare function createPaginationMeta(page: number, limit: number, total: number): PaginationResult<any>['pagination'];
+export declare function createPaginationMeta(page: number, limit: number, total: number): PaginationResult<unknown>['pagination'];
 /**
  * Pagination links generator for REST APIs
  */
-export declare function generatePaginationLinks(baseUrl: string, currentPage: number, totalPages: number, queryParams?: Record<string, any>): {
+export declare function generatePaginationLinks(baseUrl: string, currentPage: number, totalPages: number, queryParams?: Record<string, unknown>): {
     first?: string;
     prev?: string;
     next?: string;
@@ -69,11 +69,11 @@ export interface CursorPaginationResult<T> {
 /**
  * Encode cursor for cursor-based pagination
  */
-export declare function encodeCursor(data: Record<string, any>): string;
+export declare function encodeCursor(data: Record<string, unknown>): string;
 /**
  * Decode cursor for cursor-based pagination
  */
-export declare function decodeCursor(cursor: string): Record<string, any>;
+export declare function decodeCursor(cursor: string): Record<string, unknown>;
 /**
  * Apply cursor-based pagination to query builder
  */

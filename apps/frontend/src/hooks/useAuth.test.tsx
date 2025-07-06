@@ -2,7 +2,7 @@ import { renderHook, act, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { useAuth } from './useAuth';
-import { authSlice } from '../store/slices/authSlice';
+import authReducer from '../store/slices/authSlice';
 import { authApi } from '../store/api/authApi';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
@@ -73,7 +73,7 @@ afterAll(() => server.close());
 const createTestStore = (initialState = {}) => {
   return configureStore({
     reducer: {
-      auth: authSlice.reducer,
+      auth: authReducer,
       [authApi.reducerPath]: authApi.reducer
     },
     middleware: (getDefaultMiddleware) =>

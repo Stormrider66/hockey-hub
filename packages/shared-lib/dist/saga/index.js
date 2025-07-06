@@ -18,3 +18,4 @@ __exportStar(require("./Saga"), exports);
 __exportStar(require("./DatabaseSaga"), exports);
 __exportStar(require("./implementations/CreateOrganizationSaga"), exports);
 __exportStar(require("./implementations/PlayerTransferSaga"), exports);
+//# sourceMappingURL=index.js.map

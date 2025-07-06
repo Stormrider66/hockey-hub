@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { Shield, User, Mail, Lock, AlertCircle, Loader2, CheckCircle2, Users, Activity, Calendar, BarChart3, Trophy, Heart, Zap } from "lucide-react";
 import { LazySocialLoginButtons } from "@/utils/dynamicImports";
+import { DevLoginPanel } from "@/components/auth/DevLoginPanel";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -42,10 +43,11 @@ export default function LoginPage() {
 
   // Redirect if already authenticated
   useEffect(() => {
-    if (isAuthenticated) {
+    // Don't redirect while auth is still loading
+    if (!loading && isAuthenticated) {
       router.push('/');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, loading, router]);
 
   // Update local error when auth error changes
   useEffect(() => {
@@ -391,6 +393,9 @@ export default function LoginPage() {
               </Tabs>
             </CardContent>
           </Card>
+          
+          {/* Development Quick Login Panel */}
+          <DevLoginPanel />
 
           {/* Features Card */}
           <div className="space-y-6">

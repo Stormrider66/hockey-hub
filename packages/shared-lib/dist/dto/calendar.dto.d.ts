@@ -50,7 +50,7 @@ export declare class CreateEventDto {
     organizationId: string;
     teamId?: string;
     createdBy: string;
-    metadata?: Record<string, any>;
+    metadata?: Record<string, unknown>;
     tags?: string[];
     notes?: string;
     allowRsvp?: boolean;
@@ -72,7 +72,7 @@ export declare class UpdateEventDto {
     location?: string;
     onlineUrl?: string;
     color?: string;
-    metadata?: Record<string, any>;
+    metadata?: Record<string, unknown>;
     tags?: string[];
     notes?: string;
     allowRsvp?: boolean;
@@ -141,11 +141,11 @@ export declare class CreateResourceDto {
     floor?: string;
     roomNumber?: string;
     capacity?: number;
-    features?: Record<string, any>;
-    availability?: Record<string, any>;
-    maintenanceSchedule?: Record<string, any>;
-    bookingRules?: Record<string, any>;
-    metadata?: Record<string, any>;
+    features?: Record<string, unknown>;
+    availability?: Record<string, unknown>;
+    maintenanceSchedule?: Record<string, unknown>;
+    bookingRules?: Record<string, unknown>;
+    metadata?: Record<string, unknown>;
     requiresApproval?: boolean;
     approverIds?: string[];
 }
@@ -159,11 +159,11 @@ export declare class UpdateResourceDto {
     floor?: string;
     roomNumber?: string;
     capacity?: number;
-    features?: Record<string, any>;
-    availability?: Record<string, any>;
-    maintenanceSchedule?: Record<string, any>;
-    bookingRules?: Record<string, any>;
-    metadata?: Record<string, any>;
+    features?: Record<string, unknown>;
+    availability?: Record<string, unknown>;
+    maintenanceSchedule?: Record<string, unknown>;
+    bookingRules?: Record<string, unknown>;
+    metadata?: Record<string, unknown>;
     requiresApproval?: boolean;
     approverIds?: string[];
 }

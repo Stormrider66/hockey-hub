@@ -233,3 +233,4 @@ exports.serviceClients = {
         serviceName: 'api-gateway'
     })
 };
+//# sourceMappingURL=service-client.js.map

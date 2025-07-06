@@ -31,7 +31,7 @@ export declare class RedisCacheManager extends CacheManager {
     srem<T>(key: string, ...members: T[]): Promise<number>;
     smembers<T>(key: string): Promise<T[]>;
     sismember<T>(key: string, member: T): Promise<boolean>;
-    hset(key: string, field: string, value: any): Promise<number>;
+    hset<T>(key: string, field: string, value: T): Promise<number>;
     hget<T>(key: string, field: string): Promise<T | null>;
     hgetall<T>(key: string): Promise<Record<string, T>>;
     hdel(key: string, ...fields: string[]): Promise<number>;

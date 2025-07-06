@@ -78,3 +78,4 @@ class UserServiceClient extends ServiceClient_1.ServiceClient {
     }
 }
 exports.UserServiceClient = UserServiceClient;
+//# sourceMappingURL=UserServiceClient.js.map

@@ -20,7 +20,7 @@ Last Updated: 2025-06-25T18:30:00.000Z
 
 ## Important Context
 - **Monorepo Structure**: Using pnpm workspaces with Turbo
-- **Frontend**: Next.js 15.3.4 with App Router on port 3002
+- **Frontend**: Next.js 15.3.4 with App Router on port 3010
 - **Backend**: 10 microservices architecture (Node.js/Express)
 - **Database**: PostgreSQL with TypeORM
 - **State Management**: Redux Toolkit with RTK Query

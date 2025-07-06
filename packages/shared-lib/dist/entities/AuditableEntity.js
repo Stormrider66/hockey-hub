@@ -133,3 +133,4 @@ function auditContextMiddleware(req, res, next) {
     next();
 }
 exports.auditContextMiddleware = auditContextMiddleware;
+//# sourceMappingURL=AuditableEntity.js.map

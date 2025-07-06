@@ -124,7 +124,7 @@
     "buildTool": "Turbo for monorepo builds",
     "ports": {
       "apiGateway": 3000,
-      "frontend": 3002,
+      "frontend": 3010,
       "storybook": 6006,
       "services": "3100-3109"
     }

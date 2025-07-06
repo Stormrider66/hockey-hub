@@ -190,9 +190,9 @@ const ConversationList: React.FC<ConversationListProps> = ({
   );
 
   return (
-    <div className={cn("flex flex-col h-full bg-background", className)}>
+    <div className={cn("flex flex-col h-full bg-background overflow-hidden", className)}>
       {/* Header */}
-      <div className="p-3 border-b space-y-3">
+      <div className="p-3 border-b space-y-3 flex-shrink-0 overflow-visible">
         {/* Search */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -297,8 +297,8 @@ const ConversationList: React.FC<ConversationListProps> = ({
       </div>
 
       {/* Conversation List */}
-      <ScrollArea className="flex-1">
-        <div className="p-2 space-y-1">
+      <ScrollArea className="flex-1 h-full">
+        <div className="p-2 space-y-1 min-h-0">
           {filteredAndSortedConversations.length === 0 ? (
             <div className="text-center py-8">
               {searchQuery ? (

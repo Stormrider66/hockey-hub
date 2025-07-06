@@ -18,3 +18,4 @@ __exportStar(require("./ServiceClient"), exports);
 __exportStar(require("./UserServiceClient"), exports);
 __exportStar(require("./EventBus"), exports);
 __exportStar(require("./NatsEventBus"), exports);
+//# sourceMappingURL=index.js.map

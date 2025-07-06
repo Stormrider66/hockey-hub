@@ -1,23 +1,25 @@
 @echo off
-echo Hockey Hub Frontend (Mock Mode)
-echo ==============================
+echo <Ò Hockey Hub Frontend Only Mode
+echo ================================
+echo.
+echo This will start ONLY the frontend without backend services.
+echo.
 
-REM Check if dependencies are installed
-if not exist "node_modules" (
-    echo Installing dependencies...
-    call pnpm install --no-frozen-lockfile
-)
-
-REM Navigate to frontend directory
 cd apps\frontend
 
-REM Check if frontend dependencies are installed
-if not exist "node_modules" (
-    echo Installing frontend dependencies...
-    call pnpm install
-)
+echo >ù Clearing Next.js cache...
+rmdir /s /q .next 2>nul
 
-REM Start the frontend
-echo Starting frontend on http://localhost:3010
-echo Running in mock mode - no backend services required
-call pnpm run dev
+echo.
+echo =€ Starting frontend server only...
+echo.
+echo After the server starts:
+echo 1. Go to http://localhost:3002
+echo 2. You can now access:
+echo    - Dashboard (with proper navigation text)
+echo    - Calendar view
+echo    - Chat/Messages
+echo    - Settings
+echo.
+
+call pnpm dev

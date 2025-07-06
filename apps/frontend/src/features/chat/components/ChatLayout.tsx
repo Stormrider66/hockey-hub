@@ -45,9 +45,10 @@ import { useGetConversationQuery } from '@/store/api/chatApi';
 
 interface ChatLayoutProps {
   className?: string;
+  isPageMode?: boolean;
 }
 
-const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
+const ChatLayout: React.FC<ChatLayoutProps> = ({ className, isPageMode = false }) => {
   const dispatch = useDispatch();
   const chatState = useSelector(selectChatState);
   const isChatOpen = useSelector(selectIsChatOpen);
@@ -70,17 +71,24 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
     { skip: !chatState.activeConversationId }
   );
 
-  // Handle ESC key to close chat
+  // Ensure chat is open in page mode
+  useEffect(() => {
+    if (isPageMode && !isChatOpen) {
+      dispatch(toggleChat());
+    }
+  }, [isPageMode, isChatOpen, dispatch]);
+
+  // Handle ESC key to close chat (only in widget mode)
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isChatOpen) {
+      if (event.key === 'Escape' && isChatOpen && !isPageMode) {
         dispatch(toggleChat());
       }
     };
 
     document.addEventListener('keydown', handleEscKey);
     return () => document.removeEventListener('keydown', handleEscKey);
-  }, [isChatOpen, dispatch]);
+  }, [isChatOpen, isPageMode, dispatch]);
 
   // Auto-minimize on mobile when switching conversations
   useEffect(() => {
@@ -144,8 +152,8 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
     </div>
   );
 
-  // Don't render chat panel if not open
-  if (!isChatOpen) {
+  // Don't render chat panel if not open (only in widget mode)
+  if (!isChatOpen && !isPageMode) {
     return <ChatToggleButton />;
   }
 
@@ -177,14 +185,19 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
 
   return (
     <>
+      {/* Chat toggle button - only show in widget mode */}
+      {!isPageMode && <ChatToggleButton />}
+      
       {/* Chat Panel */}
       <div className={cn(
-        "fixed z-30 bg-background border border-border shadow-2xl transition-all duration-300",
-        isFullscreen ? "inset-0" : isMinimized ? "bottom-4 right-4 w-80 h-12" : "bottom-4 right-4 w-96 h-[600px]",
-        "rounded-lg overflow-hidden",
+        isPageMode 
+          ? "h-full bg-background" 
+          : "fixed z-30 bg-background border border-border shadow-2xl transition-all duration-300",
+        !isPageMode && (isFullscreen ? "inset-0" : isMinimized ? "bottom-4 right-4 w-80 h-12" : "bottom-4 right-4 w-96 h-[600px]"),
+        !isPageMode && "rounded-lg overflow-hidden",
         className
       )}>
-        <Card className="h-full flex flex-col">
+        <Card className={cn("h-full flex flex-col", isPageMode && "rounded-none border-0")}>
           {/* Header */}
           <div className="flex items-center justify-between p-3 border-b bg-muted/50">
             <div className="flex items-center gap-2">
@@ -261,40 +274,45 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {/* Minimize/Maximize buttons */}
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={handleMinimize}
-                className="h-8 w-8 p-0"
-                title={isMinimized ? "Expand" : "Minimize"}
-              >
-                {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
-              </Button>
+              {/* Window controls - only show in widget mode */}
+              {!isPageMode && (
+                <>
+                  {/* Minimize/Maximize buttons */}
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={handleMinimize}
+                    className="h-8 w-8 p-0"
+                    title={isMinimized ? "Expand" : "Minimize"}
+                  >
+                    {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
+                  </Button>
 
-              {/* Fullscreen toggle */}
-              {!isMinimized && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={handleFullscreen}
-                  className="h-8 w-8 p-0"
-                  title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-                >
-                  {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-                </Button>
+                  {/* Fullscreen toggle */}
+                  {!isMinimized && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={handleFullscreen}
+                      className="h-8 w-8 p-0"
+                      title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+                    >
+                      {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                    </Button>
+                  )}
+
+                  {/* Close button */}
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={handleToggleChat}
+                    className="h-8 w-8 p-0"
+                    title="Close chat"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </>
               )}
-
-              {/* Close button */}
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={handleToggleChat}
-                className="h-8 w-8 p-0"
-                title="Close chat"
-              >
-                <X className="h-4 w-4" />
-              </Button>
             </div>
           </div>
 
@@ -302,11 +320,11 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
           <ConnectionStatus />
 
           {/* Chat Content */}
-          {!isMinimized && (
+          {(!isMinimized || isPageMode) && (
             <div className="flex-1 flex overflow-hidden">
               {/* Conversation List */}
               <div className={cn(
-                "border-r bg-muted/30 transition-all duration-200",
+                "border-r bg-muted/30 transition-all duration-200 h-full flex flex-col",
                 chatState.isConversationListOpen ? "w-80" : "w-0",
                 "overflow-hidden flex-shrink-0"
               )}>
@@ -349,6 +367,7 @@ const ChatLayout: React.FC<ChatLayoutProps> = ({ className }) => {
                       conversationId={chatState.activeConversationId}
                       onShowConversationList={() => dispatch(toggleConversationList())}
                       showBackButton={!chatState.isConversationListOpen}
+                      disableAutoFocus={isPageMode}
                     />
                   )
                 ) : (
