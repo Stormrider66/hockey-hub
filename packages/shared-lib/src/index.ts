@@ -221,6 +221,13 @@ export * from './utils';
 // Socket events
 export * from './types/socket-events';
 
+// Events
+export * from './events/EventBus';
+export * from './events/EventFactory';
+export * from './events/EventPublisher';
+export * from './events/training-events';
+export * from './events/training-event-listeners';
+
 // Testing utilities (only export in non-production environments)
 if (process.env.NODE_ENV !== 'production') {
   module.exports.testing = require('./testing');

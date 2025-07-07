@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { type Player } from '@/hooks/useTestData';
 import { useCreateBulkTestsMutation, useCreateTestBatchMutation } from '@/store/api/trainingApi';
+import type { TestFormData } from '../types';
 
 interface TestEntry {
   id: string;
@@ -28,8 +29,8 @@ interface TestEntry {
 
 interface PhysicalTestingFormProps {
   players?: Player[];
-  onSubmit?: (data: TestEntry[]) => void;
-  onSaveDraft?: (data: TestEntry[]) => void;
+  onSubmit?: (data: TestFormData) => void;
+  onSaveDraft?: (data: TestFormData) => void;
 }
 
 const TEST_TYPES = [

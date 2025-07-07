@@ -31,26 +31,21 @@ import { cn } from "@/lib/utils";
 import { useCreateSessionMutation } from '@/store/api/trainingApi';
 import { useCreateEventMutation, EventType, EventVisibility } from '@/store/api/calendarApi';
 import BulkPlayerAssignment from './BulkPlayerAssignment';
+import type { WorkoutSession, SessionFormData as FormData, Exercise } from '../types';
 
 interface CreateSessionModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onCreateSession?: (session: any) => void;
+  onCreateSession?: (session: WorkoutSession) => void;
 }
 
-interface SessionFormData {
-  name: string;
-  type: string;
+interface SessionFormData extends FormData {
   category: string; // Added for specific category selection
-  date: Date | undefined;
-  time: string;
-  duration: string;
-  location: string;
   team: string;
   coachId: string; // Added for coach assignment
   playerIds: string[]; // Changed from team to specific players
   description: string;
-  exercises: any[];
+  exercises: Exercise[];
   maxParticipants: string;
   intensity: string;
   equipment: string[];
@@ -175,11 +170,11 @@ export default function CreateSessionModal({
     equipment: []
   });
 
-  const updateFormData = (field: keyof SessionFormData, value: any) => {
+  const updateFormData = <K extends keyof SessionFormData>(field: K, value: SessionFormData[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const addExercise = (exercise: any) => {
+  const addExercise = (exercise: Exercise) => {
     setFormData(prev => ({
       ...prev,
       exercises: [...prev.exercises, { ...exercise, id: Date.now() }]

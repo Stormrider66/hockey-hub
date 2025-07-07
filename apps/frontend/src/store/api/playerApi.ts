@@ -143,8 +143,25 @@ const baseQuery = fetchBaseQuery({
 export const playerApi = createApi({
   reducerPath: 'playerApi',
   baseQuery: createMockEnabledBaseQuery(baseQuery),
-  tagTypes: ['PlayerOverview', 'Wellness', 'Training'],
+  tagTypes: ['PlayerOverview', 'Wellness', 'Training', 'Players'],
   endpoints: (builder) => ({
+    getPlayers: builder.query<{ data: Array<{
+      id: string;
+      firstName: string;
+      lastName: string;
+      jerseyNumber?: string;
+      position?: string;
+      teamId?: string;
+      teamName?: string;
+      profilePicture?: string;
+      lastWorkout?: string;
+    }> }, { organizationId: string; includeStats?: boolean }>({
+      query: ({ organizationId, includeStats = false }) => ({
+        url: `organizations/${organizationId}/players`,
+        params: { includeStats },
+      }),
+      providesTags: ['Players'],
+    }),
     getPlayerOverview: builder.query<PlayerOverviewResponse, number>({
       query: (playerId) => `players/${playerId}/overview`,
       providesTags: ['PlayerOverview'],
@@ -170,6 +187,7 @@ export const playerApi = createApi({
 
 // Export hooks for usage in functional components
 export const {
+  useGetPlayersQuery,
   useGetPlayerOverviewQuery,
   useSubmitWellnessMutation,
   useCompleteTrainingMutation,

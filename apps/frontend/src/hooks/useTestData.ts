@@ -1,27 +1,40 @@
-import { useState, useEffect } from 'react';
-import { useGetTestsQuery, useGetTestBatchesQuery } from '@/store/api/trainingApi';
+import { useState, useEffect, useMemo } from 'react';
+import { 
+  useGetTestsQuery, 
+  useGetTestBatchesQuery,
+  useGetTestAnalyticsQuery,
+  useGetTestHistoryQuery
+} from '@/store/api/trainingApi';
+import { useGetPlayersQuery } from '@/store/api/userApi';
 
 export interface Player {
   id: string;
   name: string;
-  number: number;
-  position: string;
+  number?: number;
+  position?: string;
   team?: string;
+  jerseyNumber?: number; // Alias for number
+  role?: string; // Alias for position
 }
 
 export interface TestBatch {
-  id: number;
+  id: string | number;
   name: string;
   date: string;
   completedTests: number;
   totalTests: number;
   status?: 'active' | 'completed' | 'scheduled';
+  teamId?: string;
+  notes?: string;
+  createdBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface TestResult {
   id: string;
   playerId: string;
-  testBatchId: number;
+  testBatchId: string | number;
   testType: string;
   value: number;
   unit: string;
@@ -29,6 +42,9 @@ export interface TestResult {
   percentile?: number;
   previousValue?: number;
   change?: number;
+  notes?: string;
+  createdBy?: string;
+  createdAt?: string;
 }
 
 export interface PhysicalTestData {
@@ -40,144 +56,112 @@ export interface PhysicalTestData {
 }
 
 export function useTestData(): PhysicalTestData {
-  // TODO: Replace with actual RTK Query hooks when training service API is implemented
-  const [testData, setTestData] = useState<PhysicalTestData>({
-    players: [],
-    testBatches: [],
-    testResults: [],
-    isLoading: true,
-    error: null,
-  });
+  // Get organization ID from local storage or context
+  const currentUser = JSON.parse(localStorage.getItem('current_user') || '{}');
+  const organizationId = currentUser.organizationId || '';
+  const teamId = currentUser.teamId;
 
-  useEffect(() => {
-    // Simulate API call delay
-    const timer = setTimeout(() => {
-      // Mock data for development
-      const mockPlayers: Player[] = [
-        { id: '1', name: 'Erik Andersson', number: 15, position: 'Forward', team: 'A-Team' },
-        { id: '2', name: 'Marcus Lindberg', number: 7, position: 'Defenseman', team: 'A-Team' },
-        { id: '3', name: 'Viktor Nilsson', number: 23, position: 'Goalie', team: 'A-Team' },
-        { id: '4', name: 'Johan Bergström', number: 12, position: 'Forward', team: 'J20 Team' },
-        { id: '5', name: 'Anders Johansson', number: 3, position: 'Defenseman', team: 'J20 Team' },
-        { id: '6', name: 'Lars Svensson', number: 18, position: 'Forward', team: 'U18 Team' },
-        { id: '7', name: 'Per Olsson', number: 5, position: 'Defenseman', team: 'U18 Team' },
-        { id: '8', name: 'Niklas Gustafsson', number: 30, position: 'Goalie', team: 'U16 Team' }
-      ];
+  // Fetch players
+  const {
+    data: playersData,
+    isLoading: isLoadingPlayers,
+    error: playersError
+  } = useGetPlayersQuery({ organizationId, teamId });
 
-      const mockTestBatches: TestBatch[] = [
-        { 
-          id: 1, 
-          name: 'Pre-Season 2024', 
-          date: '2024-01-15', 
-          completedTests: 45, 
-          totalTests: 50,
-          status: 'completed'
-        },
-        { 
-          id: 2, 
-          name: 'Mid-Season Check', 
-          date: '2024-03-20', 
-          completedTests: 38, 
-          totalTests: 50,
-          status: 'active'
-        },
-        { 
-          id: 3, 
-          name: 'Spring Testing', 
-          date: '2024-05-10', 
-          completedTests: 0, 
-          totalTests: 50,
-          status: 'scheduled'
-        }
-      ];
+  // Fetch test batches
+  const {
+    data: testBatchesData,
+    isLoading: isLoadingBatches,
+    error: batchesError
+  } = useGetTestBatchesQuery({ teamId });
 
-      const mockTestResults: TestResult[] = [
-        {
-          id: '1',
-          playerId: '1',
-          testBatchId: 1,
-          testType: 'Vertical Jump',
-          value: 65,
-          unit: 'cm',
-          date: '2024-01-15',
-          percentile: 85,
-          previousValue: 62,
-          change: 4.8
-        },
-        {
-          id: '2',
-          playerId: '1',
-          testBatchId: 1,
-          testType: 'Bench Press 1RM',
-          value: 120,
-          unit: 'kg',
-          date: '2024-01-15',
-          percentile: 78,
-          previousValue: 115,
-          change: 4.3
-        },
-        {
-          id: '3',
-          playerId: '1',
-          testBatchId: 1,
-          testType: 'VO2 Max',
-          value: 58,
-          unit: 'ml/kg/min',
-          date: '2024-01-15',
-          percentile: 82,
-          previousValue: 56,
-          change: 3.6
-        },
-        {
-          id: '4',
-          playerId: '2',
-          testBatchId: 1,
-          testType: 'Vertical Jump',
-          value: 58,
-          unit: 'cm',
-          date: '2024-01-15',
-          percentile: 72,
-          previousValue: 55,
-          change: 5.5
-        },
-        {
-          id: '5',
-          playerId: '2',
-          testBatchId: 1,
-          testType: 'Bench Press 1RM',
-          value: 110,
-          unit: 'kg',
-          date: '2024-01-15',
-          percentile: 70,
-          previousValue: 108,
-          change: 1.9
-        }
-      ];
+  // Fetch test results
+  const {
+    data: testResultsData,
+    isLoading: isLoadingTests,
+    error: testsError
+  } = useGetTestsQuery({});
 
-      setTestData({
-        players: mockPlayers,
-        testBatches: mockTestBatches,
-        testResults: mockTestResults,
-        isLoading: false,
-        error: null,
-      });
-    }, 500);
+  // Transform players data to match the expected interface
+  const players = useMemo<Player[]>(() => {
+    if (!playersData) return [];
+    
+    return playersData.map((user: any) => ({
+      id: user.id,
+      name: user.name || `${user.firstName} ${user.lastName}`.trim(),
+      number: user.jerseyNumber || user.number,
+      position: user.position || user.role || 'Player',
+      team: user.teamName || user.teamId,
+      jerseyNumber: user.jerseyNumber || user.number,
+      role: user.position || user.role
+    }));
+  }, [playersData]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  // Transform test batches data
+  const testBatches = useMemo<TestBatch[]>(() => {
+    if (!testBatchesData) return [];
+    
+    return testBatchesData.map((batch: any) => ({
+      id: batch.id,
+      name: batch.name,
+      date: batch.date,
+      completedTests: batch.completedTests || 0,
+      totalTests: batch.totalTests || 0,
+      status: batch.status || 'scheduled',
+      teamId: batch.teamId,
+      notes: batch.notes,
+      createdBy: batch.createdBy,
+      createdAt: batch.createdAt,
+      updatedAt: batch.updatedAt
+    }));
+  }, [testBatchesData]);
 
-  return testData;
+  // Transform test results data
+  const testResults = useMemo<TestResult[]>(() => {
+    if (!testResultsData) return [];
+    
+    return testResultsData.map((test: any) => ({
+      id: test.id,
+      playerId: test.playerId,
+      testBatchId: test.testBatchId,
+      testType: test.testType,
+      value: test.value,
+      unit: test.unit,
+      date: test.date || test.createdAt,
+      percentile: test.percentile,
+      previousValue: test.previousValue,
+      change: test.change,
+      notes: test.notes,
+      createdBy: test.createdBy,
+      createdAt: test.createdAt
+    }));
+  }, [testResultsData]);
+
+  // Determine overall loading state
+  const isLoading = isLoadingPlayers || isLoadingBatches || isLoadingTests;
+
+  // Combine errors
+  const error = playersError || batchesError || testsError;
+
+  // Provide fallback empty arrays if data is undefined
+  return {
+    players: players || [],
+    testBatches: testBatches || [],
+    testResults: testResults || [],
+    isLoading,
+    error
+  };
 }
 
 // Additional hook for filtering test results by player or batch
 export function useFilteredTestResults(
   testResults: TestResult[],
   playerId?: string,
-  testBatchId?: number
+  testBatchId?: string | number
 ): TestResult[] {
   return testResults.filter(result => {
     if (playerId && result.playerId !== playerId) return false;
-    if (testBatchId && result.testBatchId !== testBatchId) return false;
+    if (testBatchId && String(result.testBatchId) !== String(testBatchId)) return false;
     return true;
   });
 }
@@ -227,4 +211,32 @@ export function useTestStatistics(testResults: TestResult[]) {
     .slice(0, 5);
 
   return stats;
+}
+
+// Hook for fetching test analytics
+export function useTestAnalytics(teamId?: string, dateFrom?: string, dateTo?: string) {
+  const { data, isLoading, error } = useGetTestAnalyticsQuery(
+    { teamId, dateFrom, dateTo },
+    { skip: !teamId }
+  );
+
+  return {
+    analytics: data,
+    isLoading,
+    error
+  };
+}
+
+// Hook for fetching test history
+export function useTestHistory(playerId?: string, teamId?: string, limit?: number) {
+  const { data, isLoading, error } = useGetTestHistoryQuery(
+    { playerId, teamId, limit },
+    { skip: !playerId && !teamId }
+  );
+
+  return {
+    history: data,
+    isLoading,
+    error
+  };
 }

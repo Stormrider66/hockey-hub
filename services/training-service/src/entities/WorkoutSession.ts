@@ -3,8 +3,8 @@ import { BaseEntity } from '@hockey-hub/shared-lib';
 import { Exercise } from './Exercise';
 import { PlayerWorkoutLoad } from './PlayerWorkoutLoad';
 import { WorkoutExecution } from './WorkoutExecution';
+import { WorkoutType } from './WorkoutType';
 
-export type WorkoutType = 'strength' | 'cardio' | 'skill' | 'recovery' | 'mixed';
 export type WorkoutStatus = 'scheduled' | 'active' | 'completed' | 'cancelled';
 
 @Entity('workout_sessions')
@@ -19,7 +19,7 @@ export class WorkoutSession extends BaseEntity {
   @Column({ type: 'uuid' })
   createdBy: string; // trainer/coach user ID
 
-  @Column({ type: 'varchar', length: 50 })
+  @Column({ type: 'enum', enum: WorkoutType })
   type: WorkoutType;
 
   @Column({ type: 'varchar', length: 50, default: 'scheduled' })

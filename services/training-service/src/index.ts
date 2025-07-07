@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { initializeDatabase, AppDataSource } from './config/database';
-import { initializeCache, closeCache, errorHandler } from '@hockey-hub/shared-lib';
+import { initializeCache, closeCache, errorHandler, getGlobalEventBus } from '@hockey-hub/shared-lib';
+import { TrainingEventService } from './services/TrainingEventService';
 
 dotenv.config();
 
@@ -20,6 +21,18 @@ const io = new Server(httpServer, {
 
 const PORT = process.env.PORT || 3004;
 
+// Global event service instance
+let trainingEventService: TrainingEventService | null = null;
+let planningEventListener: PlanningEventListener | null = null;
+
+// Export for use in routes
+export const getTrainingEventService = () => {
+  if (!trainingEventService) {
+    throw new Error('TrainingEventService not initialized');
+  }
+  return trainingEventService;
+};
+
 // Middleware
 app.use(helmet());
 app.use(cors());
@@ -29,7 +42,16 @@ app.use(express.json());
 import workoutRoutes from './routes/workoutRoutes';
 import { createExecutionRoutes } from './routes/executionRoutes';
 import templateRoutes from './routes/templateRoutes';
+import sessionTemplateRoutes from './routes/sessionTemplateRoutes';
+import { exerciseRoutes } from './routes/exercise.routes';
+import workoutTypeRoutes, { initializeWorkoutTypeRoutes } from './routes/workoutTypeRoutes';
+import medicalIntegrationRoutes, { initializeMedicalIntegrationRoutes } from './routes/medicalIntegrationRoutes';
+import { planningIntegrationRoutes, initializePlanningIntegrationRoutes } from './routes/planningIntegrationRoutes';
 import { mockWorkoutSessions } from './mocks/workoutData';
+import { mockExercises } from './mocks/exerciseData';
+import { WorkoutTypeService } from './services/WorkoutTypeService';
+import { WorkoutTypeConfig } from './entities/WorkoutType';
+import { PlanningEventListener } from './events/PlanningEventListener';
 
 // Health check
 app.get('/health', (req, res) => {
@@ -79,10 +101,60 @@ app.get('/api/training/sessions/:id', (req, res, next) => {
   next();
 });
 
+// Mock endpoints for exercises when database is not available
+app.get('/api/v1/training/exercises', (req, res, next) => {
+  if (!AppDataSource.isInitialized) {
+    const { category, search, skip = 0, take = 50 } = req.query;
+    let filteredExercises = [...mockExercises];
+    
+    if (category) {
+      filteredExercises = filteredExercises.filter(e => e.category === category);
+    }
+    
+    if (search) {
+      const searchLower = (search as string).toLowerCase();
+      filteredExercises = filteredExercises.filter(e => 
+        e.name?.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    const total = filteredExercises.length;
+    const skipNum = parseInt(skip as string) || 0;
+    const takeNum = parseInt(take as string) || 50;
+    const paginatedExercises = filteredExercises.slice(skipNum, skipNum + takeNum);
+    
+    return res.json({ 
+      success: true, 
+      data: paginatedExercises,
+      total,
+      skip: skipNum,
+      take: takeNum,
+      mock: true 
+    });
+  }
+  next();
+});
+
+app.get('/api/v1/training/exercises/:id', (req, res, next) => {
+  if (!AppDataSource.isInitialized) {
+    const exercise = mockExercises.find(e => e.id === req.params.id);
+    if (exercise) {
+      return res.json({ success: true, data: exercise, mock: true });
+    }
+    return res.status(404).json({ success: false, error: 'Exercise not found' });
+  }
+  next();
+});
+
 // API routes (will be used when database is available)
 app.use('/api/training', workoutRoutes);
 app.use('/api/training', createExecutionRoutes(io));
 app.use('/api/training', templateRoutes);
+app.use('/api/v1/training', sessionTemplateRoutes);
+app.use('/api/v1/training', exerciseRoutes);
+app.use('/api/v1/training/workout-types', workoutTypeRoutes);
+app.use('/api/v1/training/medical-sync', medicalIntegrationRoutes);
+app.use('/api/v1/training/planning', planningIntegrationRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);
@@ -137,6 +209,28 @@ const startServer = async () => {
       try {
         await initializeDatabase();
         console.log('✅ Database connected successfully');
+        
+        // Initialize event service
+        trainingEventService = new TrainingEventService(AppDataSource);
+        console.log('✅ Event service initialized');
+        
+        // Initialize workout type service
+        const workoutTypeRepository = AppDataSource.getRepository(WorkoutTypeConfig);
+        const workoutTypeService = new WorkoutTypeService(workoutTypeRepository);
+        initializeWorkoutTypeRoutes(workoutTypeService);
+        console.log('✅ Workout type service initialized');
+        
+        // Initialize medical integration service
+        initializeMedicalIntegrationRoutes();
+        console.log('✅ Medical integration service initialized');
+        
+        // Initialize planning integration service
+        initializePlanningIntegrationRoutes();
+        console.log('✅ Planning integration service initialized');
+        
+        // Initialize planning event listener
+        planningEventListener = new PlanningEventListener(AppDataSource);
+        console.log('✅ Planning event listener initialized');
       } catch (dbError: unknown) {
         const errorMessage = dbError instanceof Error ? dbError.message : 'Unknown database error';
         console.error('❌ Database connection error:', errorMessage);
@@ -175,10 +269,14 @@ startServer();
 process.on('SIGTERM', async () => {
   console.log('SIGTERM received, shutting down gracefully...');
   try {
+    if (planningEventListener) {
+      planningEventListener.destroy();
+      console.log('✅ Planning event listener cleaned up');
+    }
     await closeCache();
     console.log('✅ Cache connection closed');
   } catch (error) {
-    console.warn('Cache close error:', error);
+    console.warn('Shutdown error:', error);
   }
   if (AppDataSource.isInitialized) {
     await AppDataSource.destroy();
@@ -189,10 +287,14 @@ process.on('SIGTERM', async () => {
 process.on('SIGINT', async () => {
   console.log('SIGINT received, shutting down gracefully...');
   try {
+    if (planningEventListener) {
+      planningEventListener.destroy();
+      console.log('✅ Planning event listener cleaned up');
+    }
     await closeCache();
     console.log('✅ Cache connection closed');
   } catch (error) {
-    console.warn('Cache close error:', error);
+    console.warn('Shutdown error:', error);
   }
   if (AppDataSource.isInitialized) {
     await AppDataSource.destroy();

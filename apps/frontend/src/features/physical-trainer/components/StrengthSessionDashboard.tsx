@@ -27,6 +27,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useTrainingSocket } from '@/contexts/TrainingSocketContext';
 import type { WorkoutSession, WorkoutExecution, Exercise } from '@hockey-hub/shared-lib';
+import type { PerformanceMetrics } from '../types';
 
 interface StrengthSessionDashboardProps {
   session: WorkoutSession;
@@ -115,7 +116,13 @@ export function StrengthSessionDashboard({
   useEffect(() => {
     if (!socket) return;
 
-    const handleProgressUpdate = (data: any) => {
+    const handleProgressUpdate = (data: {
+      playerId: string;
+      currentExerciseIndex: number;
+      currentSetNumber: number;
+      completionPercentage: number;
+      status?: string;
+    }) => {
       setPlayerProgress(prev => ({
         ...prev,
         [data.playerId]: {
@@ -130,7 +137,14 @@ export function StrengthSessionDashboard({
       }));
     };
 
-    const handleExerciseCompleted = (data: any) => {
+    const handleExerciseCompleted = (data: {
+      playerId: string;
+      exerciseId: string;
+      setNumber: number;
+      actualReps?: number;
+      actualWeight?: number;
+      rpe?: number;
+    }) => {
       setPlayerProgress(prev => {
         const player = prev[data.playerId];
         if (!player) return prev;

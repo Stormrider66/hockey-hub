@@ -187,7 +187,7 @@ export const SessionTemplates: React.FC<SessionTemplatesProps> = ({
               onChange={(e) => setSearchTerm(e.target.value)}
               className="flex-1"
             />
-            <Select value={filterType} onValueChange={(v) => setFilterType(v as any)}>
+            <Select value={filterType} onValueChange={(v) => setFilterType(v as typeof filterType)}>
               <SelectTrigger className="w-[140px]">
                 <SelectValue />
               </SelectTrigger>

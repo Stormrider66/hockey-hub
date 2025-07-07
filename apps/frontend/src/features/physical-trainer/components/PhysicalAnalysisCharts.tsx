@@ -80,7 +80,7 @@ export default function PhysicalAnalysisCharts({
     if (selectedMetric === 'all' || selectedBatch === 'all') return [];
     
     const batchResults = testResults.filter(
-      r => r.testType === selectedMetric && r.testBatchId === parseInt(selectedBatch)
+      r => r.testType === selectedMetric && String(r.testBatchId) === selectedBatch
     );
     
     return players.map(player => {
@@ -99,7 +99,7 @@ export default function PhysicalAnalysisCharts({
     if (selectedPlayer === 'all' || selectedBatch === 'all') return [];
     
     const playerResults = testResults.filter(
-      r => r.playerId === selectedPlayer && r.testBatchId === parseInt(selectedBatch)
+      r => r.playerId === selectedPlayer && String(r.testBatchId) === selectedBatch
     );
     
     return testTypes.map(testType => {

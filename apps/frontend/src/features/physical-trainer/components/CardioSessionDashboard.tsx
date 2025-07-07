@@ -20,6 +20,7 @@ import {
 import { cn } from '@/lib/utils';
 import { useTrainingSocket } from '@/contexts/TrainingSocketContext';
 import type { WorkoutSession, WorkoutExecution } from '@hockey-hub/shared-lib';
+import type { PerformanceMetrics } from '../types';
 
 interface CardioSessionDashboardProps {
   session: WorkoutSession;
@@ -148,7 +149,10 @@ export function CardioSessionDashboard({
   useEffect(() => {
     if (!socket) return;
 
-    const handleMetricsUpdate = (data: any) => {
+    const handleMetricsUpdate = (data: {
+      playerId: string;
+      metrics: Partial<PlayerMetrics>;
+    }) => {
       setPlayerMetrics(prev => ({
         ...prev,
         [data.playerId]: {

@@ -3,6 +3,7 @@ import { AppDataSource } from '../config/database';
 import { CachedWorkoutSessionService } from '../services/CachedWorkoutSessionService';
 import { parsePaginationParams, authenticate, authorize, validationMiddleware } from '@hockey-hub/shared-lib';
 import { CreateWorkoutSessionDto, UpdateWorkoutSessionDto, PlayerLoadDto, WorkoutFilterDto } from '@hockey-hub/shared-lib';
+import { getTrainingEventService } from '../index';
 
 const router = Router();
 const workoutService = new CachedWorkoutSessionService();
@@ -96,6 +97,35 @@ router.post('/sessions', authorize(['physical_trainer', 'coach', 'admin']), vali
     };
 
     const workout = await workoutService.createWorkoutSession(workoutData);
+
+    // Publish workout created event
+    try {
+      const eventService = getTrainingEventService();
+      const user = (req as any).user;
+      if (user) {
+        eventService.setUserContext(user.id, user.organizationId);
+      }
+      
+      // If this is a workout assignment, publish the event
+      // Note: This is a simplified example - in production, you'd create proper WorkoutAssignment entities
+      if (workout.id && teamId) {
+        await eventService.publishWorkoutCreated({
+          id: workout.id,
+          sessionTemplateId: workout.id,
+          playerId: playerIds?.[0] || 'team',
+          teamId,
+          organizationId: user?.organizationId || teamId,
+          scheduledDate: workout.scheduledDate,
+          completedAt: null,
+          startedAt: null,
+          exercisesCompleted: null,
+          exercisesTotal: workout.exercises?.length || 0
+        } as any, req.headers['x-correlation-id'] as string);
+      }
+    } catch (eventError) {
+      console.error('Failed to publish workout created event:', eventError);
+      // Don't fail the request if event publishing fails
+    }
 
     res.status(201).json({ success: true, data: workout });
   } catch (error) {

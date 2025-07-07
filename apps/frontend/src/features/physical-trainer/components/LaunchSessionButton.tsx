@@ -131,7 +131,7 @@ export default function LaunchSessionButton({
     setIsOpen(false);
   };
 
-  const updateConfig = (field: keyof SessionConfig, value: any) => {
+  const updateConfig = <K extends keyof SessionConfig>(field: K, value: SessionConfig[K]) => {
     setConfig(prev => ({ ...prev, [field]: value }));
   };
 

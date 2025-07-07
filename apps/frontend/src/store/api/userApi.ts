@@ -25,6 +25,17 @@ export interface GetOrganizationUsersParams {
   offset?: number;
 }
 
+export interface Team {
+  id: string;
+  name: string;
+  description?: string;
+  organizationId: string;
+  isActive: boolean;
+  playerCount?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
@@ -37,7 +48,7 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User', 'OrganizationUsers'],
+  tagTypes: ['User', 'OrganizationUsers', 'Team'],
   endpoints: (builder) => ({
     getUser: builder.query<User, string>({
       query: (id) => `/users/${id}`,
@@ -91,6 +102,11 @@ export const userApi = createApi({
       },
       providesTags: ['User'],
     }),
+
+    getTeams: builder.query<{ data: Team[] }, { organizationId: string }>({
+      query: ({ organizationId }) => `/organizations/${organizationId}/teams`,
+      providesTags: ['Team'],
+    }),
   }),
 });
 
@@ -99,4 +115,5 @@ export const {
   useGetOrganizationUsersQuery,
   useSearchUsersQuery,
   useGetPlayersQuery,
+  useGetTeamsQuery,
 } = userApi;

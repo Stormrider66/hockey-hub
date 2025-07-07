@@ -10,23 +10,5 @@
     "files": [
       "static/chunks/_app-pages-browser_node_modules_pnpm_next_15_3_4__babel_core_7_2_43d5635f941326a09f9ccfa13e92-c355e5.js"
     ]
-  },
-  "app\\chat\\page.tsx -> @/features/chat/components/ChatLayout": {
-    "id": "app\\chat\\page.tsx -> @/features/chat/components/ChatLayout",
-    "files": [
-      "static/chunks/_app-pages-browser_src_features_chat_components_ChatLayout_tsx.js"
-    ]
-  },
-  "src\\utils\\dynamicImports.ts -> @/components/auth/SessionManagement": {
-    "id": "src\\utils\\dynamicImports.ts -> @/components/auth/SessionManagement",
-    "files": [
-      "static/chunks/_app-pages-browser_src_components_auth_SessionManagement_tsx.js"
-    ]
-  },
-  "src\\utils\\dynamicImports.ts -> @/components/auth/SocialLoginButtons": {
-    "id": "src\\utils\\dynamicImports.ts -> @/components/auth/SocialLoginButtons",
-    "files": [
-      "static/chunks/_app-pages-browser_src_components_auth_SocialLoginButtons_tsx.js"
-    ]
   }
 }

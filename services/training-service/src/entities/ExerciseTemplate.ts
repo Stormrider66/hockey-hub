@@ -55,4 +55,7 @@ export class ExerciseTemplate extends BaseEntity {
   @Column({ type: 'uuid', nullable: true })
   createdBy: string; // trainer who created the template
 
+  @Column({ type: 'uuid', nullable: true })
+  organizationId?: string; // for multi-tenancy
+
 }

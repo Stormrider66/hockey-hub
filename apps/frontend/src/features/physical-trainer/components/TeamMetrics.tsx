@@ -70,7 +70,8 @@ export default function TeamMetrics({
   };
 
   const sortedPlayers = [...players].sort((a, b) => {
-    let aValue: any, bValue: any;
+    let aValue: string | number;
+    let bValue: string | number;
     
     switch (sortField) {
       case 'number':

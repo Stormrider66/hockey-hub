@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import CalendarView from '@/features/calendar/components/CalendarView';
+import { CalendarView } from '@/features/calendar/components/CalendarView';
 import QuickSessionScheduler from './QuickSessionScheduler';
 import TrainingLoadOverlay from '@/features/calendar/components/TrainingLoadOverlay';
 import PlayerAvailabilityOverlay from '@/features/calendar/components/PlayerAvailabilityOverlay';
 import { Button } from '@/components/ui/button';
 import { Plus, Zap, Activity, Users } from 'lucide-react';
+import type { CalendarEvent } from '../types';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,7 +60,7 @@ export default function TrainerCalendarView({
   }, []);
 
   // This would be integrated with the calendar's slot selection
-  const handleSlotSelect = useCallback((slotInfo: any) => {
+  const handleSlotSelect = useCallback((slotInfo: { start: Date; end: Date }) => {
     const date = new Date(slotInfo.start);
     const time = date.toTimeString().slice(0, 5);
     handleQuickSchedule(date, time);

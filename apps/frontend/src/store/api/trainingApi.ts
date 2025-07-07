@@ -486,6 +486,68 @@ export const trainingApi = createApi({
       invalidatesTags: ['Template'],
     }),
 
+    // Bulk Assignment
+    createBulkWorkoutAssignment: builder.mutation<
+      ApiResponse<{
+        created: number;
+        errors: Array<{ playerId: string; error: string }>;
+        assignments: WorkoutSession[];
+      }>,
+      {
+        templateId?: string;
+        workout: CreateWorkoutRequest;
+        playerIds: string[];
+        scheduleDates: string[];
+        conflictResolution?: 'skip' | 'override' | 'merge';
+      }
+    >({
+      query: (data) => ({
+        url: '/training/sessions/bulk-assign',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    checkWorkoutConflicts: builder.mutation<
+      ApiResponse<{
+        conflicts: Array<{
+          playerId: string;
+          date: string;
+          existingWorkout?: WorkoutSession;
+          type: 'scheduling' | 'medical' | 'capacity';
+        }>;
+      }>,
+      {
+        playerIds: string[];
+        scheduleDates: string[];
+      }
+    >({
+      query: (data) => ({
+        url: '/training/sessions/check-conflicts',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    getPlayerMedicalRestrictions: builder.query<
+      ApiResponse<Array<{
+        playerId: string;
+        restrictions: string[];
+        injuries: Array<{
+          type: string;
+          severity: string;
+          affectedExercises: string[];
+        }>;
+      }>>,
+      { playerIds: string[] }
+    >({
+      query: ({ playerIds }) => ({
+        url: '/training/medical-restrictions',
+        params: { playerIds: playerIds.join(',') },
+      }),
+    }),
+
     // Analytics
     getPlayerTestHistory: builder.query<{
       player: { id: string; name: string };
@@ -501,6 +563,45 @@ export const trainingApi = createApi({
       topPerformers: { playerId: string; playerName: string; score: number }[];
     }, string>({
       query: (teamId) => `/analytics/team/${teamId}/test-stats`,
+    }),
+
+    // Test Analytics
+    getTestAnalytics: builder.query<{
+      summary: {
+        totalTests: number;
+        totalBatches: number;
+        averageImprovement: number;
+        topPerformers: Array<{
+          playerId: string;
+          playerName: string;
+          improvement: number;
+        }>;
+      };
+      testTypeDistribution: Record<string, number>;
+      recentTests: PhysicalTest[];
+      upcomingBatches: TestBatch[];
+    }, { teamId?: string; dateFrom?: string; dateTo?: string }>({
+      query: (params) => ({
+        url: '/tests/analytics',
+        params,
+      }),
+      providesTags: ['Test'],
+    }),
+
+    // Test History
+    getTestHistory: builder.query<{
+      tests: PhysicalTest[];
+      batches: TestBatch[];
+      trends: Array<{
+        testType: string;
+        values: Array<{ date: string; value: number }>;
+      }>;
+    }, { playerId?: string; teamId?: string; limit?: number }>({
+      query: (params) => ({
+        url: '/tests/history',
+        params,
+      }),
+      providesTags: ['Test'],
     }),
 
     // Training Discussions
@@ -642,9 +743,16 @@ export const {
   useUpdateTemplateMutation,
   useDeleteTemplateMutation,
   
+  // Bulk Assignment
+  useCreateBulkWorkoutAssignmentMutation,
+  useCheckWorkoutConflictsMutation,
+  useGetPlayerMedicalRestrictionsQuery,
+  
   // Analytics
   useGetPlayerTestHistoryQuery,
   useGetTeamTestStatsQuery,
+  useGetTestAnalyticsQuery,
+  useGetTestHistoryQuery,
   
   // Training Discussions
   useCreateTrainingDiscussionMutation,

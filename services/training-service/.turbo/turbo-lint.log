@@ -1,0 +1,4 @@
+
+> @hockey-hub/training-service@1.0.0 lint /mnt/c/Hockey Hub/services/training-service
+> eslint src --ext .ts,.tsx
+
