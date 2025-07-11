@@ -143,24 +143,49 @@ const baseQuery = fetchBaseQuery({
 export const playerApi = createApi({
   reducerPath: 'playerApi',
   baseQuery: createMockEnabledBaseQuery(baseQuery),
-  tagTypes: ['PlayerOverview', 'Wellness', 'Training', 'Players'],
+  tagTypes: ['PlayerOverview', 'Wellness', 'Training', 'Players', 'Teams'],
   endpoints: (builder) => ({
-    getPlayers: builder.query<{ data: Array<{
+    getPlayers: builder.query<{ players: Array<{
       id: string;
+      name: string;
       firstName: string;
       lastName: string;
       jerseyNumber?: string;
       position?: string;
+      team?: string;
       teamId?: string;
       teamName?: string;
       profilePicture?: string;
+      avatarUrl?: string;
       lastWorkout?: string;
-    }> }, { organizationId: string; includeStats?: boolean }>({
-      query: ({ organizationId, includeStats = false }) => ({
-        url: `organizations/${organizationId}/players`,
-        params: { includeStats },
+      wellness?: {
+        status: 'healthy' | 'injured' | 'limited' | 'unavailable';
+      };
+      medicalRestrictions?: string[];
+    }> }, { organizationId?: string; includeStats?: boolean } | void>({
+      query: (params = {}) => ({
+        url: `players`,
+        params: params && 'includeStats' in params ? { includeStats: params.includeStats } : {},
       }),
       providesTags: ['Players'],
+      transformResponse: (response: any) => {
+        // Handle different response formats
+        if (response.data) {
+          return { players: response.data.map((p: any) => ({
+            ...p,
+            name: p.name || `${p.firstName} ${p.lastName}`,
+            team: p.teamName || p.team,
+            avatarUrl: p.profilePicture || p.avatarUrl
+          })) };
+        }
+        if (response.players) {
+          return response;
+        }
+        if (Array.isArray(response)) {
+          return { players: response };
+        }
+        return { players: [] };
+      },
     }),
     getPlayerOverview: builder.query<PlayerOverviewResponse, number>({
       query: (playerId) => `players/${playerId}/overview`,
@@ -182,6 +207,17 @@ export const playerApi = createApi({
       }),
       invalidatesTags: ['PlayerOverview', 'Training'],
     }),
+    getTeams: builder.query<{ teams: Array<{
+      id: string;
+      name: string;
+      category: string;
+      ageGroup: string;
+      level: string;
+      players?: Array<{ id: string; name: string }>;
+    }> }, void>({
+      query: () => `teams`,
+      providesTags: ['Teams'],
+    }),
   }),
 });
 
@@ -191,4 +227,5 @@ export const {
   useGetPlayerOverviewQuery,
   useSubmitWellnessMutation,
   useCompleteTrainingMutation,
+  useGetTeamsQuery,
 } = playerApi;

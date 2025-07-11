@@ -1,90 +1,122 @@
-# Hockey Hub Documentation
+# Hockey Hub Documentation Hub
 
-Welcome to the comprehensive documentation for Hockey Hub - a professional sports management platform for hockey teams.
+Welcome to the Hockey Hub documentation system. This centralized hub provides easy access to all documentation, organized by purpose and audience.
 
-## 📖 Documentation Index
+## 🚀 Quick Navigation
 
-### 🚀 Getting Started
-- **[Quick Start Guide](../QUICK-START.md)** - Get Hockey Hub running quickly
-- **[Installation Guide](DEPLOYMENT-QUICK-START.md)** - Step-by-step installation
-- **[Development Setup](../DEVELOPER-GUIDE.md)** - Development environment setup
-- **[Contributing Guidelines](../CONTRIBUTING.md)** - How to contribute to the project
+### For Developers
+- [Quick Start Guide](./QUICK-START-GUIDE.md) - Get up and running in 5 minutes
+- [Developer Guide](./DEVELOPER-GUIDE.md) - Comprehensive development documentation
+- [API Reference](./API-REFERENCE.md) - Complete API documentation
+- [Architecture Overview](./ARCHITECTURE.md) - System design and architecture
 
-### 🏗️ Architecture & Design
-- **[System Architecture](ARCHITECTURE.md)** - Complete architectural overview
-- **[Microservices Design](ADDING-NEW-SERVICES.md)** - Service design patterns
-- **[Database Schema](database-migrations.md)** - Database design and migrations
-- **[Security Architecture](../SECURITY-AUDIT-CHECKLIST.md)** - Security implementation
+### For Users
+- [User Manual](./USER-MANUAL.md) - Complete user documentation for all roles
+- [Admin Guide](./ADMIN-GUIDE.md) - System administration documentation
 
-### 📡 API Documentation
-- **[REST API Reference](API.md)** - Complete API documentation
-- **[API Development Guide](API-DEVELOPMENT.md)** - Building and extending APIs
-- **[Authentication Guide](AUTH-TESTING.md)** - Authentication implementation
-- **[WebSocket Events](chat/SOCKET-EVENTS.md)** - Real-time communication
+### For Contributors
+- [Contributing Guide](../CONTRIBUTING.md) - How to contribute to Hockey Hub
+- [Testing Guide](./TESTING-GUIDE.md) - Testing standards and procedures
 
-### 🎯 Feature Guides
+### For DevOps & Security
+- [Security Guide](./SECURITY-GUIDE.md) - Critical security requirements and compliance
+- [Deployment Guide](./DEPLOYMENT-GUIDE.md) - Production deployment procedures
 
-#### Core Features
-- **[User Roles & Permissions](../development/role-based-permissions.md)** - RBAC system
-- **[Calendar System](CALENDAR-INTEGRATION-PLAN.md)** - Scheduling and events
-- **[Training Management](../development/hockey-app-functional-descriptions.md)** - Training features
-- **[Medical Tracking](DATABASE-SETUP.md)** - Health and injury management
+## 📚 Documentation Structure
 
-#### Advanced Features
-- **[Chat System](chat/)** - Professional messaging platform
-  - [User Guide](chat/USER-GUIDE.md) - End-user chat features
-  - [Admin Guide](chat/ADMIN-GUIDE.md) - Chat administration
-  - [Developer Guide](chat/DEVELOPER-GUIDE.md) - Chat development
-- **[Internationalization](../INTERNATIONALIZATION-GUIDE.md)** - Multi-language support
-- **[Analytics & Reporting](../PHASE5-ADVANCED-FEATURES-SUMMARY.md)** - Data insights
+```
+docs/
+├── README.md                    # This file - Documentation hub
+├── QUICK-START-GUIDE.md        # Consolidated quick start guide
+├── DEVELOPER-GUIDE.md          # Complete developer documentation
+├── USER-MANUAL.md              # End-user documentation
+├── ADMIN-GUIDE.md              # System administration guide
+├── API-REFERENCE.md            # API documentation
+├── ARCHITECTURE.md             # System architecture
+├── TESTING-GUIDE.md            # Testing documentation
+├── DEPLOYMENT-GUIDE.md         # Deployment instructions
+├── FEATURES-OVERVIEW.md        # All features documentation
+├── TECHNICAL-IMPROVEMENTS.md   # Technical enhancements log
+├── MIGRATION-GUIDE.md          # Migration documentation
+│
+├── guides/                     # Role-specific guides
+│   ├── player-guide.md
+│   ├── coach-guide.md
+│   ├── parent-guide.md
+│   ├── medical-guide.md
+│   ├── equipment-guide.md
+│   └── physical-trainer-guide.md
+│
+├── services/                   # Service-specific docs
+│   ├── training-service.md
+│   ├── calendar-service.md
+│   ├── communication-service.md
+│   └── ...
+│
+├── archive/                    # Archived/outdated docs
+│   └── [old documentation]
+│
+└── reports/                    # Test reports and analyses
+    ├── test-coverage.md
+    ├── performance-analysis.md
+    └── security-audit.md
+```
 
-### 🛠️ Development
+## 🎯 Quick Links by Topic
 
-#### Development Guides
-- **[Testing Guide](TESTING-GUIDE.md)** - Testing strategies and setup
-- **[Migration Guide](MIGRATION-GUIDE.md)** - Database migrations
-- **[Code Coverage](COVERAGE-SETUP.md)** - Testing coverage setup
-- **[Performance Optimization](../REDIS-CACHE-OPTIMIZATION-SUMMARY.md)** - Caching strategies
+### Getting Started
+- **New Developers**: Start with [Quick Start Guide](./QUICK-START-GUIDE.md)
+- **Frontend Development**: See [Frontend Section](./DEVELOPER-GUIDE.md#frontend-development)
+- **Backend Development**: See [Backend Section](./DEVELOPER-GUIDE.md#backend-development)
+- **Testing**: See [Testing Guide](./TESTING-GUIDE.md)
 
-#### Backend Development
-- **[Service Development](../services/README.md)** - Backend service development
-- **[Database Management](DATABASE-SETUP.md)** - Database setup and management
-- **[Error Handling](../packages/shared-lib/src/errors/)** - Error handling patterns
-- **[Monitoring Setup](../packages/monitoring/)** - Application monitoring
+### Features & Functionality
+- **All Features**: [Features Overview](./FEATURES-OVERVIEW.md)
+- **Chat System**: [Chat Documentation](./services/communication-service.md#chat-system)
+- **Calendar System**: [Calendar Documentation](./services/calendar-service.md)
+- **Physical Training**: [Training Documentation](./services/training-service.md)
 
-#### Frontend Development
-- **[Frontend Architecture](../apps/frontend/README.md)** - Frontend development guide
-- **[UI Components](../apps/frontend/src/components/)** - Component library
-- **[State Management](../apps/frontend/src/store/)** - Redux implementation
-- **[Internationalization](../packages/translations/)** - Frontend i18n
+### Technical Reference
+- **Architecture**: [System Architecture](./ARCHITECTURE.md)
+- **API Documentation**: [API Reference](./API-REFERENCE.md)
+- **Database Schema**: [Database Documentation](./DEVELOPER-GUIDE.md#database)
+- **Security**: [Security Guide](./ADMIN-GUIDE.md#security)
 
-### 🚀 Deployment & Operations
+### Deployment & Operations
+- **Deployment**: [Deployment Guide](./DEPLOYMENT-GUIDE.md)
+- **Monitoring**: [Operations Guide](./ADMIN-GUIDE.md#monitoring)
+- **Troubleshooting**: [Troubleshooting Guide](./ADMIN-GUIDE.md#troubleshooting)
 
-#### Deployment
-- **[Production Deployment](DEPLOYMENT.md)** - Production deployment guide
-- **[Docker Setup](DEPLOYMENT-QUICK-START.md)** - Containerization
-- **[Environment Configuration](../services/README.md)** - Environment setup
-- **[Monitoring & Logging](../packages/monitoring/)** - Operations monitoring
+## 📊 Documentation Status
 
-#### Operations
-- **[Database Operations](DATABASE-FINAL-SUMMARY.md)** - Database maintenance
-- **[Security Operations](../SECURITY-AUDIT-CHECKLIST.md)** - Security monitoring
-- **[Performance Monitoring](../REDIS-CACHE-OPTIMIZATION-SUMMARY.md)** - Performance tracking
-- **[Backup & Recovery](DATABASE-SETUP.md)** - Data protection
+| Category | Status | Last Updated |
+|----------|--------|--------------|
+| Quick Start | ✅ Complete | July 2025 |
+| Developer Guide | ✅ Complete | July 2025 |
+| API Reference | ✅ Complete | July 2025 |
+| User Manual | ✅ Complete | July 2025 |
+| Architecture | ✅ Complete | July 2025 |
+| Deployment | ✅ Complete | July 2025 |
+| Testing | ✅ Complete | July 2025 |
 
-### 📊 Project Information
+## 🔍 Search Documentation
 
-#### Project Status
-- **[Current Status](../CLAUDE.md)** - Project memory bank and status
-- **[Implementation Phases](../development/)** - Development phases
-- **[Feature Completion](../CHAT-SYSTEM-COMPLETE.md)** - Completed features
-- **[Technical Roadmap](../IMPROVEMENT-PLAN.md)** - Future development
+Looking for something specific? Use these keywords:
 
-#### Technical Specifications
-- **[Technology Stack](ARCHITECTURE.md#technology-stack)** - Technologies used
-- **[System Requirements](DEPLOYMENT.md#system-requirements)** - Infrastructure needs
-- **[Performance Metrics](../TEST-COVERAGE-REPORT.md)** - Performance data
-- **[Security Specifications](../SECURITY-AUDIT-CHECKLIST.md)** - Security measures
+- **Authentication**: JWT, RBAC, login, security
+- **Frontend**: React, Next.js, Redux, components
+- **Backend**: microservices, API, database
+- **Testing**: Jest, Cypress, unit tests, integration
+- **Deployment**: Docker, PM2, production
+- **Features**: chat, calendar, training, medical
+
+## 🤝 Contributing to Documentation
+
+See our [Documentation Standards](./DOCUMENTATION-STANDARDS.md) for guidelines on:
+- Writing style and formatting
+- Documentation structure
+- Code examples
+- API documentation format
 
 ## 📚 Documentation by Audience
 

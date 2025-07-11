@@ -1,4 +1,6 @@
 {
+  "save": "Save",
+  "cancel": "Cancel",
   "app": {
     "name": "Hockey Hub",
     "tagline": "Complete Sports Management Platform",
@@ -17,10 +19,12 @@
     "settings": "Settings",
     "profile": "Profile",
     "logout": "Logout",
-    "help": "Help"
+    "help": "Help",
+    "backToDashboard": "Back to Dashboard"
   },
   "actions": {
     "save": "Save",
+    "saving": "Saving...",
     "cancel": "Cancel",
     "delete": "Delete",
     "edit": "Edit",
@@ -55,6 +59,7 @@
     "selectAll": "Select All",
     "deselectAll": "Deselect All",
     "clear": "Clear",
+    "clearFilter": "Clear filter",
     "reset": "Reset",
     "apply": "Apply",
     "done": "Done",
@@ -227,5 +232,18 @@
     "previous": "Previous",
     "next": "Next",
     "goToPage": "Go to page"
+  },
+  "teamSelector": {
+    "team": "Team",
+    "selectTeam": "Select Team",
+    "allTeams": "All Teams",
+    "personal": "Personal View"
+  },
+  "loading": {
+    "loadingData": "Loading test data..."
+  },
+  "errors": {
+    "loadingError": "Error loading test data",
+    "tryRefresh": "Please try refreshing the page"
   }
 }

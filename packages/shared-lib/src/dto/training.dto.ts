@@ -1,6 +1,7 @@
 import { IsString, IsOptional, IsEnum, IsDateString, IsArray, IsUUID, IsInt, Min, Max, IsBoolean, ValidateNested, IsNumber, IsObject, MaxLength } from 'class-validator';
 import { Type } from 'class-transformer';
 import { WorkoutType, WorkoutStatus, ExerciseCategory, ExerciseUnit } from '../index';
+import { IntervalProgramDto } from './interval-program.dto';
 
 export class CreateWorkoutSessionDto {
   @IsString()
@@ -38,6 +39,11 @@ export class CreateWorkoutSessionDto {
   @ValidateNested()
   @Type(() => WorkoutSettingsDto)
   settings?: WorkoutSettingsDto;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => IntervalProgramDto)
+  intervalProgram?: IntervalProgramDto;
 }
 
 export class WorkoutSettingsDto {

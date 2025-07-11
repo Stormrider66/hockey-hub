@@ -8,6 +8,11 @@ import type {
   ExerciseTemplate,
   ApiResponse 
 } from '@hockey-hub/shared-lib';
+import type { SessionTemplate } from '@/features/physical-trainer/types';
+import type { IntervalProgram, ConditioningSession } from '@/features/physical-trainer/types/conditioning.types';
+import type { HybridProgram, HybridWorkoutSession } from '@/features/physical-trainer/types/hybrid.types';
+import type { AgilityProgram, AgilityDrill } from '@/features/physical-trainer/types/agility.types';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 // Re-export types for convenience
 export type { 
@@ -78,14 +83,17 @@ export interface ExerciseTemplate {
 export interface CreateWorkoutRequest {
   title: string;
   description?: string;
-  type: 'strength' | 'cardio' | 'skill' | 'recovery' | 'mixed';
+  type: 'strength' | 'cardio' | 'skill' | 'recovery' | 'mixed' | 'conditioning' | 'hybrid' | 'agility';
   scheduledDate: string;
   location: string;
   teamId: string;
   playerIds: string[];
   estimatedDuration: number;
-  exercises: Omit<Exercise, 'id' | 'workoutSessionId'>[];
+  exercises?: Omit<Exercise, 'id' | 'workoutSessionId'>[];
   playerLoads?: Omit<PlayerWorkoutLoad, 'id' | 'workoutSessionId' | 'createdAt'>[];
+  intervalProgram?: IntervalProgram;
+  hybridProgram?: HybridProgram;
+  agilityProgram?: AgilityProgram;
   settings?: {
     allowIndividualLoads: boolean;
     displayMode: 'grid' | 'focus' | 'tv';
@@ -93,6 +101,40 @@ export interface CreateWorkoutRequest {
     autoRotation: boolean;
     rotationInterval: number;
   };
+}
+
+export interface CreateConditioningWorkoutRequest {
+  title: string;
+  description?: string;
+  type: 'conditioning';
+  scheduledDate: string;
+  location: string;
+  teamId: string;
+  playerIds: string[];
+  intervalProgram: IntervalProgram;
+  personalizeForPlayers?: boolean;
+}
+
+export interface CreateHybridWorkoutRequest {
+  title: string;
+  description?: string;
+  type: 'hybrid';
+  scheduledDate: string;
+  location: string;
+  teamId: string;
+  playerIds: string[];
+  hybridProgram: HybridProgram;
+}
+
+export interface CreateAgilityWorkoutRequest {
+  title: string;
+  description?: string;
+  type: 'agility';
+  scheduledDate: string;
+  location: string;
+  teamId: string;
+  playerIds: string[];
+  agilityProgram: AgilityProgram;
 }
 
 export interface UpdateWorkoutRequest {
@@ -175,23 +217,25 @@ const API_GATEWAY_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://local
 // Create the API slice
 export const trainingApi = createApi({
   reducerPath: 'trainingApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_GATEWAY_URL}/training`,
-    prepareHeaders: (headers, { getState }) => {
-      // Get token from auth state if available
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: createMockEnabledBaseQuery(
+    fetchBaseQuery({
+      baseUrl: `${API_GATEWAY_URL}/training`,
+      prepareHeaders: (headers, { getState }) => {
+        // Get token from auth state if available
+        const token = localStorage.getItem('authToken');
+        if (token) {
+          headers.set('authorization', `Bearer ${token}`);
+        }
+        return headers;
+      },
+    })
+  ),
   tagTypes: ['Session', 'Test', 'TestBatch', 'Exercise', 'Template', 'Execution'],
   endpoints: (builder) => ({
     // Workout Sessions (new endpoints)
     getWorkoutSessions: builder.query<ApiResponse<WorkoutSession[]>, { date?: string; teamId?: string; playerId?: string; status?: string }>({
       query: (params) => ({
-        url: '/training/sessions',
+        url: '/sessions',
         params,
       }),
       providesTags: ['Session'],
@@ -199,13 +243,13 @@ export const trainingApi = createApi({
     }),
 
     getWorkoutSessionById: builder.query<ApiResponse<WorkoutSession>, string>({
-      query: (id) => `/training/sessions/${id}`,
+      query: (id) => `/sessions/${id}`,
       providesTags: (result, error, id) => [{ type: 'Session', id }],
     }),
 
     createWorkoutSession: builder.mutation<ApiResponse<WorkoutSession>, CreateWorkoutRequest>({
       query: (workout) => ({
-        url: '/training/sessions',
+        url: '/sessions',
         method: 'POST',
         body: workout,
       }),
@@ -214,7 +258,7 @@ export const trainingApi = createApi({
 
     updateWorkoutSession: builder.mutation<ApiResponse<WorkoutSession>, UpdateWorkoutRequest>({
       query: ({ id, data }) => ({
-        url: `/training/sessions/${id}`,
+        url: `/sessions/${id}`,
         method: 'PUT',
         body: data,
       }),
@@ -223,7 +267,7 @@ export const trainingApi = createApi({
 
     deleteWorkoutSession: builder.mutation<ApiResponse<void>, string>({
       query: (id) => ({
-        url: `/training/sessions/${id}`,
+        url: `/sessions/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Session'],
@@ -231,7 +275,7 @@ export const trainingApi = createApi({
 
     updatePlayerWorkoutLoad: builder.mutation<ApiResponse<PlayerWorkoutLoad>, { sessionId: string; playerId: string; data: Partial<PlayerWorkoutLoad> }>({
       query: ({ sessionId, playerId, data }) => ({
-        url: `/training/sessions/${sessionId}/players/${playerId}/load`,
+        url: `/sessions/${sessionId}/players/${playerId}/load`,
         method: 'PUT',
         body: data,
       }),
@@ -241,7 +285,7 @@ export const trainingApi = createApi({
     // Workout Execution
     startWorkoutExecution: builder.mutation<ApiResponse<WorkoutExecution>, StartExecutionRequest>({
       query: (data) => ({
-        url: '/training/executions/start',
+        url: '/executions/start',
         method: 'POST',
         body: data,
       }),
@@ -341,12 +385,22 @@ export const trainingApi = createApi({
     }),
 
     // Physical Tests
-    getTests: builder.query<PhysicalTest[], { playerId?: string; testBatchId?: string; testType?: string }>({
+    getTests: builder.query<{ results: PhysicalTest[] }, { playerIds?: string[]; testBatchId?: string; testType?: string }>({
       query: (params) => ({
         url: '/tests',
-        params,
+        params: {
+          ...params,
+          playerIds: params.playerIds?.join(',')
+        },
       }),
       providesTags: ['Test'],
+      transformResponse: (response: PhysicalTest[] | { results: PhysicalTest[] }) => {
+        // Handle both array and object response formats
+        if (Array.isArray(response)) {
+          return { results: response };
+        }
+        return response;
+      },
     }),
 
     createTest: builder.mutation<PhysicalTest, CreateTestRequest>({
@@ -417,12 +471,19 @@ export const trainingApi = createApi({
     }),
 
     // Exercise Library
-    getExercises: builder.query<Exercise[], { category?: string; search?: string }>({
+    getExercises: builder.query<{ exercises: ExerciseTemplate[] }, { category?: string; search?: string; organizationId?: string }>({
       query: (params) => ({
         url: '/exercises',
         params,
       }),
       providesTags: ['Exercise'],
+      transformResponse: (response: ExerciseTemplate[] | { exercises: ExerciseTemplate[] }) => {
+        // Handle both array and object response formats
+        if (Array.isArray(response)) {
+          return { exercises: response };
+        }
+        return response;
+      },
     }),
 
     createExercise: builder.mutation<Exercise, Omit<Exercise, 'id'>>({
@@ -484,6 +545,93 @@ export const trainingApi = createApi({
         method: 'DELETE',
       }),
       invalidatesTags: ['Template'],
+    }),
+
+    // Session Templates (more comprehensive than basic exercise templates)
+    getSessionTemplates: builder.query<ApiResponse<SessionTemplate[]>, {
+      page?: number;
+      limit?: number;
+      category?: string;
+      type?: string;
+      difficulty?: string;
+      visibility?: string;
+      search?: string;
+      tags?: string[];
+      createdBy?: string;
+    }>({
+      query: (params) => ({
+        url: '/templates',
+        params,
+      }),
+      providesTags: ['Template'],
+      transformResponse: (response: any) => {
+        // Handle both paginated and non-paginated responses
+        if (response.data) {
+          return response;
+        }
+        return { success: true, data: response };
+      },
+    }),
+
+    getSessionTemplateById: builder.query<SessionTemplate, string>({
+      query: (id) => `/templates/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Template', id }],
+    }),
+
+    getPopularSessionTemplates: builder.query<SessionTemplate[], { limit?: number }>({
+      query: (params) => ({
+        url: '/templates/popular',
+        params,
+      }),
+      providesTags: ['Template'],
+    }),
+
+    createSessionTemplate: builder.mutation<SessionTemplate, Partial<SessionTemplate>>({
+      query: (template) => ({
+        url: '/templates',
+        method: 'POST',
+        body: template,
+      }),
+      invalidatesTags: ['Template'],
+    }),
+
+    updateSessionTemplate: builder.mutation<SessionTemplate, { id: string; data: Partial<SessionTemplate> }>({
+      query: ({ id, data }) => ({
+        url: `/templates/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Template', id }],
+    }),
+
+    deleteSessionTemplate: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/templates/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Template'],
+    }),
+
+    duplicateSessionTemplate: builder.mutation<SessionTemplate, { id: string; name: string }>({
+      query: ({ id, name }) => ({
+        url: `/templates/${id}/duplicate`,
+        method: 'POST',
+        body: { name },
+      }),
+      invalidatesTags: ['Template'],
+    }),
+
+    // Bulk assign template to workouts
+    bulkAssignTemplate: builder.mutation<
+      { created: number; errors: any[] },
+      { templateId: string; data: { playerIds: string[]; teamId: string; scheduledDates: string[] } }
+    >({
+      query: ({ templateId, data }) => ({
+        url: `/templates/${templateId}/bulk-assign`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Session', 'Template'],
     }),
 
     // Bulk Assignment
@@ -688,6 +836,145 @@ export const trainingApi = createApi({
         method: 'POST',
       }),
     }),
+
+    // Conditioning Workout Endpoints
+    createConditioningWorkout: builder.mutation<ApiResponse<WorkoutSession>, CreateConditioningWorkoutRequest>({
+      query: (workout) => ({
+        url: '/conditioning-workouts',
+        method: 'POST',
+        body: workout,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    getConditioningWorkouts: builder.query<ApiResponse<ConditioningSession[]>, { teamId?: string; date?: string }>({
+      query: (params) => ({
+        url: '/conditioning-workouts',
+        params,
+      }),
+      providesTags: ['Session'],
+    }),
+
+    getConditioningWorkoutById: builder.query<ApiResponse<ConditioningSession>, string>({
+      query: (id) => `/conditioning-workouts/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Session', id }],
+    }),
+
+    updateConditioningWorkout: builder.mutation<ApiResponse<ConditioningSession>, { id: string; data: Partial<CreateConditioningWorkoutRequest> }>({
+      query: ({ id, data }) => ({
+        url: `/conditioning-workouts/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Session', id }],
+    }),
+
+    // Hybrid Workout Endpoints
+    createHybridWorkout: builder.mutation<ApiResponse<HybridWorkoutSession>, CreateHybridWorkoutRequest>({
+      query: (workout) => ({
+        url: '/hybrid-workouts',
+        method: 'POST',
+        body: workout,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    getHybridWorkouts: builder.query<ApiResponse<HybridWorkoutSession[]>, { teamId?: string; date?: string }>({
+      query: (params) => ({
+        url: '/hybrid-workouts',
+        params,
+      }),
+      providesTags: ['Session'],
+    }),
+
+    getHybridWorkoutById: builder.query<ApiResponse<HybridWorkoutSession>, string>({
+      query: (id) => `/hybrid-workouts/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Session', id }],
+    }),
+
+    updateHybridWorkout: builder.mutation<ApiResponse<HybridWorkoutSession>, { id: string; data: Partial<CreateHybridWorkoutRequest> }>({
+      query: ({ id, data }) => ({
+        url: `/hybrid-workouts/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Session', id }],
+    }),
+
+    // Agility Workout Endpoints
+    createAgilityWorkout: builder.mutation<ApiResponse<WorkoutSession>, CreateAgilityWorkoutRequest>({
+      query: (workout) => ({
+        url: '/agility-workouts',
+        method: 'POST',
+        body: workout,
+      }),
+      invalidatesTags: ['Session'],
+    }),
+
+    getAgilityWorkouts: builder.query<ApiResponse<WorkoutSession[]>, { teamId?: string; date?: string }>({
+      query: (params) => ({
+        url: '/agility-workouts',
+        params,
+      }),
+      providesTags: ['Session'],
+    }),
+
+    getAgilityWorkoutById: builder.query<ApiResponse<WorkoutSession>, string>({
+      query: (id) => `/agility-workouts/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Session', id }],
+    }),
+
+    updateAgilityWorkout: builder.mutation<ApiResponse<WorkoutSession>, { id: string; data: Partial<CreateAgilityWorkoutRequest> }>({
+      query: ({ id, data }) => ({
+        url: `/agility-workouts/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Session', id }],
+    }),
+
+    // Agility Drill Management
+    getAgilityDrills: builder.query<ApiResponse<AgilityDrill[]>, { category?: string; search?: string }>({
+      query: (params) => ({
+        url: '/agility-drills',
+        params,
+      }),
+      providesTags: ['Exercise'],
+    }),
+
+    createAgilityDrill: builder.mutation<ApiResponse<AgilityDrill>, Omit<AgilityDrill, 'id'>>({
+      query: (drill) => ({
+        url: '/agility-drills',
+        method: 'POST',
+        body: drill,
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
+
+    updateAgilityDrill: builder.mutation<ApiResponse<AgilityDrill>, { id: string; data: Partial<AgilityDrill> }>({
+      query: ({ id, data }) => ({
+        url: `/agility-drills/${id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
+
+    deleteAgilityDrill: builder.mutation<ApiResponse<void>, string>({
+      query: (id) => ({
+        url: `/agility-drills/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Exercise'],
+    }),
+
+    // Equipment Configurations
+    getEquipmentConfigs: builder.query<ApiResponse<any>, { type?: string }>({
+      query: (params) => ({
+        url: '/equipment-config',
+        params,
+      }),
+    }),
   }),
 });
 
@@ -742,6 +1029,16 @@ export const {
   useCreateTemplateMutation,
   useUpdateTemplateMutation,
   useDeleteTemplateMutation,
+  useBulkAssignTemplateMutation,
+  
+  // Session Templates
+  useGetSessionTemplatesQuery,
+  useGetSessionTemplateByIdQuery,
+  useGetPopularSessionTemplatesQuery,
+  useCreateSessionTemplateMutation,
+  useUpdateSessionTemplateMutation,
+  useDeleteSessionTemplateMutation,
+  useDuplicateSessionTemplateMutation,
   
   // Bulk Assignment
   useCreateBulkWorkoutAssignmentMutation,
@@ -765,4 +1062,31 @@ export const {
   useUpdateDiscussionStatusMutation,
   useActivateDiscussionMutation,
   useCompleteDiscussionMutation,
+  
+  // Conditioning Workouts
+  useCreateConditioningWorkoutMutation,
+  useGetConditioningWorkoutsQuery,
+  useGetConditioningWorkoutByIdQuery,
+  useUpdateConditioningWorkoutMutation,
+  
+  // Hybrid Workouts
+  useCreateHybridWorkoutMutation,
+  useGetHybridWorkoutsQuery,
+  useGetHybridWorkoutByIdQuery,
+  useUpdateHybridWorkoutMutation,
+  
+  // Agility Workouts
+  useCreateAgilityWorkoutMutation,
+  useGetAgilityWorkoutsQuery,
+  useGetAgilityWorkoutByIdQuery,
+  useUpdateAgilityWorkoutMutation,
+  
+  // Agility Drills
+  useGetAgilityDrillsQuery,
+  useCreateAgilityDrillMutation,
+  useUpdateAgilityDrillMutation,
+  useDeleteAgilityDrillMutation,
+  
+  // Equipment
+  useGetEquipmentConfigsQuery,
 } = trainingApi;

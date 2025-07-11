@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 export interface Injury {
   id: number;
@@ -50,27 +51,29 @@ export interface TeamMedicalStats {
 
 export const medicalApi = createApi({
   reducerPath: 'medicalApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: '/api/v1/medical',
-    prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: createMockEnabledBaseQuery(
+    fetchBaseQuery({
+      baseUrl: '/api/v1/medical',
+      prepareHeaders: (headers, { getState }) => {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+          headers.set('authorization', `Bearer ${token}`);
+        }
+        return headers;
+      },
+    })
+  ),
   tagTypes: ['Injury', 'Treatment', 'MedicalReport'],
   endpoints: (builder) => ({
     getTeamMedicalStats: builder.query<TeamMedicalStats, void>({
       query: () => '/team/stats',
       providesTags: ['Injury'],
     }),
-    getPlayerMedicalOverview: builder.query<PlayerMedicalOverview, number>({
+    getPlayerMedicalOverview: builder.query<PlayerMedicalOverview, string | number>({
       query: (playerId) => `/players/${playerId}/overview`,
       providesTags: (result, error, playerId) => [
-        { type: 'Injury', id: playerId },
-        { type: 'Treatment', id: playerId },
+        { type: 'Injury', id: String(playerId) },
+        { type: 'Treatment', id: String(playerId) },
       ],
     }),
     getAllInjuries: builder.query<Injury[], void>({

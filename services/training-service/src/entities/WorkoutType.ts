@@ -11,7 +11,8 @@ export enum WorkoutType {
   RECOVERY = 'RECOVERY',
   REHABILITATION = 'REHABILITATION',
   SPORT_SPECIFIC = 'SPORT_SPECIFIC',
-  MENTAL = 'MENTAL'
+  MENTAL = 'MENTAL',
+  HYBRID = 'HYBRID'
 }
 
 export interface MetricsConfig {
@@ -647,6 +648,60 @@ export const defaultWorkoutTypeConfigs: Record<WorkoutType, Partial<WorkoutTypeC
       monitoringRequired: ['emotional state', 'stress levels', 'sleep quality'],
       maxIntensity: 80,
       recoveryTime: 0
+    }
+  },
+  [WorkoutType.HYBRID]: {
+    name: 'Hybrid Training',
+    description: 'Combines strength exercises with cardio intervals for comprehensive fitness development',
+    metricsConfig: {
+      primary: ['exerciseType', 'duration', 'intensity'],
+      secondary: ['heartRate', 'weight', 'reps', 'intervalTime'],
+      calculated: [
+        { name: 'totalWorkTime', formula: 'sum of all work intervals', unit: 'minutes' },
+        { name: 'intensityScore', formula: '(avgHeartRate / maxHeartRate) * 100', unit: '%' },
+        { name: 'workRestRatio', formula: 'totalWorkTime / totalRestTime', unit: 'ratio' }
+      ]
+    },
+    equipmentRequirements: {
+      required: ['dumbbells', 'cardio equipment'],
+      alternatives: {
+        'dumbbells': ['kettlebells', 'resistance bands', 'medicine balls'],
+        'cardio equipment': ['rowing machine', 'bike', 'treadmill', 'jump rope']
+      },
+      optional: ['barbell', 'pull-up bar', 'battle ropes', 'plyo boxes']
+    },
+    progressionModels: {
+      beginner: {
+        duration: '0-3 months',
+        focus: ['basic movements', 'aerobic base', 'work capacity'],
+        goals: ['2:1 work:rest ratio', '20-30 min sessions', 'moderate intensity']
+      },
+      intermediate: {
+        duration: '3-12 months',
+        focus: ['complex movements', 'anaerobic capacity', 'strength endurance'],
+        goals: ['3:1 work:rest ratio', '30-45 min sessions', 'high intensity intervals']
+      },
+      advanced: {
+        duration: '1-3 years',
+        focus: ['power development', 'metabolic conditioning', 'sport-specific patterns'],
+        goals: ['4:1 work:rest ratio', '45-60 min sessions', 'varied intensity zones']
+      },
+      elite: {
+        duration: '3+ years',
+        focus: ['peak performance', 'competition prep', 'advanced periodization'],
+        goals: ['customized ratios', 'sport-specific durations', 'optimized recovery']
+      }
+    },
+    safetyProtocols: {
+      warmupRequired: true,
+      warmupDuration: 10,
+      cooldownRequired: true,
+      cooldownDuration: 10,
+      contraindications: ['acute injury', 'severe cardiovascular conditions', 'extreme fatigue'],
+      injuryPrevention: ['progressive intensity', 'proper form on transitions', 'adequate hydration'],
+      monitoringRequired: ['heart rate', 'form quality', 'fatigue accumulation', 'breathing pattern'],
+      maxIntensity: 90,
+      recoveryTime: 24
     }
   }
 };

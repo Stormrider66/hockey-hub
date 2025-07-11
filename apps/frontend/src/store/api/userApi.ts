@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createMockEnabledBaseQuery } from './mockBaseQuery';
 
 export interface User {
   id: string;
@@ -9,11 +10,20 @@ export interface User {
   roles?: string[];
   organizationId?: string;
   teamId?: string;
+  team?: string;
   avatar?: string;
+  avatarUrl?: string | null;
   phoneNumber?: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  // Player-specific fields
+  jerseyNumber?: string;
+  position?: string;
+  wellness?: {
+    status: 'healthy' | 'limited' | 'injured';
+  };
+  medicalRestrictions?: string[];
 }
 
 export interface GetOrganizationUsersParams {
@@ -32,21 +42,19 @@ export interface Team {
   organizationId: string;
   isActive: boolean;
   playerCount?: number;
+  players?: number;
+  ageGroup?: string;
+  level?: string;
+  category?: string;
   createdAt: string;
   updatedAt: string;
 }
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
+  baseQuery: createMockEnabledBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as any).auth?.token;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
+    serviceName: 'user',
   }),
   tagTypes: ['User', 'OrganizationUsers', 'Team'],
   endpoints: (builder) => ({
@@ -79,17 +87,18 @@ export const userApi = createApi({
       providesTags: ['User'],
     }),
 
-    getPlayers: builder.query<User[], { organizationId?: string; teamId?: string }>({
-      query: ({ organizationId, teamId }) => {
+    getPlayers: builder.query<User[], { organizationId?: string; teamId?: string } | void>({
+      query: (params) => {
         // Get current user's organization if not provided
-        const currentUser = JSON.parse(localStorage.getItem('current_user') || '{}');
-        const orgId = organizationId || currentUser.organizationId || '';
+        const userDataStr = localStorage.getItem('user_data') || localStorage.getItem('current_user') || '{}';
+        const currentUser = JSON.parse(userDataStr);
+        const orgId = params?.organizationId || currentUser.organizationId || 'org-123'; // Default to org-123 for mock mode
         
         return {
           url: `/organizations/${orgId}/users`,
           params: {
             role: 'player',
-            teamId,
+            teamId: params?.teamId,
           },
         };
       },
@@ -103,8 +112,15 @@ export const userApi = createApi({
       providesTags: ['User'],
     }),
 
-    getTeams: builder.query<{ data: Team[] }, { organizationId: string }>({
-      query: ({ organizationId }) => `/organizations/${organizationId}/teams`,
+    getTeams: builder.query<{ data: Team[] }, { organizationId?: string } | void>({
+      query: (params) => {
+        // Get current user's organization if not provided
+        const userDataStr = localStorage.getItem('user_data') || localStorage.getItem('current_user') || '{}';
+        const currentUser = JSON.parse(userDataStr);
+        const orgId = params?.organizationId || currentUser.organizationId || 'org-123'; // Default to org-123 for mock mode
+        
+        return `/organizations/${orgId}/teams`;
+      },
       providesTags: ['Team'],
     }),
   }),

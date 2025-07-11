@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { mockBaseQuery } from './mockBaseQuery';
 
 // Types
 export enum EventType {
@@ -94,16 +95,18 @@ export interface EventConflict {
 // API Definition
 export const calendarApi = createApi({
   reducerPath: 'calendarApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api/calendar',
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
+  baseQuery: process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true' 
+    ? mockBaseQuery
+    : fetchBaseQuery({
+        baseUrl: process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:3000/api/calendar',
+        prepareHeaders: (headers) => {
+          const token = localStorage.getItem('access_token');
+          if (token) {
+            headers.set('Authorization', `Bearer ${token}`);
+          }
+          return headers;
+        },
+      }),
   tagTypes: ['Event'],
   endpoints: (builder) => ({
     // Create event

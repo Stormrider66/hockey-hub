@@ -49,6 +49,39 @@ export class WorkoutSession extends BaseEntity {
     rotationInterval: number; // seconds
   };
 
+  @Column({ type: 'jsonb', nullable: true })
+  intervalProgram?: {
+    name: string;
+    equipment: string;
+    totalDuration: number;
+    estimatedCalories: number;
+    intervals: Array<{
+      id: string;
+      type: 'warmup' | 'work' | 'rest' | 'active_recovery' | 'cooldown';
+      duration: number;
+      equipment: string;
+      targetMetrics: {
+        heartRate?: {
+          type: 'absolute' | 'percentage' | 'zone';
+          value: number;
+          reference?: 'max' | 'threshold' | 'resting';
+        };
+        watts?: {
+          type: 'absolute' | 'percentage' | 'zone';
+          value: number;
+          reference?: 'ftp' | 'max';
+        };
+        pace?: {
+          type: string;
+          value: number;
+        };
+        rpm?: number;
+        calories?: number;
+      };
+      notes?: string;
+    }>;
+  };
+
   @OneToMany(() => Exercise, exercise => exercise.workoutSession, { cascade: true })
   exercises: Exercise[];
 

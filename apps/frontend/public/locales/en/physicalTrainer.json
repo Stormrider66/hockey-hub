@@ -1,7 +1,7 @@
 {
   "dashboard": {
-    "title": "Physical Trainer Dashboard",
-    "subtitle": "Player fitness and training management",
+    "title": "Physical Training Dashboard",
+    "subtitle": "Manage training sessions, monitor player readiness, and track performance",
     "welcome": "Welcome, {{name}}",
     "todaySessions": "Today's Training Sessions",
     "playerProgress": "Player Progress Overview",
@@ -13,8 +13,17 @@
       "totalPlayers": "{{count}} total players",
       "noActiveSession": "No active session",
       "teamAverage": "Team average",
-      "upcoming": "{{count}} upcoming"
+      "upcoming": "{{count}} upcoming",
+      "activeSessions": "{{count}} active session",
+      "activeSessions_other": "{{count}} active sessions",
+      "playersReady": "{{ready}} of {{total}} ready"
     }
+  },
+  "teamSelector": {
+    "team": "Team",
+    "selectTeam": "Select Team",
+    "allTeams": "All Teams",
+    "personal": "Personal View"
   },
   "training": {
     "title": "Training Programs",
@@ -37,7 +46,55 @@
       "medium": "Medium",
       "moderate": "Moderate",
       "high": "High",
+      "max": "Maximum",
       "maximum": "Maximum"
+    },
+    "sessionTypes": {
+      "recoverySession": "Recovery Session",
+      "strengthTraining": "Strength Training",
+      "cardioIntervals": "Cardio Intervals",
+      "speedAgility": "Speed & Agility",
+      "powerDevelopment": "Power Development",
+      "sprintTraining": "Sprint Training",
+      "generalTraining": "General Training",
+      "trainingSession": "Training Session",
+      "personalTraining": "Personal Training",
+      "rehabSession": "Rehab Session"
+    },
+    "sessionDescriptions": {
+      "activeRecoveryMobility": "Active recovery & mobility",
+      "olympicLiftsPlyometrics": "Olympic lifts & plyometrics",
+      "highIntensityIntervalTraining": "High-intensity interval training",
+      "sprintDrillsLadderWork": "Sprint drills & ladder work",
+      "explosivePowerTraining": "Explosive power training",
+      "individualSprintIntervals": "Individual sprint intervals",
+      "recoveryMobilityFocus": "Recovery & mobility focus",
+      "moderateEffortSkillDevelopment": "Moderate effort, skill development",
+      "highIntensityPerformanceFocus": "High intensity, performance focus",
+      "peakPerformanceTesting": "Peak performance testing",
+      "personalRecoveryProgram": "Sidney Crosby - Recovery program",
+      "kneeRehabilitation": "Nathan MacKinnon - Knee rehabilitation",
+      "speedDevelopmentProgram": "Speed development program"
+    },
+    "locations": {
+      "gym": "Gym",
+      "weightRoom": "Weight Room",
+      "field": "Field",
+      "track": "Track",
+      "pool": "Pool",
+      "iceRink": "Ice Rink",
+      "outdoors": "Outdoors",
+      "trainingCenter": "Training Center",
+      "medicalCenter": "Medical Center"
+    },
+    "teams": {
+      "aTeam": "A-Team",
+      "j20Team": "J20 Team",
+      "u18Team": "U18 Team",
+      "u16Team": "U16 Team",
+      "womensTeam": "Women's Team",
+      "individual": "Individual",
+      "team": "Team"
     }
   },
   "sessions": {
@@ -46,29 +103,66 @@
     "current": "Current Session",
     "upcoming": "Upcoming Sessions",
     "completed": "Completed Sessions",
-    "cancel": "Cancel Session",
+    "cancel": "Cancel",
     "reschedule": "Reschedule",
     "duration": "Session Duration",
     "participants": "Participants",
     "newSession": "New Session",
-    "intensity": "{{level}} intensity",
+    "intensity": "Intensity",
     "status": {
       "active": "Active",
       "completed": "Completed",
       "upcoming": "Upcoming"
     },
     "launch": "Launch",
-    "viewDetails": "View Details"
+    "launchSession": "Launch Session",
+    "viewDetails": "View Details",
+    "configureAndLaunch": "Configure & Launch",
+    "launchTrainingSession": "Launch Training Session",
+    "totalMinutes": "Total Minutes",
+    "playersSelected": "{{count}} Players Selected",
+    "sessionDuration": "Session Duration",
+    "intensityLevel": "Intensity Level",
+    "warmupDuration": "Warm-up Duration",
+    "cooldownDuration": "Cool-down Duration",
+    "trainingFocusAreas": "Training Focus Areas",
+    "selectPlayers": "Select Players",
+    "equipmentNeeded": "Equipment Needed",
+    "sessionNotes": "Session Notes",
+    "addInstructions": "Add special instructions or notes...",
+    "launching": "Launching...",
+    "minutes": "minutes",
+    "hours": "hours",
+    "viewer": {
+      "title": "Training Session Viewer",
+      "noSessionsToday": "No training sessions scheduled for today",
+      "createFirstSession": "Create your first session"
+    },
+    "management": {
+      "title": "Training Session Management",
+      "subtitle": "Create, schedule and manage physical training sessions",
+      "schedule": "Schedule",
+      "bulkAssign": "Bulk Assign",
+      "buildSession": "Build Session",
+      "quickSchedule": "Quick Schedule"
+    }
   },
   "exercises": {
     "title": "Exercise Library",
-    "search": "Search Exercises",
+    "subtitle": "Manage your exercise database with videos and instructions",
+    "search": "Search exercises...",
     "categories": "Exercise Categories",
     "create": "Add Exercise",
     "favorite": "Favorite Exercises",
     "equipment": "Equipment Needed",
     "instructions": "Instructions",
     "video": "Video Tutorial",
+    "exercisesCount": "exercises",
+    "totalExercises": "total exercises",
+    "withVideos": "with videos",
+    "loading": "Loading exercises...",
+    "noMatchingExercises": "No exercises found matching your criteria",
+    "noExercisesYet": "No exercises in the library yet",
     "categories": {
       "upperBody": "Upper Body",
       "lowerBody": "Lower Body",
@@ -78,6 +172,28 @@
       "shooting": "Shooting Power",
       "balance": "Balance & Stability",
       "plyometric": "Plyometric"
+    },
+    "focusAreas": {
+      "strength": "Strength",
+      "speed": "Speed",
+      "endurance": "Endurance",
+      "agility": "Agility",
+      "power": "Power",
+      "flexibility": "Flexibility"
+    },
+    "equipment": {
+      "barbells": "Barbells",
+      "dumbbells": "Dumbbells",
+      "kettlebells": "Kettlebells",
+      "medicineBalls": "Medicine Balls",
+      "resistanceBands": "Resistance Bands",
+      "agilityLadder": "Agility Ladder",
+      "cones": "Cones",
+      "jumpBoxes": "Jump Boxes",
+      "trxStraps": "TRX Straps",
+      "foamRollers": "Foam Rollers",
+      "battleRopes": "Battle Ropes",
+      "sleds": "Sleds"
     }
   },
   "workouts": {
@@ -331,5 +447,238 @@
     "recurrence": "Recurrence",
     "time": "Time",
     "timezone": "Timezone"
+  },
+  "medical": {
+    "reportTitle": "Medical Report - {{playerName}}",
+    "overview": "Overview",
+    "restrictions": "Restrictions",
+    "alternatives": "Alternatives",
+    "documents": "Documents",
+    "errorLoading": "Error loading medical data",
+    "clearanceStatus": "Medical Clearance Status",
+    "cleared": "Fully Cleared",
+    "partialClearance": "Partial Clearance",
+    "notCleared": "Not Cleared",
+    "lastAssessment": "Last Assessment",
+    "currentInjuries": "Current Injuries",
+    "noActiveInjuries": "No active injuries",
+    "recoveryProgress": "Recovery Progress",
+    "expectedRecovery": "Expected Recovery",
+    "alternativeExercises": "Alternative Exercises",
+    "load": "Load",
+    "modifications": "Modifications",
+    "documentsComingSoon": "Documents Coming Soon",
+    "documentsDescription": "Medical reports and clearance forms will be available here soon",
+    "healthy": "Healthy",
+    "injured": "Injured",
+    "limited": "Limited"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "calendar": "Calendar",
+    "sessions": "Sessions",
+    "exercises": "Exercises",
+    "testing": "Testing",
+    "players": "Players",
+    "templates": "Templates"
+  },
+  "templates": {
+    "updateSuccess": "Session template updated successfully!",
+    "createSuccess": "Session template created successfully!",
+    "saveError": "Failed to save template. Please try again.",
+    "deleteSuccess": "Template deleted successfully",
+    "deleteError": "Failed to delete template",
+    "legacyTitle": "Legacy Templates",
+    "legacySubtitle": "Previous template system (will be migrated)",
+    "loading": "Loading templates...",
+    "noTemplates": "No templates created yet",
+    "createFirst": "Create Your First Template",
+    "createSingleSession": "Create single session",
+    "bulkAssignTitle": "Bulk assign to multiple players",
+    "deleteTemplate": "Delete template",
+    "items": "items",
+    "lastUsed": "Last used",
+    "never": "Never"
+  },
+  "playerStatus": {
+    "title": "Player Physical Status Overview",
+    "subtitle": "Monitor training load, recovery, and readiness",
+    "statusLabel": "Status",
+    "fatigueLabel": "Fatigue",
+    "trainingLoad": "Training Load",
+    "hrVariability": "HR Variability",
+    "powerOutput": "Power Output",
+    "recovery": "Recovery",
+    "normal": "Normal",
+    "good": "Good",
+    "ready": "Ready",
+    "caution": "Caution",
+    "rest": "Rest",
+    "status": {
+      "ready": "ready",
+      "caution": "caution",
+      "rest": "rest"
+    }
+  },
+  "testing": {
+    "tabs": {
+      "collection": "Test Collection",
+      "analysis": "Analysis",
+      "newTest": "New Test"
+    },
+    "collectionTitle": "Test Collection Dashboard",
+    "collectionSubtitle": "Recent test sessions and results",
+    "collectionInterface": "Test collection interface"
+  },
+  "conditioning": {
+    "builder": {
+      "title": "Conditioning Workout Builder",
+      "subtitle": "Create interval-based cardio workouts with personalized targets"
+    },
+    "tabs": {
+      "build": "Build",
+      "templates": "Templates",
+      "personalize": "Personalize"
+    },
+    "createSuccess": "Conditioning workout created successfully",
+    "saveError": "Failed to save conditioning workout",
+    "details": {
+      "title": "Workout Details",
+      "name": "Workout Name",
+      "namePlaceholder": "e.g., 20-min HIIT Rowing",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the workout goals and focus..."
+    },
+    "equipment": {
+      "title": "Equipment Type"
+    },
+    "timeline": {
+      "title": "Interval Timeline",
+      "addInterval": "Add Interval"
+    },
+    "editor": {
+      "selectInterval": "Select an interval to edit"
+    },
+    "intervalForm": {
+      "title": "Edit Interval",
+      "type": "Interval Type",
+      "name": "Interval Name",
+      "namePlaceholder": "Optional name for this interval",
+      "duration": "Duration",
+      "targetType": "Target Type",
+      "reference": "Reference Test",
+      "heartRate": "Target Heart Rate",
+      "watts": "Target Power",
+      "pace": "Target Pace",
+      "rpm": "Target Cadence",
+      "calories": "Target Calories",
+      "notes": "Instructions",
+      "notesPlaceholder": "Special instructions for this interval..."
+    },
+    "summary": {
+      "title": "Workout Summary"
+    },
+    "templates": {
+      "search": "Search templates..."
+    },
+    "personalization": {
+      "title": "Test-Based Personalization",
+      "description": "Personalize workout targets based on player test results",
+      "noPlayers": "No players selected. Select players to personalize their workout targets.",
+      "playersSelected": "players selected"
+    },
+    "warnings": {
+      "noIntervals": "Add at least one interval to create a workout"
+    }
+  },
+  "agility": {
+    "builder": {
+      "title": "Agility Workout Builder",
+      "subtitle": "Design agility drills with visual patterns and performance metrics"
+    },
+    "tabs": {
+      "build": "Build",
+      "library": "Drill Library",
+      "templates": "Templates",
+      "equipment": "Equipment Guide"
+    },
+    "createSuccess": "Agility workout created successfully",
+    "saveError": "Failed to save agility workout",
+    "details": {
+      "title": "Program Details",
+      "name": "Program Name",
+      "namePlaceholder": "e.g., Pre-Season Agility Test",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the focus and goals...",
+      "warmup": "Warm-up (min)",
+      "cooldown": "Cool-down (min)"
+    },
+    "drills": {
+      "title": "Drill Sequence",
+      "add": "Add Drill",
+      "empty": "No drills added yet",
+      "browse": "Browse drill library"
+    },
+    "summary": {
+      "title": "Program Summary",
+      "equipment": "Equipment Required",
+      "categories": "Drill Categories",
+      "participants": "Participants"
+    },
+    "library": {
+      "search": "Search drills...",
+      "createCustom": "Create Custom Drill"
+    },
+    "editor": {
+      "selectDrill": "Select a drill to edit or view pattern"
+    },
+    "templates": {
+      "title": "Agility Templates",
+      "subtitle": "Pre-built agility programs for different training goals"
+    },
+    "equipment": {
+      "title": "Equipment Setup Guide",
+      "subtitle": "Equipment requirements and setup instructions for your drills"
+    },
+    "warnings": {
+      "noDrills": "Add at least one drill to create an agility program"
+    },
+    "warmup": "Warm-up Phase",
+    "prepareBody": "Prepare your body for agility training",
+    "drills": "Drills",
+    "cooldown": "Cool-down Phase",
+    "stretchRecover": "Stretch and recover after your workout",
+    "set": "Set",
+    "rep": "Rep",
+    "target": "Target",
+    "instructions": "Instructions",
+    "errors": "Errors",
+    "completeRep": "Complete Rep",
+    "previousAttempts": "Previous Attempts",
+    "hideInstructions": "Hide Instructions",
+    "showInstructions": "Show Instructions",
+    "noPattern": "No visual pattern available",
+    "sessionComplete": "Session Complete!",
+    "totalTime": "Total Time",
+    "avgTime": "Average Time",
+    "bestTime": "Best Time",
+    "successRate": "Success Rate",
+    "backToDashboard": "Back to Dashboard",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop"
+  },
+  "hybrid": {
+    "builder": {
+      "title": "Hybrid Workout Builder",
+      "subtitle": "Create workouts that combine strength exercises with cardio intervals"
+    },
+    "createSuccess": "Hybrid workout created successfully",
+    "saveError": "Failed to save hybrid workout",
+    "validation": {
+      "nameRequired": "Please enter a workout name",
+      "blocksRequired": "Please add at least one block to the workout"
+    }
   }
 }
