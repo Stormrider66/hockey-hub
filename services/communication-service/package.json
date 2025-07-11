@@ -38,7 +38,7 @@
     "socket.io": "^4.6.1",
     "typeorm": "^0.3.17",
     "ua-parser-js": "^1.0.37",
-    "uuid": "^9.0.1",
+    "uuid": "^11.1.0",
     "web-push": "^3.6.6",
     "@sendgrid/mail": "^8.1.0",
     "handlebars": "^4.7.8",
