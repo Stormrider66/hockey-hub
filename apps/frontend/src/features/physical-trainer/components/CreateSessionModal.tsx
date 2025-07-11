@@ -32,6 +32,8 @@ import { useCreateSessionMutation } from '@/store/api/trainingApi';
 import { useCreateEventMutation, EventType, EventVisibility } from '@/store/api/calendarApi';
 import BulkPlayerAssignment from './BulkPlayerAssignment';
 import type { WorkoutSession, SessionFormData as FormData, Exercise } from '../types';
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from 'react-hot-toast';
 
 interface CreateSessionModalProps {
   open: boolean;
@@ -54,9 +56,11 @@ interface SessionFormData extends FormData {
 const SESSION_TYPES = [
   { value: 'strength', label: 'Strength Training', icon: Dumbbell },
   { value: 'cardio', label: 'Cardio/Conditioning', icon: Heart },
-  { value: 'speed', label: 'Speed & Agility', icon: Timer },
+  { value: 'agility', label: 'Agility Training', icon: Timer },
+  { value: 'speed', label: 'Speed Training', icon: TrendingUp },
   { value: 'recovery', label: 'Recovery Session', icon: Activity },
-  { value: 'mixed', label: 'Mixed Training', icon: TrendingUp },
+  { value: 'mixed', label: 'Mixed Training', icon: Activity },
+  { value: 'hybrid', label: 'Hybrid Workout', icon: Dumbbell },
 ];
 
 const TEAMS = [
@@ -117,10 +121,12 @@ const PLAYERS = [
 const WORKOUT_CATEGORIES = [
   { value: 'cardio', label: 'Cardio Session', description: 'HR/Watts monitoring' },
   { value: 'strength', label: 'Strength Session', description: 'Sets/Reps tracking' },
+  { value: 'agility', label: 'Agility Training', description: 'Change of direction & reaction' },
   { value: 'skill', label: 'Skills Training', description: 'Technical development' },
   { value: 'interval', label: 'Interval Training', description: 'Work/Rest periods' },
   { value: 'circuit', label: 'Circuit Training', description: 'Station rotation' },
   { value: 'recovery', label: 'Recovery Session', description: 'Low intensity' },
+  { value: 'hybrid', label: 'Hybrid Workout', description: 'Mixed exercises & intervals' },
 ];
 
 // Sample exercise templates
@@ -138,8 +144,20 @@ const EXERCISE_TEMPLATES = {
   ],
   speed: [
     { name: '40m Sprints', sets: 6, rest: 120 },
-    { name: 'Agility Ladder Drills', sets: 4, duration: 60, rest: 60 },
-    { name: 'Cone Drills', sets: 5, duration: 45, rest: 60 },
+    { name: 'Linear Speed Drills', sets: 4, duration: 60, rest: 60 },
+    { name: 'Acceleration Runs', sets: 5, duration: 45, rest: 60 },
+  ],
+  agility: [
+    { name: 'T-Drill', sets: 5, duration: 30, rest: 60 },
+    { name: 'Agility Ladder Drills', sets: 4, duration: 60, rest: 45 },
+    { name: '5-10-5 Shuttle', sets: 6, duration: 20, rest: 90 },
+    { name: 'Cone Weaving', sets: 4, duration: 45, rest: 60 },
+    { name: 'Reactive Ball Drills', sets: 8, duration: 15, rest: 30 },
+  ],
+  hybrid: [
+    { name: 'Power Clean + Sprint', sets: 4, reps: 3, duration: 30, rest: 120 },
+    { name: 'Box Jump + Agility Ladder', sets: 5, reps: 5, duration: 45, rest: 90 },
+    { name: 'Kettlebell Swings + Bike Sprint', sets: 6, reps: 15, duration: 30, rest: 60 },
   ]
 };
 
@@ -148,6 +166,7 @@ export default function CreateSessionModal({
   onOpenChange,
   onCreateSession
 }: CreateSessionModalProps) {
+  const { user } = useAuth();
   const [createSession, { isLoading: isCreating }] = useCreateSessionMutation();
   const [createCalendarEvent, { isLoading: isCreatingCalendarEvent }] = useCreateEventMutation();
   const [activeTab, setActiveTab] = useState('basic');
@@ -160,8 +179,8 @@ export default function CreateSessionModal({
     time: '09:00',
     duration: '60',
     location: '',
-    team: '',
-    coachId: '',
+    team: user?.teams?.[0]?.id || '',
+    coachId: user?.id || '',
     playerIds: [],
     description: '',
     exercises: [],
@@ -274,7 +293,7 @@ export default function CreateSessionModal({
         startTime: startDateTime,
         endTime: endDateTime,
         location: formData.location,
-        organizationId: 'org-123', // TODO: Get from context
+        organizationId: user?.organizationId || '',
         teamId: formData.team,
         createdBy: formData.coachId,
         visibility: EventVisibility.TEAM,
@@ -301,6 +320,7 @@ export default function CreateSessionModal({
         onCreateSession(result);
       }
       
+      toast.success('Training session created successfully!');
       onOpenChange(false);
       
       // Reset form
@@ -323,7 +343,7 @@ export default function CreateSessionModal({
       });
     } catch (error) {
       console.error('Failed to create session:', error);
-      // In a real app, show an error message to the user
+      toast.error('Failed to create session. Please try again.');
     }
   };
 

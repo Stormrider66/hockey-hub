@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,6 +23,8 @@ import {
   AlertCircle, CheckCircle2, X
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { useGetPlayersQuery } from '@/store/api/playerApi';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface LaunchSessionButtonProps {
   sessionType?: string;
@@ -47,68 +50,98 @@ interface SessionConfig {
 }
 
 const DURATION_OPTIONS = [
-  { value: '30', label: '30 minutes' },
-  { value: '45', label: '45 minutes' },
-  { value: '60', label: '60 minutes' },
-  { value: '75', label: '75 minutes' },
-  { value: '90', label: '90 minutes' },
-  { value: '120', label: '2 hours' },
+  { value: '30', label: '30' },
+  { value: '45', label: '45' },
+  { value: '60', label: '60' },
+  { value: '75', label: '75' },
+  { value: '90', label: '90' },
+  { value: '120', label: '120' },
 ];
 
-const INTENSITY_OPTIONS = [
-  { value: 'low', label: 'Low', description: 'Recovery & mobility focus' },
-  { value: 'medium', label: 'Medium', description: 'Moderate effort, skill development' },
-  { value: 'high', label: 'High', description: 'High intensity, performance focus' },
-  { value: 'max', label: 'Maximum', description: 'Peak performance testing' },
+const getIntensityOptions = (t: any) => [
+  { value: 'low', label: t('training.intensity.low'), description: t('training.sessionDescriptions.recoveryMobilityFocus') },
+  { value: 'medium', label: t('training.intensity.medium'), description: t('training.sessionDescriptions.moderateEffortSkillDevelopment') },
+  { value: 'high', label: t('training.intensity.high'), description: t('training.sessionDescriptions.highIntensityPerformanceFocus') },
+  { value: 'max', label: t('training.intensity.max'), description: t('training.sessionDescriptions.peakPerformanceTesting') },
 ];
 
-const FOCUS_AREAS = [
-  { id: 'strength', label: 'Strength', icon: Dumbbell },
-  { id: 'speed', label: 'Speed', icon: Target },
-  { id: 'endurance', label: 'Endurance', icon: Clock },
-  { id: 'agility', label: 'Agility', icon: Users },
-  { id: 'power', label: 'Power', icon: Target },
-  { id: 'flexibility', label: 'Flexibility', icon: MapPin },
+const getFocusAreas = (t: any) => [
+  { id: 'strength', label: t('exercises.focusAreas.strength'), icon: Dumbbell },
+  { id: 'speed', label: t('exercises.focusAreas.speed'), icon: Target },
+  { id: 'endurance', label: t('exercises.focusAreas.endurance'), icon: Clock },
+  { id: 'agility', label: t('exercises.focusAreas.agility'), icon: Users },
+  { id: 'power', label: t('exercises.focusAreas.power'), icon: Target },
+  { id: 'flexibility', label: t('exercises.focusAreas.flexibility'), icon: MapPin },
 ];
 
-const EQUIPMENT_OPTIONS = [
-  'Barbells', 'Dumbbells', 'Kettlebells', 'Medicine Balls',
-  'Resistance Bands', 'Agility Ladder', 'Cones', 'Jump Boxes',
-  'TRX Straps', 'Foam Rollers', 'Battle Ropes', 'Sleds'
-];
-
-// Mock players data - in real app, this would come from props or API
-const MOCK_PLAYERS = [
-  { id: '1', name: 'Erik Andersson', number: 15, status: 'ready' },
-  { id: '2', name: 'Marcus Lindberg', number: 7, status: 'ready' },
-  { id: '3', name: 'Viktor Nilsson', number: 23, status: 'caution' },
-  { id: '4', name: 'Johan Bergström', number: 12, status: 'ready' },
-  { id: '5', name: 'Anders Johansson', number: 3, status: 'rest' },
+const getEquipmentOptions = (t: any) => [
+  { id: 'barbells', label: t('exercises.equipment.barbells') },
+  { id: 'dumbbells', label: t('exercises.equipment.dumbbells') },
+  { id: 'kettlebells', label: t('exercises.equipment.kettlebells') },
+  { id: 'medicineBalls', label: t('exercises.equipment.medicineBalls') },
+  { id: 'resistanceBands', label: t('exercises.equipment.resistanceBands') },
+  { id: 'agilityLadder', label: t('exercises.equipment.agilityLadder') },
+  { id: 'cones', label: t('exercises.equipment.cones') },
+  { id: 'jumpBoxes', label: t('exercises.equipment.jumpBoxes') },
+  { id: 'trxStraps', label: t('exercises.equipment.trxStraps') },
+  { id: 'foamRollers', label: t('exercises.equipment.foamRollers') },
+  { id: 'battleRopes', label: t('exercises.equipment.battleRopes') },
+  { id: 'sleds', label: t('exercises.equipment.sleds') }
 ];
 
 export default function LaunchSessionButton({
-  sessionType = 'Training Session',
+  sessionType,
   teamId,
-  teamName = 'Team',
-  sessionCategory = 'General Training',
+  teamName,
+  sessionCategory,
   size = 'default',
   variant = 'default',
   onLaunch,
   onClick,
   className
 }: LaunchSessionButtonProps) {
+  const { t } = useTranslation('physicalTrainer');
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isLaunching, setIsLaunching] = useState(false);
+  
+  // Fetch real players data
+  const { data: playersData, isLoading: playersLoading } = useGetPlayersQuery({
+    organizationId: user?.organizationId || '',
+    includeStats: false
+  });
+  
+  // Transform players data with mock status for now
+  const players = useMemo(() => {
+    if (!playersData?.players) return [];
+    return playersData.players.map(player => ({
+      id: player.id,
+      name: `${player.firstName} ${player.lastName}`,
+      number: parseInt(player.jerseyNumber || '0'),
+      status: 'ready' as const // In production, this would come from medical service
+    }));
+  }, [playersData]);
+  
   const [config, setConfig] = useState<SessionConfig>({
     duration: '60',
     intensity: 'medium',
     focus: [],
-    selectedPlayers: MOCK_PLAYERS.filter(p => p.status === 'ready').map(p => p.id),
+    selectedPlayers: [],
     notes: '',
     warmupDuration: '10',
     cooldownDuration: '10',
     equipmentNeeded: []
   });
+  
+  // Update selected players when players data loads
+  useEffect(() => {
+    if (players.length > 0 && config.selectedPlayers.length === 0) {
+      setConfig(prev => ({
+        ...prev,
+        selectedPlayers: players.filter(p => p.status === 'ready').map(p => p.id)
+      }));
+    }
+  }, [players]);
 
   const handleOpen = () => {
     if (onClick) {
@@ -164,6 +197,10 @@ export default function LaunchSessionButton({
 
   const selectedPlayersCount = config.selectedPlayers.length;
   const totalDuration = parseInt(config.duration) + parseInt(config.warmupDuration) + parseInt(config.cooldownDuration);
+  
+  const INTENSITY_OPTIONS = getIntensityOptions(t);
+  const FOCUS_AREAS = getFocusAreas(t);
+  const EQUIPMENT_OPTIONS = getEquipmentOptions(t);
 
   return (
     <>
@@ -174,15 +211,18 @@ export default function LaunchSessionButton({
         className={cn("gap-2", className)}
       >
         <Play className="h-4 w-4" />
-        Launch Session
+        {t('physicalTrainer:sessions.launchSession')}
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-xl">Launch Training Session</DialogTitle>
+            <DialogTitle className="text-xl">{t('physicalTrainer:sessions.launchTrainingSession')}</DialogTitle>
             <DialogDescription>
-              Configure and launch {sessionCategory} for {teamName}
+              {t('physicalTrainer:sessions.configureAndLaunch', { 
+                category: sessionCategory || t('physicalTrainer:training.sessionTypes.generalTraining'), 
+                team: teamName || t('physicalTrainer:training.teams.team') 
+              })}
             </DialogDescription>
           </DialogHeader>
 
@@ -193,11 +233,11 @@ export default function LaunchSessionButton({
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <p className="text-2xl font-bold">{totalDuration}</p>
-                    <p className="text-sm text-muted-foreground">Total Minutes</p>
+                    <p className="text-sm text-muted-foreground">{t('physicalTrainer:sessions.totalMinutes')}</p>
                   </div>
                   <div>
                     <p className="text-2xl font-bold">{selectedPlayersCount}</p>
-                    <p className="text-sm text-muted-foreground">Players Selected</p>
+                    <p className="text-sm text-muted-foreground">{t('physicalTrainer:sessions.playersSelected')}</p>
                   </div>
                   <div>
                     <Badge 
@@ -207,7 +247,7 @@ export default function LaunchSessionButton({
                       }
                       className="text-sm px-3 py-1"
                     >
-                      {config.intensity} intensity
+                      {t(`physicalTrainer:training.intensity.${config.intensity}`)} {t('physicalTrainer:sessions.intensity', { level: '' }).replace('{{level}} ', '')}
                     </Badge>
                   </div>
                 </div>
@@ -217,7 +257,7 @@ export default function LaunchSessionButton({
             {/* Duration & Intensity */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Session Duration</Label>
+                <Label>{t('physicalTrainer:sessions.sessionDuration')}</Label>
                 <Select value={config.duration} onValueChange={(value) => updateConfig('duration', value)}>
                   <SelectTrigger>
                     <SelectValue />
@@ -225,7 +265,7 @@ export default function LaunchSessionButton({
                   <SelectContent>
                     {DURATION_OPTIONS.map(option => (
                       <SelectItem key={option.value} value={option.value}>
-                        {option.label}
+                        {option.value === '120' ? `2 ${t('sessions.hours')}` : `${option.label} ${t('sessions.minutes')}`}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -233,7 +273,7 @@ export default function LaunchSessionButton({
               </div>
               
               <div className="space-y-2">
-                <Label>Intensity Level</Label>
+                <Label>{t('physicalTrainer:sessions.intensityLevel')}</Label>
                 <Select value={config.intensity} onValueChange={(value) => updateConfig('intensity', value)}>
                   <SelectTrigger>
                     <SelectValue />
@@ -255,22 +295,22 @@ export default function LaunchSessionButton({
             {/* Warmup & Cooldown */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Warmup Duration (minutes)</Label>
+                <Label>{t('physicalTrainer:sessions.warmupDuration')}</Label>
                 <Select value={config.warmupDuration} onValueChange={(value) => updateConfig('warmupDuration', value)}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="5">5 minutes</SelectItem>
-                    <SelectItem value="10">10 minutes</SelectItem>
-                    <SelectItem value="15">15 minutes</SelectItem>
-                    <SelectItem value="20">20 minutes</SelectItem>
+                    <SelectItem value="5">5 {t('sessions.minutes')}</SelectItem>
+                    <SelectItem value="10">10 {t('sessions.minutes')}</SelectItem>
+                    <SelectItem value="15">15 {t('sessions.minutes')}</SelectItem>
+                    <SelectItem value="20">20 {t('sessions.minutes')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               
               <div className="space-y-2">
-                <Label>Cooldown Duration (minutes)</Label>
+                <Label>{t('physicalTrainer:sessions.cooldownDuration')}</Label>
                 <Select value={config.cooldownDuration} onValueChange={(value) => updateConfig('cooldownDuration', value)}>
                   <SelectTrigger>
                     <SelectValue />
@@ -286,7 +326,7 @@ export default function LaunchSessionButton({
 
             {/* Focus Areas */}
             <div className="space-y-2">
-              <Label>Training Focus Areas</Label>
+              <Label>{t('physicalTrainer:sessions.trainingFocusAreas')}</Label>
               <div className="grid grid-cols-3 gap-2">
                 {FOCUS_AREAS.map(area => (
                   <Button
@@ -305,10 +345,10 @@ export default function LaunchSessionButton({
 
             {/* Player Selection */}
             <div className="space-y-2">
-              <Label>Select Players ({selectedPlayersCount} selected)</Label>
+              <Label>{t('physicalTrainer:sessions.selectPlayers', { count: selectedPlayersCount })}</Label>
               <ScrollArea className="h-48 border rounded-md p-4">
                 <div className="space-y-2">
-                  {MOCK_PLAYERS.map(player => (
+                  {players.map(player => (
                     <div key={player.id} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <Checkbox
@@ -326,7 +366,7 @@ export default function LaunchSessionButton({
                         {player.status === 'ready' && <CheckCircle2 className="h-3 w-3 mr-1" />}
                         {player.status === 'caution' && <AlertCircle className="h-3 w-3 mr-1" />}
                         {player.status === 'rest' && <X className="h-3 w-3 mr-1" />}
-                        {player.status}
+                        {t(`playerStatus.status.${player.status}`)}
                       </Badge>
                     </div>
                   ))}
@@ -336,16 +376,16 @@ export default function LaunchSessionButton({
 
             {/* Equipment */}
             <div className="space-y-2">
-              <Label>Equipment Needed</Label>
+              <Label>{t('physicalTrainer:sessions.equipmentNeeded')}</Label>
               <div className="grid grid-cols-3 gap-2">
                 {EQUIPMENT_OPTIONS.map(equipment => (
-                  <div key={equipment} className="flex items-center space-x-2">
+                  <div key={equipment.id} className="flex items-center space-x-2">
                     <Checkbox
-                      checked={config.equipmentNeeded.includes(equipment)}
-                      onCheckedChange={() => toggleEquipment(equipment)}
+                      checked={config.equipmentNeeded.includes(equipment.id)}
+                      onCheckedChange={() => toggleEquipment(equipment.id)}
                     />
                     <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      {equipment}
+                      {equipment.label}
                     </label>
                   </div>
                 ))}
@@ -354,9 +394,9 @@ export default function LaunchSessionButton({
 
             {/* Notes */}
             <div className="space-y-2">
-              <Label>Session Notes</Label>
+              <Label>{t('physicalTrainer:sessions.sessionNotes')}</Label>
               <Textarea
-                placeholder="Add any specific instructions or notes for this session..."
+                placeholder={t('physicalTrainer:sessions.addInstructions')}
                 value={config.notes}
                 onChange={(e) => updateConfig('notes', e.target.value)}
                 rows={3}
@@ -366,7 +406,7 @@ export default function LaunchSessionButton({
 
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsOpen(false)}>
-              Cancel
+              {t('physicalTrainer:sessions.cancel')}
             </Button>
             <Button 
               onClick={handleLaunch} 
@@ -375,12 +415,12 @@ export default function LaunchSessionButton({
               {isLaunching ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                  Launching...
+                  {t('physicalTrainer:sessions.launching')}
                 </>
               ) : (
                 <>
                   <Play className="h-4 w-4 mr-2" />
-                  Launch Session
+                  {t('physicalTrainer:sessions.launchSession')}
                 </>
               )}
             </Button>

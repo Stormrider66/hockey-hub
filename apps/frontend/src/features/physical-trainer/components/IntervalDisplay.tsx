@@ -4,11 +4,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { 
   Play, Pause, StopCircle, RotateCcw, Volume2, VolumeX,
   ArrowLeft, Activity, Clock
 } from 'lucide-react';
+import { intervalTimerAudio } from '../services/IntervalTimerAudioService';
 
 interface Interval {
   phase: 'work' | 'rest';
@@ -49,23 +51,28 @@ export default function IntervalDisplay({
     (currentInterval?.duration - timeRemaining);
   const sessionProgress = (elapsedTime / totalSessionTime) * 100;
 
-  // Audio effects
-  const playSound = useCallback((type: 'start' | 'end' | 'countdown') => {
-    if (!soundEnabled) return;
+  // Volume state
+  const [volume, setVolume] = useState(0.7);
+  
+  // Initialize audio service on mount
+  useEffect(() => {
+    intervalTimerAudio.resume(); // Resume audio context if needed
+    intervalTimerAudio.setVolume(volume);
     
-    // In a real app, you'd have actual audio files
-    const audio = new Audio();
-    if (type === 'start') {
-      // High beep for start
-      audio.src = 'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSx5v+3Y';
-    } else if (type === 'end') {
-      // Low beep for end
-      audio.src = 'data:audio/wav;base64,UklGRl4GAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YfoFAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeS';
-    } else {
-      // Quick beep for countdown
-      audio.src = 'data:audio/wav;base64,UklGRhwGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2E';
-    }
-    audio.play().catch(e => console.log('Audio play failed:', e));
+    return () => {
+      // Cleanup is handled by the singleton
+    };
+  }, []);
+  
+  // Update volume when changed
+  useEffect(() => {
+    intervalTimerAudio.setVolume(volume);
+  }, [volume]);
+  
+  // Audio effects
+  const playSound = useCallback((type: 'start' | 'end' | 'countdown' | 'warning') => {
+    if (!soundEnabled) return;
+    intervalTimerAudio.playSound(type);
   }, [soundEnabled]);
 
   // Timer effect
@@ -75,6 +82,11 @@ export default function IntervalDisplay({
     if (isRunning && !isPaused) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
+          // Warning beep at 5 seconds
+          if (prev === 5) {
+            playSound('warning');
+          }
+          
           // Countdown beeps
           if (prev <= 3 && prev > 0) {
             playSound('countdown');
@@ -150,18 +162,32 @@ export default function IntervalDisplay({
           </div>
         </div>
         
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setSoundEnabled(!soundEnabled)}
-          className="h-12 w-12"
-        >
-          {soundEnabled ? (
-            <Volume2 className="h-6 w-6" />
-          ) : (
-            <VolumeX className="h-6 w-6" />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setSoundEnabled(!soundEnabled)}
+            className="h-12 w-12"
+          >
+            {soundEnabled ? (
+              <Volume2 className="h-6 w-6" />
+            ) : (
+              <VolumeX className="h-6 w-6" />
+            )}
+          </Button>
+          {soundEnabled && (
+            <div className="w-24">
+              <Slider
+                value={[volume]}
+                onValueChange={(value) => setVolume(value[0])}
+                min={0}
+                max={1}
+                step={0.1}
+                className="cursor-pointer"
+              />
+            </div>
           )}
-        </Button>
+        </div>
       </div>
 
       {/* Main Display */}

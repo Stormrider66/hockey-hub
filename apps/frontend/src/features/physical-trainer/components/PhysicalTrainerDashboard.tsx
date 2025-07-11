@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from '@hockey-hub/translations';
 import { DashboardHeader } from "@/components/shared/DashboardHeader";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -10,6 +10,7 @@ import {
   ArrowLeft, AlertCircle
 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
+import { useAuth } from "@/contexts/AuthContext";
 
 // Import tab components
 import OverviewTab from './tabs/OverviewTab';
@@ -23,30 +24,23 @@ import TemplatesTab from './tabs/TemplatesTab';
 // Import components needed for session viewer
 import TrainingSessionViewer from './TrainingSessionViewer';
 import CreateSessionModal from './CreateSessionModal';
+import { TeamSelector } from './TeamSelector';
 
 // Import custom hooks
 import { useSessionManagement } from '../hooks/useSessionManagement';
 import { usePhysicalTrainerData } from '../hooks/usePhysicalTrainerData';
+import { useGetTeamsQuery } from '@/store/api/userApi';
 
 export default function PhysicalTrainerDashboard() {
   const { t } = useTranslation(['physicalTrainer', 'common']);
+  const { user } = useAuth();
   
-  // Use custom hooks
-  const {
-    todaysSessions,
-    sessionsLoading,
-    showSessionViewer,
-    currentSession,
-    showCreateModal,
-    setShowCreateModal,
-    launchSession,
-    closeSessionViewer,
-    getSessionIntervals
-  } = useSessionManagement();
-  
+  // Use custom hooks - usePhysicalTrainerData must come first to define selectedTeamId
   const {
     activeTab,
     setActiveTab,
+    selectedTeamId,
+    setSelectedTeamId,
     players,
     testBatches,
     testResults,
@@ -59,6 +53,62 @@ export default function PhysicalTrainerDashboard() {
     handleTestSubmit,
     handleTestSaveDraft
   } = usePhysicalTrainerData();
+  
+  const {
+    todaysSessions,
+    sessionsLoading,
+    showSessionViewer,
+    currentSession,
+    showCreateModal,
+    setShowCreateModal,
+    launchSession,
+    closeSessionViewer,
+    getSessionIntervals
+  } = useSessionManagement(selectedTeamId);
+  
+  // Fetch available teams
+  const { data: teams = [], isLoading: teamsLoading } = useGetTeamsQuery();
+
+  // Check for workout ID from calendar launch
+  useEffect(() => {
+    const launchWorkoutId = sessionStorage.getItem('launchWorkoutId');
+    if (launchWorkoutId && !showSessionViewer) {
+      // Clear the stored ID and interval program
+      sessionStorage.removeItem('launchWorkoutId');
+      const intervalProgramStr = sessionStorage.getItem('launchIntervalProgram');
+      const intervalProgram = intervalProgramStr ? JSON.parse(intervalProgramStr) : null;
+      sessionStorage.removeItem('launchIntervalProgram');
+      
+      // Find the workout in today's sessions
+      const workout = todaysSessions.find(s => s.id === launchWorkoutId);
+      if (workout) {
+        launchSession(workout);
+      } else {
+        // Create a mock workout with the interval data from calendar
+        const mockWorkout = {
+          id: launchWorkoutId,
+          title: intervalProgram?.name || 'Training Session',
+          type: 'Interval Training' as const,
+          team: selectedTeamId || 'Team',
+          players: [],
+          time: new Date().toISOString(),
+          location: 'Training Center',
+          estimatedDuration: intervalProgram?.totalDuration ? Math.round(intervalProgram.totalDuration / 60) : 60,
+          intervalProgram: intervalProgram || {
+            id: launchWorkoutId,
+            name: 'Training Session',
+            totalDuration: 3600,
+            intervals: [
+              { duration: 300, intensity: 'Warm-up', targetBPM: 120 },
+              { duration: 30, intensity: 'Sprint', targetBPM: 180 },
+              { duration: 90, intensity: 'Recovery', targetBPM: 140 }
+            ]
+          }
+        };
+        launchSession(mockWorkout);
+      }
+    }
+  }, [todaysSessions, showSessionViewer, launchSession, selectedTeamId]);
 
   // If showing session viewer, render it instead of the dashboard
   if (showSessionViewer) {
@@ -72,7 +122,7 @@ export default function PhysicalTrainerDashboard() {
               onClick={closeSessionViewer}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              {t('common:navigation.backToDashboard')}
             </Button>
             {currentSession && (
               <div className="text-sm text-muted-foreground">
@@ -81,7 +131,7 @@ export default function PhysicalTrainerDashboard() {
             )}
           </div>
           <div className="text-sm text-muted-foreground">
-            Training Session Viewer
+            {t('physicalTrainer:sessions.viewer.title')}
           </div>
         </div>
         <div className="flex-1 overflow-hidden">
@@ -100,15 +150,23 @@ export default function PhysicalTrainerDashboard() {
     return (
       <div className="min-h-screen bg-gray-50">
         <DashboardHeader 
-          title="Physical Training Dashboard"
-          subtitle="Manage training sessions, monitor player readiness, and track performance"
+          title={t('physicalTrainer:dashboard.title')}
+          subtitle={t('physicalTrainer:dashboard.subtitle')}
           role="physicaltrainer"
         />
         <div className="p-6 max-w-7xl mx-auto">
+          <div className="mb-4 flex justify-between items-center">
+            <TeamSelector
+              teams={teams}
+              selectedTeamId={selectedTeamId}
+              onTeamChange={setSelectedTeamId}
+              loading={teamsLoading}
+            />
+          </div>
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Loading test data...</p>
+              <p className="text-muted-foreground">{t('common:loading.loadingData')}</p>
             </div>
           </div>
         </div>
@@ -121,17 +179,25 @@ export default function PhysicalTrainerDashboard() {
     return (
       <div className="min-h-screen bg-gray-50">
         <DashboardHeader 
-          title="Physical Training Dashboard"
-          subtitle="Manage training sessions, monitor player readiness, and track performance"
+          title={t('physicalTrainer:dashboard.title')}
+          subtitle={t('physicalTrainer:dashboard.subtitle')}
           role="physicaltrainer"
         />
         <div className="p-6 max-w-7xl mx-auto">
+          <div className="mb-4 flex justify-between items-center">
+            <TeamSelector
+              teams={teams}
+              selectedTeamId={selectedTeamId}
+              onTeamChange={setSelectedTeamId}
+              loading={teamsLoading}
+            />
+          </div>
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
                 <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
-                <p className="text-destructive">Error loading test data</p>
-                <p className="text-sm text-muted-foreground mt-2">Please try refreshing the page</p>
+                <p className="text-destructive">{t('common:errors.loadingError')}</p>
+                <p className="text-sm text-muted-foreground mt-2">{t('common:errors.tryRefresh')}</p>
               </div>
             </CardContent>
           </Card>
@@ -148,41 +214,51 @@ export default function PhysicalTrainerDashboard() {
         role="physicaltrainer"
       />
       <div className="p-6 max-w-7xl mx-auto">
+        {/* Team Selection */}
+        <div className="mb-4 flex justify-between items-center">
+          <TeamSelector
+            teams={teams}
+            selectedTeamId={selectedTeamId}
+            onTeamChange={setSelectedTeamId}
+            loading={teamsLoading}
+          />
+        </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid grid-cols-7 w-full">
           <TabsTrigger value="overview" className="flex items-center gap-2">
             <Activity className="h-4 w-4" />
-            Overview
+            {t('physicalTrainer:tabs.overview')}
           </TabsTrigger>
           <TabsTrigger value="calendar" className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            Calendar
+            {t('physicalTrainer:tabs.calendar')}
           </TabsTrigger>
           <TabsTrigger value="sessions" className="flex items-center gap-2">
             <Dumbbell className="h-4 w-4" />
-            Sessions
+            {t('physicalTrainer:tabs.sessions')}
           </TabsTrigger>
           <TabsTrigger value="library" className="flex items-center gap-2">
             <Library className="h-4 w-4" />
-            Exercises
+            {t('physicalTrainer:tabs.exercises')}
           </TabsTrigger>
           <TabsTrigger value="testing" className="flex items-center gap-2">
             <TestTube2 className="h-4 w-4" />
-            Testing
+            {t('physicalTrainer:tabs.testing')}
           </TabsTrigger>
           <TabsTrigger value="status" className="flex items-center gap-2">
             <User className="h-4 w-4" />
-            Players
+            {t('physicalTrainer:tabs.players')}
           </TabsTrigger>
           <TabsTrigger value="templates" className="flex items-center gap-2">
             <FileText className="h-4 w-4" />
-            Templates
+            {t('physicalTrainer:tabs.templates')}
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-6">
           <OverviewTab
+            selectedTeamId={selectedTeamId}
             todaysSessions={todaysSessions}
             playerReadiness={playerReadiness}
             onCreateSession={() => setShowCreateModal(true)}
@@ -193,14 +269,15 @@ export default function PhysicalTrainerDashboard() {
 
         <TabsContent value="calendar" className="mt-6">
           <CalendarTab
-            organizationId="org-123"
-            userId="trainer-123"
-            teamId={undefined}
+            organizationId={user?.organizationId || ''}
+            userId={user?.id || ''}
+            teamId={selectedTeamId === 'all' || selectedTeamId === 'personal' ? undefined : selectedTeamId || undefined}
           />
         </TabsContent>
 
         <TabsContent value="sessions" className="mt-6">
           <SessionsTab
+            selectedTeamId={selectedTeamId}
             onCreateSession={() => setShowCreateModal(true)}
             onNavigateToCalendar={navigateToCalendar}
           />
@@ -212,6 +289,7 @@ export default function PhysicalTrainerDashboard() {
 
         <TabsContent value="testing" className="mt-6">
           <TestingTab
+            selectedTeamId={selectedTeamId}
             players={players}
             onSubmitTest={handleTestSubmit}
             onSaveDraft={handleTestSaveDraft}
@@ -219,7 +297,10 @@ export default function PhysicalTrainerDashboard() {
         </TabsContent>
 
         <TabsContent value="status" className="mt-6">
-          <PlayerStatusTab playerReadiness={playerReadiness} />
+          <PlayerStatusTab 
+            selectedTeamId={selectedTeamId}
+            playerReadiness={playerReadiness} 
+          />
         </TabsContent>
 
         <TabsContent value="templates" className="mt-6">

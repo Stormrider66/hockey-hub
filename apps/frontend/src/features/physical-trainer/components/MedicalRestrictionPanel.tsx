@@ -420,3 +420,5 @@ function getSeverityColor(severity: 'high' | 'medium' | 'low'): 'destructive' | 
       return 'secondary';
   }
 }
+
+export { MedicalRestrictionPanel };

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ interface ExerciseLibraryTabProps {
 }
 
 export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
+  const { t } = useTranslation(['physicalTrainer', 'common']);
   const [exerciseSearch, setExerciseSearch] = useState('');
   const [selectedExerciseCategory, setSelectedExerciseCategory] = useState<string | undefined>(undefined);
   
@@ -25,23 +27,22 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
     search: exerciseSearch
   });
 
-  // Calculate stats from API data or use mock data
-  const apiExerciseStats = exercises ? {
-    total: exercises.length,
-    byCategory: exercises.reduce((acc, ex) => {
+  // Calculate stats from API data
+  const displayStats = {
+    total: exercises?.length || 0,
+    byCategory: exercises?.reduce((acc, ex) => {
       acc[ex.category] = (acc[ex.category] || 0) + 1;
       return acc;
-    }, {} as Record<string, number>),
-    recentlyAdded: exercises.filter(ex => {
+    }, {} as Record<string, number>) || {},
+    recentlyAdded: exercises?.filter(ex => {
       const created = new Date(ex.orderIndex); // Using orderIndex as timestamp for now
       const weekAgo = new Date();
       weekAgo.setDate(weekAgo.getDate() - 7);
       return created > weekAgo;
-    }).length,
-    withVideos: Math.floor(exercises.length * 0.8) // Mock 80% have videos
-  } : mockExerciseLibraryStats;
+    }).length || 0,
+    withVideos: Math.floor((exercises?.length || 0) * 0.8) // Mock 80% have videos
+  };
 
-  const displayStats = exercises ? apiExerciseStats : mockExerciseLibraryStats;
   const displayExercises = exercises || [];
 
   return (
@@ -50,12 +51,12 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
         <CardHeader>
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle>Exercise Library</CardTitle>
-              <CardDescription>Manage your exercise database with videos and instructions</CardDescription>
+              <CardTitle>{t('physicalTrainer:exercises.title')}</CardTitle>
+              <CardDescription>{t('physicalTrainer:exercises.subtitle')}</CardDescription>
             </div>
             <Button>
               <Plus className="h-4 w-4 mr-2" />
-              Add Exercise
+              {t('physicalTrainer:exercises.create')}
             </Button>
           </div>
         </CardHeader>
@@ -74,7 +75,7 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
               >
                 <CardContent className="pt-6">
                   <div className="text-2xl font-bold">{count}</div>
-                  <p className="text-xs text-muted-foreground capitalize">{category} exercises</p>
+                  <p className="text-xs text-muted-foreground capitalize">{category} {t('physicalTrainer:exercises.exercisesCount')}</p>
                 </CardContent>
               </Card>
             ))}
@@ -84,11 +85,11 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
             <div className="flex items-center gap-4">
               <Badge variant="outline">
                 <Library className="h-3 w-3 mr-1" />
-                {displayStats.total} total exercises
+                {displayStats.total} {t('physicalTrainer:exercises.totalExercises')}
               </Badge>
               <Badge variant="outline">
                 <Play className="h-3 w-3 mr-1" />
-                {displayStats.withVideos} with videos
+                {displayStats.withVideos} {t('physicalTrainer:exercises.withVideos')}
               </Badge>
               {selectedExerciseCategory && (
                 <Button 
@@ -97,12 +98,12 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
                   onClick={() => setSelectedExerciseCategory(undefined)}
                 >
                   <X className="h-3 w-3 mr-1" />
-                  Clear filter
+                  {t('common:actions.clearFilter')}
                 </Button>
               )}
             </div>
             <Input 
-              placeholder="Search exercises..." 
+              placeholder={t('physicalTrainer:exercises.search')} 
               className="max-w-sm"
               value={exerciseSearch}
               onChange={(e) => setExerciseSearch(e.target.value)}
@@ -114,7 +115,7 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
             <div className="h-64 border rounded-lg flex items-center justify-center">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-                <p className="text-sm text-muted-foreground">Loading exercises...</p>
+                <p className="text-sm text-muted-foreground">{t('physicalTrainer:exercises.loading')}</p>
               </div>
             </div>
           ) : displayExercises.length === 0 ? (
@@ -123,8 +124,8 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
                 <Dumbbell className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
                 <p className="text-muted-foreground">
                   {exerciseSearch || selectedExerciseCategory ? 
-                    'No exercises found matching your criteria' : 
-                    'No exercises in the library yet'}
+                    t('physicalTrainer:exercises.noMatchingExercises') : 
+                    t('physicalTrainer:exercises.noExercisesYet')}
                 </p>
               </div>
             </div>
@@ -145,8 +146,8 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
                               <Badge variant="outline" className="text-xs">
                                 {exercise.category}
                               </Badge>
-                              {exercise.sets && <span>{exercise.sets} sets</span>}
-                              {exercise.reps && <span>× {exercise.reps} reps</span>}
+                              {exercise.sets && <span>{exercise.sets} {t('physicalTrainer:workouts.parameters.sets')}</span>}
+                              {exercise.reps && <span>× {exercise.reps} {t('physicalTrainer:workouts.parameters.reps')}</span>}
                               {exercise.duration && <span>{exercise.duration}s</span>}
                             </div>
                           </div>
@@ -156,7 +157,7 @@ export default function ExerciseLibraryTab(props: ExerciseLibraryTabProps) {
                             <Play className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="sm">
-                            Edit
+                            {t('common:actions.edit')}
                           </Button>
                         </div>
                       </div>

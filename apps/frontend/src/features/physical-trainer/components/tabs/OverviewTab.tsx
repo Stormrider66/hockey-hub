@@ -6,8 +6,10 @@ import QuickStats from './overview/QuickStats';
 import TodaysSessions from './overview/TodaysSessions';
 import PlayerReadiness from './overview/PlayerReadiness';
 import type { WorkoutSession, PlayerReadiness as PlayerReadinessType, TodaySession } from '../../types';
+import { useAuth } from "@/contexts/AuthContext";
 
 interface OverviewTabProps {
+  selectedTeamId: string | null;
   todaysSessions: TodaySession[];
   playerReadiness: PlayerReadinessType[];
   onCreateSession: () => void;
@@ -16,15 +18,17 @@ interface OverviewTabProps {
 }
 
 export default function OverviewTab({
+  selectedTeamId,
   todaysSessions,
   playerReadiness,
   onCreateSession,
   onLaunchSession,
   onViewAllPlayers
 }: OverviewTabProps) {
+  const { user } = useAuth();
   return (
     <div className="space-y-6">
-      <QuickStats todaysSessions={todaysSessions} />
+      <QuickStats todaysSessions={todaysSessions} playerReadiness={playerReadiness} />
       
       <TodaysSessions 
         sessions={todaysSessions}
@@ -33,8 +37,9 @@ export default function OverviewTab({
       />
       
       <CalendarWidget 
-        organizationId="org-123" 
-        userId="trainer-123"
+        organizationId={user?.organizationId || ''} 
+        userId={user?.id || ''}
+        teamId={selectedTeamId === 'all' || selectedTeamId === 'personal' ? undefined : selectedTeamId || undefined}
         days={7}
       />
       

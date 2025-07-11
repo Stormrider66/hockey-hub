@@ -24,6 +24,7 @@ import {
 import { format } from "date-fns";
 import { useCreateSessionMutation } from '@/store/api/trainingApi';
 import { useCreateEventMutation, EventType, EventVisibility } from '@/store/api/calendarApi';
+import { useAuth } from "@/contexts/AuthContext";
 
 interface QuickSessionSchedulerProps {
   open: boolean;
@@ -36,8 +37,10 @@ interface QuickSessionSchedulerProps {
 const QUICK_SESSION_TYPES = [
   { value: 'strength', label: 'Strength', icon: Dumbbell, duration: 60 },
   { value: 'cardio', label: 'Cardio', icon: Heart, duration: 45 },
-  { value: 'speed', label: 'Speed & Agility', icon: Timer, duration: 50 },
+  { value: 'agility', label: 'Agility', icon: Zap, duration: 45 },
+  { value: 'speed', label: 'Speed', icon: Timer, duration: 50 },
   { value: 'recovery', label: 'Recovery', icon: Activity, duration: 30 },
+  { value: 'hybrid', label: 'Hybrid', icon: Dumbbell, duration: 75 },
 ];
 
 const TEAMS = [
@@ -61,6 +64,7 @@ export default function QuickSessionScheduler({
   preSelectedTime,
   onSuccess
 }: QuickSessionSchedulerProps) {
+  const { user } = useAuth();
   const [createSession] = useCreateSessionMutation();
   const [createCalendarEvent] = useCreateEventMutation();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -110,7 +114,7 @@ export default function QuickSessionScheduler({
         location,
         team: selectedTeams.join(','),
         teamId: selectedTeams[0], // Primary team
-        coachId: 'trainer-123', // TODO: Get from context
+        coachId: user?.id || '',
         playerIds: [], // Will be populated based on team selection in backend
         description: notes,
         maxParticipants: totalPlayers,
@@ -139,9 +143,9 @@ export default function QuickSessionScheduler({
         startTime: startDateTime,
         endTime: endDateTime,
         location,
-        organizationId: 'org-123', // TODO: Get from context
+        organizationId: user?.organizationId || '',
         teamId: selectedTeams[0],
-        createdBy: 'trainer-123', // TODO: Get from context
+        createdBy: user?.id || '',
         visibility: EventVisibility.TEAM,
         participants: [], // Will be populated based on team selection
         metadata: {

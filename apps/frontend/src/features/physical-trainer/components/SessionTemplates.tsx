@@ -37,6 +37,8 @@ import {
   Calendar
 } from 'lucide-react';
 import { format } from 'date-fns';
+import { useGetSessionTemplatesQuery, useDeleteSessionTemplateMutation } from '@/store/api/trainingApi';
+import { toast } from 'react-hot-toast';
 
 export interface SessionTemplate {
   id: string;
@@ -57,6 +59,7 @@ export interface SessionTemplate {
 
 interface SessionTemplatesProps {
   onApplyTemplate: (template: SessionTemplate, date?: Date, time?: string) => void;
+  onEditTemplate?: (template: SessionTemplate) => void;
 }
 
 // Mock templates data
@@ -116,6 +119,7 @@ const mockTemplates: SessionTemplate[] = [
 
 export const SessionTemplates: React.FC<SessionTemplatesProps> = ({
   onApplyTemplate,
+  onEditTemplate,
 }) => {
   const [selectedTemplate, setSelectedTemplate] = useState<SessionTemplate | null>(null);
   const [showQuickSchedule, setShowQuickSchedule] = useState(false);
@@ -123,13 +127,19 @@ export const SessionTemplates: React.FC<SessionTemplatesProps> = ({
   const [scheduleTime, setScheduleTime] = useState('09:00');
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'strength' | 'cardio' | 'recovery' | 'mixed'>('all');
-
-  const filteredTemplates = mockTemplates.filter(template => {
-    const matchesSearch = template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         template.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = filterType === 'all' || template.type === filterType;
-    return matchesSearch && matchesType;
+  
+  // Fetch templates from API
+  const { data: templatesResponse, isLoading, refetch } = useGetSessionTemplatesQuery({
+    type: filterType !== 'all' ? filterType : undefined,
+    search: searchTerm,
+    limit: 50
   });
+  
+  const [deleteTemplate, { isLoading: isDeleting }] = useDeleteSessionTemplateMutation();
+  
+  const templates = templatesResponse?.data || mockTemplates;
+
+  const filteredTemplates = templates; // Already filtered by the API based on searchTerm and filterType
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -250,11 +260,45 @@ export const SessionTemplates: React.FC<SessionTemplatesProps> = ({
                       >
                         <Calendar className="w-4 h-4" />
                       </Button>
-                      <Button size="sm" variant="ghost">
+                      <Button 
+                        size="sm" 
+                        variant="ghost"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // TODO: Implement duplicate functionality
+                          toast.info('Duplicate functionality coming soon');
+                        }}
+                      >
                         <Copy className="w-4 h-4" />
                       </Button>
-                      <Button size="sm" variant="ghost">
+                      <Button 
+                        size="sm" 
+                        variant="ghost"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onEditTemplate?.(template);
+                        }}
+                      >
                         <Edit2 className="w-4 h-4" />
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="ghost"
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          if (confirm('Are you sure you want to delete this template?')) {
+                            try {
+                              await deleteTemplate(template.id).unwrap();
+                              toast.success('Template deleted successfully');
+                              refetch();
+                            } catch (error) {
+                              toast.error('Failed to delete template');
+                            }
+                          }
+                        }}
+                        disabled={isDeleting}
+                      >
+                        <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>

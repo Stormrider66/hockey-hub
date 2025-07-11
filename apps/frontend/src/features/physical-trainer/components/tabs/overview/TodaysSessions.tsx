@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTranslation } from '@hockey-hub/translations';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,27 +17,39 @@ interface TodaysSessionsProps {
 }
 
 export default function TodaysSessions({ sessions, onCreateNew, onLaunchSession }: TodaysSessionsProps) {
-  const { t } = useTranslation(['physicalTrainer']);
+  const { t } = useTranslation('physicalTrainer');
 
   return (
     <Card>
       <CardHeader>
         <div className="flex justify-between items-center">
-          <CardTitle>{t('physicalTrainer:dashboard.todaySessions')}</CardTitle>
+          <CardTitle>{t('dashboard.todaySessions')}</CardTitle>
           <Button size="sm" onClick={onCreateNew}>
             <Plus className="h-4 w-4 mr-1" />
-            {t('physicalTrainer:sessions.newSession')}
+            {t('sessions.newSession')}
           </Button>
         </div>
       </CardHeader>
       <CardContent>
+        {sessions.length === 0 ? (
+          <div className="text-center py-8 text-muted-foreground">
+            <p>{t('physicalTrainer:sessions.viewer.noSessionsToday')}</p>
+            <Button 
+              variant="link" 
+              onClick={onCreateNew}
+              className="mt-2"
+            >
+              {t('physicalTrainer:sessions.viewer.createFirstSession')}
+            </Button>
+          </div>
+        ) : (
         <div className="space-y-3">
           {sessions.map(session => (
             <div key={session.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="text-right">
                   <div className="font-semibold">{session.time}</div>
-                  <div className="text-xs text-muted-foreground">{session.location}</div>
+                  <div className="text-xs text-muted-foreground">{t(`physicalTrainer:training.locations.${session.location}`)}</div>
                 </div>
                 <div className={cn(
                   "h-12 w-1 rounded-full",
@@ -45,10 +57,10 @@ export default function TodaysSessions({ sessions, onCreateNew, onLaunchSession 
                   session.status === 'completed' ? 'bg-gray-500' : 'bg-gray-300'
                 )} />
                 <div>
-                  <div className="font-medium">{session.type}</div>
-                  <div className="text-sm text-muted-foreground">{session.team}</div>
+                  <div className="font-medium">{t(`physicalTrainer:training.sessionTypes.${session.type}`)}</div>
+                  <div className="text-sm text-muted-foreground">{t(`physicalTrainer:training.teams.${session.team}`)}</div>
                   {session.description && (
-                    <div className="text-xs text-muted-foreground mt-0.5">{session.description}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{t(`physicalTrainer:training.sessionDescriptions.${session.description}`)}</div>
                   )}
                 </div>
               </div>
@@ -72,8 +84,8 @@ export default function TodaysSessions({ sessions, onCreateNew, onLaunchSession 
                   <LaunchSessionButton
                     sessionType="team"
                     teamId={session.id.toString()}
-                    teamName={session.team}
-                    sessionCategory={session.type}
+                    teamName={t(`physicalTrainer:training.teams.${session.team}`)}
+                    sessionCategory={t(`physicalTrainer:training.sessionTypes.${session.type}`)}
                     size="sm"
                     onLaunch={() => onLaunchSession(session)}
                   />
@@ -81,8 +93,8 @@ export default function TodaysSessions({ sessions, onCreateNew, onLaunchSession 
                   <LaunchSessionButton
                     sessionType="team"
                     teamId={session.id.toString()}
-                    teamName={session.team}
-                    sessionCategory={session.type}
+                    teamName={t(`physicalTrainer:training.teams.${session.team}`)}
+                    sessionCategory={t(`physicalTrainer:training.sessionTypes.${session.type}`)}
                     size="sm"
                     variant="outline"
                     onLaunch={() => onLaunchSession(session)}
@@ -92,6 +104,7 @@ export default function TodaysSessions({ sessions, onCreateNew, onLaunchSession 
             </div>
           ))}
         </div>
+        )}
       </CardContent>
     </Card>
   );

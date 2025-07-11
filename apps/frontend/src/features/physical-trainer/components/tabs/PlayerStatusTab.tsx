@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -17,16 +18,18 @@ interface Player {
 }
 
 interface PlayerStatusTabProps {
+  selectedTeamId: string | null;
   playerReadiness: Player[];
 }
 
-export default function PlayerStatusTab({ playerReadiness }: PlayerStatusTabProps) {
+export default function PlayerStatusTab({ selectedTeamId, playerReadiness }: PlayerStatusTabProps) {
+  const { t } = useTranslation(['physicalTrainer', 'common']);
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Player Physical Status Overview</CardTitle>
-          <CardDescription>Monitor training load, recovery, and readiness</CardDescription>
+          <CardTitle>{t('physicalTrainer:playerStatus.title')}</CardTitle>
+          <CardDescription>{t('physicalTrainer:playerStatus.subtitle')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -51,18 +54,18 @@ export default function PlayerStatusTab({ playerReadiness }: PlayerStatusTabProp
                       <div>
                         <div className="font-semibold">{player.name}</div>
                         <div className="text-sm text-muted-foreground">
-                          Status: {player.status} | Fatigue: {player.fatigue}
+                          {t('physicalTrainer:playerStatus.statusLabel')}: {t(`physicalTrainer:playerStatus.${player.status}`)} | {t('physicalTrainer:playerStatus.fatigueLabel')}: {player.fatigue}
                         </div>
                       </div>
                     </div>
                     <Button variant="outline" size="sm">
-                      View Details
+                      {t('common:actions.viewDetails')}
                     </Button>
                   </div>
                   
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
-                      <span>Training Load</span>
+                      <span>{t('physicalTrainer:playerStatus.trainingLoad')}</span>
                       <span className="font-medium">{player.load}%</span>
                     </div>
                     <Progress value={player.load} className="h-2" />
@@ -70,18 +73,18 @@ export default function PlayerStatusTab({ playerReadiness }: PlayerStatusTabProp
                     <div className="grid grid-cols-3 gap-4 mt-4">
                       <div className="text-center">
                         <Heart className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
-                        <div className="text-xs text-muted-foreground">HR Variability</div>
-                        <div className="text-sm font-medium">Normal</div>
+                        <div className="text-xs text-muted-foreground">{t('physicalTrainer:playerStatus.hrVariability')}</div>
+                        <div className="text-sm font-medium">{t('physicalTrainer:playerStatus.normal')}</div>
                       </div>
                       <div className="text-center">
                         <Zap className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
-                        <div className="text-xs text-muted-foreground">Power Output</div>
+                        <div className="text-xs text-muted-foreground">{t('physicalTrainer:playerStatus.powerOutput')}</div>
                         <div className="text-sm font-medium">95%</div>
                       </div>
                       <div className="text-center">
                         <Activity className="h-4 w-4 mx-auto mb-1 text-muted-foreground" />
-                        <div className="text-xs text-muted-foreground">Recovery</div>
-                        <div className="text-sm font-medium">Good</div>
+                        <div className="text-xs text-muted-foreground">{t('physicalTrainer:playerStatus.recovery')}</div>
+                        <div className="text-sm font-medium">{t('physicalTrainer:playerStatus.good')}</div>
                       </div>
                     </div>
                   </div>

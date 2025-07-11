@@ -17,6 +17,7 @@ import {
 import { type Player } from '@/hooks/useTestData';
 import { useCreateBulkTestsMutation, useCreateTestBatchMutation } from '@/store/api/trainingApi';
 import type { TestFormData } from '../types';
+import { toast } from 'react-hot-toast';
 
 interface TestEntry {
   id: string;
@@ -105,7 +106,7 @@ export default function PhysicalTestingForm({
   // Handle form submission
   const handleSubmit = async () => {
     if (!validateEntries()) {
-      alert('Please fill in all test values with valid numbers');
+      toast.error('Please fill in all test values with valid numbers');
       return;
     }
 
@@ -141,6 +142,7 @@ export default function PhysicalTestingForm({
       
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
+      toast.success('Test results submitted successfully!');
       
       // Reset form
       setTestEntries([]);
@@ -149,7 +151,7 @@ export default function PhysicalTestingForm({
       setCurrentBatchId(null);
     } catch (error) {
       console.error('Failed to submit tests:', error);
-      alert('Failed to submit test results. Please try again.');
+      toast.error('Failed to submit test results. Please try again.');
     }
   };
 

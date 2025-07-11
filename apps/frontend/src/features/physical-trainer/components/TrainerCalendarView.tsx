@@ -121,7 +121,7 @@ export default function TrainerCalendarView({
 
       {/* Training Load Overlay */}
       {showTrainingLoad && (
-        <div className="absolute top-20 left-4 z-10 w-80">
+        <div className="absolute -top-4 left-4 z-10 w-80">
           <TrainingLoadOverlay
             events={events}
             currentDate={currentDate}
@@ -147,12 +147,14 @@ export default function TrainerCalendarView({
       )}
 
       {/* Regular Calendar View */}
-      <CalendarView
-        organizationId={organizationId}
-        teamId={teamId}
-        userId={userId}
-        userRole="physicaltrainer"
-      />
+      <div className="h-full pt-16">
+        <CalendarView
+          organizationId={organizationId}
+          teamId={teamId}
+          userId={userId}
+          userRole="physicaltrainer"
+        />
+      </div>
 
       {/* Quick Session Scheduler Modal */}
       {selectedDateTime && (

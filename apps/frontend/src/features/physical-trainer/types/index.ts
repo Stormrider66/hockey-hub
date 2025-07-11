@@ -493,3 +493,8 @@ export type ExerciseCategory = Exercise['category'];
 export type PlayerStatus = Player['status'];
 export type ReadinessStatus = PlayerReadiness['status'];
 export type FatigueLevel = PlayerReadiness['fatigue'];
+
+// Export workout-specific types
+export * from './conditioning.types';
+export * from './hybrid.types';
+export * from './agility.types';
