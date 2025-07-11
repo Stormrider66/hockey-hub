@@ -37,7 +37,7 @@
     "redis": "^4.7.1",
     "socket.io": "^4.6.1",
     "typeorm": "^0.3.17",
-    "ua-parser-js": "^1.0.37",
+    "ua-parser-js": "^2.0.4",
     "uuid": "^9.0.1",
     "web-push": "^3.6.6",
     "@sendgrid/mail": "^8.1.0",
