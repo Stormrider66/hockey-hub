@@ -27,7 +27,11 @@ import { BulkMedicalScheduling } from "./components/BulkMedicalScheduling";
 import { useGetCalendarEventsQuery } from "@/store/api/calendarApi";
 import { cn } from "@/lib/utils";
 
-export function MedicalCalendarView() {
+interface MedicalCalendarViewProps {
+  teamId?: string | null;
+}
+
+export function MedicalCalendarView({ teamId }: MedicalCalendarViewProps) {
   const [showQuickActions, setShowQuickActions] = useState(false);
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
   const [showAvailabilityOverlay, setShowAvailabilityOverlay] = useState(false);
@@ -39,7 +43,8 @@ export function MedicalCalendarView() {
 
   // Get medical-related calendar events
   const { data: events } = useGetCalendarEventsQuery({
-    type: ['medical', 'checkup', 'treatment', 'screening']
+    type: ['medical', 'checkup', 'treatment', 'screening'],
+    teamId: teamId || undefined
   });
 
   const handleSelectSlot = (slotInfo: { start: Date; end: Date }) => {

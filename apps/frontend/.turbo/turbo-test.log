@@ -1,17 +1,4 @@
 
-> hockey-hub-frontend@0.1.0 test C:\Hockey Hub\apps\frontend
+> hockey-hub-frontend@0.1.0 test /mnt/c/Hockey Hub/apps/frontend
 > jest --config jest.config.js --runInBand
 
-ts-jest[ts-jest-transformer] (WARN) Define `ts-jest` config under `globals` is deprecated. Please do
-transform: {
-    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
-},
-See more at https://kulshekhar.github.io/ts-jest/docs/getting-started/presets#advanced
-PASS src/components/__tests__/TestAnalyticsPanel.test.tsx (30.973 s)
-PASS src/features/trainingSessionViewer/__tests__/IntervalDisplay.test.tsx
-
-Test Suites: 2 passed, 2 total
-Tests:       4 passed, 4 total
-Snapshots:   0 total
-Time:        35.417 s
-Ran all test suites.

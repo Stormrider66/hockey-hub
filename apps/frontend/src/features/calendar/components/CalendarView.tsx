@@ -88,6 +88,18 @@ const eventTypeColors: Record<EventType, string> = {
   [EventType.OTHER]: '#64748b', // slate
 };
 
+// Helper function to get team name
+const getTeamName = (teamId: string): string => {
+  const teamNames: Record<string, string> = {
+    'a-team': 'A-Team',
+    'j20': 'J20',
+    'u18': 'U18',
+    'u16': 'U16',
+    'womens': "Women's Team"
+  };
+  return teamNames[teamId] || 'Team';
+};
+
 interface CalendarEventWithStyle extends BigCalendarEvent {
   id: string;
   resource: CalendarEvent;
@@ -144,6 +156,7 @@ function CalendarView({
     organizationId,
     startDate: dateRange.start.toISOString(),
     endDate: dateRange.end.toISOString(),
+    teamId: teamId || undefined,
   });
 
   // User permissions object
@@ -156,9 +169,9 @@ function CalendarView({
 
   // Get unique teams from events
   const availableTeams = useMemo(() => {
-    if (!eventsData?.data) return [];
+    if (!eventsData) return [];
     const teams = new Set<string>();
-    eventsData.data.forEach(event => {
+    eventsData.forEach(event => {
       if (event.teamId) teams.add(event.teamId);
     });
     return Array.from(teams).sort();
@@ -166,65 +179,11 @@ function CalendarView({
 
   // Transform and filter events for react-big-calendar
   const events: CalendarEventWithStyle[] = useMemo(() => {
-    // If no data, show some mock events for testing
-    if (!eventsData?.data || eventsData.data.length === 0) {
-      const today = new Date();
-      const mockEvents = [];
-      
-      // Add some events for the current week
-      for (let i = 0; i < 7; i++) {
-        const eventDate = new Date(today);
-        eventDate.setDate(today.getDate() + i);
-        
-        if (i % 2 === 0) {
-          mockEvents.push({
-            id: `training-${i}`,
-            title: `Training Session ${i + 1}`,
-            start: new Date(eventDate.setHours(9, 0, 0, 0)),
-            end: new Date(eventDate.setHours(11, 0, 0, 0)),
-            allDay: false,
-            resource: {
-              id: `training-${i}`,
-              title: `Training Session ${i + 1}`,
-              type: EventType.TRAINING,
-              startTime: new Date(eventDate.setHours(9, 0, 0, 0)).toISOString(),
-              endTime: new Date(eventDate.setHours(11, 0, 0, 0)).toISOString(),
-              organizationId,
-              createdBy: 'coach',
-              status: 'scheduled' as any,
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString()
-            }
-          });
-        }
-        
-        if (i === 3) {
-          mockEvents.push({
-            id: 'meeting-1',
-            title: 'Team Meeting',
-            start: new Date(eventDate.setHours(14, 0, 0, 0)),
-            end: new Date(eventDate.setHours(15, 30, 0, 0)),
-            allDay: false,
-            resource: {
-              id: 'meeting-1',
-              title: 'Team Meeting',
-              type: EventType.MEETING,
-              startTime: new Date(eventDate.setHours(14, 0, 0, 0)).toISOString(),
-              endTime: new Date(eventDate.setHours(15, 30, 0, 0)).toISOString(),
-              organizationId,
-              createdBy: 'coach',
-              status: 'scheduled' as any,
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString()
-            }
-          });
-        }
-      }
-      
-      return mockEvents;
+    if (!eventsData || eventsData.length === 0) {
+      return [];
     }
 
-    return eventsData.data
+    return eventsData
       .filter(event => {
         // First check permissions
         if (!canViewEvent(event, userPermissions)) return false;
@@ -443,9 +402,8 @@ function CalendarView({
   );
 
   return (
-    <div>
-        <div>
-          <DragAndDropCalendar
+    <div className="h-full">
+      <DragAndDropCalendar
             localizer={localizer}
             events={events}
             startAccessor="start"
@@ -482,7 +440,6 @@ function CalendarView({
             min={new Date(0, 0, 0, 7, 0, 0)}
             max={new Date(0, 0, 0, 22, 0, 0)}
           />
-        </div>
 
       {/* Event Details Modal */}
       {selectedEvent && (

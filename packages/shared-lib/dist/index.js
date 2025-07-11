@@ -46,6 +46,12 @@ __exportStar(require("./errors"), exports);
 __exportStar(require("./utils"), exports);
 // Socket events
 __exportStar(require("./types/socket-events"), exports);
+// Events
+__exportStar(require("./events/EventBus"), exports);
+__exportStar(require("./events/EventFactory"), exports);
+__exportStar(require("./events/EventPublisher"), exports);
+__exportStar(require("./events/training-events"), exports);
+__exportStar(require("./events/training-event-listeners"), exports);
 // Testing utilities (only export in non-production environments)
 if (process.env.NODE_ENV !== 'production') {
     module.exports.testing = require('./testing');

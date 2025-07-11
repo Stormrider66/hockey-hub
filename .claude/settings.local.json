@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(ss:*)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(grep:*)",
+      "Bash(pnpm add:*)",
+      "Bash(ls:*)",
+      "Bash(# 2. Frontend dashboard files\necho \"=== FRONTEND DASHBOARD FILES ===\"\ngrep -E \"(dashboard|Dashboard|apps/frontend/app/(admin|player|coach|parent|clubadmin|equipmentmanager|medicalstaff|physicaltrainer|fys-coach))\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"(dashboard|Dashboard)\" /tmp/git-status-full.txt | head -10)",
+      "Bash(# 3. Medical service files\necho \"=== MEDICAL SERVICE FILES ===\"\ngrep -E \"(medical|Medical|injury|treatment|rehab|services/medical-service)\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"(services/medical-service|medical|Medical)\" /tmp/git-status-full.txt | grep -v \"README\" | head -15)",
+      "Bash(# 4. Planning service files\necho \"=== PLANNING SERVICE FILES ===\"\ngrep -E \"(planning|Planning|services/planning-service|season|goal|development)\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"(services/planning-service)\" /tmp/git-status-full.txt | head -10\necho \"New planning files:\"\ngrep -E \"\\?\\?\" /tmp/git-status-full.txt | grep -i \"planning\" | head -10)",
+      "Bash(# 5. API Gateway and monitoring files\necho \"=== API GATEWAY AND MONITORING FILES ===\"\ngrep -E \"(api-gateway|monitoring|metrics|logger)\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"(api-gateway|monitoring)\" /tmp/git-status-full.txt | head -10)",
+      "Bash(# 6. Documentation files\necho \"=== DOCUMENTATION FILES ===\"\ngrep -E \"\\.(md|txt)$\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"\\.md$\" /tmp/git-status-full.txt | head -15)",
+      "Bash(# Count documentation files properly\necho \"=== DOCUMENTATION FILES ===\"\ngrep -E \"\\.md$|\\.txt$\" /tmp/git-status-full.txt | wc -l\necho \"Modified MD files:\"\ngrep -E \" M .*\\.md$\" /tmp/git-status-full.txt | wc -l\necho \"New MD files:\"\ngrep -E \"\\?\\?.*\\.md$\" /tmp/git-status-full.txt | wc -l)",
+      "Bash(# 7. Configuration and build files\necho \"=== CONFIGURATION AND BUILD FILES ===\"\ngrep -E \"(package\\.json|tsconfig|jest\\.config|\\.config\\.|Dockerfile|docker-compose|\\.yml$|\\.yaml$|\\.gitignore|\\.eslintignore)\" /tmp/git-status-full.txt | wc -l\necho \"Key files:\"\ngrep -E \"(package\\.json|tsconfig|Dockerfile|docker-compose)\" /tmp/git-status-full.txt | head -10)",
+      "Bash(# 8. Other services (training, calendar, user, etc.)\necho \"=== OTHER SERVICES BREAKDOWN ===\"\necho \"Training Service:\"\ngrep -E \"services/training-service\" /tmp/git-status-full.txt | wc -l\necho \"Calendar Service:\"\ngrep -E \"services/calendar-service\" /tmp/git-status-full.txt | wc -l\necho \"User Service:\"\ngrep -E \"services/user-service\" /tmp/git-status-full.txt | wc -l\necho \"Communication Service:\"\ngrep -E \"services/communication-service\" /tmp/git-status-full.txt | wc -l\necho \"Payment Service:\"\ngrep -E \"services/payment-service\" /tmp/git-status-full.txt | wc -l\necho \"Admin Service:\"\ngrep -E \"services/admin-service\" /tmp/git-status-full.txt | wc -l\necho \"Statistics Service:\"\ngrep -E \"services/statistics-service\" /tmp/git-status-full.txt | wc -l)",
+      "Bash(# Frontend components and features breakdown\necho \"=== FRONTEND BREAKDOWN ===\"\necho \"Total frontend files:\"\ngrep -E \"apps/frontend/\" /tmp/git-status-full.txt | wc -l\necho \"UI Components:\"\ngrep -E \"apps/frontend/.*components/ui/\" /tmp/git-status-full.txt | wc -l\necho \"Feature modules:\"\ngrep -E \"apps/frontend/src/features/\" /tmp/git-status-full.txt | wc -l\necho \"Store/API files:\"\ngrep -E \"apps/frontend/.*store/\" /tmp/git-status-full.txt | wc -l)",
+      "Bash(# Get the new (untracked) files count\necho \"=== NEW/UNTRACKED FILES ===\"\ngrep -E \"^\\?\\?\" /tmp/git-status-full.txt | wc -l\necho \"Key new additions:\"\ngrep -E \"^\\?\\?\" /tmp/git-status-full.txt | head -20)",
+      "Bash(git stash push:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(rm:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}

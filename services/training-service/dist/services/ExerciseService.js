@@ -1,68 +1,149 @@
 "use strict";
-// @ts-nocheck
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExerciseService = void 0;
-const ExerciseRepository_1 = require("../repositories/ExerciseRepository");
-const AppError_1 = require("../utils/AppError");
+const typeorm_1 = require("typeorm");
+const shared_lib_1 = require("@hockey-hub/shared-lib");
+const entities_1 = require("../entities");
+const database_1 = require("../config/database");
 class ExerciseService {
-    createExercise(data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!data.name || !data.category || !data.difficulty || !data.description || !data.instructions || !data.created_by_user_id) {
-                throw new AppError_1.AppError('VALIDATION_ERROR', 'Missing required fields for exercise', 400);
-            }
-            return ExerciseRepository_1.exerciseRepository.createExercise(data);
-        });
+    constructor() {
+        this.logger = new shared_lib_1.Logger('ExerciseService');
+        this.exerciseRepository = database_1.AppDataSource.getRepository(entities_1.ExerciseTemplate);
     }
-    getAllExercises(filters, page = 1, limit = 20) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const offset = (page - 1) * limit;
-            const [exercises, total] = yield Promise.all([
-                ExerciseRepository_1.exerciseRepository.findExercises(filters, limit, offset),
-                ExerciseRepository_1.exerciseRepository.countExercises(filters)
-            ]);
-            return { exercises, total };
-        });
+    async create(dto, userId, organizationId) {
+        try {
+            const exercise = this.exerciseRepository.create({
+                ...dto,
+                createdBy: userId,
+                organizationId
+            });
+            const saved = await this.exerciseRepository.save(exercise);
+            this.logger.info(`Created exercise template: ${saved.id}`, { exerciseId: saved.id, userId, organizationId });
+            return saved;
+        }
+        catch (error) {
+            this.logger.error('Failed to create exercise template', error, { userId, dto });
+            throw error;
+        }
     }
-    getExerciseById(id, organizationId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (!id) {
-                throw new AppError_1.AppError('VALIDATION_ERROR', 'Exercise ID is required', 400);
+    async findAll(filter) {
+        try {
+            const where = {
+                isActive: filter.isActive !== undefined ? filter.isActive : true
+            };
+            if (filter.organizationId) {
+                where.organizationId = filter.organizationId;
             }
-            const exercise = yield ExerciseRepository_1.exerciseRepository.findExerciseById(id, organizationId);
+            if (filter.category) {
+                where.category = filter.category;
+            }
+            if (filter.search) {
+                where.name = (0, typeorm_1.ILike)(`%${filter.search}%`);
+            }
+            const [data, total] = await this.exerciseRepository.findAndCount({
+                where,
+                skip: filter.skip || 0,
+                take: filter.take || 50,
+                order: {
+                    name: 'ASC'
+                }
+            });
+            return { data, total };
+        }
+        catch (error) {
+            this.logger.error('Failed to find exercises', error, { filter });
+            throw error;
+        }
+    }
+    async findById(id) {
+        try {
+            const exercise = await this.exerciseRepository.findOne({
+                where: { id }
+            });
             if (!exercise) {
-                throw new AppError_1.AppError('NOT_FOUND', `Exercise with ID ${id} not found`, 404);
+                const error = new Error(`Exercise not found: ${id}`);
+                error.statusCode = 404;
+                throw error;
             }
             return exercise;
-        });
+        }
+        catch (error) {
+            this.logger.error('Failed to find exercise by id', error, { id });
+            throw error;
+        }
     }
-    updateExercise(id, updates) {
-        return __awaiter(this, void 0, void 0, function* () {
-            // Prevent changing creator or organization
-            delete updates.created_by_user_id;
-            delete updates.organization_id;
-            const updatedExercise = yield ExerciseRepository_1.exerciseRepository.updateExercise(id, updates);
-            if (!updatedExercise) {
-                throw new AppError_1.AppError('NOT_FOUND', `Exercise with ID ${id} not found`, 404);
-            }
-            return updatedExercise;
-        });
+    async update(id, dto, userId) {
+        try {
+            const exercise = await this.findById(id);
+            // Update fields
+            Object.assign(exercise, dto);
+            const updated = await this.exerciseRepository.save(exercise);
+            this.logger.info(`Updated exercise template: ${id}`, { exerciseId: id, userId });
+            return updated;
+        }
+        catch (error) {
+            this.logger.error('Failed to update exercise', error, { id, userId, dto });
+            throw error;
+        }
     }
-    deleteExercise(id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const deleted = yield ExerciseRepository_1.exerciseRepository.deleteExercise(id);
-            if (!deleted) {
-                throw new AppError_1.AppError('NOT_FOUND', `Exercise with ID ${id} not found for deletion`, 404);
+    async delete(id, userId) {
+        try {
+            const exercise = await this.findById(id);
+            // Soft delete by setting isActive to false
+            exercise.isActive = false;
+            await this.exerciseRepository.save(exercise);
+            this.logger.info(`Deleted (soft) exercise template: ${id}`, { exerciseId: id, userId });
+        }
+        catch (error) {
+            this.logger.error('Failed to delete exercise', error, { id, userId });
+            throw error;
+        }
+    }
+    async searchByName(query, organizationId) {
+        try {
+            const where = {
+                name: (0, typeorm_1.ILike)(`%${query}%`),
+                isActive: true
+            };
+            if (organizationId) {
+                where.organizationId = organizationId;
             }
-        });
+            const exercises = await this.exerciseRepository.find({
+                where,
+                take: 10,
+                order: {
+                    name: 'ASC'
+                }
+            });
+            return exercises;
+        }
+        catch (error) {
+            this.logger.error('Failed to search exercises', error, { query });
+            throw error;
+        }
+    }
+    async findByCategory(category, organizationId) {
+        try {
+            const where = {
+                category,
+                isActive: true
+            };
+            if (organizationId) {
+                where.organizationId = organizationId;
+            }
+            const exercises = await this.exerciseRepository.find({
+                where,
+                order: {
+                    name: 'ASC'
+                }
+            });
+            return exercises;
+        }
+        catch (error) {
+            this.logger.error('Failed to find exercises by category', error, { category });
+            throw error;
+        }
     }
 }
 exports.ExerciseService = ExerciseService;
+//# sourceMappingURL=ExerciseService.js.map

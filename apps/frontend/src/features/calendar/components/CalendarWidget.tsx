@@ -12,6 +12,7 @@ import Link from 'next/link';
 interface CalendarWidgetProps {
   organizationId: string;
   userId: string;
+  teamId?: string;
   days?: number;
 }
 
@@ -29,11 +30,13 @@ const eventTypeColors: Record<EventType, string> = {
 export default function CalendarWidget({
   organizationId,
   userId,
+  teamId,
   days = 7,
 }: CalendarWidgetProps) {
   const { data: eventsData, isLoading } = useGetUpcomingEventsQuery({
     userId,
     organizationId,
+    teamId,
     days,
   });
 

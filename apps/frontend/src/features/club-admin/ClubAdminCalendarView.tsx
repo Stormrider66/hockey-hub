@@ -30,7 +30,11 @@ import { OrganizationEventModal } from "./components/OrganizationEventModal";
 import { useGetCalendarEventsQuery } from "@/store/api/calendarApi";
 import { cn } from "@/lib/utils";
 
-export function ClubAdminCalendarView() {
+interface ClubAdminCalendarViewProps {
+  teamId?: string | null;
+}
+
+export function ClubAdminCalendarView({ teamId }: ClubAdminCalendarViewProps) {
   const [showQuickActions, setShowQuickActions] = useState(false);
   const [showResourceOverlay, setShowResourceOverlay] = useState(false);
   const [showAnalyticsOverlay, setShowAnalyticsOverlay] = useState(false);
@@ -43,9 +47,10 @@ export function ClubAdminCalendarView() {
   const [viewFilter, setViewFilter] = useState("all");
   const [showPendingOnly, setShowPendingOnly] = useState(false);
 
-  // Get ALL calendar events for the organization
+  // Get calendar events - either for all teams or specific team
   const { data: events } = useGetCalendarEventsQuery({
-    organizationWide: true,
+    organizationWide: !teamId, // If no specific team, get organization-wide
+    teamId: teamId || undefined,
     includePending: true
   });
 

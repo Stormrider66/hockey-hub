@@ -25,6 +25,7 @@ import {
   XCircle,
   AlertCircle,
   User,
+  Play,
 } from 'lucide-react';
 import { format } from 'date-fns';
 import {
@@ -35,6 +36,8 @@ import {
   useDeleteEventMutation,
 } from '@/store/api/calendarApi';
 import { toast } from 'react-hot-toast';
+import { PlayerWorkoutLauncher } from '@/features/player/components/PlayerWorkoutLauncher';
+import { useRouter } from 'next/navigation';
 
 interface EventDetailsModalProps {
   event: CalendarEvent;
@@ -73,6 +76,7 @@ export default function EventDetailsModal({
   const [responseMessage, setResponseMessage] = useState('');
   const [updateParticipantStatus] = useUpdateParticipantStatusMutation();
   const [deleteEvent] = useDeleteEventMutation();
+  const router = useRouter();
 
   const userParticipant = event.participants?.find(p => p.participantId === userId);
   const isOrganizer = event.createdBy === userId;
@@ -193,6 +197,27 @@ export default function EventDetailsModal({
                 <h4 className="font-medium mb-2">Description</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                   {event.description}
+                </p>
+              </div>
+            )}
+
+            {/* Workout Launch Button */}
+            {event.type === EventType.TRAINING && event.metadata?.workoutId && userRole === 'player' && (
+              <div className="pt-4 border-t">
+                <h4 className="font-medium mb-2">Training Session</h4>
+                <PlayerWorkoutLauncher
+                  eventId={event.id}
+                  eventTitle={event.title}
+                  metadata={event.metadata}
+                  startTime={event.startTime}
+                  location={event.location || 'Training Center'}
+                />
+                <p className="text-xs text-muted-foreground mt-2">
+                  {event.metadata.intervalProgram?.totalDuration 
+                    ? `Duration: ${Math.floor(event.metadata.intervalProgram.totalDuration / 60)} minutes`
+                    : event.metadata.hybridWorkout?.duration
+                    ? `Duration: ${event.metadata.hybridWorkout.duration} minutes`
+                    : 'Workout ready to start'}
                 </p>
               </div>
             )}

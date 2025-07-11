@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { useTranslation } from '@hockey-hub/translations';
+import { TeamSelector } from '@/features/physical-trainer/components/TeamSelector';
+import { useTeamSelection } from '@/hooks/useTeamSelection';
 import {
   Card,
   CardContent,
@@ -42,6 +44,19 @@ export default function ClubAdminDashboard() {
   const [tab, setTab] = useState("overview");
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
 
+  // Team selection management
+  const {
+    selectedTeamId,
+    setSelectedTeamId,
+    teams,
+    teamsLoading,
+    isAllTeams
+  } = useTeamSelection({
+    storageKey: 'clubAdmin_selectedTeamId',
+    includeAllOption: true,
+    includePersonalOption: false
+  });
+
   const { data: apiData, isLoading } = useGetClubOverviewQuery("club1");
 
   const orgStats = apiData?.orgStats ?? { teams: 8, activeMembers: 243, coachingStaff: 18, upcomingEvents: 28 };
@@ -77,15 +92,27 @@ export default function ClubAdminDashboard() {
   return (
     <div className="space-y-6 p-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">{t('clubAdmin:dashboard.title')}</h1>
-        <div className="flex gap-4">
+      <div className="mb-4">
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-3xl font-bold">{t('clubAdmin:dashboard.title')}</h1>
+          <div className="flex gap-4">
           <Button size="sm" variant="outline">
             <Bell className="h-4 w-4 mr-2" /> {t('common:navigation.alerts')}
           </Button>
           <Button size="sm" variant="outline">
             <Settings className="h-4 w-4 mr-2" /> {t('common:navigation.settings')}
           </Button>
+          </div>
+        </div>
+        
+        {/* Team Selector */}
+        <div className="flex justify-between items-center">
+          <TeamSelector
+            teams={teams}
+            selectedTeamId={selectedTeamId}
+            onTeamChange={setSelectedTeamId}
+            loading={teamsLoading}
+          />
         </div>
       </div>
 
@@ -236,7 +263,7 @@ export default function ClubAdminDashboard() {
 
         {/* Calendar */}
         <TabsContent value="calendar" className="space-y-4 h-[calc(100vh-12rem)]">
-          <ClubAdminCalendarView />
+          <ClubAdminCalendarView teamId={isAllTeams ? undefined : selectedTeamId} />
         </TabsContent>
 
         {/* Administration */}

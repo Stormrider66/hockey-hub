@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateWorkoutSessionDto = exports.WorkoutFilterDto = exports.PerformanceMetricsDto = exports.UpdateExerciseExecutionDto = exports.StartWorkoutDto = exports.ExerciseModificationDto = exports.PlayerLoadDto = exports.UpdateExerciseDto = exports.CreateExerciseDto = exports.WorkoutSettingsDto = exports.CreateWorkoutSessionDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
+const interval_program_dto_1 = require("./interval-program.dto");
 class CreateWorkoutSessionDto {
 }
 exports.CreateWorkoutSessionDto = CreateWorkoutSessionDto;
@@ -61,6 +62,12 @@ __decorate([
     (0, class_transformer_1.Type)(() => WorkoutSettingsDto),
     __metadata("design:type", WorkoutSettingsDto)
 ], CreateWorkoutSessionDto.prototype, "settings", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.ValidateNested)(),
+    (0, class_transformer_1.Type)(() => interval_program_dto_1.IntervalProgramDto),
+    __metadata("design:type", interval_program_dto_1.IntervalProgramDto)
+], CreateWorkoutSessionDto.prototype, "intervalProgram", void 0);
 class WorkoutSettingsDto {
     constructor() {
         this.allowIndividualLoads = true;

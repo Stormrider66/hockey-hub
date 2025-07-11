@@ -9,91 +9,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Exercise = exports.Difficulty = void 0;
+exports.Exercise = void 0;
 const typeorm_1 = require("typeorm");
-const types_1 = require("@hockey-hub/types");
-var Difficulty;
-(function (Difficulty) {
-    Difficulty["BEGINNER"] = "beginner";
-    Difficulty["INTERMEDIATE"] = "intermediate";
-    Difficulty["ADVANCED"] = "advanced";
-})(Difficulty || (exports.Difficulty = Difficulty = {}));
-let Exercise = class Exercise {
+const shared_lib_1 = require("@hockey-hub/shared-lib");
+const WorkoutSession_1 = require("./WorkoutSession");
+let Exercise = class Exercise extends shared_lib_1.BaseEntity {
 };
 exports.Exercise = Exercise;
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    __metadata("design:type", String)
-], Exercise.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
-    __metadata("design:type", String)
-], Exercise.prototype, "organizationId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Exercise.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
-    __metadata("design:type", String)
-], Exercise.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)({
-        type: 'enum',
-        enum: types_1.ExerciseCategory
-    }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 50 }),
     __metadata("design:type", String)
 ], Exercise.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 2048, nullable: true }),
-    __metadata("design:type", String)
-], Exercise.prototype, "videoUrl", void 0);
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "orderIndex", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "sets", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "reps", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "duration", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "restDuration", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 20 }),
+    __metadata("design:type", String)
+], Exercise.prototype, "unit", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'float', nullable: true }),
+    __metadata("design:type", Number)
+], Exercise.prototype, "targetValue", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Exercise.prototype, "equipment", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Exercise.prototype, "instructions", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'simple-array', nullable: true }),
-    __metadata("design:type", Array)
-], Exercise.prototype, "muscleGroups", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'simple-array', nullable: true }),
-    __metadata("design:type", Array)
-], Exercise.prototype, "equipmentNeeded", void 0);
-__decorate([
-    (0, typeorm_1.Column)({
-        type: 'enum',
-        enum: Difficulty,
-    }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Exercise.prototype, "difficulty", void 0);
+], Exercise.prototype, "videoUrl", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 2048, nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Exercise.prototype, "imageUrl", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'jsonb', nullable: true }),
+    __metadata("design:type", Object)
+], Exercise.prototype, "intensityZones", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => WorkoutSession_1.WorkoutSession, session => session.exercises, { onDelete: 'CASCADE' }),
+    (0, typeorm_1.JoinColumn)({ name: 'workoutSessionId' }),
+    __metadata("design:type", WorkoutSession_1.WorkoutSession)
+], Exercise.prototype, "workoutSession", void 0);
+__decorate([
     (0, typeorm_1.Column)({ type: 'uuid' }),
     __metadata("design:type", String)
-], Exercise.prototype, "createdByUserId", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ default: false }),
-    __metadata("design:type", Boolean)
-], Exercise.prototype, "is_public", void 0);
-__decorate([
-    (0, typeorm_1.CreateDateColumn)({ type: 'timestamptz' }),
-    __metadata("design:type", String)
-], Exercise.prototype, "createdAt", void 0);
-__decorate([
-    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamptz' }),
-    __metadata("design:type", String)
-], Exercise.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.DeleteDateColumn)({ nullable: true }),
-    __metadata("design:type", Date)
-], Exercise.prototype, "deletedAt", void 0);
+], Exercise.prototype, "workoutSessionId", void 0);
 exports.Exercise = Exercise = __decorate([
-    (0, typeorm_1.Entity)('exercises'),
-    (0, typeorm_1.Index)(['organizationId', 'name']),
-    (0, typeorm_1.Index)(['createdByUserId']),
-    (0, typeorm_1.Index)(['is_public'])
+    (0, typeorm_1.Entity)('exercises')
 ], Exercise);
+//# sourceMappingURL=Exercise.js.map

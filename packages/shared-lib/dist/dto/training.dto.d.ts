@@ -1,4 +1,5 @@
 import { WorkoutType, WorkoutStatus, ExerciseCategory, ExerciseUnit } from '../index';
+import { IntervalProgramDto } from './interval-program.dto';
 export declare class CreateWorkoutSessionDto {
     title: string;
     description?: string;
@@ -9,6 +10,7 @@ export declare class CreateWorkoutSessionDto {
     playerIds: string[];
     estimatedDuration: number;
     settings?: WorkoutSettingsDto;
+    intervalProgram?: IntervalProgramDto;
 }
 export declare class WorkoutSettingsDto {
     allowIndividualLoads?: boolean;

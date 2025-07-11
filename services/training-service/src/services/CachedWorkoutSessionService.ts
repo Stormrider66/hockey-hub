@@ -57,6 +57,7 @@ export interface UpdateWorkoutSessionDto {
   playerIds?: string[];
   settings?: Partial<WorkoutSettings>;
   exercises?: CreateExerciseDto[];
+  intervalProgram?: any; // IntervalProgram type from entity
 }
 
 export interface WorkoutSettings {
@@ -104,7 +105,8 @@ export class CachedWorkoutSessionService {
         autoRotation: false,
         rotationInterval: 30
       },
-      estimatedDuration: data.estimatedDuration || 60
+      estimatedDuration: data.estimatedDuration || 60,
+      intervalProgram: data.intervalProgram || null
     });
 
     const savedWorkout = await this.workoutRepository.save(workout);
@@ -151,6 +153,7 @@ export class CachedWorkoutSessionService {
     if (data.location !== undefined) workout.location = data.location;
     if (data.playerIds) workout.playerIds = data.playerIds;
     if (data.settings) workout.settings = { ...workout.settings, ...data.settings };
+    if (data.intervalProgram !== undefined) workout.intervalProgram = data.intervalProgram;
 
     await this.workoutRepository.save(workout);
 

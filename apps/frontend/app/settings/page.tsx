@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { User, Bell, Shield, Palette } from 'lucide-react';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 export default function SettingsPage() {
   const { t } = useTranslation(['common', 'settings']);
@@ -27,19 +28,19 @@ export default function SettingsPage() {
           <TabsList>
             <TabsTrigger value="profile">
               <User className="mr-2 h-4 w-4" />
-              Profile
+              {t('common:navigation.profile', 'Profile')}
             </TabsTrigger>
             <TabsTrigger value="notifications">
               <Bell className="mr-2 h-4 w-4" />
-              Notifications
+              {t('common:navigation.notifications', 'Notifications')}
             </TabsTrigger>
             <TabsTrigger value="privacy">
               <Shield className="mr-2 h-4 w-4" />
-              Privacy
+              {t('settings:privacy', 'Privacy')}
             </TabsTrigger>
             <TabsTrigger value="appearance">
               <Palette className="mr-2 h-4 w-4" />
-              Appearance
+              {t('settings:appearance', 'Appearance')}
             </TabsTrigger>
           </TabsList>
 
@@ -123,16 +124,36 @@ export default function SettingsPage() {
           <TabsContent value="appearance">
             <Card>
               <CardHeader>
-                <CardTitle>Appearance</CardTitle>
-                <CardDescription>Customize how the app looks</CardDescription>
+                <CardTitle>{t('settings:appearance', 'Appearance')}</CardTitle>
+                <CardDescription>{t('settings:appearanceDescription', 'Customize how the app looks and feels')}</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid gap-2">
-                  <Label>Theme</Label>
-                  <div className="flex gap-2">
-                    <Button variant="outline">Light</Button>
-                    <Button variant="outline">Dark</Button>
-                    <Button variant="outline">System</Button>
+              <CardContent className="space-y-6">
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-base font-medium">{t('settings:theme', 'Theme')}</Label>
+                    <p className="text-sm text-gray-500 mb-3">{t('settings:themeDescription', 'Choose your preferred color theme')}</p>
+                    <div className="flex gap-2">
+                      <Button variant="outline">{t('settings:themeLight', 'Light')}</Button>
+                      <Button variant="outline">{t('settings:themeDark', 'Dark')}</Button>
+                      <Button variant="outline">{t('settings:themeSystem', 'System')}</Button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="border-t pt-6">
+                  <div className="space-y-4">
+                    <div>
+                      <Label className="text-base font-medium">{t('common:language', 'Language')}</Label>
+                      <p className="text-sm text-gray-500 mb-3">{t('settings:languageDescription', 'Select your preferred language for the interface')}</p>
+                      <LanguageSelector 
+                        showLabel={false}
+                        variant="default"
+                        className="mt-2"
+                      />
+                      <p className="text-xs text-gray-400 mt-2">
+                        {t('settings:languageNote', 'Changes will be applied immediately across the entire application')}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </CardContent>

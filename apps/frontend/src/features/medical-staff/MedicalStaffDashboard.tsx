@@ -55,6 +55,8 @@ import { useGetMedicalDocumentsQuery, useGetDocumentSignedUrlQuery } from "../..
 import { MedicalCalendarView } from "./MedicalCalendarView";
 import { AppointmentReminderSettings } from "./components/AppointmentReminderSettings";
 import { useTranslation } from '@hockey-hub/translations';
+import { TeamSelector } from '@/features/physical-trainer/components/TeamSelector';
+import { useTeamSelection } from '@/hooks/useTeamSelection';
 
 // Note: Mock data moved to useMedicalData hook for progressive integration
 const legacyMockInjuries = [
@@ -140,6 +142,19 @@ export default function MedicalStaffDashboard() {
   const [severityFilter, setSeverityFilter] = useState("all");
   const [showUrgentNotification, setShowUrgentNotification] = useState(false);
   const [showNotificationCenter, setShowNotificationCenter] = useState(false);
+  // Team selection management
+  const {
+    selectedTeamId,
+    setSelectedTeamId,
+    teams,
+    teamsLoading,
+    isAllTeams
+  } = useTeamSelection({
+    storageKey: 'medicalStaff_selectedTeamId',
+    includeAllOption: true,
+    includePersonalOption: false
+  });
+
   const { data: medicalData, isLoading, error, isBackendIntegrated } = useMedicalData("senior");
 
   // Use integrated data or fallback to legacy mock data
@@ -817,12 +832,13 @@ export default function MedicalStaffDashboard() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6 flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Medical Dashboard</h1>
-          <p className="text-muted-foreground">Manage injuries, treatments, and player health</p>
-        </div>
-        <div className="flex gap-2 items-center">
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Medical Dashboard</h1>
+            <p className="text-muted-foreground">Manage injuries, treatments, and player health</p>
+          </div>
+          <div className="flex gap-2 items-center">
           <Badge variant={isBackendIntegrated ? "default" : "secondary"}>
             {isBackendIntegrated ? "🔗 Backend Connected" : "📋 Demo Mode"}
           </Badge>
@@ -849,6 +865,17 @@ export default function MedicalStaffDashboard() {
             <Plus className="h-4 w-4 mr-2" />
             Quick Actions
           </Button>
+          </div>
+        </div>
+        
+        {/* Team Selector */}
+        <div className="flex justify-between items-center">
+          <TeamSelector
+            teams={teams}
+            selectedTeamId={selectedTeamId}
+            onTeamChange={setSelectedTeamId}
+            loading={teamsLoading}
+          />
         </div>
       </div>
 
@@ -897,7 +924,7 @@ export default function MedicalStaffDashboard() {
         </TabsContent>
 
         <TabsContent value="calendar" className="mt-6">
-          <MedicalCalendarView />
+          <MedicalCalendarView teamId={isAllTeams ? undefined : selectedTeamId} />
         </TabsContent>
 
         <TabsContent value="injuries" className="mt-6">

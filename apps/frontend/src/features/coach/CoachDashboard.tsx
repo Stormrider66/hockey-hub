@@ -62,6 +62,8 @@ import {
   getEventTypeIconColor,
 } from "@/lib/design-utils";
 import { useTranslation } from '@hockey-hub/translations';
+import { TeamSelector } from '@/features/physical-trainer/components/TeamSelector';
+import { useTeamSelection } from '@/hooks/useTeamSelection';
 import { CoachChannelList } from "@/features/chat/components/CoachChannelList";
 import { usePrivateCoachChannels } from "@/hooks/usePrivateCoachChannels";
 
@@ -304,7 +306,19 @@ export default function CoachDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedLineup, setSelectedLineup] = useState(null);
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null);
-  const { data: apiData, isLoading } = useGetCoachOverviewQuery("senior");
+  // Team selection management - Ice Coach only sees their assigned teams
+  const {
+    selectedTeamId,
+    setSelectedTeamId,
+    teams,
+    teamsLoading
+  } = useTeamSelection({
+    storageKey: 'iceCoach_selectedTeamId',
+    includeAllOption: false,  // Ice coaches focus on specific teams
+    includePersonalOption: false
+  });
+
+  const { data: apiData, isLoading } = useGetCoachOverviewQuery(selectedTeamId || "senior");
   const { channels: privateChannels, loading: channelsLoading } = usePrivateCoachChannels();
 
   // Availability calculation
@@ -392,6 +406,7 @@ export default function CoachDashboard() {
         <CalendarWidget 
           organizationId="org-123" 
           userId="coach-123"
+          teamId={selectedTeamId}
           days={14}
         />
 
@@ -528,7 +543,7 @@ export default function CoachDashboard() {
       <IceCoachCalendarView
         organizationId="org-123"
         userId="coach-123"
-        teamId="team-senior"
+        teamId={selectedTeamId || "team-senior"}
       />
     </div>
   );
@@ -1434,6 +1449,16 @@ export default function CoachDashboard() {
 
   return (
     <div className="w-full">{/* Removed padding and max-width since it's handled by parent */}
+      
+      {/* Team Selector for Ice Coach */}
+      <div className="mb-6">
+        <TeamSelector
+          teams={teams}
+          selectedTeamId={selectedTeamId}
+          onTeamChange={setSelectedTeamId}
+          loading={teamsLoading}
+        />
+      </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid grid-cols-9 w-full">

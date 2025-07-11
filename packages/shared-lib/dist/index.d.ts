@@ -217,6 +217,11 @@ export * from './middleware';
 export * from './errors';
 export * from './utils';
 export * from './types/socket-events';
+export * from './events/EventBus';
+export * from './events/EventFactory';
+export * from './events/EventPublisher';
+export * from './events/training-events';
+export * from './events/training-event-listeners';
 export declare const formatDate: (date: Date) => string;
 export declare const parseJWT: (token: string) => any;
 //# sourceMappingURL=index.d.ts.map

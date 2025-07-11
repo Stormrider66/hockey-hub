@@ -59,6 +59,7 @@ import {
   Wind,
   Download,
   CheckCircle2,
+  Play,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -98,6 +99,8 @@ import {
   a11y,
   shadows
 } from "@/lib/design-utils";
+import { CalendarWidget } from "@/features/calendar/components/CalendarWidget";
+import { PlayerWorkoutLauncher } from "@/features/player/components/PlayerWorkoutLauncher";
 
 // Wellness metric configuration
 const wellnessMetrics = [
@@ -361,6 +364,35 @@ export default function PlayerDashboard() {
         {/* ───────────  TODAY  ─────────── */}
         <TabsContent value="today" className={spacing.card} role="tabpanel" aria-labelledby="today-tab">
           <div className={grids.dashboard}>
+            {/* Calendar Widget */}
+            <Card className={`${shadows.card} col-span-full lg:col-span-2`}>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" aria-hidden="true" />
+                  This Week's Schedule
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CalendarWidget 
+                  userId="current"
+                  teamId="senior-team"
+                  height={400}
+                  showLaunchButton={true}
+                  onEventClick={(event) => {
+                    if (event.metadata?.workoutId) {
+                      // Show workout launcher
+                      const launcherContainer = document.getElementById('workout-launcher-container');
+                      if (launcherContainer) {
+                        launcherContainer.innerHTML = '';
+                        const launcher = document.createElement('div');
+                        launcherContainer.appendChild(launcher);
+                      }
+                    }
+                  }}
+                />
+                <div id="workout-launcher-container" className="mt-4"></div>
+              </CardContent>
+            </Card>
             {/* Today's Schedule */}
             <Card className={shadows.card}>
               <CardHeader className="pb-2">

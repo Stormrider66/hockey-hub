@@ -149,7 +149,11 @@ export const mockUsers: Record<string, LoginResponse> = {
       },
       organizationId: 'org-123',
       teams: [
-        { id: 'team-1', name: 'Stockholm Eagles U20', role: 'physical_trainer' }
+        { id: 'a-team', name: 'A-Team', role: 'physical_trainer' },
+        { id: 'j20', name: 'J20', role: 'physical_trainer' },
+        { id: 'u18', name: 'U18', role: 'physical_trainer' },
+        { id: 'u16', name: 'U16', role: 'physical_trainer' },
+        { id: 'womens', name: 'Women\'s Team', role: 'physical_trainer' }
       ]
     }
   },

@@ -1,5 +1,4 @@
 
-> @hockey-hub/api-gateway@0.1.0 test C:\Hockey Hub\services\api-gateway
-> jest --passWithNoTests
+> @hockey-hub/api-gateway@1.0.0 test /mnt/c/Hockey Hub/services/api-gateway
+> jest
 
-No tests found, exiting with code 0

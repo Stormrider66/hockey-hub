@@ -1,44 +1,4 @@
 
-> @hockey-hub/admin-service@0.1.0 test C:\Hockey Hub\services\admin-service
+> @hockey-hub/admin-service@1.0.0 test /mnt/c/Hockey Hub/services/admin-service
 > jest
 
-  console.log
-    [Outbox] message sent m1
-
-      at src/workers/outboxDispatcher.ts:15:17
-
-  console.error
-    [Outbox] publish failed Error: nats down
-        at C:\Hockey Hub\services\admin-service\src\workers\outboxDispatcher.test.ts:66:34
-        at Generator.next (<anonymous>)
-        at C:\Hockey Hub\services\admin-service\src\workers\outboxDispatcher.test.ts:10:71
-        at new Promise (<anonymous>)
-        at Object.<anonymous>.__awaiter (C:\Hockey Hub\services\admin-service\src\workers\outboxDispatcher.test.ts:6:12)
-        at Object.<anonymous> (C:\Hockey Hub\services\admin-service\src\workers\outboxDispatcher.test.ts:63:64)
-        at Promise.then.completed (C:\Hockey Hub\node_modules\.pnpm\jest-circus@27.5.1\node_modules\jest-circus\build\utils.js:391:28)
-PASS src/workers/outboxDispatcher.test.ts (14.669 s)
-        at new Promise (<anonymous>)
-        at callAsyncCircusFn (C:\Hockey Hub\node_modules\.pnpm\jest-circus@27.5.1\node_modules\jest-circus\build\utils.js:316:10)
-        at _callCircusTest (C:\Hockey Hub\node_modules\.pnpm\jest-circus@27.5.1\node_modules\jest-circus\build\run.js:218:40)
-
-    [0m [90m 15 |[39m         console[33m.[39mlog([32m'[Outbox] message sent'[39m[33m,[39m msg[33m.[39mid)[33m;[39m
-  Outbox Dispatcher
-    √ marks success when publish succeeds (137 ms)
-    √ retries and marks failure after max retries (54 ms)
-     [90m 16 |[39m       } [36mcatch[39m (err) {
-    [31m[1m>[22m[39m[90m 17 |[39m         console[33m.[39merror([32m'[Outbox] publish failed'[39m[33m,[39m err)[33m;[39m
-
-     [90m    |[39m                 [31m[1m^[22m[39m
-     [90m 18 |[39m         [36mawait[39m markFailure(msg[33m.[39mid [36mas[39m any[33m,[39m msg[33m.[39mattemptCount [33m||[39m [35m0[39m[33m,[39m maxRetries[33m,[39m baseDelayMs)[33m;[39m
-     [90m 19 |[39m       }
-     [90m 20 |[39m     }[0m
-
-      at src/workers/outboxDispatcher.ts:17:17
-          at Generator.throw (<anonymous>)
-      at rejected (src/workers/outboxDispatcher.ts:6:65)
-Test Suites: 1 passed, 1 total
-Tests:       2 passed, 2 total
-
-Snapshots:   0 total
-Time:        15.445 s, estimated 16 s
-Ran all test suites.

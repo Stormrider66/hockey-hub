@@ -31,7 +31,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -87,7 +87,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -143,7 +143,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -199,7 +199,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -255,7 +255,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -311,7 +311,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -367,7 +367,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -423,7 +423,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;
@@ -479,7 +479,7 @@ export declare const testDatabaseConfigs: {
         subscribers?: import("typeorm").MixedList<string | Function> | undefined;
         migrations?: import("typeorm").MixedList<string | Function> | undefined;
         migrationsTableName?: string | undefined;
-        migrationsTransactionMode?: "each" | "all" | "none" | undefined;
+        migrationsTransactionMode?: "all" | "each" | "none" | undefined;
         metadataTableName?: string | undefined;
         namingStrategy?: import("typeorm").NamingStrategyInterface | undefined;
         logging?: import("typeorm").LoggerOptions | undefined;

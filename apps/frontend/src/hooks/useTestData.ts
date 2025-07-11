@@ -57,7 +57,9 @@ export interface PhysicalTestData {
 
 export function useTestData(): PhysicalTestData {
   // Get organization ID from local storage or context
-  const currentUser = JSON.parse(localStorage.getItem('current_user') || '{}');
+  const currentUser = typeof window !== 'undefined' 
+    ? JSON.parse(localStorage.getItem('current_user') || '{}')
+    : {};
   const organizationId = currentUser.organizationId || '';
   const teamId = currentUser.teamId;
 
@@ -86,7 +88,11 @@ export function useTestData(): PhysicalTestData {
   const players = useMemo<Player[]>(() => {
     if (!playersData) return [];
     
-    return playersData.map((user: any) => ({
+    // Handle the response format from getPlayers query which returns { players: [...] }
+    const playersArray = playersData.players || playersData;
+    if (!Array.isArray(playersArray)) return [];
+    
+    return playersArray.map((user: any) => ({
       id: user.id,
       name: user.name || `${user.firstName} ${user.lastName}`.trim(),
       number: user.jerseyNumber || user.number,
@@ -120,7 +126,11 @@ export function useTestData(): PhysicalTestData {
   const testResults = useMemo<TestResult[]>(() => {
     if (!testResultsData) return [];
     
-    return testResultsData.map((test: any) => ({
+    // Handle the response format from getTests query which returns { results: [...] }
+    const testsArray = testResultsData.results || testResultsData;
+    if (!Array.isArray(testsArray)) return [];
+    
+    return testsArray.map((test: any) => ({
       id: test.id,
       playerId: test.playerId,
       testBatchId: test.testBatchId,

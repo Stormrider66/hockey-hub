@@ -6,6 +6,7 @@ export * from './common.dto';
 export * from './training.dto';
 export * from './medical.dto';
 export * from './calendar.dto';
+export * from './interval-program.dto';
 export interface SuccessResponseDTO<T = any> {
     success: true;
     data: T;

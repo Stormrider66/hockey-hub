@@ -1,0 +1,9 @@
+Placeholder file to track sounds directory.
+
+Required sound files:
+- interval-start.mp3
+- interval-end.mp3
+- interval-countdown.mp3
+- interval-warning.mp3
+
+These are used by the interval timer in the Physical Trainer dashboard.

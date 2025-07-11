@@ -1,34 +1,4 @@
 
-> @hockey-hub/user-service@0.1.0 test C:\Hockey Hub\services\user-service
+> @hockey-hub/user-service@1.0.0 test /mnt/c/Hockey Hub/services/user-service
 > jest
 
-PASS src/routes/__tests__/authRoutes.e2e.test.ts (41.964 s)
-PASS src/workers/orgConsumer.test.ts (43.093 s)
-  ● Console
-
-    console.log
-      [User Service] Default admin role created
-
-      at src/workers/orgEventConsumer.ts:28:13
-
-    console.log
-      [User Service] Skeleton admin user created: admin+org-123@example.com
-
-      at src/workers/orgEventConsumer.ts:46:13
-
-    console.log
-      [User Service] user.adminBootstrapComplete emitted
-
-      at src/workers/orgEventConsumer.ts:58:11
-
-    console.log
-      [User Service] user.adminBootstrapComplete emitted
-
-      at src/workers/orgEventConsumer.ts:58:11
-
-
-Test Suites: 2 passed, 2 total
-Tests:       7 passed, 7 total
-Snapshots:   0 total
-Time:        48.557 s
-Ran all test suites.

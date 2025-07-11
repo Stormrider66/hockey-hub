@@ -68,19 +68,25 @@
 }
 
 /* CRITICAL: Hide the first row of dates that appears as a duplicate header */
+/* Commented out - was hiding date numbers
 .rbc-month-view > div:first-child > .rbc-row:nth-child(2) {
   display: none !important;
 }
+*/
 
 /* Alternative selector if structure is different */
+/* Commented out - was hiding date numbers
 .rbc-month-view .rbc-month-row:first-of-type .rbc-row-segment:first-child {
   display: none !important;
 }
+*/
 
 /* Hide any row that only contains date numbers at the top */
+/* Commented out - was hiding date numbers
 .rbc-month-view > .rbc-row:has(> .rbc-date-cell):first-of-type {
   display: none !important;
 }
+*/
 
 /* Keep date numbers visible in the actual calendar cells */
 .rbc-month-view .rbc-month-row .rbc-row-content .rbc-date-cell {
@@ -111,6 +117,13 @@
   text-align: right;
 }
 
+/* Fix for duplicate date headers in month view */
+/* Commented out - was hiding date numbers
+.rbc-month-view .rbc-row:has(.rbc-date-cell:not(.rbc-event)):first-child {
+  display: none !important;
+}
+*/
+
 /* Event styling - much bigger and clearer */
 .rbc-event {
   font-size: 0.875rem;
@@ -121,8 +134,8 @@
   margin: 1px 2px;
 }
 
-/* Today highlight */
-.rbc-today {
+/* Today highlight - only for month view cells */
+.rbc-month-view .rbc-day-bg.rbc-today {
   background-color: #fef3c7;
 }
 
@@ -511,9 +524,10 @@
   outline-offset: 1px;
 }
 
-/* Selected date highlight */
+/* Selected date highlight - remove to prevent confusion */
 .rbc-selected {
-  background-color: #dbeafe !important;
+  /* background-color: #dbeafe !important; */
+  /* Disabled to prevent yellow highlighting issues */
 }
 
 /* Week numbers if shown */

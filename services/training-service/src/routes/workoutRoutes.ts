@@ -79,7 +79,7 @@ router.get('/sessions/:id', authorize(['physical_trainer', 'coach', 'admin', 'pl
 // Create workout session
 router.post('/sessions', authorize(['physical_trainer', 'coach', 'admin']), validationMiddleware(CreateWorkoutSessionDto), checkDatabase, async (req, res) => {
   try {
-    const { title, description, type, scheduledDate, location, teamId, playerIds, exercises, playerLoads, settings, estimatedDuration } = req.body;
+    const { title, description, type, scheduledDate, location, teamId, playerIds, exercises, playerLoads, settings, estimatedDuration, intervalProgram } = req.body;
     
     const workoutData = {
       title,
@@ -93,7 +93,8 @@ router.post('/sessions', authorize(['physical_trainer', 'coach', 'admin']), vali
       exercises,
       playerLoads,
       settings,
-      estimatedDuration
+      estimatedDuration,
+      intervalProgram
     };
 
     const workout = await workoutService.createWorkoutSession(workoutData);
@@ -137,7 +138,7 @@ router.post('/sessions', authorize(['physical_trainer', 'coach', 'admin']), vali
 // Update workout session
 router.put('/sessions/:id', authorize(['physical_trainer', 'coach', 'admin']), validationMiddleware(UpdateWorkoutSessionDto), checkDatabase, async (req, res) => {
   try {
-    const { title, description, type, scheduledDate, location, status, playerIds, settings, exercises } = req.body;
+    const { title, description, type, scheduledDate, location, status, playerIds, settings, exercises, intervalProgram } = req.body;
     
     const updateData = {
       title,
@@ -148,7 +149,8 @@ router.put('/sessions/:id', authorize(['physical_trainer', 'coach', 'admin']), v
       location,
       playerIds,
       settings,
-      exercises
+      exercises,
+      intervalProgram
     };
 
     const updatedWorkout = await workoutService.updateWorkoutSession(req.params.id, updateData);
@@ -233,6 +235,130 @@ router.get('/sessions/upcoming/:playerId', authorize(['physical_trainer', 'coach
   } catch (error) {
     console.error('Error fetching upcoming workout sessions:', error);
     res.status(500).json({ success: false, error: 'Failed to fetch upcoming workout sessions' });
+  }
+});
+
+// Get conditioning workouts (interval programs)
+router.get('/sessions/conditioning', authorize(['physical_trainer', 'coach', 'admin', 'player']), checkDatabase, async (req, res) => {
+  try {
+    const { teamId, playerId } = req.query;
+    
+    // Parse pagination parameters
+    const paginationParams = parsePaginationParams(req.query, {
+      page: 1,
+      limit: 20,
+      maxLimit: 100
+    });
+
+    const filters = {
+      teamId: teamId as string,
+      playerId: playerId as string,
+      type: 'CARDIO' // Filter for cardio/conditioning workouts
+    };
+
+    const result = await workoutService.getWorkoutSessions(
+      filters,
+      paginationParams.page,
+      paginationParams.limit
+    );
+    
+    // Filter results to only include those with intervalProgram
+    const conditioningWorkouts = {
+      ...result,
+      data: result.data.filter((workout: any) => workout.intervalProgram)
+    };
+    
+    res.json({ 
+      success: true, 
+      ...conditioningWorkouts
+    });
+  } catch (error) {
+    console.error('Error fetching conditioning workouts:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch conditioning workouts' });
+  }
+});
+
+// Convert interval program to exercises (for backward compatibility)
+router.post('/sessions/conditioning/convert', authorize(['physical_trainer', 'coach', 'admin']), checkDatabase, async (req, res) => {
+  try {
+    const { intervalProgram } = req.body;
+    
+    if (!intervalProgram || !intervalProgram.intervals) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid interval program' 
+      });
+    }
+
+    // Convert intervals to exercises format
+    const exercises = intervalProgram.intervals.map((interval: any, index: number) => ({
+      name: `${interval.type.charAt(0).toUpperCase() + interval.type.slice(1)} - ${Math.floor(interval.duration / 60)}:${(interval.duration % 60).toString().padStart(2, '0')}`,
+      category: 'cardio',
+      orderIndex: index,
+      duration: interval.duration,
+      sets: 1,
+      reps: 1,
+      unit: 'seconds',
+      intensityZones: interval.targetMetrics,
+      notes: interval.notes || ''
+    }));
+
+    res.json({ 
+      success: true, 
+      data: { exercises }
+    });
+  } catch (error) {
+    console.error('Error converting interval program:', error);
+    res.status(500).json({ success: false, error: 'Failed to convert interval program' });
+  }
+});
+
+// Get interval program templates
+router.get('/sessions/conditioning/templates', authorize(['physical_trainer', 'coach', 'admin']), checkDatabase, async (req, res) => {
+  try {
+    // This would typically fetch from a database, but for now return mock templates
+    const templates = [
+      {
+        id: '1',
+        name: '20-Minute HIIT',
+        equipment: 'rowing',
+        totalDuration: 1200,
+        estimatedCalories: 250,
+        description: 'High-intensity interval training with 30s work/30s rest'
+      },
+      {
+        id: '2',
+        name: '30-Minute Steady State',
+        equipment: 'bike_erg',
+        totalDuration: 1800,
+        estimatedCalories: 300,
+        description: 'Aerobic base building at moderate intensity'
+      },
+      {
+        id: '3',
+        name: 'Pyramid Intervals',
+        equipment: 'skierg',
+        totalDuration: 2400,
+        estimatedCalories: 400,
+        description: 'Progressive intervals: 1-2-3-2-1 minutes'
+      },
+      {
+        id: '4',
+        name: 'FTP Test',
+        equipment: 'wattbike',
+        totalDuration: 1200,
+        estimatedCalories: 350,
+        description: '20-minute functional threshold power test'
+      }
+    ];
+
+    res.json({ 
+      success: true, 
+      data: templates
+    });
+  } catch (error) {
+    console.error('Error fetching conditioning templates:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch conditioning templates' });
   }
 });
 

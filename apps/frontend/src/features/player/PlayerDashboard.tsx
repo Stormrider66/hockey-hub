@@ -8,6 +8,8 @@ import { useGetWorkoutSessionsQuery } from '@/store/api/trainingApi';
 import CalendarWidget from '@/features/calendar/components/CalendarWidget';
 import { useTranslation } from '@hockey-hub/translations';
 import { useWellnessChartData, useOptimizedChart } from '@/hooks/useWellnessChartData';
+import { useIntervalLauncher } from '@/hooks/useIntervalLauncher';
+import { PlayerIntervalViewer } from './components/PlayerIntervalViewer';
 import { LazyChart } from '@/components/charts/LazyChart';
 import { OptimizedResponsiveContainer } from '@/components/charts/OptimizedResponsiveContainer';
 import {
@@ -73,6 +75,7 @@ import {
   Download,
   CheckCircle2,
   Play,
+  X as XIcon,
 } from "lucide-react";
 import {
   ResponsiveContainer,
@@ -309,6 +312,7 @@ export default function PlayerDashboard() {
   });
 
   const router = useRouter();
+  const { isViewerOpen, selectedWorkout, launchInterval, closeViewer } = useIntervalLauncher();
   
   // Get today's date for workout query
   const today = new Date();
@@ -752,10 +756,17 @@ export default function PlayerDashboard() {
                           <Button 
                             size="sm" 
                             className="mt-2"
-                            onClick={() => router.push(`/player/workout/${workout.id}`)}
+                            onClick={() => {
+                              // Check if this is a conditioning workout with interval program
+                              if (workout.type === 'CARDIO' && workout.intervalProgram) {
+                                launchInterval(workout);
+                              } else {
+                                router.push(`/player/workout/${workout.id}`);
+                              }
+                            }}
                           >
                             <Play className="h-3 w-3 mr-1" />
-                            Start Workout
+                            {workout.type === 'CARDIO' && workout.intervalProgram ? 'Start Interval Training' : 'Start Workout'}
                           </Button>
                         </div>
                       </div>
@@ -2099,6 +2110,13 @@ export default function PlayerDashboard() {
           <PlayerCalendarView />
         </TabsContent>
       </Tabs>
+
+      {/* Interval Training Viewer Modal */}
+      <PlayerIntervalViewer
+        workout={selectedWorkout}
+        isOpen={isViewerOpen}
+        onClose={closeViewer}
+      />
     </div>
   );
 } 

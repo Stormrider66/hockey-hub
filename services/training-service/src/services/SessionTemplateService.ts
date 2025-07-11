@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../config/database';
-import { SessionTemplate, TemplateVisibility } from '../entities';
+import { SessionTemplate, TemplateVisibility, WorkoutSession } from '../entities';
 import { Logger } from '@hockey-hub/shared-lib';
 
 export interface CreateSessionTemplateDto {
@@ -259,9 +259,67 @@ export class SessionTemplateService {
   }
 
   async createFromWorkoutSession(workoutSessionId: string, data: Partial<CreateSessionTemplateDto>): Promise<SessionTemplate> {
-    // This method would create a template from an existing workout session
-    // Implementation would fetch the workout session and convert it to a template
-    throw new Error('Not implemented yet');
+    try {
+      // Get the workout session repository
+      const workoutSessionRepo = AppDataSource.getRepository(WorkoutSession);
+      
+      // Fetch the workout session with exercises
+      const workoutSession = await workoutSessionRepo.findOne({
+        where: { id: workoutSessionId },
+        relations: ['exercises']
+      });
+      
+      if (!workoutSession) {
+        throw new Error('Workout session not found');
+      }
+      
+      // Convert exercises to template format
+      const templateExercises = workoutSession.exercises
+        .sort((a, b) => a.orderIndex - b.orderIndex)
+        .map(exercise => ({
+          name: exercise.name,
+          category: exercise.category,
+          orderIndex: exercise.orderIndex,
+          sets: exercise.sets,
+          reps: exercise.reps,
+          duration: exercise.duration,
+          restDuration: exercise.restDuration,
+          unit: exercise.unit,
+          targetValue: exercise.targetValue,
+          equipment: exercise.equipment,
+          notes: exercise.notes,
+          videoUrl: exercise.videoUrl
+        }));
+      
+      // Create the template data
+      const templateData: CreateSessionTemplateDto = {
+        name: data.name || `Template from ${workoutSession.title}`,
+        description: data.description || workoutSession.description || `Template created from workout session: ${workoutSession.title}`,
+        category: data.category || workoutSession.type,
+        type: data.type || workoutSession.type,
+        difficulty: data.difficulty || 'intermediate',
+        visibility: data.visibility || TemplateVisibility.PRIVATE,
+        organizationId: data.organizationId || '',
+        teamId: data.teamId || workoutSession.teamId,
+        createdBy: data.createdBy || workoutSession.createdBy,
+        estimatedDuration: workoutSession.estimatedDuration,
+        exercises: templateExercises,
+        equipment: [...new Set(templateExercises.filter(e => e.equipment).map(e => e.equipment))],
+        goals: data.goals || [],
+        tags: data.tags || [],
+        permissions: data.permissions || {
+          canView: [],
+          canUse: [],
+          canEdit: []
+        }
+      };
+      
+      // Create the template
+      return await this.create(templateData);
+    } catch (error) {
+      Logger.error('Failed to create template from workout session', error);
+      throw error;
+    }
   }
 
   async duplicateTemplate(id: string, userId: string, newName: string): Promise<SessionTemplate> {
@@ -334,9 +392,79 @@ export class SessionTemplateService {
     scheduledDates: Date[];
     userId: string;
   }): Promise<{ created: number; errors: any[] }> {
-    // This would create workout sessions for multiple players/dates based on the template
-    // Implementation would interface with WorkoutSession creation
-    throw new Error('Not implemented yet - requires WorkoutSession service integration');
+    const errors: any[] = [];
+    let created = 0;
+    
+    try {
+      // Get the template
+      const template = await this.findById(templateId, assignmentData.userId);
+      if (!template) {
+        throw new Error('Template not found');
+      }
+      
+      // Import the workout service
+      const { CachedWorkoutSessionService } = await import('./CachedWorkoutSessionService');
+      const workoutService = new CachedWorkoutSessionService();
+      
+      // Create workout sessions for each date
+      for (const scheduledDate of assignmentData.scheduledDates) {
+        try {
+          // Convert template exercises to workout exercises
+          const exercises = template.exercises.map((ex: any, index: number) => ({
+            name: ex.name,
+            category: ex.category,
+            orderIndex: ex.orderIndex || index,
+            sets: ex.sets,
+            reps: ex.reps,
+            duration: ex.duration,
+            restDuration: ex.restDuration,
+            unit: ex.unit,
+            targetValue: ex.targetValue,
+            equipment: ex.equipment,
+            notes: ex.notes,
+            videoUrl: ex.videoUrl
+          }));
+          
+          // Create workout session from template
+          const workoutData = {
+            title: `${template.name} - ${scheduledDate.toLocaleDateString()}`,
+            description: template.description,
+            type: template.type,
+            scheduledDate,
+            location: '', // Would need to be provided or defaulted
+            teamId: assignmentData.teamId,
+            playerIds: assignmentData.playerIds,
+            createdBy: assignmentData.userId,
+            exercises,
+            estimatedDuration: template.estimatedDuration,
+            settings: {
+              allowIndividualLoads: true,
+              displayMode: 'grid' as const,
+              showMetrics: true,
+              autoRotation: false,
+              rotationInterval: 30
+            }
+          };
+          
+          await workoutService.createWorkoutSession(workoutData);
+          created++;
+          
+          // Update template usage
+          await this.incrementUsageCount(templateId);
+        } catch (error) {
+          errors.push({
+            date: scheduledDate,
+            error: error.message || 'Failed to create workout session'
+          });
+          Logger.error(`Failed to create workout for date ${scheduledDate}`, error);
+        }
+      }
+      
+      return { created, errors };
+    } catch (error) {
+      Logger.error('Failed to bulk assign template to workouts', error);
+      throw error;
+    }
   }
 
   private hasAccess(template: SessionTemplate, userId: string): boolean {

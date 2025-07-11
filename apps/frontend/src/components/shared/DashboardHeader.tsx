@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, MessageSquare, Settings, ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
+import { CompactLanguageSelector } from '@/components/LanguageSelector';
 
 interface DashboardHeaderProps {
   title: string;
@@ -48,6 +49,7 @@ export function DashboardHeader({ title, subtitle, role }: DashboardHeaderProps)
         {subtitle && <p className="text-gray-600 mt-1">{subtitle}</p>}
       </div>
       <div className="flex gap-2 items-center">
+        <CompactLanguageSelector className="mr-2" />
         <Button 
           variant="outline" 
           size="default"
