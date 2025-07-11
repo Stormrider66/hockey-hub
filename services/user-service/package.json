@@ -33,7 +33,7 @@
     "typeorm": "^0.3.17",
     "joi": "^17.11.0",
     "dotenv": "^16.3.1",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.2.2",
     "class-validator": "^0.14.0",
     "@hockey-hub/monitoring": "workspace:*",
     "@hockey-hub/shared-lib": "workspace:*"
