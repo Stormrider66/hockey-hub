@@ -21,7 +21,7 @@ jobs:
       packages: ${{ steps.detect.outputs.packages }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -93,7 +93,7 @@ jobs:
     if: needs.detect-changes.outputs.packages != '[]' || contains(needs.detect-changes.outputs.services, 'api-gateway')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
