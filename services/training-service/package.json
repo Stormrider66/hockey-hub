@@ -29,7 +29,7 @@
     "socket.io": "^4.6.1",
     "aws-sdk": "^2.1500.0",
     "dotenv": "^16.3.1",
-    "redis": "^4.6.12",
+    "redis": "^5.8.1",
     "@hockey-hub/monitoring": "workspace:*",
     "@hockey-hub/shared-lib": "workspace:*"
   },
