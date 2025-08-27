@@ -1,0 +1,81 @@
+{
+  "compilerOptions": {
+    // Target and Module
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020", "DOM"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    
+    // Type Checking - Strict Mode
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false, // Disabled for TypeORM decorators
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    
+    // Additional Checks
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitAny": true,
+    "noPropertyAccessFromIndexSignature": false, // Allow bracket notation
+    "noUncheckedIndexedAccess": false, // May be too strict for some use cases
+    
+    // Emit
+    "noEmit": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": false,
+    "importHelpers": true,
+    
+    // Interop Constraints
+    "allowJs": true,
+    "checkJs": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    
+    // TypeORM Decorators
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    
+    // React/JSX
+    "jsx": "preserve",
+    
+    // Path Mapping
+    "baseUrl": ".",
+    "paths": {
+      "@hockey-hub/*": ["packages/*/src", "types/*"],
+      "@/*": ["types/*"]
+    },
+    
+    // Type Definitions
+    "types": ["node", "jest"],
+    "typeRoots": ["node_modules/@types", "types"]
+  },
+  "include": [
+    "types/**/*",
+    "packages/*/src/**/*",
+    "services/*/src/**/*",
+    "apps/*/src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
+}

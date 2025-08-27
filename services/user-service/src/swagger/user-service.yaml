@@ -1,0 +1,1050 @@
+openapi: 3.0.3
+info:
+  title: Hockey Hub User Service API
+  description: |
+    The User Service manages user authentication, authorization, and user data for the Hockey Hub platform.
+    This service handles login, registration, JWT token management, role-based access control, and user profile management.
+  version: 1.0.0
+  contact:
+    name: Hockey Hub Development Team
+    email: dev@hockeyhub.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3001
+    description: Development server
+  - url: https://api.hockeyhub.com
+    description: Production server
+
+tags:
+  - name: Authentication
+    description: User authentication and token management
+  - name: Users
+    description: User profile and account management
+  - name: Roles
+    description: Role-based access control
+  - name: Organizations
+    description: Organization and team management
+
+security:
+  - bearerAuth: []
+
+paths:
+  # Authentication endpoints
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: Authenticate user with email and password
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            examples:
+              player:
+                summary: Player login
+                value:
+                  email: "player@hockeyhub.com"
+                  password: "SecurePassword123!"
+              coach:
+                summary: Coach login
+                value:
+                  email: "coach@hockeyhub.com"
+                  password: "CoachPassword456!"
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              examples:
+                success:
+                  summary: Successful login
+                  value:
+                    success: true
+                    data:
+                      user:
+                        id: "550e8400-e29b-41d4-a716-446655440000"
+                        email: "player@hockeyhub.com"
+                        firstName: "John"
+                        lastName: "Doe"
+                        role: "PLAYER"
+                      accessToken: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+                      refreshToken: "550e8400-e29b-41d4-a716-446655443333"
+                      expiresIn: 3600
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        429:
+          $ref: '#/components/responses/RateLimited'
+
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: User registration
+      description: Register a new user account
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            examples:
+              player:
+                summary: Player registration
+                value:
+                  email: "newplayer@hockeyhub.com"
+                  password: "SecurePassword123!"
+                  firstName: "Jane"
+                  lastName: "Smith"
+                  role: "PLAYER"
+                  organizationId: "550e8400-e29b-41d4-a716-446655441111"
+      responses:
+        201:
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        409:
+          $ref: '#/components/responses/Conflict'
+        429:
+          $ref: '#/components/responses/RateLimited'
+
+  /auth/refresh:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Obtain a new access token using refresh token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        200:
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/logout:
+    post:
+      tags:
+        - Authentication
+      summary: User logout
+      description: Logout user and invalidate tokens
+      responses:
+        200:
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/me:
+    get:
+      tags:
+        - Authentication
+      summary: Get current user
+      description: Get the authenticated user's profile information
+      responses:
+        200:
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/forgot-password:
+    post:
+      tags:
+        - Authentication
+      summary: Request password reset
+      description: Send password reset link to user's email
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+      responses:
+        200:
+          description: Password reset email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        429:
+          $ref: '#/components/responses/RateLimited'
+
+  /auth/reset-password:
+    post:
+      tags:
+        - Authentication
+      summary: Reset password
+      description: Reset user password using reset token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+      responses:
+        200:
+          description: Password reset successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+
+  /auth/change-password:
+    post:
+      tags:
+        - Authentication
+      summary: Change password
+      description: Change user's password (requires authentication)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        200:
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+
+  # User management endpoints
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get users
+      description: Get paginated list of users with optional filtering
+      parameters:
+        - name: page
+          in: query
+          description: Page number (default: 1)
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page (default: 20, max: 100)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: organizationId
+          in: query
+          description: Filter by organization ID
+          schema:
+            type: string
+            format: uuid
+        - name: teamId
+          in: query
+          description: Filter by team ID
+          schema:
+            type: string
+            format: uuid
+        - name: role
+          in: query
+          description: Filter by user role
+          schema:
+            $ref: '#/components/schemas/UserRole'
+      responses:
+        200:
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/User'
+                      pagination:
+                        $ref: '#/components/schemas/PaginationInfo'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+  /users/{id}:
+    get:
+      tags:
+        - Users
+      summary: Get user by ID
+      description: Retrieve a specific user by their ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    put:
+      tags:
+        - Users
+      summary: Update user
+      description: Update user profile information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        200:
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      description: Soft delete a user account
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: User ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        404:
+          $ref: '#/components/responses/NotFound'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+  /users/stats/{organizationId}:
+    get:
+      tags:
+        - Users
+      summary: Get user statistics
+      description: Get user statistics for an organization
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: Organization ID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/UserStats'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from login endpoint
+
+  schemas:
+    # Base schemas
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+        message:
+          type: string
+          description: Optional message
+      required:
+        - success
+
+    SuccessResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            message:
+              type: string
+              example: "Operation completed successfully"
+
+    PaginationInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        limit:
+          type: integer
+          description: Items per page
+          example: 20
+        total:
+          type: integer
+          description: Total number of items
+          example: 150
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 8
+      required:
+        - page
+        - limit
+        - total
+        - pages
+
+    # User-related schemas
+    UserRole:
+      type: string
+      enum:
+        - PLAYER
+        - COACH
+        - PARENT
+        - MEDICAL_STAFF
+        - EQUIPMENT_MANAGER
+        - PHYSICAL_TRAINER
+        - CLUB_ADMIN
+        - ADMIN
+      description: User role in the system
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: User unique identifier
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: "user@hockeyhub.com"
+        firstName:
+          type: string
+          description: User first name
+          example: "John"
+        lastName:
+          type: string
+          description: User last name
+          example: "Doe"
+        phone:
+          type: string
+          description: User phone number
+          example: "+1234567890"
+        dateOfBirth:
+          type: string
+          format: date
+          description: User date of birth
+          example: "1995-03-15"
+        role:
+          $ref: '#/components/schemas/UserRole'
+        isActive:
+          type: boolean
+          description: Whether the user account is active
+          example: true
+        emailVerified:
+          type: boolean
+          description: Whether the user's email is verified
+          example: true
+        lastLoginAt:
+          type: string
+          format: date-time
+          description: Last login timestamp
+          example: "2025-07-02T10:30:00Z"
+        createdAt:
+          type: string
+          format: date-time
+          description: Account creation timestamp
+          example: "2025-01-15T09:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: "2025-07-02T10:30:00Z"
+        organization:
+          $ref: '#/components/schemas/Organization'
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+      required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - role
+        - isActive
+        - emailVerified
+        - createdAt
+        - updatedAt
+
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655441111"
+        name:
+          type: string
+          example: "Elite Hockey Academy"
+        type:
+          type: string
+          enum: [CLUB, ACADEMY, SCHOOL, LEAGUE]
+          example: "ACADEMY"
+        country:
+          type: string
+          example: "Sweden"
+        city:
+          type: string
+          example: "Stockholm"
+      required:
+        - id
+        - name
+        - type
+
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655442222"
+        name:
+          type: string
+          example: "U18 Elite Team"
+        ageGroup:
+          type: string
+          example: "U18"
+        level:
+          type: string
+          example: "Elite"
+      required:
+        - id
+        - name
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: "PLAYER"
+        description:
+          type: string
+          example: "Hockey player with access to training and performance data"
+      required:
+        - id
+        - name
+
+    UserStats:
+      type: object
+      properties:
+        totalUsers:
+          type: integer
+          example: 150
+        activeUsers:
+          type: integer
+          example: 142
+        usersByRole:
+          type: object
+          additionalProperties:
+            type: integer
+          example:
+            PLAYER: 100
+            COACH: 12
+            PARENT: 25
+            MEDICAL_STAFF: 3
+        newUsersThisMonth:
+          type: integer
+          example: 8
+        lastLoginActivity:
+          type: object
+          properties:
+            today:
+              type: integer
+              example: 45
+            thisWeek:
+              type: integer
+              example: 120
+            thisMonth:
+              type: integer
+              example: 140
+
+    # Request schemas
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: "user@hockeyhub.com"
+        password:
+          type: string
+          format: password
+          description: User password
+          minLength: 8
+          example: "SecurePassword123!"
+      required:
+        - email
+        - password
+
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: "newuser@hockeyhub.com"
+        password:
+          type: string
+          format: password
+          description: User password (min 8 chars, must contain uppercase, lowercase, number, special char)
+          minLength: 8
+          example: "SecurePassword123!"
+        firstName:
+          type: string
+          description: User first name
+          minLength: 1
+          maxLength: 50
+          example: "John"
+        lastName:
+          type: string
+          description: User last name
+          minLength: 1
+          maxLength: 50
+          example: "Doe"
+        phone:
+          type: string
+          description: User phone number
+          example: "+1234567890"
+        dateOfBirth:
+          type: string
+          format: date
+          description: User date of birth
+          example: "1995-03-15"
+        role:
+          $ref: '#/components/schemas/UserRole'
+        organizationId:
+          type: string
+          format: uuid
+          description: Organization ID
+          example: "550e8400-e29b-41d4-a716-446655441111"
+      required:
+        - email
+        - password
+        - firstName
+        - lastName
+        - role
+        - organizationId
+
+    RefreshTokenRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+          description: Refresh token
+          example: "550e8400-e29b-41d4-a716-446655443333"
+      required:
+        - refreshToken
+
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: "user@hockeyhub.com"
+      required:
+        - email
+
+    ResetPasswordRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Password reset token
+          example: "550e8400-e29b-41d4-a716-446655444444"
+        newPassword:
+          type: string
+          format: password
+          description: New password
+          minLength: 8
+          example: "NewSecurePassword123!"
+      required:
+        - token
+        - newPassword
+
+    ChangePasswordRequest:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          format: password
+          description: Current password
+          example: "CurrentPassword123!"
+        newPassword:
+          type: string
+          format: password
+          description: New password
+          minLength: 8
+          example: "NewSecurePassword123!"
+      required:
+        - currentPassword
+        - newPassword
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 50
+        phone:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        isActive:
+          type: boolean
+
+    # Response schemas
+    LoginResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/User'
+                accessToken:
+                  type: string
+                  description: JWT access token
+                refreshToken:
+                  type: string
+                  description: Refresh token for obtaining new access tokens
+                expiresIn:
+                  type: integer
+                  description: Access token expiration time in seconds
+                  example: 3600
+              required:
+                - user
+                - accessToken
+                - refreshToken
+                - expiresIn
+
+    RegisterResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                user:
+                  $ref: '#/components/schemas/User'
+                message:
+                  type: string
+                  example: "Registration successful. Please check your email to verify your account."
+              required:
+                - user
+                - message
+
+    TokenResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  description: New JWT access token
+                refreshToken:
+                  type: string
+                  description: New refresh token
+                expiresIn:
+                  type: integer
+                  description: Access token expiration time in seconds
+                  example: 3600
+              required:
+                - accessToken
+                - refreshToken
+                - expiresIn
+
+    # Error schemas
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code for programmatic handling
+        details:
+          type: object
+          description: Additional error details (validation errors, etc.)
+      required:
+        - success
+        - error
+
+    ValidationErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - type: object
+          properties:
+            details:
+              type: object
+              properties:
+                field:
+                  type: array
+                  items:
+                    type: string
+              example:
+                email: ["Email is required", "Email must be valid"]
+                password: ["Password must be at least 8 characters"]
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationErrorResponse'
+
+    Unauthorized:
+      description: Unauthorized - Authentication required or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Authentication required"
+            code: "AUTH_REQUIRED"
+
+    Forbidden:
+      description: Forbidden - Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Insufficient permissions"
+            code: "ACCESS_DENIED"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Resource not found"
+            code: "NOT_FOUND"
+
+    Conflict:
+      description: Conflict - Resource already exists
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Email already exists"
+            code: "EMAIL_EXISTS"
+
+    RateLimited:
+      description: Too many requests - Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            error: "Rate limit exceeded. Too many requests."
+            code: "RATE_LIMITED"
+      headers:
+        Retry-After:
+          description: Number of seconds to wait before making another request
+          schema:
+            type: integer
+          example: 60
+        X-RateLimit-Limit:
+          description: Request limit per time window
+          schema:
+            type: integer
+          example: 100
+        X-RateLimit-Remaining:
+          description: Requests remaining in current window
+          schema:
+            type: integer
+          example: 0
+        X-RateLimit-Reset:
+          description: Time when rate limit window resets (Unix timestamp)
+          schema:
+            type: integer
+          example: 1640995200
+
+# Rate limiting information
+x-rate-limits:
+  general:
+    description: General API endpoints
+    limit: 1000
+    window: 3600
+    skipSuccessfulRequests: false
+  auth:
+    description: Authentication endpoints
+    limit: 100
+    window: 3600
+    skipSuccessfulRequests: true
+  password-reset:
+    description: Password reset endpoints
+    limit: 5
+    window: 3600
+    skipSuccessfulRequests: true
+
+# Additional API information
+x-api-features:
+  authentication: JWT Bearer tokens
+  authorization: Role-based access control (RBAC)
+  caching: Redis-based caching for improved performance
+  validation: Input validation and sanitization
+  security: Rate limiting, SQL injection prevention, XSS protection
+  audit: Comprehensive audit logging
+  monitoring: Request/response logging with correlation IDs

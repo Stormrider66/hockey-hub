@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    // "types": ["node"] // Commented out to allow auto-discovery of all @types packages
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "src/migrations/**/*",
+    "src/config/database-optimized.ts",
+    "src/scripts/**/*"
+  ]
+}
