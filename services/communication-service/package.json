@@ -41,7 +41,7 @@
     "twilio": "^4.20.0",
     "typeorm": "^0.3.17",
     "ua-parser-js": "^1.0.37",
-    "uuid": "^9.0.1",
+    "uuid": "^13.0.0",
     "web-push": "^3.6.6"
   },
   "devDependencies": {
