@@ -154,14 +154,14 @@ jobs:
 
       - name: Upload screenshots on failure
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: cypress-screenshots-${{ matrix.browser }}
           path: apps/frontend/cypress/screenshots
 
       - name: Upload videos on failure
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: cypress-videos-${{ matrix.browser }}
           path: apps/frontend/cypress/videos

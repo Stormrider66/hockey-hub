@@ -146,7 +146,7 @@ jobs:
           flags: --out json=results.json
 
       - name: Upload load test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: load-test-results
           path: results.json
@@ -184,7 +184,7 @@ jobs:
           pnpm run analyze
 
       - name: Upload bundle stats
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: bundle-stats
           path: apps/frontend/.next/analyze/
