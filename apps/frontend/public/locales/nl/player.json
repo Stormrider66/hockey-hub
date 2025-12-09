@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Speler Dashboard",
+    "subtitle": "Volg je prestaties en ontwikkeling",
+    "welcome": "Welkom terug, {{name}}!",
+    "todaySchedule": "Schema vandaag",
+    "upcomingEvents": "Aankomende evenementen",
+    "recentPerformance": "Recente prestaties",
+    "developmentGoals": "Ontwikkelingsdoelen"
+  },
+  "profile": {
+    "playerInfo": "Spelersinformatie",
+    "number": "Rugnummer",
+    "position": "Positie",
+    "shoots": "Schiet",
+    "team": "Team",
+    "age": "Leeftijd",
+    "height": "Lengte",
+    "weight": "Gewicht",
+    "joined": "Lid sinds",
+    "contractExpires": "Contract loopt af"
+  },
+  "wellness": {
+    "title": "Dagelijkse welzijnscheck",
+    "subtitle": "Hoe voel je je vandaag?",
+    "submit": "Welzijnsgegevens versturen",
+    "submitted": "Welzijnsgegevens succesvol verzonden",
+    "metrics": {
+      "hrv": "Hartritmevariabiliteit",
+      "sleep": "Slaapkwaliteit",
+      "fatigue": "Vermoeidheidsniveau",
+      "mood": "Stemming",
+      "soreness": "Spierpijn",
+      "stress": "Stressniveau",
+      "hydration": "Hydratatie",
+      "nutrition": "Voedingskwaliteit"
+    },
+    "scale": {
+      "poor": "Slecht",
+      "fair": "Matig",
+      "good": "Goed",
+      "veryGood": "Zeer goed",
+      "excellent": "Uitstekend"
+    }
+  },
+  "training": {
+    "title": "Trainingssessies",
+    "upcoming": "Aankomende training",
+    "completed": "Voltooide sessies",
+    "assigned": "Toegewezen trainingen",
+    "progress": "Trainingsvoortgang",
+    "todaysWorkout": "Training vandaag",
+    "completeSession": "Sessie voltooien",
+    "viewDetails": "Details bekijken",
+    "intensity": "Intensiteit",
+    "duration": "Duur",
+    "focus": "Focusgebied",
+    "equipment": "Benodigde uitrusting",
+    "location": "Locatie",
+    "coach": "Coach",
+    "notes": "Sessienotities"
+  },
+  "performance": {
+    "title": "Prestatiestatistieken",
+    "seasonStats": "Seizoenstatistieken",
+    "careerStats": "Carrièrestatistieken",
+    "lastGame": "Laatste wedstrijd",
+    "average": "Gemiddelde",
+    "total": "Totaal",
+    "trend": "Trend",
+    "improvement": "Verbetering",
+    "metrics": {
+      "goals": "Doelpunten",
+      "assists": "Assists",
+      "points": "Punten",
+      "plusMinus": "+/-",
+      "pim": "Strafminuten",
+      "shots": "Schoten",
+      "shootingPercentage": "Schotpercentage",
+      "faceoffPercentage": "Face-off %",
+      "hits": "Hits",
+      "blocks": "Blokkeringen",
+      "takeaways": "Puckverovering",
+      "giveaways": "Puckverlies",
+      "toi": "Tijd op ijs",
+      "powerplayGoals": "PP doelpunten",
+      "shorthandedGoals": "SH doelpunten",
+      "gameWinningGoals": "Winnende doelpunten"
+    }
+  },
+  "schedule": {
+    "title": "Schema",
+    "calendar": "Kalenderweergave",
+    "list": "Lijstweergave",
+    "filters": "Filters",
+    "types": {
+      "game": "Wedstrijd",
+      "practice": "Training",
+      "training": "Conditietraining",
+      "meeting": "Vergadering",
+      "medical": "Medisch",
+      "recovery": "Herstel",
+      "travel": "Reis",
+      "personal": "Persoonlijk"
+    },
+    "rsvp": {
+      "title": "RSVP",
+      "attending": "Aanwezig",
+      "notAttending": "Afwezig",
+      "maybe": "Misschien",
+      "update": "RSVP bijwerken"
+    }
+  },
+  "communication": {
+    "title": "Berichten",
+    "inbox": "Inbox",
+    "sent": "Verzonden",
+    "drafts": "Concepten",
+    "compose": "Opstellen",
+    "teamChat": "Teamchat",
+    "coachMessages": "Coachberichten",
+    "announcements": "Aankondigingen"
+  },
+  "development": {
+    "title": "Ontwikkelingsplan",
+    "goals": "Doelen",
+    "progress": "Voortgang",
+    "skillAssessment": "Vaardigheidsbeoordeling",
+    "trainingPlan": "Trainingsplan",
+    "milestones": "Mijlpalen",
+    "achievements": "Prestaties",
+    "areas": {
+      "skating": "Schaatsen",
+      "shooting": "Schieten",
+      "passing": "Passen",
+      "stickHandling": "Stickhandling",
+      "positioning": "Positionering",
+      "physicality": "Fysiek spel",
+      "mentalGame": "Mentaal spel",
+      "leadership": "Leiderschap"
+    }
+  },
+  "nutrition": {
+    "title": "Voeding",
+    "mealPlan": "Maaltijdplan",
+    "hydration": "Hydratatie tracking",
+    "supplements": "Supplementen",
+    "calories": "Calorieën",
+    "macros": "Macronutriënten",
+    "meals": {
+      "breakfast": "Ontbijt",
+      "lunch": "Lunch",
+      "dinner": "Diner",
+      "snack": "Tussendoortje",
+      "preGame": "Voor de wedstrijd",
+      "postGame": "Na de wedstrijd"
+    }
+  },
+  "recovery": {
+    "title": "Herstel",
+    "status": "Herstelstatus",
+    "activities": "Herstelactiviteiten",
+    "sleep": "Slaap tracking",
+    "treatment": "Behandeling",
+    "nextSession": "Volgende herstelsessie",
+    "types": {
+      "massage": "Massage",
+      "coldTub": "Ijsbad",
+      "sauna": "Sauna",
+      "stretching": "Stretchen",
+      "yoga": "Yoga",
+      "physiotherapy": "Fysiotherapie"
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Ouder Dashboard",
+    "subtitle": "Blijf betrokken bij de ijshockeyervaring van je kind",
+    "welcome": "Welkom, {{name}}!",
+    "childrenOverview": "Overzicht kinderen",
+    "upcomingEvents": "Aankomende evenementen"
+  },
+  "children": {
+    "title": "Mijn kinderen",
+    "addChild": "Kind toevoegen",
+    "profile": "Kindprofiel",
+    "schedule": "Schema",
+    "performance": "Prestaties",
+    "wellness": "Gezondheid & Welzijn",
+    "communication": "Berichten",
+    "details": {
+      "team": "Team",
+      "position": "Positie",
+      "coach": "Coach",
+      "number": "Rugnummer",
+      "age": "Leeftijdsgroep"
+    }
+  },
+  "schedule": {
+    "title": "Familieschema",
+    "calendar": "Kalenderweergave",
+    "upcoming": "Aankomende evenementen",
+    "transportation": "Vervoer",
+    "conflicts": "Schemaconflicten",
+    "sync": "Kalender synchroniseren",
+    "export": "Schema exporteren",
+    "types": {
+      "game": "Wedstrijd",
+      "practice": "Training",
+      "tournament": "Toernooi",
+      "teamEvent": "Teamevenement",
+      "meeting": "Oudervergadering",
+      "fundraiser": "Fondsenwervingsactie"
+    },
+    "rsvp": {
+      "title": "RSVP voor evenement",
+      "attending": "We zijn er",
+      "notAttending": "Kunnen niet komen",
+      "driving": "Kan anderen rijden",
+      "needRide": "Hebben vervoer nodig"
+    }
+  },
+  "transportation": {
+    "title": "Vervoerscoördinatie",
+    "available": "Beschikbare chauffeurs",
+    "requests": "Vervoersverzoeken",
+    "myOffers": "Mijn rijdaanbiedingen",
+    "carpool": "Carpoolgroepen",
+    "seats": "Beschikbare plaatsen",
+    "pickup": "Ophaallocatie",
+    "dropoff": "Afleverlocatie",
+    "time": "Vertrektijd"
+  },
+  "payments": {
+    "title": "Betalingen & Kosten",
+    "overview": "Betalingsoverzicht",
+    "due": "Te betalen bedrag",
+    "history": "Betalingsgeschiedenis",
+    "upcoming": "Aankomende kosten",
+    "methods": "Betaalmethoden",
+    "invoices": "Facturen",
+    "items": {
+      "registration": "Registratiekosten",
+      "monthly": "Maandelijkse bijdrage",
+      "equipment": "Uitrusting",
+      "tournament": "Toernooikosten",
+      "travel": "Reiskosten",
+      "fundraising": "Fondsenwervingsbijdrage"
+    },
+    "status": {
+      "paid": "Betaald",
+      "pending": "In afwachting",
+      "overdue": "Achterstallig",
+      "partial": "Gedeeltelijke betaling"
+    }
+  },
+  "communication": {
+    "title": "Communicatie",
+    "messages": "Berichten",
+    "announcements": "Teamaankondigingen",
+    "coachMessages": "Van coach",
+    "teamMessages": "Teamupdates",
+    "emergency": "Noodcontacten",
+    "directory": "Teamdirectory",
+    "preferences": "Communicatievoorkeuren"
+  },
+  "medical": {
+    "title": "Medische informatie",
+    "records": "Medische dossiers",
+    "allergies": "Allergieën",
+    "medications": "Medicijnen",
+    "conditions": "Medische aandoeningen",
+    "emergency": "Noodcontacten",
+    "insurance": "Verzekeringsinformatie",
+    "consent": "Medische toestemming",
+    "injuries": "Blessuregeschiedenis"
+  },
+  "documents": {
+    "title": "Documenten & Formulieren",
+    "required": "Verplichte documenten",
+    "optional": "Optionele formulieren",
+    "submitted": "Ingediend",
+    "pending": "In afwachting van indiening",
+    "download": "Formulieren downloaden",
+    "upload": "Document uploaden",
+    "types": {
+      "registration": "Registratieformulier",
+      "medical": "Medisch formulier",
+      "waiver": "Vrijwaring",
+      "consent": "Toestemmingsformulier",
+      "emergency": "Noodcontact",
+      "insurance": "Verzekeringskaart"
+    }
+  },
+  "volunteer": {
+    "title": "Vrijwilligersmogelijkheden",
+    "signup": "Inschrijven",
+    "myShifts": "Mijn vrijwilligersdiensten",
+    "available": "Beschikbare posities",
+    "hours": "Vrijwilligersuren",
+    "requirements": "Vereisten",
+    "positions": {
+      "scorekeeper": "Scorebordoperateur",
+      "penalty": "Strafbankbeheer",
+      "concession": "Cafetaria",
+      "fundraising": "Fondsenwervingsactiviteiten",
+      "teamManager": "Teammanager",
+      "equipment": "Uitrustingsassistent"
+    }
+  },
+  "performance": {
+    "title": "Voortgang van kind",
+    "overview": "Prestatieoverzicht",
+    "improvement": "Verbeterpunten",
+    "achievements": "Recente prestaties",
+    "feedback": "Coach feedback",
+    "goals": "Ontwikkelingsdoelen",
+    "attendance": "Aanwezigheidsrecord",
+    "effort": "Inspanningsniveau",
+    "teamwork": "Teamwork"
+  }
+}

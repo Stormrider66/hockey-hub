@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "¡Ups! Algo salió mal",
+    "subtitle": "Lamentamos las molestias",
+    "tryAgain": "Intentar de Nuevo",
+    "goHome": "Ir al Panel Principal",
+    "contactSupport": "Contactar Soporte"
+  },
+  "http": {
+    "400": {
+      "title": "Solicitud Incorrecta",
+      "message": "El servidor no pudo entender la solicitud."
+    },
+    "401": {
+      "title": "No Autorizado",
+      "message": "Necesitas iniciar sesión para acceder a este recurso."
+    },
+    "403": {
+      "title": "Prohibido",
+      "message": "No tienes permiso para acceder a este recurso."
+    },
+    "404": {
+      "title": "Página No Encontrada",
+      "message": "La página que buscas no existe."
+    },
+    "409": {
+      "title": "Conflicto",
+      "message": "La solicitud entra en conflicto con el estado actual del servidor."
+    },
+    "422": {
+      "title": "Error de Validación",
+      "message": "Los datos proporcionados son inválidos."
+    },
+    "429": {
+      "title": "Demasiadas Solicitudes",
+      "message": "Has hecho demasiadas solicitudes. Por favor intenta más tarde."
+    },
+    "500": {
+      "title": "Error del Servidor",
+      "message": "Ocurrió un error inesperado en nuestros servidores."
+    },
+    "502": {
+      "title": "Gateway Incorrecto",
+      "message": "El servidor recibió una respuesta inválida."
+    },
+    "503": {
+      "title": "Servicio No Disponible",
+      "message": "El servicio está temporalmente no disponible. Por favor intenta más tarde."
+    },
+    "504": {
+      "title": "Tiempo de Espera del Gateway",
+      "message": "El servidor tardó demasiado en responder."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Sin Conexión a Internet",
+      "message": "Por favor verifica tu conexión a internet e intenta de nuevo."
+    },
+    "timeout": {
+      "title": "Tiempo de Espera Agotado",
+      "message": "La solicitud tardó demasiado. Por favor intenta de nuevo."
+    },
+    "connectionFailed": {
+      "title": "Conexión Fallida",
+      "message": "No se pudo conectar al servidor. Por favor intenta de nuevo."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Error al Cargar Datos",
+      "message": "No pudimos cargar los datos solicitados. Por favor intenta refrescar la página."
+    },
+    "dataSave": {
+      "title": "Error al Guardar",
+      "message": "Tus cambios no pudieron ser guardados. Por favor intenta de nuevo."
+    },
+    "fileUpload": {
+      "title": "Carga Fallida",
+      "message": "El archivo no pudo ser cargado. Por favor verifica el archivo e intenta de nuevo."
+    },
+    "permissionDenied": {
+      "title": "Permiso Denegado",
+      "message": "No tienes permiso para realizar esta acción."
+    },
+    "sessionExpired": {
+      "title": "Sesión Expirada",
+      "message": "Tu sesión ha expirado. Por favor inicia sesión nuevamente."
+    },
+    "maintenanceMode": {
+      "title": "En Mantenimiento",
+      "message": "Estamos realizando mantenimiento programado. Por favor vuelve pronto."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Error al Enviar Formulario",
+      "message": "Hubo un error al enviar el formulario. Por favor verifica tu información e intenta de nuevo."
+    },
+    "validation": {
+      "title": "Error de Validación",
+      "message": "Por favor corrige los errores en el formulario."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Pago Fallido",
+      "message": "Tu pago no pudo ser procesado. Por favor intenta con otro método de pago."
+    },
+    "declined": {
+      "title": "Pago Rechazado",
+      "message": "Tu pago fue rechazado. Por favor verifica los detalles de pago."
+    },
+    "insufficientFunds": {
+      "title": "Fondos Insuficientes",
+      "message": "Tu método de pago tiene fondos insuficientes."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Conflicto de Horario",
+      "message": "Este horario entra en conflicto con otro evento."
+    },
+    "bookingFailed": {
+      "title": "Reserva Fallida",
+      "message": "No se pudo reservar el horario seleccionado."
+    },
+    "facilityUnavailable": {
+      "title": "Instalación No Disponible",
+      "message": "La instalación seleccionada no está disponible en este momento."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Sesión de Entrenamiento No Encontrada",
+      "message": "La sesión de entrenamiento que buscas no existe."
+    },
+    "alreadyStarted": {
+      "title": "Sesión Ya Iniciada",
+      "message": "Esta sesión de entrenamiento ya ha comenzado."
+    },
+    "capacityReached": {
+      "title": "Sesión Llena",
+      "message": "Esta sesión de entrenamiento ha alcanzado su capacidad máxima."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Mensaje No Enviado",
+      "message": "Tu mensaje no pudo ser enviado. Por favor intenta de nuevo."
+    },
+    "notificationFailed": {
+      "title": "Notificación Fallida",
+      "message": "No se pueden enviar notificaciones en este momento."
+    }
+  },
+  "actions": {
+    "retry": "Reintentar",
+    "dismiss": "Descartar",
+    "details": "Ver Detalles",
+    "report": "Reportar Problema",
+    "refresh": "Refrescar Página"
+  }
+}

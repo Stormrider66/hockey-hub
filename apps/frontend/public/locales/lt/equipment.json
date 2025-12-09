@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Įrangos vadovo valdymo skydelis",
+    "subtitle": "Įrangos inventorius ir valdymas",
+    "welcome": "Sveiki, {{name}}",
+    "quickStats": "Įrangos būsena",
+    "urgentNeeds": "Skubūs įrangos poreikiai"
+  },
+  "inventory": {
+    "title": "Įrangos inventorius",
+    "overview": "Inventoriaus apžvalga",
+    "search": "Ieškoti įrangos",
+    "filter": "Filtruoti pagal tipą",
+    "add": "Pridėti įrangą",
+    "remove": "Pašalinti įrangą",
+    "update": "Atnaujinti atsargas",
+    "lowStock": "Mažų atsargų įspėjimas",
+    "remaining": "Likę {{count}}",
+    "reorderAt": "Užsakyti kai {{level}}",
+    "outOfStock": "Neturime sandėlyje",
+    "lowStockStatus": "Mažos atsargos",
+    "stock": "Atsargos",
+    "condition": {
+      "good": "Gera",
+      "fair": "Patenkinama",
+      "poor": "Prasta"
+    },
+    "categories": {
+      "protective": "Apsaugos",
+      "sticks": "Lazdos",
+      "skates": "Pačiūžos",
+      "apparel": "Komandos apranga",
+      "training": "Treniruočių įranga",
+      "goalie": "Vartininko įranga",
+      "accessories": "Priedai",
+      "medical": "Medicinos reikmenys"
+    },
+    "status": {
+      "available": "Prieinama",
+      "assigned": "Priskirta",
+      "maintenance": "Prižiūrima",
+      "ordered": "Užsakyta",
+      "damaged": "Sugadinta",
+      "retired": "Nurašyta"
+    }
+  },
+  "assignments": {
+    "title": "Įrangos priskyrimas",
+    "player": "Žaidėjų priskyrimas",
+    "team": "Komandos įranga",
+    "assign": "Priskirti įrangą",
+    "return": "Grąžinti įrangą",
+    "history": "Priskyrimo istorija",
+    "current": "Dabartiniai priskyrimai",
+    "overdue": "Vėluojantys grąžinimai"
+  },
+  "sizes": {
+    "title": "Dydžių valdymas",
+    "chart": "Dydžių lentelė",
+    "playerSizes": "Žaidėjų dydžiai",
+    "update": "Atnaujinti dydžius",
+    "fitting": "Planuoti matavimą",
+    "categories": {
+      "helmet": "Šalmas",
+      "shoulderPads": "Pečių apsaugos",
+      "elbow": "Alkūnių apsaugos",
+      "gloves": "Pirštinės",
+      "pants": "Kelnės",
+      "shinGuards": "Blauzdų apsaugos",
+      "skates": "Pačiūžos",
+      "jersey": "Marškinėliai",
+      "socks": "Kojinės"
+    },
+    "measurements": {
+      "xs": "Labai mažas",
+      "s": "Mažas",
+      "m": "Vidutinis",
+      "l": "Didelis",
+      "xl": "Labai didelis",
+      "xxl": "2X didelis",
+      "xxxl": "3X didelis",
+      "youth": "Vaikiškas",
+      "junior": "Jaunių",
+      "senior": "Suaugusiųjų"
+    }
+  },
+  "maintenance": {
+    "title": "Įrangos priežiūra",
+    "schedule": "Priežiūros tvarkaraštis",
+    "due": "Priežiūra reikalinga",
+    "history": "Priežiūros istorija",
+    "log": "Registruoti priežiūrą",
+    "types": {
+      "sharpening": "Pačiūžų galandimas",
+      "repair": "Įrangos remontas",
+      "cleaning": "Gilus valymas",
+      "inspection": "Saugos patikra",
+      "replacement": "Dalių keitimas"
+    },
+    "frequency": {
+      "daily": "Kasdien",
+      "weekly": "Kas savaitę",
+      "biweekly": "Kas dvi savaites",
+      "monthly": "Kas mėnesį",
+      "seasonal": "Sezoninis",
+      "asNeeded": "Pagal poreikį"
+    }
+  },
+  "orders": {
+    "title": "Įrangos užsakymai",
+    "new": "Naujas užsakymas",
+    "createOrder": "Sukurti užsakymą",
+    "createOrderTitle": "Sukurti įrangos užsakymą",
+    "createOrderDescription": "Pridėkite prekes į užsakymą. Užsakymai bus pateikti patvirtinimui.",
+    "addItem": "Pridėti prekę",
+    "removeItem": "Pašalinti",
+    "itemName": "Prekės pavadinimas",
+    "itemNamePlaceholder": "Įveskite prekės pavadinimą",
+    "quantity": "Kiekis",
+    "priority": "Prioritetas",
+    "notes": "Pastabos (neprivaloma)",
+    "notesPlaceholder": "Papildomos specifikacijos ar pastabos",
+    "creating": "Kuriama...",
+    "pending": "Laukiantys užsakymai",
+    "history": "Užsakymų istorija",
+    "suppliers": "Tiekėjai",
+    "budget": "Įrangos biudžetas",
+    "approve": "Patvirtinti užsakymą",
+    "track": "Sekti siuntą",
+    "receive": "Gauti užsakymą",
+    "status": {
+      "draft": "Juodraštis",
+      "submitted": "Pateikta",
+      "approved": "Patvirtinta",
+      "ordered": "Užsakyta",
+      "shipped": "Išsiųsta",
+      "delivered": "Pristatyta",
+      "cancelled": "Atšaukta"
+    }
+  },
+  "laundry": {
+    "title": "Skalbimo valdymas",
+    "schedule": "Skalbimo tvarkaraštis",
+    "status": "Skalbimo būsena",
+    "pickup": "Planuoti paėmimą",
+    "return": "Pažymėti kaip grąžinta",
+    "items": {
+      "jerseys": "Rungtynių marškinėliai",
+      "practice": "Treniruočių marškinėliai",
+      "socks": "Komandos kojinės",
+      "shells": "Kelnių viršutinės dalys",
+      "towels": "Rankšluosčiai"
+    }
+  },
+  "reports": {
+    "title": "Įrangos ataskaitos",
+    "usage": "Naudojimo ataskaita",
+    "cost": "Išlaidų analizė",
+    "replacement": "Keitimo tvarkaraštis",
+    "playerNeeds": "Žaidėjų įrangos poreikiai",
+    "teamNeeds": "Komandos įrangos poreikiai",
+    "generate": "Generuoti ataskaitą",
+    "export": "Eksportuoti ataskaitą"
+  },
+  "budget": {
+    "title": "Biudžeto valdymas",
+    "current": "Dabartinis biudžetas",
+    "spent": "Išleista suma",
+    "remaining": "Likęs biudžetas",
+    "projected": "Prognozuojamos išlaidos",
+    "categories": "Biudžetas pagal kategorijas",
+    "approval": "Laukiantys patvirtinimai"
+  },
+  "team": {
+    "title": "Komandos įranga",
+    "bags": "Įrangos krepšiai",
+    "medical": "Medicinos rinkinys",
+    "tools": "Įrangos įrankiai",
+    "spare": "Atsarginė įranga",
+    "travel": "Kelionės kontrolinis sąrašas",
+    "gameday": "Rungtynių dienos kontrolinis sąrašas"
+  },
+  "events": {
+    "upcoming": "Artėjantys renginiai",
+    "equipmentRelated": "Su įranga susiję tvarkaraščiai"
+  },
+  "tasks": {
+    "active": "Aktyvios užduotys",
+    "currentMaintenance": "Dabartinė priežiūra ir užduotys",
+    "assigned": "Priskirta",
+    "due": "Terminas",
+    "estimatedTime": "Numatomas laikas",
+    "lastDone": "Paskutinį kartą atlikta"
+  },
+  "gameday": {
+    "checklist": "Rungtynių dienos kontrolinis sąrašas",
+    "preGame": "Priešžaidyminės pasiruošimo užduotys",
+    "deadline": "Terminas"
+  },
+  "players": {
+    "equipment": "Žaidėjų įranga",
+    "tracking": "Individualios žaidėjų įrangos stebėjimas",
+    "comingSoon": "Žaidėjų įrangos stebėjimas jau greitai",
+    "addRecord": "Pridėti įrangos įrašą"
+  }
+}

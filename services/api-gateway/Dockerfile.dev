@@ -1,0 +1,31 @@
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+# Copy root package files
+COPY package*.json ./
+COPY pnpm-workspace.yaml ./
+
+# Copy workspace packages
+COPY packages/ ./packages/
+
+# Copy service files
+COPY services/api-gateway/package*.json ./services/api-gateway/
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Install dependencies from root
+RUN pnpm install --filter @hockey-hub/api-gateway...
+
+# Copy service source
+COPY services/api-gateway/ ./services/api-gateway/
+
+# Set working directory to service
+WORKDIR /usr/src/app/services/api-gateway
+
+# Expose port
+EXPOSE 3000
+
+# Start in development mode
+CMD ["pnpm", "run", "dev"]

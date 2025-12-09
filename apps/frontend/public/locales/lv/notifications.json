@@ -1,0 +1,142 @@
+{
+  "title": "Paziņojumi",
+  "markAllRead": "Atzīmēt visus kā izlasītus",
+  "clearAll": "Notīrīt visus",
+  "settings": "Paziņojumu iestatījumi",
+  "empty": "Nav paziņojumu",
+  "loadMore": "Ielādēt vairāk",
+  "categories": {
+    "all": "Visi",
+    "unread": "Neizlasīti",
+    "system": "Sistēma",
+    "team": "Komanda",
+    "training": "Treniņi",
+    "medical": "Medicīna",
+    "calendar": "Kalendārs",
+    "payment": "Maksājumi",
+    "communication": "Ziņojumi"
+  },
+  "types": {
+    "system": {
+      "welcome": "Laipni lūdzam Hockey Hub!",
+      "profileComplete": "Jūsu profils tagad ir pabeigts",
+      "passwordChanged": "Jūsu parole ir veiksmīgi nomainīta",
+      "accountVerified": "Jūsu konts ir verificēts",
+      "maintenanceScheduled": "Sistēmas apkope ieplānota {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Jūs tikāt pievienots komandai {{teamName}}",
+      "removedFromTeam": "Jūs tikāt noņemts no komandas {{teamName}}",
+      "roleChanged": "Jūsu loma mainīta uz {{role}}",
+      "teamAnnouncement": "Komandas paziņojums no {{sender}}",
+      "rosterUpdate": "Sastāvs ir atjaunināts"
+    },
+    "training": {
+      "sessionScheduled": "Treniņu nodarbība ieplānota {{date}}",
+      "sessionCancelled": "Treniņu nodarbība {{date}} ir atcelta",
+      "sessionReminder": "Treniņu nodarbība sākas pēc {{time}}",
+      "workoutAssigned": "Piešķirts jauns treniņš: {{workoutName}}",
+      "workoutCompleted": "{{player}} pabeidza treniņu: {{workoutName}}",
+      "performanceReport": "Jūsu snieguma atskaite ir gatava"
+    },
+    "medical": {
+      "appointmentScheduled": "Medicīniskais pieraksts ieplānots {{date}}",
+      "appointmentReminder": "Medicīniskais pieraksts pēc {{time}}",
+      "injuryUpdate": "Traumas statuss atjaunināts spēlētājam {{player}}",
+      "clearanceGranted": "{{player}} atļauts atgriezties spēlēt",
+      "wellnessReminder": "Lūdzu, iesniedziet ikdienas labsajūtas pārbaudi",
+      "treatmentComplete": "Ārstēšanas sesija pabeigta"
+    },
+    "calendar": {
+      "eventCreated": "Jauns notikums: {{eventName}}",
+      "eventUpdated": "Notikums atjaunināts: {{eventName}}",
+      "eventCancelled": "Notikums atcelts: {{eventName}}",
+      "eventReminder": "{{eventName}} sākas pēc {{time}}",
+      "rsvpRequested": "Lūdzu, apstipriniet dalību {{eventName}}",
+      "scheduleChange": "Grafika izmaiņas {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Pieejams jauns rēķins: {{amount}}",
+      "paymentReceived": "Maksājums saņemts: {{amount}}",
+      "paymentDue": "Maksājuma termiņš: {{amount}} līdz {{date}}",
+      "paymentOverdue": "Nokavēts maksājums: {{amount}}",
+      "paymentFailed": "Maksājums neizdevās: {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Jauns ziņojums no {{sender}}",
+      "mentionedInChat": "{{sender}} pieminēja jūs {{channel}}",
+      "addedToGroup": "Jūs tikāt pievienots grupai {{groupName}}",
+      "missedCall": "Neatbildēts zvans no {{caller}}",
+      "voicemail": "Jauna balss pasta ziņa no {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Spēle ieplānota: {{opponent}} {{date}}",
+      "gameReminder": "Spēle pret {{opponent}} sākas pēc {{time}}",
+      "lineupPosted": "Spēles sastāvs ir publicēts",
+      "gameResult": "Spēles rezultāts: {{result}} pret {{opponent}}",
+      "statsAvailable": "Jūsu spēles statistika ir pieejama"
+    },
+    "equipment": {
+      "fittingScheduled": "Ekipējuma pielaikošana ieplānota {{date}}",
+      "maintenanceDue": "Ekipējuma apkope nepieciešama {{equipment}}",
+      "orderReady": "Jūsu ekipējuma pasūtījums ir gatavs saņemšanai",
+      "returnReminder": "Lūdzu, atgrieziet {{equipment}} līdz {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Skatīt",
+    "dismiss": "Noraidīt",
+    "accept": "Pieņemt",
+    "decline": "Noraidīt",
+    "respond": "Atbildēt",
+    "schedule": "Ieplānot",
+    "pay": "Maksāt tagad",
+    "download": "Lejupielādēt",
+    "viewDetails": "Skatīt detaļas"
+  },
+  "preferences": {
+    "title": "Paziņojumu preferences",
+    "channels": {
+      "email": "E-pasts",
+      "push": "Push paziņojumi",
+      "inApp": "Lietotnē",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Nekavējoties",
+      "hourly": "Stundu kopsavilkums",
+      "daily": "Dienas kopsavilkums",
+      "weekly": "Nedēļas kopsavilkums"
+    },
+    "quiet": {
+      "title": "Klusuma stundas",
+      "enabled": "Ieslēgt klusuma stundas",
+      "from": "No",
+      "to": "Līdz",
+      "days": "Dienas"
+    },
+    "types": {
+      "training": "Treniņu atjauninājumi",
+      "medical": "Medicīniskie atgādinājumi",
+      "calendar": "Kalendāra notikumi",
+      "team": "Komandas paziņojumi",
+      "chat": "Čata ziņojumi",
+      "payment": "Maksājumu atgādinājumi",
+      "system": "Sistēmas paziņojumi"
+    }
+  },
+  "time": {
+    "justNow": "Tikko",
+    "minutesAgo": "Pirms {{count}} minūtēm",
+    "hoursAgo": "Pirms {{count}} stundām",
+    "yesterday": "Vakar",
+    "daysAgo": "Pirms {{count}} dienām",
+    "weeksAgo": "Pirms {{count}} nedēļām"
+  },
+  "status": {
+    "sent": "Nosūtīts",
+    "delivered": "Piegādāts",
+    "read": "Izlasīts",
+    "failed": "Neizdevās nosūtīt"
+  }
+}

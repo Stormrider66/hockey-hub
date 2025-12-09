@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Oeps! Er ging iets mis",
+    "subtitle": "Onze excuses voor het ongemak",
+    "tryAgain": "Probeer opnieuw",
+    "goHome": "Ga naar Dashboard",
+    "contactSupport": "Contact opnemen met support"
+  },
+  "http": {
+    "400": {
+      "title": "Ongeldige aanvraag",
+      "message": "De aanvraag kon niet worden begrepen door de server."
+    },
+    "401": {
+      "title": "Niet geautoriseerd",
+      "message": "Je moet inloggen om toegang te krijgen tot deze bron."
+    },
+    "403": {
+      "title": "Verboden",
+      "message": "Je hebt geen toestemming om toegang te krijgen tot deze bron."
+    },
+    "404": {
+      "title": "Pagina niet gevonden",
+      "message": "De pagina die je zoekt bestaat niet."
+    },
+    "409": {
+      "title": "Conflict",
+      "message": "De aanvraag conflicteert met de huidige status van de server."
+    },
+    "422": {
+      "title": "Validatiefout",
+      "message": "De verstrekte gegevens zijn ongeldig."
+    },
+    "429": {
+      "title": "Te veel aanvragen",
+      "message": "Je hebt te veel aanvragen gedaan. Probeer het later opnieuw."
+    },
+    "500": {
+      "title": "Serverfout",
+      "message": "Er is een onverwachte fout opgetreden op onze servers."
+    },
+    "502": {
+      "title": "Slechte gateway",
+      "message": "De server ontving een ongeldige reactie."
+    },
+    "503": {
+      "title": "Service niet beschikbaar",
+      "message": "De service is tijdelijk niet beschikbaar. Probeer het later opnieuw."
+    },
+    "504": {
+      "title": "Gateway timeout",
+      "message": "De server deed er te lang over om te reageren."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Geen internetverbinding",
+      "message": "Controleer je internetverbinding en probeer het opnieuw."
+    },
+    "timeout": {
+      "title": "Aanvraag timeout",
+      "message": "De aanvraag duurde te lang. Probeer het opnieuw."
+    },
+    "connectionFailed": {
+      "title": "Verbinding mislukt",
+      "message": "Kan geen verbinding maken met de server. Probeer het opnieuw."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Laden van gegevens mislukt",
+      "message": "We konden de gevraagde gegevens niet laden. Probeer de pagina te vernieuwen."
+    },
+    "dataSave": {
+      "title": "Opslaan mislukt",
+      "message": "Je wijzigingen konden niet worden opgeslagen. Probeer het opnieuw."
+    },
+    "fileUpload": {
+      "title": "Upload mislukt",
+      "message": "Het bestand kon niet worden geüpload. Controleer het bestand en probeer het opnieuw."
+    },
+    "permissionDenied": {
+      "title": "Toestemming geweigerd",
+      "message": "Je hebt geen toestemming om deze actie uit te voeren."
+    },
+    "sessionExpired": {
+      "title": "Sessie verlopen",
+      "message": "Je sessie is verlopen. Log opnieuw in."
+    },
+    "maintenanceMode": {
+      "title": "Onder onderhoud",
+      "message": "We voeren gepland onderhoud uit. Probeer het later opnieuw."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Formulier indieningsfout",
+      "message": "Er was een fout bij het indienen van het formulier. Controleer je invoer en probeer het opnieuw."
+    },
+    "validation": {
+      "title": "Validatiefout",
+      "message": "Corrigeer de fouten in het formulier."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Betaling mislukt",
+      "message": "Je betaling kon niet worden verwerkt. Probeer een andere betaalmethode."
+    },
+    "declined": {
+      "title": "Betaling geweigerd",
+      "message": "Je betaling is geweigerd. Controleer je betalingsgegevens."
+    },
+    "insufficientFunds": {
+      "title": "Onvoldoende saldo",
+      "message": "Je betaalmethode heeft onvoldoende saldo."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Schemaconflict",
+      "message": "Dit tijdslot conflicteert met een ander evenement."
+    },
+    "bookingFailed": {
+      "title": "Boeking mislukt",
+      "message": "Kan het geselecteerde tijdslot niet boeken."
+    },
+    "facilityUnavailable": {
+      "title": "Faciliteit niet beschikbaar",
+      "message": "De geselecteerde faciliteit is op dit moment niet beschikbaar."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Trainingssessie niet gevonden",
+      "message": "De trainingssessie die je zoekt bestaat niet."
+    },
+    "alreadyStarted": {
+      "title": "Sessie al begonnen",
+      "message": "Deze trainingssessie is al begonnen."
+    },
+    "capacityReached": {
+      "title": "Sessie vol",
+      "message": "Deze trainingssessie heeft de maximale capaciteit bereikt."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Bericht niet verzonden",
+      "message": "Je bericht kon niet worden verzonden. Probeer het opnieuw."
+    },
+    "notificationFailed": {
+      "title": "Melding mislukt",
+      "message": "Kan op dit moment geen meldingen verzenden."
+    }
+  },
+  "actions": {
+    "retry": "Opnieuw proberen",
+    "dismiss": "Sluiten",
+    "details": "Details bekijken",
+    "report": "Probleem melden",
+    "refresh": "Pagina vernieuwen"
+  }
+}

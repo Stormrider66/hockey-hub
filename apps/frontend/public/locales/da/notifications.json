@@ -1,0 +1,142 @@
+{
+  "notifications": {
+    "title": "Notifikationer",
+    "all": "Alle notifikationer",
+    "unread": "Ulæste",
+    "markAllRead": "Marker alle som læst",
+    "settings": "Notifikationsindstillinger",
+    "noNotifications": "Ingen notifikationer",
+    "loadMore": "Indlæs flere"
+  },
+  "categories": {
+    "all": "Alle",
+    "system": "System",
+    "team": "Hold",
+    "training": "Træning",
+    "game": "Kamp",
+    "medical": "Medicinsk",
+    "calendar": "Kalender",
+    "payment": "Betaling",
+    "communication": "Kommunikation"
+  },
+  "types": {
+    "info": "Information",
+    "success": "Succes",
+    "warning": "Advarsel",
+    "error": "Fejl",
+    "urgent": "Haster",
+    "reminder": "Påmindelse"
+  },
+  "messages": {
+    "system": {
+      "welcome": "Velkommen til Hockey Hub!",
+      "maintenance": "Planlagt vedligeholdelse {{date}}",
+      "update": "Systemet er blevet opdateret",
+      "newFeature": "Ny funktion tilgængelig: {{feature}}"
+    },
+    "team": {
+      "rosterUpdate": "Holdopstilling opdateret",
+      "newPlayer": "{{player}} tilføjet til holdet",
+      "playerLeft": "{{player}} har forladt holdet",
+      "lineChange": "Kædeændringer opdateret",
+      "teamEvent": "Ny holdbegivenhed: {{event}}"
+    },
+    "training": {
+      "sessionScheduled": "Træning planlagt: {{date}}",
+      "sessionCancelled": "Træning annulleret: {{date}}",
+      "sessionUpdated": "Træningsdetaljer opdateret",
+      "assignmentDue": "Træningsopgave forfalder snart",
+      "feedbackReceived": "Ny feedback fra træner"
+    },
+    "medical": {
+      "appointmentScheduled": "Medicinsk aftale: {{date}}",
+      "injuryUpdate": "Skadestatus opdateret",
+      "clearanceGranted": "Medicinsk godkendelse givet",
+      "treatmentReminder": "Behandlingspåmindelse: {{treatment}}",
+      "wellnessCheck": "Udfyld venligst din daglige velvære"
+    },
+    "calendar": {
+      "eventReminder": "Begivenhedspåmindelse: {{event}} om {{time}}",
+      "eventCreated": "Ny begivenhed: {{event}}",
+      "eventUpdated": "Begivenhed opdateret: {{event}}",
+      "eventCancelled": "Begivenhed annulleret: {{event}}",
+      "scheduleChange": "Tidsplanændring"
+    },
+    "payment": {
+      "paymentDue": "Betaling forfalden: {{amount}}",
+      "paymentReceived": "Betaling modtaget: {{amount}}",
+      "paymentFailed": "Betaling fejlede",
+      "invoiceGenerated": "Ny faktura tilgængelig",
+      "refundProcessed": "Refusion behandlet: {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Ny besked fra {{sender}}",
+      "mentionedInChat": "{{user}} nævnte dig",
+      "announcementPosted": "Ny meddelelse: {{title}}",
+      "documentShared": "{{user}} delte et dokument",
+      "meetingInvite": "Mødeinvitation: {{meeting}}"
+    },
+    "game": {
+      "gameScheduled": "Kamp planlagt: {{opponent}}",
+      "gameToday": "Kamp i dag mod {{opponent}}",
+      "lineupPosted": "Kampopstilling offentliggjort",
+      "gameResult": "Kampresultat: {{result}}",
+      "statsUpdated": "Kampstatistik opdateret"
+    },
+    "equipment": {
+      "equipmentDue": "Udstyr skal returneres",
+      "maintenanceRequired": "Udstyrsvedligeholdelse påkrævet",
+      "newEquipmentAvailable": "Nyt udstyr tilgængeligt",
+      "fittingScheduled": "Udstyrsilpasning: {{date}}",
+      "orderArrived": "Udstyrsordre ankommet"
+    }
+  },
+  "actions": {
+    "view": "Vis",
+    "dismiss": "Afvis",
+    "snooze": "Udsæt",
+    "accept": "Accepter",
+    "decline": "Afvis",
+    "respond": "Svar",
+    "complete": "Fuldfør",
+    "markRead": "Marker som læst",
+    "markUnread": "Marker som ulæst",
+    "delete": "Slet"
+  },
+  "preferences": {
+    "title": "Notifikationspræferencer",
+    "enableAll": "Aktiver alle",
+    "disableAll": "Deaktiver alle",
+    "email": "E-mail notifikationer",
+    "push": "Push notifikationer",
+    "sms": "SMS notifikationer",
+    "inApp": "In-app notifikationer",
+    "frequency": {
+      "immediate": "Øjeblikkelig",
+      "daily": "Daglig opsummering",
+      "weekly": "Ugentlig opsummering",
+      "never": "Aldrig"
+    }
+  },
+  "time": {
+    "justNow": "Lige nu",
+    "minutesAgo": "{{count}} minut siden",
+    "minutesAgo_plural": "{{count}} minutter siden",
+    "hoursAgo": "{{count}} time siden",
+    "hoursAgo_plural": "{{count}} timer siden",
+    "daysAgo": "{{count}} dag siden",
+    "daysAgo_plural": "{{count}} dage siden",
+    "weeksAgo": "{{count}} uge siden",
+    "weeksAgo_plural": "{{count}} uger siden",
+    "monthsAgo": "{{count}} måned siden",
+    "monthsAgo_plural": "{{count}} måneder siden"
+  },
+  "status": {
+    "sent": "Sendt",
+    "delivered": "Leveret",
+    "read": "Læst",
+    "unread": "Ulæst",
+    "failed": "Fejlet",
+    "pending": "Afventer"
+  }
+}

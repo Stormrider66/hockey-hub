@@ -1,0 +1,142 @@
+{
+  "title": "Notifiche",
+  "markAllRead": "Segna tutte come lette",
+  "clearAll": "Cancella tutte",
+  "settings": "Impostazioni Notifiche",
+  "empty": "Nessuna notifica",
+  "loadMore": "Carica altre",
+  "categories": {
+    "all": "Tutte",
+    "unread": "Non lette",
+    "system": "Sistema",
+    "team": "Squadra",
+    "training": "Allenamento",
+    "medical": "Mediche",
+    "calendar": "Calendario",
+    "payment": "Pagamenti",
+    "communication": "Messaggi"
+  },
+  "types": {
+    "system": {
+      "welcome": "Benvenuto su Hockey Hub!",
+      "profileComplete": "Il tuo profilo è ora completo",
+      "passwordChanged": "La tua password è stata cambiata con successo",
+      "accountVerified": "Il tuo account è stato verificato",
+      "maintenanceScheduled": "Manutenzione sistema programmata per {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Sei stato aggiunto a {{teamName}}",
+      "removedFromTeam": "Sei stato rimosso da {{teamName}}",
+      "roleChanged": "Il tuo ruolo è stato cambiato in {{role}}",
+      "teamAnnouncement": "Comunicazione squadra da {{sender}}",
+      "rosterUpdate": "La rosa è stata aggiornata"
+    },
+    "training": {
+      "sessionScheduled": "Sessione di allenamento programmata per {{date}}",
+      "sessionCancelled": "Sessione di allenamento del {{date}} è stata cancellata",
+      "sessionReminder": "L'allenamento inizia tra {{time}}",
+      "workoutAssigned": "Nuovo allenamento assegnato: {{workoutName}}",
+      "workoutCompleted": "{{player}} ha completato l'allenamento: {{workoutName}}",
+      "performanceReport": "Il tuo report prestazioni è pronto"
+    },
+    "medical": {
+      "appointmentScheduled": "Appuntamento medico programmato per {{date}}",
+      "appointmentReminder": "Appuntamento medico tra {{time}}",
+      "injuryUpdate": "Stato infortunio aggiornato per {{player}}",
+      "clearanceGranted": "{{player}} è stato abilitato a giocare",
+      "wellnessReminder": "Invia il tuo controllo benessere giornaliero",
+      "treatmentComplete": "Sessione di trattamento completata"
+    },
+    "calendar": {
+      "eventCreated": "Nuovo evento: {{eventName}}",
+      "eventUpdated": "Evento aggiornato: {{eventName}}",
+      "eventCancelled": "Evento cancellato: {{eventName}}",
+      "eventReminder": "{{eventName}} inizia tra {{time}}",
+      "rsvpRequested": "Conferma la presenza per {{eventName}}",
+      "scheduleChange": "Cambio programma per {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Nuova fattura disponibile: {{amount}}",
+      "paymentReceived": "Pagamento ricevuto: {{amount}}",
+      "paymentDue": "Pagamento dovuto: {{amount}} entro {{date}}",
+      "paymentOverdue": "Pagamento scaduto: {{amount}}",
+      "paymentFailed": "Pagamento fallito per {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Nuovo messaggio da {{sender}}",
+      "mentionedInChat": "{{sender}} ti ha menzionato in {{channel}}",
+      "addedToGroup": "Sei stato aggiunto a {{groupName}}",
+      "missedCall": "Chiamata persa da {{caller}}",
+      "voicemail": "Nuovo messaggio vocale da {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Partita programmata: {{opponent}} il {{date}}",
+      "gameReminder": "Partita contro {{opponent}} inizia tra {{time}}",
+      "lineupPosted": "La formazione è stata pubblicata",
+      "gameResult": "Risultato partita: {{result}} contro {{opponent}}",
+      "statsAvailable": "Le tue statistiche partita sono disponibili"
+    },
+    "equipment": {
+      "fittingScheduled": "Prova attrezzatura programmata per {{date}}",
+      "maintenanceDue": "Manutenzione attrezzatura dovuta per {{equipment}}",
+      "orderReady": "Il tuo ordine attrezzatura è pronto per il ritiro",
+      "returnReminder": "Restituisci {{equipment}} entro {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Visualizza",
+    "dismiss": "Ignora",
+    "accept": "Accetta",
+    "decline": "Rifiuta",
+    "respond": "Rispondi",
+    "schedule": "Programma",
+    "pay": "Paga Ora",
+    "download": "Scarica",
+    "viewDetails": "Vedi Dettagli"
+  },
+  "preferences": {
+    "title": "Preferenze Notifiche",
+    "channels": {
+      "email": "Email",
+      "push": "Notifiche Push",
+      "inApp": "In-App",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Immediato",
+      "hourly": "Riepilogo Orario",
+      "daily": "Riepilogo Giornaliero",
+      "weekly": "Riepilogo Settimanale"
+    },
+    "quiet": {
+      "title": "Ore di Silenzio",
+      "enabled": "Abilita ore di silenzio",
+      "from": "Dalle",
+      "to": "Alle",
+      "days": "Giorni"
+    },
+    "types": {
+      "training": "Aggiornamenti Allenamento",
+      "medical": "Promemoria Medici",
+      "calendar": "Eventi Calendario",
+      "team": "Comunicazioni Squadra",
+      "chat": "Messaggi Chat",
+      "payment": "Promemoria Pagamenti",
+      "system": "Notifiche Sistema"
+    }
+  },
+  "time": {
+    "justNow": "Proprio ora",
+    "minutesAgo": "{{count}} minuti fa",
+    "hoursAgo": "{{count}} ore fa",
+    "yesterday": "Ieri",
+    "daysAgo": "{{count}} giorni fa",
+    "weeksAgo": "{{count}} settimane fa"
+  },
+  "status": {
+    "sent": "Inviato",
+    "delivered": "Consegnato",
+    "read": "Letto",
+    "failed": "Invio fallito"
+  }
+}

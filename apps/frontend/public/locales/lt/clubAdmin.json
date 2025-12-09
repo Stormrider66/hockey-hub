@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Klubo administracijos skydelis",
+    "subtitle": "Organizacijos valdymas ir priežiūra",
+    "welcome": "Sveiki, {{name}}",
+    "organizationOverview": "Organizacijos apžvalga",
+    "quickActions": "Greiti veiksmai",
+    "stats": {
+      "teams": "Komandos",
+      "activeMembers": "Aktyvūs nariai",
+      "coachingStaff": "Trenerių personalas",
+      "upcomingEvents": "Artėjantys renginiai",
+      "attendance": "Lankomumas",
+      "members": "Nariai"
+    }
+  },
+  "organization": {
+    "title": "Organizacijos valdymas",
+    "details": "Organizacijos informacija",
+    "settings": "Organizacijos nustatymai",
+    "structure": "Organizacinė struktūra",
+    "departments": "Padaliniai",
+    "policies": "Taisyklės ir procedūros",
+    "branding": "Prekės ženklas ir tapatybė",
+    "contact": "Kontaktinė informacija"
+  },
+  "teams": {
+    "title": "Komandų valdymas",
+    "all": "Visos komandos",
+    "create": "Sukurti komandą",
+    "edit": "Redaguoti komandą",
+    "delete": "Ištrinti komandą",
+    "roster": "Komandų sudėtys",
+    "assignments": "Personalo priskyrimas",
+    "categories": {
+      "senior": "Suaugusiųjų komandos",
+      "junior": "Jaunimo komandos",
+      "youth": "Vaikų komandos",
+      "academy": "Akademijos komandos",
+      "womens": "Moterų komandos"
+    }
+  },
+  "staff": {
+    "title": "Personalo valdymas",
+    "all": "Visas personalas",
+    "add": "Pridėti personalo narį",
+    "roles": "Personalo vaidmenys",
+    "permissions": "Leidimai",
+    "contracts": "Sutartys",
+    "evaluation": "Veiklos vertinimas",
+    "training": "Mokymai ir sertifikatai",
+    "types": {
+      "coaching": "Trenerių personalas",
+      "medical": "Medicinos personalas",
+      "administrative": "Administracija",
+      "support": "Pagalbinis personalas",
+      "volunteer": "Savanoriai"
+    }
+  },
+  "facilities": {
+    "title": "Infrastruktūros valdymas",
+    "overview": "Infrastruktūros apžvalga",
+    "booking": "Patalpų rezervacija",
+    "maintenance": "Priežiūros tvarkaraštis",
+    "calendar": "Patalpų kalendorius",
+    "utilization": "Naudojimo ataskaitos",
+    "types": {
+      "mainRink": "Pagrindinė arena",
+      "practiceRink": "Treniruočių arena",
+      "gym": "Sporto salė/Jėgos salė",
+      "meetingRooms": "Susitikimų kambariai",
+      "lockerRooms": "Persirengimo kambariai",
+      "medicalRoom": "Medicinos kabinetas"
+    }
+  },
+  "finance": {
+    "title": "Finansų valdymas",
+    "overview": "Finansų apžvalga",
+    "budget": "Biudžeto valdymas",
+    "revenue": "Pajamų šaltiniai",
+    "expenses": "Išlaidos",
+    "reports": "Finansinės ataskaitos",
+    "invoicing": "Sąskaitų išrašymas",
+    "sponsorships": "Rėmėjai",
+    "grants": "Dotacijos ir finansavimas"
+  },
+  "events": {
+    "title": "Renginių valdymas",
+    "calendar": "Renginių kalendorius",
+    "create": "Sukurti renginį",
+    "upcoming": "Artėjantys renginiai",
+    "past": "Praėję renginiai",
+    "types": {
+      "games": "Rungtynės",
+      "tournaments": "Turnyrai",
+      "fundraisers": "Labdaros renginiai",
+      "meetings": "Susitikimai",
+      "social": "Socialiniai renginiai",
+      "training": "Treniruočių stovyklos"
+    }
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "announcements": "Skelbimai",
+    "newsletters": "Naujienlaiškiai",
+    "social": "Socialinė medija",
+    "website": "Svetainės atnaujinimai",
+    "press": "Pranešimai spaudai",
+    "internal": "Vidinė komunikacija",
+    "broadcast": "Transliuoti pranešimą"
+  },
+  "compliance": {
+    "title": "Atitiktis ir valdymas",
+    "policies": "Taisyklės",
+    "procedures": "Procedūros",
+    "regulations": "Reglamentai",
+    "certifications": "Sertifikatai",
+    "audits": "Auditai",
+    "reports": "Atitikties ataskaitos",
+    "training": "Atitikties mokymai"
+  },
+  "reports": {
+    "title": "Ataskaitos ir analitika",
+    "dashboard": "Vadovų skydelis",
+    "operational": "Veiklos ataskaitos",
+    "financial": "Finansinės ataskaitos",
+    "performance": "Veiklos rodikliai",
+    "custom": "Individualios ataskaitos",
+    "export": "Eksportuoti duomenis",
+    "schedule": "Planuoti ataskaitas"
+  },
+  "members": {
+    "title": "Narių valdymas",
+    "directory": "Narių katalogas",
+    "registration": "Registracija",
+    "renewal": "Narystės atnaujinimas",
+    "benefits": "Narių privilegijos",
+    "communication": "Narių komunikacija",
+    "statistics": "Narystės statistika",
+    "byRole": "Nariai pagal vaidmenis"
+  }
+}

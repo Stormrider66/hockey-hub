@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Vanhemman kojelauta",
+    "subtitle": "Pysy yhteydessä lapsesi jääkiekkopolkuun",
+    "welcome": "Tervetuloa, {{name}}!",
+    "childrenOverview": "Lasten yleiskatsaus",
+    "upcomingEvents": "Tulevat tapahtumat"
+  },
+  "children": {
+    "title": "Lapseni",
+    "addChild": "Lisää lapsi",
+    "profile": "Lapsen profiili",
+    "schedule": "Aikataulu",
+    "performance": "Suorituskyky",
+    "wellness": "Terveys ja hyvinvointi",
+    "communication": "Viestit",
+    "details": {
+      "team": "Joukkue",
+      "position": "Pelipaikka",
+      "coach": "Valmentaja",
+      "number": "Pelinumero",
+      "age": "Ikäryhmä"
+    }
+  },
+  "schedule": {
+    "title": "Perheen aikataulu",
+    "calendar": "Kalenterinäkymä",
+    "upcoming": "Tulevat tapahtumat",
+    "transportation": "Kuljetukset",
+    "conflicts": "Aikatauluristiriidat",
+    "sync": "Synkronoi kalenteri",
+    "export": "Vie aikataulu",
+    "types": {
+      "game": "Peli",
+      "practice": "Harjoitus",
+      "tournament": "Turnaus",
+      "teamEvent": "Joukkuetapahtuma",
+      "meeting": "Vanhempainpalaveri",
+      "fundraiser": "Varainkeruu"
+    },
+    "rsvp": {
+      "title": "Ilmoittaudu tapahtumaan",
+      "attending": "Osallistumme",
+      "notAttending": "Emme pääse",
+      "driving": "Voin kuljettaa muita",
+      "needRide": "Tarvitsemme kyydin"
+    }
+  },
+  "transportation": {
+    "title": "Kuljetusten koordinointi",
+    "available": "Käytettävissä olevat kuskit",
+    "requests": "Kyytitoiveet",
+    "myOffers": "Omat kyytitarjoukset",
+    "carpool": "Kimppakyytiryhmät",
+    "seats": "Vapaita paikkoja",
+    "pickup": "Noutopaikka",
+    "dropoff": "Jättöpaikka",
+    "time": "Lähtöaika"
+  },
+  "payments": {
+    "title": "Maksut",
+    "overview": "Maksujen yleiskatsaus",
+    "due": "Maksettava summa",
+    "history": "Maksuhistoria",
+    "upcoming": "Tulevat maksut",
+    "methods": "Maksutavat",
+    "invoices": "Laskut",
+    "items": {
+      "registration": "Rekisteröintimaksu",
+      "monthly": "Kuukausimaksu",
+      "equipment": "Varusteet",
+      "tournament": "Turnausmaksu",
+      "travel": "Matkakulut",
+      "fundraising": "Varainkeruu"
+    },
+    "status": {
+      "paid": "Maksettu",
+      "pending": "Odottaa",
+      "overdue": "Myöhässä",
+      "partial": "Osamaksu"
+    }
+  },
+  "communication": {
+    "title": "Viestintä",
+    "messages": "Viestit",
+    "announcements": "Joukkueilmoitukset",
+    "coachMessages": "Valmentajalta",
+    "teamMessages": "Joukkuepäivitykset",
+    "emergency": "Hätäyhteystiedot",
+    "directory": "Joukkuehakemisto",
+    "preferences": "Viestintäasetukset"
+  },
+  "medical": {
+    "title": "Terveystiedot",
+    "records": "Potilastiedot",
+    "allergies": "Allergiat",
+    "medications": "Lääkitykset",
+    "conditions": "Sairaudet",
+    "emergency": "Hätäyhteystiedot",
+    "insurance": "Vakuutustiedot",
+    "consent": "Hoitosuostumus",
+    "injuries": "Vammahistoria"
+  },
+  "documents": {
+    "title": "Asiakirjat ja lomakkeet",
+    "required": "Pakolliset asiakirjat",
+    "optional": "Valinnaiset lomakkeet",
+    "submitted": "Lähetetty",
+    "pending": "Odottaa lähetystä",
+    "download": "Lataa lomakkeet",
+    "upload": "Lataa asiakirja",
+    "types": {
+      "registration": "Ilmoittautumislomake",
+      "medical": "Terveyslomake",
+      "waiver": "Vastuuvapautus",
+      "consent": "Suostumuslomake",
+      "emergency": "Hätäyhteystieto",
+      "insurance": "Vakuutuskortti"
+    }
+  },
+  "volunteer": {
+    "title": "Vapaaehtoistehtävät",
+    "signup": "Ilmoittaudu",
+    "myShifts": "Omat vuorot",
+    "available": "Avoimet tehtävät",
+    "hours": "Vapaaehtoistyötunnit",
+    "requirements": "Vaatimukset",
+    "positions": {
+      "scorekeeper": "Kirjuri",
+      "penalty": "Jäähyaitio",
+      "concession": "Kioski",
+      "fundraising": "Varainkeruu",
+      "teamManager": "Joukkueenjohtaja",
+      "equipment": "Varusteavustaja"
+    }
+  },
+  "performance": {
+    "title": "Lapsen edistyminen",
+    "overview": "Suorituskyvyn yleiskatsaus",
+    "improvement": "Kehityskohteet",
+    "achievements": "Viimeaikaiset saavutukset",
+    "feedback": "Valmentajan palaute",
+    "goals": "Kehitystavoitteet",
+    "attendance": "Läsnäolotilastot",
+    "effort": "Yritteliäisyys",
+    "teamwork": "Yhteistyökyky"
+  }
+}

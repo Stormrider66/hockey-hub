@@ -1,0 +1,142 @@
+{
+  "title": "Upozornenia",
+  "markAllRead": "Označiť všetko ako prečítané",
+  "clearAll": "Vymazať všetko",
+  "settings": "Nastavenia upozornení",
+  "empty": "Žiadne upozornenia",
+  "loadMore": "Načítať viac",
+  "categories": {
+    "all": "Všetky",
+    "unread": "Neprečítané",
+    "system": "Systém",
+    "team": "Tím",
+    "training": "Tréning",
+    "medical": "Zdravotné",
+    "calendar": "Kalendár",
+    "payment": "Platby",
+    "communication": "Správy"
+  },
+  "types": {
+    "system": {
+      "welcome": "Vitajte v Hockey Hub!",
+      "profileComplete": "Váš profil je teraz kompletný",
+      "passwordChanged": "Vaše heslo bolo úspešne zmenené",
+      "accountVerified": "Váš účet bol overený",
+      "maintenanceScheduled": "Údržba systému naplánovaná na {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Boli ste pridaný do tímu {{teamName}}",
+      "removedFromTeam": "Boli ste odstránený z tímu {{teamName}}",
+      "roleChanged": "Vaša rola bola zmenená na {{role}}",
+      "teamAnnouncement": "Tímové oznámenie od {{sender}}",
+      "rosterUpdate": "Súpiska bola aktualizovaná"
+    },
+    "training": {
+      "sessionScheduled": "Tréning naplánovaný na {{date}}",
+      "sessionCancelled": "Tréning {{date}} bol zrušený",
+      "sessionReminder": "Tréning začína o {{time}}",
+      "workoutAssigned": "Nový tréning priradený: {{workoutName}}",
+      "workoutCompleted": "{{player}} dokončil tréning: {{workoutName}}",
+      "performanceReport": "Vaša správa o výkone je pripravená"
+    },
+    "medical": {
+      "appointmentScheduled": "Lekárska prehliadka naplánovaná na {{date}}",
+      "appointmentReminder": "Lekárska prehliadka o {{time}}",
+      "injuryUpdate": "Stav zranenia aktualizovaný pre {{player}}",
+      "clearanceGranted": "{{player}} má povolenie hrať",
+      "wellnessReminder": "Prosím, odošlite dennú kontrolu pohody",
+      "treatmentComplete": "Liečebná relácia dokončená"
+    },
+    "calendar": {
+      "eventCreated": "Nová udalosť: {{eventName}}",
+      "eventUpdated": "Udalosť aktualizovaná: {{eventName}}",
+      "eventCancelled": "Udalosť zrušená: {{eventName}}",
+      "eventReminder": "{{eventName}} začína o {{time}}",
+      "rsvpRequested": "Prosím potvrďte účasť na {{eventName}}",
+      "scheduleChange": "Zmena rozvrhu na {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Nová faktúra k dispozícii: {{amount}}",
+      "paymentReceived": "Platba prijatá: {{amount}}",
+      "paymentDue": "Platba splatná: {{amount}} do {{date}}",
+      "paymentOverdue": "Platba po splatnosti: {{amount}}",
+      "paymentFailed": "Platba zlyhala pre {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Nová správa od {{sender}}",
+      "mentionedInChat": "{{sender}} vás spomenul v {{channel}}",
+      "addedToGroup": "Boli ste pridaný do skupiny {{groupName}}",
+      "missedCall": "Zmeškaný hovor od {{caller}}",
+      "voicemail": "Nová hlasová správa od {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Zápas naplánovaný: {{opponent}} dňa {{date}}",
+      "gameReminder": "Zápas proti {{opponent}} začína o {{time}}",
+      "lineupPosted": "Zostava na zápas bola zverejnená",
+      "gameResult": "Výsledok zápasu: {{result}} proti {{opponent}}",
+      "statsAvailable": "Vaše zápasové štatistiky sú k dispozícii"
+    },
+    "equipment": {
+      "fittingScheduled": "Skúška výstroja naplánovaná na {{date}}",
+      "maintenanceDue": "Údržba výstroja potrebná pre {{equipment}}",
+      "orderReady": "Vaša objednávka výstroja je pripravená na vyzdvihnutie",
+      "returnReminder": "Prosím vráťte {{equipment}} do {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Zobraziť",
+    "dismiss": "Zamietnuť",
+    "accept": "Prijať",
+    "decline": "Odmietnuť",
+    "respond": "Odpovedať",
+    "schedule": "Naplánovať",
+    "pay": "Zaplatiť teraz",
+    "download": "Stiahnuť",
+    "viewDetails": "Zobraziť detaily"
+  },
+  "preferences": {
+    "title": "Predvoľby upozornení",
+    "channels": {
+      "email": "E-mail",
+      "push": "Push upozornenia",
+      "inApp": "V aplikácii",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Okamžité",
+      "hourly": "Hodinový súhrn",
+      "daily": "Denný súhrn",
+      "weekly": "Týždenný prehľad"
+    },
+    "quiet": {
+      "title": "Tiché hodiny",
+      "enabled": "Povoliť tiché hodiny",
+      "from": "Od",
+      "to": "Do",
+      "days": "Dni"
+    },
+    "types": {
+      "training": "Aktualizácie tréningov",
+      "medical": "Zdravotné pripomienky",
+      "calendar": "Kalendárové udalosti",
+      "team": "Tímové oznámenia",
+      "chat": "Chatové správy",
+      "payment": "Pripomienky platieb",
+      "system": "Systémové upozornenia"
+    }
+  },
+  "time": {
+    "justNow": "Práve teraz",
+    "minutesAgo": "pred {{count}} minútami",
+    "hoursAgo": "pred {{count}} hodinami",
+    "yesterday": "Včera",
+    "daysAgo": "pred {{count}} dňami",
+    "weeksAgo": "pred {{count}} týždňami"
+  },
+  "status": {
+    "sent": "Odoslané",
+    "delivered": "Doručené",
+    "read": "Prečítané",
+    "failed": "Odoslanie zlyhalo"
+  }
+}

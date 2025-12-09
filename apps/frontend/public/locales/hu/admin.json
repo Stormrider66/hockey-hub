@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Rendszeradminisztrátor",
+    "subtitle": "Platform kezelés és konfiguráció",
+    "welcome": "Üdvözöljük, Rendszeradminisztrátor",
+    "systemStatus": "Rendszer állapot",
+    "alerts": "Rendszer riasztások"
+  },
+  "system": {
+    "title": "Rendszerkezelés",
+    "status": "Rendszer állapot",
+    "health": "Állapot ellenőrzés",
+    "healthScore": "Rendszer állapot",
+    "monitoring": "Rendszerfigyelés",
+    "logs": "Rendszernaplók",
+    "performance": "Teljesítménymutatók",
+    "uptime": "Üzemidő",
+    "resources": "Erőforrás használat",
+    "activeUsers": "Aktív felhasználók",
+    "errorRate": "Hibaarány",
+    "responseTime": "Válaszidő",
+    "databaseSize": "Adatbázis méret",
+    "withinSLA": "SLA-n belül",
+    "systemPerformance24h": "Rendszer teljesítmény (24ó)",
+    "serviceHealthMatrix": "Szolgáltatások állapota",
+    "cpuMemoryUsage": "CPU, Memória használat és kérés mennyiség",
+    "realTimeServiceStatus": "Valós idejű szolgáltatás állapot és metrikák"
+  },
+  "users": {
+    "title": "Felhasználókezelés",
+    "all": "Összes felhasználó",
+    "create": "Felhasználó létrehozása",
+    "edit": "Felhasználó szerkesztése",
+    "delete": "Felhasználó törlése",
+    "roles": "Felhasználói szerepkörök",
+    "permissions": "Felhasználói jogosultságok",
+    "activity": "Felhasználói tevékenység",
+    "sessions": "Aktív munkamenetek",
+    "audit": "Audit napló"
+  },
+  "organizations": {
+    "title": "Szervezet kezelés",
+    "all": "Összes szervezet",
+    "create": "Szervezet létrehozása",
+    "edit": "Szervezet szerkesztése",
+    "delete": "Szervezet törlése",
+    "settings": "Szervezet beállítások",
+    "limits": "Használati korlátok",
+    "billing": "Számlázási információk"
+  },
+  "security": {
+    "title": "Biztonsági kezelés",
+    "settings": "Biztonsági beállítások",
+    "authentication": "Hitelesítés",
+    "authorization": "Jogosultságkezelés",
+    "tokens": "API tokenek",
+    "certificates": "SSL tanúsítványok",
+    "firewall": "Tűzfal szabályok",
+    "threats": "Fenyegetés észlelés",
+    "incidents": "Biztonsági incidensek"
+  },
+  "database": {
+    "title": "Adatbázis kezelés",
+    "status": "Adatbázis állapot",
+    "backup": "Biztonsági mentés kezelése",
+    "restore": "Adatbázis visszaállítás",
+    "migrations": "Adatbázis migrációk",
+    "optimization": "Lekérdezés optimalizálás",
+    "connections": "Kapcsolat készlet",
+    "maintenance": "Karbantartási feladatok"
+  },
+  "services": {
+    "title": "Szolgáltatás kezelés",
+    "status": "Szolgáltatás állapot",
+    "configuration": "Szolgáltatás konfiguráció",
+    "dependencies": "Függőségek",
+    "health": "Állapot ellenőrzések",
+    "restart": "Szolgáltatás újraindítása",
+    "logs": "Szolgáltatás naplók",
+    "metrics": "Szolgáltatás metrikák"
+  },
+  "integrations": {
+    "title": "Integrációk",
+    "connected": "Csatlakoztatott szolgáltatások",
+    "available": "Elérhető integrációk",
+    "configure": "Integráció konfigurálása",
+    "test": "Kapcsolat tesztelése",
+    "logs": "Integráció naplók",
+    "webhooks": "Webhook-ok",
+    "api": "API kezelés"
+  },
+  "configuration": {
+    "title": "Rendszer konfiguráció",
+    "general": "Általános beállítások",
+    "email": "Email konfiguráció",
+    "storage": "Tárolási beállítások",
+    "cache": "Gyorsítótár kezelés",
+    "queue": "Várólista konfiguráció",
+    "scheduler": "Feladat ütemező",
+    "features": "Funkció kapcsolók"
+  },
+  "monitoring": {
+    "title": "Rendszerfigyelés",
+    "dashboard": "Figyelési vezérlőpult",
+    "alerts": "Riasztás konfiguráció",
+    "metrics": "Rendszer metrikák",
+    "logs": "Napló elemzés",
+    "errors": "Hiba követés",
+    "performance": "Teljesítmény elemzés",
+    "reports": "Rendszer jelentések"
+  },
+  "maintenance": {
+    "title": "Karbantartás",
+    "schedule": "Karbantartási ütemezés",
+    "tasks": "Karbantartási feladatok",
+    "updates": "Rendszer frissítések",
+    "patches": "Biztonsági javítások",
+    "cleanup": "Adat tisztítás",
+    "optimization": "Rendszer optimalizálás",
+    "mode": "Karbantartási mód"
+  }
+}

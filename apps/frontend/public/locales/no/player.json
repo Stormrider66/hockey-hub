@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Spilleroversikt",
+    "subtitle": "Følg din prestasjon og utvikling",
+    "welcome": "Velkommen tilbake, {{name}}!",
+    "todaySchedule": "Dagens program",
+    "upcomingEvents": "Kommende hendelser",
+    "recentPerformance": "Nylig prestasjon",
+    "developmentGoals": "Utviklingsmål"
+  },
+  "profile": {
+    "playerInfo": "Spillerinformasjon",
+    "number": "Draktnummer",
+    "position": "Posisjon",
+    "shoots": "Skyter",
+    "team": "Lag",
+    "age": "Alder",
+    "height": "Høyde",
+    "weight": "Vekt",
+    "joined": "Ble med",
+    "contractExpires": "Kontrakt utløper"
+  },
+  "wellness": {
+    "title": "Daglig velværesjekk",
+    "subtitle": "Hvordan har du det i dag?",
+    "submit": "Send inn velværedata",
+    "submitted": "Velværedata sendt inn",
+    "metrics": {
+      "hrv": "Hjerteratevariabilitet",
+      "sleep": "Søvnkvalitet",
+      "fatigue": "Utmattelsesnivå",
+      "mood": "Humør",
+      "soreness": "Muskelstølhet",
+      "stress": "Stressnivå",
+      "hydration": "Hydrering",
+      "nutrition": "Ernæringskvalitet"
+    },
+    "scale": {
+      "poor": "Dårlig",
+      "fair": "Middels",
+      "good": "Bra",
+      "veryGood": "Veldig bra",
+      "excellent": "Utmerket"
+    }
+  },
+  "training": {
+    "title": "Treningsøkter",
+    "upcoming": "Kommende trening",
+    "completed": "Fullførte økter",
+    "assigned": "Tildelte treninger",
+    "progress": "Treningsfremgang",
+    "todaysWorkout": "Dagens trening",
+    "completeSession": "Fullfør økt",
+    "viewDetails": "Vis detaljer",
+    "intensity": "Intensitet",
+    "duration": "Varighet",
+    "focus": "Fokusområde",
+    "equipment": "Utstyr som trengs",
+    "location": "Sted",
+    "coach": "Trener",
+    "notes": "Øktnotater"
+  },
+  "performance": {
+    "title": "Prestasjonsstatistikk",
+    "seasonStats": "Sesongstatistikk",
+    "careerStats": "Karrierestatistikk",
+    "lastGame": "Siste kamp",
+    "average": "Gjennomsnitt",
+    "total": "Totalt",
+    "trend": "Trend",
+    "improvement": "Forbedring",
+    "metrics": {
+      "goals": "Mål",
+      "assists": "Assists",
+      "points": "Poeng",
+      "plusMinus": "+/-",
+      "pim": "Utvisningsminutter",
+      "shots": "Skudd",
+      "shootingPercentage": "Skuddprosent",
+      "faceoffPercentage": "Tekningsprosent",
+      "hits": "Taklinger",
+      "blocks": "Blokkeringer",
+      "takeaways": "Puckerobringer",
+      "giveaways": "Pucktap",
+      "toi": "Istid",
+      "powerplayGoals": "Overtallsmål",
+      "shorthandedGoals": "Undertallsmål",
+      "gameWinningGoals": "Kampavgjørende mål"
+    }
+  },
+  "schedule": {
+    "title": "Timeplan",
+    "calendar": "Kalendervisning",
+    "list": "Listevisning",
+    "filters": "Filtre",
+    "types": {
+      "game": "Kamp",
+      "practice": "Lagtrening",
+      "training": "Individuell trening",
+      "meeting": "Møte",
+      "medical": "Medisinsk",
+      "recovery": "Restitusjon",
+      "travel": "Reise",
+      "personal": "Personlig"
+    },
+    "rsvp": {
+      "title": "Svar på invitasjon",
+      "attending": "Deltar",
+      "notAttending": "Deltar ikke",
+      "maybe": "Kanskje",
+      "update": "Oppdater svar"
+    }
+  },
+  "communication": {
+    "title": "Meldinger",
+    "inbox": "Innboks",
+    "sent": "Sendt",
+    "drafts": "Utkast",
+    "compose": "Skriv ny",
+    "teamChat": "Lagchat",
+    "coachMessages": "Trenermeldinger",
+    "announcements": "Kunngjøringer"
+  },
+  "development": {
+    "title": "Utviklingsplan",
+    "goals": "Mål",
+    "progress": "Fremgang",
+    "skillAssessment": "Ferdighetsvurdering",
+    "trainingPlan": "Treningsplan",
+    "milestones": "Milepæler",
+    "achievements": "Prestasjoner",
+    "areas": {
+      "skating": "Skøyteteknikk",
+      "shooting": "Skudd",
+      "passing": "Pasninger",
+      "stickHandling": "Stickhandling",
+      "positioning": "Posisjonering",
+      "physicality": "Fysikk",
+      "mentalGame": "Mentalt spill",
+      "leadership": "Lederskap"
+    }
+  },
+  "nutrition": {
+    "title": "Ernæring",
+    "mealPlan": "Måltidsplan",
+    "hydration": "Væskeinntak",
+    "supplements": "Kosttilskudd",
+    "calories": "Kalorier",
+    "macros": "Makronæringsstoffer",
+    "meals": {
+      "breakfast": "Frokost",
+      "lunch": "Lunsj",
+      "dinner": "Middag",
+      "snack": "Mellommåltid",
+      "preGame": "Før kamp",
+      "postGame": "Etter kamp"
+    }
+  },
+  "recovery": {
+    "title": "Restitusjon",
+    "status": "Restitusjonsstatus",
+    "activities": "Restitusjonsaktiviteter",
+    "sleep": "Søvnregistrering",
+    "treatment": "Behandling",
+    "nextSession": "Neste restitusjonsøkt",
+    "types": {
+      "massage": "Massasje",
+      "coldTub": "Isbad",
+      "sauna": "Badstue",
+      "stretching": "Tøying",
+      "yoga": "Yoga",
+      "physiotherapy": "Fysioterapi"
+    }
+  }
+}

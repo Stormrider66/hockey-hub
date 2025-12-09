@@ -1,0 +1,102 @@
+{
+  "autoUpdate": {
+    "enabled": true,
+    "triggers": ["commit", "merge", "tag"],
+    "excludePaths": [
+      "node_modules",
+      ".next",
+      "dist",
+      "build",
+      "coverage",
+      ".git",
+      "*.log"
+    ]
+  },
+  "documentation": {
+    "readme": {
+      "updateFeatures": true,
+      "updateMetrics": true,
+      "updateDependencies": true,
+      "updateInstallation": true,
+      "updateApiDocs": true
+    },
+    "claude": {
+      "updateRecentChanges": true,
+      "updateMetrics": true,
+      "updateFilesList": true,
+      "updateActiveDevelopment": true,
+      "maxRecentItems": 10,
+      "keepHistoricalUpdates": true
+    },
+    "api": {
+      "generateFromCode": true,
+      "updateExamples": true,
+      "includeRequestResponse": true,
+      "generatePostmanCollection": false
+    },
+    "features": {
+      "updateOverview": true,
+      "trackNewComponents": true,
+      "updateUserGuides": true
+    },
+    "technical": {
+      "updateArchitecture": true,
+      "updatePerformance": true,
+      "updateTestCoverage": true,
+      "updateDependencyGraph": false
+    }
+  },
+  "validation": {
+    "checkLinks": true,
+    "checkReferences": true,
+    "checkImagePaths": true,
+    "failOnError": false,
+    "warnOnBrokenLinks": true
+  },
+  "formatting": {
+    "useEmoji": true,
+    "dateFormat": "MMMM YYYY",
+    "tocDepth": 3,
+    "lineWidth": 80
+  },
+  "git": {
+    "autoCommit": false,
+    "commitMessage": "📚 Auto-update documentation",
+    "commitAuthor": "Documentation Bot",
+    "commitEmail": "docs@hockey-hub.com",
+    "signCommits": false
+  },
+  "notifications": {
+    "enabled": false,
+    "channels": ["console"],
+    "onSuccess": true,
+    "onFailure": true
+  },
+  "performance": {
+    "maxFilesPerBatch": 50,
+    "parallelProcessing": true,
+    "cacheResults": true,
+    "cacheDuration": 3600
+  },
+  "customSections": {
+    "claude": {
+      "sections": [
+        {
+          "marker": "## 🏥 Recent Updates",
+          "generator": "recentUpdates",
+          "maxItems": 10
+        },
+        {
+          "marker": "## 📈 Project Metrics",
+          "generator": "projectMetrics",
+          "includeCharts": false
+        },
+        {
+          "marker": "### Active Development Areas",
+          "generator": "activeDevelopment",
+          "threshold": 3
+        }
+      ]
+    }
+  }
+}

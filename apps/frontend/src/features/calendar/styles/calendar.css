@@ -1,0 +1,611 @@
+/* Base calendar styles - minimal approach */
+.rbc-calendar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar at top */
+.rbc-toolbar {
+  flex-shrink: 0;
+}
+
+/* Calendar views take remaining space */
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fix week view alignment issues */
+.rbc-time-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Ensure week view content doesn't get cut off */
+.rbc-time-content {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Time header needs to scroll with content */
+.rbc-time-header {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.rbc-time-view .rbc-allday-cell {
+  box-sizing: border-box;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* The main calendar container structure */
+.rbc-month-view {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep the weekday header row visible */
+.rbc-month-view .rbc-month-header {
+  display: flex !important;
+  background-color: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Style the weekday names */
+.rbc-month-view .rbc-header {
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #4b5563 !important;
+  padding: 12px 8px !important;
+  text-align: center !important;
+}
+
+/* CRITICAL: Hide the first row of dates that appears as a duplicate header */
+/* Commented out - was hiding date numbers
+.rbc-month-view > div:first-child > .rbc-row:nth-child(2) {
+  display: none !important;
+}
+*/
+
+/* Alternative selector if structure is different */
+/* Commented out - was hiding date numbers
+.rbc-month-view .rbc-month-row:first-of-type .rbc-row-segment:first-child {
+  display: none !important;
+}
+*/
+
+/* Hide any row that only contains date numbers at the top */
+/* Commented out - was hiding date numbers
+.rbc-month-view > .rbc-row:has(> .rbc-date-cell):first-of-type {
+  display: none !important;
+}
+*/
+
+/* Keep date numbers visible in the actual calendar cells */
+.rbc-month-view .rbc-month-row .rbc-row-content .rbc-date-cell {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Style the header (days of week) */
+.rbc-header {
+  font-weight: 600;
+  padding: 12px 8px;
+  background-color: #f9fafb;
+  text-align: center;
+  font-size: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Month view specific header styling */
+.rbc-month-header {
+  background-color: #f3f4f6;
+}
+
+/* Date cells - bigger font and padding */
+.rbc-date-cell {
+  font-size: 1.125rem;
+  padding: 8px;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Fix for duplicate date headers in month view */
+/* Commented out - was hiding date numbers
+.rbc-month-view .rbc-row:has(.rbc-date-cell:not(.rbc-event)):first-child {
+  display: none !important;
+}
+*/
+
+/* Event styling - much bigger and clearer */
+.rbc-event {
+  font-size: 0.875rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 1px 2px;
+}
+
+/* Today highlight - only for month view cells */
+.rbc-month-view .rbc-day-bg.rbc-today {
+  background-color: #fef3c7;
+}
+
+/* Off-range dates */
+.rbc-off-range-bg {
+  background-color: #f9fafb;
+}
+
+/* Borders for month view */
+.rbc-month-view .rbc-day-bg {
+  border: 1px solid #e5e7eb;
+}
+
+/* Ensure header row doesn't inherit content row styles */
+.rbc-row.rbc-month-header {
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Fixed larger height for calendar cells */
+.rbc-month-view .rbc-row-content {
+  min-height: 180px;
+  height: 180px;
+  position: relative;
+  overflow: visible;
+}
+
+/* But not for the header row */
+.rbc-month-header .rbc-row-content {
+  min-height: auto;
+  height: auto;
+}
+
+/* Make the calendar a fixed size and let the page scroll */
+.rbc-calendar {
+  height: auto !important;
+  min-height: 900px;
+}
+
+/* Remove scroll from individual cells - events will stack */
+.rbc-day-slot .rbc-events-container {
+  overflow: visible;
+}
+
+/* Larger events for better visibility */
+.rbc-event {
+  font-size: 0.9rem !important;
+  padding: 6px 10px !important;
+  margin: 2px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+
+/* Alternative: Popup overlay for many events */
+.rbc-overlay {
+  max-height: 60vh;
+  overflow-y: auto;
+  min-width: 200px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.rbc-overlay .rbc-event {
+  margin-bottom: 4px;
+  display: block;
+  width: 100%;
+}
+
+/* Custom scrollbar for event containers */
+.rbc-day-slot .rbc-events-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rbc-day-slot .rbc-events-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.rbc-day-slot .rbc-events-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.rbc-day-slot .rbc-events-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Calendar drag and drop enhancements */
+.rbc-event:hover {
+  cursor: grab !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.rbc-addons-dnd-dragging {
+  cursor: grabbing !important;
+  opacity: 0.75;
+}
+
+/* Dragging preview */
+.rbc-addons-dnd-dragging .rbc-event {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Show more link - bigger and clearer */
+.rbc-show-more {
+  font-size: 0.875rem;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 2px 4px;
+  display: inline-block;
+}
+
+.rbc-show-more:hover {
+  text-decoration: underline;
+  background-color: #eff6ff;
+  border-radius: 2px;
+}
+
+/* Week/Day view time grid alignment fixes */
+.rbc-time-view {
+  border: none;
+}
+
+/* Time slots - exactly 30 minutes each */
+.rbc-time-slot {
+  height: 30px !important;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Every hour (2 slots) gets a darker line */
+.rbc-timeslot-group {
+  border-top: 1px solid #d1d5db;
+  min-height: 60px; /* 2 x 30px slots */
+}
+
+/* Time column (gutter) styling */
+.rbc-time-gutter {
+  white-space: nowrap;
+  background-color: #f9fafb;
+}
+
+/* Time labels - align with hour marks */
+.rbc-time-gutter .rbc-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 500;
+  padding-right: 8px;
+  text-align: right;
+  margin-top: -8px; /* Adjust to align with grid lines */
+}
+
+/* Week view header alignment - fix 1px cumulative issue */
+.rbc-time-view .rbc-header {
+  text-align: center;
+  padding: 8px 4px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  /* CRITICAL: Use same box model as day columns */
+  box-sizing: border-box;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* Remove first border to avoid double line */
+.rbc-time-view .rbc-header:first-child {
+  border-left: none;
+}
+
+/* CRITICAL: Block ALL yellow backgrounds from headers */
+.rbc-time-view .rbc-header.rbc-today,
+.rbc-time-view .rbc-header.rbc-today::before,
+.rbc-time-view .rbc-header.rbc-today::after,
+.rbc-time-header .rbc-today,
+.rbc-time-header-content .rbc-today {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Only highlight today's text in header */
+.rbc-time-view .rbc-header.rbc-today {
+  color: #111827 !important;
+  font-weight: 700 !important;
+  border-bottom: 3px solid #f59e0b !important; /* Orange underline instead */
+}
+
+/* Apply today highlight ONLY to time content area */
+.rbc-time-view .rbc-time-content .rbc-day-slot.rbc-today {
+  background-color: #fef3c7;
+}
+
+/* Ensure headers have no background */
+.rbc-time-header,
+.rbc-time-header-content {
+  background-color: white !important;
+}
+
+/* Fix potential text overflow and ensure text is visible */
+.rbc-time-view .rbc-header > span {
+  display: inline-block;
+  width: 100%;
+  color: #111827 !important;
+  z-index: 2;
+  position: relative;
+}
+
+/* Force Sunday column to be visible */
+.rbc-time-header-content .rbc-header:last-child {
+  min-width: 100px !important;
+  padding-right: 8px !important;
+}
+
+/* Ensure week view headers have proper text color */
+.rbc-time-view .rbc-header {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+/* Day columns in week view - ensure consistent sizing */
+.rbc-day-slot {
+  border-left: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+/* Match header pattern - no border on first column */
+.rbc-day-slot:first-child {
+  border-left: none;
+}
+
+/* Align headers with columns */
+.rbc-time-header {
+  display: flex;
+  align-items: stretch;
+  height: 60px;
+}
+
+.rbc-time-header-gutter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  background-color: #f9fafb;
+  border-bottom: 2px solid #d1d5db;
+  flex-shrink: 0;
+  width: var(--rbc-time-gutter-width, 60px);
+}
+
+/* Week view specific header row */
+.rbc-time-header-content {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  overflow: visible !important;
+}
+
+.rbc-time-header-content > .rbc-row {
+  flex: 1;
+  display: flex;
+  overflow: visible !important;
+}
+
+.rbc-time-header-content .rbc-header {
+  flex: 1;
+  border-bottom: 2px solid #d1d5db;
+  min-width: 0; /* Allow flex items to shrink */
+  overflow: visible !important;
+}
+
+/* Ensure day columns have the same flex basis */
+.rbc-time-content > .rbc-day-slot {
+  flex: 1 1 0%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure last column (Sunday) is visible */
+.rbc-time-header-content .rbc-header:last-child {
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Shorter day names in week view to fit better */
+.rbc-time-view .rbc-header {
+  font-size: 0.8125rem;
+}
+
+/* Debug: Make sure all text in headers is visible */
+.rbc-time-view .rbc-header * {
+  color: #111827 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Specific fix for date text in headers */
+.rbc-time-view .rbc-header .rbc-date-cell {
+  display: inline !important;
+  color: #111827 !important;
+}
+
+/* Current time indicator */
+.rbc-current-time-indicator {
+  background-color: #ef4444;
+  height: 2px;
+  z-index: 3;
+}
+
+/* Time content area */
+.rbc-time-content {
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Events in time view */
+.rbc-time-view .rbc-event {
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Agenda view */
+.rbc-agenda-view table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rbc-agenda-view td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.9375rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .rbc-header {
+    font-size: 0.875rem;
+    padding: 8px 4px;
+  }
+  
+  .rbc-date-cell {
+    font-size: 1rem;
+    padding: 4px;
+  }
+  
+  .rbc-event {
+    font-size: 0.8125rem;
+    padding: 2px 4px;
+  }
+  
+  .rbc-month-view .rbc-row-content {
+    min-height: 80px;
+  }
+  
+  /* Hide day names on very small screens */
+  @media (max-width: 480px) {
+    .rbc-header {
+      font-size: 0.75rem;
+      padding: 4px 2px;
+    }
+  }
+  
+  /* Optimize toolbar for mobile */
+  .rbc-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+/* Make month rows fill available space evenly */
+.rbc-month-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.rbc-month-view .rbc-month-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Focus styles for accessibility */
+.rbc-event:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+/* Selected date highlight - remove to prevent confusion */
+.rbc-selected {
+  /* background-color: #dbeafe !important; */
+  /* Disabled to prevent yellow highlighting issues */
+}
+
+/* Week numbers if shown */
+.rbc-row-header {
+  font-size: 0.875rem;
+  color: #6b7280;
+  padding: 4px 8px;
+}
+
+/* Live event animations and styles */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.live-event {
+  position: relative;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.live-event .rbc-event-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Live indicator styles */
+.live-indicator {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 10;
+}
+
+.live-indicator::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: currentColor;
+  border-radius: 50%;
+  opacity: 0.75;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Live event border glow */
+.rbc-event.live-event {
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.rbc-event.live-event:hover {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.7);
+}
+
+/* Progress bar within events */
+.event-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.event-progress-bar {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
+}

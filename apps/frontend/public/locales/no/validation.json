@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Dette feltet er påkrevd",
+    "email": "E-post er påkrevd",
+    "password": "Passord er påkrevd",
+    "firstName": "Fornavn er påkrevd",
+    "lastName": "Etternavn er påkrevd",
+    "phone": "Telefonnummer er påkrevd",
+    "date": "Dato er påkrevd",
+    "time": "Tid er påkrevd",
+    "selection": "Vennligst foreta et valg"
+  },
+  "email": {
+    "invalid": "Vennligst oppgi en gyldig e-postadresse",
+    "alreadyExists": "Denne e-postadressen er allerede registrert"
+  },
+  "password": {
+    "tooShort": "Passord må være minst {{min}} tegn",
+    "tooWeak": "Passordet er for svakt. Bruk en blanding av bokstaver, tall og symboler",
+    "noMatch": "Passordene samsvarer ikke",
+    "requiresUppercase": "Passord må inneholde minst én stor bokstav",
+    "requiresLowercase": "Passord må inneholde minst én liten bokstav",
+    "requiresNumber": "Passord må inneholde minst ett tall",
+    "requiresSpecial": "Passord må inneholde minst ett spesialtegn"
+  },
+  "string": {
+    "tooShort": "Må være minst {{min}} tegn",
+    "tooLong": "Må være maksimalt {{max}} tegn",
+    "invalidFormat": "Ugyldig format",
+    "alphanumeric": "Kun bokstaver og tall er tillatt",
+    "alphabetic": "Kun bokstaver er tillatt",
+    "invalidCharacters": "Inneholder ugyldige tegn"
+  },
+  "number": {
+    "invalid": "Vennligst oppgi et gyldig tall",
+    "tooSmall": "Må være minst {{min}}",
+    "tooLarge": "Må være maksimalt {{max}}",
+    "integer": "Må være et heltall",
+    "positive": "Må være et positivt tall",
+    "negative": "Må være et negativt tall"
+  },
+  "date": {
+    "invalid": "Vennligst oppgi en gyldig dato",
+    "beforeMin": "Dato må være etter {{min}}",
+    "afterMax": "Dato må være før {{max}}",
+    "inPast": "Dato må være i fortiden",
+    "inFuture": "Dato må være i fremtiden"
+  },
+  "time": {
+    "invalid": "Vennligst oppgi en gyldig tid",
+    "beforeMin": "Tid må være etter {{min}}",
+    "afterMax": "Tid må være før {{max}}"
+  },
+  "phone": {
+    "invalid": "Vennligst oppgi et gyldig telefonnummer",
+    "invalidCountryCode": "Ugyldig landskode"
+  },
+  "file": {
+    "tooLarge": "Filstørrelse må være mindre enn {{maxSize}}",
+    "invalidType": "Filtype ikke tillatt. Tillatte typer: {{allowedTypes}}",
+    "required": "Vennligst velg en fil",
+    "tooMany": "For mange filer. Maksimalt tillatt: {{max}}"
+  },
+  "url": {
+    "invalid": "Vennligst oppgi en gyldig URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Ugyldig lagkodeformat",
+      "notFound": "Lagkode ikke funnet"
+    },
+    "playerNumber": {
+      "invalid": "Ugyldig spillernummer",
+      "alreadyTaken": "Dette nummeret er allerede tatt"
+    },
+    "age": {
+      "tooYoung": "Må være minst {{min}} år gammel",
+      "tooOld": "Må være maksimalt {{max}} år gammel"
+    },
+    "schedule": {
+      "conflict": "Dette tidspunktet er i konflikt med en annen hendelse",
+      "outsideHours": "Valgt tid er utenfor åpningstider",
+      "tooSoon": "Må planlegges minst {{hours}} timer i forveien"
+    },
+    "capacity": {
+      "exceeded": "Maksimal kapasitet overskredet",
+      "minimum": "Minimum {{min}} deltakere kreves"
+    }
+  },
+  "form": {
+    "hasErrors": "Vennligst rett feilene nedenfor",
+    "submitError": "Kunne ikke sende inn skjema. Vennligst prøv igjen.",
+    "saveDraft": "Utkastet ditt har blitt lagret",
+    "unsavedChanges": "Du har ulagrede endringer. Er du sikker på at du vil forlate?"
+  },
+  "search": {
+    "tooShort": "Søkeord må være minst {{min}} tegn",
+    "noResults": "Ingen resultater funnet"
+  },
+  "selection": {
+    "minimum": "Vennligst velg minst {{min}} alternativ(er)",
+    "maximum": "Vennligst velg maksimalt {{max}} alternativ(er)",
+    "exact": "Vennligst velg nøyaktig {{count}} alternativ(er)"
+  },
+  "comparison": {
+    "mustMatch": "Feltene må samsvare",
+    "mustBeDifferent": "Feltene må være forskjellige",
+    "startBeforeEnd": "Starttid må være før sluttid",
+    "endAfterStart": "Sluttid må være etter starttid"
+  }
+}

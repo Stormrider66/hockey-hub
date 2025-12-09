@@ -1,0 +1,218 @@
+{
+  "dashboard": {
+    "title": "Finance",
+    "overview": "Finančni pregled",
+    "balance": "Stanje",
+    "recentTransactions": "Nedavne transakcije",
+    "upcomingPayments": "Prihajajoča plačila",
+    "quickActions": "Hitra dejanja"
+  },
+  "payments": {
+    "title": "Plačila",
+    "make": "Izvedi plačilo",
+    "history": "Zgodovina plačil",
+    "pending": "Čakajoča",
+    "completed": "Zaključena",
+    "failed": "Neuspešna",
+    "scheduled": "Načrtovana",
+    "recurring": "Ponavljajoča",
+    "methods": {
+      "card": "Bančna kartica",
+      "bank": "Bančno nakazilo",
+      "cash": "Gotovina",
+      "check": "Ček",
+      "online": "Spletno plačilo",
+      "other": "Drugo"
+    },
+    "status": {
+      "pending": "V obdelavi",
+      "processing": "Obdeluje se",
+      "completed": "Zaključeno",
+      "failed": "Neuspešno",
+      "cancelled": "Preklicano",
+      "refunded": "Vrnjeno"
+    }
+  },
+  "invoices": {
+    "title": "Računi",
+    "generate": "Ustvari račun",
+    "view": "Preglej račun",
+    "download": "Prenesi račun",
+    "send": "Pošlji račun",
+    "paid": "Plačani",
+    "unpaid": "Neplačani",
+    "overdue": "Zapadli",
+    "partial": "Delno plačani",
+    "fields": {
+      "number": "Številka računa",
+      "date": "Datum",
+      "dueDate": "Rok plačila",
+      "amount": "Znesek",
+      "tax": "DDV",
+      "total": "Skupaj",
+      "status": "Status",
+      "items": "Postavke"
+    }
+  },
+  "fees": {
+    "title": "Pristojbine",
+    "registration": "Registracijska pristojbina",
+    "membership": "Članarina",
+    "monthly": "Mesečna pristojbina",
+    "annual": "Letna pristojbina",
+    "tournament": "Turnirska pristojbina",
+    "equipment": "Pristojbina za opremo",
+    "travel": "Potni stroški",
+    "insurance": "Zavarovanje",
+    "late": "Zamudne obresti",
+    "processing": "Stroški obdelave",
+    "categories": {
+      "mandatory": "Obvezno",
+      "optional": "Neobvezno",
+      "oneTime": "Enkratno",
+      "recurring": "Ponavljajoče"
+    }
+  },
+  "billing": {
+    "title": "Obračunavanje",
+    "cycle": "Obračunski cikel",
+    "address": "Naslov za račun",
+    "contact": "Kontakt za račune",
+    "preferences": "Nastavitve obračunavanja",
+    "automatic": "Samodejno obračunavanje",
+    "manual": "Ročno obračunavanje",
+    "frequency": {
+      "monthly": "Mesečno",
+      "quarterly": "Četrtletno",
+      "semiAnnual": "Polletno",
+      "annual": "Letno"
+    }
+  },
+  "discounts": {
+    "title": "Popusti",
+    "apply": "Uporabi popust",
+    "code": "Koda popusta",
+    "percentage": "Odstotni popust",
+    "fixed": "Fiksni popust",
+    "sibling": "Popust za sorojence",
+    "earlyBird": "Popust za zgodnjo prijavo",
+    "loyalty": "Popust zvestobe",
+    "volume": "Količinski popust",
+    "scholarship": "Štipendija"
+  },
+  "refunds": {
+    "title": "Vračila",
+    "request": "Zahtevaj vračilo",
+    "process": "Obdelaj vračilo",
+    "approved": "Odobreno",
+    "denied": "Zavrnjeno",
+    "partial": "Delno vračilo",
+    "full": "Popolno vračilo",
+    "policy": "Politika vračil",
+    "reasons": {
+      "injury": "Poškodba",
+      "relocation": "Selitev",
+      "dissatisfaction": "Nezadovoljstvo",
+      "error": "Napaka",
+      "other": "Drugo"
+    }
+  },
+  "reports": {
+    "title": "Finančna poročila",
+    "revenue": "Poročilo prihodkov",
+    "expense": "Poročilo odhodkov",
+    "balance": "Bilanca stanja",
+    "outstanding": "Odprte terjatve",
+    "forecast": "Napoved",
+    "tax": "Davčno poročilo",
+    "audit": "Revizijsko poročilo",
+    "custom": "Prilagojeno poročilo",
+    "export": "Izvozi",
+    "period": {
+      "daily": "Dnevno",
+      "weekly": "Tedensko",
+      "monthly": "Mesečno",
+      "quarterly": "Četrtletno",
+      "annual": "Letno"
+    }
+  },
+  "budget": {
+    "title": "Proračun",
+    "create": "Ustvari proračun",
+    "edit": "Uredi proračun",
+    "tracking": "Sledenje proračunu",
+    "categories": "Kategorije",
+    "allocated": "Načrtovano",
+    "spent": "Porabljeno",
+    "remaining": "Preostalo",
+    "variance": "Odstopanje"
+  },
+  "fundraising": {
+    "title": "Zbiranje sredstev",
+    "campaigns": "Kampanje",
+    "donations": "Donacije",
+    "sponsors": "Sponzorji",
+    "events": "Dogodki",
+    "goals": "Cilji",
+    "progress": "Napredek",
+    "donors": "Donatorji",
+    "thank": "Zahvala"
+  },
+  "sponsorship": {
+    "title": "Sponzorstvo",
+    "packages": "Sponzorski paketi",
+    "benefits": "Ugodnosti",
+    "agreements": "Pogodbe",
+    "renewal": "Podaljšanje",
+    "levels": {
+      "platinum": "Platinasti",
+      "gold": "Zlati",
+      "silver": "Srebrni",
+      "bronze": "Bronasti"
+    }
+  },
+  "transactions": {
+    "title": "Transakcije",
+    "id": "ID transakcije",
+    "date": "Datum",
+    "type": "Tip",
+    "amount": "Znesek",
+    "description": "Opis",
+    "reference": "Referenca",
+    "method": "Način plačila",
+    "status": "Status",
+    "details": "Podrobnosti"
+  },
+  "settings": {
+    "title": "Finančne nastavitve",
+    "currency": "Valuta",
+    "taxRate": "Davčna stopnja",
+    "paymentMethods": "Načini plačila",
+    "notifications": "Obvestila",
+    "reminders": "Opomniki za plačilo",
+    "autopay": "Samodejno plačilo",
+    "receipts": "Potrdila"
+  },
+  "actions": {
+    "pay": "Plačaj",
+    "invoice": "Izstavi račun",
+    "refund": "Vrni",
+    "cancel": "Prekliči",
+    "export": "Izvozi",
+    "print": "Natisni",
+    "email": "Pošlji po e-pošti",
+    "remind": "Pošlji opomnik",
+    "reconcile": "Uskladi"
+  },
+  "messages": {
+    "paymentSuccessful": "Plačilo uspešno",
+    "paymentFailed": "Plačilo neuspešno",
+    "invoiceSent": "Račun poslan",
+    "refundProcessed": "Vračilo obdelano",
+    "reminderSent": "Opomnik poslan",
+    "balanceUpdated": "Stanje posodobljeno",
+    "overdue": "{{count}} zapadlih postavk",
+    "confirmPayment": "Ali res želite plačati {{amount}}?",
+    "confirmRefund": "Ali res želite vrniti {{amount}}?"
+  }
+}

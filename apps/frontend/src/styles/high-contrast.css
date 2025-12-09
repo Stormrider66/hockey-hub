@@ -1,0 +1,115 @@
+/* High Contrast Mode Styles */
+.high-contrast {
+  /* Increase contrast for text */
+  --foreground: #000000;
+  --background: #ffffff;
+  --primary: #0000ff;
+  --primary-foreground: #ffffff;
+  --secondary: #ffff00;
+  --secondary-foreground: #000000;
+  --muted: #e0e0e0;
+  --muted-foreground: #000000;
+  --accent: #ff00ff;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --border: #000000;
+  --input: #000000;
+  --ring: #0000ff;
+}
+
+/* Dark high contrast */
+@media (prefers-color-scheme: dark) {
+  .high-contrast {
+    --foreground: #ffffff;
+    --background: #000000;
+    --primary: #00ffff;
+    --primary-foreground: #000000;
+    --secondary: #ffff00;
+    --secondary-foreground: #000000;
+    --muted: #1a1a1a;
+    --muted-foreground: #ffffff;
+    --accent: #ff00ff;
+    --accent-foreground: #ffffff;
+    --destructive: #ff6666;
+    --destructive-foreground: #000000;
+    --border: #ffffff;
+    --input: #ffffff;
+    --ring: #00ffff;
+  }
+}
+
+/* High contrast specific overrides */
+.high-contrast {
+  /* Stronger borders */
+  * {
+    border-width: 2px !important;
+  }
+
+  /* Better focus indicators */
+  *:focus {
+    outline: 3px solid var(--ring) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Ensure text is readable */
+  p, span, div, a, button, input, textarea {
+    font-weight: 500;
+  }
+
+  /* High contrast buttons */
+  button {
+    border: 2px solid currentColor !important;
+  }
+
+  /* High contrast inputs */
+  input, textarea, select {
+    border: 2px solid var(--input) !important;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+  }
+
+  /* Links should be underlined */
+  a {
+    text-decoration: underline !important;
+  }
+
+  /* Chat specific high contrast */
+  .message-item {
+    border: 1px solid var(--border) !important;
+    margin: 4px 0;
+  }
+
+  .conversation-item {
+    border: 1px solid var(--border) !important;
+  }
+
+  .conversation-item:hover {
+    border-width: 2px !important;
+  }
+
+  /* Ensure icons are visible */
+  svg {
+    stroke-width: 2px;
+  }
+
+  /* Better shadows for depth */
+  .shadow-sm {
+    box-shadow: 0 0 0 2px var(--border) !important;
+  }
+
+  .shadow-md {
+    box-shadow: 0 0 0 3px var(--border) !important;
+  }
+
+  /* Status indicators */
+  .online-indicator {
+    border: 2px solid var(--background) !important;
+  }
+
+  /* Code blocks */
+  pre, code {
+    border: 1px solid var(--border) !important;
+    font-weight: bold;
+  }
+}

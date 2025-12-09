@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Toto pole je povinné",
+    "email": "E-mail je povinný",
+    "password": "Heslo je povinné",
+    "firstName": "Jméno je povinné",
+    "lastName": "Příjmení je povinné",
+    "phone": "Telefonní číslo je povinné",
+    "date": "Datum je povinné",
+    "time": "Čas je povinný",
+    "selection": "Prosím proveďte výběr"
+  },
+  "email": {
+    "invalid": "Zadejte prosím platnou e-mailovou adresu",
+    "alreadyExists": "Tento e-mail je již registrován"
+  },
+  "password": {
+    "tooShort": "Heslo musí mít alespoň {{min}} znaků",
+    "tooWeak": "Heslo je příliš slabé. Použijte kombinaci písmen, čísel a symbolů",
+    "noMatch": "Hesla se neshodují",
+    "requiresUppercase": "Heslo musí obsahovat alespoň jedno velké písmeno",
+    "requiresLowercase": "Heslo musí obsahovat alespoň jedno malé písmeno",
+    "requiresNumber": "Heslo musí obsahovat alespoň jedno číslo",
+    "requiresSpecial": "Heslo musí obsahovat alespoň jeden speciální znak"
+  },
+  "string": {
+    "tooShort": "Musí mít alespoň {{min}} znaků",
+    "tooLong": "Nesmí mít více než {{max}} znaků",
+    "invalidFormat": "Neplatný formát",
+    "alphanumeric": "Jsou povolena pouze písmena a čísla",
+    "alphabetic": "Jsou povolena pouze písmena",
+    "invalidCharacters": "Obsahuje neplatné znaky"
+  },
+  "number": {
+    "invalid": "Zadejte prosím platné číslo",
+    "tooSmall": "Musí být alespoň {{min}}",
+    "tooLarge": "Nesmí být více než {{max}}",
+    "integer": "Musí být celé číslo",
+    "positive": "Musí být kladné číslo",
+    "negative": "Musí být záporné číslo"
+  },
+  "date": {
+    "invalid": "Zadejte prosím platné datum",
+    "beforeMin": "Datum musí být po {{min}}",
+    "afterMax": "Datum musí být před {{max}}",
+    "inPast": "Datum musí být v minulosti",
+    "inFuture": "Datum musí být v budoucnosti"
+  },
+  "time": {
+    "invalid": "Zadejte prosím platný čas",
+    "beforeMin": "Čas musí být po {{min}}",
+    "afterMax": "Čas musí být před {{max}}"
+  },
+  "phone": {
+    "invalid": "Zadejte prosím platné telefonní číslo",
+    "invalidCountryCode": "Neplatný kód země"
+  },
+  "file": {
+    "tooLarge": "Velikost souboru musí být menší než {{maxSize}}",
+    "invalidType": "Typ souboru není povolen. Povolené typy: {{allowedTypes}}",
+    "required": "Vyberte prosím soubor",
+    "tooMany": "Příliš mnoho souborů. Maximum povoleno: {{max}}"
+  },
+  "url": {
+    "invalid": "Zadejte prosím platnou URL adresu"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Neplatný formát kódu týmu",
+      "notFound": "Kód týmu nenalezen"
+    },
+    "playerNumber": {
+      "invalid": "Neplatné číslo hráče",
+      "alreadyTaken": "Toto číslo je již obsazeno"
+    },
+    "age": {
+      "tooYoung": "Musí být alespoň {{min}} let",
+      "tooOld": "Nesmí být více než {{max}} let"
+    },
+    "schedule": {
+      "conflict": "Tento čas je v konfliktu s jinou událostí",
+      "outsideHours": "Vybraný čas je mimo provozní hodiny",
+      "tooSoon": "Musí být naplánováno alespoň {{hours}} hodin předem"
+    },
+    "capacity": {
+      "exceeded": "Maximální kapacita překročena",
+      "minimum": "Minimálně {{min}} účastníků je vyžadováno"
+    }
+  },
+  "form": {
+    "hasErrors": "Opravte prosím níže uvedené chyby",
+    "submitError": "Odeslání formuláře selhalo. Zkuste to prosím znovu.",
+    "saveDraft": "Váš koncept byl uložen",
+    "unsavedChanges": "Máte neuložené změny. Opravdu chcete odejít?"
+  },
+  "search": {
+    "tooShort": "Vyhledávací dotaz musí mít alespoň {{min}} znaků",
+    "noResults": "Nebyly nalezeny žádné výsledky"
+  },
+  "selection": {
+    "minimum": "Vyberte prosím alespoň {{min}} možnost(i)",
+    "maximum": "Vyberte prosím maximálně {{max}} možnost(í)",
+    "exact": "Vyberte prosím přesně {{count}} možnost(í)"
+  },
+  "comparison": {
+    "mustMatch": "Pole se musí shodovat",
+    "mustBeDifferent": "Pole musí být odlišná",
+    "startBeforeEnd": "Čas začátku musí být před časem konce",
+    "endAfterStart": "Čas konce musí být po času začátku"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "dashboard": {
+    "title": "Administratorska nadzorna plošča",
+    "welcome": "Dobrodošli, administrator {{name}}!",
+    "systemOverview": "Pregled sistema",
+    "activeUsers": "Aktivni uporabniki",
+    "systemHealth": "Zdravje sistema",
+    "quickActions": "Hitra dejanja"
+  },
+  "users": {
+    "title": "Uporabniki",
+    "management": "Upravljanje uporabnikov",
+    "create": "Ustvari uporabnika",
+    "edit": "Uredi uporabnika",
+    "delete": "Izbriši uporabnika",
+    "list": "Seznam uporabnikov",
+    "search": "Iskanje uporabnikov",
+    "roles": "Vloge",
+    "permissions": "Dovoljenja",
+    "status": "Status",
+    "activity": "Aktivnost",
+    "lastLogin": "Zadnja prijava",
+    "accountStatus": {
+      "active": "Aktiven",
+      "inactive": "Neaktiven",
+      "suspended": "Suspendiran",
+      "pending": "V čakanju",
+      "locked": "Zaklenjen"
+    }
+  },
+  "organizations": {
+    "title": "Organizacije",
+    "manage": "Upravljanje organizacij",
+    "create": "Ustvari organizacijo",
+    "edit": "Uredi organizacijo",
+    "settings": "Nastavitve organizacije",
+    "billing": "Obračunavanje",
+    "subscription": "Naročnina",
+    "limits": "Omejitve",
+    "usage": "Uporaba",
+    "status": {
+      "active": "Aktivna",
+      "trial": "Preizkusna",
+      "suspended": "Suspendirana",
+      "expired": "Potekla"
+    }
+  },
+  "system": {
+    "title": "Sistem",
+    "health": "Zdravje sistema",
+    "performance": "Zmogljivost",
+    "monitoring": "Spremljanje",
+    "logs": "Dnevniki",
+    "errors": "Napake",
+    "maintenance": "Vzdrževanje",
+    "updates": "Posodobitve",
+    "backup": "Varnostne kopije",
+    "security": "Varnost",
+    "configuration": "Konfiguracija"
+  },
+  "security": {
+    "title": "Varnost",
+    "overview": "Varnostni pregled",
+    "threats": "Grožnje",
+    "incidents": "Incidenti",
+    "audit": "Revizija",
+    "logs": "Varnostni dnevniki",
+    "policies": "Varnostne politike",
+    "authentication": "Avtentikacija",
+    "authorization": "Avtorizacija",
+    "encryption": "Šifriranje",
+    "compliance": "Skladnost"
+  },
+  "roles": {
+    "title": "Vloge",
+    "manage": "Upravljanje vlog",
+    "create": "Ustvari vlogo",
+    "edit": "Uredi vlogo",
+    "permissions": "Dovoljenja",
+    "users": "Uporabniki",
+    "hierarchy": "Hierarhija",
+    "predefined": {
+      "superAdmin": "Super administrator",
+      "admin": "Administrator",
+      "clubAdmin": "Administrator kluba",
+      "coach": "Trener",
+      "player": "Igralec",
+      "parent": "Starš",
+      "medical": "Medicinsko osebje",
+      "equipment": "Upravljalec opreme",
+      "physicalTrainer": "Kondicijski trener"
+    }
+  },
+  "permissions": {
+    "title": "Dovoljenja",
+    "manage": "Upravljanje dovoljenj",
+    "assign": "Dodeli dovoljenja",
+    "revoke": "Prekliči dovoljenja",
+    "categories": {
+      "users": "Uporabniki",
+      "teams": "Ekipe",
+      "finance": "Finance",
+      "content": "Vsebina",
+      "system": "Sistem",
+      "reports": "Poročila"
+    },
+    "levels": {
+      "read": "Branje",
+      "write": "Pisanje",
+      "delete": "Brisanje",
+      "admin": "Administracija"
+    }
+  },
+  "audit": {
+    "title": "Revizija",
+    "logs": "Revizijski dnevniki",
+    "search": "Iskanje dnevnikov",
+    "filter": "Filtriranje",
+    "export": "Izvoz dnevnikov",
+    "retention": "Hranjenje",
+    "events": {
+      "login": "Prijava",
+      "logout": "Odjava",
+      "create": "Ustvarjanje",
+      "update": "Posodobitev",
+      "delete": "Brisanje",
+      "access": "Dostop",
+      "permission": "Sprememba dovoljenj",
+      "security": "Varnostni dogodek"
+    }
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "general": "Splošne nastavitve",
+    "email": "E-poštne nastavitve",
+    "notifications": "Obvestila",
+    "integrations": "Integracije",
+    "api": "API nastavitve",
+    "webhooks": "Webhooks",
+    "backup": "Varnostno kopiranje",
+    "maintenance": "Vzdrževanje",
+    "localization": "Lokalizacija",
+    "themes": "Teme"
+  },
+  "monitoring": {
+    "title": "Spremljanje",
+    "dashboard": "Nadzorna plošča",
+    "metrics": "Metrike",
+    "alerts": "Opozorila",
+    "performance": "Zmogljivost",
+    "uptime": "Čas delovanja",
+    "response": "Odzivni čas",
+    "errors": "Stopnja napak",
+    "traffic": "Promet",
+    "resources": "Viri"
+  },
+  "integrations": {
+    "title": "Integracije",
+    "connected": "Povezane",
+    "available": "Na voljo",
+    "configure": "Konfiguriraj",
+    "disconnect": "Prekini povezavo",
+    "sync": "Sinhroniziraj",
+    "status": "Status",
+    "logs": "Dnevniki integracije",
+    "webhooks": "Webhooks",
+    "api": "API"
+  },
+  "reports": {
+    "title": "Poročila",
+    "system": "Sistemska poročila",
+    "usage": "Poročila uporabe",
+    "security": "Varnostna poročila",
+    "financial": "Finančna poročila",
+    "custom": "Prilagojena poročila",
+    "scheduled": "Načrtovana poročila",
+    "generate": "Ustvari poročilo",
+    "export": "Izvozi",
+    "share": "Deli"
+  },
+  "support": {
+    "title": "Podpora",
+    "tickets": "Zahtevki",
+    "knowledge": "Baza znanja",
+    "documentation": "Dokumentacija",
+    "contact": "Kontakt",
+    "feedback": "Povratne informacije",
+    "updates": "Posodobitve",
+    "training": "Usposabljanje",
+    "resources": "Viri"
+  },
+  "billing": {
+    "title": "Obračunavanje",
+    "overview": "Pregled",
+    "subscriptions": "Naročnine",
+    "invoices": "Računi",
+    "payments": "Plačila",
+    "methods": "Načini plačila",
+    "history": "Zgodovina",
+    "usage": "Uporaba",
+    "limits": "Omejitve",
+    "upgrade": "Nadgradi"
+  },
+  "actions": {
+    "createUser": "Ustvari uporabnika",
+    "manageRoles": "Upravljaj vloge",
+    "viewLogs": "Poglej dnevnike",
+    "systemBackup": "Varnostna kopija sistema",
+    "runMaintenance": "Zaženi vzdrževanje",
+    "generateReport": "Ustvari poročilo",
+    "configureIntegration": "Konfiguriraj integracijo",
+    "reviewSecurity": "Preglej varnost",
+    "exportData": "Izvozi podatke",
+    "importData": "Uvozi podatke"
+  },
+  "messages": {
+    "userCreated": "Uporabnik uspešno ustvarjen",
+    "userUpdated": "Uporabnik posodobljen",
+    "userDeleted": "Uporabnik izbrisan",
+    "roleAssigned": "Vloga dodeljena",
+    "permissionGranted": "Dovoljenje dodeljeno",
+    "systemUpdated": "Sistem posodobljen",
+    "backupCompleted": "Varnostna kopija končana",
+    "maintenanceScheduled": "Vzdrževanje načrtovano",
+    "securityAlert": "Varnostno opozorilo",
+    "integrationConnected": "Integracija povezana"
+  },
+  "alerts": {
+    "systemDown": "Sistem ne deluje",
+    "highLoad": "Visoka obremenitev",
+    "securityBreach": "Varnostni vdor",
+    "lowStorage": "Malo prostora na disku",
+    "updateAvailable": "Na voljo je posodobitev",
+    "backupFailed": "Varnostna kopija ni uspela",
+    "userLocked": "Uporabnik zaklenjen",
+    "subscriptionExpiring": "Naročnina poteče",
+    "maintenanceRequired": "Potrebno vzdrževanje"
+  }
+}

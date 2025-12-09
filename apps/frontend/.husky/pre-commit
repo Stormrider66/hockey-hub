@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Checking import patterns..."
+
+# Check for inefficient import patterns
+pnpm optimize-imports
+
+if [ $? -ne 0 ]; then
+  echo "❌ Import optimization issues detected!"
+  echo "Run 'pnpm optimize-imports:fix' to automatically fix issues, or fix them manually."
+  echo "Then stage your changes and commit again."
+  exit 1
+fi
+
+echo "✅ Import patterns look good!"
+
+# Run other pre-commit checks
+pnpm lint
+pnpm type-check

@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Panel trenéra",
+    "subtitle": "Správa týmu a sledování výkonu",
+    "welcome": "Vítejte zpět, trenére {{name}}!",
+    "quickStats": "Rychlé statistiky",
+    "todaysFocus": "Dnešní zaměření"
+  },
+  "team": {
+    "title": "Správa týmu",
+    "roster": "Soupisky týmu",
+    "lineups": "Kombinace formací",
+    "availability": "Dostupnost hráčů",
+    "performance": "Výkon týmu",
+    "statistics": "Týmové statistiky",
+    "playerStatus": {
+      "available": "K dispozici",
+      "limited": "Omezené",
+      "unavailable": "Nedostupný",
+      "injured": "Zraněný",
+      "dayToDay": "Den za dnem"
+    }
+  },
+  "practice": {
+    "title": "Plánování tréninků",
+    "schedule": "Rozvrh tréninků",
+    "drills": "Knihovna cvičení",
+    "templates": "Šablony tréninků",
+    "planning": "Plánování tréninků",
+    "attendance": "Sledování docházky",
+    "intensity": "Intenzita tréninku",
+    "focus": {
+      "offense": "Útočné systémy",
+      "defense": "Obranné systémy",
+      "specialTeams": "Speciální formace",
+      "conditioning": "Kondice",
+      "skills": "Rozvoj dovedností"
+    },
+    "types": {
+      "full": "Plný trénink",
+      "optional": "Volitelný trénink",
+      "morning": "Ranní trénink",
+      "preGame": "Předzápasový trénink",
+      "recovery": "Regenerační trénink"
+    }
+  },
+  "games": {
+    "title": "Správa zápasů",
+    "schedule": "Rozpis zápasů",
+    "preparation": "Příprava na zápas",
+    "tactics": "Taktické plánování",
+    "lineups": "Sestavy pro zápas",
+    "scouting": "Skautingové zprávy",
+    "video": "Video analýza",
+    "stats": {
+      "goals": "Góly",
+      "assists": "Asistence",
+      "shots": "Střely",
+      "saves": "Zákroky",
+      "faceoffs": "Vhazování",
+      "penalties": "Tresty",
+      "hits": "Hity",
+      "blocks": "Blokované střely"
+    }
+  },
+  "tactics": {
+    "title": "Taktická tabule",
+    "systems": "Týmové systémy",
+    "powerPlay": "Přesilová hra",
+    "penaltyKill": "Oslabení",
+    "faceoffPlays": "Signály po vhazování",
+    "breakouts": "Rozehrávky",
+    "forecheck": "Forčekingové systémy",
+    "neutralZone": "Střední pásmo",
+    "save": "Uložit taktiku",
+    "load": "Načíst taktiku"
+  },
+  "communication": {
+    "title": "Týmová komunikace",
+    "announcements": "Týmová oznámení",
+    "meetings": "Týmové schůzky",
+    "feedback": "Zpětná vazba hráčům",
+    "messages": "Přímé zprávy",
+    "broadcast": "Hromadná zpráva",
+    "schedule": "Naplánovat schůzku"
+  },
+  "analytics": {
+    "title": "Analytika výkonu",
+    "teamMetrics": "Týmové metriky",
+    "playerMetrics": "Metriky hráčů",
+    "trends": "Výkonnostní trendy",
+    "comparison": "Porovnání týmů",
+    "advanced": "Pokročilé statistiky",
+    "reports": "Generovat reporty",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Zahájení v útočném pásmu",
+      "gaa": "Průměr obdržených gólů",
+      "svp": "Procento úspěšnosti zákroků"
+    }
+  },
+  "development": {
+    "title": "Rozvoj hráčů",
+    "plans": "Rozvojové plány",
+    "progress": "Sledování pokroku",
+    "goals": "Rozvojové cíle",
+    "assessments": "Hodnocení dovedností",
+    "feedback": "Zpětná vazba k rozvoji",
+    "programs": "Tréninkové programy"
+  },
+  "lineup": {
+    "title": "Správa formací",
+    "forward": "Útočné formace",
+    "defense": "Obranné dvojice",
+    "powerPlay": "Přesilové formace",
+    "penaltyKill": "Formace pro oslabení",
+    "scratches": "Zdraví náhradníci",
+    "optimize": "Optimalizovat formace",
+    "save": "Uložit sestavu",
+    "positions": {
+      "c": "Centr",
+      "lw": "Levé křídlo",
+      "rw": "Pravé křídlo",
+      "ld": "Levý obránce",
+      "rd": "Pravý obránce",
+      "g": "Brankář"
+    }
+  }
+}

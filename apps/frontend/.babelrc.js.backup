@@ -1,0 +1,72 @@
+module.exports = {
+  presets: ['next/babel'],
+  plugins: [
+    // Optimize lodash imports
+    ['babel-plugin-transform-imports', {
+      'lodash': {
+        'transform': 'lodash-es/${member}',
+        'preventFullImport': true
+      },
+      'lodash-es': {
+        'transform': 'lodash-es/${member}',
+        'preventFullImport': true
+      },
+      // Optimize date-fns imports
+      'date-fns': {
+        'transform': 'date-fns/${member}',
+        'preventFullImport': true
+      },
+      // Optimize @mui/material imports
+      '@mui/material': {
+        'transform': '@mui/material/${member}',
+        'preventFullImport': true
+      },
+      '@mui/icons-material': {
+        'transform': '@mui/icons-material/${member}',
+        'preventFullImport': true
+      },
+      // Optimize lucide-react imports
+      'lucide-react': {
+        'transform': 'lucide-react/dist/esm/icons/${member}',
+        'preventFullImport': true,
+        'skipDefaultConversion': false
+      },
+      // Optimize react-icons
+      'react-icons/fa': {
+        'transform': 'react-icons/fa/${member}',
+        'preventFullImport': true
+      },
+      'react-icons/fi': {
+        'transform': 'react-icons/fi/${member}',
+        'preventFullImport': true
+      },
+      'react-icons/md': {
+        'transform': 'react-icons/md/${member}',
+        'preventFullImport': true
+      },
+      // Optimize recharts imports
+      'recharts': {
+        'transform': (importName) => {
+          const components = [
+            'LineChart', 'BarChart', 'PieChart', 'AreaChart', 'RadarChart',
+            'ScatterChart', 'ComposedChart', 'Treemap', 'Sankey',
+            'Line', 'Bar', 'Area', 'Pie', 'Scatter', 'XAxis', 'YAxis',
+            'ZAxis', 'CartesianGrid', 'Tooltip', 'Legend', 'ResponsiveContainer',
+            'Cell', 'LabelList', 'ReferenceLine', 'ReferenceDot', 'ReferenceArea'
+          ];
+          
+          if (components.includes(importName)) {
+            return `recharts/lib/component/${importName}`;
+          }
+          return `recharts/lib/${importName}`;
+        },
+        'preventFullImport': true
+      }
+    }],
+    // Remove propTypes in production
+    process.env.NODE_ENV === 'production' && 'babel-plugin-transform-react-remove-prop-types',
+    // Optimize React imports
+    process.env.NODE_ENV === 'production' && '@babel/plugin-transform-react-constant-elements',
+    process.env.NODE_ENV === 'production' && '@babel/plugin-transform-react-inline-elements'
+  ].filter(Boolean)
+};

@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Ups! Kažkas nutiko",
+    "subtitle": "Atsiprašome už nepatogumus",
+    "tryAgain": "Bandyti dar kartą",
+    "goHome": "Eiti į pagrindinį",
+    "contactSupport": "Susisiekti su pagalba"
+  },
+  "http": {
+    "400": {
+      "title": "Bloga užklausa",
+      "message": "Serveris negalėjo suprasti užklausos."
+    },
+    "401": {
+      "title": "Neautorizuota",
+      "message": "Turite prisijungti, kad galėtumėte pasiekti šį išteklių."
+    },
+    "403": {
+      "title": "Uždrausta",
+      "message": "Neturite leidimo pasiekti šio ištekliaus."
+    },
+    "404": {
+      "title": "Puslapis nerastas",
+      "message": "Puslapis, kurio ieškote, neegzistuoja."
+    },
+    "409": {
+      "title": "Konfliktas",
+      "message": "Užklausa konfliktuoja su dabartine serverio būsena."
+    },
+    "422": {
+      "title": "Patvirtinimo klaida",
+      "message": "Pateikti duomenys netinkami."
+    },
+    "429": {
+      "title": "Per daug užklausų",
+      "message": "Pateikėte per daug užklausų. Bandykite vėliau."
+    },
+    "500": {
+      "title": "Serverio klaida",
+      "message": "Mūsų serveriuose įvyko netikėta klaida."
+    },
+    "502": {
+      "title": "Blogas šliuzas",
+      "message": "Serveris gavo netinkamą atsakymą."
+    },
+    "503": {
+      "title": "Paslauga neprieinama",
+      "message": "Paslauga laikinai neprieinama. Bandykite vėliau."
+    },
+    "504": {
+      "title": "Šliuzo skirtasis laikas",
+      "message": "Serveris per ilgai neatsakė."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Nėra interneto ryšio",
+      "message": "Patikrinkite savo interneto ryšį ir bandykite dar kartą."
+    },
+    "timeout": {
+      "title": "Užklausos laikas baigėsi",
+      "message": "Užklausa užtruko per ilgai. Bandykite dar kartą."
+    },
+    "connectionFailed": {
+      "title": "Prisijungimas nepavyko",
+      "message": "Nepavyko prisijungti prie serverio. Bandykite dar kartą."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Nepavyko įkelti duomenų",
+      "message": "Negalėjome įkelti prašomų duomenų. Pabandykite atnaujinti puslapį."
+    },
+    "dataSave": {
+      "title": "Nepavyko išsaugoti",
+      "message": "Jūsų pakeitimų nepavyko išsaugoti. Bandykite dar kartą."
+    },
+    "fileUpload": {
+      "title": "Įkėlimas nepavyko",
+      "message": "Failo nepavyko įkelti. Patikrinkite failą ir bandykite dar kartą."
+    },
+    "permissionDenied": {
+      "title": "Prieiga uždrausta",
+      "message": "Neturite leidimo atlikti šį veiksmą."
+    },
+    "sessionExpired": {
+      "title": "Sesija baigėsi",
+      "message": "Jūsų sesija baigėsi. Prašome prisijungti iš naujo."
+    },
+    "maintenanceMode": {
+      "title": "Vykdomi techniniai darbai",
+      "message": "Atliekame planuotus techninius darbus. Patikrinkite vėliau."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Formos pateikimo klaida",
+      "message": "Pateikiant formą įvyko klaida. Patikrinkite įvestį ir bandykite dar kartą."
+    },
+    "validation": {
+      "title": "Patvirtinimo klaida",
+      "message": "Ištaisykite klaidas formoje."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Mokėjimas nepavyko",
+      "message": "Jūsų mokėjimo nepavyko apdoroti. Bandykite kitą mokėjimo būdą."
+    },
+    "declined": {
+      "title": "Mokėjimas atmestas",
+      "message": "Jūsų mokėjimas buvo atmestas. Patikrinkite mokėjimo duomenis."
+    },
+    "insufficientFunds": {
+      "title": "Nepakankamos lėšos",
+      "message": "Jūsų mokėjimo priemonėje nepakanka lėšų."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Tvarkaraščio konfliktas",
+      "message": "Šis laiko tarpas konfliktuoja su kitu renginiu."
+    },
+    "bookingFailed": {
+      "title": "Rezervacija nepavyko",
+      "message": "Nepavyko rezervuoti pasirinkto laiko."
+    },
+    "facilityUnavailable": {
+      "title": "Patalpa neprieinama",
+      "message": "Pasirinkta patalpa šiuo metu neprieinama."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Treniruotės sesija nerasta",
+      "message": "Treniruotės sesija, kurios ieškote, neegzistuoja."
+    },
+    "alreadyStarted": {
+      "title": "Sesija jau prasidėjo",
+      "message": "Ši treniruotės sesija jau prasidėjo."
+    },
+    "capacityReached": {
+      "title": "Sesija pilna",
+      "message": "Ši treniruotės sesija pasiekė maksimalią talpą."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Žinutė neišsiųsta",
+      "message": "Jūsų žinutės nepavyko išsiųsti. Bandykite dar kartą."
+    },
+    "notificationFailed": {
+      "title": "Pranešimas nepavyko",
+      "message": "Šiuo metu nepavyksta siųsti pranešimų."
+    }
+  },
+  "actions": {
+    "retry": "Bandyti dar kartą",
+    "dismiss": "Atmesti",
+    "details": "Peržiūrėti detales",
+    "report": "Pranešti apie problemą",
+    "refresh": "Atnaujinti puslapį"
+  }
+}

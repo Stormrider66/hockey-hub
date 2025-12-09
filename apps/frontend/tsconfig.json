@@ -1,0 +1,72 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Override base config for Next.js
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "noEmit": true,
+    "incremental": true,
+    
+    // Next.js specific
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    
+    // Path Mapping
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*", "./*"],
+      "@hockey-hub/*": ["../../packages/*/src", "../../types/*"],
+      "@types/*": ["../../types/*"],
+      "msw": ["src/testing/mocks/msw.ts"],
+      "msw/node": ["src/testing/mocks/msw-node.ts"],
+      "react-router-dom": ["src/testing/mocks/react-router-dom.tsx"],
+      "next/navigation": ["src/testing/mocks/next-navigation.ts"]
+    },
+    
+    // Frontend specific type definitions
+    "types": [
+      "react",
+      "react-dom",
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../types",
+      "node_modules/@types"
+    ],
+    
+    // Strict mode adjustments for React
+    "exactOptionalPropertyTypes": false, // Too strict for React props
+    "noUncheckedIndexedAccess": false, // Common in React apps
+    "allowJs": true, // Allow JS files in Next.js
+    
+    // Additional React/Next.js checks
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false, // Can be noisy in development
+    "noUnusedParameters": false // Can be noisy in development
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts",
+    ".next/types/**/*.ts",
+    "../../types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "development",
+    ".next",
+    "out",
+    "dist",
+    "coverage"
+  ]
+}

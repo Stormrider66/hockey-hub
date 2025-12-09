@@ -1,0 +1,312 @@
+{
+  "unused": [],
+  "misplaced": [
+    {
+      "package": "@types/react-redux",
+      "workspace": "apps/frontend",
+      "current": "dependencies",
+      "suggested": "devDependencies"
+    },
+    {
+      "package": "@types/ioredis",
+      "workspace": "services/communication-service",
+      "current": "dependencies",
+      "suggested": "devDependencies"
+    }
+  ],
+  "outdated": [],
+  "large": [],
+  "duplicates": {
+    "date-fns": [
+      {
+        "workspace": "frontend",
+        "version": "^4.1.0"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^2.30.0"
+      }
+    ],
+    "socket.io-client": [
+      {
+        "workspace": "frontend",
+        "version": "^4.7.2"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^4.6.1"
+      }
+    ],
+    "@types/node": [
+      {
+        "workspace": "frontend",
+        "version": "^20"
+      },
+      {
+        "workspace": "api-gateway",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "user-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^20.10.5"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^20.10.5"
+      }
+    ],
+    "@typescript-eslint/eslint-plugin": [
+      {
+        "workspace": "frontend",
+        "version": "6.18.1"
+      },
+      {
+        "workspace": "api-gateway",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "user-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^6.16.0"
+      }
+    ],
+    "@typescript-eslint/parser": [
+      {
+        "workspace": "frontend",
+        "version": "6.18.1"
+      },
+      {
+        "workspace": "api-gateway",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "user-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^6.16.0"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^6.16.0"
+      }
+    ],
+    "eslint": [
+      {
+        "workspace": "frontend",
+        "version": "8.57.0"
+      },
+      {
+        "workspace": "api-gateway",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "user-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^8.56.0"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^8.56.0"
+      }
+    ],
+    "typescript": [
+      {
+        "workspace": "frontend",
+        "version": "5.3.3"
+      },
+      {
+        "workspace": "api-gateway",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "user-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "communication-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^5.3.3"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^5.3.3"
+      }
+    ],
+    "ioredis": [
+      {
+        "workspace": "communication-service",
+        "version": "^5.6.1"
+      },
+      {
+        "workspace": "medical-service",
+        "version": "^5.3.2"
+      }
+    ],
+    "redis": [
+      {
+        "workspace": "communication-service",
+        "version": "^4.7.1"
+      },
+      {
+        "workspace": "calendar-service",
+        "version": "^4.6.12"
+      },
+      {
+        "workspace": "training-service",
+        "version": "^4.6.12"
+      },
+      {
+        "workspace": "planning-service",
+        "version": "^4.6.8"
+      },
+      {
+        "workspace": "statistics-service",
+        "version": "^4.6.12"
+      },
+      {
+        "workspace": "payment-service",
+        "version": "^4.6.8"
+      },
+      {
+        "workspace": "admin-service",
+        "version": "^4.6.12"
+      }
+    ]
+  },
+  "suggestions": []
+}

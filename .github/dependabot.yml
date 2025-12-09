@@ -1,0 +1,180 @@
+version: 2
+updates:
+  # Frontend dependencies
+  - package-ecosystem: "npm"
+    directory: "/apps/frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "StormRider66"
+    labels:
+      - "dependencies"
+      - "frontend"
+    groups:
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+      testing:
+        patterns:
+          - "*jest*"
+          - "*testing-library*"
+      build-tools:
+        patterns:
+          - "*webpack*"
+          - "*babel*"
+          - "turbo"
+
+  # Service dependencies - API Gateway
+  - package-ecosystem: "npm"
+    directory: "/services/api-gateway"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "api-gateway"
+
+  # Service dependencies - User Service
+  - package-ecosystem: "npm"
+    directory: "/services/user-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "user-service"
+
+  # Service dependencies - Calendar Service
+  - package-ecosystem: "npm"
+    directory: "/services/calendar-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "calendar-service"
+
+  # Service dependencies - Training Service
+  - package-ecosystem: "npm"
+    directory: "/services/training-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "training-service"
+
+  # Service dependencies - Communication Service
+  - package-ecosystem: "npm"
+    directory: "/services/communication-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "communication-service"
+
+  # Service dependencies - Medical Service
+  - package-ecosystem: "npm"
+    directory: "/services/medical-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "medical-service"
+
+  # Service dependencies - Statistics Service
+  - package-ecosystem: "npm"
+    directory: "/services/statistics-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "statistics-service"
+
+  # Service dependencies - Payment Service
+  - package-ecosystem: "npm"
+    directory: "/services/payment-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "payment-service"
+
+  # Service dependencies - Planning Service
+  - package-ecosystem: "npm"
+    directory: "/services/planning-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "planning-service"
+
+  # Service dependencies - Admin Service
+  - package-ecosystem: "npm"
+    directory: "/services/admin-service"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
+      - "admin-service"
+
+  # Package dependencies
+  - package-ecosystem: "npm"
+    directory: "/packages/shared-lib"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "packages"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/monitoring"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "packages"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/translations"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "packages"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/apps/frontend"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "docker"
+
+  - package-ecosystem: "docker"
+    directory: "/services/api-gateway"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "docker"

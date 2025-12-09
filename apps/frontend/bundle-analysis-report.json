@@ -1,0 +1,111 @@
+{
+  "timestamp": "2025-07-21T06:47:46.251Z",
+  "summary": {
+    "totalChunks": 7,
+    "totalSize": 36296668,
+    "largestChunk": {
+      "name": "_app-pages-browser_src_features_physical-trainer_components_PhysicalTrainerDashboard_tsx.js",
+      "size": 28979534,
+      "type": "Other"
+    },
+    "smallestChunk": {
+      "name": "_app-pages-browser_node_modules_pnpm_next_15_3_4__babel_core_7_2_43d5635f941326a09f9ccfa13e92-c355e5.js",
+      "size": 6947,
+      "type": "Other"
+    }
+  },
+  "chunks": [
+    {
+      "name": "_app-pages-browser_src_features_physical-trainer_components_PhysicalTrainerDashboard_tsx.js",
+      "size": 28979534,
+      "type": "Other"
+    },
+    {
+      "name": "main-app.js",
+      "size": 6841267,
+      "type": "Main Bundle"
+    },
+    {
+      "name": "app-pages-internals.js",
+      "size": 246057,
+      "type": "Other"
+    },
+    {
+      "name": "polyfills.js",
+      "size": 112594,
+      "type": "Other"
+    },
+    {
+      "name": "webpack.js",
+      "size": 57150,
+      "type": "Other"
+    },
+    {
+      "name": "_app-pages-browser_node_modules_pnpm_cross-fetch_4_0_0_node_modules_cross-fetch_dist_browser--34bec6.js",
+      "size": 53119,
+      "type": "Other"
+    },
+    {
+      "name": "_app-pages-browser_node_modules_pnpm_next_15_3_4__babel_core_7_2_43d5635f941326a09f9ccfa13e92-c355e5.js",
+      "size": 6947,
+      "type": "Other"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "framer-motion",
+      "version": "^11.0.0",
+      "size": "52KB",
+      "recommendation": "Use dynamic imports for animations"
+    },
+    {
+      "name": "moment",
+      "version": "^2.30.1",
+      "size": "67KB",
+      "recommendation": "Replace with date-fns (~13KB)"
+    },
+    {
+      "name": "react-big-calendar",
+      "version": "^1.18.0",
+      "size": "45KB",
+      "recommendation": "Consider lighter alternatives"
+    },
+    {
+      "name": "recharts",
+      "version": "^2.15.3",
+      "size": "156KB",
+      "recommendation": "Use dynamic imports for charts"
+    }
+  ],
+  "suggestions": [
+    {
+      "type": "large-chunks",
+      "message": "Found 4 large chunks (>100KB)",
+      "items": [
+        "_app-pages-browser_src_features_physical-trainer_components_PhysicalTrainerDashboard_tsx.js: 27.64 MB",
+        "main-app.js: 6.52 MB",
+        "app-pages-internals.js: 240.29 KB",
+        "polyfills.js: 109.96 KB"
+      ],
+      "recommendation": "Consider code splitting or dynamic imports"
+    },
+    {
+      "type": "heavy-libraries",
+      "message": "Found 4 heavy libraries",
+      "items": [
+        "framer-motion: 52KB - Use dynamic imports for animations",
+        "moment: 67KB - Replace with date-fns (~13KB)",
+        "react-big-calendar: 45KB - Consider lighter alternatives",
+        "recharts: 156KB - Use dynamic imports for charts"
+      ],
+      "recommendation": "Optimize import patterns for these libraries"
+    }
+  ],
+  "recommendations": [
+    "Use specific imports instead of barrel imports",
+    "Replace moment.js with date-fns",
+    "Use lodash-es with specific function imports",
+    "Implement dynamic imports for heavy components",
+    "Enable Next.js optimizePackageImports feature"
+  ]
+}

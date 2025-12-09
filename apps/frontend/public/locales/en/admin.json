@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "System Administrator",
+    "subtitle": "Platform management and configuration",
+    "welcome": "Welcome, System Admin",
+    "systemStatus": "System Status",
+    "alerts": "System Alerts"
+  },
+  "system": {
+    "title": "System Management",
+    "status": "System Status",
+    "health": "Health Check",
+    "healthScore": "System Health",
+    "monitoring": "System Monitoring",
+    "logs": "System Logs",
+    "performance": "Performance Metrics",
+    "uptime": "Uptime",
+    "resources": "Resource Usage",
+    "activeUsers": "Active Users",
+    "errorRate": "Error Rate",
+    "responseTime": "Response Time",
+    "databaseSize": "Database Size",
+    "withinSLA": "Within SLA",
+    "systemPerformance24h": "System Performance (24h)",
+    "serviceHealthMatrix": "Service Health Matrix",
+    "cpuMemoryUsage": "CPU, Memory usage and request volume",
+    "realTimeServiceStatus": "Real-time service status and metrics"
+  },
+  "users": {
+    "title": "User Management",
+    "all": "All Users",
+    "create": "Create User",
+    "edit": "Edit User",
+    "delete": "Delete User",
+    "roles": "User Roles",
+    "permissions": "User Permissions",
+    "activity": "User Activity",
+    "sessions": "Active Sessions",
+    "audit": "Audit Trail"
+  },
+  "organizations": {
+    "title": "Organization Management",
+    "all": "All Organizations",
+    "create": "Create Organization",
+    "edit": "Edit Organization",
+    "delete": "Delete Organization",
+    "settings": "Organization Settings",
+    "limits": "Usage Limits",
+    "billing": "Billing Information"
+  },
+  "security": {
+    "title": "Security Management",
+    "settings": "Security Settings",
+    "authentication": "Authentication",
+    "authorization": "Authorization",
+    "tokens": "API Tokens",
+    "certificates": "SSL Certificates",
+    "firewall": "Firewall Rules",
+    "threats": "Threat Detection",
+    "incidents": "Security Incidents"
+  },
+  "database": {
+    "title": "Database Management",
+    "status": "Database Status",
+    "backup": "Backup Management",
+    "restore": "Restore Database",
+    "migrations": "Database Migrations",
+    "optimization": "Query Optimization",
+    "connections": "Connection Pool",
+    "maintenance": "Maintenance Tasks"
+  },
+  "services": {
+    "title": "Service Management",
+    "status": "Service Status",
+    "configuration": "Service Configuration",
+    "dependencies": "Dependencies",
+    "health": "Health Checks",
+    "restart": "Restart Service",
+    "logs": "Service Logs",
+    "metrics": "Service Metrics"
+  },
+  "integrations": {
+    "title": "Integrations",
+    "connected": "Connected Services",
+    "available": "Available Integrations",
+    "configure": "Configure Integration",
+    "test": "Test Connection",
+    "logs": "Integration Logs",
+    "webhooks": "Webhooks",
+    "api": "API Management"
+  },
+  "configuration": {
+    "title": "System Configuration",
+    "general": "General Settings",
+    "email": "Email Configuration",
+    "storage": "Storage Settings",
+    "cache": "Cache Management",
+    "queue": "Queue Configuration",
+    "scheduler": "Task Scheduler",
+    "features": "Feature Flags"
+  },
+  "monitoring": {
+    "title": "System Monitoring",
+    "dashboard": "Monitoring Dashboard",
+    "alerts": "Alert Configuration",
+    "metrics": "System Metrics",
+    "logs": "Log Analysis",
+    "errors": "Error Tracking",
+    "performance": "Performance Analysis",
+    "reports": "System Reports"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "schedule": "Maintenance Schedule",
+    "tasks": "Maintenance Tasks",
+    "updates": "System Updates",
+    "patches": "Security Patches",
+    "cleanup": "Data Cleanup",
+    "optimization": "System Optimization",
+    "mode": "Maintenance Mode"
+  }
+}

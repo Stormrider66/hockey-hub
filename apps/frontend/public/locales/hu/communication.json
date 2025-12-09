@@ -1,0 +1,239 @@
+{
+  "dashboard": {
+    "title": "Kommunikáció",
+    "overview": "Kommunikáció áttekintés",
+    "recentMessages": "Legutóbbi üzenetek",
+    "announcements": "Közlemények",
+    "unreadCount": "{{count}} olvasatlan üzenet",
+    "quickActions": "Gyors műveletek"
+  },
+  "messages": {
+    "title": "Üzenetek",
+    "compose": "Új üzenet",
+    "inbox": "Beérkezett",
+    "sent": "Elküldött",
+    "drafts": "Piszkozatok",
+    "trash": "Kuka",
+    "archive": "Archívum",
+    "search": "Keresés az üzenetekben",
+    "markAsRead": "Megjelölés olvasottként",
+    "markAsUnread": "Megjelölés olvasatlanként",
+    "delete": "Törlés",
+    "reply": "Válasz",
+    "replyAll": "Válasz mindenkinek",
+    "forward": "Továbbítás",
+    "star": "Csillagozás",
+    "unstar": "Csillag eltávolítása",
+    "fields": {
+      "to": "Címzett",
+      "cc": "Másolat",
+      "bcc": "Titkos másolat",
+      "from": "Feladó",
+      "subject": "Tárgy",
+      "message": "Üzenet",
+      "attachments": "Mellékletek",
+      "priority": "Prioritás",
+      "date": "Dátum"
+    },
+    "priority": {
+      "high": "Magas",
+      "normal": "Normál",
+      "low": "Alacsony"
+    },
+    "filters": {
+      "all": "Mind",
+      "unread": "Olvasatlan",
+      "starred": "Csillagozott",
+      "withAttachments": "Melléklettel"
+    }
+  },
+  "chat": {
+    "title": "Csevegés",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Távol",
+    "busy": "Elfoglalt",
+    "typing": "{{name}} gépel...",
+    "lastSeen": "Utoljára látva: {{time}}",
+    "startConversation": "Beszélgetés indítása",
+    "sendMessage": "Üzenet küldése",
+    "attachFile": "Fájl csatolása",
+    "emoji": "Emoji",
+    "voiceCall": "Hanghívás",
+    "videoCall": "Videóhívás",
+    "groupChat": "Csoportos csevegés",
+    "createGroup": "Csoport létrehozása",
+    "addMembers": "Tagok hozzáadása",
+    "leaveGroup": "Csoport elhagyása",
+    "muteNotifications": "Értesítések némítása",
+    "searchMessages": "Keresés az üzenetekben"
+  },
+  "announcements": {
+    "title": "Közlemények",
+    "create": "Új közlemény",
+    "edit": "Közlemény szerkesztése",
+    "delete": "Közlemény törlése",
+    "pin": "Kitűzés",
+    "unpin": "Kitűzés megszüntetése",
+    "categories": {
+      "general": "Általános",
+      "urgent": "Sürgős",
+      "team": "Csapat",
+      "schedule": "Menetrend",
+      "event": "Esemény",
+      "policy": "Szabályzat",
+      "maintenance": "Karbantartás"
+    },
+    "audience": {
+      "all": "Mindenki",
+      "players": "Játékosok",
+      "coaches": "Edzők",
+      "parents": "Szülők",
+      "staff": "Személyzet",
+      "specific": "Konkrét címzettek"
+    },
+    "fields": {
+      "title": "Cím",
+      "content": "Tartalom",
+      "category": "Kategória",
+      "audience": "Címzettek",
+      "publishDate": "Közzététel dátuma",
+      "expiryDate": "Lejárat dátuma",
+      "pinned": "Kitűzött",
+      "attachments": "Mellékletek"
+    }
+  },
+  "notifications": {
+    "title": "Értesítések",
+    "all": "Összes",
+    "unread": "Olvasatlan",
+    "settings": "Értesítési beállítások",
+    "markAllRead": "Mind olvasottnak jelöl",
+    "clear": "Törlés",
+    "types": {
+      "message": "Üzenet",
+      "announcement": "Közlemény",
+      "event": "Esemény",
+      "reminder": "Emlékeztető",
+      "alert": "Figyelmeztetés",
+      "system": "Rendszer"
+    },
+    "channels": {
+      "email": "Email",
+      "push": "Push értesítés",
+      "sms": "SMS",
+      "inApp": "Alkalmazáson belül"
+    },
+    "preferences": {
+      "messages": "Üzenet értesítések",
+      "announcements": "Közlemény értesítések",
+      "events": "Esemény értesítések",
+      "reminders": "Emlékeztetők",
+      "teamUpdates": "Csapat frissítések",
+      "scheduleChanges": "Menetrend változások"
+    }
+  },
+  "templates": {
+    "title": "Üzenet sablonok",
+    "create": "Sablon létrehozása",
+    "edit": "Sablon szerkesztése",
+    "delete": "Sablon törlése",
+    "use": "Sablon használata",
+    "categories": {
+      "welcome": "Üdvözlő",
+      "reminder": "Emlékeztető",
+      "announcement": "Közlemény",
+      "invitation": "Meghívó",
+      "notification": "Értesítés",
+      "response": "Válasz"
+    },
+    "variables": {
+      "name": "Név",
+      "date": "Dátum",
+      "time": "Idő",
+      "location": "Helyszín",
+      "team": "Csapat",
+      "event": "Esemény"
+    }
+  },
+  "channels": {
+    "title": "Kommunikációs csatornák",
+    "teamChannel": "Csapat csatorna",
+    "coachChannel": "Edző csatorna",
+    "parentChannel": "Szülői csatorna",
+    "staffChannel": "Személyzet csatorna",
+    "generalChannel": "Általános csatorna",
+    "privateChannel": "Privát csatorna",
+    "join": "Csatlakozás",
+    "leave": "Kilépés",
+    "mute": "Némítás",
+    "unmute": "Némítás feloldása"
+  },
+  "broadcast": {
+    "title": "Üzenetszórás",
+    "send": "Szórás küldése",
+    "schedule": "Ütemezett szórás",
+    "recipients": "Címzettek",
+    "selectAll": "Összes kijelölése",
+    "deselectAll": "Kijelölés megszüntetése",
+    "testSend": "Teszt küldése",
+    "preview": "Előnézet"
+  },
+  "polls": {
+    "title": "Szavazások",
+    "create": "Szavazás létrehozása",
+    "vote": "Szavazás",
+    "results": "Eredmények",
+    "close": "Szavazás lezárása",
+    "anonymous": "Anonim szavazás",
+    "multipleChoice": "Többválasztós",
+    "deadline": "Határidő"
+  },
+  "feedback": {
+    "title": "Visszajelzés",
+    "submit": "Visszajelzés küldése",
+    "view": "Visszajelzések megtekintése",
+    "respond": "Válasz",
+    "categories": {
+      "suggestion": "Javaslat",
+      "complaint": "Panasz",
+      "praise": "Dicséret",
+      "question": "Kérdés",
+      "other": "Egyéb"
+    }
+  },
+  "settings": {
+    "title": "Kommunikációs beállítások",
+    "signature": "Aláírás",
+    "autoReply": "Automatikus válasz",
+    "blockedUsers": "Blokkolt felhasználók",
+    "language": "Nyelv",
+    "timezone": "Időzóna",
+    "privacy": "Adatvédelem",
+    "readReceipts": "Olvasási visszaigazolás",
+    "typingIndicator": "Gépelés jelző"
+  },
+  "actions": {
+    "send": "Küldés",
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "delete": "Törlés",
+    "archive": "Archiválás",
+    "restore": "Visszaállítás",
+    "block": "Blokkolás",
+    "unblock": "Blokkolás feloldása",
+    "report": "Jelentés",
+    "search": "Keresés"
+  },
+  "messages": {
+    "sent": "Üzenet elküldve",
+    "received": "Új üzenet érkezett",
+    "deleted": "Üzenet törölve",
+    "archived": "Üzenet archiválva",
+    "error": "Hiba az üzenet küldésekor",
+    "noMessages": "Nincsenek üzenetek",
+    "noAnnouncements": "Nincsenek közlemények",
+    "connectionLost": "Kapcsolat megszakadt",
+    "reconnecting": "Újracsatlakozás..."
+  }
+}

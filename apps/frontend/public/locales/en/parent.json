@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Parent Dashboard",
+    "subtitle": "Stay connected with your child's hockey journey",
+    "welcome": "Welcome, {{name}}!",
+    "childrenOverview": "Children Overview",
+    "upcomingEvents": "Upcoming Events"
+  },
+  "children": {
+    "title": "My Children",
+    "addChild": "Add Child",
+    "profile": "Child Profile",
+    "schedule": "Schedule",
+    "performance": "Performance",
+    "wellness": "Health & Wellness",
+    "communication": "Messages",
+    "details": {
+      "team": "Team",
+      "position": "Position",
+      "coach": "Coach",
+      "number": "Jersey Number",
+      "age": "Age Group"
+    }
+  },
+  "schedule": {
+    "title": "Family Schedule",
+    "calendar": "Calendar View",
+    "upcoming": "Upcoming Events",
+    "transportation": "Transportation",
+    "conflicts": "Schedule Conflicts",
+    "sync": "Sync Calendar",
+    "export": "Export Schedule",
+    "types": {
+      "game": "Game",
+      "practice": "Practice",
+      "tournament": "Tournament",
+      "teamEvent": "Team Event",
+      "meeting": "Parent Meeting",
+      "fundraiser": "Fundraiser"
+    },
+    "rsvp": {
+      "title": "RSVP for Event",
+      "attending": "We'll be there",
+      "notAttending": "Can't make it",
+      "driving": "Can drive others",
+      "needRide": "Need transportation"
+    }
+  },
+  "transportation": {
+    "title": "Transportation Coordination",
+    "available": "Available Drivers",
+    "requests": "Ride Requests",
+    "myOffers": "My Driving Offers",
+    "carpool": "Carpool Groups",
+    "seats": "Available Seats",
+    "pickup": "Pickup Location",
+    "dropoff": "Dropoff Location",
+    "time": "Departure Time"
+  },
+  "payments": {
+    "title": "Payments & Fees",
+    "overview": "Payment Overview",
+    "due": "Amount Due",
+    "history": "Payment History",
+    "upcoming": "Upcoming Fees",
+    "methods": "Payment Methods",
+    "invoices": "Invoices",
+    "items": {
+      "registration": "Registration Fee",
+      "monthly": "Monthly Dues",
+      "equipment": "Equipment",
+      "tournament": "Tournament Fee",
+      "travel": "Travel Expenses",
+      "fundraising": "Fundraising"
+    },
+    "status": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue",
+      "partial": "Partial Payment"
+    }
+  },
+  "communication": {
+    "title": "Communication",
+    "messages": "Messages",
+    "announcements": "Team Announcements",
+    "coachMessages": "From Coach",
+    "teamMessages": "Team Updates",
+    "emergency": "Emergency Contacts",
+    "directory": "Team Directory",
+    "preferences": "Communication Preferences"
+  },
+  "medical": {
+    "title": "Medical Information",
+    "records": "Medical Records",
+    "allergies": "Allergies",
+    "medications": "Medications",
+    "conditions": "Medical Conditions",
+    "emergency": "Emergency Contacts",
+    "insurance": "Insurance Info",
+    "consent": "Medical Consent",
+    "injuries": "Injury History"
+  },
+  "documents": {
+    "title": "Documents & Forms",
+    "required": "Required Documents",
+    "optional": "Optional Forms",
+    "submitted": "Submitted",
+    "pending": "Pending Submission",
+    "download": "Download Forms",
+    "upload": "Upload Document",
+    "types": {
+      "registration": "Registration Form",
+      "medical": "Medical Form",
+      "waiver": "Waiver",
+      "consent": "Consent Form",
+      "emergency": "Emergency Contact",
+      "insurance": "Insurance Card"
+    }
+  },
+  "volunteer": {
+    "title": "Volunteer Opportunities",
+    "signup": "Sign Up",
+    "myShifts": "My Volunteer Shifts",
+    "available": "Available Positions",
+    "hours": "Volunteer Hours",
+    "requirements": "Requirements",
+    "positions": {
+      "scorekeeper": "Scorekeeper",
+      "penalty": "Penalty Box",
+      "concession": "Concession Stand",
+      "fundraising": "Fundraising",
+      "teamManager": "Team Manager",
+      "equipment": "Equipment Helper"
+    }
+  },
+  "performance": {
+    "title": "Child's Progress",
+    "overview": "Performance Overview",
+    "improvement": "Areas of Improvement",
+    "achievements": "Recent Achievements",
+    "feedback": "Coach Feedback",
+    "goals": "Development Goals",
+    "attendance": "Attendance Record",
+    "effort": "Effort Level",
+    "teamwork": "Teamwork"
+  }
+}

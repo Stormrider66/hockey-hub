@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Miesiąc",
+    "week": "Tydzień",
+    "day": "Dzień",
+    "agenda": "Agenda",
+    "workWeek": "Tydzień roboczy"
+  },
+  "navigation": {
+    "today": "Dzisiaj",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "previous": "Poprzedni",
+    "jumpToDate": "Przejdź do daty"
+  },
+  "event": {
+    "title": "Wydarzenie",
+    "newEvent": "Nowe wydarzenie",
+    "editEvent": "Edytuj wydarzenie",
+    "deleteEvent": "Usuń wydarzenie",
+    "duplicateEvent": "Duplikuj wydarzenie",
+    "allDay": "Cały dzień",
+    "recurring": "Cykliczne",
+    "privateEvent": "Wydarzenie prywatne",
+    "fields": {
+      "title": "Tytuł",
+      "description": "Opis",
+      "location": "Lokalizacja",
+      "startDate": "Data rozpoczęcia",
+      "startTime": "Godzina rozpoczęcia",
+      "endDate": "Data zakończenia",
+      "endTime": "Godzina zakończenia",
+      "type": "Typ wydarzenia",
+      "category": "Kategoria",
+      "participants": "Uczestnicy",
+      "resources": "Zasoby",
+      "notes": "Notatki",
+      "reminder": "Przypomnienie",
+      "color": "Kolor",
+      "attachments": "Załączniki"
+    },
+    "types": {
+      "practice": "Trening",
+      "game": "Mecz",
+      "training": "Szkolenie",
+      "meeting": "Spotkanie",
+      "tournament": "Turniej",
+      "tryout": "Selekcja",
+      "medical": "Wizyta medyczna",
+      "equipment": "Przymierzanie sprzętu",
+      "teamEvent": "Wydarzenie drużynowe",
+      "personal": "Osobiste",
+      "other": "Inne"
+    },
+    "status": {
+      "confirmed": "Potwierdzone",
+      "tentative": "Wstępne",
+      "cancelled": "Anulowane",
+      "postponed": "Przełożone",
+      "rescheduled": "Przełożone na inny termin"
+    }
+  },
+  "recurrence": {
+    "title": "Powtarzalność",
+    "none": "Nie powtarza się",
+    "daily": "Codziennie",
+    "weekly": "Co tydzień",
+    "monthly": "Co miesiąc",
+    "yearly": "Co rok",
+    "custom": "Niestandardowe",
+    "every": "Co",
+    "days": "dzień/dni",
+    "weeks": "tydzień/tygodnie",
+    "months": "miesiąc/miesiące",
+    "years": "rok/lata",
+    "on": "W",
+    "onThe": "W",
+    "weekdays": {
+      "monday": "Poniedziałek",
+      "tuesday": "Wtorek",
+      "wednesday": "Środa",
+      "thursday": "Czwartek",
+      "friday": "Piątek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
+    },
+    "ends": {
+      "never": "Nigdy",
+      "after": "Po",
+      "onDate": "W dniu",
+      "occurrences": "wystąpieniach"
+    }
+  },
+  "availability": {
+    "available": "Dostępny",
+    "unavailable": "Niedostępny",
+    "busy": "Zajęty",
+    "tentative": "Wstępnie zajęty",
+    "outOfOffice": "Poza biurem"
+  },
+  "conflicts": {
+    "detected": "Wykryto konflikt w harmonogramie",
+    "message": "To wydarzenie koliduje z:",
+    "resolution": "Jak chcesz rozwiązać ten konflikt?",
+    "overwrite": "Nadpisz istniejące",
+    "keepBoth": "Zachowaj oba wydarzenia",
+    "cancel": "Anuluj nowe wydarzenie"
+  },
+  "filters": {
+    "title": "Filtry",
+    "showAll": "Pokaż wszystko",
+    "byType": "Według typu",
+    "byTeam": "Według drużyny",
+    "byLocation": "Według lokalizacji",
+    "myEvents": "Tylko moje wydarzenia"
+  },
+  "export": {
+    "title": "Eksportuj kalendarz",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Drukuj"
+    },
+    "range": {
+      "all": "Wszystkie wydarzenia",
+      "current": "Bieżący widok",
+      "custom": "Zakres niestandardowy"
+    }
+  },
+  "sharing": {
+    "title": "Udostępnij kalendarz",
+    "publicLink": "Link publiczny",
+    "embed": "Kod do osadzenia",
+    "subscribe": "Link do subskrypcji",
+    "permissions": {
+      "view": "Tylko podgląd",
+      "edit": "Może edytować",
+      "admin": "Pełny dostęp"
+    }
+  },
+  "reminders": {
+    "none": "Bez przypomnienia",
+    "atTime": "W momencie wydarzenia",
+    "minutes": "{{count}} minut przed",
+    "hours": "{{count}} godzin przed",
+    "days": "{{count}} dni przed",
+    "custom": "Niestandardowe"
+  },
+  "actions": {
+    "create": "Utwórz wydarzenie",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "duplicate": "Duplikuj",
+    "print": "Drukuj",
+    "export": "Eksportuj",
+    "import": "Importuj",
+    "subscribe": "Subskrybuj",
+    "unsubscribe": "Anuluj subskrypcję",
+    "rsvp": "Potwierdź obecność",
+    "maybeAttending": "Może",
+    "attending": "Uczestniczę",
+    "notAttending": "Nie uczestniczę"
+  },
+  "messages": {
+    "eventCreated": "Wydarzenie utworzone pomyślnie",
+    "eventUpdated": "Wydarzenie zaktualizowane pomyślnie",
+    "eventDeleted": "Wydarzenie usunięte pomyślnie",
+    "eventDuplicated": "Wydarzenie zduplikowane pomyślnie",
+    "conflictWarning": "Ten termin ma konflikty",
+    "participantAdded": "Uczestnik dodany",
+    "participantRemoved": "Uczestnik usunięty",
+    "reminderSet": "Przypomnienie ustawione",
+    "calendarShared": "Kalendarz udostępniony pomyślnie",
+    "exportComplete": "Eksport zakończony",
+    "importComplete": "Import zakończony"
+  },
+  "facility": {
+    "rink": "Lodowisko",
+    "mainRink": "Główne lodowisko",
+    "practiceRink": "Lodowisko treningowe",
+    "gym": "Siłownia",
+    "meetingRoom": "Sala konferencyjna",
+    "lockerRoom": "Szatnia",
+    "trainingRoom": "Sala treningowa",
+    "videoRoom": "Sala wideo",
+    "medicalRoom": "Gabinet medyczny"
+  },
+  "tooltips": {
+    "dragToMove": "Przeciągnij, aby przenieść wydarzenie",
+    "dragToResize": "Przeciągnij krawędzie, aby zmienić rozmiar",
+    "clickToEdit": "Kliknij, aby edytować",
+    "doubleClickToCreate": "Kliknij dwukrotnie, aby utworzyć wydarzenie"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "title": "Zprávy",
+  "conversations": {
+    "title": "Konverzace",
+    "new": "Nová konverzace",
+    "search": "Hledat konverzace...",
+    "empty": "Zatím žádné konverzace",
+    "startNew": "Začít novou konverzaci"
+  },
+  "participants": {
+    "add": "Přidat účastníky",
+    "remove": "Odebrat z konverzace",
+    "search": "Hledat lidi...",
+    "you": "Vy",
+    "typing": "píše...",
+    "multipleTyping": "píší...",
+    "online": "Online",
+    "offline": "Offline",
+    "away": "Pryč"
+  },
+  "messages": {
+    "placeholder": "Napište zprávu...",
+    "send": "Odeslat",
+    "edit": "Upravit zprávu",
+    "delete": "Smazat zprávu",
+    "reply": "Odpovědět",
+    "forward": "Přeposlat",
+    "copy": "Kopírovat",
+    "pin": "Připnout zprávu",
+    "unpin": "Odepnout zprávu",
+    "react": "Přidat reakci",
+    "edited": "upraveno",
+    "deleted": "Tato zpráva byla smazána",
+    "delivered": "Doručeno",
+    "read": "Přečteno",
+    "sending": "Odesílání...",
+    "failed": "Odeslání selhalo",
+    "retry": "Zkusit znovu"
+  },
+  "groups": {
+    "create": "Vytvořit skupinu",
+    "name": "Název skupiny",
+    "description": "Popis (volitelné)",
+    "addMembers": "Přidat členy",
+    "settings": "Nastavení skupiny",
+    "leave": "Opustit skupinu",
+    "delete": "Smazat skupinu",
+    "members": "{{count}} členů",
+    "admin": "Administrátor",
+    "member": "Člen"
+  },
+  "channels": {
+    "title": "Kanály",
+    "create": "Vytvořit kanál",
+    "public": "Veřejný kanál",
+    "private": "Soukromý kanál",
+    "join": "Připojit se ke kanálu",
+    "leave": "Opustit kanál",
+    "mute": "Ztlumit kanál",
+    "unmute": "Zrušit ztlumení kanálu",
+    "types": {
+      "general": "Obecné",
+      "announcements": "Oznámení",
+      "team": "Týmový chat",
+      "coaches": "Trenéři",
+      "parents": "Rodiče",
+      "medical": "Zdravotní personál"
+    }
+  },
+  "attachments": {
+    "title": "Přílohy",
+    "upload": "Nahrát soubor",
+    "types": {
+      "image": "Obrázek",
+      "video": "Video",
+      "document": "Dokument",
+      "audio": "Audio",
+      "other": "Soubor"
+    },
+    "download": "Stáhnout",
+    "preview": "Náhled",
+    "tooLarge": "Soubor je příliš velký. Maximální velikost je {{maxSize}}",
+    "unsupported": "Typ souboru není podporován"
+  },
+  "notifications": {
+    "newMessage": "Nová zpráva od {{sender}}",
+    "mentioned": "{{sender}} vás zmínil",
+    "groupInvite": "Byli jste přidáni do {{group}}",
+    "enable": "Povolit oznámení",
+    "disable": "Zakázat oznámení",
+    "sound": "Zvuk oznámení",
+    "desktop": "Oznámení na ploše"
+  },
+  "search": {
+    "placeholder": "Hledat zprávy...",
+    "filters": "Filtry",
+    "from": "Od",
+    "to": "Do",
+    "date": "Datum",
+    "hasAttachment": "Má přílohu",
+    "results": "Nalezeno {{count}} výsledků",
+    "noResults": "Žádné zprávy nenalezeny"
+  },
+  "settings": {
+    "title": "Nastavení chatu",
+    "privacy": "Soukromí",
+    "readReceipts": "Potvrzení o přečtení",
+    "typingIndicator": "Zobrazit při psaní",
+    "autoDownload": "Automaticky stahovat média",
+    "enterToSend": "Odeslat stisknutím Enter",
+    "theme": "Motiv chatu",
+    "fontSize": "Velikost písma"
+  },
+  "status": {
+    "online": "Online",
+    "away": "Pryč",
+    "busy": "Nerušit",
+    "offline": "Zobrazit offline",
+    "setStatus": "Nastavit stav",
+    "customStatus": "Nastavit vlastní stav..."
+  },
+  "actions": {
+    "startChat": "Začít chat",
+    "viewProfile": "Zobrazit profil",
+    "clearChat": "Vymazat historii chatu",
+    "exportChat": "Exportovat chat",
+    "reportUser": "Nahlásit uživatele",
+    "blockUser": "Blokovat uživatele",
+    "unblockUser": "Odblokovat uživatele"
+  },
+  "time": {
+    "now": "nyní",
+    "today": "Dnes",
+    "yesterday": "Včera",
+    "daysAgo": "Před {{count}} dny",
+    "lastSeen": "Naposledy viděn {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Spojení ztraceno. Opětovné připojování...",
+    "sendFailed": "Odeslání zprávy selhalo",
+    "loadFailed": "Načtení zpráv selhalo",
+    "uploadFailed": "Nahrání souboru selhalo",
+    "permissionDenied": "Na toto nemáte oprávnění"
+  }
+}

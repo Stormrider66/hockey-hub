@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Player Dashboard",
+    "subtitle": "Track your performance and development",
+    "welcome": "Welcome back, {{name}}!",
+    "todaySchedule": "Today's Schedule",
+    "upcomingEvents": "Upcoming Events",
+    "recentPerformance": "Recent Performance",
+    "developmentGoals": "Development Goals"
+  },
+  "profile": {
+    "playerInfo": "Player Information",
+    "number": "Jersey Number",
+    "position": "Position",
+    "shoots": "Shoots",
+    "team": "Team",
+    "age": "Age",
+    "height": "Height",
+    "weight": "Weight",
+    "joined": "Joined",
+    "contractExpires": "Contract Expires"
+  },
+  "wellness": {
+    "title": "Daily Wellness Check",
+    "subtitle": "How are you feeling today?",
+    "submit": "Submit Wellness Data",
+    "submitted": "Wellness data submitted successfully",
+    "metrics": {
+      "hrv": "Heart Rate Variability",
+      "sleep": "Sleep Quality",
+      "fatigue": "Fatigue Level",
+      "mood": "Mood",
+      "soreness": "Muscle Soreness",
+      "stress": "Stress Level",
+      "hydration": "Hydration",
+      "nutrition": "Nutrition Quality"
+    },
+    "scale": {
+      "poor": "Poor",
+      "fair": "Fair",
+      "good": "Good",
+      "veryGood": "Very Good",
+      "excellent": "Excellent"
+    }
+  },
+  "training": {
+    "title": "Training Sessions",
+    "upcoming": "Upcoming Training",
+    "completed": "Completed Sessions",
+    "assigned": "Assigned Workouts",
+    "progress": "Training Progress",
+    "todaysWorkout": "Today's Workout",
+    "completeSession": "Complete Session",
+    "viewDetails": "View Details",
+    "intensity": "Intensity",
+    "duration": "Duration",
+    "focus": "Focus Area",
+    "equipment": "Equipment Needed",
+    "location": "Location",
+    "coach": "Coach",
+    "notes": "Session Notes"
+  },
+  "performance": {
+    "title": "Performance Metrics",
+    "seasonStats": "Season Statistics",
+    "careerStats": "Career Statistics",
+    "lastGame": "Last Game",
+    "average": "Average",
+    "total": "Total",
+    "trend": "Trend",
+    "improvement": "Improvement",
+    "metrics": {
+      "goals": "Goals",
+      "assists": "Assists",
+      "points": "Points",
+      "plusMinus": "+/-",
+      "pim": "Penalty Minutes",
+      "shots": "Shots",
+      "shootingPercentage": "Shooting %",
+      "faceoffPercentage": "Faceoff %",
+      "hits": "Hits",
+      "blocks": "Blocks",
+      "takeaways": "Takeaways",
+      "giveaways": "Giveaways",
+      "toi": "Time on Ice",
+      "powerplayGoals": "PP Goals",
+      "shorthandedGoals": "SH Goals",
+      "gameWinningGoals": "GW Goals"
+    }
+  },
+  "schedule": {
+    "title": "Schedule",
+    "calendar": "Calendar View",
+    "list": "List View",
+    "filters": "Filters",
+    "types": {
+      "game": "Game",
+      "practice": "Practice",
+      "training": "Training",
+      "meeting": "Meeting",
+      "medical": "Medical",
+      "recovery": "Recovery",
+      "travel": "Travel",
+      "personal": "Personal"
+    },
+    "rsvp": {
+      "title": "RSVP",
+      "attending": "Attending",
+      "notAttending": "Not Attending",
+      "maybe": "Maybe",
+      "update": "Update RSVP"
+    }
+  },
+  "communication": {
+    "title": "Messages",
+    "inbox": "Inbox",
+    "sent": "Sent",
+    "drafts": "Drafts",
+    "compose": "Compose",
+    "teamChat": "Team Chat",
+    "coachMessages": "Coach Messages",
+    "announcements": "Announcements"
+  },
+  "development": {
+    "title": "Development Plan",
+    "goals": "Goals",
+    "progress": "Progress",
+    "skillAssessment": "Skill Assessment",
+    "trainingPlan": "Training Plan",
+    "milestones": "Milestones",
+    "achievements": "Achievements",
+    "areas": {
+      "skating": "Skating",
+      "shooting": "Shooting",
+      "passing": "Passing",
+      "stickHandling": "Stick Handling",
+      "positioning": "Positioning",
+      "physicality": "Physicality",
+      "mentalGame": "Mental Game",
+      "leadership": "Leadership"
+    }
+  },
+  "nutrition": {
+    "title": "Nutrition",
+    "mealPlan": "Meal Plan",
+    "hydration": "Hydration Tracking",
+    "supplements": "Supplements",
+    "calories": "Calories",
+    "macros": "Macronutrients",
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "snack": "Snack",
+      "preGame": "Pre-Game",
+      "postGame": "Post-Game"
+    }
+  },
+  "recovery": {
+    "title": "Recovery",
+    "status": "Recovery Status",
+    "activities": "Recovery Activities",
+    "sleep": "Sleep Tracking",
+    "treatment": "Treatment",
+    "nextSession": "Next Recovery Session",
+    "types": {
+      "massage": "Massage",
+      "coldTub": "Cold Tub",
+      "sauna": "Sauna",
+      "stretching": "Stretching",
+      "yoga": "Yoga",
+      "physiotherapy": "Physiotherapy"
+    }
+  }
+}

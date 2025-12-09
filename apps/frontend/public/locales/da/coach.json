@@ -1,0 +1,216 @@
+{
+  "dashboard": {
+    "title": "Træner kontrolpanel",
+    "subtitle": "Hold {{teamName}} - {{season}} sæson",
+    "overview": "Oversigt",
+    "calendar": "Kalender",
+    "team": "Hold",
+    "practice": "Træning",
+    "games": "Kampe",
+    "stats": "Statistik",
+    "development": "Udvikling",
+    "messages": "Beskeder"
+  },
+  "team": {
+    "title": "Holdstyring",
+    "roster": "Holdopstilling",
+    "lines": "Kæder",
+    "injuries": "Skader",
+    "availability": "Tilgængelighed",
+    "performance": "Præstation",
+    "chemistry": "Kemi",
+    "players": {
+      "title": "Spillere",
+      "addPlayer": "Tilføj spiller",
+      "importPlayers": "Importer spillere",
+      "exportRoster": "Eksporter holdopstilling",
+      "active": "Aktive",
+      "injured": "Skadede",
+      "suspended": "Suspenderede",
+      "total": "Total"
+    },
+    "positions": {
+      "forwards": "Angribere",
+      "defensemen": "Forsvarsspillere",
+      "goaltenders": "Målmænd"
+    },
+    "lines": {
+      "title": "Kædeopstilling",
+      "forward": "Angrebskæder",
+      "defense": "Forsvarskæder",
+      "powerplay": "Powerplay",
+      "penaltyKill": "Undertal",
+      "line1": "1. kæde",
+      "line2": "2. kæde",
+      "line3": "3. kæde",
+      "line4": "4. kæde",
+      "pair1": "1. par",
+      "pair2": "2. par",
+      "pair3": "3. par",
+      "pp1": "PP1",
+      "pp2": "PP2",
+      "pk1": "PK1",
+      "pk2": "PK2",
+      "extraAttacker": "Ekstra angriber",
+      "scratched": "Ikke i truppen"
+    }
+  },
+  "practice": {
+    "title": "Træningsplanlægning",
+    "schedule": "Træningsplan",
+    "drills": "Øvelser",
+    "plans": "Planer",
+    "templates": "Skabeloner",
+    "createPlan": "Opret træningsplan",
+    "importTemplate": "Importer skabelon",
+    "types": {
+      "regular": "Almindelig træning",
+      "optional": "Valgfri træning",
+      "gameDay": "Kampdagstræning",
+      "recovery": "Restitution",
+      "skills": "Færdighedstræning",
+      "powerplay": "Powerplay-træning",
+      "systems": "Systemtræning",
+      "conditioning": "Konditionstræning"
+    },
+    "focus": {
+      "offensive": "Offensiv",
+      "defensive": "Defensiv",
+      "transition": "Omstilling",
+      "specialTeams": "Specialhold",
+      "goaltending": "Målmandstræning",
+      "skating": "Skøjtetræning",
+      "shooting": "Skudtræning",
+      "passing": "Pasningstræning"
+    },
+    "duration": {
+      "minutes15": "15 minutter",
+      "minutes30": "30 minutter",
+      "minutes45": "45 minutter",
+      "minutes60": "60 minutter",
+      "minutes75": "75 minutter",
+      "minutes90": "90 minutter"
+    }
+  },
+  "games": {
+    "title": "Kampstyring",
+    "upcoming": "Kommende kampe",
+    "recent": "Seneste kampe",
+    "schedule": "Kampplan",
+    "scouting": "Scouting",
+    "preparation": "Forberedelse",
+    "analysis": "Analyse",
+    "gameday": {
+      "title": "Kampdag",
+      "lineup": "Opstilling",
+      "strategy": "Strategi",
+      "matchups": "Matchups",
+      "notes": "Noter",
+      "submit": "Indsend opstilling"
+    },
+    "scouting": {
+      "title": "Modstanderscouting",
+      "report": "Scoutingrapport",
+      "tendencies": "Tendenser",
+      "keyPlayers": "Nøglespillere",
+      "weaknesses": "Svagheder",
+      "strengths": "Styrker",
+      "specialTeams": "Specialhold",
+      "goaltending": "Målmandsspil",
+      "recent": "Seneste kampe",
+      "headToHead": "Indbyrdes"
+    },
+    "result": {
+      "win": "Sejr",
+      "loss": "Nederlag",
+      "tie": "Uafgjort",
+      "otWin": "OT sejr",
+      "otLoss": "OT nederlag",
+      "soWin": "SO sejr",
+      "soLoss": "SO nederlag"
+    }
+  },
+  "stats": {
+    "title": "Statistik og analyse",
+    "team": "Holdstatistik",
+    "players": "Spillerstatistik",
+    "trends": "Tendenser",
+    "comparison": "Sammenligning",
+    "advanced": "Avanceret",
+    "reports": "Rapporter",
+    "categories": {
+      "offensive": "Offensiv",
+      "defensive": "Defensiv",
+      "specialTeams": "Specialhold",
+      "discipline": "Disciplin",
+      "goaltending": "Målmandsspil"
+    },
+    "metrics": {
+      "goalsFor": "Mål for",
+      "goalsAgainst": "Mål imod",
+      "shotsFor": "Skud for",
+      "shotsAgainst": "Skud imod",
+      "powerplayPercentage": "Powerplay %",
+      "penaltyKillPercentage": "Undertal %",
+      "faceoffPercentage": "Face-off %",
+      "penaltyMinutes": "Strafminutter",
+      "hits": "Tacklinger",
+      "blocks": "Blokeringer",
+      "giveaways": "Afleveringsfejl",
+      "takeaways": "Erobringer"
+    }
+  },
+  "development": {
+    "title": "Spillerudvikling",
+    "plans": "Udviklingsplaner",
+    "evaluations": "Evalueringer",
+    "goals": "Mål",
+    "progress": "Fremskridt",
+    "feedback": "Feedback",
+    "areas": {
+      "technical": "Teknisk",
+      "tactical": "Taktisk",
+      "physical": "Fysisk",
+      "mental": "Mental",
+      "leadership": "Lederskab"
+    },
+    "actions": {
+      "createPlan": "Opret plan",
+      "scheduleEvaluation": "Planlæg evaluering",
+      "provideFeedback": "Giv feedback",
+      "reviewProgress": "Gennemgå fremskridt"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "teamMessage": "Holdbesked",
+    "individualMessage": "Individuel besked",
+    "announcements": "Meddelelser",
+    "meetings": "Møder",
+    "sendTo": {
+      "allPlayers": "Alle spillere",
+      "forwards": "Angribere",
+      "defensemen": "Forsvarsspillere",
+      "goaltenders": "Målmænd",
+      "leadership": "Lederskabsgruppe",
+      "selectedPlayers": "Udvalgte spillere"
+    }
+  },
+  "quickActions": {
+    "title": "Hurtige handlinger",
+    "submitLineup": "Indsend opstilling",
+    "schedulePractice": "Planlæg træning",
+    "updateAvailability": "Opdater tilgængelighed",
+    "viewReports": "Se rapporter",
+    "sendMessage": "Send besked",
+    "exportData": "Eksporter data"
+  },
+  "notifications": {
+    "injuryUpdate": "Skadeopdatering: {{playerName}}",
+    "availabilityChange": "Tilgængelighedsændring: {{playerName}}",
+    "upcomingGame": "Kommende kamp: {{opponent}} om {{time}}",
+    "practiceReminder": "Træning om {{time}}",
+    "reportAvailable": "Ny rapport tilgængelig",
+    "playerMessage": "Besked fra {{playerName}}"
+  }
+}

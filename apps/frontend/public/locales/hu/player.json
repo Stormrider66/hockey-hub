@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Játékos irányítópult",
+    "subtitle": "Kövesd teljesítményed és fejlődésed",
+    "welcome": "Üdvözlünk újra, {{name}}!",
+    "todaySchedule": "Mai program",
+    "upcomingEvents": "Közelgő események",
+    "recentPerformance": "Legutóbbi teljesítmény",
+    "developmentGoals": "Fejlesztési célok"
+  },
+  "profile": {
+    "playerInfo": "Játékos adatai",
+    "number": "Mezszám",
+    "position": "Pozíció",
+    "shoots": "Ütőoldal",
+    "team": "Csapat",
+    "age": "Életkor",
+    "height": "Magasság",
+    "weight": "Súly",
+    "joined": "Csatlakozott",
+    "contractExpires": "Szerződés lejár"
+  },
+  "wellness": {
+    "title": "Napi wellness ellenőrzés",
+    "subtitle": "Hogy érzed magad ma?",
+    "submit": "Wellness adatok beküldése",
+    "submitted": "Wellness adatok sikeresen beküldve",
+    "metrics": {
+      "hrv": "Pulzusvariabilitás",
+      "sleep": "Alvásminőség",
+      "fatigue": "Fáradtság szintje",
+      "mood": "Hangulat",
+      "soreness": "Izomfájdalom",
+      "stress": "Stressz szint",
+      "hydration": "Hidratáltság",
+      "nutrition": "Táplálkozás minősége"
+    },
+    "scale": {
+      "poor": "Gyenge",
+      "fair": "Közepes",
+      "good": "Jó",
+      "veryGood": "Nagyon jó",
+      "excellent": "Kiváló"
+    }
+  },
+  "training": {
+    "title": "Edzések",
+    "upcoming": "Közelgő edzések",
+    "completed": "Befejezett edzések",
+    "assigned": "Kiosztott edzéstervek",
+    "progress": "Edzés haladás",
+    "todaysWorkout": "Mai edzésterv",
+    "completeSession": "Edzés befejezése",
+    "viewDetails": "Részletek",
+    "intensity": "Intenzitás",
+    "duration": "Időtartam",
+    "focus": "Fókuszterület",
+    "equipment": "Szükséges felszerelés",
+    "location": "Helyszín",
+    "coach": "Edző",
+    "notes": "Edzés jegyzetek"
+  },
+  "performance": {
+    "title": "Teljesítménymutatók",
+    "seasonStats": "Szezon statisztika",
+    "careerStats": "Karrierstatisztika",
+    "lastGame": "Utolsó mérkőzés",
+    "average": "Átlag",
+    "total": "Összesen",
+    "trend": "Trend",
+    "improvement": "Fejlődés",
+    "metrics": {
+      "goals": "Gólok",
+      "assists": "Gólpasszok",
+      "points": "Pontok",
+      "plusMinus": "+/-",
+      "pim": "Büntetőpercek",
+      "shots": "Lövések",
+      "shootingPercentage": "Lövés %",
+      "faceoffPercentage": "Bedobás %",
+      "hits": "Ütközések",
+      "blocks": "Blokkok",
+      "takeaways": "Korongszerzések",
+      "giveaways": "Korongvesztések",
+      "toi": "Jégen töltött idő",
+      "powerplayGoals": "Emberelőny gólok",
+      "shorthandedGoals": "Emberhátrány gólok",
+      "gameWinningGoals": "Győztes gólok"
+    }
+  },
+  "schedule": {
+    "title": "Időbeosztás",
+    "calendar": "Naptár nézet",
+    "list": "Lista nézet",
+    "filters": "Szűrők",
+    "types": {
+      "game": "Mérkőzés",
+      "practice": "Edzés",
+      "training": "Erőnléti edzés",
+      "meeting": "Megbeszélés",
+      "medical": "Orvosi vizsgálat",
+      "recovery": "Regeneráció",
+      "travel": "Utazás",
+      "personal": "Személyes"
+    },
+    "rsvp": {
+      "title": "Részvétel",
+      "attending": "Részt veszek",
+      "notAttending": "Nem veszek részt",
+      "maybe": "Talán",
+      "update": "Részvétel frissítése"
+    }
+  },
+  "communication": {
+    "title": "Üzenetek",
+    "inbox": "Beérkezett",
+    "sent": "Elküldött",
+    "drafts": "Piszkozatok",
+    "compose": "Új üzenet",
+    "teamChat": "Csapat chat",
+    "coachMessages": "Edzői üzenetek",
+    "announcements": "Közlemények"
+  },
+  "development": {
+    "title": "Fejlesztési terv",
+    "goals": "Célok",
+    "progress": "Haladás",
+    "skillAssessment": "Képesség értékelés",
+    "trainingPlan": "Edzésterv",
+    "milestones": "Mérföldkövek",
+    "achievements": "Eredmények",
+    "areas": {
+      "skating": "Korcsolyázás",
+      "shooting": "Lövés",
+      "passing": "Passzolás",
+      "stickHandling": "Korongkezelés",
+      "positioning": "Helyezkedés",
+      "physicality": "Fizikális játék",
+      "mentalGame": "Mentális játék",
+      "leadership": "Vezetői képesség"
+    }
+  },
+  "nutrition": {
+    "title": "Táplálkozás",
+    "mealPlan": "Étkezési terv",
+    "hydration": "Folyadékbevitel követése",
+    "supplements": "Táplálékkiegészítők",
+    "calories": "Kalória",
+    "macros": "Makrotápanyagok",
+    "meals": {
+      "breakfast": "Reggeli",
+      "lunch": "Ebéd",
+      "dinner": "Vacsora",
+      "snack": "Uzsonna",
+      "preGame": "Mérkőzés előtti",
+      "postGame": "Mérkőzés utáni"
+    }
+  },
+  "recovery": {
+    "title": "Regeneráció",
+    "status": "Regenerációs állapot",
+    "activities": "Regenerációs tevékenységek",
+    "sleep": "Alváskövetés",
+    "treatment": "Kezelés",
+    "nextSession": "Következő regenerációs foglalkozás",
+    "types": {
+      "massage": "Masszázs",
+      "coldTub": "Jeges fürdő",
+      "sauna": "Szauna",
+      "stretching": "Nyújtás",
+      "yoga": "Jóga",
+      "physiotherapy": "Gyógytorna"
+    }
+  }
+}

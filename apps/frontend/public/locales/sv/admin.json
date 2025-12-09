@@ -1,0 +1,112 @@
+{
+  "dashboard": {
+    "title": "Systemadministratör",
+    "subtitle": "Plattformshantering och konfiguration",
+    "welcome": "Välkommen, systemadministratör",
+    "systemStatus": "Systemstatus",
+    "alerts": "Systemvarningar"
+  },
+  "system": {
+    "title": "Systemhantering",
+    "status": "Systemstatus",
+    "health": "Hälsokontroll",
+    "monitoring": "Systemövervakning",
+    "logs": "Systemloggar",
+    "performance": "Prestationsmått",
+    "uptime": "Drifttid",
+    "resources": "Resursanvändning"
+  },
+  "users": {
+    "title": "Användarhantering",
+    "all": "Alla användare",
+    "create": "Skapa användare",
+    "edit": "Redigera användare",
+    "delete": "Ta bort användare",
+    "roles": "Användarroller",
+    "permissions": "Användarbehörigheter",
+    "activity": "Användaraktivitet",
+    "sessions": "Aktiva sessioner",
+    "audit": "Granskningslogg"
+  },
+  "organizations": {
+    "title": "Organisationshantering",
+    "all": "Alla organisationer",
+    "create": "Skapa organisation",
+    "edit": "Redigera organisation",
+    "delete": "Ta bort organisation",
+    "settings": "Organisationsinställningar",
+    "limits": "Användningsgränser",
+    "billing": "Faktureringsinformation"
+  },
+  "security": {
+    "title": "Säkerhetshantering",
+    "settings": "Säkerhetsinställningar",
+    "authentication": "Autentisering",
+    "authorization": "Auktorisering",
+    "tokens": "API-nycklar",
+    "certificates": "SSL-certifikat",
+    "firewall": "Brandväggsregler",
+    "threats": "Hotdetektering",
+    "incidents": "Säkerhetsincidenter"
+  },
+  "database": {
+    "title": "Databashantering",
+    "status": "Databasstatus",
+    "backup": "Säkerhetskopieringshantering",
+    "restore": "Återställ databas",
+    "migrations": "Databasmigreringar",
+    "optimization": "Frågeoptimering",
+    "connections": "Anslutningspool",
+    "maintenance": "Underhållsuppgifter"
+  },
+  "services": {
+    "title": "Tjänstehantering",
+    "status": "Tjänststatus",
+    "configuration": "Tjänstkonfiguration",
+    "dependencies": "Beroenden",
+    "health": "Hälsokontroller",
+    "restart": "Starta om tjänst",
+    "logs": "Tjänstloggar",
+    "metrics": "Tjänstmått"
+  },
+  "integrations": {
+    "title": "Integrationer",
+    "connected": "Anslutna tjänster",
+    "available": "Tillgängliga integrationer",
+    "configure": "Konfigurera integration",
+    "test": "Testa anslutning",
+    "logs": "Integrationsloggar",
+    "webhooks": "Webhooks",
+    "api": "API-hantering"
+  },
+  "configuration": {
+    "title": "Systemkonfiguration",
+    "general": "Allmänna inställningar",
+    "email": "E-postkonfiguration",
+    "storage": "Lagringsinställningar",
+    "cache": "Cachehantering",
+    "queue": "Kökonfiguration",
+    "scheduler": "Uppgiftsschemaläggare",
+    "features": "Funktionsflaggor"
+  },
+  "monitoring": {
+    "title": "Systemövervakning",
+    "dashboard": "Övervakningsöversikt",
+    "alerts": "Varningskonfiguration",
+    "metrics": "Systemmått",
+    "logs": "Logganalys",
+    "errors": "Felspårning",
+    "performance": "Prestandaanalys",
+    "reports": "Systemrapporter"
+  },
+  "maintenance": {
+    "title": "Underhåll",
+    "schedule": "Underhållsschema",
+    "tasks": "Underhållsuppgifter",
+    "updates": "Systemuppdateringar",
+    "patches": "Säkerhetspatchar",
+    "cleanup": "Datarensning",
+    "optimization": "Systemoptimering",
+    "mode": "Underhållsläge"
+  }
+}

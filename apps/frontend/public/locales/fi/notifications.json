@@ -1,0 +1,142 @@
+{
+  "title": "Ilmoitukset",
+  "markAllRead": "Merkitse kaikki luetuiksi",
+  "clearAll": "Tyhjennä kaikki",
+  "settings": "Ilmoitusasetukset",
+  "empty": "Ei ilmoituksia",
+  "loadMore": "Lataa lisää",
+  "categories": {
+    "all": "Kaikki",
+    "unread": "Lukemattomat",
+    "system": "Järjestelmä",
+    "team": "Joukkue",
+    "training": "Harjoitus",
+    "medical": "Lääkintä",
+    "calendar": "Kalenteri",
+    "payment": "Maksu",
+    "communication": "Viestit"
+  },
+  "types": {
+    "system": {
+      "welcome": "Tervetuloa Hockey Hubiin!",
+      "profileComplete": "Profiilisi on nyt valmis",
+      "passwordChanged": "Salasanasi on vaihdettu onnistuneesti",
+      "accountVerified": "Tilisi on vahvistettu",
+      "maintenanceScheduled": "Järjestelmähuolto ajoitettu {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Sinut on lisätty joukkueeseen {{teamName}}",
+      "removedFromTeam": "Sinut on poistettu joukkueesta {{teamName}}",
+      "roleChanged": "Roolisi on vaihdettu: {{role}}",
+      "teamAnnouncement": "Joukkueilmoitus käyttäjältä {{sender}}",
+      "rosterUpdate": "Kokoonpano on päivitetty"
+    },
+    "training": {
+      "sessionScheduled": "Harjoitus ajoitettu {{date}}",
+      "sessionCancelled": "Harjoitus {{date}} on peruutettu",
+      "sessionReminder": "Harjoitus alkaa {{time}} kuluttua",
+      "workoutAssigned": "Uusi harjoitus määritetty: {{workoutName}}",
+      "workoutCompleted": "{{player}} suoritti harjoituksen: {{workoutName}}",
+      "performanceReport": "Suoritusraporttisi on valmis"
+    },
+    "medical": {
+      "appointmentScheduled": "Lääkärikäynti ajoitettu {{date}}",
+      "appointmentReminder": "Lääkärikäynti {{time}} kuluttua",
+      "injuryUpdate": "Vammatilanne päivitetty: {{player}}",
+      "clearanceGranted": "{{player}} on saanut peliluvan",
+      "wellnessReminder": "Muista täyttää päivittäinen hyvinvointikysely",
+      "treatmentComplete": "Hoitokerta suoritettu"
+    },
+    "calendar": {
+      "eventCreated": "Uusi tapahtuma: {{eventName}}",
+      "eventUpdated": "Tapahtuma päivitetty: {{eventName}}",
+      "eventCancelled": "Tapahtuma peruutettu: {{eventName}}",
+      "eventReminder": "{{eventName}} alkaa {{time}} kuluttua",
+      "rsvpRequested": "Ilmoittaudu tapahtumaan {{eventName}}",
+      "scheduleChange": "Aikataulumuutos {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Uusi lasku saatavilla: {{amount}}",
+      "paymentReceived": "Maksu vastaanotettu: {{amount}}",
+      "paymentDue": "Maksettava: {{amount}} mennessä {{date}}",
+      "paymentOverdue": "Erääntynyt maksu: {{amount}}",
+      "paymentFailed": "Maksu epäonnistui: {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Uusi viesti käyttäjältä {{sender}}",
+      "mentionedInChat": "{{sender}} mainitsi sinut kanavalla {{channel}}",
+      "addedToGroup": "Sinut on lisätty ryhmään {{groupName}}",
+      "missedCall": "Vastaamaton puhelu: {{caller}}",
+      "voicemail": "Uusi ääniviesti: {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Peli ajoitettu: {{opponent}} {{date}}",
+      "gameReminder": "Peli vs {{opponent}} alkaa {{time}} kuluttua",
+      "lineupPosted": "Pelikokoonpano on julkaistu",
+      "gameResult": "Pelin tulos: {{result}} vs {{opponent}}",
+      "statsAvailable": "Pelitilastosi ovat nyt saatavilla"
+    },
+    "equipment": {
+      "fittingScheduled": "Varustesovitus ajoitettu {{date}}",
+      "maintenanceDue": "Varustehuolto erääntyy: {{equipment}}",
+      "orderReady": "Varustetilauksesi on noudettavissa",
+      "returnReminder": "Palauta {{equipment}} mennessä {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Näytä",
+    "dismiss": "Hylkää",
+    "accept": "Hyväksy",
+    "decline": "Kieltäydy",
+    "respond": "Vastaa",
+    "schedule": "Ajoita",
+    "pay": "Maksa nyt",
+    "download": "Lataa",
+    "viewDetails": "Näytä tiedot"
+  },
+  "preferences": {
+    "title": "Ilmoitusasetukset",
+    "channels": {
+      "email": "Sähköposti",
+      "push": "Push-ilmoitukset",
+      "inApp": "Sovelluksen sisäiset",
+      "sms": "Tekstiviesti"
+    },
+    "frequency": {
+      "immediate": "Välittömästi",
+      "hourly": "Tunneittain",
+      "daily": "Päivittäinen yhteenveto",
+      "weekly": "Viikkoyhteenveto"
+    },
+    "quiet": {
+      "title": "Hiljaiset tunnit",
+      "enabled": "Ota hiljaiset tunnit käyttöön",
+      "from": "Alkaen",
+      "to": "Päättyen",
+      "days": "Päivät"
+    },
+    "types": {
+      "training": "Harjoituspäivitykset",
+      "medical": "Lääkintämuistutukset",
+      "calendar": "Kalenteritapahtumat",
+      "team": "Joukkueilmoitukset",
+      "chat": "Chat-viestit",
+      "payment": "Maksumuistutukset",
+      "system": "Järjestelmäilmoitukset"
+    }
+  },
+  "time": {
+    "justNow": "Juuri nyt",
+    "minutesAgo": "{{count}} minuuttia sitten",
+    "hoursAgo": "{{count}} tuntia sitten",
+    "yesterday": "Eilen",
+    "daysAgo": "{{count}} päivää sitten",
+    "weeksAgo": "{{count}} viikkoa sitten"
+  },
+  "status": {
+    "sent": "Lähetetty",
+    "delivered": "Toimitettu",
+    "read": "Luettu",
+    "failed": "Lähetys epäonnistui"
+  }
+}

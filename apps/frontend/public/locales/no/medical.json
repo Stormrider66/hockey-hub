@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medisinsk dashbord",
+    "subtitle": "Spillerhelse og skadebehandling",
+    "welcome": "Velkommen, {{name}}",
+    "urgentCases": "Hastesaker",
+    "todayAppointments": "Dagens avtaler"
+  },
+  "players": {
+    "title": "Spillerhelseoversikt",
+    "status": "Helsestatus",
+    "active": "Aktive spillere",
+    "injured": "Skadde spillere",
+    "recovery": "Under restitusjon",
+    "cleared": "Nylig klarert",
+    "monitoring": "Under oppfølging",
+    "search": "Søk spillere",
+    "filter": "Filtrer etter status"
+  },
+  "injuries": {
+    "title": "Skadebehandling",
+    "current": "Aktuelle skader",
+    "history": "Skadehistorikk",
+    "report": "Rapporter ny skade",
+    "update": "Oppdater skade",
+    "severity": {
+      "minor": "Liten",
+      "moderate": "Moderat",
+      "major": "Stor",
+      "severe": "Alvorlig",
+      "careerThreatening": "Karrieretruende"
+    },
+    "types": {
+      "concussion": "Hjernerystelse",
+      "fracture": "Brudd",
+      "sprain": "Forstuing",
+      "strain": "Strekk",
+      "bruise": "Blåmerke",
+      "cut": "Kutt/riftsår",
+      "dislocation": "Leddskade",
+      "illness": "Sykdom"
+    },
+    "bodyParts": {
+      "head": "Hode",
+      "neck": "Nakke",
+      "shoulder": "Skulder",
+      "arm": "Arm",
+      "elbow": "Albue",
+      "wrist": "Håndledd",
+      "hand": "Hånd",
+      "back": "Rygg",
+      "chest": "Bryst",
+      "abdomen": "Mage",
+      "hip": "Hofte",
+      "groin": "Lyske",
+      "thigh": "Lår",
+      "knee": "Kne",
+      "ankle": "Ankel",
+      "foot": "Fot"
+    }
+  },
+  "treatment": {
+    "title": "Behandlingsplaner",
+    "active": "Aktive behandlinger",
+    "scheduled": "Planlagte økter",
+    "completed": "Fullførte behandlinger",
+    "create": "Opprett behandlingsplan",
+    "modify": "Endre plan",
+    "types": {
+      "physiotherapy": "Fysioterapi",
+      "massage": "Massasjeterapi",
+      "medication": "Medisinering",
+      "surgery": "Kirurgi",
+      "rehabilitation": "Rehabilitering",
+      "rest": "Hvile/restitusjon",
+      "imaging": "Bildediagnostikk"
+    },
+    "frequency": {
+      "daily": "Daglig",
+      "everyOtherDay": "Annenhver dag",
+      "twiceWeekly": "To ganger ukentlig",
+      "weekly": "Ukentlig",
+      "asNeeded": "Ved behov"
+    }
+  },
+  "appointments": {
+    "title": "Medisinske avtaler",
+    "schedule": "Planlegg avtale",
+    "upcoming": "Kommende avtaler",
+    "today": "Dagens timeplan",
+    "calendar": "Avtalekalender",
+    "types": {
+      "checkup": "Rutinesjekk",
+      "injury": "Skadevurdering",
+      "followup": "Oppfølging",
+      "clearance": "Spilleklarering",
+      "physical": "Fysisk undersøkelse",
+      "emergency": "Akutt"
+    },
+    "duration": {
+      "15min": "15 minutter",
+      "30min": "30 minutter",
+      "45min": "45 minutter",
+      "60min": "1 time"
+    }
+  },
+  "records": {
+    "title": "Medisinske journaler",
+    "history": "Medisinsk historikk",
+    "allergies": "Allergier",
+    "medications": "Nåværende medisiner",
+    "conditions": "Eksisterende tilstander",
+    "surgeries": "Tidligere operasjoner",
+    "family": "Familiehistorikk",
+    "documents": "Medisinske dokumenter",
+    "upload": "Last opp dokument",
+    "download": "Last ned journaler"
+  },
+  "clearance": {
+    "title": "Spilleklarering",
+    "pending": "Ventende klareringer",
+    "evaluate": "Evaluer spiller",
+    "protocols": "Klareringsprotokoller",
+    "tests": "Påkrevde tester",
+    "approve": "Godkjenn retur",
+    "deny": "Avslå retur",
+    "conditional": "Betinget retur",
+    "restrictions": "Aktivitetsbegrensninger"
+  },
+  "reports": {
+    "title": "Medisinske rapporter",
+    "injury": "Skaderapport",
+    "team": "Laghelserapport",
+    "individual": "Individuell rapport",
+    "insurance": "Forsikringsrapport",
+    "compliance": "Samsvarsrapport",
+    "generate": "Generer rapport",
+    "export": "Eksporter rapport"
+  },
+  "emergency": {
+    "title": "Nødprotokoller",
+    "contacts": "Nødkontakter",
+    "procedures": "Nødprosedyrer",
+    "equipment": "Nødutstyr",
+    "locations": "Sykehuslokasjoner",
+    "action": "Nødhandlingsplan",
+    "call": "Nødanrop"
+  },
+  "wellness": {
+    "title": "Velvære-overvåking",
+    "daily": "Daglige innsjekker",
+    "trends": "Velvære-trender",
+    "alerts": "Velvære-varsler",
+    "metrics": {
+      "sleep": "Søvnkvalitet",
+      "fatigue": "Utmattelsesnivå",
+      "soreness": "Muskelstølhet",
+      "mood": "Humør",
+      "stress": "Stressnivå",
+      "hydration": "Hydrering"
+    }
+  }
+}

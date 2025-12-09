@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Amministratore di Sistema",
+    "subtitle": "Gestione e configurazione piattaforma",
+    "welcome": "Benvenuto, Amministratore di Sistema",
+    "systemStatus": "Stato Sistema",
+    "alerts": "Avvisi di Sistema"
+  },
+  "system": {
+    "title": "Gestione Sistema",
+    "status": "Stato Sistema",
+    "health": "Controllo Salute",
+    "healthScore": "Salute Sistema",
+    "monitoring": "Monitoraggio Sistema",
+    "logs": "Log di Sistema",
+    "performance": "Metriche Prestazioni",
+    "uptime": "Tempo di Attività",
+    "resources": "Utilizzo Risorse",
+    "activeUsers": "Utenti Attivi",
+    "errorRate": "Tasso di Errore",
+    "responseTime": "Tempo di Risposta",
+    "databaseSize": "Dimensione Database",
+    "withinSLA": "Entro SLA",
+    "systemPerformance24h": "Prestazioni Sistema (24h)",
+    "serviceHealthMatrix": "Matrice Salute Servizi",
+    "cpuMemoryUsage": "Uso CPU, memoria e volume richieste",
+    "realTimeServiceStatus": "Stato servizi e metriche in tempo reale"
+  },
+  "users": {
+    "title": "Gestione Utenti",
+    "all": "Tutti gli Utenti",
+    "create": "Crea Utente",
+    "edit": "Modifica Utente",
+    "delete": "Elimina Utente",
+    "roles": "Ruoli Utente",
+    "permissions": "Permessi Utente",
+    "activity": "Attività Utente",
+    "sessions": "Sessioni Attive",
+    "audit": "Tracciato Audit"
+  },
+  "organizations": {
+    "title": "Gestione Organizzazioni",
+    "all": "Tutte le Organizzazioni",
+    "create": "Crea Organizzazione",
+    "edit": "Modifica Organizzazione",
+    "delete": "Elimina Organizzazione",
+    "settings": "Impostazioni Organizzazione",
+    "limits": "Limiti di Utilizzo",
+    "billing": "Informazioni Fatturazione"
+  },
+  "security": {
+    "title": "Gestione Sicurezza",
+    "settings": "Impostazioni Sicurezza",
+    "authentication": "Autenticazione",
+    "authorization": "Autorizzazione",
+    "tokens": "Token API",
+    "certificates": "Certificati SSL",
+    "firewall": "Regole Firewall",
+    "threats": "Rilevamento Minacce",
+    "incidents": "Incidenti di Sicurezza"
+  },
+  "database": {
+    "title": "Gestione Database",
+    "status": "Stato Database",
+    "backup": "Gestione Backup",
+    "restore": "Ripristina Database",
+    "migrations": "Migrazioni Database",
+    "optimization": "Ottimizzazione Query",
+    "connections": "Pool Connessioni",
+    "maintenance": "Attività di Manutenzione"
+  },
+  "services": {
+    "title": "Gestione Servizi",
+    "status": "Stato Servizi",
+    "configuration": "Configurazione Servizi",
+    "dependencies": "Dipendenze",
+    "health": "Controlli Salute",
+    "restart": "Riavvia Servizio",
+    "logs": "Log Servizio",
+    "metrics": "Metriche Servizio"
+  },
+  "integrations": {
+    "title": "Integrazioni",
+    "connected": "Servizi Connessi",
+    "available": "Integrazioni Disponibili",
+    "configure": "Configura Integrazione",
+    "test": "Test Connessione",
+    "logs": "Log Integrazioni",
+    "webhooks": "Webhook",
+    "api": "Gestione API"
+  },
+  "configuration": {
+    "title": "Configurazione Sistema",
+    "general": "Impostazioni Generali",
+    "email": "Configurazione Email",
+    "storage": "Impostazioni Storage",
+    "cache": "Gestione Cache",
+    "queue": "Configurazione Code",
+    "scheduler": "Pianificatore Attività",
+    "features": "Flag Funzionalità"
+  },
+  "monitoring": {
+    "title": "Monitoraggio Sistema",
+    "dashboard": "Dashboard Monitoraggio",
+    "alerts": "Configurazione Avvisi",
+    "metrics": "Metriche Sistema",
+    "logs": "Analisi Log",
+    "errors": "Tracciamento Errori",
+    "performance": "Analisi Prestazioni",
+    "reports": "Report Sistema"
+  },
+  "maintenance": {
+    "title": "Manutenzione",
+    "schedule": "Programma Manutenzione",
+    "tasks": "Attività di Manutenzione",
+    "updates": "Aggiornamenti Sistema",
+    "patches": "Patch di Sicurezza",
+    "cleanup": "Pulizia Dati",
+    "optimization": "Ottimizzazione Sistema",
+    "mode": "Modalità Manutenzione"
+  }
+}

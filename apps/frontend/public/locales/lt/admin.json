@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Sistemos administratorius",
+    "subtitle": "Platformos valdymas ir konfigūracija",
+    "welcome": "Sveiki, sistemos administratoriau",
+    "systemStatus": "Sistemos būsena",
+    "alerts": "Sistemos įspėjimai"
+  },
+  "system": {
+    "title": "Sistemos valdymas",
+    "status": "Sistemos būsena",
+    "health": "Sveikatos patikra",
+    "healthScore": "Sistemos sveikata",
+    "monitoring": "Sistemos stebėjimas",
+    "logs": "Sistemos žurnalai",
+    "performance": "Našumo metrika",
+    "uptime": "Veikimo laikas",
+    "resources": "Išteklių naudojimas",
+    "activeUsers": "Aktyvūs vartotojai",
+    "errorRate": "Klaidų dažnis",
+    "responseTime": "Atsako laikas",
+    "databaseSize": "Duomenų bazės dydis",
+    "withinSLA": "Atitinka SLA",
+    "systemPerformance24h": "Sistemos našumas (24 val.)",
+    "serviceHealthMatrix": "Paslaugų sveikatos matrica",
+    "cpuMemoryUsage": "CPU, atminties naudojimas ir užklausų kiekis",
+    "realTimeServiceStatus": "Realaus laiko paslaugų būsena ir metrika"
+  },
+  "users": {
+    "title": "Vartotojų valdymas",
+    "all": "Visi vartotojai",
+    "create": "Sukurti vartotoją",
+    "edit": "Redaguoti vartotoją",
+    "delete": "Ištrinti vartotoją",
+    "roles": "Vartotojų vaidmenys",
+    "permissions": "Vartotojų leidimai",
+    "activity": "Vartotojų veikla",
+    "sessions": "Aktyvios sesijos",
+    "audit": "Audito pėdsakas"
+  },
+  "organizations": {
+    "title": "Organizacijų valdymas",
+    "all": "Visos organizacijos",
+    "create": "Sukurti organizaciją",
+    "edit": "Redaguoti organizaciją",
+    "delete": "Ištrinti organizaciją",
+    "settings": "Organizacijos nustatymai",
+    "limits": "Naudojimo limitai",
+    "billing": "Atsiskaitymo informacija"
+  },
+  "security": {
+    "title": "Saugumo valdymas",
+    "settings": "Saugumo nustatymai",
+    "authentication": "Autentifikacija",
+    "authorization": "Autorizacija",
+    "tokens": "API raktai",
+    "certificates": "SSL sertifikatai",
+    "firewall": "Ugniasienės taisyklės",
+    "threats": "Grėsmių aptikimas",
+    "incidents": "Saugumo incidentai"
+  },
+  "database": {
+    "title": "Duomenų bazės valdymas",
+    "status": "Duomenų bazės būsena",
+    "backup": "Atsarginių kopijų valdymas",
+    "restore": "Atkurti duomenų bazę",
+    "migrations": "Duomenų bazės migracijos",
+    "optimization": "Užklausų optimizavimas",
+    "connections": "Ryšių baseinas",
+    "maintenance": "Priežiūros užduotys"
+  },
+  "services": {
+    "title": "Paslaugų valdymas",
+    "status": "Paslaugų būsena",
+    "configuration": "Paslaugų konfigūracija",
+    "dependencies": "Priklausomybės",
+    "health": "Sveikatos patikrinimai",
+    "restart": "Paleisti iš naujo",
+    "logs": "Paslaugų žurnalai",
+    "metrics": "Paslaugų metrika"
+  },
+  "integrations": {
+    "title": "Integracijos",
+    "connected": "Prijungtos paslaugos",
+    "available": "Galimos integracijos",
+    "configure": "Konfigūruoti integraciją",
+    "test": "Testuoti ryšį",
+    "logs": "Integracijos žurnalai",
+    "webhooks": "Webhook'ai",
+    "api": "API valdymas"
+  },
+  "configuration": {
+    "title": "Sistemos konfigūracija",
+    "general": "Bendrieji nustatymai",
+    "email": "El. pašto konfigūracija",
+    "storage": "Saugyklos nustatymai",
+    "cache": "Talpyklos valdymas",
+    "queue": "Eilės konfigūracija",
+    "scheduler": "Užduočių planuoklis",
+    "features": "Funkcijų vėliavėlės"
+  },
+  "monitoring": {
+    "title": "Sistemos stebėjimas",
+    "dashboard": "Stebėjimo skydelis",
+    "alerts": "Įspėjimų konfigūracija",
+    "metrics": "Sistemos metrika",
+    "logs": "Žurnalų analizė",
+    "errors": "Klaidų sekimas",
+    "performance": "Našumo analizė",
+    "reports": "Sistemos ataskaitos"
+  },
+  "maintenance": {
+    "title": "Priežiūra",
+    "schedule": "Priežiūros tvarkaraštis",
+    "tasks": "Priežiūros užduotys",
+    "updates": "Sistemos atnaujinimai",
+    "patches": "Saugumo pataisos",
+    "cleanup": "Duomenų valymas",
+    "optimization": "Sistemos optimizavimas",
+    "mode": "Priežiūros režimas"
+  }
+}

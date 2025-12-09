@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Toto pole je povinné",
+    "email": "E-mail je povinný",
+    "password": "Heslo je povinné",
+    "firstName": "Meno je povinné",
+    "lastName": "Priezvisko je povinné",
+    "phone": "Telefónne číslo je povinné",
+    "date": "Dátum je povinný",
+    "time": "Čas je povinný",
+    "selection": "Prosím, vyberte možnosť"
+  },
+  "email": {
+    "invalid": "Zadajte platnú e-mailovú adresu",
+    "alreadyExists": "Tento e-mail je už zaregistrovaný"
+  },
+  "password": {
+    "tooShort": "Heslo musí mať aspoň {{min}} znakov",
+    "tooWeak": "Heslo je príliš slabé. Použite kombináciu písmen, čísiel a symbolov",
+    "noMatch": "Heslá sa nezhodujú",
+    "requiresUppercase": "Heslo musí obsahovať aspoň jedno veľké písmeno",
+    "requiresLowercase": "Heslo musí obsahovať aspoň jedno malé písmeno",
+    "requiresNumber": "Heslo musí obsahovať aspoň jedno číslo",
+    "requiresSpecial": "Heslo musí obsahovať aspoň jeden špeciálny znak"
+  },
+  "string": {
+    "tooShort": "Musí mať aspoň {{min}} znakov",
+    "tooLong": "Nesmie mať viac ako {{max}} znakov",
+    "invalidFormat": "Neplatný formát",
+    "alphanumeric": "Povolené sú iba písmená a čísla",
+    "alphabetic": "Povolené sú iba písmená",
+    "invalidCharacters": "Obsahuje neplatné znaky"
+  },
+  "number": {
+    "invalid": "Zadajte platné číslo",
+    "tooSmall": "Musí byť aspoň {{min}}",
+    "tooLarge": "Nesmie byť viac ako {{max}}",
+    "integer": "Musí byť celé číslo",
+    "positive": "Musí byť kladné číslo",
+    "negative": "Musí byť záporné číslo"
+  },
+  "date": {
+    "invalid": "Zadajte platný dátum",
+    "beforeMin": "Dátum musí byť po {{min}}",
+    "afterMax": "Dátum musí byť pred {{max}}",
+    "inPast": "Dátum musí byť v minulosti",
+    "inFuture": "Dátum musí byť v budúcnosti"
+  },
+  "time": {
+    "invalid": "Zadajte platný čas",
+    "beforeMin": "Čas musí byť po {{min}}",
+    "afterMax": "Čas musí byť pred {{max}}"
+  },
+  "phone": {
+    "invalid": "Zadajte platné telefónne číslo",
+    "invalidCountryCode": "Neplatný kód krajiny"
+  },
+  "file": {
+    "tooLarge": "Veľkosť súboru musí byť menšia ako {{maxSize}}",
+    "invalidType": "Typ súboru nie je povolený. Povolené typy: {{allowedTypes}}",
+    "required": "Vyberte súbor",
+    "tooMany": "Príliš veľa súborov. Maximum povolené: {{max}}"
+  },
+  "url": {
+    "invalid": "Zadajte platnú URL adresu"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Neplatný formát kódu tímu",
+      "notFound": "Kód tímu nebol nájdený"
+    },
+    "playerNumber": {
+      "invalid": "Neplatné číslo hráča",
+      "alreadyTaken": "Toto číslo je už obsadené"
+    },
+    "age": {
+      "tooYoung": "Musíte mať aspoň {{min}} rokov",
+      "tooOld": "Nesmie byť viac ako {{max}} rokov"
+    },
+    "schedule": {
+      "conflict": "Tento čas je v konflikte s inou udalosťou",
+      "outsideHours": "Vybraný čas je mimo prevádzkových hodín",
+      "tooSoon": "Musí byť naplánované aspoň {{hours}} hodín vopred"
+    },
+    "capacity": {
+      "exceeded": "Prekročená maximálna kapacita",
+      "minimum": "Vyžaduje sa minimálne {{min}} účastníkov"
+    }
+  },
+  "form": {
+    "hasErrors": "Opravte chyby nižšie",
+    "submitError": "Odoslanie formulára zlyhalo. Skúste to znova.",
+    "saveDraft": "Váš koncept bol uložený",
+    "unsavedChanges": "Máte neuložené zmeny. Naozaj chcete odísť?"
+  },
+  "search": {
+    "tooShort": "Vyhľadávací výraz musí mať aspoň {{min}} znakov",
+    "noResults": "Nenašli sa žiadne výsledky"
+  },
+  "selection": {
+    "minimum": "Vyberte aspoň {{min}} možností",
+    "maximum": "Vyberte maximálne {{max}} možností",
+    "exact": "Vyberte presne {{count}} možností"
+  },
+  "comparison": {
+    "mustMatch": "Polia sa musia zhodovať",
+    "mustBeDifferent": "Polia musia byť odlišné",
+    "startBeforeEnd": "Čas začiatku musí byť pred časom konca",
+    "endAfterStart": "Čas konca musí byť po čase začiatku"
+  }
+}

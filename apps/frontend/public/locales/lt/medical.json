@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medicinos personalo valdymo skydelis",
+    "subtitle": "Žaidėjų sveikata ir traumų valdymas",
+    "welcome": "Sveiki, {{name}}",
+    "urgentCases": "Skubūs atvejai",
+    "todayAppointments": "Šiandienos apsilankymai"
+  },
+  "players": {
+    "title": "Žaidėjų sveikatos apžvalga",
+    "status": "Sveikatos būsena",
+    "active": "Aktyvūs žaidėjai",
+    "injured": "Traumuoti žaidėjai",
+    "recovery": "Atsigaunantys",
+    "cleared": "Neseniai leisti žaisti",
+    "monitoring": "Stebimi",
+    "search": "Ieškoti žaidėjų",
+    "filter": "Filtruoti pagal būseną"
+  },
+  "injuries": {
+    "title": "Traumų valdymas",
+    "current": "Dabartinės traumos",
+    "history": "Traumų istorija",
+    "report": "Pranešti apie naują traumą",
+    "update": "Atnaujinti traumą",
+    "severity": {
+      "minor": "Nedidelė",
+      "moderate": "Vidutinė",
+      "major": "Didelė",
+      "severe": "Sunki",
+      "careerThreatening": "Kelianti grėsmę karjerai"
+    },
+    "types": {
+      "concussion": "Smegenų sutrenkimas",
+      "fracture": "Lūžis",
+      "sprain": "Patempimas",
+      "strain": "Raumens patempimas",
+      "bruise": "Sumušimas",
+      "cut": "Pjūvis/Žaizda",
+      "dislocation": "Išnirimas",
+      "illness": "Liga"
+    },
+    "bodyParts": {
+      "head": "Galva",
+      "neck": "Kaklas",
+      "shoulder": "Petys",
+      "arm": "Ranka",
+      "elbow": "Alkūnė",
+      "wrist": "Riešas",
+      "hand": "Plaštaka",
+      "back": "Nugara",
+      "chest": "Krūtinė",
+      "abdomen": "Pilvas",
+      "hip": "Klubas",
+      "groin": "Kirkšnis",
+      "thigh": "Šlaunis",
+      "knee": "Kelis",
+      "ankle": "Kulkšnis",
+      "foot": "Pėda"
+    }
+  },
+  "treatment": {
+    "title": "Gydymo planai",
+    "active": "Aktyvūs gydymai",
+    "scheduled": "Suplanuoti seansai",
+    "completed": "Užbaigti gydymai",
+    "create": "Sukurti gydymo planą",
+    "modify": "Keisti planą",
+    "types": {
+      "physiotherapy": "Fizioterapija",
+      "massage": "Masažo terapija",
+      "medication": "Medikamentai",
+      "surgery": "Chirurgija",
+      "rehabilitation": "Reabilitacija",
+      "rest": "Poilsis/Atkūrimas",
+      "imaging": "Tyrimai/Skenavimas"
+    },
+    "frequency": {
+      "daily": "Kasdien",
+      "everyOtherDay": "Kas antrą dieną",
+      "twiceWeekly": "Du kartus per savaitę",
+      "weekly": "Kas savaitę",
+      "asNeeded": "Pagal poreikį"
+    }
+  },
+  "appointments": {
+    "title": "Medicininiai apsilankymai",
+    "schedule": "Planuoti apsilankymą",
+    "upcoming": "Artėjantys apsilankymai",
+    "today": "Šiandienos tvarkaraštis",
+    "calendar": "Apsilankymų kalendorius",
+    "types": {
+      "checkup": "Reguliarus patikrinimas",
+      "injury": "Traumos įvertinimas",
+      "followup": "Pakartotinis apsilankymas",
+      "clearance": "Leidimas grįžti žaisti",
+      "physical": "Fizinis patikrinimas",
+      "emergency": "Skubus atvejis"
+    },
+    "duration": {
+      "15min": "15 minučių",
+      "30min": "30 minučių",
+      "45min": "45 minutės",
+      "60min": "1 valanda"
+    }
+  },
+  "records": {
+    "title": "Medicininiai įrašai",
+    "history": "Medicininė istorija",
+    "allergies": "Alergijos",
+    "medications": "Dabartiniai vaistai",
+    "conditions": "Esamos ligos",
+    "surgeries": "Ankstesnės operacijos",
+    "family": "Šeimos istorija",
+    "documents": "Medicininiai dokumentai",
+    "upload": "Įkelti dokumentą",
+    "download": "Atsisiųsti įrašus"
+  },
+  "clearance": {
+    "title": "Grįžimas žaisti",
+    "pending": "Laukiantys leidimai",
+    "evaluate": "Įvertinti žaidėją",
+    "protocols": "Grįžimo protokolai",
+    "tests": "Reikalingi testai",
+    "approve": "Patvirtinti grįžimą",
+    "deny": "Atmesti grįžimą",
+    "conditional": "Sąlyginis grįžimas",
+    "restrictions": "Veiklos apribojimai"
+  },
+  "reports": {
+    "title": "Medicininės ataskaitos",
+    "injury": "Traumų ataskaita",
+    "team": "Komandos sveikatos ataskaita",
+    "individual": "Individuali ataskaita",
+    "insurance": "Draudimo ataskaita",
+    "compliance": "Atitikties ataskaita",
+    "generate": "Generuoti ataskaitą",
+    "export": "Eksportuoti ataskaitą"
+  },
+  "emergency": {
+    "title": "Skubios pagalbos protokolai",
+    "contacts": "Skubios pagalbos kontaktai",
+    "procedures": "Skubios pagalbos procedūros",
+    "equipment": "Skubios pagalbos įranga",
+    "locations": "Ligoninių vietos",
+    "action": "Skubios pagalbos veiksmų planas",
+    "call": "Skubios pagalbos skambutis"
+  },
+  "wellness": {
+    "title": "Savijautos stebėjimas",
+    "daily": "Kasdieniai patikrinimai",
+    "trends": "Savijautos tendencijos",
+    "alerts": "Savijautos įspėjimai",
+    "metrics": {
+      "sleep": "Miego kokybė",
+      "fatigue": "Nuovargio lygis",
+      "soreness": "Raumenų skausmas",
+      "mood": "Nuotaika",
+      "stress": "Streso lygis",
+      "hydration": "Hidratacija"
+    }
+  }
+}

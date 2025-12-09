@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Panel správcu klubu",
+    "subtitle": "Správa a dohľad nad organizáciou",
+    "welcome": "Vitajte, {{name}}",
+    "organizationOverview": "Prehľad organizácie",
+    "quickActions": "Rýchle akcie",
+    "stats": {
+      "teams": "Tímy",
+      "activeMembers": "Aktívni členovia",
+      "coachingStaff": "Trénerský štáb",
+      "upcomingEvents": "Nadchádzajúce udalosti",
+      "attendance": "Dochádzka",
+      "members": "Členovia"
+    }
+  },
+  "organization": {
+    "title": "Správa organizácie",
+    "details": "Detaily organizácie",
+    "settings": "Nastavenia organizácie",
+    "structure": "Organizačná štruktúra",
+    "departments": "Oddelenia",
+    "policies": "Politiky a postupy",
+    "branding": "Značka a identita",
+    "contact": "Kontaktné informácie"
+  },
+  "teams": {
+    "title": "Správa tímov",
+    "all": "Všetky tímy",
+    "create": "Vytvoriť tím",
+    "edit": "Upraviť tím",
+    "delete": "Zmazať tím",
+    "roster": "Súpisky tímov",
+    "assignments": "Pridelenie personálu",
+    "categories": {
+      "senior": "Seniorské tímy",
+      "junior": "Juniorské tímy",
+      "youth": "Mládežnícke tímy",
+      "academy": "Akadémia",
+      "womens": "Ženské tímy"
+    }
+  },
+  "staff": {
+    "title": "Správa personálu",
+    "all": "Všetok personál",
+    "add": "Pridať člena personálu",
+    "roles": "Role personálu",
+    "permissions": "Oprávnenia",
+    "contracts": "Zmluvy",
+    "evaluation": "Hodnotenie výkonu",
+    "training": "Školenie a certifikácie",
+    "types": {
+      "coaching": "Trénerský personál",
+      "medical": "Zdravotnícky personál",
+      "administrative": "Administratíva",
+      "support": "Podporný personál",
+      "volunteer": "Dobrovoľníci"
+    }
+  },
+  "facilities": {
+    "title": "Správa zariadení",
+    "overview": "Prehľad zariadení",
+    "booking": "Rezervácia zariadení",
+    "maintenance": "Rozpis údržby",
+    "calendar": "Kalendár zariadení",
+    "utilization": "Správy o využití",
+    "types": {
+      "mainRink": "Hlavná ľadová plocha",
+      "practiceRink": "Tréningová plocha",
+      "gym": "Posilňovňa",
+      "meetingRooms": "Zasadacie miestnosti",
+      "lockerRooms": "Šatne",
+      "medicalRoom": "Zdravotnícka miestnosť"
+    }
+  },
+  "finance": {
+    "title": "Finančná správa",
+    "overview": "Finančný prehľad",
+    "budget": "Správa rozpočtu",
+    "revenue": "Príjmy",
+    "expenses": "Výdavky",
+    "reports": "Finančné správy",
+    "invoicing": "Fakturácia",
+    "sponsorships": "Sponzorstvo",
+    "grants": "Granty a financovanie"
+  },
+  "events": {
+    "title": "Správa udalostí",
+    "calendar": "Kalendár udalostí",
+    "create": "Vytvoriť udalosť",
+    "upcoming": "Nadchádzajúce udalosti",
+    "past": "Minulé udalosti",
+    "types": {
+      "games": "Zápasy",
+      "tournaments": "Turnaje",
+      "fundraisers": "Zbierky",
+      "meetings": "Stretnutia",
+      "social": "Spoločenské udalosti",
+      "training": "Tréningové kempy"
+    }
+  },
+  "communication": {
+    "title": "Komunikácia",
+    "announcements": "Oznámenia",
+    "newsletters": "Spravodajce",
+    "social": "Sociálne médiá",
+    "website": "Aktualizácie webu",
+    "press": "Tlačové správy",
+    "internal": "Interná komunikácia",
+    "broadcast": "Hromadná správa"
+  },
+  "compliance": {
+    "title": "Súlad a riadenie",
+    "policies": "Politiky",
+    "procedures": "Postupy",
+    "regulations": "Nariadenia",
+    "certifications": "Certifikácie",
+    "audits": "Audity",
+    "reports": "Správy o súlade",
+    "training": "Školenie o súlade"
+  },
+  "reports": {
+    "title": "Správy a analytika",
+    "dashboard": "Výkonný panel",
+    "operational": "Prevádzkové správy",
+    "financial": "Finančné správy",
+    "performance": "Metriky výkonu",
+    "custom": "Vlastné správy",
+    "export": "Exportovať dáta",
+    "schedule": "Naplánovať správy"
+  },
+  "members": {
+    "title": "Správa členstva",
+    "directory": "Adresár členov",
+    "registration": "Registrácia",
+    "renewal": "Obnovenie členstva",
+    "benefits": "Výhody členstva",
+    "communication": "Komunikácia s členmi",
+    "statistics": "Štatistiky členstva",
+    "byRole": "Členovia podľa role"
+  }
+}

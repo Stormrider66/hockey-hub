@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Administrateur système",
+    "subtitle": "Gestion et configuration de la plateforme",
+    "welcome": "Bienvenue, administrateur système",
+    "systemStatus": "État du système",
+    "alerts": "Alertes système"
+  },
+  "system": {
+    "title": "Gestion du système",
+    "status": "État du système",
+    "health": "Vérification de santé",
+    "healthScore": "Santé du système",
+    "monitoring": "Surveillance du système",
+    "logs": "Journaux système",
+    "performance": "Métriques de performance",
+    "uptime": "Temps de fonctionnement",
+    "resources": "Utilisation des ressources",
+    "activeUsers": "Utilisateurs actifs",
+    "errorRate": "Taux d'erreur",
+    "responseTime": "Temps de réponse",
+    "databaseSize": "Taille de la base de données",
+    "withinSLA": "Dans les SLA",
+    "systemPerformance24h": "Performance du système (24h)",
+    "serviceHealthMatrix": "Matrice de santé des services",
+    "cpuMemoryUsage": "Utilisation CPU, mémoire et volume de requêtes",
+    "realTimeServiceStatus": "État des services et métriques en temps réel"
+  },
+  "users": {
+    "title": "Gestion des utilisateurs",
+    "all": "Tous les utilisateurs",
+    "create": "Créer un utilisateur",
+    "edit": "Modifier l'utilisateur",
+    "delete": "Supprimer l'utilisateur",
+    "roles": "Rôles d'utilisateur",
+    "permissions": "Permissions d'utilisateur",
+    "activity": "Activité des utilisateurs",
+    "sessions": "Sessions actives",
+    "audit": "Piste d'audit"
+  },
+  "organizations": {
+    "title": "Gestion des organisations",
+    "all": "Toutes les organisations",
+    "create": "Créer une organisation",
+    "edit": "Modifier l'organisation",
+    "delete": "Supprimer l'organisation",
+    "settings": "Paramètres de l'organisation",
+    "limits": "Limites d'utilisation",
+    "billing": "Informations de facturation"
+  },
+  "security": {
+    "title": "Gestion de la sécurité",
+    "settings": "Paramètres de sécurité",
+    "authentication": "Authentification",
+    "authorization": "Autorisation",
+    "tokens": "Jetons API",
+    "certificates": "Certificats SSL",
+    "firewall": "Règles de pare-feu",
+    "threats": "Détection des menaces",
+    "incidents": "Incidents de sécurité"
+  },
+  "database": {
+    "title": "Gestion de la base de données",
+    "status": "État de la base de données",
+    "backup": "Gestion des sauvegardes",
+    "restore": "Restaurer la base de données",
+    "migrations": "Migrations de base de données",
+    "optimization": "Optimisation des requêtes",
+    "connections": "Pool de connexions",
+    "maintenance": "Tâches de maintenance"
+  },
+  "services": {
+    "title": "Gestion des services",
+    "status": "État des services",
+    "configuration": "Configuration des services",
+    "dependencies": "Dépendances",
+    "health": "Vérifications de santé",
+    "restart": "Redémarrer le service",
+    "logs": "Journaux de service",
+    "metrics": "Métriques de service"
+  },
+  "integrations": {
+    "title": "Intégrations",
+    "connected": "Services connectés",
+    "available": "Intégrations disponibles",
+    "configure": "Configurer l'intégration",
+    "test": "Tester la connexion",
+    "logs": "Journaux d'intégration",
+    "webhooks": "Webhooks",
+    "api": "Gestion API"
+  },
+  "configuration": {
+    "title": "Configuration du système",
+    "general": "Paramètres généraux",
+    "email": "Configuration courriel",
+    "storage": "Paramètres de stockage",
+    "cache": "Gestion du cache",
+    "queue": "Configuration de file d'attente",
+    "scheduler": "Planificateur de tâches",
+    "features": "Indicateurs de fonctionnalités"
+  },
+  "monitoring": {
+    "title": "Surveillance du système",
+    "dashboard": "Tableau de bord de surveillance",
+    "alerts": "Configuration des alertes",
+    "metrics": "Métriques système",
+    "logs": "Analyse des journaux",
+    "errors": "Suivi des erreurs",
+    "performance": "Analyse de performance",
+    "reports": "Rapports système"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "schedule": "Calendrier de maintenance",
+    "tasks": "Tâches de maintenance",
+    "updates": "Mises à jour système",
+    "patches": "Correctifs de sécurité",
+    "cleanup": "Nettoyage des données",
+    "optimization": "Optimisation du système",
+    "mode": "Mode maintenance"
+  }
+}

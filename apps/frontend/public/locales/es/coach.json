@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Panel del Entrenador",
+    "subtitle": "Gestión del equipo y seguimiento del rendimiento",
+    "welcome": "¡Bienvenido de vuelta, Entrenador {{name}}!",
+    "quickStats": "Estadísticas Rápidas",
+    "todaysFocus": "Enfoque de Hoy"
+  },
+  "team": {
+    "title": "Gestión del Equipo",
+    "roster": "Plantilla del Equipo",
+    "lineups": "Combinaciones de Líneas",
+    "availability": "Disponibilidad de Jugadores",
+    "performance": "Rendimiento del Equipo",
+    "statistics": "Estadísticas del Equipo",
+    "playerStatus": {
+      "available": "Disponible",
+      "limited": "Limitado",
+      "unavailable": "No Disponible",
+      "injured": "Lesionado",
+      "dayToDay": "Día a Día"
+    }
+  },
+  "practice": {
+    "title": "Planificación de Prácticas",
+    "schedule": "Calendario de Prácticas",
+    "drills": "Biblioteca de Ejercicios",
+    "templates": "Plantillas de Práctica",
+    "planning": "Planificación de Sesión",
+    "attendance": "Control de Asistencia",
+    "intensity": "Intensidad de Práctica",
+    "focus": {
+      "offense": "Sistemas Ofensivos",
+      "defense": "Sistemas Defensivos",
+      "specialTeams": "Equipos Especiales",
+      "conditioning": "Acondicionamiento",
+      "skills": "Desarrollo de Habilidades"
+    },
+    "types": {
+      "full": "Práctica Completa",
+      "optional": "Patinaje Opcional",
+      "morning": "Patinaje Matutino",
+      "preGame": "Patinaje Pre-Partido",
+      "recovery": "Sesión de Recuperación"
+    }
+  },
+  "games": {
+    "title": "Gestión de Partidos",
+    "schedule": "Calendario de Partidos",
+    "preparation": "Preparación del Partido",
+    "tactics": "Planificación Táctica",
+    "lineups": "Alineaciones del Partido",
+    "scouting": "Informes de Scouting",
+    "video": "Análisis de Video",
+    "stats": {
+      "goals": "Goles",
+      "assists": "Asistencias",
+      "shots": "Disparos",
+      "saves": "Paradas",
+      "faceoffs": "Enfrentamientos",
+      "penalties": "Penalizaciones",
+      "hits": "Golpes",
+      "blocks": "Bloqueos"
+    }
+  },
+  "tactics": {
+    "title": "Pizarra Táctica",
+    "systems": "Sistemas del Equipo",
+    "powerPlay": "Superioridad Numérica",
+    "penaltyKill": "Inferioridad Numérica",
+    "faceoffPlays": "Jugadas de Enfrentamiento",
+    "breakouts": "Patrones de Salida",
+    "forecheck": "Sistemas de Presión",
+    "neutralZone": "Zona Neutral",
+    "save": "Guardar Táctica",
+    "load": "Cargar Táctica"
+  },
+  "communication": {
+    "title": "Comunicación del Equipo",
+    "announcements": "Anuncios del Equipo",
+    "meetings": "Reuniones del Equipo",
+    "feedback": "Retroalimentación de Jugadores",
+    "messages": "Mensajes Directos",
+    "broadcast": "Enviar Mensaje General",
+    "schedule": "Programar Reunión"
+  },
+  "analytics": {
+    "title": "Análisis de Rendimiento",
+    "teamMetrics": "Métricas del Equipo",
+    "playerMetrics": "Métricas de Jugadores",
+    "trends": "Tendencias de Rendimiento",
+    "comparison": "Comparación de Equipos",
+    "advanced": "Estadísticas Avanzadas",
+    "reports": "Generar Reportes",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Inicios en Zona Ofensiva",
+      "gaa": "Promedio de Goles en Contra",
+      "svp": "Porcentaje de Paradas"
+    }
+  },
+  "development": {
+    "title": "Desarrollo de Jugadores",
+    "plans": "Planes de Desarrollo",
+    "progress": "Seguimiento de Progreso",
+    "goals": "Objetivos de Desarrollo",
+    "assessments": "Evaluaciones de Habilidades",
+    "feedback": "Retroalimentación de Desarrollo",
+    "programs": "Programas de Entrenamiento"
+  },
+  "lineup": {
+    "title": "Gestión de Líneas",
+    "forward": "Líneas de Delanteros",
+    "defense": "Parejas Defensivas",
+    "powerPlay": "Unidades de Superioridad",
+    "penaltyKill": "Unidades de Inferioridad",
+    "scratches": "Descartes Sanos",
+    "optimize": "Optimizar Líneas",
+    "save": "Guardar Alineación",
+    "positions": {
+      "c": "Centro",
+      "lw": "Ala Izquierda",
+      "rw": "Ala Derecha",
+      "ld": "Defensa Izquierdo",
+      "rd": "Defensa Derecho",
+      "g": "Portero"
+    }
+  }
+}

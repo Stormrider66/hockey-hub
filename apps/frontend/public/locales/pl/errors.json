@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Ups! Coś poszło nie tak",
+    "subtitle": "Przepraszamy za niedogodności",
+    "tryAgain": "Spróbuj ponownie",
+    "goHome": "Przejdź do panelu",
+    "contactSupport": "Skontaktuj się z pomocą"
+  },
+  "http": {
+    "400": {
+      "title": "Nieprawidłowe żądanie",
+      "message": "Serwer nie mógł zrozumieć żądania."
+    },
+    "401": {
+      "title": "Nieautoryzowany",
+      "message": "Musisz się zalogować, aby uzyskać dostęp do tego zasobu."
+    },
+    "403": {
+      "title": "Zabroniony",
+      "message": "Nie masz uprawnień dostępu do tego zasobu."
+    },
+    "404": {
+      "title": "Strona nie znaleziona",
+      "message": "Strona, której szukasz, nie istnieje."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Żądanie koliduje z aktualnym stanem serwera."
+    },
+    "422": {
+      "title": "Błąd walidacji",
+      "message": "Podane dane są nieprawidłowe."
+    },
+    "429": {
+      "title": "Zbyt wiele żądań",
+      "message": "Wykonałeś zbyt wiele żądań. Spróbuj ponownie później."
+    },
+    "500": {
+      "title": "Błąd serwera",
+      "message": "Wystąpił nieoczekiwany błąd na naszych serwerach."
+    },
+    "502": {
+      "title": "Błędna brama",
+      "message": "Serwer otrzymał nieprawidłową odpowiedź."
+    },
+    "503": {
+      "title": "Usługa niedostępna",
+      "message": "Usługa jest tymczasowo niedostępna. Spróbuj ponownie później."
+    },
+    "504": {
+      "title": "Przekroczono limit czasu bramy",
+      "message": "Serwer zbyt długo odpowiadał."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Brak połączenia z internetem",
+      "message": "Sprawdź połączenie internetowe i spróbuj ponownie."
+    },
+    "timeout": {
+      "title": "Przekroczono limit czasu żądania",
+      "message": "Żądanie trwało zbyt długo. Spróbuj ponownie."
+    },
+    "connectionFailed": {
+      "title": "Połączenie nieudane",
+      "message": "Nie można połączyć się z serwerem. Spróbuj ponownie."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Nie udało się załadować danych",
+      "message": "Nie mogliśmy załadować żądanych danych. Spróbuj odświeżyć stronę."
+    },
+    "dataSave": {
+      "title": "Nie udało się zapisać",
+      "message": "Twoje zmiany nie mogły zostać zapisane. Spróbuj ponownie."
+    },
+    "fileUpload": {
+      "title": "Przesyłanie nieudane",
+      "message": "Nie można przesłać pliku. Sprawdź plik i spróbuj ponownie."
+    },
+    "permissionDenied": {
+      "title": "Odmowa dostępu",
+      "message": "Nie masz uprawnień do wykonania tej akcji."
+    },
+    "sessionExpired": {
+      "title": "Sesja wygasła",
+      "message": "Twoja sesja wygasła. Zaloguj się ponownie."
+    },
+    "maintenanceMode": {
+      "title": "Przerwa konserwacyjna",
+      "message": "Przeprowadzamy zaplanowaną konserwację. Sprawdź ponownie wkrótce."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Błąd przesyłania formularza",
+      "message": "Wystąpił błąd podczas przesyłania formularza. Sprawdź dane i spróbuj ponownie."
+    },
+    "validation": {
+      "title": "Błąd walidacji",
+      "message": "Popraw błędy w formularzu."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Płatność nieudana",
+      "message": "Twoja płatność nie mogła zostać przetworzona. Spróbuj innej metody płatności."
+    },
+    "declined": {
+      "title": "Płatność odrzucona",
+      "message": "Twoja płatność została odrzucona. Sprawdź dane płatności."
+    },
+    "insufficientFunds": {
+      "title": "Niewystarczające środki",
+      "message": "Twoja metoda płatności ma niewystarczające środki."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Konflikt w harmonogramie",
+      "message": "Ten termin koliduje z innym wydarzeniem."
+    },
+    "bookingFailed": {
+      "title": "Rezerwacja nieudana",
+      "message": "Nie można zarezerwować wybranego terminu."
+    },
+    "facilityUnavailable": {
+      "title": "Obiekt niedostępny",
+      "message": "Wybrany obiekt nie jest dostępny w tym czasie."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Sesja treningowa nie znaleziona",
+      "message": "Sesja treningowa, której szukasz, nie istnieje."
+    },
+    "alreadyStarted": {
+      "title": "Sesja już rozpoczęta",
+      "message": "Ta sesja treningowa już się rozpoczęła."
+    },
+    "capacityReached": {
+      "title": "Sesja pełna",
+      "message": "Ta sesja treningowa osiągnęła maksymalną pojemność."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Wiadomość nie wysłana",
+      "message": "Twoja wiadomość nie mogła zostać wysłana. Spróbuj ponownie."
+    },
+    "notificationFailed": {
+      "title": "Powiadomienie nieudane",
+      "message": "Nie można teraz wysłać powiadomień."
+    }
+  },
+  "actions": {
+    "retry": "Ponów",
+    "dismiss": "Zamknij",
+    "details": "Zobacz szczegóły",
+    "report": "Zgłoś problem",
+    "refresh": "Odśwież stronę"
+  }
+}

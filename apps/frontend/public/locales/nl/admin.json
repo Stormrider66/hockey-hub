@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Systeembeheerder",
+    "subtitle": "Platformbeheer en configuratie",
+    "welcome": "Welkom, Systeembeheerder",
+    "systemStatus": "Systeemstatus",
+    "alerts": "Systeemwaarschuwingen"
+  },
+  "system": {
+    "title": "Systeembeheer",
+    "status": "Systeemstatus",
+    "health": "Gezondheidscontrole",
+    "healthScore": "Systeemgezondheid",
+    "monitoring": "Systeemmonitoring",
+    "logs": "Systeemlogboeken",
+    "performance": "Prestatiestatistieken",
+    "uptime": "Uptime",
+    "resources": "Resourcegebruik",
+    "activeUsers": "Actieve gebruikers",
+    "errorRate": "Foutenpercentage",
+    "responseTime": "Responstijd",
+    "databaseSize": "Databasegrootte",
+    "withinSLA": "Binnen SLA",
+    "systemPerformance24h": "Systeemprestaties (24u)",
+    "serviceHealthMatrix": "Service gezondheidsmatrix",
+    "cpuMemoryUsage": "CPU, geheugengebruik en aanvraagvolume",
+    "realTimeServiceStatus": "Real-time servicestatus en statistieken"
+  },
+  "users": {
+    "title": "Gebruikersbeheer",
+    "all": "Alle gebruikers",
+    "create": "Gebruiker aanmaken",
+    "edit": "Gebruiker bewerken",
+    "delete": "Gebruiker verwijderen",
+    "roles": "Gebruikersrollen",
+    "permissions": "Gebruikersmachtigingen",
+    "activity": "Gebruikersactiviteit",
+    "sessions": "Actieve sessies",
+    "audit": "Auditspoor"
+  },
+  "organizations": {
+    "title": "Organisatiebeheer",
+    "all": "Alle organisaties",
+    "create": "Organisatie aanmaken",
+    "edit": "Organisatie bewerken",
+    "delete": "Organisatie verwijderen",
+    "settings": "Organisatie-instellingen",
+    "limits": "Gebruikslimieten",
+    "billing": "Factureringsinformatie"
+  },
+  "security": {
+    "title": "Beveiligingsbeheer",
+    "settings": "Beveiligingsinstellingen",
+    "authentication": "Authenticatie",
+    "authorization": "Autorisatie",
+    "tokens": "API Tokens",
+    "certificates": "SSL Certificaten",
+    "firewall": "Firewall regels",
+    "threats": "Bedreigingsdetectie",
+    "incidents": "Beveiligingsincidenten"
+  },
+  "database": {
+    "title": "Databasebeheer",
+    "status": "Databasestatus",
+    "backup": "Back-upbeheer",
+    "restore": "Database herstellen",
+    "migrations": "Database migraties",
+    "optimization": "Query optimalisatie",
+    "connections": "Verbindingspool",
+    "maintenance": "Onderhoudstaken"
+  },
+  "services": {
+    "title": "Servicebeheer",
+    "status": "Servicestatus",
+    "configuration": "Serviceconfiguratie",
+    "dependencies": "Afhankelijkheden",
+    "health": "Gezondheidscontroles",
+    "restart": "Service herstarten",
+    "logs": "Servicelogboeken",
+    "metrics": "Servicestatistieken"
+  },
+  "integrations": {
+    "title": "Integraties",
+    "connected": "Verbonden services",
+    "available": "Beschikbare integraties",
+    "configure": "Integratie configureren",
+    "test": "Verbinding testen",
+    "logs": "Integratielogboeken",
+    "webhooks": "Webhooks",
+    "api": "API Beheer"
+  },
+  "configuration": {
+    "title": "Systeemconfiguratie",
+    "general": "Algemene instellingen",
+    "email": "E-mailconfiguratie",
+    "storage": "Opslaginstelling",
+    "cache": "Cachebeheer",
+    "queue": "Wachtrijconfiguratie",
+    "scheduler": "Taakplanner",
+    "features": "Functievlaggen"
+  },
+  "monitoring": {
+    "title": "Systeemmonitoring",
+    "dashboard": "Monitoring dashboard",
+    "alerts": "Waarschuwingsconfiguratie",
+    "metrics": "Systeemstatistieken",
+    "logs": "Loganalyse",
+    "errors": "Foutentracering",
+    "performance": "Prestatieanalyse",
+    "reports": "Systeemrapporten"
+  },
+  "maintenance": {
+    "title": "Onderhoud",
+    "schedule": "Onderhoudsschema",
+    "tasks": "Onderhoudstaken",
+    "updates": "Systeemupdates",
+    "patches": "Beveiligingspatches",
+    "cleanup": "Data opschoning",
+    "optimization": "Systeemoptimalisatie",
+    "mode": "Onderhoudsmodus"
+  }
+}

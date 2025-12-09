@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Administrador del Sistema",
+    "subtitle": "Gestión y configuración de la plataforma",
+    "welcome": "Bienvenido, Administrador del Sistema",
+    "systemStatus": "Estado del Sistema",
+    "alerts": "Alertas del Sistema"
+  },
+  "system": {
+    "title": "Gestión del Sistema",
+    "status": "Estado del Sistema",
+    "health": "Verificación de Salud",
+    "healthScore": "Salud del Sistema",
+    "monitoring": "Monitoreo del Sistema",
+    "logs": "Registros del Sistema",
+    "performance": "Métricas de Rendimiento",
+    "uptime": "Tiempo de Actividad",
+    "resources": "Uso de Recursos",
+    "activeUsers": "Usuarios Activos",
+    "errorRate": "Tasa de Errores",
+    "responseTime": "Tiempo de Respuesta",
+    "databaseSize": "Tamaño de Base de Datos",
+    "withinSLA": "Dentro del SLA",
+    "systemPerformance24h": "Rendimiento del Sistema (24h)",
+    "serviceHealthMatrix": "Matriz de Salud de Servicios",
+    "cpuMemoryUsage": "Uso de CPU, memoria y volumen de solicitudes",
+    "realTimeServiceStatus": "Estado y métricas de servicios en tiempo real"
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "all": "Todos los Usuarios",
+    "create": "Crear Usuario",
+    "edit": "Editar Usuario",
+    "delete": "Eliminar Usuario",
+    "roles": "Roles de Usuario",
+    "permissions": "Permisos de Usuario",
+    "activity": "Actividad de Usuario",
+    "sessions": "Sesiones Activas",
+    "audit": "Registro de Auditoría"
+  },
+  "organizations": {
+    "title": "Gestión de Organizaciones",
+    "all": "Todas las Organizaciones",
+    "create": "Crear Organización",
+    "edit": "Editar Organización",
+    "delete": "Eliminar Organización",
+    "settings": "Configuración de Organización",
+    "limits": "Límites de Uso",
+    "billing": "Información de Facturación"
+  },
+  "security": {
+    "title": "Gestión de Seguridad",
+    "settings": "Configuración de Seguridad",
+    "authentication": "Autenticación",
+    "authorization": "Autorización",
+    "tokens": "Tokens de API",
+    "certificates": "Certificados SSL",
+    "firewall": "Reglas de Firewall",
+    "threats": "Detección de Amenazas",
+    "incidents": "Incidentes de Seguridad"
+  },
+  "database": {
+    "title": "Gestión de Base de Datos",
+    "status": "Estado de Base de Datos",
+    "backup": "Gestión de Respaldos",
+    "restore": "Restaurar Base de Datos",
+    "migrations": "Migraciones de Base de Datos",
+    "optimization": "Optimización de Consultas",
+    "connections": "Pool de Conexiones",
+    "maintenance": "Tareas de Mantenimiento"
+  },
+  "services": {
+    "title": "Gestión de Servicios",
+    "status": "Estado de Servicios",
+    "configuration": "Configuración de Servicios",
+    "dependencies": "Dependencias",
+    "health": "Verificaciones de Salud",
+    "restart": "Reiniciar Servicio",
+    "logs": "Registros del Servicio",
+    "metrics": "Métricas del Servicio"
+  },
+  "integrations": {
+    "title": "Integraciones",
+    "connected": "Servicios Conectados",
+    "available": "Integraciones Disponibles",
+    "configure": "Configurar Integración",
+    "test": "Probar Conexión",
+    "logs": "Registros de Integración",
+    "webhooks": "Webhooks",
+    "api": "Gestión de API"
+  },
+  "configuration": {
+    "title": "Configuración del Sistema",
+    "general": "Configuración General",
+    "email": "Configuración de Correo",
+    "storage": "Configuración de Almacenamiento",
+    "cache": "Gestión de Caché",
+    "queue": "Configuración de Cola",
+    "scheduler": "Programador de Tareas",
+    "features": "Banderas de Características"
+  },
+  "monitoring": {
+    "title": "Monitoreo del Sistema",
+    "dashboard": "Panel de Monitoreo",
+    "alerts": "Configuración de Alertas",
+    "metrics": "Métricas del Sistema",
+    "logs": "Análisis de Registros",
+    "errors": "Seguimiento de Errores",
+    "performance": "Análisis de Rendimiento",
+    "reports": "Reportes del Sistema"
+  },
+  "maintenance": {
+    "title": "Mantenimiento",
+    "schedule": "Calendario de Mantenimiento",
+    "tasks": "Tareas de Mantenimiento",
+    "updates": "Actualizaciones del Sistema",
+    "patches": "Parches de Seguridad",
+    "cleanup": "Limpieza de Datos",
+    "optimization": "Optimización del Sistema",
+    "mode": "Modo de Mantenimiento"
+  }
+}

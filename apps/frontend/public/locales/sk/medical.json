@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Panel zdravotníckeho personálu",
+    "subtitle": "Správa zdravia a zranení hráčov",
+    "welcome": "Vitajte, {{name}}",
+    "urgentCases": "Urgentné prípady",
+    "todayAppointments": "Dnešné vyšetrenia"
+  },
+  "players": {
+    "title": "Prehľad zdravia hráčov",
+    "status": "Zdravotný stav",
+    "active": "Aktívni hráči",
+    "injured": "Zranení hráči",
+    "recovery": "V rekonvalescencii",
+    "cleared": "Nedávno uvoľnení",
+    "monitoring": "Pod dohľadom",
+    "search": "Hľadať hráčov",
+    "filter": "Filtrovať podľa stavu"
+  },
+  "injuries": {
+    "title": "Správa zranení",
+    "current": "Aktuálne zranenia",
+    "history": "História zranení",
+    "report": "Nahlásiť nové zranenie",
+    "update": "Aktualizovať zranenie",
+    "severity": {
+      "minor": "Ľahké",
+      "moderate": "Stredné",
+      "major": "Vážne",
+      "severe": "Závažné",
+      "careerThreatening": "Ohrozujúce kariéru"
+    },
+    "types": {
+      "concussion": "Otras mozgu",
+      "fracture": "Zlomenina",
+      "sprain": "Podvrtnutie",
+      "strain": "Natiahnutie",
+      "bruise": "Pomliaždenina",
+      "cut": "Rezná rana",
+      "dislocation": "Vykĺbenie",
+      "illness": "Choroba"
+    },
+    "bodyParts": {
+      "head": "Hlava",
+      "neck": "Krk",
+      "shoulder": "Rameno",
+      "arm": "Ruka",
+      "elbow": "Lakeť",
+      "wrist": "Zápästie",
+      "hand": "Dlaň",
+      "back": "Chrbát",
+      "chest": "Hrudník",
+      "abdomen": "Brucho",
+      "hip": "Bok",
+      "groin": "Slabina",
+      "thigh": "Stehno",
+      "knee": "Koleno",
+      "ankle": "Členok",
+      "foot": "Noha"
+    }
+  },
+  "treatment": {
+    "title": "Liečebné plány",
+    "active": "Aktívne liečby",
+    "scheduled": "Naplánované sedenia",
+    "completed": "Ukončené liečby",
+    "create": "Vytvoriť liečebný plán",
+    "modify": "Upraviť plán",
+    "types": {
+      "physiotherapy": "Fyzioterapia",
+      "massage": "Masáž",
+      "medication": "Medikácia",
+      "surgery": "Operácia",
+      "rehabilitation": "Rehabilitácia",
+      "rest": "Odpočinok/Regenerácia",
+      "imaging": "Zobrazovanie/Skeny"
+    },
+    "frequency": {
+      "daily": "Denne",
+      "everyOtherDay": "Každý druhý deň",
+      "twiceWeekly": "Dvakrát týždenne",
+      "weekly": "Týždenne",
+      "asNeeded": "Podľa potreby"
+    }
+  },
+  "appointments": {
+    "title": "Lekárske vyšetrenia",
+    "schedule": "Naplánovať vyšetrenie",
+    "upcoming": "Nadchádzajúce vyšetrenia",
+    "today": "Dnešný rozpis",
+    "calendar": "Kalendár vyšetrení",
+    "types": {
+      "checkup": "Pravidelná prehliadka",
+      "injury": "Vyšetrenie zranenia",
+      "followup": "Kontrolné vyšetrenie",
+      "clearance": "Potvrdenie spôsobilosti hrať",
+      "physical": "Fyzická prehliadka",
+      "emergency": "Núdzové vyšetrenie"
+    },
+    "duration": {
+      "15min": "15 minút",
+      "30min": "30 minút",
+      "45min": "45 minút",
+      "60min": "1 hodina"
+    }
+  },
+  "records": {
+    "title": "Zdravotné záznamy",
+    "history": "Zdravotná história",
+    "allergies": "Alergie",
+    "medications": "Súčasné lieky",
+    "conditions": "Existujúce ochorenia",
+    "surgeries": "Predchádzajúce operácie",
+    "family": "Rodinná anamnéza",
+    "documents": "Zdravotné dokumenty",
+    "upload": "Nahrať dokument",
+    "download": "Stiahnuť záznamy"
+  },
+  "clearance": {
+    "title": "Návrat do hry",
+    "pending": "Čakajúce povolenia",
+    "evaluate": "Vyhodnotiť hráča",
+    "protocols": "Protokoly návratu",
+    "tests": "Požadované testy",
+    "approve": "Schváliť návrat",
+    "deny": "Zamietnuť návrat",
+    "conditional": "Podmienečný návrat",
+    "restrictions": "Obmedzenia aktivít"
+  },
+  "reports": {
+    "title": "Zdravotné správy",
+    "injury": "Správa o zranení",
+    "team": "Zdravotná správa tímu",
+    "individual": "Individuálna správa",
+    "insurance": "Správa pre poisťovňu",
+    "compliance": "Správa o súlade",
+    "generate": "Vygenerovať správu",
+    "export": "Exportovať správu"
+  },
+  "emergency": {
+    "title": "Núdzové protokoly",
+    "contacts": "Núdzové kontakty",
+    "procedures": "Núdzové postupy",
+    "equipment": "Núdzové vybavenie",
+    "locations": "Nemocnice",
+    "action": "Núdzový akčný plán",
+    "call": "Núdzové volanie"
+  },
+  "wellness": {
+    "title": "Monitoring pohody",
+    "daily": "Denné kontroly",
+    "trends": "Trendy pohody",
+    "alerts": "Upozornenia na pohodu",
+    "metrics": {
+      "sleep": "Kvalita spánku",
+      "fatigue": "Úroveň únavy",
+      "soreness": "Bolesť svalov",
+      "mood": "Nálada",
+      "stress": "Úroveň stresu",
+      "hydration": "Hydratácia"
+    }
+  }
+}

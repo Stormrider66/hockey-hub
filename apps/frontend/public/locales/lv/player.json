@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Spēlētāja vadības panelis",
+    "subtitle": "Sekojiet līdzi savai sniegumam un attīstībai",
+    "welcome": "Laipni lūdzam atpakaļ, {{name}}!",
+    "todaySchedule": "Šodienas grafiks",
+    "upcomingEvents": "Gaidāmie notikumi",
+    "recentPerformance": "Nesenie sasniegumi",
+    "developmentGoals": "Attīstības mērķi"
+  },
+  "profile": {
+    "playerInfo": "Spēlētāja informācija",
+    "number": "Krekla numurs",
+    "position": "Pozīcija",
+    "shoots": "Metiens",
+    "team": "Komanda",
+    "age": "Vecums",
+    "height": "Augums",
+    "weight": "Svars",
+    "joined": "Pievienojās",
+    "contractExpires": "Līgums beidzas"
+  },
+  "wellness": {
+    "title": "Ikdienas labsajūtas pārbaude",
+    "subtitle": "Kā jūs jūtaties šodien?",
+    "submit": "Iesniegt labsajūtas datus",
+    "submitted": "Labsajūtas dati veiksmīgi iesniegti",
+    "metrics": {
+      "hrv": "Sirdsdarbības mainīgums",
+      "sleep": "Miega kvalitāte",
+      "fatigue": "Noguruma līmenis",
+      "mood": "Garastāvoklis",
+      "soreness": "Muskuļu sāpīgums",
+      "stress": "Stresa līmenis",
+      "hydration": "Hidratācija",
+      "nutrition": "Uztura kvalitāte"
+    },
+    "scale": {
+      "poor": "Vāja",
+      "fair": "Apmierinoša",
+      "good": "Laba",
+      "veryGood": "Ļoti laba",
+      "excellent": "Izcila"
+    }
+  },
+  "training": {
+    "title": "Treniņu nodarbības",
+    "upcoming": "Gaidāmie treniņi",
+    "completed": "Pabeigtas nodarbības",
+    "assigned": "Piešķirtie treniņi",
+    "progress": "Treniņu progress",
+    "todaysWorkout": "Šodienas treniņš",
+    "completeSession": "Pabeigt nodarbību",
+    "viewDetails": "Skatīt detaļas",
+    "intensity": "Intensitāte",
+    "duration": "Ilgums",
+    "focus": "Fokusa zona",
+    "equipment": "Nepieciešamais inventārs",
+    "location": "Vieta",
+    "coach": "Treneris",
+    "notes": "Nodarbības piezīmes"
+  },
+  "performance": {
+    "title": "Snieguma rādītāji",
+    "seasonStats": "Sezonas statistika",
+    "careerStats": "Karjeras statistika",
+    "lastGame": "Pēdējā spēle",
+    "average": "Vidēji",
+    "total": "Kopā",
+    "trend": "Tendence",
+    "improvement": "Uzlabojums",
+    "metrics": {
+      "goals": "Vārti",
+      "assists": "Rezultatīvas piespēles",
+      "points": "Punkti",
+      "plusMinus": "+/-",
+      "pim": "Soda minūtes",
+      "shots": "Metieni",
+      "shootingPercentage": "Metienu %",
+      "faceoffPercentage": "Iemetienu %",
+      "hits": "Spēka paņēmieni",
+      "blocks": "Bloķēti metieni",
+      "takeaways": "Atņemtas ripas",
+      "giveaways": "Zaudētas ripas",
+      "toi": "Laiks uz ledus",
+      "powerplayGoals": "Vairākuma vārti",
+      "shorthandedGoals": "Mazākuma vārti",
+      "gameWinningGoals": "Uzvaras vārti"
+    }
+  },
+  "schedule": {
+    "title": "Grafiks",
+    "calendar": "Kalendāra skats",
+    "list": "Saraksta skats",
+    "filters": "Filtri",
+    "types": {
+      "game": "Spēle",
+      "practice": "Treniņš",
+      "training": "Fiziskā sagatavotība",
+      "meeting": "Sapulce",
+      "medical": "Medicīniskā apskate",
+      "recovery": "Atjaunošanās",
+      "travel": "Ceļojums",
+      "personal": "Personīgs"
+    },
+    "rsvp": {
+      "title": "Dalības apstiprinājums",
+      "attending": "Piedalīšos",
+      "notAttending": "Nepiedalīšos",
+      "maybe": "Varbūt",
+      "update": "Atjaunināt atbildi"
+    }
+  },
+  "communication": {
+    "title": "Ziņojumi",
+    "inbox": "Iesūtne",
+    "sent": "Nosūtītie",
+    "drafts": "Melnraksti",
+    "compose": "Rakstīt",
+    "teamChat": "Komandas čats",
+    "coachMessages": "Trenera ziņojumi",
+    "announcements": "Paziņojumi"
+  },
+  "development": {
+    "title": "Attīstības plāns",
+    "goals": "Mērķi",
+    "progress": "Progress",
+    "skillAssessment": "Prasmju novērtējums",
+    "trainingPlan": "Treniņu plāns",
+    "milestones": "Sasniegumi",
+    "achievements": "Apbalvojumi",
+    "areas": {
+      "skating": "Slidošana",
+      "shooting": "Metieni",
+      "passing": "Piespēles",
+      "stickHandling": "Ripas vadīšana",
+      "positioning": "Pozicionēšanās",
+      "physicality": "Fiziskā sagatavotība",
+      "mentalGame": "Mentālā spēle",
+      "leadership": "Līderība"
+    }
+  },
+  "nutrition": {
+    "title": "Uzturs",
+    "mealPlan": "Ēdienreižu plāns",
+    "hydration": "Hidratācijas uzskaite",
+    "supplements": "Uztura bagātinātāji",
+    "calories": "Kalorijas",
+    "macros": "Makroelementi",
+    "meals": {
+      "breakfast": "Brokastis",
+      "lunch": "Pusdienas",
+      "dinner": "Vakariņas",
+      "snack": "Uzkoda",
+      "preGame": "Pirms spēles",
+      "postGame": "Pēc spēles"
+    }
+  },
+  "recovery": {
+    "title": "Atjaunošanās",
+    "status": "Atjaunošanās statuss",
+    "activities": "Atjaunošanās aktivitātes",
+    "sleep": "Miega uzskaite",
+    "treatment": "Ārstēšana",
+    "nextSession": "Nākamā atjaunošanās nodarbība",
+    "types": {
+      "massage": "Masāža",
+      "coldTub": "Aukstā vanna",
+      "sauna": "Sauna",
+      "stretching": "Stiepšanās",
+      "yoga": "Joga",
+      "physiotherapy": "Fizioterapija"
+    }
+  }
+}

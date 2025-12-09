@@ -1,0 +1,142 @@
+{
+  "title": "Notifications",
+  "markAllRead": "Tout marquer comme lu",
+  "clearAll": "Tout effacer",
+  "settings": "Paramètres de notification",
+  "empty": "Aucune notification",
+  "loadMore": "Charger plus",
+  "categories": {
+    "all": "Tout",
+    "unread": "Non lu",
+    "system": "Système",
+    "team": "Équipe",
+    "training": "Entraînement",
+    "medical": "Médical",
+    "calendar": "Calendrier",
+    "payment": "Paiement",
+    "communication": "Messages"
+  },
+  "types": {
+    "system": {
+      "welcome": "Bienvenue sur Hockey Hub!",
+      "profileComplete": "Votre profil est maintenant complet",
+      "passwordChanged": "Votre mot de passe a été modifié avec succès",
+      "accountVerified": "Votre compte a été vérifié",
+      "maintenanceScheduled": "Maintenance système prévue pour {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Vous avez été ajouté à {{teamName}}",
+      "removedFromTeam": "Vous avez été retiré de {{teamName}}",
+      "roleChanged": "Votre rôle a été changé pour {{role}}",
+      "teamAnnouncement": "Annonce de l'équipe de {{sender}}",
+      "rosterUpdate": "L'alignement a été mis à jour"
+    },
+    "training": {
+      "sessionScheduled": "Session d'entraînement prévue pour {{date}}",
+      "sessionCancelled": "La session d'entraînement du {{date}} a été annulée",
+      "sessionReminder": "La session d'entraînement commence dans {{time}}",
+      "workoutAssigned": "Nouvel entraînement assigné : {{workoutName}}",
+      "workoutCompleted": "{{player}} a complété l'entraînement : {{workoutName}}",
+      "performanceReport": "Votre rapport de performance est prêt"
+    },
+    "medical": {
+      "appointmentScheduled": "Rendez-vous médical prévu pour {{date}}",
+      "appointmentReminder": "Rendez-vous médical dans {{time}}",
+      "injuryUpdate": "Statut de blessure mis à jour pour {{player}}",
+      "clearanceGranted": "{{player}} a été autorisé à jouer",
+      "wellnessReminder": "Veuillez soumettre votre vérification de bien-être quotidienne",
+      "treatmentComplete": "Session de traitement terminée"
+    },
+    "calendar": {
+      "eventCreated": "Nouvel événement : {{eventName}}",
+      "eventUpdated": "Événement mis à jour : {{eventName}}",
+      "eventCancelled": "Événement annulé : {{eventName}}",
+      "eventReminder": "{{eventName}} commence dans {{time}}",
+      "rsvpRequested": "Veuillez confirmer votre présence pour {{eventName}}",
+      "scheduleChange": "Changement d'horaire pour {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Nouvelle facture disponible : {{amount}}",
+      "paymentReceived": "Paiement reçu : {{amount}}",
+      "paymentDue": "Paiement dû : {{amount}} avant {{date}}",
+      "paymentOverdue": "Paiement en retard : {{amount}}",
+      "paymentFailed": "Échec du paiement pour {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Nouveau message de {{sender}}",
+      "mentionedInChat": "{{sender}} vous a mentionné dans {{channel}}",
+      "addedToGroup": "Vous avez été ajouté à {{groupName}}",
+      "missedCall": "Appel manqué de {{caller}}",
+      "voicemail": "Nouveau message vocal de {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Match prévu : {{opponent}} le {{date}}",
+      "gameReminder": "Match contre {{opponent}} commence dans {{time}}",
+      "lineupPosted": "L'alignement du match a été publié",
+      "gameResult": "Résultat du match : {{result}} contre {{opponent}}",
+      "statsAvailable": "Vos statistiques de match sont maintenant disponibles"
+    },
+    "equipment": {
+      "fittingScheduled": "Essayage d'équipement prévu pour {{date}}",
+      "maintenanceDue": "Maintenance d'équipement due pour {{equipment}}",
+      "orderReady": "Votre commande d'équipement est prête pour le ramassage",
+      "returnReminder": "Veuillez retourner {{equipment}} avant {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Voir",
+    "dismiss": "Ignorer",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "respond": "Répondre",
+    "schedule": "Planifier",
+    "pay": "Payer maintenant",
+    "download": "Télécharger",
+    "viewDetails": "Voir les détails"
+  },
+  "preferences": {
+    "title": "Préférences de notification",
+    "channels": {
+      "email": "Courriel",
+      "push": "Notifications push",
+      "inApp": "Dans l'application",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Immédiat",
+      "hourly": "Résumé horaire",
+      "daily": "Résumé quotidien",
+      "weekly": "Résumé hebdomadaire"
+    },
+    "quiet": {
+      "title": "Heures de silence",
+      "enabled": "Activer les heures de silence",
+      "from": "De",
+      "to": "À",
+      "days": "Jours"
+    },
+    "types": {
+      "training": "Mises à jour d'entraînement",
+      "medical": "Rappels médicaux",
+      "calendar": "Événements du calendrier",
+      "team": "Annonces de l'équipe",
+      "chat": "Messages de discussion",
+      "payment": "Rappels de paiement",
+      "system": "Notifications système"
+    }
+  },
+  "time": {
+    "justNow": "À l'instant",
+    "minutesAgo": "Il y a {{count}} minutes",
+    "hoursAgo": "Il y a {{count}} heures",
+    "yesterday": "Hier",
+    "daysAgo": "Il y a {{count}} jours",
+    "weeksAgo": "Il y a {{count}} semaines"
+  },
+  "status": {
+    "sent": "Envoyé",
+    "delivered": "Livré",
+    "read": "Lu",
+    "failed": "Échec de l'envoi"
+  }
+}

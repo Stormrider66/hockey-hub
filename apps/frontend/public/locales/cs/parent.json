@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Panel rodiče",
+    "subtitle": "Zůstaňte ve spojení s hokejovou cestou vašeho dítěte",
+    "welcome": "Vítejte, {{name}}!",
+    "childrenOverview": "Přehled dětí",
+    "upcomingEvents": "Nadcházející události"
+  },
+  "children": {
+    "title": "Moje děti",
+    "addChild": "Přidat dítě",
+    "profile": "Profil dítěte",
+    "schedule": "Rozvrh",
+    "performance": "Výkon",
+    "wellness": "Zdraví a pohoda",
+    "communication": "Zprávy",
+    "details": {
+      "team": "Tým",
+      "position": "Pozice",
+      "coach": "Trenér",
+      "number": "Číslo dresu",
+      "age": "Věková kategorie"
+    }
+  },
+  "schedule": {
+    "title": "Rodinný kalendář",
+    "calendar": "Kalendářové zobrazení",
+    "upcoming": "Nadcházející události",
+    "transportation": "Doprava",
+    "conflicts": "Konflikty v rozvrhu",
+    "sync": "Synchronizovat kalendář",
+    "export": "Exportovat rozvrh",
+    "types": {
+      "game": "Zápas",
+      "practice": "Trénink",
+      "tournament": "Turnaj",
+      "teamEvent": "Týmová akce",
+      "meeting": "Rodičovská schůzka",
+      "fundraiser": "Sbírka"
+    },
+    "rsvp": {
+      "title": "Potvrdit účast",
+      "attending": "Budeme tam",
+      "notAttending": "Nemůžeme přijít",
+      "driving": "Můžeme vzít ostatní",
+      "needRide": "Potřebujeme odvoz"
+    }
+  },
+  "transportation": {
+    "title": "Koordinace dopravy",
+    "available": "Dostupní řidiči",
+    "requests": "Žádosti o odvoz",
+    "myOffers": "Moje nabídky odvozů",
+    "carpool": "Skupiny spolujízdy",
+    "seats": "Volná místa",
+    "pickup": "Místo vyzvednutí",
+    "dropoff": "Místo vysazení",
+    "time": "Čas odjezdu"
+  },
+  "payments": {
+    "title": "Platby a poplatky",
+    "overview": "Přehled plateb",
+    "due": "K úhradě",
+    "history": "Historie plateb",
+    "upcoming": "Nadcházející poplatky",
+    "methods": "Platební metody",
+    "invoices": "Faktury",
+    "items": {
+      "registration": "Registrační poplatek",
+      "monthly": "Měsíční příspěvky",
+      "equipment": "Vybavení",
+      "tournament": "Turnajový poplatek",
+      "travel": "Cestovní náklady",
+      "fundraising": "Fundraising"
+    },
+    "status": {
+      "paid": "Zaplaceno",
+      "pending": "Čeká na vyřízení",
+      "overdue": "Po splatnosti",
+      "partial": "Částečná platba"
+    }
+  },
+  "communication": {
+    "title": "Komunikace",
+    "messages": "Zprávy",
+    "announcements": "Týmová oznámení",
+    "coachMessages": "Od trenéra",
+    "teamMessages": "Týmové aktuality",
+    "emergency": "Nouzové kontakty",
+    "directory": "Týmový adresář",
+    "preferences": "Nastavení komunikace"
+  },
+  "medical": {
+    "title": "Zdravotní informace",
+    "records": "Zdravotní záznamy",
+    "allergies": "Alergie",
+    "medications": "Léky",
+    "conditions": "Zdravotní stav",
+    "emergency": "Nouzové kontakty",
+    "insurance": "Informace o pojištění",
+    "consent": "Zdravotní souhlas",
+    "injuries": "Historie zranění"
+  },
+  "documents": {
+    "title": "Dokumenty a formuláře",
+    "required": "Povinné dokumenty",
+    "optional": "Volitelné formuláře",
+    "submitted": "Odevzdáno",
+    "pending": "Čeká na odevzdání",
+    "download": "Stáhnout formuláře",
+    "upload": "Nahrát dokument",
+    "types": {
+      "registration": "Registrační formulář",
+      "medical": "Zdravotní formulář",
+      "waiver": "Zřeknutí se práv",
+      "consent": "Formulář souhlasu",
+      "emergency": "Nouzový kontakt",
+      "insurance": "Karta pojištění"
+    }
+  },
+  "volunteer": {
+    "title": "Dobrovolnické příležitosti",
+    "signup": "Přihlásit se",
+    "myShifts": "Moje dobrovolnické směny",
+    "available": "Dostupné pozice",
+    "hours": "Dobrovolnické hodiny",
+    "requirements": "Požadavky",
+    "positions": {
+      "scorekeeper": "Zapisovatel",
+      "penalty": "Trestná lavice",
+      "concession": "Občerstvení",
+      "fundraising": "Fundraising",
+      "teamManager": "Vedoucí týmu",
+      "equipment": "Pomocník s vybavením"
+    }
+  },
+  "performance": {
+    "title": "Pokrok dítěte",
+    "overview": "Přehled výkonu",
+    "improvement": "Oblasti ke zlepšení",
+    "achievements": "Nedávné úspěchy",
+    "feedback": "Zpětná vazba trenéra",
+    "goals": "Rozvojové cíle",
+    "attendance": "Docházka",
+    "effort": "Úroveň úsilí",
+    "teamwork": "Týmová práce"
+  }
+}

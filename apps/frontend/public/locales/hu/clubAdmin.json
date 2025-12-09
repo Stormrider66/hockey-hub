@@ -1,0 +1,252 @@
+{
+  "dashboard": {
+    "title": "Klub adminisztrátor vezérlőpult",
+    "welcome": "Üdvözöljük, {{name}}!",
+    "organizationOverview": "Szervezet áttekintés",
+    "teamStatus": "Csapatok állapota",
+    "financialSummary": "Pénzügyi összefoglaló",
+    "upcomingEvents": "Közelgő események",
+    "quickActions": "Gyors műveletek",
+    "stats": {
+      "totalMembers": "Összes tag",
+      "activeTeams": "Aktív csapatok",
+      "monthlyRevenue": "Havi bevétel",
+      "pendingTasks": "Függő feladatok"
+    }
+  },
+  "organization": {
+    "title": "Szervezet",
+    "details": "Részletek",
+    "structure": "Struktúra",
+    "contacts": "Kapcsolatok",
+    "documents": "Dokumentumok",
+    "policies": "Szabályzatok",
+    "history": "Történet",
+    "mission": "Küldetés",
+    "vision": "Jövőkép",
+    "values": "Értékek",
+    "info": {
+      "name": "Szervezet neve",
+      "founded": "Alapítás éve",
+      "president": "Elnök",
+      "vicePresident": "Alelnök",
+      "secretary": "Titkár",
+      "treasurer": "Pénztáros",
+      "boardMembers": "Elnökségi tagok",
+      "address": "Cím",
+      "phone": "Telefon",
+      "email": "Email",
+      "website": "Weboldal"
+    }
+  },
+  "teams": {
+    "title": "Csapatok",
+    "management": "Csapat kezelés",
+    "createTeam": "Csapat létrehozása",
+    "editTeam": "Csapat szerkesztése",
+    "roster": "Keret",
+    "staff": "Személyzet",
+    "schedule": "Menetrend",
+    "budget": "Költségvetés",
+    "performance": "Teljesítmény",
+    "categories": {
+      "u7": "U7 - Szupermini",
+      "u9": "U9 - Mini",
+      "u11": "U11 - Előkészítő",
+      "u13": "U13 - Kölyök",
+      "u15": "U15 - Serdülő",
+      "u17": "U17 - Kadet",
+      "u19": "U19 - Junior",
+      "u21": "U21 - Ifjúsági",
+      "senior": "Felnőtt",
+      "women": "Női",
+      "veteran": "Veterán"
+    }
+  },
+  "members": {
+    "title": "Tagok",
+    "directory": "Névjegyzék",
+    "registration": "Regisztráció",
+    "renewal": "Megújítás",
+    "transfers": "Átigazolások",
+    "statistics": "Statisztikák",
+    "categories": "Kategóriák",
+    "search": "Keresés",
+    "export": "Exportálás",
+    "types": {
+      "player": "Játékos",
+      "coach": "Edző",
+      "staff": "Személyzet",
+      "volunteer": "Önkéntes",
+      "parent": "Szülő",
+      "sponsor": "Szponzor",
+      "honorary": "Tiszteletbeli"
+    },
+    "status": {
+      "active": "Aktív",
+      "inactive": "Inaktív",
+      "suspended": "Felfüggesztett",
+      "expired": "Lejárt",
+      "pending": "Függőben"
+    }
+  },
+  "facilities": {
+    "title": "Létesítmények",
+    "management": "Létesítmény kezelés",
+    "booking": "Foglalás",
+    "maintenance": "Karbantartás",
+    "schedule": "Beosztás",
+    "availability": "Elérhetőség",
+    "rates": "Díjak",
+    "types": {
+      "iceRink": "Jégpálya",
+      "lockerRoom": "Öltöző",
+      "meetingRoom": "Tárgyaló",
+      "gym": "Edzőterem",
+      "office": "Iroda",
+      "storage": "Raktár",
+      "parking": "Parkoló",
+      "cafeteria": "Büfé"
+    }
+  },
+  "finance": {
+    "title": "Pénzügyek",
+    "overview": "Áttekintés",
+    "income": "Bevétel",
+    "expenses": "Kiadások",
+    "budget": "Költségvetés",
+    "invoices": "Számlák",
+    "payments": "Kifizetések",
+    "reports": "Jelentések",
+    "sponsors": "Szponzorok",
+    "fundraising": "Adománygyűjtés",
+    "categories": {
+      "membership": "Tagdíjak",
+      "registration": "Regisztráció",
+      "tournaments": "Tornák",
+      "facilities": "Létesítmények",
+      "equipment": "Felszerelés",
+      "travel": "Utazás",
+      "salaries": "Fizetések",
+      "utilities": "Közüzemi díjak",
+      "marketing": "Marketing",
+      "other": "Egyéb"
+    }
+  },
+  "events": {
+    "title": "Események",
+    "calendar": "Naptár",
+    "createEvent": "Esemény létrehozása",
+    "tournaments": "Tornák",
+    "meetings": "Megbeszélések",
+    "fundraisers": "Adománygyűjtő események",
+    "ceremonies": "Ünnepségek",
+    "training": "Képzések",
+    "social": "Közösségi események",
+    "registration": "Regisztráció",
+    "participants": "Résztvevők",
+    "logistics": "Logisztika",
+    "promotion": "Promóció"
+  },
+  "communications": {
+    "title": "Kommunikáció",
+    "announcements": "Közlemények",
+    "newsletters": "Hírlevél",
+    "notifications": "Értesítések",
+    "emailCampaigns": "Email kampányok",
+    "socialMedia": "Közösségi média",
+    "website": "Weboldal",
+    "press": "Sajtó",
+    "templates": "Sablonok",
+    "recipients": "Címzettek",
+    "schedule": "Ütemezés",
+    "analytics": "Elemzések"
+  },
+  "compliance": {
+    "title": "Megfelelőség",
+    "regulations": "Szabályozások",
+    "certifications": "Tanúsítványok",
+    "insurance": "Biztosítás",
+    "safety": "Biztonság",
+    "privacy": "Adatvédelem",
+    "licenses": "Engedélyek",
+    "audits": "Ellenőrzések",
+    "training": "Képzések",
+    "documentation": "Dokumentáció",
+    "deadlines": "Határidők",
+    "requirements": "Követelmények"
+  },
+  "reporting": {
+    "title": "Jelentések",
+    "annual": "Éves jelentés",
+    "monthly": "Havi jelentés",
+    "financial": "Pénzügyi jelentés",
+    "membership": "Tagsági jelentés",
+    "performance": "Teljesítmény jelentés",
+    "custom": "Egyéni jelentés",
+    "dashboards": "Műszerfalak",
+    "analytics": "Elemzések",
+    "exports": "Exportálások",
+    "archive": "Archívum"
+  },
+  "staff": {
+    "title": "Személyzet",
+    "directory": "Névjegyzék",
+    "roles": "Szerepkörök",
+    "assignments": "Beosztások",
+    "contracts": "Szerződések",
+    "payroll": "Bérszámfejtés",
+    "scheduling": "Beosztás",
+    "performance": "Teljesítmény",
+    "training": "Képzés",
+    "recruitment": "Toborzás",
+    "positions": {
+      "coach": "Edző",
+      "assistantCoach": "Segédedző",
+      "manager": "Menedzser",
+      "coordinator": "Koordinátor",
+      "administrator": "Adminisztrátor",
+      "accountant": "Könyvelő",
+      "maintenance": "Karbantartó",
+      "security": "Biztonsági őr"
+    }
+  },
+  "partnerships": {
+    "title": "Partnerségek",
+    "sponsors": "Szponzorok",
+    "partners": "Partnerek",
+    "agreements": "Megállapodások",
+    "benefits": "Előnyök",
+    "obligations": "Kötelezettségek",
+    "renewal": "Megújítás",
+    "prospects": "Potenciális partnerek",
+    "proposals": "Ajánlatok",
+    "contracts": "Szerződések",
+    "levels": {
+      "title": "Névadó szponzor",
+      "platinum": "Platina",
+      "gold": "Arany",
+      "silver": "Ezüst",
+      "bronze": "Bronz",
+      "supporter": "Támogató"
+    }
+  },
+  "settings": {
+    "title": "Beállítások",
+    "organization": "Szervezet beállítások",
+    "permissions": "Jogosultságok",
+    "integrations": "Integrációk",
+    "branding": "Arculat",
+    "notifications": "Értesítések",
+    "security": "Biztonság",
+    "backup": "Biztonsági mentés",
+    "logs": "Naplók",
+    "preferences": {
+      "language": "Nyelv",
+      "timezone": "Időzóna",
+      "currency": "Pénznem",
+      "dateFormat": "Dátum formátum",
+      "fiscalYear": "Pénzügyi év"
+    }
+  }
+}

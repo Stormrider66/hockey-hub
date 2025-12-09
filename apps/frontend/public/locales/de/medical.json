@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medizinisches Personal Dashboard",
+    "subtitle": "Spielergesundheit und Verletzungsmanagement",
+    "welcome": "Willkommen, {{name}}",
+    "urgentCases": "Dringende Fälle",
+    "todayAppointments": "Heutige Termine"
+  },
+  "players": {
+    "title": "Spielergesundheitsübersicht",
+    "status": "Gesundheitsstatus",
+    "active": "Aktive Spieler",
+    "injured": "Verletzte Spieler",
+    "recovery": "In Genesung",
+    "cleared": "Kürzlich freigegeben",
+    "monitoring": "Unter Beobachtung",
+    "search": "Spieler suchen",
+    "filter": "Nach Status filtern"
+  },
+  "injuries": {
+    "title": "Verletzungsmanagement",
+    "current": "Aktuelle Verletzungen",
+    "history": "Verletzungshistorie",
+    "report": "Neue Verletzung melden",
+    "update": "Verletzung aktualisieren",
+    "severity": {
+      "minor": "Geringfügig",
+      "moderate": "Moderat",
+      "major": "Schwer",
+      "severe": "Sehr schwer",
+      "careerThreatening": "Karrierebedrohend"
+    },
+    "types": {
+      "concussion": "Gehirnerschütterung",
+      "fracture": "Bruch",
+      "sprain": "Verstauchung",
+      "strain": "Zerrung",
+      "bruise": "Prellung",
+      "cut": "Schnitt/Platzwunde",
+      "dislocation": "Verrenkung",
+      "illness": "Krankheit"
+    },
+    "bodyParts": {
+      "head": "Kopf",
+      "neck": "Nacken",
+      "shoulder": "Schulter",
+      "arm": "Arm",
+      "elbow": "Ellbogen",
+      "wrist": "Handgelenk",
+      "hand": "Hand",
+      "back": "Rücken",
+      "chest": "Brust",
+      "abdomen": "Bauch",
+      "hip": "Hüfte",
+      "groin": "Leiste",
+      "thigh": "Oberschenkel",
+      "knee": "Knie",
+      "ankle": "Knöchel",
+      "foot": "Fuß"
+    }
+  },
+  "treatment": {
+    "title": "Behandlungspläne",
+    "active": "Aktive Behandlungen",
+    "scheduled": "Geplante Sitzungen",
+    "completed": "Abgeschlossene Behandlungen",
+    "create": "Behandlungsplan erstellen",
+    "modify": "Plan ändern",
+    "types": {
+      "physiotherapy": "Physiotherapie",
+      "massage": "Massage-Therapie",
+      "medication": "Medikation",
+      "surgery": "Operation",
+      "rehabilitation": "Rehabilitation",
+      "rest": "Ruhe/Erholung",
+      "imaging": "Bildgebung/Scans"
+    },
+    "frequency": {
+      "daily": "Täglich",
+      "everyOtherDay": "Jeden zweiten Tag",
+      "twiceWeekly": "Zweimal wöchentlich",
+      "weekly": "Wöchentlich",
+      "asNeeded": "Nach Bedarf"
+    }
+  },
+  "appointments": {
+    "title": "Medizinische Termine",
+    "schedule": "Termin vereinbaren",
+    "upcoming": "Anstehende Termine",
+    "today": "Heutiger Zeitplan",
+    "calendar": "Terminkalender",
+    "types": {
+      "checkup": "Regelmäßige Untersuchung",
+      "injury": "Verletzungsbewertung",
+      "followup": "Nachuntersuchung",
+      "clearance": "Spielfreigabe",
+      "physical": "Körperliche Untersuchung",
+      "emergency": "Notfall"
+    },
+    "duration": {
+      "15min": "15 Minuten",
+      "30min": "30 Minuten",
+      "45min": "45 Minuten",
+      "60min": "1 Stunde"
+    }
+  },
+  "records": {
+    "title": "Medizinische Aufzeichnungen",
+    "history": "Krankengeschichte",
+    "allergies": "Allergien",
+    "medications": "Aktuelle Medikamente",
+    "conditions": "Vorerkrankungen",
+    "surgeries": "Frühere Operationen",
+    "family": "Familiengeschichte",
+    "documents": "Medizinische Dokumente",
+    "upload": "Dokument hochladen",
+    "download": "Aufzeichnungen herunterladen"
+  },
+  "clearance": {
+    "title": "Rückkehr zum Spiel",
+    "pending": "Ausstehende Freigaben",
+    "evaluate": "Spieler bewerten",
+    "protocols": "Rückkehrprotokolle",
+    "tests": "Erforderliche Tests",
+    "approve": "Rückkehr genehmigen",
+    "deny": "Rückkehr verweigern",
+    "conditional": "Bedingte Rückkehr",
+    "restrictions": "Aktivitätsbeschränkungen"
+  },
+  "reports": {
+    "title": "Medizinische Berichte",
+    "injury": "Verletzungsbericht",
+    "team": "Team-Gesundheitsbericht",
+    "individual": "Einzelbericht",
+    "insurance": "Versicherungsbericht",
+    "compliance": "Compliance-Bericht",
+    "generate": "Bericht erstellen",
+    "export": "Bericht exportieren"
+  },
+  "emergency": {
+    "title": "Notfallprotokolle",
+    "contacts": "Notfallkontakte",
+    "procedures": "Notfallverfahren",
+    "equipment": "Notfallausrüstung",
+    "locations": "Krankenhausstandorte",
+    "action": "Notfallaktionsplan",
+    "call": "Notruf"
+  },
+  "wellness": {
+    "title": "Wellness-Überwachung",
+    "daily": "Tägliche Check-ins",
+    "trends": "Wellness-Trends",
+    "alerts": "Wellness-Warnungen",
+    "metrics": {
+      "sleep": "Schlafqualität",
+      "fatigue": "Ermüdungsgrad",
+      "soreness": "Muskelkater",
+      "mood": "Stimmung",
+      "stress": "Stresslevel",
+      "hydration": "Flüssigkeitszufuhr"
+    }
+  }
+}

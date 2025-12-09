@@ -1,0 +1,26 @@
+{
+  "name": "@hockey-hub/translations",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "dependencies": {
+    "i18next": "^23.7.16",
+    "react-i18next": "^14.0.0",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.3.23",
+    "react": "^18.3.1",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "dashboard": {
+    "title": "Edzés",
+    "overview": "Edzés áttekintés",
+    "todaysSessions": "Mai foglalkozások",
+    "upcomingSessions": "Közelgő foglalkozások",
+    "recentActivity": "Legutóbbi tevékenységek",
+    "quickActions": "Gyors műveletek"
+  },
+  "sessions": {
+    "title": "Edzés foglalkozások",
+    "create": "Új foglalkozás",
+    "edit": "Foglalkozás szerkesztése",
+    "delete": "Foglalkozás törlése",
+    "schedule": "Ütemezés",
+    "types": {
+      "strength": "Erőedzés",
+      "cardio": "Kardió",
+      "skills": "Képességfejlesztés",
+      "tactical": "Taktikai",
+      "recovery": "Regeneráció",
+      "testing": "Tesztelés"
+    },
+    "fields": {
+      "title": "Foglalkozás neve",
+      "type": "Típus",
+      "date": "Dátum",
+      "time": "Idő",
+      "duration": "Időtartam",
+      "location": "Helyszín",
+      "coach": "Edző",
+      "participants": "Résztvevők",
+      "equipment": "Szükséges felszerelés",
+      "notes": "Megjegyzések"
+    },
+    "status": {
+      "scheduled": "Ütemezett",
+      "inProgress": "Folyamatban",
+      "completed": "Befejezett",
+      "cancelled": "Lemondva"
+    }
+  },
+  "programs": {
+    "title": "Edzésprogramok",
+    "create": "Program létrehozása",
+    "edit": "Program szerkesztése",
+    "assign": "Program hozzárendelése",
+    "templates": "Sablonok",
+    "phases": {
+      "preparation": "Felkészülési szakasz",
+      "preseason": "Szezon előtti",
+      "inseason": "Szezon közbeni",
+      "postseason": "Szezon utáni",
+      "offseason": "Holtidény"
+    },
+    "focus": {
+      "general": "Általános",
+      "strength": "Erőfejlesztés",
+      "speed": "Gyorsaság",
+      "endurance": "Állóképesség",
+      "power": "Robbanékonyság",
+      "flexibility": "Hajlékonyság",
+      "rehabilitation": "Rehabilitáció"
+    }
+  },
+  "exercises": {
+    "title": "Gyakorlatok",
+    "library": "Gyakorlat könyvtár",
+    "search": "Gyakorlat keresése",
+    "categories": {
+      "warmup": "Bemelegítés",
+      "main": "Fő gyakorlatok",
+      "cooldown": "Levezetés",
+      "stretching": "Nyújtás",
+      "strength": "Erősítés",
+      "cardio": "Kardió",
+      "skill": "Technikai",
+      "tactical": "Taktikai"
+    },
+    "equipment": {
+      "none": "Nincs szükség felszerelésre",
+      "weights": "Súlyzók",
+      "bands": "Gumiszalag",
+      "cones": "Bóják",
+      "sticks": "Ütők",
+      "pucks": "Korongok",
+      "boards": "Táblák",
+      "ladders": "Koordinációs létra",
+      "medicine": "Medicin labda"
+    }
+  },
+  "workouts": {
+    "title": "Edzések",
+    "log": "Edzésnapló",
+    "history": "Előzmények",
+    "metrics": {
+      "sets": "Sorozatok",
+      "reps": "Ismétlések",
+      "weight": "Súly",
+      "time": "Idő",
+      "distance": "Távolság",
+      "speed": "Sebesség",
+      "heartRate": "Pulzus",
+      "calories": "Kalória"
+    },
+    "intensity": {
+      "low": "Alacsony",
+      "moderate": "Közepes",
+      "high": "Magas",
+      "maximum": "Maximális"
+    }
+  },
+  "performance": {
+    "title": "Teljesítmény",
+    "tracking": "Követés",
+    "analysis": "Elemzés",
+    "reports": "Jelentések",
+    "metrics": {
+      "strength": "Erő",
+      "speed": "Gyorsaság",
+      "endurance": "Állóképesség",
+      "flexibility": "Hajlékonyság",
+      "power": "Robbanékonyság",
+      "agility": "Mozgékonyság",
+      "balance": "Egyensúly",
+      "coordination": "Koordináció"
+    },
+    "tests": {
+      "beep": "Beep teszt",
+      "sprint": "Sprint teszt",
+      "jump": "Ugrás teszt",
+      "strength": "Erő teszt",
+      "flexibility": "Hajlékonysági teszt",
+      "balance": "Egyensúly teszt"
+    }
+  },
+  "recovery": {
+    "title": "Regeneráció",
+    "methods": {
+      "rest": "Pihenés",
+      "stretching": "Nyújtás",
+      "massage": "Masszázs",
+      "ice": "Jegelés",
+      "compression": "Kompresszió",
+      "elevation": "Emelés",
+      "hydration": "Hidratálás",
+      "nutrition": "Táplálkozás",
+      "sleep": "Alvás"
+    },
+    "monitoring": {
+      "fatigue": "Fáradtság",
+      "soreness": "Izomfájdalom",
+      "mood": "Hangulat",
+      "energy": "Energia szint",
+      "sleep": "Alvás minőség",
+      "stress": "Stressz szint"
+    }
+  },
+  "planning": {
+    "title": "Tervezés",
+    "calendar": "Edzésnaptár",
+    "periodization": "Periodizáció",
+    "macrocycle": "Makrociklus",
+    "mesocycle": "Mezociklus",
+    "microcycle": "Mikrociklus",
+    "loadManagement": "Terhelés kezelés",
+    "peaking": "Csúcsforma időzítés"
+  },
+  "team": {
+    "title": "Csapat edzés",
+    "drills": "Csapat gyakorlatok",
+    "formations": "Felállások",
+    "tactics": "Taktikák",
+    "systems": {
+      "offensive": "Támadó rendszerek",
+      "defensive": "Védekező rendszerek",
+      "transition": "Átmenetek",
+      "specialTeams": "Speciális alakzatok"
+    }
+  },
+  "individual": {
+    "title": "Egyéni edzés",
+    "personalizedPlan": "Személyre szabott terv",
+    "skillDevelopment": "Képességfejlesztés",
+    "weaknessImprovement": "Gyengeségek javítása",
+    "strengthOptimization": "Erősségek optimalizálása"
+  },
+  "nutrition": {
+    "title": "Sporttáplálkozás",
+    "mealPlanning": "Étkezés tervezés",
+    "supplements": "Táplálékkiegészítők",
+    "hydration": "Folyadékpótlás",
+    "timing": {
+      "preWorkout": "Edzés előtt",
+      "duringWorkout": "Edzés alatt",
+      "postWorkout": "Edzés után",
+      "daily": "Napi"
+    }
+  },
+  "equipment": {
+    "title": "Edzés felszerelés",
+    "required": "Szükséges",
+    "optional": "Opcionális",
+    "maintenance": "Karbantartás",
+    "inventory": "Készlet"
+  },
+  "safety": {
+    "title": "Biztonság",
+    "guidelines": "Irányelvek",
+    "warmupProtocol": "Bemelegítési protokoll",
+    "injuryPrevention": "Sérülésmegelőzés",
+    "emergencyProcedures": "Vészhelyzeti eljárások",
+    "firstAid": "Elsősegély"
+  },
+  "reports": {
+    "title": "Edzés jelentések",
+    "attendance": "Jelenlét",
+    "progress": "Fejlődés",
+    "performance": "Teljesítmény",
+    "comparison": "Összehasonlítás",
+    "export": "Exportálás",
+    "share": "Megosztás"
+  },
+  "messages": {
+    "sessionCreated": "Foglalkozás sikeresen létrehozva",
+    "sessionUpdated": "Foglalkozás sikeresen frissítve",
+    "sessionDeleted": "Foglalkozás sikeresen törölve",
+    "programAssigned": "Program sikeresen hozzárendelve",
+    "workoutLogged": "Edzés sikeresen naplózva",
+    "reportGenerated": "Jelentés sikeresen elkészítve"
+  }
+}

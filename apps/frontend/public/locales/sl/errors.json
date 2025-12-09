@@ -1,0 +1,135 @@
+{
+  "general": {
+    "title": "Napaka",
+    "unknown": "Prišlo je do neznane napake",
+    "tryAgain": "Prosimo, poskusite znova",
+    "contactSupport": "Če se težava nadaljuje, kontaktirajte podporo",
+    "goBack": "Pojdi nazaj",
+    "goHome": "Pojdi na začetek",
+    "refresh": "Osveži stran",
+    "report": "Prijavi napako"
+  },
+  "network": {
+    "title": "Omrežna napaka",
+    "offline": "Ni internetne povezave",
+    "slow": "Počasna povezava",
+    "timeout": "Zahteva je potekla",
+    "serverError": "Napaka strežnika",
+    "connectionLost": "Povezava prekinjena",
+    "checkConnection": "Preverite internetno povezavo",
+    "retrying": "Ponovno povezovanje..."
+  },
+  "auth": {
+    "title": "Napaka avtentikacije",
+    "unauthorized": "Nepooblaščen dostop",
+    "forbidden": "Prepovedan dostop",
+    "sessionExpired": "Seja je potekla",
+    "invalidCredentials": "Neveljavni podatki za prijavo",
+    "accountLocked": "Račun je zaklenjen",
+    "accountSuspended": "Račun je suspendiran",
+    "loginRequired": "Potrebna je prijava",
+    "permissionDenied": "Nimate dovoljenja za to dejanje"
+  },
+  "validation": {
+    "title": "Napaka validacije",
+    "required": "To polje je obvezno",
+    "invalid": "Neveljavna vrednost",
+    "tooShort": "Prekratko",
+    "tooLong": "Predolgo",
+    "invalidEmail": "Neveljaven e-poštni naslov",
+    "invalidPhone": "Neveljavna telefonska številka",
+    "invalidDate": "Neveljaven datum",
+    "invalidFormat": "Napačen format",
+    "mustMatch": "Vrednosti se morajo ujemati",
+    "unique": "Ta vrednost že obstaja",
+    "numeric": "Mora biti številka",
+    "alphabetic": "Mora vsebovati samo črke",
+    "alphanumeric": "Mora vsebovati samo črke in številke",
+    "minValue": "Minimalna vrednost je {{min}}",
+    "maxValue": "Maksimalna vrednost je {{max}}",
+    "minLength": "Minimalna dolžina je {{min}} znakov",
+    "maxLength": "Maksimalna dolžina je {{max}} znakov"
+  },
+  "form": {
+    "title": "Napaka obrazca",
+    "submitFailed": "Pošiljanje obrazca ni uspelo",
+    "invalidData": "Neveljavni podatki v obrazcu",
+    "missingFields": "Manjkajoča obvezna polja",
+    "duplicateEntry": "Podvojena vnos",
+    "saveFailed": "Shranjevanje ni uspelo",
+    "loadFailed": "Nalaganje podatkov ni uspelo"
+  },
+  "api": {
+    "title": "API napaka",
+    "requestFailed": "Zahteva ni uspela",
+    "invalidResponse": "Neveljaven odgovor strežnika",
+    "notFound": "Vir ni bil najden",
+    "methodNotAllowed": "Metoda ni dovoljena",
+    "conflict": "Konflikt podatkov",
+    "rateLimited": "Preveč zahtev",
+    "serverError": "Interna napaka strežnika",
+    "serviceUnavailable": "Storitev ni na voljo"
+  },
+  "file": {
+    "title": "Napaka datoteke",
+    "uploadFailed": "Nalaganje ni uspelo",
+    "downloadFailed": "Prenos ni uspel",
+    "tooLarge": "Datoteka je prevelika",
+    "invalidType": "Neveljaven tip datoteke",
+    "notFound": "Datoteka ni bila najdena",
+    "accessDenied": "Dostop do datoteke zavrnjen",
+    "maxSize": "Maksimalna velikost datoteke je {{size}}",
+    "allowedTypes": "Dovoljeni tipi: {{types}}"
+  },
+  "data": {
+    "title": "Napaka podatkov",
+    "loadFailed": "Nalaganje podatkov ni uspelo",
+    "saveFailed": "Shranjevanje podatkov ni uspelo",
+    "deleteFailed": "Brisanje ni uspelo",
+    "updateFailed": "Posodobitev ni uspela",
+    "notFound": "Podatki niso bili najdeni",
+    "corrupted": "Podatki so poškodovani",
+    "exportFailed": "Izvoz ni uspel",
+    "importFailed": "Uvoz ni uspel"
+  },
+  "payment": {
+    "title": "Napaka plačila",
+    "declined": "Plačilo zavrnjeno",
+    "insufficientFunds": "Nezadostna sredstva",
+    "invalidCard": "Neveljavna kartica",
+    "expired": "Kartica je potekla",
+    "processingError": "Napaka pri obdelavi plačila",
+    "cancelled": "Plačilo preklicano",
+    "duplicate": "Podvojeno plačilo"
+  },
+  "system": {
+    "title": "Sistemska napaka",
+    "maintenance": "Sistem je v vzdrževanju",
+    "overloaded": "Sistem je preobremenjen",
+    "crashed": "Sistem se je sesul",
+    "updating": "Sistem se posodablja",
+    "configError": "Napaka konfiguracije",
+    "databaseError": "Napaka podatkovne baze"
+  },
+  "permission": {
+    "title": "Napaka dovoljenja",
+    "accessDenied": "Dostop zavrnjen",
+    "insufficientPrivileges": "Nezadostne pravice",
+    "roleRequired": "Zahtevana je vloga: {{role}}",
+    "ownerOnly": "Samo lastnik ima dostop",
+    "adminOnly": "Samo administrator ima dostop"
+  },
+  "codes": {
+    "400": "Slaba zahteva",
+    "401": "Nepooblaščen dostop",
+    "403": "Prepovedan dostop",
+    "404": "Ni najdeno",
+    "409": "Konflikt",
+    "422": "Neobdelani podatki",
+    "429": "Preveč zahtev",
+    "500": "Interna napaka strežnika",
+    "502": "Napačen prehod",
+    "503": "Storitev ni na voljo",
+    "504": "Časovna omejitev prehoda"
+  }
+}

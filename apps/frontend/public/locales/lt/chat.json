@@ -1,0 +1,145 @@
+{
+  "title": "Žinutės",
+  "conversations": {
+    "title": "Pokalbiai",
+    "new": "Naujas pokalbis",
+    "search": "Ieškoti pokalbių...",
+    "empty": "Pokalbių dar nėra",
+    "startNew": "Pradėti naują pokalbį"
+  },
+  "participants": {
+    "add": "Pridėti dalyvius",
+    "remove": "Pašalinti iš pokalbio",
+    "search": "Ieškoti žmonių...",
+    "you": "Jūs",
+    "typing": "rašo...",
+    "multipleTyping": "rašo...",
+    "online": "Prisijungęs",
+    "offline": "Atsijungęs",
+    "away": "Išvykęs"
+  },
+  "messages": {
+    "placeholder": "Rašykite žinutę...",
+    "send": "Siųsti",
+    "edit": "Redaguoti žinutę",
+    "delete": "Ištrinti žinutę",
+    "reply": "Atsakyti",
+    "forward": "Persiųsti",
+    "copy": "Kopijuoti",
+    "pin": "Prisegti žinutę",
+    "unpin": "Atsegti žinutę",
+    "react": "Pridėti reakciją",
+    "edited": "redaguota",
+    "deleted": "Ši žinutė buvo ištrinta",
+    "delivered": "Pristatyta",
+    "read": "Perskaityta",
+    "sending": "Siunčiama...",
+    "failed": "Nepavyko išsiųsti",
+    "retry": "Bandyti dar kartą"
+  },
+  "groups": {
+    "create": "Sukurti grupę",
+    "name": "Grupės pavadinimas",
+    "description": "Aprašymas (neprivaloma)",
+    "addMembers": "Pridėti narius",
+    "settings": "Grupės nustatymai",
+    "leave": "Palikti grupę",
+    "delete": "Ištrinti grupę",
+    "members": "{{count}} narių",
+    "admin": "Administratorius",
+    "member": "Narys"
+  },
+  "channels": {
+    "title": "Kanalai",
+    "create": "Sukurti kanalą",
+    "public": "Viešas kanalas",
+    "private": "Privatus kanalas",
+    "join": "Prisijungti prie kanalo",
+    "leave": "Palikti kanalą",
+    "mute": "Nutildyti kanalą",
+    "unmute": "Įjungti pranešimus",
+    "types": {
+      "general": "Bendras",
+      "announcements": "Skelbimai",
+      "team": "Komandos pokalbis",
+      "coaches": "Treneriai",
+      "parents": "Tėvai",
+      "medical": "Medicinos personalas"
+    }
+  },
+  "attachments": {
+    "title": "Priedai",
+    "upload": "Įkelti failą",
+    "types": {
+      "image": "Paveikslėlis",
+      "video": "Vaizdo įrašas",
+      "document": "Dokumentas",
+      "audio": "Garso įrašas",
+      "other": "Failas"
+    },
+    "download": "Atsisiųsti",
+    "preview": "Peržiūrėti",
+    "tooLarge": "Failas per didelis. Maksimalus dydis yra {{maxSize}}",
+    "unsupported": "Failo tipas nepalaikomas"
+  },
+  "notifications": {
+    "newMessage": "Nauja žinutė nuo {{sender}}",
+    "mentioned": "{{sender}} paminėjo jus",
+    "groupInvite": "Jūs buvote pridėtas į {{group}}",
+    "enable": "Įjungti pranešimus",
+    "disable": "Išjungti pranešimus",
+    "sound": "Pranešimų garsas",
+    "desktop": "Darbalaukio pranešimai"
+  },
+  "search": {
+    "placeholder": "Ieškoti žinučių...",
+    "filters": "Filtrai",
+    "from": "Nuo",
+    "to": "Kam",
+    "date": "Data",
+    "hasAttachment": "Turi priedą",
+    "results": "Rasta {{count}} rezultatų",
+    "noResults": "Žinučių nerasta"
+  },
+  "settings": {
+    "title": "Pokalbių nustatymai",
+    "privacy": "Privatumas",
+    "readReceipts": "Perskaitymo patvirtinimai",
+    "typingIndicator": "Rodyti, kai rašau",
+    "autoDownload": "Automatiškai atsisiųsti mediją",
+    "enterToSend": "Siųsti paspaudus Enter",
+    "theme": "Pokalbių tema",
+    "fontSize": "Šrifto dydis"
+  },
+  "status": {
+    "online": "Prisijungęs",
+    "away": "Išvykęs",
+    "busy": "Netrukdyti",
+    "offline": "Rodytis atsijungusiu",
+    "setStatus": "Nustatyti būseną",
+    "customStatus": "Nustatyti pasirinktinę būseną..."
+  },
+  "actions": {
+    "startChat": "Pradėti pokalbį",
+    "viewProfile": "Peržiūrėti profilį",
+    "clearChat": "Išvalyti pokalbio istoriją",
+    "exportChat": "Eksportuoti pokalbį",
+    "reportUser": "Pranešti apie vartotoją",
+    "blockUser": "Blokuoti vartotoją",
+    "unblockUser": "Atblokuoti vartotoją"
+  },
+  "time": {
+    "now": "dabar",
+    "today": "Šiandien",
+    "yesterday": "Vakar",
+    "daysAgo": "prieš {{count}} d.",
+    "lastSeen": "Paskutinį kartą matytas {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Ryšys nutrūko. Jungiamasi iš naujo...",
+    "sendFailed": "Nepavyko išsiųsti žinutės",
+    "loadFailed": "Nepavyko įkelti žinučių",
+    "uploadFailed": "Nepavyko įkelti failo",
+    "permissionDenied": "Neturite leidimo tai daryti"
+  }
+}

@@ -1,0 +1,12 @@
+const baseConfig = require('../../packages/shared-lib/jest.config.base');
+
+module.exports = {
+  ...baseConfig,
+  displayName: 'admin-service',
+  rootDir: '.',
+  testMatch: ['<rootDir>/src/**/*.test.ts', '<rootDir>/src/**/*.spec.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  // Allow service to pass when no tests are present
+  passWithNoTests: true,
+  modulePathIgnorePatterns: ['<rootDir>/dist/']
+};

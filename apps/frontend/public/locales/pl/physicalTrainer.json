@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Panel trenera przygotowania fizycznego",
+    "subtitle": "Zarządzanie kondycją i treningiem zawodników",
+    "welcome": "Witaj, {{name}}",
+    "todaySessions": "Dzisiejsze sesje treningowe",
+    "playerProgress": "Przegląd postępów zawodników",
+    "quickStats": {
+      "todaysSessions": "Dzisiejsze sesje",
+      "activeNow": "Aktywne teraz",
+      "playerReadiness": "Gotowość zawodników",
+      "completedToday": "Ukończone dzisiaj",
+      "totalPlayers": "{{count}} zawodników łącznie",
+      "noActiveSession": "Brak aktywnej sesji",
+      "teamAverage": "Średnia drużyny",
+      "upcoming": "{{count}} nadchodzących"
+    }
+  },
+  "training": {
+    "title": "Programy treningowe",
+    "create": "Utwórz program",
+    "templates": "Szablony treningowe",
+    "active": "Aktywne programy",
+    "scheduled": "Zaplanowane sesje",
+    "history": "Historia treningów",
+    "types": {
+      "strength": "Trening siłowy",
+      "cardio": "Trening kardio",
+      "flexibility": "Gibkość",
+      "agility": "Zwinność",
+      "recovery": "Regeneracja",
+      "rehabilitation": "Rehabilitacja",
+      "testing": "Testy sprawnościowe"
+    },
+    "intensity": {
+      "low": "Niska",
+      "medium": "Średnia",
+      "moderate": "Umiarkowana",
+      "high": "Wysoka",
+      "maximum": "Maksymalna"
+    }
+  },
+  "sessions": {
+    "title": "Sesje treningowe",
+    "schedule": "Zaplanuj sesję",
+    "current": "Bieżąca sesja",
+    "upcoming": "Nadchodzące sesje",
+    "completed": "Zakończone sesje",
+    "cancel": "Anuluj sesję",
+    "reschedule": "Przełóż",
+    "duration": "Czas trwania sesji",
+    "participants": "Uczestnicy",
+    "newSession": "Nowa sesja",
+    "intensity": "Intensywność {{level}}",
+    "status": {
+      "active": "Aktywna",
+      "completed": "Zakończona",
+      "upcoming": "Nadchodząca"
+    },
+    "launch": "Rozpocznij",
+    "viewDetails": "Zobacz szczegóły"
+  },
+  "exercises": {
+    "title": "Biblioteka ćwiczeń",
+    "search": "Szukaj ćwiczeń",
+    "categories": "Kategorie ćwiczeń",
+    "create": "Dodaj ćwiczenie",
+    "favorite": "Ulubione ćwiczenia",
+    "equipment": "Potrzebny sprzęt",
+    "instructions": "Instrukcje",
+    "video": "Poradnik wideo",
+    "categories": {
+      "upperBody": "Górna część ciała",
+      "lowerBody": "Dolna część ciała",
+      "core": "Tułów",
+      "fullBody": "Całe ciało",
+      "skating": "Specyficzne dla łyżwiarstwa",
+      "shooting": "Siła strzału",
+      "balance": "Równowaga i stabilizacja",
+      "plyometric": "Pliometria"
+    }
+  },
+  "workouts": {
+    "title": "Kreator treningów",
+    "create": "Utwórz trening",
+    "edit": "Edytuj trening",
+    "save": "Zapisz trening",
+    "templates": "Szablony treningów",
+    "custom": "Treningi niestandardowe",
+    "assign": "Przypisz zawodnikom",
+    "components": {
+      "warmup": "Rozgrzewka",
+      "main": "Trening główny",
+      "cooldown": "Schładzanie",
+      "stretching": "Rozciąganie"
+    },
+    "parameters": {
+      "sets": "Serie",
+      "reps": "Powtórzenia",
+      "duration": "Czas trwania",
+      "rest": "Przerwa",
+      "weight": "Obciążenie",
+      "distance": "Dystans",
+      "speed": "Prędkość"
+    }
+  },
+  "testing": {
+    "title": "Testy sprawnościowe",
+    "schedule": "Zaplanuj test",
+    "protocols": "Protokoły testowe",
+    "results": "Wyniki testów",
+    "history": "Historia testów",
+    "compare": "Porównaj wyniki",
+    "benchmarks": "Normy drużynowe",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Test szybkości",
+      "agility": "Test zwinności",
+      "strength": "Test siły",
+      "flexibility": "Test gibkości",
+      "balance": "Test równowagi",
+      "endurance": "Test wytrzymałości",
+      "powerOutput": "Moc wyjściowa"
+    }
+  },
+  "monitoring": {
+    "title": "Monitorowanie wydajności",
+    "metrics": "Metryki wydajności",
+    "trends": "Trendy postępów",
+    "alerts": "Alerty wydajności",
+    "load": "Obciążenie treningowe",
+    "recovery": "Status regeneracji",
+    "readiness": "Gotowość treningowa",
+    "metrics": {
+      "hrv": "Zmienność rytmu serca",
+      "restingHR": "Tętno spoczynkowe",
+      "weight": "Masa ciała",
+      "bodyFat": "Tkanka tłuszczowa %",
+      "muscleMass": "Masa mięśniowa",
+      "power": "Moc wyjściowa",
+      "speed": "Prędkość",
+      "endurance": "Wytrzymałość"
+    }
+  },
+  "programs": {
+    "title": "Programy treningowe",
+    "inSeason": "Program w sezonie",
+    "offSeason": "Program poza sezonem",
+    "preseason": "Program przedsezonowy",
+    "rehabilitation": "Program rehabilitacyjny",
+    "maintenance": "Program podtrzymujący",
+    "phases": {
+      "preparation": "Faza przygotowawcza",
+      "building": "Faza budowania",
+      "peak": "Faza szczytowa",
+      "recovery": "Faza regeneracyjna"
+    }
+  },
+  "analytics": {
+    "title": "Analityka treningowa",
+    "individual": "Analiza indywidualna",
+    "team": "Analiza drużyny",
+    "progress": "Raporty postępów",
+    "comparison": "Porównanie zawodników",
+    "export": "Eksportuj dane",
+    "metrics": "Kluczowe metryki",
+    "insights": "Wnioski dotyczące wydajności"
+  },
+  "communication": {
+    "title": "Komunikacja",
+    "feedback": "Opinie o sesji",
+    "notes": "Notatki treningowe",
+    "recommendations": "Rekomendacje",
+    "alerts": "Wyślij alert",
+    "report": "Raport postępów",
+    "collaborate": "Współpraca z personelem medycznym"
+  }
+}

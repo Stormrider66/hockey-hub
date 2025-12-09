@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Panel administratora klubu",
+    "subtitle": "Zarządzanie organizacją i nadzór",
+    "welcome": "Witaj, {{name}}",
+    "organizationOverview": "Przegląd organizacji",
+    "quickActions": "Szybkie akcje",
+    "stats": {
+      "teams": "Drużyny",
+      "activeMembers": "Aktywni członkowie",
+      "coachingStaff": "Kadra trenerska",
+      "upcomingEvents": "Nadchodzące wydarzenia",
+      "attendance": "Frekwencja",
+      "members": "Członkowie"
+    }
+  },
+  "organization": {
+    "title": "Zarządzanie organizacją",
+    "details": "Szczegóły organizacji",
+    "settings": "Ustawienia organizacji",
+    "structure": "Struktura organizacyjna",
+    "departments": "Departamenty",
+    "policies": "Polityki i procedury",
+    "branding": "Branding i tożsamość",
+    "contact": "Informacje kontaktowe"
+  },
+  "teams": {
+    "title": "Zarządzanie drużynami",
+    "all": "Wszystkie drużyny",
+    "create": "Utwórz drużynę",
+    "edit": "Edytuj drużynę",
+    "delete": "Usuń drużynę",
+    "roster": "Składy drużyn",
+    "assignments": "Przydziały personelu",
+    "categories": {
+      "senior": "Drużyny seniorskie",
+      "junior": "Drużyny juniorskie",
+      "youth": "Drużyny młodzieżowe",
+      "academy": "Drużyny akademii",
+      "womens": "Drużyny kobiece"
+    }
+  },
+  "staff": {
+    "title": "Zarządzanie personelem",
+    "all": "Cały personel",
+    "add": "Dodaj członka personelu",
+    "roles": "Role personelu",
+    "permissions": "Uprawnienia",
+    "contracts": "Kontrakty",
+    "evaluation": "Ocena wydajności",
+    "training": "Szkolenia i certyfikaty",
+    "types": {
+      "coaching": "Kadra trenerska",
+      "medical": "Personel medyczny",
+      "administrative": "Administracja",
+      "support": "Personel wspierający",
+      "volunteer": "Wolontariusze"
+    }
+  },
+  "facilities": {
+    "title": "Zarządzanie obiektami",
+    "overview": "Przegląd obiektów",
+    "booking": "Rezerwacja obiektów",
+    "maintenance": "Harmonogram konserwacji",
+    "calendar": "Kalendarz obiektów",
+    "utilization": "Raporty wykorzystania",
+    "types": {
+      "mainRink": "Główne lodowisko",
+      "practiceRink": "Lodowisko treningowe",
+      "gym": "Siłownia",
+      "meetingRooms": "Sale konferencyjne",
+      "lockerRooms": "Szatnie",
+      "medicalRoom": "Gabinet medyczny"
+    }
+  },
+  "finance": {
+    "title": "Zarządzanie finansami",
+    "overview": "Przegląd finansowy",
+    "budget": "Zarządzanie budżetem",
+    "revenue": "Źródła przychodów",
+    "expenses": "Wydatki",
+    "reports": "Raporty finansowe",
+    "invoicing": "Fakturowanie",
+    "sponsorships": "Sponsoring",
+    "grants": "Granty i dofinansowania"
+  },
+  "events": {
+    "title": "Zarządzanie wydarzeniami",
+    "calendar": "Kalendarz wydarzeń",
+    "create": "Utwórz wydarzenie",
+    "upcoming": "Nadchodzące wydarzenia",
+    "past": "Minione wydarzenia",
+    "types": {
+      "games": "Mecze",
+      "tournaments": "Turnieje",
+      "fundraisers": "Zbiórki funduszy",
+      "meetings": "Spotkania",
+      "social": "Wydarzenia towarzyskie",
+      "training": "Obozy treningowe"
+    }
+  },
+  "communication": {
+    "title": "Komunikacja",
+    "announcements": "Ogłoszenia",
+    "newsletters": "Biuletyny",
+    "social": "Media społecznościowe",
+    "website": "Aktualizacje strony",
+    "press": "Komunikaty prasowe",
+    "internal": "Komunikacja wewnętrzna",
+    "broadcast": "Wiadomość grupowa"
+  },
+  "compliance": {
+    "title": "Zgodność i zarządzanie",
+    "policies": "Polityki",
+    "procedures": "Procedury",
+    "regulations": "Regulacje",
+    "certifications": "Certyfikaty",
+    "audits": "Audyty",
+    "reports": "Raporty zgodności",
+    "training": "Szkolenia z zakresu zgodności"
+  },
+  "reports": {
+    "title": "Raporty i analityka",
+    "dashboard": "Panel wykonawczy",
+    "operational": "Raporty operacyjne",
+    "financial": "Raporty finansowe",
+    "performance": "Wskaźniki wydajności",
+    "custom": "Raporty niestandardowe",
+    "export": "Eksportuj dane",
+    "schedule": "Zaplanuj raporty"
+  },
+  "members": {
+    "title": "Zarządzanie członkostwem",
+    "directory": "Katalog członków",
+    "registration": "Rejestracja",
+    "renewal": "Odnowienie członkostwa",
+    "benefits": "Korzyści członkowskie",
+    "communication": "Komunikacja z członkami",
+    "statistics": "Statystyki członkostwa",
+    "byRole": "Członkowie według roli"
+  }
+}

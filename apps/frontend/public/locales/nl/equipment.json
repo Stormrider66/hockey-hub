@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Materiaalmanager Dashboard",
+    "subtitle": "Uitrustingsinventaris en beheer",
+    "welcome": "Welkom, {{name}}",
+    "quickStats": "Uitrustingsstatus",
+    "urgentNeeds": "Urgente uitrustingsbehoeften"
+  },
+  "inventory": {
+    "title": "Uitrustingsinventaris",
+    "overview": "Inventarisoverzicht",
+    "search": "Zoek uitrusting",
+    "filter": "Filter op type",
+    "add": "Uitrusting toevoegen",
+    "remove": "Uitrusting verwijderen",
+    "update": "Voorraad bijwerken",
+    "lowStock": "Lage voorraadmelding",
+    "remaining": "{{count}} resterend",
+    "reorderAt": "Herbestellen bij {{level}}",
+    "outOfStock": "Niet op voorraad",
+    "lowStockStatus": "Lage voorraad",
+    "stock": "Voorraad",
+    "condition": {
+      "good": "Goed",
+      "fair": "Redelijk",
+      "poor": "Slecht"
+    },
+    "categories": {
+      "protective": "Beschermingsuitrusting",
+      "sticks": "Hockeysticks",
+      "skates": "Schaatsen",
+      "apparel": "Teamkleding",
+      "training": "Trainingsmateriaal",
+      "goalie": "Doelmanuitrusting",
+      "accessories": "Accessoires",
+      "medical": "Medische benodigdheden"
+    },
+    "status": {
+      "available": "Beschikbaar",
+      "assigned": "Toegewezen",
+      "maintenance": "In onderhoud",
+      "ordered": "Besteld",
+      "damaged": "Beschadigd",
+      "retired": "Afgevoerd"
+    }
+  },
+  "assignments": {
+    "title": "Uitrustingstoewijzingen",
+    "player": "Spelertoewijzingen",
+    "team": "Teamuitrusting",
+    "assign": "Uitrusting toewijzen",
+    "return": "Uitrusting retourneren",
+    "history": "Toewijzingsgeschiedenis",
+    "current": "Huidige toewijzingen",
+    "overdue": "Achterstallige retourzendingen"
+  },
+  "sizes": {
+    "title": "Maatbeheer",
+    "chart": "Maattabel",
+    "playerSizes": "Spelermaten",
+    "update": "Maten bijwerken",
+    "fitting": "Pasbeurt plannen",
+    "categories": {
+      "helmet": "Helm",
+      "shoulderPads": "Schouderbescherming",
+      "elbow": "Elleboogbescherming",
+      "gloves": "Handschoenen",
+      "pants": "Hockeybroek",
+      "shinGuards": "Scheenbeschermers",
+      "skates": "Schaatsen",
+      "jersey": "Shirt",
+      "socks": "Sokken"
+    },
+    "measurements": {
+      "xs": "Extra Small",
+      "s": "Small",
+      "m": "Medium",
+      "l": "Large",
+      "xl": "Extra Large",
+      "xxl": "2X Large",
+      "xxxl": "3X Large",
+      "youth": "Jeugd",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Uitrustingsonderhoud",
+    "schedule": "Onderhoudsschema",
+    "due": "Onderhoud nodig",
+    "history": "Onderhoudsgeschiedenis",
+    "log": "Onderhoud registreren",
+    "types": {
+      "sharpening": "Schaatsen slijpen",
+      "repair": "Uitrustingsreparatie",
+      "cleaning": "Grondige reiniging",
+      "inspection": "Veiligheidsinspectie",
+      "replacement": "Onderdeelvervanging"
+    },
+    "frequency": {
+      "daily": "Dagelijks",
+      "weekly": "Wekelijks",
+      "biweekly": "Tweewekelijks",
+      "monthly": "Maandelijks",
+      "seasonal": "Seizoensgebonden",
+      "asNeeded": "Indien nodig"
+    }
+  },
+  "orders": {
+    "title": "Uitrustingsbestellingen",
+    "new": "Nieuwe bestelling",
+    "createOrder": "Bestelling aanmaken",
+    "createOrderTitle": "Uitrustingsbestelling aanmaken",
+    "createOrderDescription": "Voeg items toe aan je bestelling. Bestellingen worden ter goedkeuring ingediend.",
+    "addItem": "Item toevoegen",
+    "removeItem": "Verwijderen",
+    "itemName": "Itemnaam",
+    "itemNamePlaceholder": "Voer itemnaam in",
+    "quantity": "Aantal",
+    "priority": "Prioriteit",
+    "notes": "Notities (optioneel)",
+    "notesPlaceholder": "Aanvullende specificaties of notities",
+    "creating": "Aanmaken...",
+    "pending": "Openstaande bestellingen",
+    "history": "Bestelgeschiedenis",
+    "suppliers": "Leveranciers",
+    "budget": "Uitrustingsbudget",
+    "approve": "Bestelling goedkeuren",
+    "track": "Zending volgen",
+    "receive": "Bestelling ontvangen",
+    "status": {
+      "draft": "Concept",
+      "submitted": "Ingediend",
+      "approved": "Goedgekeurd",
+      "ordered": "Besteld",
+      "shipped": "Verzonden",
+      "delivered": "Geleverd",
+      "cancelled": "Geannuleerd"
+    }
+  },
+  "laundry": {
+    "title": "Wasbeheer",
+    "schedule": "Wasschema",
+    "status": "Wasstatus",
+    "pickup": "Ophalen plannen",
+    "return": "Markeren als geretourneerd",
+    "items": {
+      "jerseys": "Wedstrijdshirts",
+      "practice": "Trainingsshirts",
+      "socks": "Teamsokken",
+      "shells": "Broekhoezen",
+      "towels": "Handdoeken"
+    }
+  },
+  "reports": {
+    "title": "Uitrustingsrapporten",
+    "usage": "Gebruiksrapport",
+    "cost": "Kostenanalyse",
+    "replacement": "Vervangingsschema",
+    "playerNeeds": "Speleruitrustingsbehoeften",
+    "teamNeeds": "Teamuitrustingsbehoeften",
+    "generate": "Rapport genereren",
+    "export": "Rapport exporteren"
+  },
+  "budget": {
+    "title": "Budgetbeheer",
+    "current": "Huidig budget",
+    "spent": "Uitgegeven bedrag",
+    "remaining": "Resterend budget",
+    "projected": "Verwachte kosten",
+    "categories": "Budget per categorie",
+    "approval": "In afwachting van goedkeuring"
+  },
+  "team": {
+    "title": "Teamuitrusting",
+    "bags": "Uitrustingstassen",
+    "medical": "Medische kit",
+    "tools": "Uitrustingsgereedschap",
+    "spare": "Reserve-uitrusting",
+    "travel": "Reischecklist",
+    "gameday": "Wedstrijddagchecklist"
+  },
+  "events": {
+    "upcoming": "Aankomende evenementen",
+    "equipmentRelated": "Uitrustingsgerelateerd schema"
+  },
+  "tasks": {
+    "active": "Actieve taken",
+    "currentMaintenance": "Huidig onderhoud en taken",
+    "assigned": "Toegewezen",
+    "due": "Deadline",
+    "estimatedTime": "Gesch. tijd",
+    "lastDone": "Laatst gedaan"
+  },
+  "gameday": {
+    "checklist": "Wedstrijddagchecklist",
+    "preGame": "Voorbereiding voor wedstrijd",
+    "deadline": "Deadline"
+  },
+  "players": {
+    "equipment": "Speleruitrusting",
+    "tracking": "Individuele speleruitrusting tracking",
+    "comingSoon": "Speleruitrusting tracking komt binnenkort",
+    "addRecord": "Uitrustingsrecord toevoegen"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Süsteemi administraator",
+    "subtitle": "Platvormi haldus ja seadistamine",
+    "welcome": "Tere tulemast, süsteemiadministraator",
+    "systemStatus": "Süsteemi olek",
+    "alerts": "Süsteemi hoiatused"
+  },
+  "system": {
+    "title": "Süsteemi haldus",
+    "status": "Süsteemi olek",
+    "health": "Tervisekontroll",
+    "healthScore": "Süsteemi tervis",
+    "monitoring": "Süsteemi seire",
+    "logs": "Süsteemi logid",
+    "performance": "Jõudluse näitajad",
+    "uptime": "Tööaeg",
+    "resources": "Ressursside kasutus",
+    "activeUsers": "Aktiivsed kasutajad",
+    "errorRate": "Vigade määr",
+    "responseTime": "Reageerimisaeg",
+    "databaseSize": "Andmebaasi suurus",
+    "withinSLA": "SLA piires",
+    "systemPerformance24h": "Süsteemi jõudlus (24h)",
+    "serviceHealthMatrix": "Teenuste tervise maatriks",
+    "cpuMemoryUsage": "CPU, mälu kasutus ja päringute maht",
+    "realTimeServiceStatus": "Reaalajas teenuste olek ja näitajad"
+  },
+  "users": {
+    "title": "Kasutajate haldus",
+    "all": "Kõik kasutajad",
+    "create": "Loo kasutaja",
+    "edit": "Muuda kasutajat",
+    "delete": "Kustuta kasutaja",
+    "roles": "Kasutajarollid",
+    "permissions": "Kasutajaõigused",
+    "activity": "Kasutaja aktiivsus",
+    "sessions": "Aktiivsed sessioonid",
+    "audit": "Auditilogi"
+  },
+  "organizations": {
+    "title": "Organisatsioonide haldus",
+    "all": "Kõik organisatsioonid",
+    "create": "Loo organisatsioon",
+    "edit": "Muuda organisatsiooni",
+    "delete": "Kustuta organisatsioon",
+    "settings": "Organisatsiooni seaded",
+    "limits": "Kasutuslimiidid",
+    "billing": "Arveldusinfo"
+  },
+  "security": {
+    "title": "Turvalisuse haldus",
+    "settings": "Turvaseaded",
+    "authentication": "Autentimine",
+    "authorization": "Autoriseerimine",
+    "tokens": "API võtmed",
+    "certificates": "SSL sertifikaadid",
+    "firewall": "Tulemüüri reeglid",
+    "threats": "Ohtude tuvastamine",
+    "incidents": "Turvaintsidendid"
+  },
+  "database": {
+    "title": "Andmebaasi haldus",
+    "status": "Andmebaasi olek",
+    "backup": "Varunduste haldus",
+    "restore": "Taasta andmebaas",
+    "migrations": "Andmebaasi migratsioonid",
+    "optimization": "Päringute optimeerimine",
+    "connections": "Ühenduste kogum",
+    "maintenance": "Hooldusülesanded"
+  },
+  "services": {
+    "title": "Teenuste haldus",
+    "status": "Teenuste olek",
+    "configuration": "Teenuste seadistus",
+    "dependencies": "Sõltuvused",
+    "health": "Tervisekontrollid",
+    "restart": "Taaskäivita teenus",
+    "logs": "Teenuste logid",
+    "metrics": "Teenuste näitajad"
+  },
+  "integrations": {
+    "title": "Integratsioonid",
+    "connected": "Ühendatud teenused",
+    "available": "Saadaolevad integratsioonid",
+    "configure": "Seadista integratsioon",
+    "test": "Testi ühendust",
+    "logs": "Integratsiooni logid",
+    "webhooks": "Veebihaagid",
+    "api": "API haldus"
+  },
+  "configuration": {
+    "title": "Süsteemi seadistus",
+    "general": "Üldseaded",
+    "email": "E-posti seadistus",
+    "storage": "Salvestusseaded",
+    "cache": "Vahemälu haldus",
+    "queue": "Järjekorra seadistus",
+    "scheduler": "Ülesannete planeerija",
+    "features": "Funktsioonilipud"
+  },
+  "monitoring": {
+    "title": "Süsteemi seire",
+    "dashboard": "Seire töölaud",
+    "alerts": "Hoiatuste seadistus",
+    "metrics": "Süsteemi näitajad",
+    "logs": "Logi analüüs",
+    "errors": "Vigade jälgimine",
+    "performance": "Jõudluse analüüs",
+    "reports": "Süsteemi aruanded"
+  },
+  "maintenance": {
+    "title": "Hooldus",
+    "schedule": "Hooldusgraafik",
+    "tasks": "Hooldusülesanded",
+    "updates": "Süsteemi uuendused",
+    "patches": "Turvapaigad",
+    "cleanup": "Andmete puhastamine",
+    "optimization": "Süsteemi optimeerimine",
+    "mode": "Hooldusrežiim"
+  }
+}

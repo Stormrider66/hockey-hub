@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Trenera vadības panelis",
+    "subtitle": "Komandas vadība un snieguma izsekošana",
+    "welcome": "Laipni lūdzam atpakaļ, trener {{name}}!",
+    "quickStats": "Ātrā statistika",
+    "todaysFocus": "Šodienas fokuss"
+  },
+  "team": {
+    "title": "Komandas vadība",
+    "roster": "Komandas sastāvs",
+    "lineups": "Maiņu kombinācijas",
+    "availability": "Spēlētāju pieejamība",
+    "performance": "Komandas sniegums",
+    "statistics": "Komandas statistika",
+    "playerStatus": {
+      "available": "Pieejams",
+      "limited": "Ierobežoti pieejams",
+      "unavailable": "Nepieejams",
+      "injured": "Savainots",
+      "dayToDay": "Dienu no dienas"
+    }
+  },
+  "practice": {
+    "title": "Treniņu plānošana",
+    "schedule": "Treniņu grafiks",
+    "drills": "Vingrinājumu bibliotēka",
+    "templates": "Treniņu veidnes",
+    "planning": "Nodarbību plānošana",
+    "attendance": "Apmeklējuma uzskaite",
+    "intensity": "Treniņa intensitāte",
+    "focus": {
+      "offense": "Uzbrukuma sistēmas",
+      "defense": "Aizsardzības sistēmas",
+      "specialTeams": "Īpašās vienības",
+      "conditioning": "Fiziskā sagatavotība",
+      "skills": "Prasmju attīstība"
+    },
+    "types": {
+      "full": "Pilns treniņš",
+      "optional": "Neobligāts treniņš",
+      "morning": "Rīta treniņš",
+      "preGame": "Pirmsspēles treniņš",
+      "recovery": "Atjaunošanās nodarbība"
+    }
+  },
+  "games": {
+    "title": "Spēļu vadība",
+    "schedule": "Spēļu grafiks",
+    "preparation": "Spēles sagatavošana",
+    "tactics": "Taktiskā plānošana",
+    "lineups": "Spēles sastāvi",
+    "scouting": "Izlūkošanas atskaites",
+    "video": "Video analīze",
+    "stats": {
+      "goals": "Vārti",
+      "assists": "Rezultatīvas piespēles",
+      "shots": "Metieni",
+      "saves": "Atvairīti metieni",
+      "faceoffs": "Iemetieni",
+      "penalties": "Sodi",
+      "hits": "Spēka paņēmieni",
+      "blocks": "Bloķēti metieni"
+    }
+  },
+  "tactics": {
+    "title": "Taktiskā tāfele",
+    "systems": "Komandas sistēmas",
+    "powerPlay": "Vairākums",
+    "penaltyKill": "Mazākums",
+    "faceoffPlays": "Iemetienu kombinācijas",
+    "breakouts": "Iziešanas shēmas",
+    "forecheck": "Priekšējā prese",
+    "neutralZone": "Neitrālā zona",
+    "save": "Saglabāt taktiku",
+    "load": "Ielādēt taktiku"
+  },
+  "communication": {
+    "title": "Komandas komunikācija",
+    "announcements": "Komandas paziņojumi",
+    "meetings": "Komandas sapulces",
+    "feedback": "Spēlētāju atsauksmes",
+    "messages": "Tiešie ziņojumi",
+    "broadcast": "Apraides ziņojums",
+    "schedule": "Ieplānot sapulci"
+  },
+  "analytics": {
+    "title": "Snieguma analīze",
+    "teamMetrics": "Komandas metrika",
+    "playerMetrics": "Spēlētāju metrika",
+    "trends": "Snieguma tendences",
+    "comparison": "Komandu salīdzinājums",
+    "advanced": "Paplašinātā statistika",
+    "reports": "Ģenerēt atskaites",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Uzbrukuma zonas iemetieni",
+      "gaa": "Vidēji ielaisti vārti",
+      "svp": "Atvairīto metienu procents"
+    }
+  },
+  "development": {
+    "title": "Spēlētāju attīstība",
+    "plans": "Attīstības plāni",
+    "progress": "Progresa izsekošana",
+    "goals": "Attīstības mērķi",
+    "assessments": "Prasmju novērtējumi",
+    "feedback": "Attīstības atsauksmes",
+    "programs": "Treniņu programmas"
+  },
+  "lineup": {
+    "title": "Maiņu vadība",
+    "forward": "Uzbrucēju maiņas",
+    "defense": "Aizsargu pāri",
+    "powerPlay": "Vairākuma vienības",
+    "penaltyKill": "Mazākuma vienības",
+    "scratches": "Rezervisti",
+    "optimize": "Optimizēt maiņas",
+    "save": "Saglabāt sastāvu",
+    "positions": {
+      "c": "Centrs",
+      "lw": "Kreisais uzbrucējs",
+      "rw": "Labais uzbrucējs",
+      "ld": "Kreisais aizsargs",
+      "rd": "Labais aizsargs",
+      "g": "Vārtsargs"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Ak! Kaut kas nogāja greizi",
+    "subtitle": "Atvainojamies par sagādātajām neērtībām",
+    "tryAgain": "Mēģināt vēlreiz",
+    "goHome": "Doties uz vadības paneli",
+    "contactSupport": "Sazināties ar atbalstu"
+  },
+  "http": {
+    "400": {
+      "title": "Slikts pieprasījums",
+      "message": "Serveris nevarēja saprast pieprasījumu."
+    },
+    "401": {
+      "title": "Neautorizēts",
+      "message": "Jums jāieiet sistēmā, lai piekļūtu šim resursam."
+    },
+    "403": {
+      "title": "Aizliegts",
+      "message": "Jums nav atļaujas piekļūt šim resursam."
+    },
+    "404": {
+      "title": "Lapa nav atrasta",
+      "message": "Lapa, kuru meklējat, neeksistē."
+    },
+    "409": {
+      "title": "Konflikts",
+      "message": "Pieprasījums konfliktē ar servera pašreizējo stāvokli."
+    },
+    "422": {
+      "title": "Validācijas kļūda",
+      "message": "Sniegtie dati ir nederīgi."
+    },
+    "429": {
+      "title": "Pārāk daudz pieprasījumu",
+      "message": "Jūs esat veicis pārāk daudz pieprasījumu. Lūdzu, mēģiniet vēlāk."
+    },
+    "500": {
+      "title": "Servera kļūda",
+      "message": "Mūsu serveros radās negaidīta kļūda."
+    },
+    "502": {
+      "title": "Slikta vārteja",
+      "message": "Serveris saņēma nederīgu atbildi."
+    },
+    "503": {
+      "title": "Serviss nav pieejams",
+      "message": "Serviss pagaidām nav pieejams. Lūdzu, mēģiniet vēlāk."
+    },
+    "504": {
+      "title": "Vārtejas taimauts",
+      "message": "Serveris pārāk ilgi atbildēja."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Nav interneta savienojuma",
+      "message": "Lūdzu, pārbaudiet savu interneta savienojumu un mēģiniet vēlreiz."
+    },
+    "timeout": {
+      "title": "Pieprasījuma taimauts",
+      "message": "Pieprasījums aizņēma pārāk ilgu laiku. Lūdzu, mēģiniet vēlreiz."
+    },
+    "connectionFailed": {
+      "title": "Savienojums neizdevās",
+      "message": "Nevar izveidot savienojumu ar serveri. Lūdzu, mēģiniet vēlreiz."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Neizdevās ielādēt datus",
+      "message": "Mēs nevarējām ielādēt pieprasītos datus. Lūdzu, mēģiniet atsvaidzināt lapu."
+    },
+    "dataSave": {
+      "title": "Neizdevās saglabāt",
+      "message": "Jūsu izmaiņas nevarēja saglabāt. Lūdzu, mēģiniet vēlreiz."
+    },
+    "fileUpload": {
+      "title": "Augšupielāde neizdevās",
+      "message": "Failu nevarēja augšupielādēt. Lūdzu, pārbaudiet failu un mēģiniet vēlreiz."
+    },
+    "permissionDenied": {
+      "title": "Atļauja liegta",
+      "message": "Jums nav atļaujas veikt šo darbību."
+    },
+    "sessionExpired": {
+      "title": "Sesija beigusies",
+      "message": "Jūsu sesija ir beigusies. Lūdzu, ieejiet no jauna."
+    },
+    "maintenanceMode": {
+      "title": "Apkopes režīms",
+      "message": "Mēs veicam ieplānotu apkopi. Lūdzu, pārbaudiet vēlāk."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Formas iesniegšanas kļūda",
+      "message": "Iesniedzot formu, radās kļūda. Lūdzu, pārbaudiet ievadi un mēģiniet vēlreiz."
+    },
+    "validation": {
+      "title": "Validācijas kļūda",
+      "message": "Lūdzu, izlabojiet kļūdas formā."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Maksājums neizdevās",
+      "message": "Jūsu maksājumu nevarēja apstrādāt. Lūdzu, mēģiniet citu maksājuma metodi."
+    },
+    "declined": {
+      "title": "Maksājums noraidīts",
+      "message": "Jūsu maksājums tika noraidīts. Lūdzu, pārbaudiet maksājuma informāciju."
+    },
+    "insufficientFunds": {
+      "title": "Nepietiekami līdzekļi",
+      "message": "Jūsu maksājuma metodei ir nepietiekami līdzekļi."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Grafika konflikts",
+      "message": "Šis laika slots konfliktē ar citu notikumu."
+    },
+    "bookingFailed": {
+      "title": "Rezervēšana neizdevās",
+      "message": "Nevar rezervēt izvēlēto laika slotu."
+    },
+    "facilityUnavailable": {
+      "title": "Objekts nav pieejams",
+      "message": "Izvēlētais objekts šajā laikā nav pieejams."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Treniņu nodarbība nav atrasta",
+      "message": "Treniņu nodarbība, kuru meklējat, neeksistē."
+    },
+    "alreadyStarted": {
+      "title": "Nodarbība jau sākusies",
+      "message": "Šī treniņu nodarbība jau ir sākusies."
+    },
+    "capacityReached": {
+      "title": "Nodarbība pilna",
+      "message": "Šī treniņu nodarbība ir sasniegusi maksimālo kapacitāti."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Ziņojums nav nosūtīts",
+      "message": "Jūsu ziņojumu nevarēja nosūtīt. Lūdzu, mēģiniet vēlreiz."
+    },
+    "notificationFailed": {
+      "title": "Paziņojums neizdevās",
+      "message": "Šobrīd nevar nosūtīt paziņojumus."
+    }
+  },
+  "actions": {
+    "retry": "Mēģināt vēlreiz",
+    "dismiss": "Noraidīt",
+    "details": "Skatīt detaļas",
+    "report": "Ziņot par problēmu",
+    "refresh": "Atsvaidzināt lapu"
+  }
+}

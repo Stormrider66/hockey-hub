@@ -1,0 +1,185 @@
+{
+  "general": {
+    "title": "Hiba történt",
+    "unknown": "Ismeretlen hiba történt",
+    "tryAgain": "Kérjük, próbálja újra",
+    "goBack": "Vissza",
+    "goHome": "Kezdőlapra",
+    "refresh": "Oldal frissítése",
+    "contact": "Kapcsolatfelvétel",
+    "reportIssue": "Hiba jelentése"
+  },
+  "http": {
+    "400": {
+      "title": "Hibás kérés",
+      "message": "A kérés hibás vagy hiányos"
+    },
+    "401": {
+      "title": "Nincs jogosultság",
+      "message": "Kérjük, jelentkezzen be a folytatáshoz"
+    },
+    "403": {
+      "title": "Hozzáférés megtagadva",
+      "message": "Nincs jogosultsága ehhez a művelethez"
+    },
+    "404": {
+      "title": "Nem található",
+      "message": "A keresett oldal vagy erőforrás nem található"
+    },
+    "408": {
+      "title": "Időtúllépés",
+      "message": "A kérés feldolgozása túl sokáig tartott"
+    },
+    "409": {
+      "title": "Ütközés",
+      "message": "A művelet ütközik egy másik folyamattal"
+    },
+    "429": {
+      "title": "Túl sok kérés",
+      "message": "Túl sok kérést küldött. Kérjük, várjon egy kicsit"
+    },
+    "500": {
+      "title": "Szerver hiba",
+      "message": "Belső szerver hiba történt"
+    },
+    "502": {
+      "title": "Rossz átjáró",
+      "message": "A szerver nem érhető el"
+    },
+    "503": {
+      "title": "Szolgáltatás nem elérhető",
+      "message": "A szolgáltatás jelenleg nem elérhető. Kérjük, próbálja később"
+    },
+    "504": {
+      "title": "Átjáró időtúllépés",
+      "message": "A szerver nem válaszol időben"
+    }
+  },
+  "validation": {
+    "required": "Ez a mező kötelező",
+    "email": "Érvényes email címet adjon meg",
+    "phone": "Érvényes telefonszámot adjon meg",
+    "password": "A jelszó nem felel meg a követelményeknek",
+    "passwordMatch": "A jelszavak nem egyeznek",
+    "minLength": "Minimum {{min}} karakter szükséges",
+    "maxLength": "Maximum {{max}} karakter engedélyezett",
+    "minValue": "Az érték minimum {{min}} lehet",
+    "maxValue": "Az érték maximum {{max}} lehet",
+    "pattern": "Érvénytelen formátum",
+    "unique": "Ez az érték már létezik",
+    "date": "Érvénytelen dátum",
+    "time": "Érvénytelen időpont",
+    "url": "Érvényes URL címet adjon meg",
+    "number": "Csak számokat adjon meg",
+    "integer": "Csak egész számot adjon meg",
+    "alphanumeric": "Csak betűket és számokat használjon",
+    "fileSize": "A fájl mérete túl nagy (max: {{max}})",
+    "fileType": "Nem támogatott fájltípus"
+  },
+  "auth": {
+    "invalidCredentials": "Hibás felhasználónév vagy jelszó",
+    "accountLocked": "A fiók zárolva van. Kérjük, lépjen kapcsolatba az adminisztrátorral",
+    "accountDisabled": "A fiók le van tiltva",
+    "emailNotVerified": "Kérjük, erősítse meg az email címét",
+    "tokenExpired": "A munkamenet lejárt. Kérjük, jelentkezzen be újra",
+    "tokenInvalid": "Érvénytelen token",
+    "insufficientPermissions": "Nincs megfelelő jogosultsága",
+    "passwordExpired": "A jelszava lejárt. Kérjük, változtassa meg",
+    "tooManyAttempts": "Túl sok sikertelen próbálkozás. Kérjük, várjon {{minutes}} percet"
+  },
+  "network": {
+    "offline": "Nincs internetkapcsolat",
+    "slow": "Lassú internetkapcsolat észlelve",
+    "timeout": "A kapcsolat időtúllépés miatt megszakadt",
+    "connectionLost": "A kapcsolat megszakadt",
+    "serverUnreachable": "A szerver nem érhető el",
+    "cors": "Cross-origin kérés blokkolva",
+    "ssl": "SSL tanúsítvány hiba"
+  },
+  "data": {
+    "notFound": "Az adat nem található",
+    "loadError": "Hiba az adatok betöltésekor",
+    "saveError": "Hiba a mentés során",
+    "deleteError": "Hiba a törlés során",
+    "updateError": "Hiba a frissítés során",
+    "fetchError": "Hiba az adatok lekérésekor",
+    "parseError": "Hiba az adatok feldolgozásakor",
+    "conflict": "Az adat időközben megváltozott",
+    "stale": "Az adat elavult, frissítés szükséges"
+  },
+  "form": {
+    "incomplete": "Kérjük, töltse ki az összes kötelező mezőt",
+    "invalid": "A form érvénytelen adatokat tartalmaz",
+    "submitError": "Hiba a beküldés során",
+    "uploadError": "Hiba a fájl feltöltésekor",
+    "maxFilesExceeded": "Túl sok fájl (max: {{max}})",
+    "duplicateEntry": "Ez a bejegyzés már létezik"
+  },
+  "payment": {
+    "declined": "A fizetés elutasítva",
+    "insufficientFunds": "Nincs elegendő fedezet",
+    "cardExpired": "A kártya lejárt",
+    "invalidCard": "Érvénytelen kártyaadatok",
+    "processingError": "Hiba a fizetés feldolgozásakor",
+    "cancelled": "A fizetés megszakítva",
+    "timeout": "A fizetés időtúllépés miatt sikertelen"
+  },
+  "booking": {
+    "unavailable": "Ez az időpont nem elérhető",
+    "conflict": "Időpontütközés",
+    "pastDate": "Múltbeli időpontra nem lehet foglalni",
+    "tooEarly": "Túl korai időpont",
+    "tooLate": "Túl késői időpont",
+    "maxBookings": "Elérte a maximális foglalások számát",
+    "cancelled": "A foglalás lemondva"
+  },
+  "file": {
+    "notFound": "A fájl nem található",
+    "tooLarge": "A fájl túl nagy",
+    "unsupportedType": "Nem támogatott fájltípus",
+    "uploadFailed": "A feltöltés sikertelen",
+    "downloadFailed": "A letöltés sikertelen",
+    "corrupt": "A fájl sérült",
+    "accessDenied": "Nincs hozzáférése a fájlhoz"
+  },
+  "permission": {
+    "denied": "Hozzáférés megtagadva",
+    "roleRequired": "{{role}} szerepkör szükséges",
+    "organizationRequired": "Szervezeti tagság szükséges",
+    "teamRequired": "Csapat tagság szükséges",
+    "ownerOnly": "Csak a tulajdonos férhet hozzá",
+    "adminOnly": "Csak adminisztrátor férhet hozzá"
+  },
+  "system": {
+    "maintenance": "A rendszer karbantartás alatt áll",
+    "overloaded": "A rendszer túlterhelt. Kérjük, próbálja később",
+    "update": "Rendszerfrissítés folyamatban",
+    "restart": "A rendszer újraindítás alatt",
+    "database": "Adatbázis hiba",
+    "service": "A szolgáltatás nem elérhető"
+  },
+  "browser": {
+    "unsupported": "Ez a böngésző nem támogatott",
+    "outdated": "Kérjük, frissítse a böngészőjét",
+    "cookies": "A cookie-k le vannak tiltva",
+    "javascript": "A JavaScript le van tiltva",
+    "localStorage": "A helyi tárhely nem elérhető"
+  },
+  "actions": {
+    "retry": "Újrapróbálás",
+    "goBack": "Vissza",
+    "goHome": "Kezdőlapra",
+    "refresh": "Frissítés",
+    "contact": "Kapcsolat",
+    "report": "Hiba jelentése",
+    "details": "Részletek",
+    "dismiss": "Bezárás"
+  },
+  "messages": {
+    "errorOccurred": "Hiba történt: {{error}}",
+    "pleaseTryAgain": "Kérjük, próbálja újra később",
+    "contactSupport": "Ha a probléma továbbra is fennáll, lépjen kapcsolatba a támogatással",
+    "errorCode": "Hibakód: {{code}}",
+    "timestamp": "Időpont: {{time}}"
+  }
+}

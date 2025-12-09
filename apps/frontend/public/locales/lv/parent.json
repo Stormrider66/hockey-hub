@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Vecāku vadības panelis",
+    "subtitle": "Sekojiet līdzi sava bērna hokeja ceļojumam",
+    "welcome": "Laipni lūdzam, {{name}}!",
+    "childrenOverview": "Bērnu pārskats",
+    "upcomingEvents": "Gaidāmie notikumi"
+  },
+  "children": {
+    "title": "Mani bērni",
+    "addChild": "Pievienot bērnu",
+    "profile": "Bērna profils",
+    "schedule": "Grafiks",
+    "performance": "Sniegums",
+    "wellness": "Veselība un labsajūta",
+    "communication": "Ziņojumi",
+    "details": {
+      "team": "Komanda",
+      "position": "Pozīcija",
+      "coach": "Treneris",
+      "number": "Krekla numurs",
+      "age": "Vecuma grupa"
+    }
+  },
+  "schedule": {
+    "title": "Ģimenes grafiks",
+    "calendar": "Kalendāra skats",
+    "upcoming": "Gaidāmie notikumi",
+    "transportation": "Transports",
+    "conflicts": "Grafika konflikti",
+    "sync": "Sinhronizēt kalendāru",
+    "export": "Eksportēt grafiku",
+    "types": {
+      "game": "Spēle",
+      "practice": "Treniņš",
+      "tournament": "Turnīrs",
+      "teamEvent": "Komandas pasākums",
+      "meeting": "Vecāku sapulce",
+      "fundraiser": "Līdzekļu vākšana"
+    },
+    "rsvp": {
+      "title": "Apstiprināt dalību pasākumā",
+      "attending": "Mēs būsim",
+      "notAttending": "Nevarēsim piedalīties",
+      "driving": "Varu vest citus",
+      "needRide": "Nepieciešams transports"
+    }
+  },
+  "transportation": {
+    "title": "Transporta koordinēšana",
+    "available": "Pieejamie vadītāji",
+    "requests": "Transporta pieprasījumi",
+    "myOffers": "Mani transporta piedāvājumi",
+    "carpool": "Kopbraukšanas grupas",
+    "seats": "Pieejamās vietas",
+    "pickup": "Saņemšanas vieta",
+    "dropoff": "Nogādāšanas vieta",
+    "time": "Izbraukšanas laiks"
+  },
+  "payments": {
+    "title": "Maksājumi un nodevas",
+    "overview": "Maksājumu pārskats",
+    "due": "Maksājamā summa",
+    "history": "Maksājumu vēsture",
+    "upcoming": "Gaidāmās nodevas",
+    "methods": "Maksājumu metodes",
+    "invoices": "Rēķini",
+    "items": {
+      "registration": "Reģistrācijas maksa",
+      "monthly": "Mēneša maksa",
+      "equipment": "Ekipējums",
+      "tournament": "Turnīra dalības maksa",
+      "travel": "Ceļojuma izdevumi",
+      "fundraising": "Līdzekļu vākšana"
+    },
+    "status": {
+      "paid": "Samaksāts",
+      "pending": "Gaida apmaksu",
+      "overdue": "Nokavēts",
+      "partial": "Daļējs maksājums"
+    }
+  },
+  "communication": {
+    "title": "Komunikācija",
+    "messages": "Ziņojumi",
+    "announcements": "Komandas paziņojumi",
+    "coachMessages": "No trenera",
+    "teamMessages": "Komandas jaunumi",
+    "emergency": "Ārkārtas kontakti",
+    "directory": "Komandas katalogs",
+    "preferences": "Komunikācijas preferences"
+  },
+  "medical": {
+    "title": "Medicīniskā informācija",
+    "records": "Medicīniskie ieraksti",
+    "allergies": "Alerģijas",
+    "medications": "Medikamenti",
+    "conditions": "Medicīniskie stāvokļi",
+    "emergency": "Ārkārtas kontakti",
+    "insurance": "Apdrošināšanas informācija",
+    "consent": "Medicīniskā piekrišana",
+    "injuries": "Traumu vēsture"
+  },
+  "documents": {
+    "title": "Dokumenti un veidlapas",
+    "required": "Obligātie dokumenti",
+    "optional": "Neobligātās veidlapas",
+    "submitted": "Iesniegts",
+    "pending": "Gaida iesniegšanu",
+    "download": "Lejupielādēt veidlapas",
+    "upload": "Augšupielādēt dokumentu",
+    "types": {
+      "registration": "Reģistrācijas veidlapa",
+      "medical": "Medicīniskā veidlapa",
+      "waiver": "Atbrīvojums",
+      "consent": "Piekrišanas veidlapa",
+      "emergency": "Ārkārtas kontakti",
+      "insurance": "Apdrošināšanas karte"
+    }
+  },
+  "volunteer": {
+    "title": "Brīvprātīgā darba iespējas",
+    "signup": "Pieteikties",
+    "myShifts": "Manas brīvprātīgā maiņas",
+    "available": "Pieejamās pozīcijas",
+    "hours": "Brīvprātīgā stundas",
+    "requirements": "Prasības",
+    "positions": {
+      "scorekeeper": "Sekretārs",
+      "penalty": "Soda sols",
+      "concession": "Kafejnīca",
+      "fundraising": "Līdzekļu vākšana",
+      "teamManager": "Komandas menedžeris",
+      "equipment": "Ekipējuma palīgs"
+    }
+  },
+  "performance": {
+    "title": "Bērna progress",
+    "overview": "Snieguma pārskats",
+    "improvement": "Uzlabojumu jomas",
+    "achievements": "Nesenie sasniegumi",
+    "feedback": "Trenera atsauksmes",
+    "goals": "Attīstības mērķi",
+    "attendance": "Apmeklējuma reģistrs",
+    "effort": "Pūļu līmenis",
+    "teamwork": "Komandas darbs"
+  }
+}

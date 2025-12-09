@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Mängija töölaud",
+    "subtitle": "Jälgi oma sooritusi ja arengut",
+    "welcome": "Tere tulemast tagasi, {{name}}!",
+    "todaySchedule": "Tänane ajakava",
+    "upcomingEvents": "Tulevad sündmused",
+    "recentPerformance": "Viimased sooritused",
+    "developmentGoals": "Arengueesmärgid"
+  },
+  "profile": {
+    "playerInfo": "Mängija andmed",
+    "number": "Särgi number",
+    "position": "Positsioon",
+    "shoots": "Viskekäsi",
+    "team": "Meeskond",
+    "age": "Vanus",
+    "height": "Pikkus",
+    "weight": "Kaal",
+    "joined": "Liitus",
+    "contractExpires": "Lepingu lõpp"
+  },
+  "wellness": {
+    "title": "Päevane heaolukontroll",
+    "subtitle": "Kuidas sa end täna tunned?",
+    "submit": "Esita heaoluandmed",
+    "submitted": "Heaoluandmed edukalt esitatud",
+    "metrics": {
+      "hrv": "Südame löögisageduse varieeruvus",
+      "sleep": "Une kvaliteet",
+      "fatigue": "Väsimuse tase",
+      "mood": "Meeleolu",
+      "soreness": "Lihasvalu",
+      "stress": "Stressi tase",
+      "hydration": "Hüdratsioon",
+      "nutrition": "Toitumise kvaliteet"
+    },
+    "scale": {
+      "poor": "Kehv",
+      "fair": "Rahuldav",
+      "good": "Hea",
+      "veryGood": "Väga hea",
+      "excellent": "Suurepärane"
+    }
+  },
+  "training": {
+    "title": "Treeningud",
+    "upcoming": "Tulevad treeningud",
+    "completed": "Läbitud treeningud",
+    "assigned": "Määratud harjutused",
+    "progress": "Treeningu progress",
+    "todaysWorkout": "Tänane treening",
+    "completeSession": "Lõpeta treening",
+    "viewDetails": "Vaata üksikasju",
+    "intensity": "Intensiivsus",
+    "duration": "Kestus",
+    "focus": "Fookusala",
+    "equipment": "Vajalik varustus",
+    "location": "Asukoht",
+    "coach": "Treener",
+    "notes": "Treeningu märkmed"
+  },
+  "performance": {
+    "title": "Soorituse näitajad",
+    "seasonStats": "Hooaja statistika",
+    "careerStats": "Karjääri statistika",
+    "lastGame": "Viimane mäng",
+    "average": "Keskmine",
+    "total": "Kokku",
+    "trend": "Trend",
+    "improvement": "Paranemine",
+    "metrics": {
+      "goals": "Väravad",
+      "assists": "Söödud",
+      "points": "Punktid",
+      "plusMinus": "+/-",
+      "pim": "Karistusminutid",
+      "shots": "Visked",
+      "shootingPercentage": "Viske %",
+      "faceoffPercentage": "Algusviske %",
+      "hits": "Taklungid",
+      "blocks": "Blokeeringud",
+      "takeaways": "Litri võtmised",
+      "giveaways": "Litri kaotused",
+      "toi": "Jääaeg",
+      "powerplayGoals": "Ülekaaluvär.",
+      "shorthandedGoals": "Alakaaluvär.",
+      "gameWinningGoals": "Võiduväravad"
+    }
+  },
+  "schedule": {
+    "title": "Ajakava",
+    "calendar": "Kalendrivaade",
+    "list": "Nimekirjavaade",
+    "filters": "Filtrid",
+    "types": {
+      "game": "Mäng",
+      "practice": "Harjutus",
+      "training": "Treening",
+      "meeting": "Koosolek",
+      "medical": "Meditsiiniline",
+      "recovery": "Taastumine",
+      "travel": "Reis",
+      "personal": "Isiklik"
+    },
+    "rsvp": {
+      "title": "Osalemine",
+      "attending": "Osalen",
+      "notAttending": "Ei osale",
+      "maybe": "Võib-olla",
+      "update": "Uuenda osalemist"
+    }
+  },
+  "communication": {
+    "title": "Sõnumid",
+    "inbox": "Sisekast",
+    "sent": "Saadetud",
+    "drafts": "Mustandid",
+    "compose": "Koosta",
+    "teamChat": "Meeskonna vestlus",
+    "coachMessages": "Treeneri sõnumid",
+    "announcements": "Teadaanded"
+  },
+  "development": {
+    "title": "Arenguplaan",
+    "goals": "Eesmärgid",
+    "progress": "Progress",
+    "skillAssessment": "Oskuste hindamine",
+    "trainingPlan": "Treeningplaan",
+    "milestones": "Verstapostid",
+    "achievements": "Saavutused",
+    "areas": {
+      "skating": "Uisutamine",
+      "shooting": "Viskamine",
+      "passing": "Söötmine",
+      "stickHandling": "Litritehnika",
+      "positioning": "Positsioneerimine",
+      "physicality": "Füüsiline vorm",
+      "mentalGame": "Vaimne mäng",
+      "leadership": "Juhtimine"
+    }
+  },
+  "nutrition": {
+    "title": "Toitumine",
+    "mealPlan": "Toiduplaan",
+    "hydration": "Hüdratsiooni jälgimine",
+    "supplements": "Toidulisandid",
+    "calories": "Kalorid",
+    "macros": "Makrotoitained",
+    "meals": {
+      "breakfast": "Hommikusöök",
+      "lunch": "Lõunasöök",
+      "dinner": "Õhtusöök",
+      "snack": "Vahepala",
+      "preGame": "Enne mängu",
+      "postGame": "Pärast mängu"
+    }
+  },
+  "recovery": {
+    "title": "Taastumine",
+    "status": "Taastumise staatus",
+    "activities": "Taastumise tegevused",
+    "sleep": "Une jälgimine",
+    "treatment": "Ravi",
+    "nextSession": "Järgmine taastumissessioon",
+    "types": {
+      "massage": "Massaaž",
+      "coldTub": "Külmvann",
+      "sauna": "Saun",
+      "stretching": "Venitamine",
+      "yoga": "Jooga",
+      "physiotherapy": "Füsioteraapia"
+    }
+  }
+}

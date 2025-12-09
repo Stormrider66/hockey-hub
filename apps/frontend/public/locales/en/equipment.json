@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Equipment Manager Dashboard",
+    "subtitle": "Equipment inventory and management",
+    "welcome": "Welcome, {{name}}",
+    "quickStats": "Equipment Status",
+    "urgentNeeds": "Urgent Equipment Needs"
+  },
+  "inventory": {
+    "title": "Equipment Inventory",
+    "overview": "Inventory Overview",
+    "search": "Search Equipment",
+    "filter": "Filter by Type",
+    "add": "Add Equipment",
+    "remove": "Remove Equipment",
+    "update": "Update Stock",
+    "lowStock": "Low Stock Alert",
+    "remaining": "{{count}} remaining",
+    "reorderAt": "Reorder at {{level}}",
+    "outOfStock": "Out of Stock",
+    "lowStockStatus": "Low Stock",
+    "stock": "Stock",
+    "condition": {
+      "good": "Good",
+      "fair": "Fair",
+      "poor": "Poor"
+    },
+    "categories": {
+      "protective": "Protective Gear",
+      "sticks": "Hockey Sticks",
+      "skates": "Skates",
+      "apparel": "Team Apparel",
+      "training": "Training Equipment",
+      "goalie": "Goalie Equipment",
+      "accessories": "Accessories",
+      "medical": "Medical Supplies"
+    },
+    "status": {
+      "available": "Available",
+      "assigned": "Assigned",
+      "maintenance": "In Maintenance",
+      "ordered": "On Order",
+      "damaged": "Damaged",
+      "retired": "Retired"
+    }
+  },
+  "assignments": {
+    "title": "Equipment Assignments",
+    "player": "Player Assignments",
+    "team": "Team Equipment",
+    "assign": "Assign Equipment",
+    "return": "Return Equipment",
+    "history": "Assignment History",
+    "current": "Current Assignments",
+    "overdue": "Overdue Returns"
+  },
+  "sizes": {
+    "title": "Size Management",
+    "chart": "Size Chart",
+    "playerSizes": "Player Sizes",
+    "update": "Update Sizes",
+    "fitting": "Schedule Fitting",
+    "categories": {
+      "helmet": "Helmet",
+      "shoulderPads": "Shoulder Pads",
+      "elbow": "Elbow Pads",
+      "gloves": "Gloves",
+      "pants": "Hockey Pants",
+      "shinGuards": "Shin Guards",
+      "skates": "Skates",
+      "jersey": "Jersey",
+      "socks": "Socks"
+    },
+    "measurements": {
+      "xs": "Extra Small",
+      "s": "Small",
+      "m": "Medium",
+      "l": "Large",
+      "xl": "Extra Large",
+      "xxl": "2X Large",
+      "xxxl": "3X Large",
+      "youth": "Youth",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Equipment Maintenance",
+    "schedule": "Maintenance Schedule",
+    "due": "Maintenance Due",
+    "history": "Maintenance History",
+    "log": "Log Maintenance",
+    "types": {
+      "sharpening": "Skate Sharpening",
+      "repair": "Equipment Repair",
+      "cleaning": "Deep Cleaning",
+      "inspection": "Safety Inspection",
+      "replacement": "Part Replacement"
+    },
+    "frequency": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "biweekly": "Bi-weekly",
+      "monthly": "Monthly",
+      "seasonal": "Seasonal",
+      "asNeeded": "As Needed"
+    }
+  },
+  "orders": {
+    "title": "Equipment Orders",
+    "new": "New Order",
+    "createOrder": "Create Order",
+    "createOrderTitle": "Create Equipment Order",
+    "createOrderDescription": "Add items to your order. Orders will be submitted for approval.",
+    "addItem": "Add Item",
+    "removeItem": "Remove",
+    "itemName": "Item Name",
+    "itemNamePlaceholder": "Enter item name",
+    "quantity": "Qty",
+    "priority": "Priority",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "Additional specifications or notes",
+    "creating": "Creating...",
+    "pending": "Pending Orders",
+    "history": "Order History",
+    "suppliers": "Suppliers",
+    "budget": "Equipment Budget",
+    "approve": "Approve Order",
+    "track": "Track Shipment",
+    "receive": "Receive Order",
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "approved": "Approved",
+      "ordered": "Ordered",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
+  },
+  "laundry": {
+    "title": "Laundry Management",
+    "schedule": "Laundry Schedule",
+    "status": "Laundry Status",
+    "pickup": "Schedule Pickup",
+    "return": "Mark as Returned",
+    "items": {
+      "jerseys": "Game Jerseys",
+      "practice": "Practice Jerseys",
+      "socks": "Team Socks",
+      "shells": "Pant Shells",
+      "towels": "Towels"
+    }
+  },
+  "reports": {
+    "title": "Equipment Reports",
+    "usage": "Usage Report",
+    "cost": "Cost Analysis",
+    "replacement": "Replacement Schedule",
+    "playerNeeds": "Player Equipment Needs",
+    "teamNeeds": "Team Equipment Needs",
+    "generate": "Generate Report",
+    "export": "Export Report"
+  },
+  "budget": {
+    "title": "Budget Management",
+    "current": "Current Budget",
+    "spent": "Amount Spent",
+    "remaining": "Remaining Budget",
+    "projected": "Projected Costs",
+    "categories": "Budget by Category",
+    "approval": "Pending Approvals"
+  },
+  "team": {
+    "title": "Team Equipment",
+    "bags": "Equipment Bags",
+    "medical": "Medical Kit",
+    "tools": "Equipment Tools",
+    "spare": "Spare Equipment",
+    "travel": "Travel Checklist",
+    "gameday": "Game Day Checklist"
+  },
+  "events": {
+    "upcoming": "Upcoming Events",
+    "equipmentRelated": "Equipment-related schedule"
+  },
+  "tasks": {
+    "active": "Active Tasks",
+    "currentMaintenance": "Current maintenance and tasks",
+    "assigned": "Assigned",
+    "due": "Due",
+    "estimatedTime": "Est. Time",
+    "lastDone": "Last done"
+  },
+  "gameday": {
+    "checklist": "Game Day Checklist",
+    "preGame": "Pre-game preparation tasks",
+    "deadline": "Deadline"
+  },
+  "players": {
+    "equipment": "Player Equipment",
+    "tracking": "Individual player equipment tracking",
+    "comingSoon": "Player equipment tracking coming soon",
+    "addRecord": "Add Equipment Record"
+  }
+}

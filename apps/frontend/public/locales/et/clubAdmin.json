@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Klubi administraatori töölaud",
+    "subtitle": "Organisatsiooni haldus ja järelevalve",
+    "welcome": "Tere tulemast, {{name}}",
+    "organizationOverview": "Organisatsiooni ülevaade",
+    "quickActions": "Kiirtoimingud",
+    "stats": {
+      "teams": "Meeskonnad",
+      "activeMembers": "Aktiivsed liikmed",
+      "coachingStaff": "Treenerid",
+      "upcomingEvents": "Tulevad sündmused",
+      "attendance": "Kohaloleku statistika",
+      "members": "Liikmed"
+    }
+  },
+  "organization": {
+    "title": "Organisatsiooni haldus",
+    "details": "Organisatsiooni andmed",
+    "settings": "Organisatsiooni seaded",
+    "structure": "Organisatsiooni struktuur",
+    "departments": "Osakonnad",
+    "policies": "Reeglid ja protseduurid",
+    "branding": "Bränding ja identiteet",
+    "contact": "Kontaktandmed"
+  },
+  "teams": {
+    "title": "Meeskondade haldus",
+    "all": "Kõik meeskonnad",
+    "create": "Loo meeskond",
+    "edit": "Muuda meeskonda",
+    "delete": "Kustuta meeskond",
+    "roster": "Meeskondade koosseisud",
+    "assignments": "Personali määramised",
+    "categories": {
+      "senior": "Seeniori meeskonnad",
+      "junior": "Juuniori meeskonnad",
+      "youth": "Noorte meeskonnad",
+      "academy": "Akadeemia meeskonnad",
+      "womens": "Naiste meeskonnad"
+    }
+  },
+  "staff": {
+    "title": "Personali haldus",
+    "all": "Kogu personal",
+    "add": "Lisa töötaja",
+    "roles": "Personali rollid",
+    "permissions": "Õigused",
+    "contracts": "Lepingud",
+    "evaluation": "Töötulemuste hindamine",
+    "training": "Koolitus ja sertifikatsioon",
+    "types": {
+      "coaching": "Treenerid",
+      "medical": "Meditsiinipersonal",
+      "administrative": "Administratsioon",
+      "support": "Tugipersonal",
+      "volunteer": "Vabatahtlikud"
+    }
+  },
+  "facilities": {
+    "title": "Rajatiste haldus",
+    "overview": "Rajatiste ülevaade",
+    "booking": "Rajatiste broneerimine",
+    "maintenance": "Hooldusgraafik",
+    "calendar": "Rajatiste kalender",
+    "utilization": "Kasutuse aruanded",
+    "types": {
+      "mainRink": "Peahall",
+      "practiceRink": "Harjutushall",
+      "gym": "Jõusaal",
+      "meetingRooms": "Koosolekuruumid",
+      "lockerRooms": "Riietusruumid",
+      "medicalRoom": "Meditsiiniruum"
+    }
+  },
+  "finance": {
+    "title": "Finantshaldus",
+    "overview": "Finantsülevaade",
+    "budget": "Eelarve haldus",
+    "revenue": "Tuluallikad",
+    "expenses": "Kulud",
+    "reports": "Finantsaruanded",
+    "invoicing": "Arveldamine",
+    "sponsorships": "Sponsorlus",
+    "grants": "Toetused ja rahastus"
+  },
+  "events": {
+    "title": "Sündmuste haldus",
+    "calendar": "Sündmuste kalender",
+    "create": "Loo sündmus",
+    "upcoming": "Tulevad sündmused",
+    "past": "Toimunud sündmused",
+    "types": {
+      "games": "Mängud",
+      "tournaments": "Turniirid",
+      "fundraisers": "Heategevusüritused",
+      "meetings": "Koosolekud",
+      "social": "Seltskondlikud üritused",
+      "training": "Treeninglaagrid"
+    }
+  },
+  "communication": {
+    "title": "Kommunikatsioon",
+    "announcements": "Teadaanded",
+    "newsletters": "Uudiskirjad",
+    "social": "Sotsiaalmeedia",
+    "website": "Veebilehe uuendused",
+    "press": "Pressiteated",
+    "internal": "Sisekomm",
+    "broadcast": "Üldteade"
+  },
+  "compliance": {
+    "title": "Vastavus ja juhtimine",
+    "policies": "Reeglid",
+    "procedures": "Protseduurid",
+    "regulations": "Regulatsioonid",
+    "certifications": "Sertifikaadid",
+    "audits": "Auditid",
+    "reports": "Vastavusaruanded",
+    "training": "Vastavuskoolitus"
+  },
+  "reports": {
+    "title": "Aruanded ja analüütika",
+    "dashboard": "Juhtimislaud",
+    "operational": "Operatiivaruanded",
+    "financial": "Finantsaruanded",
+    "performance": "Tulemusnäitajad",
+    "custom": "Kohandatud aruanded",
+    "export": "Ekspordi andmed",
+    "schedule": "Planeeri aruandeid"
+  },
+  "members": {
+    "title": "Liikmete haldus",
+    "directory": "Liikmete kataloog",
+    "registration": "Registreerimine",
+    "renewal": "Liikmelisuse pikendamine",
+    "benefits": "Liikme hüved",
+    "communication": "Liikmete kommunikatsioon",
+    "statistics": "Liikmete statistika",
+    "byRole": "Liikmed rolli järgi"
+  }
+}

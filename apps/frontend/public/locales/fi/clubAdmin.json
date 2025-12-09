@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Seuran ylläpitäjän kojelauta",
+    "subtitle": "Organisaation hallinta ja valvonta",
+    "welcome": "Tervetuloa, {{name}}",
+    "organizationOverview": "Organisaation yleiskatsaus",
+    "quickActions": "Pikatoiminnot",
+    "stats": {
+      "teams": "Joukkueet",
+      "activeMembers": "Aktiiviset jäsenet",
+      "coachingStaff": "Valmennushenkilöstö",
+      "upcomingEvents": "Tulevat tapahtumat",
+      "attendance": "Läsnäolo",
+      "members": "Jäsenet"
+    }
+  },
+  "organization": {
+    "title": "Organisaation hallinta",
+    "details": "Organisaation tiedot",
+    "settings": "Organisaation asetukset",
+    "structure": "Organisaatiorakenne",
+    "departments": "Osastot",
+    "policies": "Käytännöt ja menettelyt",
+    "branding": "Brändi ja identiteetti",
+    "contact": "Yhteystiedot"
+  },
+  "teams": {
+    "title": "Joukkueiden hallinta",
+    "all": "Kaikki joukkueet",
+    "create": "Luo joukkue",
+    "edit": "Muokkaa joukkuetta",
+    "delete": "Poista joukkue",
+    "roster": "Joukkuekokoonpanot",
+    "assignments": "Henkilöstösijoitukset",
+    "categories": {
+      "senior": "Aikuisjoukkueet",
+      "junior": "Juniorijoukkueet",
+      "youth": "Nuorisojoukkueet",
+      "academy": "Akatemiajoukkueet",
+      "womens": "Naisjoukkueet"
+    }
+  },
+  "staff": {
+    "title": "Henkilöstöhallinta",
+    "all": "Koko henkilöstö",
+    "add": "Lisää henkilöstön jäsen",
+    "roles": "Henkilöstöroolit",
+    "permissions": "Käyttöoikeudet",
+    "contracts": "Sopimukset",
+    "evaluation": "Suoritusarviointi",
+    "training": "Koulutus ja sertifiointi",
+    "types": {
+      "coaching": "Valmennushenkilöstö",
+      "medical": "Lääkintähenkilöstö",
+      "administrative": "Hallinto",
+      "support": "Tukihenkilöstö",
+      "volunteer": "Vapaaehtoiset"
+    }
+  },
+  "facilities": {
+    "title": "Tilojen hallinta",
+    "overview": "Tilojen yleiskatsaus",
+    "booking": "Tilojen varaus",
+    "maintenance": "Huoltoaikataulu",
+    "calendar": "Tilakalenteri",
+    "utilization": "Käyttöraportit",
+    "types": {
+      "mainRink": "Pääjäähalli",
+      "practiceRink": "Harjoitusjäähalli",
+      "gym": "Kuntosali",
+      "meetingRooms": "Kokoustilat",
+      "lockerRooms": "Pukuhuoneet",
+      "medicalRoom": "Lääkintätila"
+    }
+  },
+  "finance": {
+    "title": "Taloushallinto",
+    "overview": "Talouden yleiskatsaus",
+    "budget": "Budjetin hallinta",
+    "revenue": "Tulovirrat",
+    "expenses": "Menot",
+    "reports": "Talousraportit",
+    "invoicing": "Laskutus",
+    "sponsorships": "Sponsorointi",
+    "grants": "Avustukset ja rahoitus"
+  },
+  "events": {
+    "title": "Tapahtumien hallinta",
+    "calendar": "Tapahtumakalenteri",
+    "create": "Luo tapahtuma",
+    "upcoming": "Tulevat tapahtumat",
+    "past": "Menneet tapahtumat",
+    "types": {
+      "games": "Pelit",
+      "tournaments": "Turnaukset",
+      "fundraisers": "Varainkeruut",
+      "meetings": "Kokoukset",
+      "social": "Seuratapahtumat",
+      "training": "Harjoitusleirit"
+    }
+  },
+  "communication": {
+    "title": "Viestintä",
+    "announcements": "Ilmoitukset",
+    "newsletters": "Uutiskirjeet",
+    "social": "Sosiaalinen media",
+    "website": "Verkkosivupäivitykset",
+    "press": "Lehdistötiedotteet",
+    "internal": "Sisäinen viestintä",
+    "broadcast": "Lähetä viesti"
+  },
+  "compliance": {
+    "title": "Säännöstenmukaisuus ja hallinto",
+    "policies": "Käytännöt",
+    "procedures": "Menettelytavat",
+    "regulations": "Säännökset",
+    "certifications": "Sertifikaatit",
+    "audits": "Tarkastukset",
+    "reports": "Säännöstenmukaisuusraportit",
+    "training": "Säännöstenmukaisuuskoulutus"
+  },
+  "reports": {
+    "title": "Raportit ja analytiikka",
+    "dashboard": "Johdon kojelauta",
+    "operational": "Toiminnalliset raportit",
+    "financial": "Talousraportit",
+    "performance": "Suorituskykymittarit",
+    "custom": "Mukautetut raportit",
+    "export": "Vie tiedot",
+    "schedule": "Ajoita raportit"
+  },
+  "members": {
+    "title": "Jäsenhallinta",
+    "directory": "Jäsenhakemisto",
+    "registration": "Rekisteröinti",
+    "renewal": "Jäsenyyden uusiminen",
+    "benefits": "Jäsenedut",
+    "communication": "Jäsenviestintä",
+    "statistics": "Jäsentilastot",
+    "byRole": "Jäsenet roolin mukaan"
+  }
+}

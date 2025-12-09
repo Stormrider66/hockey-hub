@@ -1,0 +1,148 @@
+{
+  "dashboard": {
+    "title": "Föräldraöversikt",
+    "subtitle": "Håll koll på ditt barns hockeyresa",
+    "welcome": "Välkommen, {{name}}!",
+    "childrenOverview": "Barnöversikt",
+    "upcomingEvents": "Kommande händelser"
+  },
+  "children": {
+    "title": "Mina barn",
+    "addChild": "Lägg till barn",
+    "profile": "Barnprofil",
+    "schedule": "Schema",
+    "performance": "Prestation",
+    "wellness": "Hälsa & välmående",
+    "communication": "Meddelanden",
+    "details": {
+      "team": "Lag",
+      "position": "Position",
+      "coach": "Tränare",
+      "number": "Tröjnummer",
+      "age": "Åldersgrupp"
+    }
+  },
+  "schedule": {
+    "title": "Familjeschema",
+    "calendar": "Kalendervy",
+    "upcoming": "Kommande händelser",
+    "transportation": "Transport",
+    "conflicts": "Schemakonflikter",
+    "sync": "Synka kalender",
+    "export": "Exportera schema",
+    "types": {
+      "game": "Match",
+      "practice": "Träning",
+      "tournament": "Turnering",
+      "teamEvent": "Lagevenemang",
+      "meeting": "Föräldramöte",
+      "fundraiser": "Insamling"
+    },
+    "rsvp": {
+      "title": "OSA för evenemang",
+      "attending": "Vi kommer",
+      "notAttending": "Kan inte komma",
+      "driving": "Kan köra andra",
+      "needRide": "Behöver transport"
+    }
+  },
+  "transportation": {
+    "title": "Transportsamordning",
+    "available": "Tillgängliga förare",
+    "requests": "Transportförfrågningar",
+    "myOffers": "Mina körerbjudanden",
+    "carpool": "Samåkningsgrupper",
+    "seats": "Lediga platser",
+    "pickup": "Upphämtningsplats",
+    "dropoff": "Avlämningsplats",
+    "time": "Avresetid"
+  },
+  "payments": {
+    "title": "Betalningar & avgifter",
+    "overview": "Betalningsöversikt",
+    "due": "Att betala",
+    "history": "Betalningshistorik",
+    "upcoming": "Kommande avgifter",
+    "methods": "Betalningsmetoder",
+    "invoices": "Fakturor",
+    "items": {
+      "registration": "Registreringsavgift",
+      "monthly": "Månadsavgift",
+      "equipment": "Utrustning",
+      "tournament": "Turneringsavgift",
+      "travel": "Resekostnader",
+      "fundraising": "Insamling"
+    },
+    "status": {
+      "paid": "Betald",
+      "pending": "Väntar",
+      "overdue": "Försenad",
+      "partial": "Delbetalning"
+    }
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "messages": "Meddelanden",
+    "announcements": "Lagmeddelanden",
+    "coachMessages": "Från tränaren",
+    "teamMessages": "Laguppdateringar",
+    "emergency": "Nödkontakter",
+    "directory": "Lagkatalog",
+    "preferences": "Kommunikationsinställningar"
+  },
+  "medical": {
+    "title": "Medicinsk information",
+    "records": "Medicinska uppgifter",
+    "allergies": "Allergier",
+    "medications": "Mediciner",
+    "conditions": "Medicinska tillstånd",
+    "emergency": "Nödkontakter",
+    "insurance": "Försäkringsinformation",
+    "consent": "Medicinskt samtycke",
+    "injuries": "Skadehistorik"
+  },
+  "documents": {
+    "title": "Dokument & formulär",
+    "required": "Obligatoriska dokument",
+    "optional": "Valfria formulär",
+    "submitted": "Inskickade",
+    "pending": "Väntar på inlämning",
+    "download": "Ladda ner formulär",
+    "upload": "Ladda upp dokument",
+    "types": {
+      "registration": "Registreringsformulär",
+      "medical": "Medicinskt formulär",
+      "waiver": "Ansvarsfriskrivning",
+      "consent": "Samtyckesblankett",
+      "emergency": "Nödkontakt",
+      "insurance": "Försäkringskort"
+    }
+  },
+  "volunteer": {
+    "title": "Volontärmöjligheter",
+    "signup": "Anmäl dig",
+    "myShifts": "Mina volontärpass",
+    "available": "Lediga uppdrag",
+    "hours": "Volontärtimmar",
+    "requirements": "Krav",
+    "positions": {
+      "scorekeeper": "Sekreterare",
+      "penalty": "Utvisningsbås",
+      "concession": "Kiosk",
+      "fundraising": "Insamling",
+      "teamManager": "Lagledare",
+      "equipment": "Utrustningshjälp"
+    }
+  },
+  "performance": {
+    "title": "Barnets framsteg",
+    "overview": "Prestationsöversikt",
+    "improvement": "Förbättringsområden",
+    "achievements": "Senaste prestationer",
+    "feedback": "Tränarfeedback",
+    "goals": "Utvecklingsmål",
+    "attendance": "Närvarostatistik",
+    "effort": "Ansträngningsnivå",
+    "teamwork": "Lagarbete"
+  }
+}

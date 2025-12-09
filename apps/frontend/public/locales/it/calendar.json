@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Mese",
+    "week": "Settimana",
+    "day": "Giorno",
+    "agenda": "Agenda",
+    "workWeek": "Settimana Lavorativa"
+  },
+  "navigation": {
+    "today": "Oggi",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "jumpToDate": "Vai alla data"
+  },
+  "event": {
+    "title": "Evento",
+    "newEvent": "Nuovo Evento",
+    "editEvent": "Modifica Evento",
+    "deleteEvent": "Elimina Evento",
+    "duplicateEvent": "Duplica Evento",
+    "allDay": "Tutto il Giorno",
+    "recurring": "Ricorrente",
+    "privateEvent": "Evento Privato",
+    "fields": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "location": "Luogo",
+      "startDate": "Data Inizio",
+      "startTime": "Ora Inizio",
+      "endDate": "Data Fine",
+      "endTime": "Ora Fine",
+      "type": "Tipo Evento",
+      "category": "Categoria",
+      "participants": "Partecipanti",
+      "resources": "Risorse",
+      "notes": "Note",
+      "reminder": "Promemoria",
+      "color": "Colore",
+      "attachments": "Allegati"
+    },
+    "types": {
+      "practice": "Allenamento",
+      "game": "Partita",
+      "training": "Preparazione",
+      "meeting": "Riunione",
+      "tournament": "Torneo",
+      "tryout": "Provino",
+      "medical": "Appuntamento Medico",
+      "equipment": "Prova Attrezzatura",
+      "teamEvent": "Evento di Squadra",
+      "personal": "Personale",
+      "other": "Altro"
+    },
+    "status": {
+      "confirmed": "Confermato",
+      "tentative": "Provvisorio",
+      "cancelled": "Annullato",
+      "postponed": "Rinviato",
+      "rescheduled": "Riprogrammato"
+    }
+  },
+  "recurrence": {
+    "title": "Ricorrenza",
+    "none": "Non si ripete",
+    "daily": "Giornaliero",
+    "weekly": "Settimanale",
+    "monthly": "Mensile",
+    "yearly": "Annuale",
+    "custom": "Personalizzato",
+    "every": "Ogni",
+    "days": "giorno/i",
+    "weeks": "settimana/e",
+    "months": "mese/i",
+    "years": "anno/i",
+    "on": "Il",
+    "onThe": "Il",
+    "weekdays": {
+      "monday": "Lunedì",
+      "tuesday": "Martedì",
+      "wednesday": "Mercoledì",
+      "thursday": "Giovedì",
+      "friday": "Venerdì",
+      "saturday": "Sabato",
+      "sunday": "Domenica"
+    },
+    "ends": {
+      "never": "Mai",
+      "after": "Dopo",
+      "onDate": "In data",
+      "occurrences": "occorrenze"
+    }
+  },
+  "availability": {
+    "available": "Disponibile",
+    "unavailable": "Non Disponibile",
+    "busy": "Occupato",
+    "tentative": "Provvisorio",
+    "outOfOffice": "Fuori Sede"
+  },
+  "conflicts": {
+    "detected": "Conflitto di Calendario Rilevato",
+    "message": "Questo evento è in conflitto con:",
+    "resolution": "Come vuoi risolvere?",
+    "overwrite": "Sovrascrivi esistente",
+    "keepBoth": "Mantieni entrambi gli eventi",
+    "cancel": "Annulla nuovo evento"
+  },
+  "filters": {
+    "title": "Filtri",
+    "showAll": "Mostra Tutti",
+    "byType": "Per Tipo",
+    "byTeam": "Per Squadra",
+    "byLocation": "Per Luogo",
+    "myEvents": "Solo i Miei Eventi"
+  },
+  "export": {
+    "title": "Esporta Calendario",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Stampa"
+    },
+    "range": {
+      "all": "Tutti gli Eventi",
+      "current": "Vista Corrente",
+      "custom": "Intervallo Personalizzato"
+    }
+  },
+  "sharing": {
+    "title": "Condividi Calendario",
+    "publicLink": "Link Pubblico",
+    "embed": "Codice Incorporamento",
+    "subscribe": "URL Sottoscrizione",
+    "permissions": {
+      "view": "Solo Visualizzazione",
+      "edit": "Può Modificare",
+      "admin": "Accesso Completo"
+    }
+  },
+  "reminders": {
+    "none": "Nessun promemoria",
+    "atTime": "All'ora dell'evento",
+    "minutes": "{{count}} minuti prima",
+    "hours": "{{count}} ore prima",
+    "days": "{{count}} giorni prima",
+    "custom": "Personalizzato"
+  },
+  "actions": {
+    "create": "Crea Evento",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "duplicate": "Duplica",
+    "print": "Stampa",
+    "export": "Esporta",
+    "import": "Importa",
+    "subscribe": "Sottoscrivi",
+    "unsubscribe": "Annulla Sottoscrizione",
+    "rsvp": "Conferma Presenza",
+    "maybeAttending": "Forse",
+    "attending": "Presente",
+    "notAttending": "Assente"
+  },
+  "messages": {
+    "eventCreated": "Evento creato con successo",
+    "eventUpdated": "Evento aggiornato con successo",
+    "eventDeleted": "Evento eliminato con successo",
+    "eventDuplicated": "Evento duplicato con successo",
+    "conflictWarning": "Questo orario ha dei conflitti",
+    "participantAdded": "Partecipante aggiunto",
+    "participantRemoved": "Partecipante rimosso",
+    "reminderSet": "Promemoria impostato",
+    "calendarShared": "Calendario condiviso con successo",
+    "exportComplete": "Esportazione completata",
+    "importComplete": "Importazione completata"
+  },
+  "facility": {
+    "rink": "Pista di Ghiaccio",
+    "mainRink": "Pista Principale",
+    "practiceRink": "Pista Allenamento",
+    "gym": "Palestra",
+    "meetingRoom": "Sala Riunioni",
+    "lockerRoom": "Spogliatoio",
+    "trainingRoom": "Sala Allenamento",
+    "videoRoom": "Sala Video",
+    "medicalRoom": "Sala Medica"
+  },
+  "tooltips": {
+    "dragToMove": "Trascina per spostare l'evento",
+    "dragToResize": "Trascina i bordi per ridimensionare",
+    "clickToEdit": "Clicca per modificare",
+    "doubleClickToCreate": "Doppio click per creare evento"
+  }
+}

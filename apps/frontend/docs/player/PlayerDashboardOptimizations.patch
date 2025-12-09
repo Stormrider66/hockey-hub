@@ -1,0 +1,188 @@
+// This patch file contains the changes needed to optimize the PlayerDashboard component
+
+// 1. Add new imports at the top of PlayerDashboard.tsx:
+import { SafeProgress } from '@/components/ui/SafeProgress';
+import OptimizedChart from '@/components/charts/OptimizedChart';
+import VirtualizedChart from '@/components/charts/VirtualizedChart';
+import { useDebouncedChartData } from '@/hooks/useDebouncedChartData';
+import { capProgress } from '@/utils/chartOptimization';
+
+// 2. Replace all Progress components with SafeProgress:
+// Example replacements:
+
+// OLD:
+<Progress value={t.progress} className="h-2" aria-label={`Progress: ${t.progress}%`} />
+// NEW:
+<SafeProgress value={t.progress} className="h-2" />
+
+// OLD:
+<Progress value={goal.progress} className="h-2" aria-label={`Goal progress: ${goal.progress}%`} />
+// NEW:
+<SafeProgress value={goal.progress} className="h-2" />
+
+// OLD:
+<Progress value={78} className="h-2 mt-2" />
+// NEW:
+<SafeProgress value={78} className="h-2 mt-2" />
+
+// OLD (line 1688-1691):
+<Progress 
+  value={(test.value / test.goal) * 100} 
+  className="h-2 flex-1"
+/>
+// NEW:
+<SafeProgress 
+  value={test.value}
+  max={test.goal}
+  className="h-2 flex-1"
+  showOverflow={true}
+/>
+
+// OLD:
+<Progress value={(item.rank / 22) * 100} className="h-6" />
+// NEW:
+<SafeProgress value={item.rank} max={22} className="h-6" />
+
+// OLD:
+<Progress value={goal.progress} className="h-2" />
+// NEW:
+<SafeProgress value={goal.progress} className="h-2" />
+
+// 3. Update wellness chart data handling:
+// Add debouncing for chart data
+const debouncedChartData = useDebouncedChartData(chartData, 300);
+
+// Update the wellness chart hook call:
+const { data: optimizedChartData, cleanup: cleanupChartData, originalSize, optimizedSize } = useWellnessChartData(debouncedChartData, {
+  maxDataPoints: 100,
+  enableAutoCleanup: true,
+  optimizationMethod: 'lttb',
+  xKey: 'date',
+  yKey: 'sleepQuality'
+});
+
+// 4. Replace LineChart components with OptimizedChart:
+// Example replacement for Performance Trends chart (around line 1740):
+
+// OLD:
+<ResponsiveContainer width="100%" height="100%">
+  <LineChart data={[
+    { date: 'Aug', value: 58, teamAvg: 56 },
+    // ... more data
+  ]}>
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis dataKey="date" />
+    <YAxis />
+    <Tooltip />
+    <Legend />
+    <Line type="monotone" dataKey="value" stroke="#3b82f6" name="Your Performance" strokeWidth={3} dot={{ r: 5 }} />
+    <Line type="monotone" dataKey="teamAvg" stroke="#94a3b8" name="Team Average" strokeWidth={2} strokeDasharray="5 5" />
+  </LineChart>
+</ResponsiveContainer>
+
+// NEW:
+<OptimizedChart
+  data={[
+    { date: 'Aug', value: 58, teamAvg: 56 },
+    { date: 'Sep', value: 60, teamAvg: 57 },
+    { date: 'Oct', value: 62, teamAvg: 58 },
+    { date: 'Nov', value: 63, teamAvg: 59 },
+    { date: 'Dec', value: 65, teamAvg: 60 },
+  ]}
+  type="line"
+  xKey="date"
+  yKeys={['value', 'teamAvg']}
+  height={256}
+  maxDataPoints={100}
+  colors={['#3b82f6', '#94a3b8']}
+  showGrid={true}
+  showLegend={true}
+  onDataOptimized={(original, optimized) => {
+    console.log(`Performance chart: ${original} → ${optimized} points`);
+  }}
+/>
+
+// 5. For very large datasets (>1000 points), use VirtualizedChart:
+// Example for wellness trends with large historical data:
+
+{wellnessHistoricalData.length > 1000 ? (
+  <VirtualizedChart
+    data={wellnessHistoricalData}
+    type="line"
+    xKey="date"
+    yKeys={['sleepQuality', 'energy', 'stress', 'nutrition']}
+    height={320}
+    windowSize={200}
+    pageSize={100}
+    enableZoom={true}
+    enablePagination={true}
+    colors={['#6366f1', '#10b981', '#f59e0b', '#ef4444']}
+    xAxisFormatter={(value) => new Date(value).toLocaleDateString()}
+    tooltipFormatter={(value) => value.toFixed(1)}
+  />
+) : (
+  <OptimizedChart
+    data={optimizedChartData}
+    type="line"
+    xKey="date"
+    yKeys={['sleepQuality', 'energy', 'stress', 'nutrition']}
+    height={320}
+    maxDataPoints={100}
+    colors={['#6366f1', '#10b981', '#f59e0b', '#ef4444']}
+  />
+)}
+
+// 6. Add loading states for heavy chart operations:
+{isOptimizing && (
+  <div className="absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+    <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+    <span className="ml-2 text-sm text-gray-600">Optimizing chart data...</span>
+  </div>
+)}
+
+// 7. Add performance monitoring:
+useEffect(() => {
+  if (originalSize !== optimizedSize) {
+    console.log(`Chart optimization: ${originalSize} points reduced to ${optimizedSize} (${Math.round((1 - optimizedSize/originalSize) * 100)}% reduction)`);
+  }
+}, [originalSize, optimizedSize]);
+
+// 8. Memoize chart configurations:
+const chartConfig = useMemo(() => ({
+  wellness: {
+    colors: ['#6366f1', '#10b981', '#f59e0b', '#ef4444'],
+    yKeys: ['sleepQuality', 'energy', 'stress', 'nutrition'],
+    maxPoints: 100
+  },
+  performance: {
+    colors: ['#3b82f6', '#94a3b8'],
+    yKeys: ['value', 'teamAvg'],
+    maxPoints: 50
+  }
+}), []);
+
+// 9. Update the Wellness Trends chart (around line where wellnessTrendsChartRef is used):
+<div className="h-80" ref={wellnessTrendsChartRef}>
+  <OptimizedChart
+    data={optimizedChartData}
+    type="line"
+    xKey="date"
+    yKeys={chartConfig.wellness.yKeys}
+    height={320}
+    maxDataPoints={chartConfig.wellness.maxPoints}
+    colors={chartConfig.wellness.colors}
+    xAxisFormatter={(value) => {
+      const date = new Date(value);
+      return wellnessTimeRange === 'week' 
+        ? date.toLocaleDateString('en', { weekday: 'short' })
+        : date.toLocaleDateString('en', { month: 'short', day: 'numeric' });
+    }}
+    yAxisFormatter={(value) => value.toFixed(1)}
+    tooltipFormatter={(value) => `${value.toFixed(1)}/10`}
+    onDataOptimized={(original, optimized) => {
+      if (original > 100) {
+        console.log(`Wellness chart optimized: ${original} → ${optimized} points`);
+      }
+    }}
+  />
+</div>

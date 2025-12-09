@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Panel trenera",
+    "subtitle": "Zarządzanie drużyną i śledzenie wyników",
+    "welcome": "Witaj ponownie, trenerze {{name}}!",
+    "quickStats": "Szybkie statystyki",
+    "todaysFocus": "Dzisiejszy fokus"
+  },
+  "team": {
+    "title": "Zarządzanie drużyną",
+    "roster": "Skład drużyny",
+    "lineups": "Kombinacje formacji",
+    "availability": "Dostępność zawodników",
+    "performance": "Wyniki drużyny",
+    "statistics": "Statystyki drużyny",
+    "playerStatus": {
+      "available": "Dostępny",
+      "limited": "Ograniczona dostępność",
+      "unavailable": "Niedostępny",
+      "injured": "Kontuzjowany",
+      "dayToDay": "Stan dzienny"
+    }
+  },
+  "practice": {
+    "title": "Planowanie treningów",
+    "schedule": "Harmonogram treningów",
+    "drills": "Biblioteka ćwiczeń",
+    "templates": "Szablony treningów",
+    "planning": "Planowanie sesji",
+    "attendance": "Śledzenie obecności",
+    "intensity": "Intensywność treningu",
+    "focus": {
+      "offense": "Systemy ofensywne",
+      "defense": "Systemy defensywne",
+      "specialTeams": "Formacje specjalne",
+      "conditioning": "Kondycja",
+      "skills": "Rozwój umiejętności"
+    },
+    "types": {
+      "full": "Pełny trening",
+      "optional": "Trening opcjonalny",
+      "morning": "Rozruch poranny",
+      "preGame": "Rozruch przedmeczowy",
+      "recovery": "Sesja regeneracyjna"
+    }
+  },
+  "games": {
+    "title": "Zarządzanie meczami",
+    "schedule": "Harmonogram meczów",
+    "preparation": "Przygotowanie do meczu",
+    "tactics": "Planowanie taktyczne",
+    "lineups": "Składy meczowe",
+    "scouting": "Raporty skautingowe",
+    "video": "Analiza wideo",
+    "stats": {
+      "goals": "Bramki",
+      "assists": "Asysty",
+      "shots": "Strzały",
+      "saves": "Obrony",
+      "faceoffs": "Wznowienia",
+      "penalties": "Kary",
+      "hits": "Trafiania",
+      "blocks": "Bloki"
+    }
+  },
+  "tactics": {
+    "title": "Tablica taktyczna",
+    "systems": "Systemy drużynowe",
+    "powerPlay": "Gra w przewadze",
+    "penaltyKill": "Gra w osłabieniu",
+    "faceoffPlays": "Zagrania ze wznowień",
+    "breakouts": "Schematy wyprowadzenia",
+    "forecheck": "Systemy pressingu",
+    "neutralZone": "Strefa neutralna",
+    "save": "Zapisz taktykę",
+    "load": "Wczytaj taktykę"
+  },
+  "communication": {
+    "title": "Komunikacja z drużyną",
+    "announcements": "Ogłoszenia drużynowe",
+    "meetings": "Spotkania drużyny",
+    "feedback": "Informacje zwrotne dla zawodników",
+    "messages": "Wiadomości bezpośrednie",
+    "broadcast": "Wyślij wiadomość grupową",
+    "schedule": "Zaplanuj spotkanie"
+  },
+  "analytics": {
+    "title": "Analityka wydajności",
+    "teamMetrics": "Metryki drużyny",
+    "playerMetrics": "Metryki zawodników",
+    "trends": "Trendy wydajności",
+    "comparison": "Porównanie drużyn",
+    "advanced": "Statystyki zaawansowane",
+    "reports": "Generuj raporty",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Starty w strefie ofensywnej",
+      "gaa": "Średnia straconych bramek",
+      "svp": "Procent skuteczności obron"
+    }
+  },
+  "development": {
+    "title": "Rozwój zawodników",
+    "plans": "Plany rozwoju",
+    "progress": "Śledzenie postępów",
+    "goals": "Cele rozwojowe",
+    "assessments": "Oceny umiejętności",
+    "feedback": "Informacje zwrotne o rozwoju",
+    "programs": "Programy treningowe"
+  },
+  "lineup": {
+    "title": "Zarządzanie formacjami",
+    "forward": "Linie napastników",
+    "defense": "Pary obrońców",
+    "powerPlay": "Jednostki przewagi",
+    "penaltyKill": "Jednostki osłabienia",
+    "scratches": "Zawodnicy rezerwowi",
+    "optimize": "Optymalizuj formacje",
+    "save": "Zapisz skład",
+    "positions": {
+      "c": "Środkowy",
+      "lw": "Lewy skrzydłowy",
+      "rw": "Prawy skrzydłowy",
+      "ld": "Lewy obrońca",
+      "rd": "Prawy obrońca",
+      "g": "Bramkarz"
+    }
+  }
+}

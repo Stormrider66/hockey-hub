@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Měsíc",
+    "week": "Týden",
+    "day": "Den",
+    "agenda": "Agenda",
+    "workWeek": "Pracovní týden"
+  },
+  "navigation": {
+    "today": "Dnes",
+    "back": "Zpět",
+    "next": "Další",
+    "previous": "Předchozí",
+    "jumpToDate": "Přejít na datum"
+  },
+  "event": {
+    "title": "Událost",
+    "newEvent": "Nová událost",
+    "editEvent": "Upravit událost",
+    "deleteEvent": "Smazat událost",
+    "duplicateEvent": "Duplikovat událost",
+    "allDay": "Celý den",
+    "recurring": "Opakující se",
+    "privateEvent": "Soukromá událost",
+    "fields": {
+      "title": "Název",
+      "description": "Popis",
+      "location": "Místo",
+      "startDate": "Datum začátku",
+      "startTime": "Čas začátku",
+      "endDate": "Datum konce",
+      "endTime": "Čas konce",
+      "type": "Typ události",
+      "category": "Kategorie",
+      "participants": "Účastníci",
+      "resources": "Zdroje",
+      "notes": "Poznámky",
+      "reminder": "Připomenutí",
+      "color": "Barva",
+      "attachments": "Přílohy"
+    },
+    "types": {
+      "practice": "Trénink",
+      "game": "Zápas",
+      "training": "Kondiční trénink",
+      "meeting": "Schůzka",
+      "tournament": "Turnaj",
+      "tryout": "Výběrové řízení",
+      "medical": "Lékařské vyšetření",
+      "equipment": "Zkouška vybavení",
+      "teamEvent": "Týmová akce",
+      "personal": "Osobní",
+      "other": "Jiné"
+    },
+    "status": {
+      "confirmed": "Potvrzeno",
+      "tentative": "Předběžné",
+      "cancelled": "Zrušeno",
+      "postponed": "Odloženo",
+      "rescheduled": "Přeplánováno"
+    }
+  },
+  "recurrence": {
+    "title": "Opakování",
+    "none": "Neopakuje se",
+    "daily": "Denně",
+    "weekly": "Týdně",
+    "monthly": "Měsíčně",
+    "yearly": "Ročně",
+    "custom": "Vlastní",
+    "every": "Každý",
+    "days": "den/dny",
+    "weeks": "týden/týdny",
+    "months": "měsíc/měsíce",
+    "years": "rok/roky",
+    "on": "V",
+    "onThe": "V",
+    "weekdays": {
+      "monday": "Pondělí",
+      "tuesday": "Úterý",
+      "wednesday": "Středa",
+      "thursday": "Čtvrtek",
+      "friday": "Pátek",
+      "saturday": "Sobota",
+      "sunday": "Neděle"
+    },
+    "ends": {
+      "never": "Nikdy",
+      "after": "Po",
+      "onDate": "K datu",
+      "occurrences": "opakováních"
+    }
+  },
+  "availability": {
+    "available": "K dispozici",
+    "unavailable": "Nedostupný",
+    "busy": "Zaneprázdněn",
+    "tentative": "Předběžně",
+    "outOfOffice": "Mimo kancelář"
+  },
+  "conflicts": {
+    "detected": "Zjištěn konflikt v rozvrhu",
+    "message": "Tato událost je v konfliktu s:",
+    "resolution": "Jak chcete konflikt vyřešit?",
+    "overwrite": "Přepsat existující",
+    "keepBoth": "Ponechat obě události",
+    "cancel": "Zrušit novou událost"
+  },
+  "filters": {
+    "title": "Filtry",
+    "showAll": "Zobrazit vše",
+    "byType": "Podle typu",
+    "byTeam": "Podle týmu",
+    "byLocation": "Podle místa",
+    "myEvents": "Pouze moje události"
+  },
+  "export": {
+    "title": "Exportovat kalendář",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Tisk"
+    },
+    "range": {
+      "all": "Všechny události",
+      "current": "Aktuální zobrazení",
+      "custom": "Vlastní rozsah"
+    }
+  },
+  "sharing": {
+    "title": "Sdílet kalendář",
+    "publicLink": "Veřejný odkaz",
+    "embed": "Kód pro vložení",
+    "subscribe": "URL pro odběr",
+    "permissions": {
+      "view": "Pouze zobrazení",
+      "edit": "Může upravovat",
+      "admin": "Plný přístup"
+    }
+  },
+  "reminders": {
+    "none": "Bez připomenutí",
+    "atTime": "V čase události",
+    "minutes": "{{count}} minut předem",
+    "hours": "{{count}} hodin předem",
+    "days": "{{count}} dnů předem",
+    "custom": "Vlastní"
+  },
+  "actions": {
+    "create": "Vytvořit událost",
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "duplicate": "Duplikovat",
+    "print": "Tisk",
+    "export": "Export",
+    "import": "Import",
+    "subscribe": "Odebírat",
+    "unsubscribe": "Odhlásit odběr",
+    "rsvp": "RSVP",
+    "maybeAttending": "Možná",
+    "attending": "Zúčastním se",
+    "notAttending": "Nezúčastním se"
+  },
+  "messages": {
+    "eventCreated": "Událost byla úspěšně vytvořena",
+    "eventUpdated": "Událost byla úspěšně aktualizována",
+    "eventDeleted": "Událost byla úspěšně smazána",
+    "eventDuplicated": "Událost byla úspěšně duplikována",
+    "conflictWarning": "Tento časový slot má konflikty",
+    "participantAdded": "Účastník přidán",
+    "participantRemoved": "Účastník odebrán",
+    "reminderSet": "Připomenutí nastaveno",
+    "calendarShared": "Kalendář byl úspěšně sdílen",
+    "exportComplete": "Export dokončen",
+    "importComplete": "Import dokončen"
+  },
+  "facility": {
+    "rink": "Ledová plocha",
+    "mainRink": "Hlavní hřiště",
+    "practiceRink": "Tréninkové hřiště",
+    "gym": "Posilovna",
+    "meetingRoom": "Zasedací místnost",
+    "lockerRoom": "Šatna",
+    "trainingRoom": "Tréninková místnost",
+    "videoRoom": "Video místnost",
+    "medicalRoom": "Zdravotní místnost"
+  },
+  "tooltips": {
+    "dragToMove": "Přetáhněte pro přesunutí události",
+    "dragToResize": "Přetáhněte okraje pro změnu velikosti",
+    "clickToEdit": "Klikněte pro úpravu",
+    "doubleClickToCreate": "Dvojklik pro vytvoření události"
+  }
+}

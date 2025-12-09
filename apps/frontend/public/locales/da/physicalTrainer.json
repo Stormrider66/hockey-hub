@@ -1,0 +1,201 @@
+{
+  "dashboard": {
+    "title": "Fysisk træner kontrolpanel",
+    "subtitle": "Præstationsoptimering for {{teamName}}",
+    "overview": "Oversigt",
+    "programs": "Programmer",
+    "sessions": "Træninger",
+    "testing": "Test",
+    "analytics": "Analyse",
+    "calendar": "Kalender",
+    "library": "Bibliotek"
+  },
+  "programs": {
+    "title": "Træningsprogrammer",
+    "active": "Aktive programmer",
+    "templates": "Skabeloner",
+    "create": "Opret program",
+    "assign": "Tildel program",
+    "phases": {
+      "offseason": "Uden for sæson",
+      "preseason": "Før-sæson",
+      "inseason": "I sæson",
+      "postseason": "Efter-sæson",
+      "rehabilitation": "Genoptræning",
+      "maintenance": "Vedligeholdelse"
+    },
+    "focus": {
+      "strength": "Styrke",
+      "power": "Kraft",
+      "speed": "Hastighed",
+      "endurance": "Udholdenhed",
+      "flexibility": "Fleksibilitet",
+      "agility": "Smidighed",
+      "recovery": "Restitution",
+      "injury_prevention": "Skadeforebyggelse"
+    },
+    "duration": {
+      "week1": "1 uge",
+      "week2": "2 uger",
+      "week4": "4 uger",
+      "week6": "6 uger",
+      "week8": "8 uger",
+      "week12": "12 uger",
+      "custom": "Tilpasset"
+    }
+  },
+  "sessions": {
+    "title": "Træningssessioner",
+    "today": "Dagens træninger",
+    "upcoming": "Kommende træninger",
+    "completed": "Gennemførte",
+    "create": "Planlæg træning",
+    "types": {
+      "gym": "Styrketræning",
+      "ice": "Istræning",
+      "dryland": "Tørtræning",
+      "recovery": "Restitution",
+      "testing": "Test",
+      "individual": "Individuel",
+      "team": "Hold",
+      "optional": "Valgfri"
+    },
+    "attendance": {
+      "present": "Til stede",
+      "absent": "Fraværende",
+      "modified": "Modificeret",
+      "excused": "Undskyldt",
+      "injured": "Skadet"
+    }
+  },
+  "exercises": {
+    "title": "Øvelsesbibliotek",
+    "search": "Søg øvelser",
+    "categories": {
+      "upper_body": "Overkrop",
+      "lower_body": "Underkrop",
+      "core": "Core",
+      "full_body": "Helkrop",
+      "cardio": "Kondition",
+      "plyometric": "Plyometrisk",
+      "balance": "Balance",
+      "flexibility": "Fleksibilitet",
+      "hockey_specific": "Hockey-specifik"
+    },
+    "equipment": {
+      "barbell": "Vægtstang",
+      "dumbbell": "Håndvægte",
+      "kettlebell": "Kettlebell",
+      "cable": "Kabel",
+      "bodyweight": "Kropsvægt",
+      "machine": "Maskine",
+      "band": "Elastik",
+      "medicine_ball": "Medicinbold",
+      "box": "Box",
+      "sled": "Slæde"
+    }
+  },
+  "testing": {
+    "title": "Fysisk test",
+    "schedule": "Testplan",
+    "results": "Resultater",
+    "comparisons": "Sammenligninger",
+    "protocols": "Protokoller",
+    "tests": {
+      "strength": {
+        "bench_press": "Bænkpres",
+        "squat": "Squat",
+        "deadlift": "Dødløft",
+        "pull_ups": "Pull-ups",
+        "push_ups": "Armbøjninger"
+      },
+      "power": {
+        "vertical_jump": "Vertikalt hop",
+        "broad_jump": "Længdespring",
+        "medicine_ball_throw": "Medicinboldkast"
+      },
+      "speed": {
+        "sprint_10m": "10m sprint",
+        "sprint_30m": "30m sprint",
+        "agility_test": "Smidighedstest"
+      },
+      "endurance": {
+        "beep_test": "Bip-test",
+        "cooper_test": "Cooper test",
+        "bike_test": "Cykeltest"
+      },
+      "flexibility": {
+        "sit_and_reach": "Sid og ræk",
+        "shoulder_flexibility": "Skulderfleksibilitet"
+      },
+      "body_composition": {
+        "weight": "Vægt",
+        "body_fat": "Fedtprocent",
+        "muscle_mass": "Muskelmasse"
+      }
+    }
+  },
+  "workoutBuilder": {
+    "title": "Træningsbygger",
+    "exercise": "Øvelse",
+    "sets": "Sæt",
+    "reps": "Gentagelser",
+    "weight": "Vægt",
+    "rest": "Hvile",
+    "tempo": "Tempo",
+    "notes": "Noter",
+    "addExercise": "Tilføj øvelse",
+    "saveWorkout": "Gem træning",
+    "loadTemplate": "Indlæs skabelon"
+  },
+  "analytics": {
+    "title": "Præstationsanalyse",
+    "teamOverview": "Holdoversigt",
+    "individualProgress": "Individuel fremgang",
+    "loadManagement": "Belastningsstyring",
+    "trends": "Tendenser",
+    "comparisons": "Sammenligninger",
+    "reports": "Rapporter",
+    "metrics": {
+      "training_load": "Træningsbelastning",
+      "fatigue_index": "Træthedsindeks",
+      "readiness": "Parathed",
+      "improvement": "Forbedring",
+      "consistency": "Konsistens",
+      "compliance": "Overholdelse"
+    }
+  },
+  "monitoring": {
+    "title": "Spillerovervågning",
+    "wellness": "Velvære",
+    "performance": "Præstation",
+    "workload": "Arbejdsbelastning",
+    "recovery": "Restitution",
+    "alerts": "Advarsler",
+    "recommendations": "Anbefalinger"
+  },
+  "communication": {
+    "title": "Kommunikation",
+    "players": "Spillere",
+    "coaches": "Trænere",
+    "medical": "Medicinsk personale",
+    "notes": "Noter",
+    "feedback": "Feedback",
+    "reports": "Rapporter"
+  },
+  "quickActions": {
+    "createSession": "Opret træning",
+    "recordResults": "Registrer resultater",
+    "assignProgram": "Tildel program",
+    "generateReport": "Generer rapport",
+    "viewCalendar": "Se kalender",
+    "sendMessage": "Send besked"
+  },
+  "notifications": {
+    "sessionStarting": "Træning starter om {{time}}",
+    "testScheduled": "Test planlagt: {{date}}",
+    "programCompleted": "Program fuldført: {{playerName}}",
+    "injuryAlert": "Skadeadvarsel: {{playerName}}",
+    "progressUpdate": "Fremgangsrapport tilgængelig"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Medicinsk personale kontrolpanel",
+    "subtitle": "Sundhedsadministration for {{teamName}}",
+    "overview": "Oversigt",
+    "injuries": "Skader",
+    "treatments": "Behandlinger",
+    "appointments": "Aftaler",
+    "records": "Journaler",
+    "reports": "Rapporter",
+    "clearances": "Godkendelser"
+  },
+  "injuries": {
+    "title": "Skadeadministration",
+    "activeInjuries": "Aktive skader",
+    "injuryHistory": "Skadehistorik",
+    "reportInjury": "Rapporter skade",
+    "updateStatus": "Opdater status",
+    "severity": {
+      "minor": "Mindre",
+      "moderate": "Moderat",
+      "major": "Alvorlig",
+      "severe": "Kritisk",
+      "career": "Karrieretruende"
+    },
+    "status": {
+      "new": "Ny",
+      "evaluating": "Under evaluering",
+      "treating": "Under behandling",
+      "recovering": "Genoptræning",
+      "cleared": "Godkendt",
+      "monitoring": "Overvågning"
+    },
+    "bodyParts": {
+      "head": "Hoved",
+      "neck": "Nakke",
+      "shoulder": "Skulder",
+      "chest": "Bryst",
+      "back": "Ryg",
+      "arm": "Arm",
+      "elbow": "Albue",
+      "wrist": "Håndled",
+      "hand": "Hånd",
+      "hip": "Hofte",
+      "groin": "Lyske",
+      "thigh": "Lår",
+      "knee": "Knæ",
+      "shin": "Skinneben",
+      "ankle": "Ankel",
+      "foot": "Fod"
+    },
+    "types": {
+      "strain": "Forstrækning",
+      "sprain": "Forstuvning",
+      "fracture": "Brud",
+      "dislocation": "Forskydning",
+      "concussion": "Hjernerystelse",
+      "laceration": "Flænge",
+      "contusion": "Kontusion",
+      "tendinitis": "Senebetændelse",
+      "other": "Andet"
+    }
+  },
+  "treatments": {
+    "title": "Behandlinger",
+    "activeTreatments": "Aktive behandlinger",
+    "scheduleTreatment": "Planlæg behandling",
+    "treatmentHistory": "Behandlingshistorik",
+    "types": {
+      "physiotherapy": "Fysioterapi",
+      "massage": "Massage",
+      "ice": "Is",
+      "heat": "Varme",
+      "ultrasound": "Ultralyd",
+      "electricStim": "Elektrisk stimulation",
+      "stretching": "Udstrækning",
+      "strengthening": "Styrketræning",
+      "taping": "Tape",
+      "medication": "Medicin",
+      "injection": "Injektion",
+      "surgery": "Operation"
+    },
+    "frequency": {
+      "daily": "Dagligt",
+      "twiceDaily": "To gange dagligt",
+      "everyOtherDay": "Hver anden dag",
+      "weekly": "Ugentligt",
+      "biweekly": "Hver anden uge",
+      "asNeeded": "Efter behov"
+    }
+  },
+  "appointments": {
+    "title": "Medicinske aftaler",
+    "upcoming": "Kommende aftaler",
+    "schedule": "Planlæg aftale",
+    "types": {
+      "evaluation": "Evaluering",
+      "treatment": "Behandling",
+      "followUp": "Opfølgning",
+      "imaging": "Billeddannelse",
+      "specialist": "Specialist",
+      "surgery": "Operation",
+      "clearance": "Godkendelse"
+    },
+    "providers": {
+      "teamDoctor": "Holdlæge",
+      "physiotherapist": "Fysioterapeut",
+      "specialist": "Specialist",
+      "surgeon": "Kirurg",
+      "radiologist": "Radiolog",
+      "other": "Andet"
+    }
+  },
+  "records": {
+    "title": "Medicinske journaler",
+    "playerRecords": "Spillerjournaler",
+    "searchRecords": "Søg journaler",
+    "addRecord": "Tilføj journal",
+    "categories": {
+      "medical": "Medicinsk historie",
+      "injuries": "Skader",
+      "treatments": "Behandlinger",
+      "medications": "Medicin",
+      "allergies": "Allergier",
+      "vaccinations": "Vaccinationer",
+      "surgeries": "Operationer",
+      "imaging": "Billeddannelse",
+      "lab": "Laboratorieresultater"
+    }
+  },
+  "clearance": {
+    "title": "Spil-godkendelse",
+    "pending": "Afventende godkendelser",
+    "cleared": "Godkendte spillere",
+    "restricted": "Begrænsede spillere",
+    "protocols": {
+      "concussion": "Hjernerystelsesprotokol",
+      "returnToPlay": "Tilbage-til-spil",
+      "postSurgery": "Post-operation",
+      "cardiacClearance": "Hjertegodkendelse",
+      "general": "Generel godkendelse"
+    },
+    "restrictions": {
+      "noContact": "Ingen kontakt",
+      "limitedMinutes": "Begrænsede minutter",
+      "noGames": "Ingen kampe",
+      "practiceOnly": "Kun træning",
+      "modified": "Modificeret aktivitet"
+    }
+  },
+  "wellness": {
+    "title": "Velvære-overvågning",
+    "dailyCheck": "Dagligt tjek",
+    "trends": "Tendenser",
+    "alerts": "Advarsler",
+    "metrics": {
+      "sleep": "Søvn",
+      "fatigue": "Træthed",
+      "soreness": "Ømhed",
+      "mood": "Humør",
+      "stress": "Stress",
+      "hydration": "Hydrering",
+      "nutrition": "Ernæring"
+    }
+  },
+  "reports": {
+    "title": "Medicinske rapporter",
+    "generate": "Generer rapport",
+    "types": {
+      "injury": "Skaderapport",
+      "treatment": "Behandlingsrapport",
+      "clearance": "Godkendelsesrapport",
+      "wellness": "Velvære-rapport",
+      "team": "Holdrapport",
+      "individual": "Individuel rapport"
+    }
+  },
+  "emergency": {
+    "title": "Nødprocedurer",
+    "contacts": "Nødkontakter",
+    "protocols": "Protokoller",
+    "equipment": "Nødudstyr",
+    "procedures": {
+      "concussion": "Hjernerystelse",
+      "spinalInjury": "Rygskade",
+      "cardiac": "Hjertestop",
+      "fracture": "Brud",
+      "laceration": "Alvorlig flænge",
+      "allergicReaction": "Allergisk reaktion"
+    }
+  },
+  "quickStats": {
+    "activeInjuries": "Aktive skader",
+    "todayTreatments": "Dagens behandlinger",
+    "upcomingAppointments": "Kommende aftaler",
+    "pendingClearances": "Afventende godkendelser",
+    "teamAvailability": "Holdtilgængelighed"
+  },
+  "notifications": {
+    "newInjury": "Ny skade rapporteret: {{playerName}}",
+    "treatmentComplete": "Behandling fuldført: {{playerName}}",
+    "clearanceRequired": "Godkendelse påkrævet: {{playerName}}",
+    "appointmentReminder": "Aftale om {{time}}: {{playerName}}",
+    "wellnessAlert": "Velvære-advarsel: {{playerName}}"
+  }
+}

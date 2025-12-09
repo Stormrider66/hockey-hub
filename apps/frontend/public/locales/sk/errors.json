@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Ups! Niečo sa pokazilo",
+    "subtitle": "Ospravedlňujeme sa za nepríjemnosti",
+    "tryAgain": "Skúsiť znova",
+    "goHome": "Prejsť na hlavný panel",
+    "contactSupport": "Kontaktovať podporu"
+  },
+  "http": {
+    "400": {
+      "title": "Zlá požiadavka",
+      "message": "Server nerozumel požiadavke."
+    },
+    "401": {
+      "title": "Neautorizovaný prístup",
+      "message": "Pre prístup k tomuto zdroju sa musíte prihlásiť."
+    },
+    "403": {
+      "title": "Zakázaný prístup",
+      "message": "Nemáte oprávnenie na prístup k tomuto zdroju."
+    },
+    "404": {
+      "title": "Stránka nenájdená",
+      "message": "Stránka, ktorú hľadáte, neexistuje."
+    },
+    "409": {
+      "title": "Konflikt",
+      "message": "Požiadavka je v konflikte s aktuálnym stavom servera."
+    },
+    "422": {
+      "title": "Chyba validácie",
+      "message": "Poskytnuté údaje sú neplatné."
+    },
+    "429": {
+      "title": "Príliš veľa požiadaviek",
+      "message": "Vykonali ste príliš veľa požiadaviek. Skúste to neskôr."
+    },
+    "500": {
+      "title": "Chyba servera",
+      "message": "Na našich serveroch nastala neočakávaná chyba."
+    },
+    "502": {
+      "title": "Zlá brána",
+      "message": "Server dostal neplatnú odpoveď."
+    },
+    "503": {
+      "title": "Služba nedostupná",
+      "message": "Služba je dočasne nedostupná. Skúste to neskôr."
+    },
+    "504": {
+      "title": "Časový limit brány",
+      "message": "Server odpovedal príliš dlho."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Žiadne internetové pripojenie",
+      "message": "Skontrolujte svoje internetové pripojenie a skúste to znova."
+    },
+    "timeout": {
+      "title": "Časový limit požiadavky",
+      "message": "Požiadavka trvala príliš dlho. Skúste to znova."
+    },
+    "connectionFailed": {
+      "title": "Pripojenie zlyhalo",
+      "message": "Nepodarilo sa pripojiť k serveru. Skúste to znova."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Načítanie údajov zlyhalo",
+      "message": "Nepodarilo sa načítať požadované údaje. Skúste obnoviť stránku."
+    },
+    "dataSave": {
+      "title": "Uloženie zlyhalo",
+      "message": "Vaše zmeny sa nepodarilo uložiť. Skúste to znova."
+    },
+    "fileUpload": {
+      "title": "Nahrávanie zlyhalo",
+      "message": "Súbor sa nepodarilo nahrať. Skontrolujte súbor a skúste to znova."
+    },
+    "permissionDenied": {
+      "title": "Prístup zamietnutý",
+      "message": "Nemáte oprávnenie na vykonanie tejto akcie."
+    },
+    "sessionExpired": {
+      "title": "Relácia vypršala",
+      "message": "Vaša relácia vypršala. Prihláste sa znova."
+    },
+    "maintenanceMode": {
+      "title": "V údržbe",
+      "message": "Vykonávame plánovanú údržbu. Skúste to neskôr."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Chyba odoslania formulára",
+      "message": "Pri odosielaní formulára nastala chyba. Skontrolujte vstup a skúste to znova."
+    },
+    "validation": {
+      "title": "Chyba validácie",
+      "message": "Opravte chyby vo formulári."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Platba zlyhala",
+      "message": "Vašu platbu sa nepodarilo spracovať. Skúste iný spôsob platby."
+    },
+    "declined": {
+      "title": "Platba zamietnutá",
+      "message": "Vaša platba bola zamietnutá. Skontrolujte platobné údaje."
+    },
+    "insufficientFunds": {
+      "title": "Nedostatok prostriedkov",
+      "message": "Váš platobný prostriedok nemá dostatočné prostriedky."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Konflikt v rozvrhu",
+      "message": "Tento časový úsek je v konflikte s inou udalosťou."
+    },
+    "bookingFailed": {
+      "title": "Rezervácia zlyhala",
+      "message": "Nepodarilo sa rezervovať vybraný časový úsek."
+    },
+    "facilityUnavailable": {
+      "title": "Zariadenie nedostupné",
+      "message": "Vybrané zariadenie nie je v tomto čase k dispozícii."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Tréning nenájdený",
+      "message": "Tréning, ktorý hľadáte, neexistuje."
+    },
+    "alreadyStarted": {
+      "title": "Tréning už začal",
+      "message": "Tento tréning už začal."
+    },
+    "capacityReached": {
+      "title": "Tréning plný",
+      "message": "Tento tréning dosiahol maximálnu kapacitu."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Správa neodoslaná",
+      "message": "Vašu správu sa nepodarilo odoslať. Skúste to znova."
+    },
+    "notificationFailed": {
+      "title": "Upozornenie zlyhalo",
+      "message": "V súčasnosti nie je možné odosielať upozornenia."
+    }
+  },
+  "actions": {
+    "retry": "Skúsiť znova",
+    "dismiss": "Zavrieť",
+    "details": "Zobraziť detaily",
+    "report": "Nahlásiť problém",
+    "refresh": "Obnoviť stránku"
+  }
+}

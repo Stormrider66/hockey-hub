@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Storage - Hockey Hub</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #4338ca;
+        }
+        .success {
+            color: #10b981;
+            margin-top: 20px;
+        }
+        .error {
+            color: #ef4444;
+            margin-top: 20px;
+        }
+        .info {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+        pre {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hockey Hub - Storage Manager</h1>
+        
+        <div class="info">
+            <strong>Current Storage Status:</strong>
+            <pre id="status"></pre>
+        </div>
+
+        <h2>Clear Storage Options</h2>
+        
+        <button onclick="clearReduxPersist()">Clear Redux Persist Only</button>
+        <button onclick="clearAllLocalStorage()">Clear All LocalStorage</button>
+        <button onclick="clearAllStorage()">Clear Everything (Full Reset)</button>
+        
+        <div id="message"></div>
+
+        <div style="margin-top: 30px;">
+            <h3>After clearing:</h3>
+            <button onclick="window.location.href='/'">Go to Home</button>
+            <button onclick="window.location.href='/coach'">Go to Coach Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        // Show current storage status
+        function showStatus() {
+            const status = document.getElementById('status');
+            const keys = Object.keys(localStorage);
+            const persistKey = localStorage.getItem('persist:hockey-hub-root');
+            
+            let statusText = `LocalStorage Keys (${keys.length}): ${keys.join(', ')}\n\n`;
+            
+            if (persistKey) {
+                try {
+                    const parsed = JSON.parse(persistKey);
+                    statusText += `Redux Persist Keys: ${Object.keys(parsed).join(', ')}\n`;
+                } catch (e) {
+                    statusText += `Redux Persist: Error parsing (corrupted data)\n`;
+                }
+            } else {
+                statusText += `Redux Persist: Not found\n`;
+            }
+            
+            status.textContent = statusText;
+        }
+
+        function showMessage(text, isError = false) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.className = isError ? 'error' : 'success';
+            messageDiv.textContent = text;
+            setTimeout(() => {
+                messageDiv.textContent = '';
+            }, 5000);
+        }
+
+        function clearReduxPersist() {
+            try {
+                localStorage.removeItem('persist:hockey-hub-root');
+                showMessage('Redux persist state cleared successfully!');
+                showStatus();
+            } catch (error) {
+                showMessage('Error clearing Redux persist: ' + error.message, true);
+            }
+        }
+
+        function clearAllLocalStorage() {
+            try {
+                localStorage.clear();
+                showMessage('All localStorage cleared successfully!');
+                showStatus();
+            } catch (error) {
+                showMessage('Error clearing localStorage: ' + error.message, true);
+            }
+        }
+
+        function clearAllStorage() {
+            try {
+                // Clear localStorage
+                localStorage.clear();
+                
+                // Clear sessionStorage
+                sessionStorage.clear();
+                
+                // Clear cookies
+                document.cookie.split(";").forEach(function(c) { 
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                });
+                
+                // Clear IndexedDB (if used)
+                if (window.indexedDB) {
+                    indexedDB.databases().then(databases => {
+                        databases.forEach(db => {
+                            indexedDB.deleteDatabase(db.name);
+                        });
+                    }).catch(e => console.log('IndexedDB clear failed:', e));
+                }
+                
+                showMessage('All storage cleared successfully! Please reload the page.');
+                showStatus();
+            } catch (error) {
+                showMessage('Error clearing storage: ' + error.message, true);
+            }
+        }
+
+        // Show status on load
+        showStatus();
+    </script>
+</body>
+</html>

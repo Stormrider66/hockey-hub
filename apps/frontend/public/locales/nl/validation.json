@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Dit veld is verplicht",
+    "email": "E-mail is verplicht",
+    "password": "Wachtwoord is verplicht",
+    "firstName": "Voornaam is verplicht",
+    "lastName": "Achternaam is verplicht",
+    "phone": "Telefoonnummer is verplicht",
+    "date": "Datum is verplicht",
+    "time": "Tijd is verplicht",
+    "selection": "Maak een selectie"
+  },
+  "email": {
+    "invalid": "Voer een geldig e-mailadres in",
+    "alreadyExists": "Dit e-mailadres is al geregistreerd"
+  },
+  "password": {
+    "tooShort": "Wachtwoord moet minimaal {{min}} tekens bevatten",
+    "tooWeak": "Wachtwoord is te zwak. Gebruik een mix van letters, cijfers en symbolen",
+    "noMatch": "Wachtwoorden komen niet overeen",
+    "requiresUppercase": "Wachtwoord moet minimaal één hoofdletter bevatten",
+    "requiresLowercase": "Wachtwoord moet minimaal één kleine letter bevatten",
+    "requiresNumber": "Wachtwoord moet minimaal één cijfer bevatten",
+    "requiresSpecial": "Wachtwoord moet minimaal één speciaal teken bevatten"
+  },
+  "string": {
+    "tooShort": "Moet minimaal {{min}} tekens bevatten",
+    "tooLong": "Mag maximaal {{max}} tekens bevatten",
+    "invalidFormat": "Ongeldig formaat",
+    "alphanumeric": "Alleen letters en cijfers zijn toegestaan",
+    "alphabetic": "Alleen letters zijn toegestaan",
+    "invalidCharacters": "Bevat ongeldige tekens"
+  },
+  "number": {
+    "invalid": "Voer een geldig nummer in",
+    "tooSmall": "Moet minimaal {{min}} zijn",
+    "tooLarge": "Mag maximaal {{max}} zijn",
+    "integer": "Moet een geheel getal zijn",
+    "positive": "Moet een positief getal zijn",
+    "negative": "Moet een negatief getal zijn"
+  },
+  "date": {
+    "invalid": "Voer een geldige datum in",
+    "beforeMin": "Datum moet na {{min}} zijn",
+    "afterMax": "Datum moet voor {{max}} zijn",
+    "inPast": "Datum moet in het verleden liggen",
+    "inFuture": "Datum moet in de toekomst liggen"
+  },
+  "time": {
+    "invalid": "Voer een geldige tijd in",
+    "beforeMin": "Tijd moet na {{min}} zijn",
+    "afterMax": "Tijd moet voor {{max}} zijn"
+  },
+  "phone": {
+    "invalid": "Voer een geldig telefoonnummer in",
+    "invalidCountryCode": "Ongeldige landcode"
+  },
+  "file": {
+    "tooLarge": "Bestandsgrootte moet minder zijn dan {{maxSize}}",
+    "invalidType": "Bestandstype niet toegestaan. Toegestane types: {{allowedTypes}}",
+    "required": "Selecteer een bestand",
+    "tooMany": "Te veel bestanden. Maximaal toegestaan: {{max}}"
+  },
+  "url": {
+    "invalid": "Voer een geldige URL in"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Ongeldig teamcode formaat",
+      "notFound": "Teamcode niet gevonden"
+    },
+    "playerNumber": {
+      "invalid": "Ongeldig spelernummer",
+      "alreadyTaken": "Dit nummer is al in gebruik"
+    },
+    "age": {
+      "tooYoung": "Moet minimaal {{min}} jaar oud zijn",
+      "tooOld": "Mag maximaal {{max}} jaar oud zijn"
+    },
+    "schedule": {
+      "conflict": "Deze tijd conflicteert met een ander evenement",
+      "outsideHours": "Geselecteerde tijd valt buiten openingstijden",
+      "tooSoon": "Moet minimaal {{hours}} uur van tevoren worden gepland"
+    },
+    "capacity": {
+      "exceeded": "Maximale capaciteit overschreden",
+      "minimum": "Minimaal {{min}} deelnemers vereist"
+    }
+  },
+  "form": {
+    "hasErrors": "Corrigeer de onderstaande fouten",
+    "submitError": "Formulier indienen mislukt. Probeer het opnieuw.",
+    "saveDraft": "Je concept is opgeslagen",
+    "unsavedChanges": "Je hebt niet-opgeslagen wijzigingen. Weet je zeker dat je wilt vertrekken?"
+  },
+  "search": {
+    "tooShort": "Zoekopdracht moet minimaal {{min}} tekens bevatten",
+    "noResults": "Geen resultaten gevonden"
+  },
+  "selection": {
+    "minimum": "Selecteer minimaal {{min}} optie(s)",
+    "maximum": "Selecteer maximaal {{max}} optie(s)",
+    "exact": "Selecteer exact {{count}} optie(s)"
+  },
+  "comparison": {
+    "mustMatch": "Velden moeten overeenkomen",
+    "mustBeDifferent": "Velden moeten verschillend zijn",
+    "startBeforeEnd": "Starttijd moet voor eindtijd zijn",
+    "endAfterStart": "Eindtijd moet na starttijd zijn"
+  }
+}

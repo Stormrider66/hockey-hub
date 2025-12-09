@@ -1,0 +1,745 @@
+openapi: 3.0.3
+info:
+  title: Hockey Hub Communication Service API
+  description: |
+    The Communication Service manages messaging, notifications, chat, and communication features for the Hockey Hub platform.
+    This service handles real-time chat, notifications, email/SMS delivery, and communication analytics.
+  version: 1.0.0
+  contact:
+    name: Hockey Hub Development Team
+    email: dev@hockeyhub.com
+
+servers:
+  - url: http://localhost:3002
+    description: Development server
+  - url: https://api.hockeyhub.com/communication
+    description: Production server
+
+tags:
+  - name: Messages
+    description: Direct and group messaging
+  - name: Conversations
+    description: Conversation management
+  - name: Notifications
+    description: Push and in-app notifications
+  - name: Email
+    description: Email communication
+  - name: SMS
+    description: SMS messaging
+  - name: Broadcasts
+    description: Team and organizational broadcasts
+
+security:
+  - bearerAuth: []
+
+paths:
+  # Messaging
+  /conversations:
+    get:
+      tags:
+        - Conversations
+      summary: Get user conversations
+      description: Get list of conversations for the authenticated user
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [direct, group, team, medical]
+      responses:
+        200:
+          description: Conversations retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Conversation'
+
+    post:
+      tags:
+        - Conversations
+      summary: Create conversation
+      description: Create a new conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConversationRequest'
+      responses:
+        201:
+          description: Conversation created successfully
+
+  /conversations/{id}:
+    get:
+      tags:
+        - Conversations
+      summary: Get conversation details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Conversation details retrieved successfully
+
+  /conversations/{id}/messages:
+    get:
+      tags:
+        - Messages
+      summary: Get conversation messages
+      description: Get paginated messages for a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: before
+          in: query
+          description: Get messages before this timestamp
+          schema:
+            type: string
+            format: date-time
+      responses:
+        200:
+          description: Messages retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Message'
+
+    post:
+      tags:
+        - Messages
+      summary: Send message
+      description: Send a message to a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendMessageWithFileRequest'
+      responses:
+        201:
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Message'
+
+  /messages/{id}/read:
+    put:
+      tags:
+        - Messages
+      summary: Mark message as read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Message marked as read
+
+  # Notifications
+  /notifications:
+    get:
+      tags:
+        - Notifications
+      summary: Get user notifications
+      description: Get paginated notifications for the authenticated user
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [message, system, training, medical, payment]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [unread, read, archived]
+      responses:
+        200:
+          description: Notifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Notification'
+
+    post:
+      tags:
+        - Notifications
+      summary: Create notification
+      description: Create a new notification (system/admin use)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationRequest'
+      responses:
+        201:
+          description: Notification created successfully
+
+  /notifications/{id}/read:
+    put:
+      tags:
+        - Notifications
+      summary: Mark notification as read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Notification marked as read
+
+  /notifications/preferences:
+    get:
+      tags:
+        - Notifications
+      summary: Get notification preferences
+      description: Get user's notification preferences
+      responses:
+        200:
+          description: Notification preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/NotificationPreferences'
+
+    put:
+      tags:
+        - Notifications
+      summary: Update notification preferences
+      description: Update user's notification preferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationPreferences'
+      responses:
+        200:
+          description: Notification preferences updated
+
+  # Email
+  /email/send:
+    post:
+      tags:
+        - Email
+      summary: Send email
+      description: Send an email (system/admin use)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailRequest'
+      responses:
+        200:
+          description: Email sent successfully
+
+  /email/templates:
+    get:
+      tags:
+        - Email
+      summary: Get email templates
+      description: Get list of available email templates
+      responses:
+        200:
+          description: Email templates retrieved successfully
+
+  # SMS
+  /sms/send:
+    post:
+      tags:
+        - SMS
+      summary: Send SMS
+      description: Send an SMS message (system/admin use)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendSMSRequest'
+      responses:
+        200:
+          description: SMS sent successfully
+
+  # Broadcasts
+  /broadcasts:
+    get:
+      tags:
+        - Broadcasts
+      summary: Get broadcasts
+      description: Get list of team/organizational broadcasts
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - name: teamId
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Broadcasts retrieved successfully
+
+    post:
+      tags:
+        - Broadcasts
+      summary: Create broadcast
+      description: Create a new broadcast message (coaches/admins only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBroadcastRequest'
+      responses:
+        201:
+          description: Broadcast created successfully
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required:
+        - success
+
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "conv_123"
+        type:
+          type: string
+          enum: [direct, group, team, medical]
+        name:
+          type: string
+        description:
+          type: string
+        participants:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              role:
+                type: string
+              joinedAt:
+                type: string
+                format: date-time
+        lastMessage:
+          $ref: '#/components/schemas/Message'
+        unreadCount:
+          type: integer
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "msg_123"
+        conversationId:
+          type: string
+        senderId:
+          type: string
+        senderName:
+          type: string
+        content:
+          type: string
+        messageType:
+          type: string
+          enum: [text, image, file, voice, video, system]
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              fileName:
+                type: string
+              fileSize:
+                type: integer
+              mimeType:
+                type: string
+              url:
+                type: string
+        reactions:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              emoji:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+        readReceipts:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              readAt:
+                type: string
+                format: date-time
+        editedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateConversationRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [direct, group, team, medical]
+        name:
+          type: string
+        description:
+          type: string
+        participantIds:
+          type: array
+          items:
+            type: string
+        isPrivate:
+          type: boolean
+      required:
+        - type
+        - participantIds
+
+    SendMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+        messageType:
+          type: string
+          enum: [text, image, file, voice, video]
+          default: text
+        replyToId:
+          type: string
+        metadata:
+          type: object
+      required:
+        - content
+
+    SendMessageWithFileRequest:
+      type: object
+      properties:
+        content:
+          type: string
+        messageType:
+          type: string
+          enum: [image, file, voice, video]
+        file:
+          type: string
+          format: binary
+        replyToId:
+          type: string
+
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "notif_123"
+        userId:
+          type: string
+        type:
+          type: string
+          enum: [message, system, training, medical, payment]
+        title:
+          type: string
+        content:
+          type: string
+        data:
+          type: object
+        status:
+          type: string
+          enum: [unread, read, archived]
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        channels:
+          type: array
+          items:
+            type: string
+            enum: [push, email, sms, in_app]
+        scheduledFor:
+          type: string
+          format: date-time
+        readAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CreateNotificationRequest:
+      type: object
+      properties:
+        userIds:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+          enum: [message, system, training, medical, payment]
+        title:
+          type: string
+        content:
+          type: string
+        data:
+          type: object
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+        channels:
+          type: array
+          items:
+            type: string
+            enum: [push, email, sms, in_app]
+        scheduledFor:
+          type: string
+          format: date-time
+      required:
+        - userIds
+        - type
+        - title
+        - content
+
+    NotificationPreferences:
+      type: object
+      properties:
+        userId:
+          type: string
+        pushEnabled:
+          type: boolean
+        emailEnabled:
+          type: boolean
+        smsEnabled:
+          type: boolean
+        preferences:
+          type: object
+          properties:
+            messages:
+              type: object
+              properties:
+                push:
+                  type: boolean
+                email:
+                  type: boolean
+                sms:
+                  type: boolean
+            training:
+              type: object
+              properties:
+                push:
+                  type: boolean
+                email:
+                  type: boolean
+                sms:
+                  type: boolean
+            medical:
+              type: object
+              properties:
+                push:
+                  type: boolean
+                email:
+                  type: boolean
+                sms:
+                  type: boolean
+        quietHours:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            startTime:
+              type: string
+            endTime:
+              type: string
+            timezone:
+              type: string
+
+    SendEmailRequest:
+      type: object
+      properties:
+        to:
+          type: array
+          items:
+            type: string
+            format: email
+        subject:
+          type: string
+        content:
+          type: string
+        htmlContent:
+          type: string
+        templateId:
+          type: string
+        templateData:
+          type: object
+        attachments:
+          type: array
+          items:
+            type: object
+      required:
+        - to
+        - subject
+
+    SendSMSRequest:
+      type: object
+      properties:
+        to:
+          type: string
+          description: Phone number
+        content:
+          type: string
+        templateId:
+          type: string
+        templateData:
+          type: object
+      required:
+        - to
+        - content
+
+    CreateBroadcastRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        targetAudience:
+          type: object
+          properties:
+            teamIds:
+              type: array
+              items:
+                type: string
+            roles:
+              type: array
+              items:
+                type: string
+            userIds:
+              type: array
+              items:
+                type: string
+        channels:
+          type: array
+          items:
+            type: string
+            enum: [push, email, sms, in_app]
+        scheduledFor:
+          type: string
+          format: date-time
+        priority:
+          type: string
+          enum: [low, normal, high, urgent]
+      required:
+        - title
+        - content
+        - targetAudience

@@ -1,0 +1,231 @@
+{
+  "dashboard": {
+    "title": "Nadzorna plošča kluba",
+    "welcome": "Dobrodošli, {{name}}!",
+    "overview": "Pregled kluba",
+    "statistics": "Statistika",
+    "announcements": "Obvestila",
+    "quickActions": "Hitra dejanja"
+  },
+  "organization": {
+    "title": "Organizacija",
+    "structure": "Struktura",
+    "departments": "Oddelki",
+    "staff": "Osebje",
+    "teams": "Ekipe",
+    "facilities": "Objekti",
+    "partners": "Partnerji",
+    "sponsors": "Sponzorji",
+    "governance": "Vodenje",
+    "policies": "Pravilniki"
+  },
+  "teams": {
+    "title": "Ekipe",
+    "manage": "Upravljanje ekip",
+    "create": "Ustvari ekipo",
+    "roster": "Seznam",
+    "staff": "Osebje",
+    "schedule": "Urnik",
+    "performance": "Uspešnost",
+    "budget": "Proračun",
+    "categories": {
+      "senior": "Članska",
+      "junior": "Mladinska",
+      "youth": "Mladinci",
+      "women": "Ženska",
+      "development": "Razvojna"
+    }
+  },
+  "members": {
+    "title": "Člani",
+    "registration": "Registracija",
+    "database": "Baza podatkov",
+    "categories": "Kategorije",
+    "statistics": "Statistika",
+    "communication": "Komunikacija",
+    "fees": "Članarine",
+    "benefits": "Ugodnosti",
+    "cards": "Članske izkaznice",
+    "types": {
+      "player": "Igralec",
+      "coach": "Trener",
+      "official": "Funkcionar",
+      "parent": "Starš",
+      "volunteer": "Prostovoljec",
+      "supporter": "Navijač",
+      "honorary": "Častni član"
+    }
+  },
+  "facilities": {
+    "title": "Objekti",
+    "arena": "Dvorana",
+    "training": "Trenažni objekti",
+    "gym": "Fitnes",
+    "offices": "Pisarne",
+    "maintenance": "Vzdrževanje",
+    "booking": "Rezervacije",
+    "schedule": "Urnik",
+    "capacity": "Kapaciteta",
+    "equipment": "Oprema",
+    "safety": "Varnost"
+  },
+  "events": {
+    "title": "Dogodki",
+    "calendar": "Koledar",
+    "games": "Tekme",
+    "tournaments": "Turnirji",
+    "training": "Treningi",
+    "meetings": "Sestanki",
+    "social": "Družabni dogodki",
+    "fundraising": "Dobrodelni dogodki",
+    "planning": "Načrtovanje",
+    "coordination": "Koordinacija"
+  },
+  "finance": {
+    "title": "Finance",
+    "budget": "Proračun",
+    "income": "Prihodki",
+    "expenses": "Odhodki",
+    "balance": "Bilanca",
+    "reports": "Poročila",
+    "invoicing": "Fakturiranje",
+    "payments": "Plačila",
+    "sponsorship": "Sponzorstva",
+    "grants": "Dotacije",
+    "fundraising": "Zbiranje sredstev"
+  },
+  "registration": {
+    "title": "Registracija",
+    "players": "Igralci",
+    "staff": "Osebje",
+    "officials": "Funkcionarji",
+    "process": "Postopek",
+    "requirements": "Zahteve",
+    "documentation": "Dokumentacija",
+    "fees": "Pristojbine",
+    "deadlines": "Roki",
+    "transfers": "Prestopi"
+  },
+  "compliance": {
+    "title": "Skladnost",
+    "regulations": "Predpisi",
+    "licenses": "Licence",
+    "certifications": "Certifikati",
+    "insurance": "Zavarovanje",
+    "safety": "Varnost",
+    "medical": "Zdravstveni pregledi",
+    "background": "Preverjanje preteklosti",
+    "training": "Obvezna usposabljanja"
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "announcements": "Obvestila",
+    "newsletters": "Novice",
+    "website": "Spletna stran",
+    "social": "Družbena omrežja",
+    "media": "Mediji",
+    "internal": "Interna komunikacija",
+    "external": "Zunanja komunikacija",
+    "crisis": "Krizna komunikacija"
+  },
+  "partnerships": {
+    "title": "Partnerstva",
+    "sponsors": "Sponzorji",
+    "suppliers": "Dobavitelji",
+    "community": "Skupnost",
+    "schools": "Šole",
+    "clubs": "Klubi",
+    "federation": "Zveza",
+    "international": "Mednarodno",
+    "agreements": "Sporazumi"
+  },
+  "development": {
+    "title": "Razvoj",
+    "youth": "Mladinski program",
+    "coaching": "Trenerski razvoj",
+    "facilities": "Razvoj objektov",
+    "programs": "Programi",
+    "pathways": "Razvojne poti",
+    "academies": "Akademije",
+    "camps": "Kampi",
+    "clinics": "Klinike"
+  },
+  "marketing": {
+    "title": "Trženje",
+    "branding": "Blagovna znamka",
+    "campaigns": "Kampanje",
+    "merchandise": "Izdelki",
+    "tickets": "Vstopnice",
+    "promotions": "Promocije",
+    "fanbase": "Navijači",
+    "engagement": "Vključevanje",
+    "analytics": "Analitika"
+  },
+  "operations": {
+    "title": "Operacije",
+    "gameday": "Dan tekme",
+    "logistics": "Logistika",
+    "transportation": "Prevoz",
+    "accommodation": "Nastanitev",
+    "catering": "Gostinstvo",
+    "security": "Varnost",
+    "volunteers": "Prostovoljci",
+    "protocols": "Protokoli"
+  },
+  "reports": {
+    "title": "Poročila",
+    "annual": "Letno poročilo",
+    "financial": "Finančno poročilo",
+    "performance": "Poročilo uspešnosti",
+    "membership": "Poročilo članstva",
+    "attendance": "Poročilo obiska",
+    "compliance": "Poročilo skladnosti",
+    "board": "Poročilo upravnemu odboru",
+    "generate": "Ustvari poročilo",
+    "export": "Izvozi"
+  },
+  "governance": {
+    "title": "Upravljanje",
+    "board": "Upravni odbor",
+    "committees": "Komisije",
+    "meetings": "Sestanki",
+    "decisions": "Odločitve",
+    "voting": "Glasovanje",
+    "minutes": "Zapisniki",
+    "policies": "Politike",
+    "bylaws": "Statut"
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "organization": "Organizacijske nastavitve",
+    "branding": "Blagovna znamka",
+    "permissions": "Dovoljenja",
+    "workflows": "Delovni tokovi",
+    "integrations": "Integracije",
+    "notifications": "Obvestila",
+    "backup": "Varnostne kopije"
+  },
+  "actions": {
+    "createTeam": "Ustvari ekipo",
+    "registerMember": "Registriraj člana",
+    "scheduleEvent": "Načrtuj dogodek",
+    "generateReport": "Ustvari poročilo",
+    "sendAnnouncement": "Pošlji obvestilo",
+    "approveRequest": "Odobri zahtevo",
+    "manageFacility": "Upravljaj objekt",
+    "reviewFinances": "Preglej finance",
+    "updatePolicy": "Posodobi pravilnik"
+  },
+  "messages": {
+    "teamCreated": "Ekipa uspešno ustvarjena",
+    "memberRegistered": "Član uspešno registriran",
+    "eventScheduled": "Dogodek načrtovan",
+    "reportGenerated": "Poročilo ustvarjeno",
+    "announcementSent": "Obvestilo poslano",
+    "requestApproved": "Zahteva odobrena",
+    "facilityBooked": "Objekt rezerviran",
+    "paymentReceived": "Plačilo prejeto",
+    "complianceUpdate": "Skladnost posodobljena",
+    "maintenanceScheduled": "Vzdrževanje načrtovano"
+  }
+}

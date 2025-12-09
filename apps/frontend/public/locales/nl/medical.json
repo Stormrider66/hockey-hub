@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Medisch Personeel Dashboard",
+    "subtitle": "Spelergezondheid en blessurebeheer",
+    "welcome": "Welkom, {{name}}",
+    "urgentCases": "Urgente gevallen",
+    "todayAppointments": "Afspraken vandaag"
+  },
+  "players": {
+    "title": "Overzicht spelergezondheid",
+    "status": "Gezondheidsstatus",
+    "active": "Actieve spelers",
+    "injured": "Geblesseerde spelers",
+    "recovery": "In herstel",
+    "cleared": "Recent vrijgegeven",
+    "monitoring": "Onder observatie",
+    "search": "Zoek spelers",
+    "filter": "Filter op status"
+  },
+  "injuries": {
+    "title": "Blessurebeheer",
+    "current": "Huidige blessures",
+    "history": "Blessuregeschiedenis",
+    "report": "Nieuwe blessure melden",
+    "update": "Blessure bijwerken",
+    "severity": {
+      "minor": "Licht",
+      "moderate": "Matig",
+      "major": "Ernstig",
+      "severe": "Zeer ernstig",
+      "careerThreatening": "Carrièrebedreigend"
+    },
+    "types": {
+      "concussion": "Hersenschudding",
+      "fracture": "Breuk",
+      "sprain": "Verstuiking",
+      "strain": "Verrekking",
+      "bruise": "Kneuzing",
+      "cut": "Snee/Verwonding",
+      "dislocation": "Ontwrichting",
+      "illness": "Ziekte"
+    },
+    "bodyParts": {
+      "head": "Hoofd",
+      "neck": "Nek",
+      "shoulder": "Schouder",
+      "arm": "Arm",
+      "elbow": "Elleboog",
+      "wrist": "Pols",
+      "hand": "Hand",
+      "back": "Rug",
+      "chest": "Borst",
+      "abdomen": "Buik",
+      "hip": "Heup",
+      "groin": "Lies",
+      "thigh": "Bovenbeen",
+      "knee": "Knie",
+      "ankle": "Enkel",
+      "foot": "Voet"
+    }
+  },
+  "treatment": {
+    "title": "Behandelplannen",
+    "active": "Actieve behandelingen",
+    "scheduled": "Geplande sessies",
+    "completed": "Voltooide behandelingen",
+    "create": "Behandelplan opstellen",
+    "modify": "Plan aanpassen",
+    "types": {
+      "physiotherapy": "Fysiotherapie",
+      "massage": "Massagetherapie",
+      "medication": "Medicatie",
+      "surgery": "Operatie",
+      "rehabilitation": "Revalidatie",
+      "rest": "Rust/Herstel",
+      "imaging": "Beeldvorming/Scans"
+    },
+    "frequency": {
+      "daily": "Dagelijks",
+      "everyOtherDay": "Om de dag",
+      "twiceWeekly": "Twee keer per week",
+      "weekly": "Wekelijks",
+      "asNeeded": "Indien nodig"
+    }
+  },
+  "appointments": {
+    "title": "Medische afspraken",
+    "schedule": "Afspraak plannen",
+    "upcoming": "Aankomende afspraken",
+    "today": "Schema vandaag",
+    "calendar": "Afsprakenkalender",
+    "types": {
+      "checkup": "Reguliere controle",
+      "injury": "Blessureonderzoek",
+      "followup": "Follow-up",
+      "clearance": "Vrijgave om te spelen",
+      "physical": "Fysiek onderzoek",
+      "emergency": "Noodgeval"
+    },
+    "duration": {
+      "15min": "15 minuten",
+      "30min": "30 minuten",
+      "45min": "45 minuten",
+      "60min": "1 uur"
+    }
+  },
+  "records": {
+    "title": "Medische dossiers",
+    "history": "Medische geschiedenis",
+    "allergies": "Allergieën",
+    "medications": "Huidige medicatie",
+    "conditions": "Bestaande aandoeningen",
+    "surgeries": "Eerdere operaties",
+    "family": "Familiegeschiedenis",
+    "documents": "Medische documenten",
+    "upload": "Document uploaden",
+    "download": "Dossiers downloaden"
+  },
+  "clearance": {
+    "title": "Terugkeer naar spel",
+    "pending": "In afwachting van vrijgave",
+    "evaluate": "Speler evalueren",
+    "protocols": "Terugkeerprotocollen",
+    "tests": "Vereiste tests",
+    "approve": "Terugkeer goedkeuren",
+    "deny": "Terugkeer weigeren",
+    "conditional": "Voorwaardelijke terugkeer",
+    "restrictions": "Activiteitsbeperkingen"
+  },
+  "reports": {
+    "title": "Medische rapporten",
+    "injury": "Blessurerapport",
+    "team": "Teamgezondheidsrapport",
+    "individual": "Individueel rapport",
+    "insurance": "Verzekeringsrapport",
+    "compliance": "Nalevingsrapport",
+    "generate": "Rapport genereren",
+    "export": "Rapport exporteren"
+  },
+  "emergency": {
+    "title": "Noodprotocollen",
+    "contacts": "Noodcontacten",
+    "procedures": "Noodprocedures",
+    "equipment": "Nooduitrusting",
+    "locations": "Ziekenhuislocaties",
+    "action": "Noodactieplan",
+    "call": "Noodoproep"
+  },
+  "wellness": {
+    "title": "Welzijnsmonitoring",
+    "daily": "Dagelijkse check-ins",
+    "trends": "Welzijnstrends",
+    "alerts": "Welzijnswaarschuwingen",
+    "metrics": {
+      "sleep": "Slaapkwaliteit",
+      "fatigue": "Vermoeidheidsniveau",
+      "soreness": "Spierpijn",
+      "mood": "Stemming",
+      "stress": "Stressniveau",
+      "hydration": "Hydratatie"
+    }
+  }
+}

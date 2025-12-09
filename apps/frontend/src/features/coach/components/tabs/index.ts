@@ -1,0 +1,10 @@
+export { OverviewTab } from './OverviewTab';
+export { TacticalTab } from './TacticalTab';
+export { CalendarTab } from './CalendarTab';
+export { TeamManagementTab } from './TeamManagementTab';
+export { TrainingPlansTab } from './TrainingPlansTab';
+export { GamesTab } from './GamesTab';
+export { StatisticsTab } from './StatisticsTab';
+export { DevelopmentTab } from './DevelopmentTab';
+export { BroadcastsTab } from './BroadcastsTab';
+export { ParentChannelsTab } from './ParentChannelsTab';

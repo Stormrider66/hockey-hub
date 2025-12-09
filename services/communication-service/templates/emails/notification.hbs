@@ -1,0 +1,106 @@
+{{#> layouts/base}}
+{{#*inline "content"}}
+{{#if iconUrl}}
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="{{iconUrl}}" alt="{{notificationType}}" style="width: 64px; height: 64px;">
+</div>
+{{/if}}
+
+<h1>{{title}}</h1>
+
+{{#if subtitle}}
+<p style="font-size: 18px; color: #6b7280; margin-bottom: 20px;">{{subtitle}}</p>
+{{/if}}
+
+<p>Hi {{firstName}},</p>
+
+{{{message}}}
+
+{{#if details}}
+<div style="background-color: #f9fafb; padding: 20px; border-radius: 6px; margin: 20px 0;">
+    {{#each details}}
+    <p style="margin: 8px 0;">
+        <strong>{{this.label}}:</strong> {{this.value}}
+    </p>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if actionButton}}
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{actionButton.url}}" class="button">{{actionButton.text}}</a>
+</div>
+{{/if}}
+
+{{#if secondaryActions}}
+<div style="text-align: center; margin: 20px 0;">
+    {{#each secondaryActions}}
+    <a href="{{this.url}}" style="margin: 0 10px; color: #3b82f6; text-decoration: none;">{{this.text}}</a>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if alertType}}
+<div class="alert alert-{{alertType}}">
+    {{{alertMessage}}}
+</div>
+{{/if}}
+
+{{#if listItems}}
+<h2>{{listTitle}}</h2>
+<ul>
+    {{#each listItems}}
+    <li style="padding: 5px 0;">{{this}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+{{#if relatedItems}}
+<h2>Related Information</h2>
+<div style="border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden;">
+    {{#each relatedItems}}
+    <div class="list-item" style="padding: 15px;">
+        <strong>{{this.title}}</strong>
+        {{#if this.description}}
+        <p style="margin: 5px 0 0; color: #6b7280;">{{this.description}}</p>
+        {{/if}}
+        {{#if this.link}}
+        <a href="{{this.link}}" style="font-size: 14px;">View Details →</a>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+{{#if showQuickLinks}}
+<div class="divider"></div>
+
+<h2>Quick Links</h2>
+<div style="text-align: center;">
+    <a href="{{dashboardUrl}}" style="display: inline-block; margin: 10px; padding: 10px 20px; background-color: #f3f4f6; color: #1f2937; text-decoration: none; border-radius: 6px;">
+        Go to Dashboard
+    </a>
+    <a href="{{scheduleUrl}}" style="display: inline-block; margin: 10px; padding: 10px 20px; background-color: #f3f4f6; color: #1f2937; text-decoration: none; border-radius: 6px;">
+        View Schedule
+    </a>
+    <a href="{{profileUrl}}" style="display: inline-block; margin: 10px; padding: 10px 20px; background-color: #f3f4f6; color: #1f2937; text-decoration: none; border-radius: 6px;">
+        My Profile
+    </a>
+</div>
+{{/if}}
+
+{{#if footer}}
+<p style="margin-top: 30px; color: #6b7280; font-style: italic;">
+    {{footer}}
+</p>
+{{/if}}
+
+{{#if doNotReply}}
+<div style="margin-top: 30px; padding: 15px; background-color: #f9fafb; border-radius: 6px; font-size: 14px; color: #6b7280;">
+    <p style="margin: 0;">
+        <strong>Please do not reply to this email.</strong> This is an automated notification from Hockey Hub. If you need assistance, please contact our support team at <a href="mailto:support@hockeyhub.com">support@hockeyhub.com</a>.
+    </p>
+</div>
+{{/if}}
+{{/inline}}
+{{/layouts/base}}

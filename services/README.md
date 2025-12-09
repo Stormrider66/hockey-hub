@@ -1,0 +1,1 @@
+# Hockey Hub Services\n\nMicroservices for Hockey Hub:\n\n- User Service (Port: 3001)\n- Communication Service (Port: 3002)\n- Calendar Service (Port: 3003)\n- Training Service (Port: 3004)\n- Medical Service (Port: 3005)\n- Planning Service (Port: 3006)\n- Statistics Service (Port: 3007)\n- Payment Service (Port: 3008)\n- Admin Service (Port: 3009)

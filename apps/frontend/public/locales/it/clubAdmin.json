@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Dashboard Amministratore Club",
+    "subtitle": "Gestione e supervisione organizzazione",
+    "welcome": "Benvenuto, {{name}}",
+    "organizationOverview": "Panoramica Organizzazione",
+    "quickActions": "Azioni Rapide",
+    "stats": {
+      "teams": "Squadre",
+      "activeMembers": "Membri Attivi",
+      "coachingStaff": "Staff Tecnico",
+      "upcomingEvents": "Prossimi Eventi",
+      "attendance": "Presenze",
+      "members": "Membri"
+    }
+  },
+  "organization": {
+    "title": "Gestione Organizzazione",
+    "details": "Dettagli Organizzazione",
+    "settings": "Impostazioni Organizzazione",
+    "structure": "Struttura Organizzativa",
+    "departments": "Dipartimenti",
+    "policies": "Politiche e Procedure",
+    "branding": "Branding e Identità",
+    "contact": "Informazioni di Contatto"
+  },
+  "teams": {
+    "title": "Gestione Squadre",
+    "all": "Tutte le Squadre",
+    "create": "Crea Squadra",
+    "edit": "Modifica Squadra",
+    "delete": "Elimina Squadra",
+    "roster": "Rose Squadre",
+    "assignments": "Assegnazioni Staff",
+    "categories": {
+      "senior": "Squadre Senior",
+      "junior": "Squadre Junior",
+      "youth": "Squadre Giovanili",
+      "academy": "Squadre Academy",
+      "womens": "Squadre Femminili"
+    }
+  },
+  "staff": {
+    "title": "Gestione Staff",
+    "all": "Tutto lo Staff",
+    "add": "Aggiungi Membro Staff",
+    "roles": "Ruoli Staff",
+    "permissions": "Permessi",
+    "contracts": "Contratti",
+    "evaluation": "Valutazione Prestazioni",
+    "training": "Formazione e Certificazioni",
+    "types": {
+      "coaching": "Staff Tecnico",
+      "medical": "Staff Medico",
+      "administrative": "Amministrativo",
+      "support": "Staff di Supporto",
+      "volunteer": "Volontari"
+    }
+  },
+  "facilities": {
+    "title": "Gestione Strutture",
+    "overview": "Panoramica Strutture",
+    "booking": "Prenotazione Strutture",
+    "maintenance": "Programma Manutenzione",
+    "calendar": "Calendario Strutture",
+    "utilization": "Report Utilizzo",
+    "types": {
+      "mainRink": "Pista Principale",
+      "practiceRink": "Pista Allenamento",
+      "gym": "Palestra/Sala Pesi",
+      "meetingRooms": "Sale Riunioni",
+      "lockerRooms": "Spogliatoi",
+      "medicalRoom": "Sala Medica"
+    }
+  },
+  "finance": {
+    "title": "Gestione Finanziaria",
+    "overview": "Panoramica Finanziaria",
+    "budget": "Gestione Budget",
+    "revenue": "Flussi di Entrate",
+    "expenses": "Spese",
+    "reports": "Report Finanziari",
+    "invoicing": "Fatturazione",
+    "sponsorships": "Sponsorizzazioni",
+    "grants": "Contributi e Finanziamenti"
+  },
+  "events": {
+    "title": "Gestione Eventi",
+    "calendar": "Calendario Eventi",
+    "create": "Crea Evento",
+    "upcoming": "Prossimi Eventi",
+    "past": "Eventi Passati",
+    "types": {
+      "games": "Partite",
+      "tournaments": "Tornei",
+      "fundraisers": "Raccolte Fondi",
+      "meetings": "Riunioni",
+      "social": "Eventi Sociali",
+      "training": "Camp di Allenamento"
+    }
+  },
+  "communication": {
+    "title": "Comunicazioni",
+    "announcements": "Annunci",
+    "newsletters": "Newsletter",
+    "social": "Social Media",
+    "website": "Aggiornamenti Sito Web",
+    "press": "Comunicati Stampa",
+    "internal": "Comunicazioni Interne",
+    "broadcast": "Invia Messaggio a Tutti"
+  },
+  "compliance": {
+    "title": "Conformità e Governance",
+    "policies": "Politiche",
+    "procedures": "Procedure",
+    "regulations": "Regolamenti",
+    "certifications": "Certificazioni",
+    "audits": "Audit",
+    "reports": "Report Conformità",
+    "training": "Formazione Conformità"
+  },
+  "reports": {
+    "title": "Report e Analisi",
+    "dashboard": "Dashboard Esecutiva",
+    "operational": "Report Operativi",
+    "financial": "Report Finanziari",
+    "performance": "Metriche Prestazioni",
+    "custom": "Report Personalizzati",
+    "export": "Esporta Dati",
+    "schedule": "Pianifica Report"
+  },
+  "members": {
+    "title": "Gestione Tesserati",
+    "directory": "Elenco Tesserati",
+    "registration": "Registrazione",
+    "renewal": "Rinnovo Tesseramento",
+    "benefits": "Benefici Tesserati",
+    "communication": "Comunicazioni Tesserati",
+    "statistics": "Statistiche Tesseramento",
+    "byRole": "Tesserati per Ruolo"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "dashboard": {
+    "title": "System Administrator",
+    "subtitle": "Hockey Hub Systemstyring",
+    "overview": "Oversigt",
+    "monitoring": "Overvågning",
+    "organizations": "Organisationer",
+    "users": "Brugere",
+    "security": "Sikkerhed",
+    "configuration": "Konfiguration",
+    "integrations": "Integrationer",
+    "maintenance": "Vedligeholdelse"
+  },
+  "monitoring": {
+    "title": "Systemovervågning",
+    "services": "Tjenester",
+    "health": "Sundhedsstatus",
+    "uptime": "Oppetid",
+    "response": "Responstid",
+    "errors": "Fejl",
+    "requests": "Anmodninger",
+    "status": {
+      "operational": "Operationel",
+      "degraded": "Forringet",
+      "partial": "Delvis",
+      "major": "Større nedbrud",
+      "maintenance": "Vedligeholdelse"
+    },
+    "metrics": {
+      "cpu": "CPU brug",
+      "memory": "Hukommelse",
+      "disk": "Disk plads",
+      "network": "Netværk",
+      "database": "Database",
+      "cache": "Cache"
+    }
+  },
+  "organizations": {
+    "title": "Organisationsstyring",
+    "list": "Organisationer",
+    "create": "Opret organisation",
+    "details": "Detaljer",
+    "settings": "Indstillinger",
+    "billing": "Fakturering",
+    "subscription": "Abonnement",
+    "limits": "Grænser",
+    "status": {
+      "active": "Aktiv",
+      "trial": "Prøveperiode",
+      "suspended": "Suspenderet",
+      "cancelled": "Annulleret",
+      "expired": "Udløbet"
+    },
+    "plans": {
+      "starter": "Starter",
+      "professional": "Professionel",
+      "enterprise": "Enterprise",
+      "custom": "Tilpasset"
+    }
+  },
+  "users": {
+    "title": "Brugerstyring",
+    "list": "Brugerliste",
+    "search": "Søg brugere",
+    "create": "Opret bruger",
+    "import": "Importer brugere",
+    "export": "Eksporter brugere",
+    "roles": "Roller",
+    "permissions": "Tilladelser",
+    "activity": "Aktivitet",
+    "sessions": "Sessioner",
+    "actions": {
+      "activate": "Aktiver",
+      "deactivate": "Deaktiver",
+      "resetPassword": "Nulstil adgangskode",
+      "impersonate": "Log ind som",
+      "audit": "Se revisionslog"
+    }
+  },
+  "security": {
+    "title": "Sikkerhed",
+    "overview": "Sikkerhedsoversigt",
+    "threats": "Trusler",
+    "authentication": "Godkendelse",
+    "authorization": "Autorisation",
+    "audit": "Revisionslog",
+    "settings": {
+      "twoFactor": "To-faktor godkendelse",
+      "passwordPolicy": "Adgangskodepolitik",
+      "sessionTimeout": "Session timeout",
+      "ipWhitelist": "IP hvidliste",
+      "rateLimiting": "Hastighedsbegrænsning"
+    },
+    "events": {
+      "loginAttempt": "Login forsøg",
+      "passwordChange": "Adgangskodeændring",
+      "permissionChange": "Tilladelsesændring",
+      "suspiciousActivity": "Mistænkelig aktivitet"
+    }
+  },
+  "configuration": {
+    "title": "Systemkonfiguration",
+    "general": "Generelt",
+    "features": "Funktioner",
+    "email": "E-mail",
+    "storage": "Lager",
+    "cache": "Cache",
+    "queue": "Kø",
+    "logging": "Logning",
+    "features": {
+      "registration": "Registrering",
+      "payments": "Betalinger",
+      "notifications": "Notifikationer",
+      "analytics": "Analyser",
+      "api": "API adgang"
+    }
+  },
+  "database": {
+    "title": "Database",
+    "overview": "Oversigt",
+    "connections": "Forbindelser",
+    "queries": "Forespørgsler",
+    "backup": "Backup",
+    "migration": "Migration",
+    "optimization": "Optimering",
+    "actions": {
+      "backup": "Opret backup",
+      "restore": "Gendan",
+      "migrate": "Kør migrationer",
+      "optimize": "Optimer",
+      "analyze": "Analyser"
+    }
+  },
+  "integrations": {
+    "title": "Integrationer",
+    "connected": "Tilsluttede",
+    "available": "Tilgængelige",
+    "configure": "Konfigurer",
+    "types": {
+      "payment": "Betalingssystem",
+      "email": "E-mail tjeneste",
+      "sms": "SMS tjeneste",
+      "storage": "Fil lager",
+      "analytics": "Analyser",
+      "calendar": "Kalender",
+      "video": "Video platform"
+    }
+  },
+  "maintenance": {
+    "title": "Vedligeholdelse",
+    "scheduled": "Planlagt vedligeholdelse",
+    "history": "Vedligeholdelseshistorik",
+    "tasks": {
+      "backup": "System backup",
+      "update": "System opdatering",
+      "cleanup": "Data oprydning",
+      "optimization": "Optimering",
+      "security": "Sikkerhedsopdatering"
+    },
+    "mode": {
+      "enable": "Aktiver vedligeholdelsestilstand",
+      "disable": "Deaktiver vedligeholdelsestilstand",
+      "message": "Vedligeholdelsesbesked"
+    }
+  },
+  "logs": {
+    "title": "System logs",
+    "application": "Applikation",
+    "error": "Fejl",
+    "access": "Adgang",
+    "audit": "Revision",
+    "security": "Sikkerhed",
+    "filter": {
+      "level": "Niveau",
+      "service": "Tjeneste",
+      "user": "Bruger",
+      "date": "Dato",
+      "action": "Handling"
+    }
+  },
+  "quickActions": {
+    "clearCache": "Ryd cache",
+    "restartServices": "Genstart tjenester",
+    "runBackup": "Kør backup",
+    "viewLogs": "Se logs",
+    "systemHealth": "System sundhed",
+    "announcements": "Meddelelser"
+  },
+  "notifications": {
+    "highErrorRate": "Høj fejlrate detekteret",
+    "lowDiskSpace": "Lav disk plads",
+    "serviceDown": "Tjeneste nede: {{service}}",
+    "backupComplete": "Backup fuldført",
+    "securityAlert": "Sikkerhedsadvarsel: {{type}}"
+  }
+}

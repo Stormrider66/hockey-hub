@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Clubbeheerder Dashboard",
+    "subtitle": "Organisatiebeheer en toezicht",
+    "welcome": "Welkom, {{name}}",
+    "organizationOverview": "Organisatieoverzicht",
+    "quickActions": "Snelle acties",
+    "stats": {
+      "teams": "Teams",
+      "activeMembers": "Actieve leden",
+      "coachingStaff": "Coachingstaf",
+      "upcomingEvents": "Aankomende evenementen",
+      "attendance": "Aanwezigheid",
+      "members": "Leden"
+    }
+  },
+  "organization": {
+    "title": "Organisatiebeheer",
+    "details": "Organisatiegegevens",
+    "settings": "Organisatie-instellingen",
+    "structure": "Organisatiestructuur",
+    "departments": "Afdelingen",
+    "policies": "Beleid & Procedures",
+    "branding": "Branding & Identiteit",
+    "contact": "Contactinformatie"
+  },
+  "teams": {
+    "title": "Teambeheer",
+    "all": "Alle teams",
+    "create": "Team aanmaken",
+    "edit": "Team bewerken",
+    "delete": "Team verwijderen",
+    "roster": "Teamopstellingen",
+    "assignments": "Staftoewijzingen",
+    "categories": {
+      "senior": "Seniorenteams",
+      "junior": "Juniorenteams",
+      "youth": "Jeugdteams",
+      "academy": "Academieteams",
+      "womens": "Vrouwenteams"
+    }
+  },
+  "staff": {
+    "title": "Personeelsbeheer",
+    "all": "Alle medewerkers",
+    "add": "Medewerker toevoegen",
+    "roles": "Personeelsrollen",
+    "permissions": "Machtigingen",
+    "contracts": "Contracten",
+    "evaluation": "Prestatie-evaluatie",
+    "training": "Training & Certificering",
+    "types": {
+      "coaching": "Coachingstaf",
+      "medical": "Medisch personeel",
+      "administrative": "Administratief",
+      "support": "Ondersteunend personeel",
+      "volunteer": "Vrijwilligers"
+    }
+  },
+  "facilities": {
+    "title": "Faciliteitenbeheer",
+    "overview": "Faciliteitenoverzicht",
+    "booking": "Faciliteitsboeking",
+    "maintenance": "Onderhoudsschema",
+    "calendar": "Faciliteitenkalender",
+    "utilization": "Gebruiksrapporten",
+    "types": {
+      "mainRink": "Hoofdijsbaan",
+      "practiceRink": "Trainingsijsbaan",
+      "gym": "Sportschool/Fitnessruimte",
+      "meetingRooms": "Vergaderruimtes",
+      "lockerRooms": "Kleedkamers",
+      "medicalRoom": "Medische ruimte"
+    }
+  },
+  "finance": {
+    "title": "Financieel beheer",
+    "overview": "Financieel overzicht",
+    "budget": "Budgetbeheer",
+    "revenue": "Inkomstenstromen",
+    "expenses": "Uitgaven",
+    "reports": "Financiële rapporten",
+    "invoicing": "Facturering",
+    "sponsorships": "Sponsorschappen",
+    "grants": "Subsidies & Financiering"
+  },
+  "events": {
+    "title": "Evenementenbeheer",
+    "calendar": "Evenementenkalender",
+    "create": "Evenement aanmaken",
+    "upcoming": "Aankomende evenementen",
+    "past": "Afgelopen evenementen",
+    "types": {
+      "games": "Wedstrijden",
+      "tournaments": "Toernooien",
+      "fundraisers": "Fondsenwervingsacties",
+      "meetings": "Vergaderingen",
+      "social": "Sociale evenementen",
+      "training": "Trainingskampen"
+    }
+  },
+  "communication": {
+    "title": "Communicatie",
+    "announcements": "Aankondigingen",
+    "newsletters": "Nieuwsbrieven",
+    "social": "Sociale media",
+    "website": "Website-updates",
+    "press": "Persberichten",
+    "internal": "Interne communicatie",
+    "broadcast": "Bericht versturen"
+  },
+  "compliance": {
+    "title": "Naleving & Bestuur",
+    "policies": "Beleid",
+    "procedures": "Procedures",
+    "regulations": "Regelgeving",
+    "certifications": "Certificeringen",
+    "audits": "Audits",
+    "reports": "Nalevingsrapporten",
+    "training": "Nalevingstraining"
+  },
+  "reports": {
+    "title": "Rapporten & Analyse",
+    "dashboard": "Bestuursdashboard",
+    "operational": "Operationele rapporten",
+    "financial": "Financiële rapporten",
+    "performance": "Prestatiestatistieken",
+    "custom": "Aangepaste rapporten",
+    "export": "Data exporteren",
+    "schedule": "Rapporten plannen"
+  },
+  "members": {
+    "title": "Ledenbeheer",
+    "directory": "Ledenlijst",
+    "registration": "Registratie",
+    "renewal": "Lidmaatschapsvernieuwing",
+    "benefits": "Ledenvoordelen",
+    "communication": "Ledencommunicatie",
+    "statistics": "Lidmaatschapsstatistieken",
+    "byRole": "Leden per rol"
+  }
+}

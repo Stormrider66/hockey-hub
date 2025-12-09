@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Kuu",
+    "week": "Nädal",
+    "day": "Päev",
+    "agenda": "Päevakord",
+    "workWeek": "Töönädal"
+  },
+  "navigation": {
+    "today": "Täna",
+    "back": "Tagasi",
+    "next": "Järgmine",
+    "previous": "Eelmine",
+    "jumpToDate": "Mine kuupäevale"
+  },
+  "event": {
+    "title": "Sündmus",
+    "newEvent": "Uus sündmus",
+    "editEvent": "Muuda sündmust",
+    "deleteEvent": "Kustuta sündmus",
+    "duplicateEvent": "Dubleeri sündmus",
+    "allDay": "Terve päev",
+    "recurring": "Korduv",
+    "privateEvent": "Privaatne sündmus",
+    "fields": {
+      "title": "Pealkiri",
+      "description": "Kirjeldus",
+      "location": "Asukoht",
+      "startDate": "Alguskuupäev",
+      "startTime": "Algusaeg",
+      "endDate": "Lõppkuupäev",
+      "endTime": "Lõppaeg",
+      "type": "Sündmuse tüüp",
+      "category": "Kategooria",
+      "participants": "Osalejad",
+      "resources": "Ressursid",
+      "notes": "Märkmed",
+      "reminder": "Meeldetuletus",
+      "color": "Värv",
+      "attachments": "Manused"
+    },
+    "types": {
+      "practice": "Harjutus",
+      "game": "Mäng",
+      "training": "Treening",
+      "meeting": "Koosolek",
+      "tournament": "Turniir",
+      "tryout": "Katseesinemine",
+      "medical": "Meditsiiniline aeg",
+      "equipment": "Varustuse sobitamine",
+      "teamEvent": "Meeskonna üritus",
+      "personal": "Isiklik",
+      "other": "Muu"
+    },
+    "status": {
+      "confirmed": "Kinnitatud",
+      "tentative": "Esialgne",
+      "cancelled": "Tühistatud",
+      "postponed": "Edasi lükatud",
+      "rescheduled": "Ümber planeeritud"
+    }
+  },
+  "recurrence": {
+    "title": "Kordumine",
+    "none": "Ei kordu",
+    "daily": "Iga päev",
+    "weekly": "Iga nädal",
+    "monthly": "Iga kuu",
+    "yearly": "Iga aasta",
+    "custom": "Kohandatud",
+    "every": "Iga",
+    "days": "päev(a)",
+    "weeks": "nädal(at)",
+    "months": "kuu(d)",
+    "years": "aasta(t)",
+    "on": "Ajal",
+    "onThe": "Kuupäeval",
+    "weekdays": {
+      "monday": "Esmaspäev",
+      "tuesday": "Teisipäev",
+      "wednesday": "Kolmapäev",
+      "thursday": "Neljapäev",
+      "friday": "Reede",
+      "saturday": "Laupäev",
+      "sunday": "Pühapäev"
+    },
+    "ends": {
+      "never": "Mitte kunagi",
+      "after": "Pärast",
+      "onDate": "Kuupäeval",
+      "occurrences": "korda"
+    }
+  },
+  "availability": {
+    "available": "Saadaval",
+    "unavailable": "Pole saadaval",
+    "busy": "Hõivatud",
+    "tentative": "Esialgne",
+    "outOfOffice": "Kontorist väljas"
+  },
+  "conflicts": {
+    "detected": "Avastatud ajakava konflikt",
+    "message": "See sündmus kattub sündmusega:",
+    "resolution": "Kuidas soovite seda lahendada?",
+    "overwrite": "Kirjuta olemasolev üle",
+    "keepBoth": "Säilita mõlemad sündmused",
+    "cancel": "Tühista uus sündmus"
+  },
+  "filters": {
+    "title": "Filtrid",
+    "showAll": "Näita kõiki",
+    "byType": "Tüübi järgi",
+    "byTeam": "Meeskonna järgi",
+    "byLocation": "Asukoha järgi",
+    "myEvents": "Ainult minu sündmused"
+  },
+  "export": {
+    "title": "Ekspordi kalender",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Prindi"
+    },
+    "range": {
+      "all": "Kõik sündmused",
+      "current": "Praegune vaade",
+      "custom": "Kohandatud vahemik"
+    }
+  },
+  "sharing": {
+    "title": "Jaga kalendrit",
+    "publicLink": "Avalik link",
+    "embed": "Põimimiskood",
+    "subscribe": "Tellimise URL",
+    "permissions": {
+      "view": "Ainult vaatamine",
+      "edit": "Saab muuta",
+      "admin": "Täielik juurdepääs"
+    }
+  },
+  "reminders": {
+    "none": "Meeldetuletus puudub",
+    "atTime": "Sündmuse ajal",
+    "minutes": "{{count}} minutit enne",
+    "hours": "{{count}} tundi enne",
+    "days": "{{count}} päeva enne",
+    "custom": "Kohandatud"
+  },
+  "actions": {
+    "create": "Loo sündmus",
+    "save": "Salvesta",
+    "cancel": "Tühista",
+    "delete": "Kustuta",
+    "edit": "Muuda",
+    "duplicate": "Dubleeri",
+    "print": "Prindi",
+    "export": "Ekspordi",
+    "import": "Impordi",
+    "subscribe": "Telli",
+    "unsubscribe": "Lõpeta tellimus",
+    "rsvp": "Kinnita osalemine",
+    "maybeAttending": "Võib-olla",
+    "attending": "Osalen",
+    "notAttending": "Ei osale"
+  },
+  "messages": {
+    "eventCreated": "Sündmus edukalt loodud",
+    "eventUpdated": "Sündmus edukalt uuendatud",
+    "eventDeleted": "Sündmus edukalt kustutatud",
+    "eventDuplicated": "Sündmus edukalt dubleeritud",
+    "conflictWarning": "Sellel ajal on konflikte",
+    "participantAdded": "Osaleja lisatud",
+    "participantRemoved": "Osaleja eemaldatud",
+    "reminderSet": "Meeldetuletus seatud",
+    "calendarShared": "Kalender edukalt jagatud",
+    "exportComplete": "Eksportimine lõpetatud",
+    "importComplete": "Importimine lõpetatud"
+  },
+  "facility": {
+    "rink": "Jäähall",
+    "mainRink": "Peahall",
+    "practiceRink": "Harjutushall",
+    "gym": "Jõusaal",
+    "meetingRoom": "Koosolekuruum",
+    "lockerRoom": "Riietusruum",
+    "trainingRoom": "Treeningruum",
+    "videoRoom": "Videoruum",
+    "medicalRoom": "Meditsiiniruum"
+  },
+  "tooltips": {
+    "dragToMove": "Lohista sündmuse liigutamiseks",
+    "dragToResize": "Lohista servi suuruse muutmiseks",
+    "clickToEdit": "Klõpsa muutmiseks",
+    "doubleClickToCreate": "Topeltklõps sündmuse loomiseks"
+  }
+}

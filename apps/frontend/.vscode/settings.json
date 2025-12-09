@@ -1,0 +1,63 @@
+{
+  "typescript.preferences.useAliasesForRenames": false,
+  "typescript.suggest.autoImports": "on",
+  "typescript.suggest.includePackageJsonAutoImports": "on",
+  
+  // Import organization
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  
+  // Code actions on save
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll": true
+  },
+  
+  // Extensions for import optimization
+  "importCost.showCalculatingDecoration": true,
+  "importCost.debug": false,
+  "importCost.maxCallTime": 10000,
+  
+  // ESLint configuration
+  "eslint.workingDirectories": ["."],
+  "eslint.format.enable": true,
+  
+  // File associations
+  "files.associations": {
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript"
+  },
+  
+  // Search exclusions for better performance
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/coverage": true
+  },
+  
+  // Auto-save configuration
+  "files.autoSave": "onFocusChange",
+  
+  // Import suggestions
+  "typescript.suggest.paths": true,
+  "typescript.suggest.autoImports": "on",
+  "typescript.suggest.completeJSDocs": true,
+  
+  // Tailwind CSS
+  "tailwindCSS.includeLanguages": {
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  
+  // Emmet
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  }
+}

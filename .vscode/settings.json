@@ -1,0 +1,23 @@
+{
+  "files.watcherExclude": {
+    "**/development/Frontend/**": true,
+    "**/node_modules/.cache/**": true,
+    "**/.next/**": true
+  },
+  "files.exclude": {
+    "**/development/Frontend": true,
+    "**/node_modules/.cache": true
+  },
+  "typescript.validate.exclude": [
+    "**/development/Frontend/**",
+    "**/node_modules/.cache/**"
+  ],
+  "json.schemaDownload.enable": false,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "files.associations": {
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact"
+  }
+}

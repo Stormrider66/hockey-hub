@@ -1,0 +1,178 @@
+{
+  "dashboard": {
+    "title": "Fysisk trener dashbord",
+    "subtitle": "Spillerfysikk og treningsadministrasjon",
+    "welcome": "Velkommen, {{name}}",
+    "todaySessions": "Dagens treningsøkter",
+    "playerProgress": "Spillerfremgangsoversikt",
+    "quickStats": {
+      "todaysSessions": "Dagens økter",
+      "activeNow": "Aktiv nå",
+      "playerReadiness": "Spillerberedskap",
+      "completedToday": "Fullført i dag",
+      "totalPlayers": "{{count}} totalt spillere",
+      "noActiveSession": "Ingen aktiv økt",
+      "teamAverage": "Lagsgjennomsnitt",
+      "upcoming": "{{count}} kommende"
+    }
+  },
+  "training": {
+    "title": "Treningsprogrammer",
+    "create": "Opprett program",
+    "templates": "Treningsmaler",
+    "active": "Aktive programmer",
+    "scheduled": "Planlagte økter",
+    "history": "Treningshistorikk",
+    "types": {
+      "strength": "Styrketrening",
+      "cardio": "Kardiovaskulær",
+      "flexibility": "Fleksibilitet",
+      "agility": "Smidighet",
+      "recovery": "Restitusjon",
+      "rehabilitation": "Rehabilitering",
+      "testing": "Kondisjonstesting"
+    },
+    "intensity": {
+      "low": "Lav",
+      "medium": "Medium",
+      "moderate": "Moderat",
+      "high": "Høy",
+      "maximum": "Maksimal"
+    }
+  },
+  "sessions": {
+    "title": "Treningsøkter",
+    "schedule": "Planlegg økt",
+    "current": "Nåværende økt",
+    "upcoming": "Kommende økter",
+    "completed": "Fullførte økter",
+    "cancel": "Avbryt økt",
+    "reschedule": "Endre tidspunkt",
+    "duration": "Øktvarighet",
+    "participants": "Deltakere",
+    "newSession": "Ny økt",
+    "intensity": "{{level}} intensitet",
+    "status": {
+      "active": "Aktiv",
+      "completed": "Fullført",
+      "upcoming": "Kommende"
+    },
+    "launch": "Start",
+    "viewDetails": "Se detaljer"
+  },
+  "exercises": {
+    "title": "Øvelsesbibliotek",
+    "search": "Søk øvelser",
+    "categories": "Øvelseskategorier",
+    "create": "Legg til øvelse",
+    "favorite": "Favorittøvelser",
+    "equipment": "Utstyr nødvendig",
+    "instructions": "Instruksjoner",
+    "video": "Videoveiledning",
+    "categories": {
+      "upperBody": "Overkropp",
+      "lowerBody": "Underkropp",
+      "core": "Kjerne",
+      "fullBody": "Helkropp",
+      "skating": "Skøytespesifikk",
+      "shooting": "Skuddstyrke",
+      "balance": "Balanse & stabilitet",
+      "plyometric": "Plyometrisk"
+    }
+  },
+  "workouts": {
+    "title": "Treningsplanlegger",
+    "create": "Opprett treningsøkt",
+    "edit": "Rediger treningsøkt",
+    "save": "Lagre treningsøkt",
+    "templates": "Treningsmaler",
+    "custom": "Tilpassede treninger",
+    "assign": "Tildel til spillere",
+    "components": {
+      "warmup": "Oppvarming",
+      "main": "Hovedtrening",
+      "cooldown": "Nedkjøling",
+      "stretching": "Tøying"
+    },
+    "parameters": {
+      "sets": "Sett",
+      "reps": "Repetisjoner",
+      "duration": "Varighet",
+      "rest": "Hvileperiode",
+      "weight": "Vekt",
+      "distance": "Distanse",
+      "speed": "Hastighet"
+    }
+  },
+  "testing": {
+    "title": "Kondisjonstesting",
+    "schedule": "Planlegg test",
+    "protocols": "Testprotokoller",
+    "results": "Testresultater",
+    "history": "Testhistorikk",
+    "compare": "Sammenlign resultater",
+    "benchmarks": "Lagsreferanser",
+    "tests": {
+      "vo2max": "VO2 Maks",
+      "sprint": "Sprinttest",
+      "agility": "Smidighetstest",
+      "strength": "Styrketest",
+      "flexibility": "Fleksibilitetstest",
+      "balance": "Balansetest",
+      "endurance": "Utholdenhet",
+      "powerOutput": "Kraftproduksjon"
+    }
+  },
+  "monitoring": {
+    "title": "Prestasjonsovervåking",
+    "metrics": "Prestasjonsmetrikk",
+    "trends": "Fremgangstrender",
+    "alerts": "Prestasjonsvarsler",
+    "load": "Treningsbelastning",
+    "recovery": "Restitusjonsstatus",
+    "readiness": "Treningsberedskap",
+    "metrics": {
+      "hrv": "Hjerteratevariabilitet",
+      "restingHR": "Hvilepuls",
+      "weight": "Kroppsvekt",
+      "bodyFat": "Kroppsfett %",
+      "muscleMass": "Muskelmasse",
+      "power": "Kraftproduksjon",
+      "speed": "Hastighet",
+      "endurance": "Utholdenhet"
+    }
+  },
+  "programs": {
+    "title": "Treningsprogrammer",
+    "inSeason": "Sesongprogram",
+    "offSeason": "Utenfor sesong",
+    "preseason": "Førsesonprogram",
+    "rehabilitation": "Rehabiliteringsprogram",
+    "maintenance": "Vedlikeholdsprogram",
+    "phases": {
+      "preparation": "Forberedelsefase",
+      "building": "Oppbyggingsfase",
+      "peak": "Toppfase",
+      "recovery": "Restitusjonsfase"
+    }
+  },
+  "analytics": {
+    "title": "Treningsanalyse",
+    "individual": "Individuell analyse",
+    "team": "Lagsanalyse",
+    "progress": "Fremgangsrapporter",
+    "comparison": "Spillersammenligning",
+    "export": "Eksporter data",
+    "metrics": "Nøkkelmetrikk",
+    "insights": "Prestasjonsinnsikt"
+  },
+  "communication": {
+    "title": "Kommunikasjon",
+    "feedback": "Økttilbakemelding",
+    "notes": "Treningsnotater",
+    "recommendations": "Anbefalinger",
+    "alerts": "Send varsel",
+    "report": "Fremgangsrapport",
+    "collaborate": "Samarbeid med medisinsk"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "dashboard": {
+    "title": "Panel del Jugador",
+    "subtitle": "Monitorea tu rendimiento y desarrollo",
+    "welcome": "¡Bienvenido de vuelta, {{name}}!",
+    "todaySchedule": "Horario de Hoy",
+    "upcomingEvents": "Próximos Eventos",
+    "recentPerformance": "Rendimiento Reciente",
+    "developmentGoals": "Objetivos de Desarrollo"
+  },
+  "profile": {
+    "playerInfo": "Información del Jugador",
+    "number": "Número de Camiseta",
+    "position": "Posición",
+    "shoots": "Dispara",
+    "team": "Equipo",
+    "age": "Edad",
+    "height": "Altura",
+    "weight": "Peso",
+    "joined": "Se unió",
+    "contractExpires": "Contrato Expira"
+  },
+  "wellness": {
+    "title": "Control de Bienestar Diario",
+    "subtitle": "¿Cómo te sientes hoy?",
+    "submit": "Enviar Datos de Bienestar",
+    "submitted": "Datos de bienestar enviados exitosamente",
+    "metrics": {
+      "hrv": "Variabilidad del Ritmo Cardíaco",
+      "sleep": "Calidad del Sueño",
+      "fatigue": "Nivel de Fatiga",
+      "mood": "Estado de Ánimo",
+      "soreness": "Dolor Muscular",
+      "stress": "Nivel de Estrés",
+      "hydration": "Hidratación",
+      "nutrition": "Calidad Nutricional"
+    },
+    "scale": {
+      "poor": "Pobre",
+      "fair": "Regular",
+      "good": "Bueno",
+      "veryGood": "Muy Bueno",
+      "excellent": "Excelente"
+    }
+  },
+  "training": {
+    "title": "Sesiones de Entrenamiento",
+    "upcoming": "Próximos Entrenamientos",
+    "completed": "Sesiones Completadas",
+    "assigned": "Entrenamientos Asignados",
+    "progress": "Progreso de Entrenamiento",
+    "todaysWorkout": "Entrenamiento de Hoy",
+    "completeSession": "Completar Sesión",
+    "viewDetails": "Ver Detalles",
+    "intensity": "Intensidad",
+    "duration": "Duración",
+    "focus": "Área de Enfoque",
+    "equipment": "Equipamiento Necesario",
+    "location": "Ubicación",
+    "coach": "Entrenador",
+    "notes": "Notas de la Sesión"
+  },
+  "performance": {
+    "title": "Métricas de Rendimiento",
+    "seasonStats": "Estadísticas de Temporada",
+    "careerStats": "Estadísticas de Carrera",
+    "lastGame": "Último Partido",
+    "average": "Promedio",
+    "total": "Total",
+    "trend": "Tendencia",
+    "improvement": "Mejora",
+    "metrics": {
+      "goals": "Goles",
+      "assists": "Asistencias",
+      "points": "Puntos",
+      "plusMinus": "+/-",
+      "pim": "Minutos de Penalización",
+      "shots": "Disparos",
+      "shootingPercentage": "% de Disparos",
+      "faceoffPercentage": "% de Enfrentamientos",
+      "hits": "Golpes",
+      "blocks": "Bloqueos",
+      "takeaways": "Robos de Disco",
+      "giveaways": "Pérdidas de Disco",
+      "toi": "Tiempo en Hielo",
+      "powerplayGoals": "Goles en Superioridad",
+      "shorthandedGoals": "Goles en Inferioridad",
+      "gameWinningGoals": "Goles Decisivos"
+    }
+  },
+  "schedule": {
+    "title": "Calendario",
+    "calendar": "Vista de Calendario",
+    "list": "Vista de Lista",
+    "filters": "Filtros",
+    "types": {
+      "game": "Partido",
+      "practice": "Práctica",
+      "training": "Entrenamiento",
+      "meeting": "Reunión",
+      "medical": "Médico",
+      "recovery": "Recuperación",
+      "travel": "Viaje",
+      "personal": "Personal"
+    },
+    "rsvp": {
+      "title": "Confirmar Asistencia",
+      "attending": "Asistiré",
+      "notAttending": "No Asistiré",
+      "maybe": "Tal Vez",
+      "update": "Actualizar Confirmación"
+    }
+  },
+  "communication": {
+    "title": "Mensajes",
+    "inbox": "Bandeja de Entrada",
+    "sent": "Enviados",
+    "drafts": "Borradores",
+    "compose": "Redactar",
+    "teamChat": "Chat del Equipo",
+    "coachMessages": "Mensajes del Entrenador",
+    "announcements": "Anuncios"
+  },
+  "development": {
+    "title": "Plan de Desarrollo",
+    "goals": "Objetivos",
+    "progress": "Progreso",
+    "skillAssessment": "Evaluación de Habilidades",
+    "trainingPlan": "Plan de Entrenamiento",
+    "milestones": "Hitos",
+    "achievements": "Logros",
+    "areas": {
+      "skating": "Patinaje",
+      "shooting": "Disparo",
+      "passing": "Pases",
+      "stickHandling": "Manejo del Stick",
+      "positioning": "Posicionamiento",
+      "physicality": "Físico",
+      "mentalGame": "Juego Mental",
+      "leadership": "Liderazgo"
+    }
+  },
+  "nutrition": {
+    "title": "Nutrición",
+    "mealPlan": "Plan de Comidas",
+    "hydration": "Seguimiento de Hidratación",
+    "supplements": "Suplementos",
+    "calories": "Calorías",
+    "macros": "Macronutrientes",
+    "meals": {
+      "breakfast": "Desayuno",
+      "lunch": "Almuerzo",
+      "dinner": "Cena",
+      "snack": "Refrigerio",
+      "preGame": "Pre-Partido",
+      "postGame": "Post-Partido"
+    }
+  },
+  "recovery": {
+    "title": "Recuperación",
+    "status": "Estado de Recuperación",
+    "activities": "Actividades de Recuperación",
+    "sleep": "Seguimiento del Sueño",
+    "treatment": "Tratamiento",
+    "nextSession": "Próxima Sesión de Recuperación",
+    "types": {
+      "massage": "Masaje",
+      "coldTub": "Baño de Hielo",
+      "sauna": "Sauna",
+      "stretching": "Estiramiento",
+      "yoga": "Yoga",
+      "physiotherapy": "Fisioterapia"
+    }
+  }
+}

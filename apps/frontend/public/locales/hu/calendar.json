@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Hónap",
+    "week": "Hét",
+    "day": "Nap",
+    "agenda": "Napirend",
+    "workWeek": "Munkahét"
+  },
+  "navigation": {
+    "today": "Ma",
+    "back": "Vissza",
+    "next": "Következő",
+    "previous": "Előző",
+    "jumpToDate": "Ugrás dátumra"
+  },
+  "event": {
+    "title": "Esemény",
+    "newEvent": "Új esemény",
+    "editEvent": "Esemény szerkesztése",
+    "deleteEvent": "Esemény törlése",
+    "duplicateEvent": "Esemény másolása",
+    "allDay": "Egész napos",
+    "recurring": "Ismétlődő",
+    "privateEvent": "Privát esemény",
+    "fields": {
+      "title": "Cím",
+      "description": "Leírás",
+      "location": "Helyszín",
+      "startDate": "Kezdő dátum",
+      "startTime": "Kezdési idő",
+      "endDate": "Befejező dátum",
+      "endTime": "Befejezési idő",
+      "type": "Esemény típusa",
+      "category": "Kategória",
+      "participants": "Résztvevők",
+      "resources": "Erőforrások",
+      "notes": "Jegyzetek",
+      "reminder": "Emlékeztető",
+      "color": "Szín",
+      "attachments": "Csatolmányok"
+    },
+    "types": {
+      "practice": "Edzés",
+      "game": "Mérkőzés",
+      "training": "Erőnléti edzés",
+      "meeting": "Megbeszélés",
+      "tournament": "Torna",
+      "tryout": "Próbajáték",
+      "medical": "Orvosi időpont",
+      "equipment": "Felszerelés próba",
+      "teamEvent": "Csapatrendezvény",
+      "personal": "Személyes",
+      "other": "Egyéb"
+    },
+    "status": {
+      "confirmed": "Megerősítve",
+      "tentative": "Bizonytalan",
+      "cancelled": "Lemondva",
+      "postponed": "Elhalasztva",
+      "rescheduled": "Átütemezve"
+    }
+  },
+  "recurrence": {
+    "title": "Ismétlődés",
+    "none": "Nem ismétlődik",
+    "daily": "Naponta",
+    "weekly": "Hetente",
+    "monthly": "Havonta",
+    "yearly": "Évente",
+    "custom": "Egyéni",
+    "every": "Minden",
+    "days": "nap",
+    "weeks": "hét",
+    "months": "hónap",
+    "years": "év",
+    "on": "Ezen",
+    "onThe": "A",
+    "weekdays": {
+      "monday": "Hétfő",
+      "tuesday": "Kedd",
+      "wednesday": "Szerda",
+      "thursday": "Csütörtök",
+      "friday": "Péntek",
+      "saturday": "Szombat",
+      "sunday": "Vasárnap"
+    },
+    "ends": {
+      "never": "Soha",
+      "after": "Után",
+      "onDate": "Ezen a napon",
+      "occurrences": "alkalom"
+    }
+  },
+  "availability": {
+    "available": "Elérhető",
+    "unavailable": "Nem elérhető",
+    "busy": "Elfoglalt",
+    "tentative": "Bizonytalan",
+    "outOfOffice": "Irodán kívül"
+  },
+  "conflicts": {
+    "detected": "Időpontütközés észlelve",
+    "message": "Ez az esemény ütközik ezzel:",
+    "resolution": "Hogyan szeretné megoldani?",
+    "overwrite": "Meglévő felülírása",
+    "keepBoth": "Mindkettő megtartása",
+    "cancel": "Új esemény törlése"
+  },
+  "filters": {
+    "title": "Szűrők",
+    "showAll": "Összes megjelenítése",
+    "byType": "Típus szerint",
+    "byTeam": "Csapat szerint",
+    "byLocation": "Helyszín szerint",
+    "myEvents": "Csak saját események"
+  },
+  "export": {
+    "title": "Naptár exportálása",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Nyomtatás"
+    },
+    "range": {
+      "all": "Összes esemény",
+      "current": "Aktuális nézet",
+      "custom": "Egyéni tartomány"
+    }
+  },
+  "sharing": {
+    "title": "Naptár megosztása",
+    "publicLink": "Nyilvános link",
+    "embed": "Beágyazási kód",
+    "subscribe": "Feliratkozási URL",
+    "permissions": {
+      "view": "Csak megtekintés",
+      "edit": "Szerkeszthető",
+      "admin": "Teljes hozzáférés"
+    }
+  },
+  "reminders": {
+    "none": "Nincs emlékeztető",
+    "atTime": "Az esemény időpontjában",
+    "minutes": "{{count}} perccel előtte",
+    "hours": "{{count}} órával előtte",
+    "days": "{{count}} nappal előtte",
+    "custom": "Egyéni"
+  },
+  "actions": {
+    "create": "Esemény létrehozása",
+    "save": "Mentés",
+    "cancel": "Mégse",
+    "delete": "Törlés",
+    "edit": "Szerkesztés",
+    "duplicate": "Másolás",
+    "print": "Nyomtatás",
+    "export": "Exportálás",
+    "import": "Importálás",
+    "subscribe": "Feliratkozás",
+    "unsubscribe": "Leiratkozás",
+    "rsvp": "Részvétel",
+    "maybeAttending": "Talán",
+    "attending": "Részt veszek",
+    "notAttending": "Nem veszek részt"
+  },
+  "messages": {
+    "eventCreated": "Esemény sikeresen létrehozva",
+    "eventUpdated": "Esemény sikeresen frissítve",
+    "eventDeleted": "Esemény sikeresen törölve",
+    "eventDuplicated": "Esemény sikeresen másolva",
+    "conflictWarning": "Ez az időpont ütközéseket tartalmaz",
+    "participantAdded": "Résztvevő hozzáadva",
+    "participantRemoved": "Résztvevő eltávolítva",
+    "reminderSet": "Emlékeztető beállítva",
+    "calendarShared": "Naptár sikeresen megosztva",
+    "exportComplete": "Exportálás befejezve",
+    "importComplete": "Importálás befejezve"
+  },
+  "facility": {
+    "rink": "Jégpálya",
+    "mainRink": "Főpálya",
+    "practiceRink": "Edzőpálya",
+    "gym": "Edzőterem",
+    "meetingRoom": "Tárgyaló",
+    "lockerRoom": "Öltöző",
+    "trainingRoom": "Edzőterem",
+    "videoRoom": "Videó szoba",
+    "medicalRoom": "Orvosi szoba"
+  },
+  "tooltips": {
+    "dragToMove": "Húzza az esemény áthelyezéséhez",
+    "dragToResize": "Húzza a széleket az átméretezéshez",
+    "clickToEdit": "Kattintson a szerkesztéshez",
+    "doubleClickToCreate": "Dupla kattintás új esemény létrehozásához"
+  }
+}

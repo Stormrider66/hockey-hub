@@ -1,0 +1,1157 @@
+openapi: 3.0.3
+info:
+  title: Hockey Hub Medical Service API
+  description: |
+    The Medical Service manages player health data, injuries, wellness tracking, and medical availability for the Hockey Hub platform.
+    This service handles injury reporting, wellness monitoring, player availability status, and medical data analytics.
+  version: 1.0.0
+  contact:
+    name: Hockey Hub Development Team
+    email: dev@hockeyhub.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3005
+    description: Development server
+  - url: https://api.hockeyhub.com/medical
+    description: Production server
+
+tags:
+  - name: Injuries
+    description: Injury tracking and management
+  - name: Wellness
+    description: Player wellness and HRV monitoring
+  - name: Availability
+    description: Player medical availability status
+  - name: Medical Overview
+    description: Medical data overview and analytics
+
+security:
+  - bearerAuth: []
+
+paths:
+  # Injury Management
+  /injuries:
+    get:
+      tags:
+        - Injuries
+      summary: Get all injuries
+      description: Retrieve paginated list of all injuries (medical staff and coaches only)
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Injuries retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Injury'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      tags:
+        - Injuries
+      summary: Create new injury
+      description: Report a new injury (medical staff only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInjuryRequest'
+            examples:
+              ankle_sprain:
+                summary: Ankle sprain example
+                value:
+                  playerId: 123
+                  bodyPart: "ankle"
+                  type: "sprain"
+                  severity: "moderate"
+                  description: "Player twisted ankle during practice"
+                  dateOccurred: "2025-07-02T14:30:00Z"
+                  expectedRecoveryDays: 14
+      responses:
+        201:
+          description: Injury created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Injury'
+                      message:
+                        type: string
+                        example: "Injury created successfully"
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+
+  /injuries/active:
+    get:
+      tags:
+        - Injuries
+      summary: Get active injuries
+      description: Retrieve paginated list of currently active injuries
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Active injuries retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Injury'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+
+  /injuries/{id}:
+    get:
+      tags:
+        - Injuries
+      summary: Get injury by ID
+      description: Retrieve specific injury details
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Injury ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Injury retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Injury'
+        404:
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      tags:
+        - Injuries
+      summary: Update injury
+      description: Update injury details (medical staff only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Injury ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInjuryRequest'
+      responses:
+        200:
+          description: Injury updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Injury'
+                      message:
+                        type: string
+                        example: "Injury updated successfully"
+
+    delete:
+      tags:
+        - Injuries
+      summary: Delete injury
+      description: Delete injury record (medical staff only)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Injury ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Injury deleted successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Injury deleted successfully"
+
+  /injuries/player/{playerId}:
+    get:
+      tags:
+        - Injuries
+      summary: Get player injuries
+      description: Retrieve paginated list of injuries for a specific player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Player injuries retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Injury'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+
+  /injuries/stats/body-parts:
+    get:
+      tags:
+        - Injuries
+      summary: Get injury statistics by body part
+      description: Get count of active injuries grouped by body part
+      responses:
+        200:
+          description: Injury statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties:
+                          type: integer
+                        example:
+                          ankle: 3
+                          knee: 2
+                          shoulder: 1
+                          back: 1
+
+  # Wellness Monitoring
+  /players/{playerId}/wellness:
+    get:
+      tags:
+        - Wellness
+      summary: Get player wellness history
+      description: Retrieve paginated wellness entries for a player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Wellness data retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WellnessEntry'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+
+    post:
+      tags:
+        - Wellness
+      summary: Submit wellness entry
+      description: Submit daily wellness data for a player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWellnessRequest'
+            examples:
+              daily_entry:
+                summary: Daily wellness entry
+                value:
+                  hrvScore: 45.2
+                  restingHeartRate: 62
+                  sleepQuality: 8
+                  sleepHours: 7.5
+                  stressLevel: 3
+                  fatigueLevel: 4
+                  soreness: 2
+                  mood: 8
+                  energyLevel: 7
+                  hydrationLevel: 6
+                  notes: "Feeling good after rest day"
+      responses:
+        201:
+          description: Wellness entry submitted successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WellnessEntry'
+                      message:
+                        type: string
+                        example: "Wellness data submitted successfully"
+
+  /players/{playerId}/wellness/latest:
+    get:
+      tags:
+        - Wellness
+      summary: Get latest wellness entry
+      description: Get the most recent wellness entry for a player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Latest wellness data retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/WellnessEntry'
+
+  /players/{playerId}/wellness/range:
+    get:
+      tags:
+        - Wellness
+      summary: Get wellness data for date range
+      description: Get wellness entries for a player within a specific date range
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+        - name: startDate
+          in: query
+          required: true
+          description: Start date (ISO 8601)
+          schema:
+            type: string
+            format: date
+            example: "2025-06-01"
+        - name: endDate
+          in: query
+          required: true
+          description: End date (ISO 8601)
+          schema:
+            type: string
+            format: date
+            example: "2025-07-01"
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        200:
+          description: Wellness data for date range retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/WellnessEntry'
+                      meta:
+                        $ref: '#/components/schemas/PaginationMeta'
+        400:
+          description: Missing required date parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                success: false
+                message: "Start date and end date are required"
+
+  /team/wellness/summary:
+    get:
+      tags:
+        - Wellness
+      summary: Get team wellness summary
+      description: Get wellness summary for the entire team (medical staff and coaches only)
+      responses:
+        200:
+          description: Team wellness summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/TeamWellnessSummary'
+
+  # Player Availability
+  /availability:
+    get:
+      tags:
+        - Availability
+      summary: Get all player availability
+      description: Get availability status for all players
+      responses:
+        200:
+          description: Player availability retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PlayerAvailability'
+
+  /availability/player/{playerId}:
+    get:
+      tags:
+        - Availability
+      summary: Get player availability
+      description: Get current availability status for a specific player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Player availability retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/PlayerAvailability'
+
+    put:
+      tags:
+        - Availability
+      summary: Update player availability
+      description: Update availability status for a player (medical staff only)
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          description: Player ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAvailabilityRequest'
+      responses:
+        200:
+          description: Player availability updated successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/PlayerAvailability'
+
+  # Medical Overview
+  /overview/dashboard:
+    get:
+      tags:
+        - Medical Overview
+      summary: Get medical dashboard data
+      description: Get comprehensive medical overview for dashboard (medical staff only)
+      responses:
+        200:
+          description: Medical dashboard data retrieved successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/BaseResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/MedicalDashboard'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (default: 1)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of items per page (default: 20, max: 100)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+        message:
+          type: string
+          description: Optional message
+      required:
+        - success
+
+    PaginationMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items
+        page:
+          type: integer
+          description: Current page number
+        limit:
+          type: integer
+          description: Items per page
+        totalPages:
+          type: integer
+          description: Total number of pages
+        hasNext:
+          type: boolean
+          description: Whether there's a next page
+        hasPrev:
+          type: boolean
+          description: Whether there's a previous page
+      required:
+        - total
+        - page
+        - limit
+        - totalPages
+
+    # Injury Schemas
+    Injury:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Injury unique identifier
+          example: 1
+        playerId:
+          type: integer
+          description: Player ID
+          example: 123
+        bodyPart:
+          type: string
+          description: Injured body part
+          example: "ankle"
+        type:
+          type: string
+          description: Type of injury
+          example: "sprain"
+        severity:
+          type: string
+          enum: [mild, moderate, severe]
+          description: Injury severity level
+          example: "moderate"
+        description:
+          type: string
+          description: Detailed injury description
+          example: "Player twisted ankle during practice"
+        dateOccurred:
+          type: string
+          format: date-time
+          description: When the injury occurred
+          example: "2025-07-02T14:30:00Z"
+        expectedRecoveryDays:
+          type: integer
+          description: Expected recovery time in days
+          example: 14
+        actualRecoveryDate:
+          type: string
+          format: date-time
+          description: Actual recovery date (if recovered)
+          example: "2025-07-16T09:00:00Z"
+        status:
+          type: string
+          enum: [active, recovering, recovered]
+          description: Current injury status
+          example: "active"
+        treatmentPlan:
+          type: string
+          description: Treatment plan details
+          example: "Rest, ice, compression, elevation for first 48 hours"
+        notes:
+          type: string
+          description: Additional notes
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - playerId
+        - bodyPart
+        - type
+        - severity
+        - dateOccurred
+        - status
+
+    CreateInjuryRequest:
+      type: object
+      properties:
+        playerId:
+          type: integer
+          description: Player ID
+          example: 123
+        bodyPart:
+          type: string
+          description: Injured body part
+          example: "ankle"
+        type:
+          type: string
+          description: Type of injury
+          example: "sprain"
+        severity:
+          type: string
+          enum: [mild, moderate, severe]
+          description: Injury severity level
+          example: "moderate"
+        description:
+          type: string
+          description: Detailed injury description
+          example: "Player twisted ankle during practice"
+        dateOccurred:
+          type: string
+          format: date-time
+          description: When the injury occurred
+          example: "2025-07-02T14:30:00Z"
+        expectedRecoveryDays:
+          type: integer
+          description: Expected recovery time in days
+          example: 14
+        treatmentPlan:
+          type: string
+          description: Treatment plan details
+        notes:
+          type: string
+          description: Additional notes
+      required:
+        - playerId
+        - bodyPart
+        - type
+        - severity
+        - dateOccurred
+
+    UpdateInjuryRequest:
+      type: object
+      properties:
+        bodyPart:
+          type: string
+        type:
+          type: string
+        severity:
+          type: string
+          enum: [mild, moderate, severe]
+        description:
+          type: string
+        expectedRecoveryDays:
+          type: integer
+        actualRecoveryDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [active, recovering, recovered]
+        treatmentPlan:
+          type: string
+        notes:
+          type: string
+
+    # Wellness Schemas
+    WellnessEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Wellness entry unique identifier
+          example: 1
+        playerId:
+          type: integer
+          description: Player ID
+          example: 123
+        date:
+          type: string
+          format: date
+          description: Entry date
+          example: "2025-07-02"
+        hrvScore:
+          type: number
+          format: float
+          description: Heart Rate Variability score
+          example: 45.2
+        restingHeartRate:
+          type: integer
+          description: Resting heart rate (BPM)
+          example: 62
+        sleepQuality:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Sleep quality rating (1-10)
+          example: 8
+        sleepHours:
+          type: number
+          format: float
+          description: Hours of sleep
+          example: 7.5
+        stressLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Stress level (1-10)
+          example: 3
+        fatigueLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Fatigue level (1-10)
+          example: 4
+        soreness:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Muscle soreness (1-10)
+          example: 2
+        mood:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Mood rating (1-10)
+          example: 8
+        energyLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Energy level (1-10)
+          example: 7
+        hydrationLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Hydration level (1-10)
+          example: 6
+        notes:
+          type: string
+          description: Additional notes
+          example: "Feeling good after rest day"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - playerId
+        - date
+        - sleepQuality
+        - stressLevel
+        - fatigueLevel
+
+    CreateWellnessRequest:
+      type: object
+      properties:
+        hrvScore:
+          type: number
+          format: float
+          description: Heart Rate Variability score
+        restingHeartRate:
+          type: integer
+          description: Resting heart rate (BPM)
+        sleepQuality:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Sleep quality rating (1-10)
+        sleepHours:
+          type: number
+          format: float
+          description: Hours of sleep
+        stressLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Stress level (1-10)
+        fatigueLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Fatigue level (1-10)
+        soreness:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Muscle soreness (1-10)
+        mood:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Mood rating (1-10)
+        energyLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Energy level (1-10)
+        hydrationLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Hydration level (1-10)
+        notes:
+          type: string
+          description: Additional notes
+      required:
+        - sleepQuality
+        - stressLevel
+        - fatigueLevel
+
+    TeamWellnessSummary:
+      type: object
+      properties:
+        totalPlayers:
+          type: integer
+          example: 25
+        submissionsToday:
+          type: integer
+          example: 18
+        averageScores:
+          type: object
+          properties:
+            hrvScore:
+              type: number
+              format: float
+              example: 42.8
+            sleepQuality:
+              type: number
+              format: float
+              example: 7.2
+            stressLevel:
+              type: number
+              format: float
+              example: 4.1
+            fatigueLevel:
+              type: number
+              format: float
+              example: 3.8
+        alertPlayers:
+          type: array
+          items:
+            type: object
+            properties:
+              playerId:
+                type: integer
+              playerName:
+                type: string
+              alertType:
+                type: string
+                enum: [high_stress, high_fatigue, poor_sleep, low_hrv]
+              severity:
+                type: string
+                enum: [low, medium, high]
+
+    # Player Availability Schemas
+    PlayerAvailability:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Availability record ID
+          example: 1
+        playerId:
+          type: integer
+          description: Player ID
+          example: 123
+        status:
+          type: string
+          enum: [available, injured, sick, personal]
+          description: Availability status
+          example: "available"
+        restrictions:
+          type: array
+          items:
+            type: string
+          description: Any activity restrictions
+          example: ["no contact", "limited running"]
+        notes:
+          type: string
+          description: Additional notes
+          example: "Cleared for light training only"
+        expectedReturn:
+          type: string
+          format: date
+          description: Expected return date (if unavailable)
+          example: "2025-07-15"
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: "2025-07-02T10:30:00Z"
+        updatedBy:
+          type: string
+          description: User who last updated the status
+          example: "Dr. Smith"
+      required:
+        - id
+        - playerId
+        - status
+        - lastUpdated
+
+    UpdateAvailabilityRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [available, injured, sick, personal]
+          description: Availability status
+        restrictions:
+          type: array
+          items:
+            type: string
+          description: Any activity restrictions
+        notes:
+          type: string
+          description: Additional notes
+        expectedReturn:
+          type: string
+          format: date
+          description: Expected return date (if unavailable)
+      required:
+        - status
+
+    # Medical Dashboard Schema
+    MedicalDashboard:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            totalPlayers:
+              type: integer
+            availablePlayers:
+              type: integer
+            injuredPlayers:
+              type: integer
+            wellnessSubmissions:
+              type: integer
+        recentInjuries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Injury'
+          maxItems: 5
+        playerAlerts:
+          type: array
+          items:
+            type: object
+            properties:
+              playerId:
+                type: integer
+              playerName:
+                type: string
+              alertType:
+                type: string
+              message:
+                type: string
+              severity:
+                type: string
+                enum: [low, medium, high]
+        injuryTrends:
+          type: object
+          properties:
+            thisMonth:
+              type: integer
+            lastMonth:
+              type: integer
+            byBodyPart:
+              type: object
+              additionalProperties:
+                type: integer
+
+    # Error Schemas
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code for programmatic handling
+      required:
+        - success
+        - message
+
+  responses:
+    BadRequest:
+      description: Bad request - Invalid input data
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Invalid input data"
+
+    Unauthorized:
+      description: Unauthorized - Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Authentication required"
+
+    Forbidden:
+      description: Forbidden - Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Insufficient permissions"
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            success: false
+            message: "Resource not found"
+
+# Rate limiting and caching information
+x-rate-limits:
+  general:
+    description: General medical endpoints
+    limit: 1000
+    window: 3600
+  wellness-submission:
+    description: Wellness data submission
+    limit: 50
+    window: 3600
+
+x-caching:
+  description: Medical data is cached using Redis for improved performance
+  strategies:
+    - Player wellness data: 5 minutes TTL
+    - Injury records: 10 minutes TTL
+    - Team summaries: 1 minute TTL
+    - Availability status: 30 seconds TTL

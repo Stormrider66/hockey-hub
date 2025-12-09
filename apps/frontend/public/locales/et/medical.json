@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Meditsiinipersonali töölaud",
+    "subtitle": "Mängijate tervise ja vigastuste haldus",
+    "welcome": "Tere tulemast, {{name}}",
+    "urgentCases": "Pakilised juhtumid",
+    "todayAppointments": "Tänased vastuvõtud"
+  },
+  "players": {
+    "title": "Mängijate tervise ülevaade",
+    "status": "Tervise seisund",
+    "active": "Aktiivsed mängijad",
+    "injured": "Vigastatud mängijad",
+    "recovery": "Taastumises",
+    "cleared": "Hiljuti lubatud",
+    "monitoring": "Jälgimise all",
+    "search": "Otsi mängijaid",
+    "filter": "Filtreeri staatuse järgi"
+  },
+  "injuries": {
+    "title": "Vigastuste haldus",
+    "current": "Praegused vigastused",
+    "history": "Vigastuste ajalugu",
+    "report": "Teata uuest vigastusest",
+    "update": "Uuenda vigastust",
+    "severity": {
+      "minor": "Kerge",
+      "moderate": "Mõõdukas",
+      "major": "Tõsine",
+      "severe": "Raske",
+      "careerThreatening": "Karjääri ohustav"
+    },
+    "types": {
+      "concussion": "Peapõrutus",
+      "fracture": "Luumurd",
+      "sprain": "Nikastus",
+      "strain": "Venitus",
+      "bruise": "Verevalum",
+      "cut": "Lõikehaav",
+      "dislocation": "Nihestus",
+      "illness": "Haigus"
+    },
+    "bodyParts": {
+      "head": "Pea",
+      "neck": "Kael",
+      "shoulder": "Õlg",
+      "arm": "Käsi",
+      "elbow": "Küünarnukk",
+      "wrist": "Ranne",
+      "hand": "Käelaba",
+      "back": "Selg",
+      "chest": "Rindkere",
+      "abdomen": "Kõht",
+      "hip": "Puus",
+      "groin": "Kubeme",
+      "thigh": "Reis",
+      "knee": "Põlv",
+      "ankle": "Hüppeliiges",
+      "foot": "Jalg"
+    }
+  },
+  "treatment": {
+    "title": "Raviplaanid",
+    "active": "Aktiivsed ravid",
+    "scheduled": "Planeeritud sessioonid",
+    "completed": "Lõpetatud ravid",
+    "create": "Loo raviplaan",
+    "modify": "Muuda plaani",
+    "types": {
+      "physiotherapy": "Füsioteraapia",
+      "massage": "Massaažiteraapia",
+      "medication": "Ravimid",
+      "surgery": "Operatsioon",
+      "rehabilitation": "Taastusravi",
+      "rest": "Puhkus/taastumine",
+      "imaging": "Uuringud/skaneerimine"
+    },
+    "frequency": {
+      "daily": "Iga päev",
+      "everyOtherDay": "Üle päeva",
+      "twiceWeekly": "Kaks korda nädalas",
+      "weekly": "Kord nädalas",
+      "asNeeded": "Vastavalt vajadusele"
+    }
+  },
+  "appointments": {
+    "title": "Meditsiinilised vastuvõtud",
+    "schedule": "Planeeri vastuvõtt",
+    "upcoming": "Tulevad vastuvõtud",
+    "today": "Tänane graafik",
+    "calendar": "Vastuvõttude kalender",
+    "types": {
+      "checkup": "Regulaarne kontroll",
+      "injury": "Vigastuse hindamine",
+      "followup": "Järelkontroll",
+      "clearance": "Mänguloa kontroll",
+      "physical": "Füüsiline läbivaatus",
+      "emergency": "Erakorraline"
+    },
+    "duration": {
+      "15min": "15 minutit",
+      "30min": "30 minutit",
+      "45min": "45 minutit",
+      "60min": "1 tund"
+    }
+  },
+  "records": {
+    "title": "Meditsiinilised dokumendid",
+    "history": "Haiguslugu",
+    "allergies": "Allergiad",
+    "medications": "Praegused ravimid",
+    "conditions": "Kroonilised haigused",
+    "surgeries": "Varasemad operatsioonid",
+    "family": "Perekonna haiguslugu",
+    "documents": "Meditsiinilised dokumendid",
+    "upload": "Lae dokument üles",
+    "download": "Lae dokumendid alla"
+  },
+  "clearance": {
+    "title": "Mänguluba",
+    "pending": "Ootel mänguload",
+    "evaluate": "Hinda mängijat",
+    "protocols": "Tagasituleku protokollid",
+    "tests": "Nõutavad testid",
+    "approve": "Kinnita mänguluba",
+    "deny": "Keeldu mänguloast",
+    "conditional": "Tingimustega mänguluba",
+    "restrictions": "Tegevuspiirangud"
+  },
+  "reports": {
+    "title": "Meditsiinilised aruanded",
+    "injury": "Vigastuste aruanne",
+    "team": "Meeskonna tervise aruanne",
+    "individual": "Individuaalne aruanne",
+    "insurance": "Kindlustuse aruanne",
+    "compliance": "Vastavuse aruanne",
+    "generate": "Genereeri aruanne",
+    "export": "Ekspordi aruanne"
+  },
+  "emergency": {
+    "title": "Hädaolukorra protokollid",
+    "contacts": "Hädaabi kontaktid",
+    "procedures": "Hädaolukorra protseduurid",
+    "equipment": "Hädaabi varustus",
+    "locations": "Haiglate asukohad",
+    "action": "Hädaolukorra tegevuskava",
+    "call": "Hädaabi kutse"
+  },
+  "wellness": {
+    "title": "Heaolu jälgimine",
+    "daily": "Igapäevased kontrollid",
+    "trends": "Heaolu trendid",
+    "alerts": "Heaolu hoiatused",
+    "metrics": {
+      "sleep": "Une kvaliteet",
+      "fatigue": "Väsimuse tase",
+      "soreness": "Lihasvalu",
+      "mood": "Meeleolu",
+      "stress": "Stressi tase",
+      "hydration": "Hüdratsioon"
+    }
+  }
+}

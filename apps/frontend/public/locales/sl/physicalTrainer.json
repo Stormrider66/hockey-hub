@@ -1,0 +1,250 @@
+{
+  "dashboard": {
+    "title": "Nadzorna plošča kondicijskega trenerja",
+    "welcome": "Dobrodošli, {{name}}!",
+    "todaySessions": "Današnje vadbe",
+    "upcomingAssessments": "Prihajajoči testi",
+    "playerProgress": "Napredek igralcev",
+    "quickActions": "Hitra dejanja"
+  },
+  "sessions": {
+    "title": "Vadbene enote",
+    "create": "Ustvari vadbo",
+    "edit": "Uredi vadbo",
+    "schedule": "Načrtuj vadbo",
+    "types": {
+      "strength": "Moč",
+      "cardio": "Kardio",
+      "flexibility": "Gibljivost",
+      "power": "Eksplozivnost",
+      "endurance": "Vzdržljivost",
+      "speed": "Hitrost",
+      "agility": "Agilnost",
+      "recovery": "Regeneracija",
+      "testing": "Testiranje"
+    },
+    "duration": "Trajanje",
+    "intensity": "Intenzivnost",
+    "participants": "Udeleženci",
+    "equipment": "Oprema",
+    "location": "Lokacija",
+    "notes": "Opombe",
+    "status": {
+      "scheduled": "Načrtovano",
+      "inProgress": "V teku",
+      "completed": "Zaključeno",
+      "cancelled": "Preklicano"
+    }
+  },
+  "programs": {
+    "title": "Programi",
+    "create": "Ustvari program",
+    "templates": "Predloge",
+    "assign": "Dodeli program",
+    "phases": {
+      "offseason": "Izven sezone",
+      "preseason": "Predsezona",
+      "inseason": "Med sezono",
+      "postseason": "Po sezoni",
+      "rehabilitation": "Rehabilitacija"
+    },
+    "goals": "Cilji",
+    "progression": "Napredovanje",
+    "periodization": "Periodizacija",
+    "adaptations": "Prilagoditve"
+  },
+  "assessments": {
+    "title": "Testiranja",
+    "schedule": "Načrtuj testiranje",
+    "types": {
+      "fitness": "Kondicijski test",
+      "strength": "Test moči",
+      "speed": "Test hitrosti",
+      "flexibility": "Test gibljivosti",
+      "endurance": "Test vzdržljivosti",
+      "power": "Test eksplozivnosti",
+      "bodyComposition": "Telesna sestava",
+      "functional": "Funkcionalni test"
+    },
+    "protocols": "Protokoli",
+    "results": "Rezultati",
+    "comparison": "Primerjava",
+    "history": "Zgodovina",
+    "benchmarks": "Referenčne vrednosti",
+    "reports": "Poročila"
+  },
+  "players": {
+    "title": "Igralci",
+    "profiles": "Profili",
+    "progress": "Napredek",
+    "programs": "Programi",
+    "assessments": "Testiranja",
+    "workload": "Obremenitev",
+    "readiness": "Pripravljenost",
+    "injuries": "Poškodbe",
+    "goals": "Cilji",
+    "notes": "Opombe"
+  },
+  "exercises": {
+    "title": "Vaje",
+    "library": "Knjižnica vaj",
+    "search": "Iskanje vaj",
+    "create": "Ustvari vajo",
+    "categories": {
+      "warmup": "Ogrevanje",
+      "strength": "Moč",
+      "power": "Eksplozivnost",
+      "cardio": "Kardio",
+      "flexibility": "Raztezanje",
+      "cooldown": "Ohlajanje",
+      "core": "Stabilizacija",
+      "balance": "Ravnotežje",
+      "plyometric": "Pliometrija",
+      "rehabilitation": "Rehabilitacija"
+    },
+    "equipment": "Potrebna oprema",
+    "instructions": "Navodila",
+    "progressions": "Stopnjevanja",
+    "regressions": "Poenostavitve",
+    "video": "Video",
+    "safety": "Varnost"
+  },
+  "workload": {
+    "title": "Upravljanje obremenitve",
+    "monitoring": "Spremljanje",
+    "acuteLoad": "Akutna obremenitev",
+    "chronicLoad": "Kronična obremenitev",
+    "ratio": "Razmerje A:K",
+    "trends": "Trendi",
+    "recommendations": "Priporočila",
+    "riskAssessment": "Ocena tveganja",
+    "recovery": "Regeneracija"
+  },
+  "metrics": {
+    "title": "Meritve",
+    "performance": "Uspešnost",
+    "strength": "Moč",
+    "power": "Eksplozivnost",
+    "speed": "Hitrost",
+    "endurance": "Vzdržljivost",
+    "flexibility": "Gibljivost",
+    "bodyComposition": "Telesna sestava",
+    "heartRate": "Srčni utrip",
+    "velocity": "Hitrost",
+    "force": "Sila",
+    "jumpHeight": "Višina skoka",
+    "sprintTime": "Čas sprinta"
+  },
+  "equipment": {
+    "title": "Oprema",
+    "weights": "Uteži",
+    "machines": "Naprave",
+    "cardio": "Kardio oprema",
+    "accessories": "Dodatki",
+    "monitoring": "Merilne naprave",
+    "maintenance": "Vzdrževanje",
+    "booking": "Rezervacije",
+    "inventory": "Inventar"
+  },
+  "nutrition": {
+    "title": "Prehrana",
+    "plans": "Prehranski načrti",
+    "guidance": "Smernice",
+    "supplements": "Dodatki",
+    "hydration": "Hidracija",
+    "timing": "Časovni razpored",
+    "education": "Izobraževanje",
+    "tracking": "Sledenje"
+  },
+  "recovery": {
+    "title": "Regeneracija",
+    "methods": {
+      "activeRecovery": "Aktivna regeneracija",
+      "stretching": "Raztezanje",
+      "foam": "Penasti valj",
+      "massage": "Masaža",
+      "coldTherapy": "Krioterapija",
+      "compression": "Kompresija",
+      "sleep": "Spanje",
+      "nutrition": "Prehrana"
+    },
+    "monitoring": "Spremljanje",
+    "protocols": "Protokoli",
+    "scheduling": "Načrtovanje"
+  },
+  "injuries": {
+    "title": "Poškodbe",
+    "prevention": "Preprečevanje",
+    "rehabilitation": "Rehabilitacija",
+    "returnToPlay": "Vrnitev v igro",
+    "collaboration": "Sodelovanje z medicinskim osebjem",
+    "modifications": "Prilagoditve programa",
+    "monitoring": "Spremljanje",
+    "clearance": "Dovoljenje"
+  },
+  "reports": {
+    "title": "Poročila",
+    "player": "Poročilo igralca",
+    "team": "Poročilo ekipe",
+    "assessment": "Poročilo testiranja",
+    "progress": "Poročilo napredka",
+    "workload": "Poročilo obremenitve",
+    "injury": "Poročilo poškodb",
+    "generate": "Ustvari poročilo",
+    "export": "Izvozi",
+    "share": "Deli"
+  },
+  "planning": {
+    "title": "Načrtovanje",
+    "annual": "Letni načrt",
+    "monthly": "Mesečni načrt",
+    "weekly": "Tedenski načrt",
+    "daily": "Dnevni načrt",
+    "periodization": "Periodizacija",
+    "peaking": "Doseganje forme",
+    "tapering": "Zmanjševanje obremenitve",
+    "integration": "Integracija s treningi"
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "coaches": "Trenerji",
+    "medical": "Medicinsko osebje",
+    "players": "Igralci",
+    "updates": "Posodobitve",
+    "recommendations": "Priporočila",
+    "feedback": "Povratne informacije",
+    "meetings": "Sestanki"
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "profile": "Profil",
+    "preferences": "Preference",
+    "notifications": "Obvestila",
+    "protocols": "Protokoli",
+    "templates": "Predloge",
+    "benchmarks": "Referenčne vrednosti",
+    "equipment": "Oprema"
+  },
+  "actions": {
+    "createSession": "Ustvari vadbo",
+    "scheduleAssessment": "Načrtuj testiranje",
+    "assignProgram": "Dodeli program",
+    "recordResults": "Zabeleži rezultate",
+    "generateReport": "Ustvari poročilo",
+    "viewProgress": "Poglej napredek",
+    "adjustProgram": "Prilagodi program",
+    "exportData": "Izvozi podatke"
+  },
+  "messages": {
+    "sessionCreated": "Vadba uspešno ustvarjena",
+    "assessmentScheduled": "Testiranje načrtovano",
+    "programAssigned": "Program dodeljen igralcu {{player}}",
+    "resultsRecorded": "Rezultati zabeleženi",
+    "reportGenerated": "Poročilo ustvarjeno",
+    "workloadHigh": "Visoka obremenitev pri {{player}}",
+    "recoveryNeeded": "{{player}} potrebuje regeneracijo",
+    "progressExcellent": "Odličen napredek: {{player}}",
+    "assessmentDue": "Čas za testiranje: {{player}}",
+    "injuryRisk": "Povečano tveganje poškodbe: {{player}}"
+  }
+}

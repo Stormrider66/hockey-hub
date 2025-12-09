@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Coach Dashboard",
+    "subtitle": "Teambeheer en prestatietracking",
+    "welcome": "Welkom terug, Coach {{name}}!",
+    "quickStats": "Snelle statistieken",
+    "todaysFocus": "Focus vandaag"
+  },
+  "team": {
+    "title": "Teambeheer",
+    "roster": "Teamopstelling",
+    "lineups": "Lijncombinaties",
+    "availability": "Spelerbeschikbaarheid",
+    "performance": "Teamprestaties",
+    "statistics": "Teamstatistieken",
+    "playerStatus": {
+      "available": "Beschikbaar",
+      "limited": "Beperkt",
+      "unavailable": "Niet beschikbaar",
+      "injured": "Geblesseerd",
+      "dayToDay": "Dag tot dag"
+    }
+  },
+  "practice": {
+    "title": "Trainingsplanning",
+    "schedule": "Trainingsschema",
+    "drills": "Oefeningenbibliotheek",
+    "templates": "Trainingssjablonen",
+    "planning": "Sessieplanning",
+    "attendance": "Aanwezigheidsregistratie",
+    "intensity": "Trainingsintensiteit",
+    "focus": {
+      "offense": "Aanvallende systemen",
+      "defense": "Verdedigende systemen",
+      "specialTeams": "Speciale teams",
+      "conditioning": "Conditietraining",
+      "skills": "Vaardigheidsontwikkeling"
+    },
+    "types": {
+      "full": "Volledige training",
+      "optional": "Optionele training",
+      "morning": "Ochtendtraining",
+      "preGame": "Pre-wedstrijd training",
+      "recovery": "Herstelsessie"
+    }
+  },
+  "games": {
+    "title": "Wedstrijdbeheer",
+    "schedule": "Wedstrijdschema",
+    "preparation": "Wedstrijdvoorbereiding",
+    "tactics": "Tactische planning",
+    "lineups": "Wedstrijdopstellingen",
+    "scouting": "Scoutingrapporten",
+    "video": "Video-analyse",
+    "stats": {
+      "goals": "Doelpunten",
+      "assists": "Assists",
+      "shots": "Schoten",
+      "saves": "Reddingen",
+      "faceoffs": "Face-offs",
+      "penalties": "Strafminuten",
+      "hits": "Hits",
+      "blocks": "Blokkeringen"
+    }
+  },
+  "tactics": {
+    "title": "Tactisch bord",
+    "systems": "Teamsystemen",
+    "powerPlay": "Power Play",
+    "penaltyKill": "Penalty Kill",
+    "faceoffPlays": "Face-off spelen",
+    "breakouts": "Uitbraakpatronen",
+    "forecheck": "Forecheck systemen",
+    "neutralZone": "Neutrale zone",
+    "save": "Tactiek opslaan",
+    "load": "Tactiek laden"
+  },
+  "communication": {
+    "title": "Teamcommunicatie",
+    "announcements": "Teamaankondigingen",
+    "meetings": "Teamvergaderingen",
+    "feedback": "Spelerfeedback",
+    "messages": "Directe berichten",
+    "broadcast": "Bericht versturen",
+    "schedule": "Vergadering plannen"
+  },
+  "analytics": {
+    "title": "Prestatie-analyse",
+    "teamMetrics": "Teamstatistieken",
+    "playerMetrics": "Spelerstatistieken",
+    "trends": "Prestatietrends",
+    "comparison": "Teamvergelijking",
+    "advanced": "Geavanceerde statistieken",
+    "reports": "Rapporten genereren",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Aanvallende zone starts",
+      "gaa": "Doelpunten tegen gemiddelde",
+      "svp": "Reddingspercentage"
+    }
+  },
+  "development": {
+    "title": "Spelerontwikkeling",
+    "plans": "Ontwikkelingsplannen",
+    "progress": "Voortgangsregistratie",
+    "goals": "Ontwikkelingsdoelen",
+    "assessments": "Vaardigheidsbeoordelingen",
+    "feedback": "Ontwikkelingsfeedback",
+    "programs": "Trainingsprogramma's"
+  },
+  "lineup": {
+    "title": "Lijnbeheer",
+    "forward": "Aanvalslijnen",
+    "defense": "Verdedigingsparen",
+    "powerPlay": "Power Play units",
+    "penaltyKill": "Penalty Kill units",
+    "scratches": "Gezonde reserves",
+    "optimize": "Lijnen optimaliseren",
+    "save": "Opstelling opslaan",
+    "positions": {
+      "c": "Center",
+      "lw": "Linksvleugel",
+      "rw": "Rechtsvleugel",
+      "ld": "Linkerverdediger",
+      "rd": "Rechterverdediger",
+      "g": "Doelman"
+    }
+  }
+}

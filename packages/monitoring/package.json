@@ -1,0 +1,24 @@
+{
+  "name": "@hockey-hub/monitoring",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
+  },
+  "dependencies": {
+    "winston": "^3.11.0",
+    "express-winston": "^4.2.0",
+    "prom-client": "^15.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  }
+}

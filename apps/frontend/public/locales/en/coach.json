@@ -1,0 +1,309 @@
+{
+  "tabs": {
+    "overview": "Overview",
+    "calendar": "Calendar",
+    "team": "Team",
+    "practice": "Practice",
+    "games": "Games",
+    "statistics": "Statistics",
+    "development": "Development",
+    "broadcasts": "Broadcasts",
+    "parents": "Parents"
+  },
+  "dashboard": {
+    "title": "Coach Dashboard",
+    "subtitle": "Team management and performance tracking",
+    "welcome": "Welcome back, Coach {{name}}!",
+    "quickStats": "Quick Stats",
+    "todaysFocus": "Today's Focus"
+  },
+  "team": {
+    "title": "Team Management",
+    "roster": "Team Roster",
+    "lineups": "Line Combinations",
+    "availability": "Player Availability",
+    "performance": "Team Performance",
+    "statistics": "Team Statistics",
+    "playerStatus": {
+      "available": "Available",
+      "limited": "Limited",
+      "unavailable": "Unavailable",
+      "injured": "Injured",
+      "dayToDay": "Day-to-Day"
+    }
+  },
+  "practice": {
+    "title": "Practice Planning",
+    "schedule": "Practice Schedule",
+    "drills": "Drill Library",
+    "templates": "Practice Templates",
+    "planning": "Session Planning",
+    "attendance": "Attendance Tracking",
+    "intensity": "Practice Intensity",
+    "focus": {
+      "offense": "Offensive Systems",
+      "defense": "Defensive Systems",
+      "specialTeams": "Special Teams",
+      "conditioning": "Conditioning",
+      "skills": "Skill Development"
+    },
+    "types": {
+      "full": "Full Practice",
+      "optional": "Optional Skate",
+      "morning": "Morning Skate",
+      "preGame": "Pre-Game Skate",
+      "recovery": "Recovery Session"
+    }
+  },
+  "games": {
+    "title": "Game Management",
+    "schedule": "Game Schedule",
+    "preparation": "Game Preparation",
+    "tactics": "Tactical Planning",
+    "lineups": "Game Lineups",
+    "scouting": "Scouting Reports",
+    "video": "Video Analysis",
+    "stats": {
+      "goals": "Goals",
+      "assists": "Assists",
+      "shots": "Shots",
+      "saves": "Saves",
+      "faceoffs": "Faceoffs",
+      "penalties": "Penalties",
+      "hits": "Hits",
+      "blocks": "Blocks"
+    }
+  },
+  "tactics": {
+    "title": "Tactical Board",
+    "systems": "Team Systems",
+    "powerPlay": "Power Play",
+    "penaltyKill": "Penalty Kill",
+    "faceoffPlays": "Faceoff Plays",
+    "breakouts": "Breakout Patterns",
+    "forecheck": "Forecheck Systems",
+    "neutralZone": "Neutral Zone",
+    "save": "Save Tactic",
+    "load": "Load Tactic"
+  },
+  "communication": {
+    "title": "Team Communication",
+    "announcements": "Team Announcements",
+    "meetings": "Team Meetings",
+    "feedback": "Player Feedback",
+    "messages": "Direct Messages",
+    "broadcast": "Broadcast Message",
+    "schedule": "Schedule Meeting"
+  },
+  "overview": {
+    "nextGame": "Next Game",
+    "teamRecord": "Team Record",
+    "divisionPosition": "Division Position",
+    "availablePlayers": "Available Players",
+    "goalsPerGame": "Goals Per Game",
+    "lastGames": "Last 5 Games",
+    "leagueRank": "League Rank #{{rank}}"
+  },
+  "todaysSchedule": {
+    "title": "Today's Schedule",
+    "addSession": "Add Session"
+  },
+  "playerAvailability": {
+    "title": "Player Availability"
+  },
+  "performance": {
+    "trendTitle": "Performance Trend",
+    "lastGamesAnalysis": "Last Games Analysis"
+  },
+  "teamManagement": {
+    "rosterTitle": "Team Roster",
+    "rosterDescription": "Manage your team roster and lineups",
+    "editLines": "Edit Lines"
+  },
+  "training": {
+    "iceTrainingTitle": "Ice Training",
+    "iceTrainingDescription": "Plan and manage on-ice training sessions",
+    "createSession": "Create Session",
+    "sessionTemplates": "Session Templates",
+    "drillLibrary": "Drill Library",
+    "browseAllDrills": "Browse All Drills",
+    "thisWeeksSchedule": "This Week's Schedule"
+  },
+  "parentChannels": {
+    "title": "Private Parent Channels",
+    "description": "Confidential communication channels with parents",
+    "stats": {
+      "activeChats": "Active Chats",
+      "withUnreadMessages": "With unread messages",
+      "totalParents": "Total Parents",
+      "connectedParents": "Connected parents",
+      "pendingMeetings": "Pending Meetings",
+      "requestsToReview": "Requests to review"
+    },
+    "officeHours": {
+      "title": "Your Office Hours",
+      "description": "When parents can schedule meetings with you"
+    }
+  },
+  "analytics": {
+    "title": "Performance Analytics",
+    "teamMetrics": "Team Metrics",
+    "playerMetrics": "Player Metrics",
+    "trends": "Performance Trends",
+    "comparison": "Team Comparison",
+    "advanced": "Advanced Stats",
+    "reports": "Generate Reports",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Offensive Zone Starts",
+      "gaa": "Goals Against Average",
+      "svp": "Save Percentage"
+    }
+  },
+  "development": {
+    "title": "Player Development",
+    "plans": "Development Plans",
+    "progress": "Progress Tracking",
+    "goals": "Development Goals",
+    "assessments": "Skill Assessments",
+    "feedback": "Development Feedback",
+    "programs": "Training Programs"
+  },
+  "lineup": {
+    "title": "Line Management",
+    "forward": "Forward Lines",
+    "defense": "Defense Pairs",
+    "powerPlay": "Power Play Units",
+    "penaltyKill": "Penalty Kill Units",
+    "scratches": "Healthy Scratches",
+    "optimize": "Optimize Lines",
+    "save": "Save Lineup",
+    "positions": {
+      "c": "Center",
+      "lw": "Left Wing",
+      "rw": "Right Wing",
+      "ld": "Left Defense",
+      "rd": "Right Defense",
+      "g": "Goalie"
+    }
+  },
+  "collaboration": {
+    "title": "Real-time Collaboration",
+    "description": "Work together on tactical plays with real-time editing, live coaching mode, and seamless communication.",
+    "tryDemo": "Try Interactive Demo",
+    "realTimeEnabled": "Real-time enabled",
+    "connected": "Connected",
+    "connecting": "Connecting",
+    "disconnected": "Disconnected",
+    "error": "Connection Error",
+    "connectionFailed": "Failed to connect to collaboration service",
+    "connectionError": "Connection error occurred",
+    "online": "online",
+    "inSession": "In Session",
+    "participants": "participants",
+    "sessionJoined": "Joined collaboration session",
+    "sessionEnded": "Collaboration session ended",
+    "userJoined": "{{name}} joined the session",
+    "userLeft": "{{name}} left the session",
+    "conflictDetected": "Conflict detected in collaborative editing",
+    "joinFailed": "Failed to join session",
+    "createFailed": "Failed to create session",
+    "sessionCreated": "Collaboration session created",
+    "leftSession": "Left collaboration session",
+    "sessionIdCopied": "Session ID copied to clipboard",
+    "presentationStarted": "Presentation started",
+    "presentationEnded": "Presentation ended",
+    "newMessage": "New message from {{name}}",
+    "recordingStarted": "Recording started",
+    "recordingStopped": "Recording stopped",
+    "createSession": "Create Session",
+    "joinSession": "Join Session",
+    "leaveSession": "Leave Session",
+    "copySessionId": "Copy Session ID",
+    "startLiveMode": "Start Live Mode",
+    "sessionTitle": "Session Title",
+    "enterTitle": "Enter session title",
+    "description": "Description",
+    "enterDescription": "Enter description (optional)",
+    "sessionSettings": "Session Settings",
+    "enableChat": "Enable Chat",
+    "enableVoice": "Enable Voice",
+    "requireApproval": "Require Approval",
+    "autoSave": "Auto Save",
+    "sessionId": "Session ID",
+    "enterSessionId": "Enter session ID",
+    "join": "Join",
+    "create": "Create",
+    "createSessionDescription": "Create a new collaboration session for this tactical play.",
+    "joinSessionDescription": "Enter a session ID to join an existing collaboration session.",
+    "features": {
+      "realtimeEditing": "Real-time Editing",
+      "realtimeEditingDesc": "Multiple users can edit tactical plays simultaneously with instant synchronization.",
+      "liveCoaching": "Live Coaching Mode",
+      "liveCoachingDesc": "Present plays to your team with interactive controls and highlighting tools.",
+      "voiceChat": "Voice & Text Chat",
+      "voiceChatDesc": "Communicate with your team during collaboration sessions.",
+      "sessionRecording": "Session Recording",
+      "sessionRecordingDesc": "Record collaboration sessions for later review and analysis.",
+      "presenceTracking": "Presence Tracking",
+      "presenceTrackingDesc": "See who's online and track cursor movements of other users.",
+      "conflictResolution": "Conflict Resolution",
+      "conflictResolutionDesc": "Automatic detection and resolution of simultaneous edits."
+    },
+    "technicalOverview": "Technical Implementation",
+    "architecture": "Architecture",
+    "capabilities": "Key Capabilities",
+    "howToUse": "How to Use",
+    "steps": {
+      "create": "Create Session",
+      "createDesc": "Start a new collaboration session for your tactical play.",
+      "invite": "Invite Team",
+      "inviteDesc": "Share the session ID with coaches and players.",
+      "collaborate": "Collaborate",
+      "collaborateDesc": "Edit plays together in real-time with live updates.",
+      "present": "Present & Coach",
+      "presentDesc": "Use live mode to present plays with interactive tools."
+    },
+    "errors": {
+      "SESSION_NOT_FOUND": "Session not found",
+      "PERMISSION_DENIED": "Permission denied",
+      "MAX_PARTICIPANTS": "Session is full",
+      "INVALID_UPDATE": "Invalid update",
+      "NETWORK_ERROR": "Network error",
+      "SYNC_FAILED": "Synchronization failed"
+    }
+  },
+  "coaching": {
+    "tools": {
+      "pointer": "Pointer",
+      "highlight": "Highlight",
+      "target": "Target",
+      "focus": "Focus"
+    },
+    "controls": "Controls",
+    "participants": "Participants",
+    "settings": "Settings",
+    "presentation": "Presentation",
+    "playback": "Playback",
+    "recording": "Recording",
+    "chat": "Chat",
+    "you": "You",
+    "audio": "Audio",
+    "video": "Video",
+    "screenShare": "Screen Share",
+    "typeMessage": "Type a message...",
+    "step": "Step",
+    "speed": "Speed",
+    "startLiveMode": "Start Live Mode",
+    "presenting": "Presenting",
+    "standby": "Standby",
+    "startPresentation": "Start Presentation",
+    "stopPresentation": "Stop Presentation",
+    "startRecording": "Start Recording",
+    "stopRecording": "Stop Recording",
+    "recordingStarted": "Recording started",
+    "recordingStopped": "Recording stopped ({{duration}}s)"
+  }
+}

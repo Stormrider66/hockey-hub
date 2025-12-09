@@ -1,0 +1,145 @@
+{
+  "title": "Mensajes",
+  "conversations": {
+    "title": "Conversaciones",
+    "new": "Nueva Conversación",
+    "search": "Buscar conversaciones...",
+    "empty": "No hay conversaciones aún",
+    "startNew": "Iniciar una nueva conversación"
+  },
+  "participants": {
+    "add": "Agregar Participantes",
+    "remove": "Eliminar de la conversación",
+    "search": "Buscar personas...",
+    "you": "Tú",
+    "typing": "está escribiendo...",
+    "multipleTyping": "están escribiendo...",
+    "online": "En línea",
+    "offline": "Desconectado",
+    "away": "Ausente"
+  },
+  "messages": {
+    "placeholder": "Escribe un mensaje...",
+    "send": "Enviar",
+    "edit": "Editar mensaje",
+    "delete": "Eliminar mensaje",
+    "reply": "Responder",
+    "forward": "Reenviar",
+    "copy": "Copiar",
+    "pin": "Fijar mensaje",
+    "unpin": "Desfijar mensaje",
+    "react": "Agregar reacción",
+    "edited": "editado",
+    "deleted": "Este mensaje fue eliminado",
+    "delivered": "Entregado",
+    "read": "Leído",
+    "sending": "Enviando...",
+    "failed": "Error al enviar",
+    "retry": "Reintentar"
+  },
+  "groups": {
+    "create": "Crear Grupo",
+    "name": "Nombre del Grupo",
+    "description": "Descripción (opcional)",
+    "addMembers": "Agregar Miembros",
+    "settings": "Configuración del Grupo",
+    "leave": "Salir del Grupo",
+    "delete": "Eliminar Grupo",
+    "members": "{{count}} miembros",
+    "admin": "Administrador",
+    "member": "Miembro"
+  },
+  "channels": {
+    "title": "Canales",
+    "create": "Crear Canal",
+    "public": "Canal Público",
+    "private": "Canal Privado",
+    "join": "Unirse al Canal",
+    "leave": "Salir del Canal",
+    "mute": "Silenciar Canal",
+    "unmute": "Activar Sonido del Canal",
+    "types": {
+      "general": "General",
+      "announcements": "Anuncios",
+      "team": "Chat del Equipo",
+      "coaches": "Entrenadores",
+      "parents": "Padres",
+      "medical": "Personal Médico"
+    }
+  },
+  "attachments": {
+    "title": "Adjuntos",
+    "upload": "Subir Archivo",
+    "types": {
+      "image": "Imagen",
+      "video": "Video",
+      "document": "Documento",
+      "audio": "Audio",
+      "other": "Archivo"
+    },
+    "download": "Descargar",
+    "preview": "Vista Previa",
+    "tooLarge": "El archivo es muy grande. El tamaño máximo es {{maxSize}}",
+    "unsupported": "Tipo de archivo no soportado"
+  },
+  "notifications": {
+    "newMessage": "Nuevo mensaje de {{sender}}",
+    "mentioned": "{{sender}} te mencionó",
+    "groupInvite": "Has sido agregado a {{group}}",
+    "enable": "Habilitar notificaciones",
+    "disable": "Deshabilitar notificaciones",
+    "sound": "Sonido de notificación",
+    "desktop": "Notificaciones de escritorio"
+  },
+  "search": {
+    "placeholder": "Buscar mensajes...",
+    "filters": "Filtros",
+    "from": "De",
+    "to": "Para",
+    "date": "Fecha",
+    "hasAttachment": "Tiene adjunto",
+    "results": "{{count}} resultados encontrados",
+    "noResults": "No se encontraron mensajes"
+  },
+  "settings": {
+    "title": "Configuración del Chat",
+    "privacy": "Privacidad",
+    "readReceipts": "Confirmaciones de lectura",
+    "typingIndicator": "Mostrar cuando escribo",
+    "autoDownload": "Descarga automática de medios",
+    "enterToSend": "Presionar Enter para enviar",
+    "theme": "Tema del chat",
+    "fontSize": "Tamaño de fuente"
+  },
+  "status": {
+    "online": "En línea",
+    "away": "Ausente",
+    "busy": "No molestar",
+    "offline": "Aparecer desconectado",
+    "setStatus": "Establecer estado",
+    "customStatus": "Establecer estado personalizado..."
+  },
+  "actions": {
+    "startChat": "Iniciar Chat",
+    "viewProfile": "Ver Perfil",
+    "clearChat": "Limpiar Historial del Chat",
+    "exportChat": "Exportar Chat",
+    "reportUser": "Reportar Usuario",
+    "blockUser": "Bloquear Usuario",
+    "unblockUser": "Desbloquear Usuario"
+  },
+  "time": {
+    "now": "ahora",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "daysAgo": "hace {{count}} días",
+    "lastSeen": "Visto por última vez {{time}}"
+  },
+  "errors": {
+    "connectionLost": "Conexión perdida. Reconectando...",
+    "sendFailed": "Error al enviar el mensaje",
+    "loadFailed": "Error al cargar los mensajes",
+    "uploadFailed": "Error al subir el archivo",
+    "permissionDenied": "No tienes permiso para hacer eso"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "dashboard": {
+    "title": "Systémový administrátor",
+    "subtitle": "Správa a konfigurácia platformy",
+    "welcome": "Vitajte, systémový administrátor",
+    "systemStatus": "Stav systému",
+    "alerts": "Systémové upozornenia"
+  },
+  "system": {
+    "title": "Správa systému",
+    "status": "Stav systému",
+    "health": "Kontrola stavu",
+    "healthScore": "Zdravie systému",
+    "monitoring": "Monitoring systému",
+    "logs": "Systémové logy",
+    "performance": "Metriky výkonu",
+    "uptime": "Doba prevádzky",
+    "resources": "Využitie zdrojov",
+    "activeUsers": "Aktívni používatelia",
+    "errorRate": "Chybovosť",
+    "responseTime": "Čas odozvy",
+    "databaseSize": "Veľkosť databázy",
+    "withinSLA": "V rámci SLA",
+    "systemPerformance24h": "Výkon systému (24h)",
+    "serviceHealthMatrix": "Matica stavu služieb",
+    "cpuMemoryUsage": "Využitie CPU, pamäte a objem požiadaviek",
+    "realTimeServiceStatus": "Stav služieb a metriky v reálnom čase"
+  },
+  "users": {
+    "title": "Správa používateľov",
+    "all": "Všetci používatelia",
+    "create": "Vytvoriť používateľa",
+    "edit": "Upraviť používateľa",
+    "delete": "Zmazať používateľa",
+    "roles": "Role používateľov",
+    "permissions": "Oprávnenia používateľov",
+    "activity": "Aktivita používateľov",
+    "sessions": "Aktívne relácie",
+    "audit": "Auditný záznam"
+  },
+  "organizations": {
+    "title": "Správa organizácií",
+    "all": "Všetky organizácie",
+    "create": "Vytvoriť organizáciu",
+    "edit": "Upraviť organizáciu",
+    "delete": "Zmazať organizáciu",
+    "settings": "Nastavenia organizácie",
+    "limits": "Limity využitia",
+    "billing": "Fakturačné informácie"
+  },
+  "security": {
+    "title": "Správa bezpečnosti",
+    "settings": "Bezpečnostné nastavenia",
+    "authentication": "Autentifikácia",
+    "authorization": "Autorizácia",
+    "tokens": "API tokeny",
+    "certificates": "SSL certifikáty",
+    "firewall": "Pravidlá firewallu",
+    "threats": "Detekcia hrozieb",
+    "incidents": "Bezpečnostné incidenty"
+  },
+  "database": {
+    "title": "Správa databázy",
+    "status": "Stav databázy",
+    "backup": "Správa záloh",
+    "restore": "Obnoviť databázu",
+    "migrations": "Databázové migrácie",
+    "optimization": "Optimalizácia dopytov",
+    "connections": "Pool pripojení",
+    "maintenance": "Údržbové úlohy"
+  },
+  "services": {
+    "title": "Správa služieb",
+    "status": "Stav služieb",
+    "configuration": "Konfigurácia služieb",
+    "dependencies": "Závislosti",
+    "health": "Kontroly stavu",
+    "restart": "Reštartovať službu",
+    "logs": "Logy služieb",
+    "metrics": "Metriky služieb"
+  },
+  "integrations": {
+    "title": "Integrácie",
+    "connected": "Pripojené služby",
+    "available": "Dostupné integrácie",
+    "configure": "Konfigurovať integráciu",
+    "test": "Testovať pripojenie",
+    "logs": "Logy integrácií",
+    "webhooks": "Webhooky",
+    "api": "Správa API"
+  },
+  "configuration": {
+    "title": "Konfigurácia systému",
+    "general": "Všeobecné nastavenia",
+    "email": "Konfigurácia e-mailu",
+    "storage": "Nastavenia úložiska",
+    "cache": "Správa cache",
+    "queue": "Konfigurácia fronty",
+    "scheduler": "Plánovač úloh",
+    "features": "Prepínače funkcií"
+  },
+  "monitoring": {
+    "title": "Monitoring systému",
+    "dashboard": "Monitorovací panel",
+    "alerts": "Konfigurácia upozornení",
+    "metrics": "Systémové metriky",
+    "logs": "Analýza logov",
+    "errors": "Sledovanie chýb",
+    "performance": "Analýza výkonu",
+    "reports": "Systémové správy"
+  },
+  "maintenance": {
+    "title": "Údržba",
+    "schedule": "Rozpis údržby",
+    "tasks": "Údržbové úlohy",
+    "updates": "Aktualizácie systému",
+    "patches": "Bezpečnostné záplaty",
+    "cleanup": "Čistenie dát",
+    "optimization": "Optimalizácia systému",
+    "mode": "Režim údržby"
+  }
+}

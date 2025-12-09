@@ -1,0 +1,128 @@
+name: Reusable Test Workflow
+
+on:
+  workflow_call:
+    inputs:
+      service-name:
+        required: true
+        type: string
+      test-type:
+        required: false
+        type: string
+        default: 'all'
+      node-version:
+        required: false
+        type: string
+        default: '20.x'
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+
+env:
+  PNPM_VERSION: 8
+
+jobs:
+  test:
+    name: Test ${{ inputs.service-name }} (${{ inputs.test-type }})
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ${{ inputs.service-name }}_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Setup test database
+        if: inputs.test-type == 'integration' || inputs.test-type == 'all'
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -c "CREATE DATABASE IF NOT EXISTS ${{ inputs.service-name }}_test;"
+        env:
+          PGPASSWORD: postgres
+
+      - name: Run tests
+        working-directory: services/${{ inputs.service-name }}
+        env:
+          NODE_ENV: test
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_NAME: ${{ inputs.service-name }}_test
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
+          JWT_SECRET: test-secret
+          JWT_REFRESH_SECRET: test-refresh-secret
+        run: |
+          if [ "${{ inputs.test-type }}" = "unit" ]; then
+            pnpm run test:unit --coverage
+          elif [ "${{ inputs.test-type }}" = "integration" ]; then
+            pnpm run test:integration --coverage
+          else
+            pnpm run test --coverage
+          fi
+
+      - name: Upload coverage
+        if: secrets.CODECOV_TOKEN
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./services/${{ inputs.service-name }}/coverage/lcov.info
+          flags: ${{ inputs.service-name }}-${{ inputs.test-type }}
+          name: ${{ inputs.service-name }}-${{ inputs.test-type }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results-${{ inputs.service-name }}-${{ inputs.test-type }}
+          path: |
+            services/${{ inputs.service-name }}/coverage/
+            services/${{ inputs.service-name }}/test-results/

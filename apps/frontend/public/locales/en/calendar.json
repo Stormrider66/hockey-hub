@@ -1,0 +1,197 @@
+{
+  "views": {
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "agenda": "Agenda",
+    "workWeek": "Work Week"
+  },
+  "navigation": {
+    "today": "Today",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "jumpToDate": "Jump to date"
+  },
+  "event": {
+    "title": "Event",
+    "newEvent": "New Event",
+    "editEvent": "Edit Event",
+    "deleteEvent": "Delete Event",
+    "duplicateEvent": "Duplicate Event",
+    "allDay": "All Day",
+    "recurring": "Recurring",
+    "privateEvent": "Private Event",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "location": "Location",
+      "startDate": "Start Date",
+      "startTime": "Start Time",
+      "endDate": "End Date",
+      "endTime": "End Time",
+      "type": "Event Type",
+      "category": "Category",
+      "participants": "Participants",
+      "resources": "Resources",
+      "notes": "Notes",
+      "reminder": "Reminder",
+      "color": "Color",
+      "attachments": "Attachments"
+    },
+    "types": {
+      "practice": "Practice",
+      "game": "Game",
+      "training": "Training",
+      "meeting": "Meeting",
+      "tournament": "Tournament",
+      "tryout": "Tryout",
+      "medical": "Medical Appointment",
+      "equipment": "Equipment Fitting",
+      "teamEvent": "Team Event",
+      "personal": "Personal",
+      "other": "Other"
+    },
+    "status": {
+      "confirmed": "Confirmed",
+      "tentative": "Tentative",
+      "cancelled": "Cancelled",
+      "postponed": "Postponed",
+      "rescheduled": "Rescheduled"
+    }
+  },
+  "recurrence": {
+    "title": "Recurrence",
+    "none": "Does not repeat",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "custom": "Custom",
+    "every": "Every",
+    "days": "day(s)",
+    "weeks": "week(s)",
+    "months": "month(s)",
+    "years": "year(s)",
+    "on": "On",
+    "onThe": "On the",
+    "weekdays": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "ends": {
+      "never": "Never",
+      "after": "After",
+      "onDate": "On date",
+      "occurrences": "occurrences"
+    }
+  },
+  "availability": {
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "busy": "Busy",
+    "tentative": "Tentative",
+    "outOfOffice": "Out of Office"
+  },
+  "conflicts": {
+    "detected": "Schedule Conflict Detected",
+    "message": "This event conflicts with:",
+    "resolution": "How would you like to resolve this?",
+    "overwrite": "Overwrite existing",
+    "keepBoth": "Keep both events",
+    "cancel": "Cancel new event"
+  },
+  "filters": {
+    "title": "Filters",
+    "showAll": "Show All",
+    "byType": "By Type",
+    "byTeam": "By Team",
+    "byLocation": "By Location",
+    "myEvents": "My Events Only"
+  },
+  "export": {
+    "title": "Export Calendar",
+    "formats": {
+      "ical": "iCal (.ics)",
+      "csv": "CSV",
+      "pdf": "PDF",
+      "print": "Print"
+    },
+    "range": {
+      "all": "All Events",
+      "current": "Current View",
+      "custom": "Custom Range"
+    }
+  },
+  "sharing": {
+    "title": "Share Calendar",
+    "publicLink": "Public Link",
+    "embed": "Embed Code",
+    "subscribe": "Subscribe URL",
+    "permissions": {
+      "view": "View Only",
+      "edit": "Can Edit",
+      "admin": "Full Access"
+    }
+  },
+  "reminders": {
+    "none": "No reminder",
+    "atTime": "At time of event",
+    "minutes": "{{count}} minutes before",
+    "hours": "{{count}} hours before",
+    "days": "{{count}} days before",
+    "custom": "Custom"
+  },
+  "actions": {
+    "create": "Create Event",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "print": "Print",
+    "export": "Export",
+    "import": "Import",
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe",
+    "rsvp": "RSVP",
+    "maybeAttending": "Maybe",
+    "attending": "Attending",
+    "notAttending": "Not Attending"
+  },
+  "messages": {
+    "eventCreated": "Event created successfully",
+    "eventUpdated": "Event updated successfully",
+    "eventDeleted": "Event deleted successfully",
+    "eventDuplicated": "Event duplicated successfully",
+    "conflictWarning": "This time slot has conflicts",
+    "participantAdded": "Participant added",
+    "participantRemoved": "Participant removed",
+    "reminderSet": "Reminder set",
+    "calendarShared": "Calendar shared successfully",
+    "exportComplete": "Export completed",
+    "importComplete": "Import completed"
+  },
+  "facility": {
+    "rink": "Ice Rink",
+    "mainRink": "Main Rink",
+    "practiceRink": "Practice Rink",
+    "gym": "Gym",
+    "meetingRoom": "Meeting Room",
+    "lockerRoom": "Locker Room",
+    "trainingRoom": "Training Room",
+    "videoRoom": "Video Room",
+    "medicalRoom": "Medical Room"
+  },
+  "tooltips": {
+    "dragToMove": "Drag to move event",
+    "dragToResize": "Drag edges to resize",
+    "clickToEdit": "Click to edit",
+    "doubleClickToCreate": "Double-click to create event"
+  }
+}

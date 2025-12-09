@@ -1,0 +1,142 @@
+{
+  "title": "Meldingen",
+  "markAllRead": "Alles als gelezen markeren",
+  "clearAll": "Alles wissen",
+  "settings": "Meldingsinstellingen",
+  "empty": "Geen meldingen",
+  "loadMore": "Meer laden",
+  "categories": {
+    "all": "Alle",
+    "unread": "Ongelezen",
+    "system": "Systeem",
+    "team": "Team",
+    "training": "Training",
+    "medical": "Medisch",
+    "calendar": "Kalender",
+    "payment": "Betaling",
+    "communication": "Berichten"
+  },
+  "types": {
+    "system": {
+      "welcome": "Welkom bij Hockey Hub!",
+      "profileComplete": "Je profiel is nu compleet",
+      "passwordChanged": "Je wachtwoord is succesvol gewijzigd",
+      "accountVerified": "Je account is geverifieerd",
+      "maintenanceScheduled": "Systeemonderhoud gepland voor {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Je bent toegevoegd aan {{teamName}}",
+      "removedFromTeam": "Je bent verwijderd uit {{teamName}}",
+      "roleChanged": "Je rol is gewijzigd naar {{role}}",
+      "teamAnnouncement": "Teamaankondiging van {{sender}}",
+      "rosterUpdate": "Opstelling is bijgewerkt"
+    },
+    "training": {
+      "sessionScheduled": "Trainingssessie gepland voor {{date}}",
+      "sessionCancelled": "Trainingssessie op {{date}} is geannuleerd",
+      "sessionReminder": "Trainingssessie begint over {{time}}",
+      "workoutAssigned": "Nieuwe workout toegewezen: {{workoutName}}",
+      "workoutCompleted": "{{player}} heeft workout voltooid: {{workoutName}}",
+      "performanceReport": "Je prestatierapport is klaar"
+    },
+    "medical": {
+      "appointmentScheduled": "Medische afspraak gepland voor {{date}}",
+      "appointmentReminder": "Medische afspraak over {{time}}",
+      "injuryUpdate": "Blessurestatus bijgewerkt voor {{player}}",
+      "clearanceGranted": "{{player}} is vrijgegeven om te spelen",
+      "wellnessReminder": "Vergeet niet je dagelijkse welzijnscheck in te vullen",
+      "treatmentComplete": "Behandelingssessie voltooid"
+    },
+    "calendar": {
+      "eventCreated": "Nieuw evenement: {{eventName}}",
+      "eventUpdated": "Evenement bijgewerkt: {{eventName}}",
+      "eventCancelled": "Evenement geannuleerd: {{eventName}}",
+      "eventReminder": "{{eventName}} begint over {{time}}",
+      "rsvpRequested": "RSVP gevraagd voor {{eventName}}",
+      "scheduleChange": "Schemawijziging voor {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Nieuwe factuur beschikbaar: {{amount}}",
+      "paymentReceived": "Betaling ontvangen: {{amount}}",
+      "paymentDue": "Te betalen: {{amount}} voor {{date}}",
+      "paymentOverdue": "Achterstallige betaling: {{amount}}",
+      "paymentFailed": "Betaling mislukt voor {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Nieuw bericht van {{sender}}",
+      "mentionedInChat": "{{sender}} heeft je genoemd in {{channel}}",
+      "addedToGroup": "Je bent toegevoegd aan {{groupName}}",
+      "missedCall": "Gemiste oproep van {{caller}}",
+      "voicemail": "Nieuwe voicemail van {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Wedstrijd gepland: {{opponent}} op {{date}}",
+      "gameReminder": "Wedstrijd tegen {{opponent}} begint over {{time}}",
+      "lineupPosted": "Wedstrijdopstelling is geplaatst",
+      "gameResult": "Wedstrijdresultaat: {{result}} tegen {{opponent}}",
+      "statsAvailable": "Je wedstrijdstatistieken zijn nu beschikbaar"
+    },
+    "equipment": {
+      "fittingScheduled": "Uitrustingspasbeurt gepland voor {{date}}",
+      "maintenanceDue": "Uitrustingsonderhoud nodig voor {{equipment}}",
+      "orderReady": "Je uitrustingsbestelling is klaar om op te halen",
+      "returnReminder": "Retourneer {{equipment}} voor {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Bekijken",
+    "dismiss": "Sluiten",
+    "accept": "Accepteren",
+    "decline": "Weigeren",
+    "respond": "Reageren",
+    "schedule": "Plannen",
+    "pay": "Nu betalen",
+    "download": "Downloaden",
+    "viewDetails": "Details bekijken"
+  },
+  "preferences": {
+    "title": "Meldingsvoorkeuren",
+    "channels": {
+      "email": "E-mail",
+      "push": "Push-meldingen",
+      "inApp": "In-app",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Direct",
+      "hourly": "Elk uur samenvatting",
+      "daily": "Dagelijkse samenvatting",
+      "weekly": "Wekelijkse samenvatting"
+    },
+    "quiet": {
+      "title": "Stille uren",
+      "enabled": "Stille uren inschakelen",
+      "from": "Van",
+      "to": "Tot",
+      "days": "Dagen"
+    },
+    "types": {
+      "training": "Trainingupdates",
+      "medical": "Medische herinneringen",
+      "calendar": "Kalenderevenementen",
+      "team": "Teamaankondigingen",
+      "chat": "Chatberichten",
+      "payment": "Betalingsherinneringen",
+      "system": "Systeemmeldingen"
+    }
+  },
+  "time": {
+    "justNow": "Zojuist",
+    "minutesAgo": "{{count}} minuten geleden",
+    "hoursAgo": "{{count}} uur geleden",
+    "yesterday": "Gisteren",
+    "daysAgo": "{{count}} dagen geleden",
+    "weeksAgo": "{{count}} weken geleden"
+  },
+  "status": {
+    "sent": "Verzonden",
+    "delivered": "Afgeleverd",
+    "read": "Gelezen",
+    "failed": "Verzenden mislukt"
+  }
+}

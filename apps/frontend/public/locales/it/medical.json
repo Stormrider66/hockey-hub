@@ -1,0 +1,163 @@
+{
+  "dashboard": {
+    "title": "Dashboard Staff Medico",
+    "subtitle": "Gestione salute e infortuni giocatori",
+    "welcome": "Benvenuto, {{name}}",
+    "urgentCases": "Casi Urgenti",
+    "todayAppointments": "Appuntamenti di Oggi"
+  },
+  "players": {
+    "title": "Panoramica Salute Giocatori",
+    "status": "Stato di Salute",
+    "active": "Giocatori Attivi",
+    "injured": "Giocatori Infortunati",
+    "recovery": "In Recupero",
+    "cleared": "Recentemente Abilitati",
+    "monitoring": "Sotto Monitoraggio",
+    "search": "Cerca Giocatori",
+    "filter": "Filtra per Stato"
+  },
+  "injuries": {
+    "title": "Gestione Infortuni",
+    "current": "Infortuni Attuali",
+    "history": "Storico Infortuni",
+    "report": "Segnala Nuovo Infortunio",
+    "update": "Aggiorna Infortunio",
+    "severity": {
+      "minor": "Lieve",
+      "moderate": "Moderato",
+      "major": "Grave",
+      "severe": "Molto Grave",
+      "careerThreatening": "Rischio Carriera"
+    },
+    "types": {
+      "concussion": "Commozione Cerebrale",
+      "fracture": "Frattura",
+      "sprain": "Distorsione",
+      "strain": "Stiramento",
+      "bruise": "Contusione",
+      "cut": "Taglio/Lacerazione",
+      "dislocation": "Lussazione",
+      "illness": "Malattia"
+    },
+    "bodyParts": {
+      "head": "Testa",
+      "neck": "Collo",
+      "shoulder": "Spalla",
+      "arm": "Braccio",
+      "elbow": "Gomito",
+      "wrist": "Polso",
+      "hand": "Mano",
+      "back": "Schiena",
+      "chest": "Petto",
+      "abdomen": "Addome",
+      "hip": "Anca",
+      "groin": "Inguine",
+      "thigh": "Coscia",
+      "knee": "Ginocchio",
+      "ankle": "Caviglia",
+      "foot": "Piede"
+    }
+  },
+  "treatment": {
+    "title": "Piani di Trattamento",
+    "active": "Trattamenti Attivi",
+    "scheduled": "Sessioni Programmate",
+    "completed": "Trattamenti Completati",
+    "create": "Crea Piano di Trattamento",
+    "modify": "Modifica Piano",
+    "types": {
+      "physiotherapy": "Fisioterapia",
+      "massage": "Massoterapia",
+      "medication": "Farmaci",
+      "surgery": "Chirurgia",
+      "rehabilitation": "Riabilitazione",
+      "rest": "Riposo/Recupero",
+      "imaging": "Diagnostica/Scansioni"
+    },
+    "frequency": {
+      "daily": "Giornaliero",
+      "everyOtherDay": "A Giorni Alterni",
+      "twiceWeekly": "Due Volte a Settimana",
+      "weekly": "Settimanale",
+      "asNeeded": "Al Bisogno"
+    }
+  },
+  "appointments": {
+    "title": "Appuntamenti Medici",
+    "schedule": "Prenota Appuntamento",
+    "upcoming": "Appuntamenti Futuri",
+    "today": "Programma di Oggi",
+    "calendar": "Calendario Appuntamenti",
+    "types": {
+      "checkup": "Controllo Regolare",
+      "injury": "Valutazione Infortunio",
+      "followup": "Controllo Successivo",
+      "clearance": "Idoneità al Ritorno",
+      "physical": "Visita Medica",
+      "emergency": "Emergenza"
+    },
+    "duration": {
+      "15min": "15 minuti",
+      "30min": "30 minuti",
+      "45min": "45 minuti",
+      "60min": "1 ora"
+    }
+  },
+  "records": {
+    "title": "Cartelle Cliniche",
+    "history": "Storia Medica",
+    "allergies": "Allergie",
+    "medications": "Farmaci Attuali",
+    "conditions": "Condizioni Preesistenti",
+    "surgeries": "Interventi Precedenti",
+    "family": "Storia Familiare",
+    "documents": "Documenti Medici",
+    "upload": "Carica Documento",
+    "download": "Scarica Cartelle"
+  },
+  "clearance": {
+    "title": "Ritorno all'Attività",
+    "pending": "Idoneità in Attesa",
+    "evaluate": "Valuta Giocatore",
+    "protocols": "Protocolli di Ritorno",
+    "tests": "Test Richiesti",
+    "approve": "Approva Ritorno",
+    "deny": "Nega Ritorno",
+    "conditional": "Ritorno Condizionato",
+    "restrictions": "Restrizioni Attività"
+  },
+  "reports": {
+    "title": "Report Medici",
+    "injury": "Report Infortuni",
+    "team": "Report Salute Squadra",
+    "individual": "Report Individuale",
+    "insurance": "Report Assicurativo",
+    "compliance": "Report Conformità",
+    "generate": "Genera Report",
+    "export": "Esporta Report"
+  },
+  "emergency": {
+    "title": "Protocolli di Emergenza",
+    "contacts": "Contatti di Emergenza",
+    "procedures": "Procedure di Emergenza",
+    "equipment": "Attrezzature di Emergenza",
+    "locations": "Ubicazione Ospedali",
+    "action": "Piano d'Azione Emergenza",
+    "call": "Chiamata di Emergenza"
+  },
+  "wellness": {
+    "title": "Monitoraggio Benessere",
+    "daily": "Controlli Giornalieri",
+    "trends": "Tendenze Benessere",
+    "alerts": "Avvisi Benessere",
+    "metrics": {
+      "sleep": "Qualità del Sonno",
+      "fatigue": "Livello di Fatica",
+      "soreness": "Dolore Muscolare",
+      "mood": "Umore",
+      "stress": "Livello di Stress",
+      "hydration": "Idratazione"
+    }
+  }
+}

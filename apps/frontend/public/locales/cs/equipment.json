@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Panel správce vybavení",
+    "subtitle": "Inventář a správa vybavení",
+    "welcome": "Vítejte, {{name}}",
+    "quickStats": "Stav vybavení",
+    "urgentNeeds": "Urgentní potřeby vybavení"
+  },
+  "inventory": {
+    "title": "Inventář vybavení",
+    "overview": "Přehled inventáře",
+    "search": "Hledat vybavení",
+    "filter": "Filtrovat podle typu",
+    "add": "Přidat vybavení",
+    "remove": "Odebrat vybavení",
+    "update": "Aktualizovat sklad",
+    "lowStock": "Upozornění na nízké zásoby",
+    "remaining": "Zbývá {{count}}",
+    "reorderAt": "Objednat při {{level}}",
+    "outOfStock": "Vyprodáno",
+    "lowStockStatus": "Nízké zásoby",
+    "stock": "Zásoby",
+    "condition": {
+      "good": "Dobrý",
+      "fair": "Uspokojivý",
+      "poor": "Špatný"
+    },
+    "categories": {
+      "protective": "Ochranné vybavení",
+      "sticks": "Hokejky",
+      "skates": "Brusle",
+      "apparel": "Týmové oblečení",
+      "training": "Tréninkové vybavení",
+      "goalie": "Brankářské vybavení",
+      "accessories": "Příslušenství",
+      "medical": "Zdravotnické potřeby"
+    },
+    "status": {
+      "available": "K dispozici",
+      "assigned": "Přiděleno",
+      "maintenance": "V údržbě",
+      "ordered": "Objednáno",
+      "damaged": "Poškozeno",
+      "retired": "Vyřazeno"
+    }
+  },
+  "assignments": {
+    "title": "Přidělení vybavení",
+    "player": "Přidělení hráčům",
+    "team": "Týmové vybavení",
+    "assign": "Přidělit vybavení",
+    "return": "Vrátit vybavení",
+    "history": "Historie přidělení",
+    "current": "Aktuální přidělení",
+    "overdue": "Zpožděná vrácení"
+  },
+  "sizes": {
+    "title": "Správa velikostí",
+    "chart": "Velikostní tabulka",
+    "playerSizes": "Velikosti hráčů",
+    "update": "Aktualizovat velikosti",
+    "fitting": "Naplánovat zkoušku",
+    "categories": {
+      "helmet": "Helma",
+      "shoulderPads": "Ramenní chrániče",
+      "elbow": "Loketní chrániče",
+      "gloves": "Rukavice",
+      "pants": "Hokejové kalhoty",
+      "shinGuards": "Holenní chrániče",
+      "skates": "Brusle",
+      "jersey": "Dres",
+      "socks": "Štulpny"
+    },
+    "measurements": {
+      "xs": "Extra malé",
+      "s": "Malé",
+      "m": "Střední",
+      "l": "Velké",
+      "xl": "Extra velké",
+      "xxl": "2X velké",
+      "xxxl": "3X velké",
+      "youth": "Mládežnické",
+      "junior": "Juniorské",
+      "senior": "Seniorské"
+    }
+  },
+  "maintenance": {
+    "title": "Údržba vybavení",
+    "schedule": "Plán údržby",
+    "due": "Termín údržby",
+    "history": "Historie údržby",
+    "log": "Zaznamenat údržbu",
+    "types": {
+      "sharpening": "Broušení bruslí",
+      "repair": "Oprava vybavení",
+      "cleaning": "Důkladné čištění",
+      "inspection": "Bezpečnostní kontrola",
+      "replacement": "Výměna součástí"
+    },
+    "frequency": {
+      "daily": "Denně",
+      "weekly": "Týdně",
+      "biweekly": "Každé dva týdny",
+      "monthly": "Měsíčně",
+      "seasonal": "Sezónně",
+      "asNeeded": "Podle potřeby"
+    }
+  },
+  "orders": {
+    "title": "Objednávky vybavení",
+    "new": "Nová objednávka",
+    "createOrder": "Vytvořit objednávku",
+    "createOrderTitle": "Vytvořit objednávku vybavení",
+    "createOrderDescription": "Přidejte položky do objednávky. Objednávky budou odeslány ke schválení.",
+    "addItem": "Přidat položku",
+    "removeItem": "Odebrat",
+    "itemName": "Název položky",
+    "itemNamePlaceholder": "Zadejte název položky",
+    "quantity": "Počet",
+    "priority": "Priorita",
+    "notes": "Poznámky (volitelné)",
+    "notesPlaceholder": "Další specifikace nebo poznámky",
+    "creating": "Vytváření...",
+    "pending": "Čekající objednávky",
+    "history": "Historie objednávek",
+    "suppliers": "Dodavatelé",
+    "budget": "Rozpočet na vybavení",
+    "approve": "Schválit objednávku",
+    "track": "Sledovat zásilku",
+    "receive": "Přijmout objednávku",
+    "status": {
+      "draft": "Koncept",
+      "submitted": "Odesláno",
+      "approved": "Schváleno",
+      "ordered": "Objednáno",
+      "shipped": "Odesláno",
+      "delivered": "Doručeno",
+      "cancelled": "Zrušeno"
+    }
+  },
+  "laundry": {
+    "title": "Správa praní",
+    "schedule": "Rozpis praní",
+    "status": "Stav praní",
+    "pickup": "Naplánovat vyzvednutí",
+    "return": "Označit jako vrácené",
+    "items": {
+      "jerseys": "Zápasové dresy",
+      "practice": "Tréninkové dresy",
+      "socks": "Týmové štulpny",
+      "shells": "Kalhoty",
+      "towels": "Ručníky"
+    }
+  },
+  "reports": {
+    "title": "Zprávy o vybavení",
+    "usage": "Zpráva o používání",
+    "cost": "Analýza nákladů",
+    "replacement": "Plán výměn",
+    "playerNeeds": "Potřeby vybavení hráčů",
+    "teamNeeds": "Potřeby týmového vybavení",
+    "generate": "Vygenerovat zprávu",
+    "export": "Exportovat zprávu"
+  },
+  "budget": {
+    "title": "Správa rozpočtu",
+    "current": "Aktuální rozpočet",
+    "spent": "Utraceno",
+    "remaining": "Zbývající rozpočet",
+    "projected": "Předpokládané náklady",
+    "categories": "Rozpočet podle kategorií",
+    "approval": "Čekající schválení"
+  },
+  "team": {
+    "title": "Týmové vybavení",
+    "bags": "Vybavení tašek",
+    "medical": "Lékárnička",
+    "tools": "Nářadí na vybavení",
+    "spare": "Náhradní vybavení",
+    "travel": "Cestovní checklist",
+    "gameday": "Checklist pro zápasový den"
+  },
+  "events": {
+    "upcoming": "Nadcházející události",
+    "equipmentRelated": "Rozvrh související s vybavením"
+  },
+  "tasks": {
+    "active": "Aktivní úkoly",
+    "currentMaintenance": "Současná údržba a úkoly",
+    "assigned": "Přiděleno",
+    "due": "Termín",
+    "estimatedTime": "Odhadovaný čas",
+    "lastDone": "Naposledy provedeno"
+  },
+  "gameday": {
+    "checklist": "Checklist pro zápasový den",
+    "preGame": "Předzápasové přípravné úkoly",
+    "deadline": "Termín"
+  },
+  "players": {
+    "equipment": "Vybavení hráčů",
+    "tracking": "Sledování vybavení jednotlivých hráčů",
+    "comingSoon": "Sledování vybavení hráčů brzy",
+    "addRecord": "Přidat záznam vybavení"
+  }
+}

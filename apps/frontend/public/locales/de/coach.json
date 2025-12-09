@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Trainer Dashboard",
+    "subtitle": "Teamverwaltung und Leistungsverfolgung",
+    "welcome": "Willkommen zurück, Trainer {{name}}!",
+    "quickStats": "Schnellstatistiken",
+    "todaysFocus": "Heutiger Fokus"
+  },
+  "team": {
+    "title": "Teamverwaltung",
+    "roster": "Teamkader",
+    "lineups": "Linienkombinationen",
+    "availability": "Spielerverfügbarkeit",
+    "performance": "Teamleistung",
+    "statistics": "Teamstatistiken",
+    "playerStatus": {
+      "available": "Verfügbar",
+      "limited": "Eingeschränkt",
+      "unavailable": "Nicht verfügbar",
+      "injured": "Verletzt",
+      "dayToDay": "Tag-zu-Tag"
+    }
+  },
+  "practice": {
+    "title": "Trainingsplanung",
+    "schedule": "Trainingsplan",
+    "drills": "Übungsbibliothek",
+    "templates": "Trainingsvorlagen",
+    "planning": "Sitzungsplanung",
+    "attendance": "Anwesenheitsverfolgung",
+    "intensity": "Trainingsintensität",
+    "focus": {
+      "offense": "Angriffssysteme",
+      "defense": "Verteidigungssysteme",
+      "specialTeams": "Spezialteams",
+      "conditioning": "Konditionierung",
+      "skills": "Fertigkeitsentwicklung"
+    },
+    "types": {
+      "full": "Volltraining",
+      "optional": "Optionales Training",
+      "morning": "Morgentraining",
+      "preGame": "Spielvorbereitung",
+      "recovery": "Erholungssitzung"
+    }
+  },
+  "games": {
+    "title": "Spielverwaltung",
+    "schedule": "Spielplan",
+    "preparation": "Spielvorbereitung",
+    "tactics": "Taktikplanung",
+    "lineups": "Spielaufstellungen",
+    "scouting": "Scouting-Berichte",
+    "video": "Videoanalyse",
+    "stats": {
+      "goals": "Tore",
+      "assists": "Vorlagen",
+      "shots": "Schüsse",
+      "saves": "Paraden",
+      "faceoffs": "Bullys",
+      "penalties": "Strafen",
+      "hits": "Checks",
+      "blocks": "Blocks"
+    }
+  },
+  "tactics": {
+    "title": "Taktiktafel",
+    "systems": "Teamsysteme",
+    "powerPlay": "Überzahlspiel",
+    "penaltyKill": "Unterzahlspiel",
+    "faceoffPlays": "Bully-Spielzüge",
+    "breakouts": "Ausbruchsmuster",
+    "forecheck": "Forechecking-Systeme",
+    "neutralZone": "Neutrale Zone",
+    "save": "Taktik speichern",
+    "load": "Taktik laden"
+  },
+  "communication": {
+    "title": "Teamkommunikation",
+    "announcements": "Teamankündigungen",
+    "meetings": "Teambesprechungen",
+    "feedback": "Spieler-Feedback",
+    "messages": "Direktnachrichten",
+    "broadcast": "Nachricht senden",
+    "schedule": "Besprechung planen"
+  },
+  "analytics": {
+    "title": "Leistungsanalyse",
+    "teamMetrics": "Teammetriken",
+    "playerMetrics": "Spielermetriken",
+    "trends": "Leistungstrends",
+    "comparison": "Teamvergleich",
+    "advanced": "Erweiterte Statistiken",
+    "reports": "Berichte erstellen",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Offensive Zone Starts",
+      "gaa": "Gegentore-Durchschnitt",
+      "svp": "Fangquote"
+    }
+  },
+  "development": {
+    "title": "Spielerentwicklung",
+    "plans": "Entwicklungspläne",
+    "progress": "Fortschrittsverfolgung",
+    "goals": "Entwicklungsziele",
+    "assessments": "Fertigkeitsbewertungen",
+    "feedback": "Entwicklungs-Feedback",
+    "programs": "Trainingsprogramme"
+  },
+  "lineup": {
+    "title": "Linienverwaltung",
+    "forward": "Stürmerlinien",
+    "defense": "Verteidigungspaare",
+    "powerPlay": "Überzahleinheiten",
+    "penaltyKill": "Unterzahleinheiten",
+    "scratches": "Gesunde Ersatzspieler",
+    "optimize": "Linien optimieren",
+    "save": "Aufstellung speichern",
+    "positions": {
+      "c": "Center",
+      "lw": "Linker Flügel",
+      "rw": "Rechter Flügel",
+      "ld": "Linker Verteidiger",
+      "rd": "Rechter Verteidiger",
+      "g": "Torwart"
+    }
+  }
+}

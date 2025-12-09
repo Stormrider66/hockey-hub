@@ -1,0 +1,111 @@
+{
+  "required": {
+    "default": "Šis laukas privalomas",
+    "email": "El. paštas privalomas",
+    "password": "Slaptažodis privalomas",
+    "firstName": "Vardas privalomas",
+    "lastName": "Pavardė privaloma",
+    "phone": "Telefono numeris privalomas",
+    "date": "Data privaloma",
+    "time": "Laikas privalomas",
+    "selection": "Prašome pasirinkti"
+  },
+  "email": {
+    "invalid": "Prašome įvesti teisingą el. pašto adresą",
+    "alreadyExists": "Šis el. paštas jau užregistruotas"
+  },
+  "password": {
+    "tooShort": "Slaptažodis turi būti bent {{min}} simbolių",
+    "tooWeak": "Slaptažodis per silpnas. Naudokite raidžių, skaičių ir simbolių kombinaciją",
+    "noMatch": "Slaptažodžiai nesutampa",
+    "requiresUppercase": "Slaptažodis turi turėti bent vieną didžiąją raidę",
+    "requiresLowercase": "Slaptažodis turi turėti bent vieną mažąją raidę",
+    "requiresNumber": "Slaptažodis turi turėti bent vieną skaičių",
+    "requiresSpecial": "Slaptažodis turi turėti bent vieną specialų simbolį"
+  },
+  "string": {
+    "tooShort": "Turi būti bent {{min}} simbolių",
+    "tooLong": "Turi būti ne daugiau kaip {{max}} simbolių",
+    "invalidFormat": "Netinkamas formatas",
+    "alphanumeric": "Galimos tik raidės ir skaičiai",
+    "alphabetic": "Galimos tik raidės",
+    "invalidCharacters": "Yra netinkamų simbolių"
+  },
+  "number": {
+    "invalid": "Prašome įvesti teisingą skaičių",
+    "tooSmall": "Turi būti bent {{min}}",
+    "tooLarge": "Turi būti ne daugiau kaip {{max}}",
+    "integer": "Turi būti sveikasis skaičius",
+    "positive": "Turi būti teigiamas skaičius",
+    "negative": "Turi būti neigiamas skaičius"
+  },
+  "date": {
+    "invalid": "Prašome įvesti teisingą datą",
+    "beforeMin": "Data turi būti po {{min}}",
+    "afterMax": "Data turi būti prieš {{max}}",
+    "inPast": "Data turi būti praeityje",
+    "inFuture": "Data turi būti ateityje"
+  },
+  "time": {
+    "invalid": "Prašome įvesti teisingą laiką",
+    "beforeMin": "Laikas turi būti po {{min}}",
+    "afterMax": "Laikas turi būti prieš {{max}}"
+  },
+  "phone": {
+    "invalid": "Prašome įvesti teisingą telefono numerį",
+    "invalidCountryCode": "Neteisingas šalies kodas"
+  },
+  "file": {
+    "tooLarge": "Failo dydis turi būti mažesnis nei {{maxSize}}",
+    "invalidType": "Failo tipas neleidžiamas. Leidžiami tipai: {{allowedTypes}}",
+    "required": "Prašome pasirinkti failą",
+    "tooMany": "Per daug failų. Maksimaliai leidžiama: {{max}}"
+  },
+  "url": {
+    "invalid": "Prašome įvesti teisingą URL"
+  },
+  "custom": {
+    "teamCode": {
+      "invalid": "Neteisingas komandos kodo formatas",
+      "notFound": "Komandos kodas nerastas"
+    },
+    "playerNumber": {
+      "invalid": "Neteisingas žaidėjo numeris",
+      "alreadyTaken": "Šis numeris jau užimtas"
+    },
+    "age": {
+      "tooYoung": "Turi būti bent {{min}} metų",
+      "tooOld": "Turi būti ne daugiau kaip {{max}} metų"
+    },
+    "schedule": {
+      "conflict": "Šis laikas konfliktuoja su kitu renginiu",
+      "outsideHours": "Pasirinktas laikas yra už darbo valandų ribų",
+      "tooSoon": "Turi būti suplanuota bent {{hours}} valandų prieš"
+    },
+    "capacity": {
+      "exceeded": "Viršyta maksimali talpa",
+      "minimum": "Reikalingi mažiausiai {{min}} dalyviai"
+    }
+  },
+  "form": {
+    "hasErrors": "Prašome ištaisyti klaidas žemiau",
+    "submitError": "Nepavyko pateikti formos. Bandykite dar kartą.",
+    "saveDraft": "Jūsų juodraštis išsaugotas",
+    "unsavedChanges": "Turite neišsaugotų pakeitimų. Ar tikrai norite išeiti?"
+  },
+  "search": {
+    "tooShort": "Paieškos užklausa turi būti bent {{min}} simbolių",
+    "noResults": "Rezultatų nerasta"
+  },
+  "selection": {
+    "minimum": "Prašome pasirinkti bent {{min}} variantą(-us)",
+    "maximum": "Prašome pasirinkti ne daugiau kaip {{max}} variantą(-us)",
+    "exact": "Prašome pasirinkti lygiai {{count}} variantą(-us)"
+  },
+  "comparison": {
+    "mustMatch": "Laukai turi sutapti",
+    "mustBeDifferent": "Laukai turi būti skirtingi",
+    "startBeforeEnd": "Pradžios laikas turi būti prieš pabaigos laiką",
+    "endAfterStart": "Pabaigos laikas turi būti po pradžios laiko"
+  }
+}

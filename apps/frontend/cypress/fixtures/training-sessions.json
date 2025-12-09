@@ -1,0 +1,51 @@
+{
+  "practiceSession": {
+    "title": "Team Practice",
+    "type": "practice",
+    "startTime": "16:00",
+    "endTime": "18:00",
+    "locationId": "1",
+    "description": "Regular team practice focusing on offensive plays",
+    "objectives": "1. Power play formations\n2. Offensive zone entries\n3. Shooting drills",
+    "drills": [
+      {
+        "name": "Warm-up",
+        "duration": 15,
+        "description": "Dynamic stretching and light skating"
+      },
+      {
+        "name": "Power Play Setup",
+        "duration": 30,
+        "description": "Practice power play formations and movements"
+      },
+      {
+        "name": "3v3 Scrimmage",
+        "duration": 45,
+        "description": "Small area games focusing on quick decisions"
+      },
+      {
+        "name": "Cool-down",
+        "duration": 10,
+        "description": "Static stretching and recovery"
+      }
+    ]
+  },
+  "skillsSession": {
+    "title": "Defensive Skills Training",
+    "type": "skills",
+    "startTime": "17:00",
+    "endTime": "18:30",
+    "locationId": "2",
+    "description": "Focus on defensive positioning and gap control",
+    "objectives": "1. Gap control\n2. Stick positioning\n3. Transition play"
+  },
+  "meetingSession": {
+    "title": "Video Review Session",
+    "type": "meeting",
+    "startTime": "19:00",
+    "endTime": "20:00",
+    "locationId": "4",
+    "description": "Review last game footage and discuss improvements",
+    "objectives": "1. Analyze defensive breakdowns\n2. Review successful plays\n3. Set goals for next game"
+  }
+}

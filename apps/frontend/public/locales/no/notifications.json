@@ -1,0 +1,142 @@
+{
+  "title": "Varsler",
+  "markAllRead": "Marker alle som lest",
+  "clearAll": "Fjern alle",
+  "settings": "Varslingsinnstillinger",
+  "empty": "Ingen varsler",
+  "loadMore": "Last inn flere",
+  "categories": {
+    "all": "Alle",
+    "unread": "Uleste",
+    "system": "System",
+    "team": "Lag",
+    "training": "Trening",
+    "medical": "Medisinsk",
+    "calendar": "Kalender",
+    "payment": "Betaling",
+    "communication": "Meldinger"
+  },
+  "types": {
+    "system": {
+      "welcome": "Velkommen til Hockey Hub!",
+      "profileComplete": "Profilen din er nå fullført",
+      "passwordChanged": "Passordet ditt har blitt endret",
+      "accountVerified": "Kontoen din har blitt verifisert",
+      "maintenanceScheduled": "Systemvedlikehold planlagt for {{date}}"
+    },
+    "team": {
+      "addedToTeam": "Du har blitt lagt til {{teamName}}",
+      "removedFromTeam": "Du har blitt fjernet fra {{teamName}}",
+      "roleChanged": "Din rolle har blitt endret til {{role}}",
+      "teamAnnouncement": "Lagsmelding fra {{sender}}",
+      "rosterUpdate": "Lagsstallen har blitt oppdatert"
+    },
+    "training": {
+      "sessionScheduled": "Treningsøkt planlagt for {{date}}",
+      "sessionCancelled": "Treningsøkt {{date}} har blitt avlyst",
+      "sessionReminder": "Treningsøkt starter om {{time}}",
+      "workoutAssigned": "Ny treningsøkt tildelt: {{workoutName}}",
+      "workoutCompleted": "{{player}} fullførte treningsøkt: {{workoutName}}",
+      "performanceReport": "Prestasjonsrapporten din er klar"
+    },
+    "medical": {
+      "appointmentScheduled": "Medisinsk avtale planlagt for {{date}}",
+      "appointmentReminder": "Medisinsk avtale om {{time}}",
+      "injuryUpdate": "Skadestatus oppdatert for {{player}}",
+      "clearanceGranted": "{{player}} har blitt klarert for spill",
+      "wellnessReminder": "Vennligst send inn din daglige velværesjekk",
+      "treatmentComplete": "Behandlingsøkt fullført"
+    },
+    "calendar": {
+      "eventCreated": "Ny hendelse: {{eventName}}",
+      "eventUpdated": "Hendelse oppdatert: {{eventName}}",
+      "eventCancelled": "Hendelse avlyst: {{eventName}}",
+      "eventReminder": "{{eventName}} starter om {{time}}",
+      "rsvpRequested": "Vennligst svar på {{eventName}}",
+      "scheduleChange": "Timeplansendring for {{date}}"
+    },
+    "payment": {
+      "invoiceGenerated": "Ny faktura tilgjengelig: {{amount}}",
+      "paymentReceived": "Betaling mottatt: {{amount}}",
+      "paymentDue": "Betaling forfaller: {{amount}} innen {{date}}",
+      "paymentOverdue": "Forfalt betaling: {{amount}}",
+      "paymentFailed": "Betaling mislyktes for {{amount}}"
+    },
+    "communication": {
+      "newMessage": "Ny melding fra {{sender}}",
+      "mentionedInChat": "{{sender}} nevnte deg i {{channel}}",
+      "addedToGroup": "Du har blitt lagt til {{groupName}}",
+      "missedCall": "Tapt anrop fra {{caller}}",
+      "voicemail": "Ny talemelding fra {{caller}}"
+    },
+    "game": {
+      "gameScheduled": "Kamp planlagt: {{opponent}} den {{date}}",
+      "gameReminder": "Kamp mot {{opponent}} starter om {{time}}",
+      "lineupPosted": "Kampoppstilling har blitt publisert",
+      "gameResult": "Kampresultat: {{result}} mot {{opponent}}",
+      "statsAvailable": "Kampstatistikken din er nå tilgjengelig"
+    },
+    "equipment": {
+      "fittingScheduled": "Utstyrsprøving planlagt for {{date}}",
+      "maintenanceDue": "Utstyrsvedlikehold forfaller for {{equipment}}",
+      "orderReady": "Utstyrsbestillingen din er klar for henting",
+      "returnReminder": "Vennligst returner {{equipment}} innen {{date}}"
+    }
+  },
+  "actions": {
+    "view": "Vis",
+    "dismiss": "Avvis",
+    "accept": "Godta",
+    "decline": "Avslå",
+    "respond": "Svar",
+    "schedule": "Planlegg",
+    "pay": "Betal nå",
+    "download": "Last ned",
+    "viewDetails": "Se detaljer"
+  },
+  "preferences": {
+    "title": "Varslingsinnstillinger",
+    "channels": {
+      "email": "E-post",
+      "push": "Push-varsler",
+      "inApp": "I appen",
+      "sms": "SMS"
+    },
+    "frequency": {
+      "immediate": "Umiddelbart",
+      "hourly": "Timessammendrag",
+      "daily": "Daglig sammendrag",
+      "weekly": "Ukentlig oppsummering"
+    },
+    "quiet": {
+      "title": "Stille timer",
+      "enabled": "Aktiver stille timer",
+      "from": "Fra",
+      "to": "Til",
+      "days": "Dager"
+    },
+    "types": {
+      "training": "Treningsoppdateringer",
+      "medical": "Medisinske påminnelser",
+      "calendar": "Kalenderhendelser",
+      "team": "Lagskunngjøringer",
+      "chat": "Chatmeldinger",
+      "payment": "Betalingspåminnelser",
+      "system": "Systemvarsler"
+    }
+  },
+  "time": {
+    "justNow": "Akkurat nå",
+    "minutesAgo": "{{count}} minutter siden",
+    "hoursAgo": "{{count}} timer siden",
+    "yesterday": "I går",
+    "daysAgo": "{{count}} dager siden",
+    "weeksAgo": "{{count}} uker siden"
+  },
+  "status": {
+    "sent": "Sendt",
+    "delivered": "Levert",
+    "read": "Lest",
+    "failed": "Kunne ikke sende"
+  }
+}

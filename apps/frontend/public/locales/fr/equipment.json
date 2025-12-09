@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Tableau de bord du gérant d'équipement",
+    "subtitle": "Inventaire et gestion de l'équipement",
+    "welcome": "Bienvenue, {{name}}",
+    "quickStats": "État de l'équipement",
+    "urgentNeeds": "Besoins urgents en équipement"
+  },
+  "inventory": {
+    "title": "Inventaire de l'équipement",
+    "overview": "Aperçu de l'inventaire",
+    "search": "Rechercher de l'équipement",
+    "filter": "Filtrer par type",
+    "add": "Ajouter de l'équipement",
+    "remove": "Retirer de l'équipement",
+    "update": "Mettre à jour le stock",
+    "lowStock": "Alerte de stock faible",
+    "remaining": "{{count}} restant(s)",
+    "reorderAt": "Commander à {{level}}",
+    "outOfStock": "En rupture de stock",
+    "lowStockStatus": "Stock faible",
+    "stock": "Stock",
+    "condition": {
+      "good": "Bon",
+      "fair": "Correct",
+      "poor": "Mauvais"
+    },
+    "categories": {
+      "protective": "Équipement de protection",
+      "sticks": "Bâtons de hockey",
+      "skates": "Patins",
+      "apparel": "Vêtements d'équipe",
+      "training": "Équipement d'entraînement",
+      "goalie": "Équipement de gardien",
+      "accessories": "Accessoires",
+      "medical": "Fournitures médicales"
+    },
+    "status": {
+      "available": "Disponible",
+      "assigned": "Assigné",
+      "maintenance": "En maintenance",
+      "ordered": "En commande",
+      "damaged": "Endommagé",
+      "retired": "Retiré"
+    }
+  },
+  "assignments": {
+    "title": "Assignations d'équipement",
+    "player": "Assignations aux joueurs",
+    "team": "Équipement d'équipe",
+    "assign": "Assigner l'équipement",
+    "return": "Retourner l'équipement",
+    "history": "Historique des assignations",
+    "current": "Assignations actuelles",
+    "overdue": "Retours en retard"
+  },
+  "sizes": {
+    "title": "Gestion des tailles",
+    "chart": "Tableau des tailles",
+    "playerSizes": "Tailles des joueurs",
+    "update": "Mettre à jour les tailles",
+    "fitting": "Planifier un essayage",
+    "categories": {
+      "helmet": "Casque",
+      "shoulderPads": "Épaulettes",
+      "elbow": "Coudières",
+      "gloves": "Gants",
+      "pants": "Culotte de hockey",
+      "shinGuards": "Jambières",
+      "skates": "Patins",
+      "jersey": "Chandail",
+      "socks": "Bas"
+    },
+    "measurements": {
+      "xs": "Très petit",
+      "s": "Petit",
+      "m": "Moyen",
+      "l": "Grand",
+      "xl": "Très grand",
+      "xxl": "2X grand",
+      "xxxl": "3X grand",
+      "youth": "Jeune",
+      "junior": "Junior",
+      "senior": "Senior"
+    }
+  },
+  "maintenance": {
+    "title": "Maintenance de l'équipement",
+    "schedule": "Calendrier de maintenance",
+    "due": "Maintenance due",
+    "history": "Historique de maintenance",
+    "log": "Enregistrer la maintenance",
+    "types": {
+      "sharpening": "Affûtage de patins",
+      "repair": "Réparation d'équipement",
+      "cleaning": "Nettoyage en profondeur",
+      "inspection": "Inspection de sécurité",
+      "replacement": "Remplacement de pièces"
+    },
+    "frequency": {
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "biweekly": "Aux deux semaines",
+      "monthly": "Mensuel",
+      "seasonal": "Saisonnier",
+      "asNeeded": "Au besoin"
+    }
+  },
+  "orders": {
+    "title": "Commandes d'équipement",
+    "new": "Nouvelle commande",
+    "createOrder": "Créer une commande",
+    "createOrderTitle": "Créer une commande d'équipement",
+    "createOrderDescription": "Ajouter des articles à votre commande. Les commandes seront soumises pour approbation.",
+    "addItem": "Ajouter un article",
+    "removeItem": "Retirer",
+    "itemName": "Nom de l'article",
+    "itemNamePlaceholder": "Entrer le nom de l'article",
+    "quantity": "Qté",
+    "priority": "Priorité",
+    "notes": "Notes (optionnel)",
+    "notesPlaceholder": "Spécifications supplémentaires ou notes",
+    "creating": "Création...",
+    "pending": "Commandes en attente",
+    "history": "Historique des commandes",
+    "suppliers": "Fournisseurs",
+    "budget": "Budget d'équipement",
+    "approve": "Approuver la commande",
+    "track": "Suivre l'expédition",
+    "receive": "Recevoir la commande",
+    "status": {
+      "draft": "Brouillon",
+      "submitted": "Soumise",
+      "approved": "Approuvée",
+      "ordered": "Commandée",
+      "shipped": "Expédiée",
+      "delivered": "Livrée",
+      "cancelled": "Annulée"
+    }
+  },
+  "laundry": {
+    "title": "Gestion de la lessive",
+    "schedule": "Horaire de lessive",
+    "status": "État de la lessive",
+    "pickup": "Planifier le ramassage",
+    "return": "Marquer comme retourné",
+    "items": {
+      "jerseys": "Chandails de match",
+      "practice": "Chandails d'entraînement",
+      "socks": "Bas d'équipe",
+      "shells": "Coques de culotte",
+      "towels": "Serviettes"
+    }
+  },
+  "reports": {
+    "title": "Rapports d'équipement",
+    "usage": "Rapport d'utilisation",
+    "cost": "Analyse des coûts",
+    "replacement": "Calendrier de remplacement",
+    "playerNeeds": "Besoins d'équipement des joueurs",
+    "teamNeeds": "Besoins d'équipement de l'équipe",
+    "generate": "Générer un rapport",
+    "export": "Exporter le rapport"
+  },
+  "budget": {
+    "title": "Gestion du budget",
+    "current": "Budget actuel",
+    "spent": "Montant dépensé",
+    "remaining": "Budget restant",
+    "projected": "Coûts projetés",
+    "categories": "Budget par catégorie",
+    "approval": "Approbations en attente"
+  },
+  "team": {
+    "title": "Équipement d'équipe",
+    "bags": "Sacs d'équipement",
+    "medical": "Trousse médicale",
+    "tools": "Outils d'équipement",
+    "spare": "Équipement de rechange",
+    "travel": "Liste de voyage",
+    "gameday": "Liste du jour de match"
+  },
+  "events": {
+    "upcoming": "Événements à venir",
+    "equipmentRelated": "Horaire lié à l'équipement"
+  },
+  "tasks": {
+    "active": "Tâches actives",
+    "currentMaintenance": "Maintenance et tâches actuelles",
+    "assigned": "Assigné",
+    "due": "Dû",
+    "estimatedTime": "Temps est.",
+    "lastDone": "Dernière fois"
+  },
+  "gameday": {
+    "checklist": "Liste de contrôle du jour de match",
+    "preGame": "Tâches de préparation d'avant-match",
+    "deadline": "Date limite"
+  },
+  "players": {
+    "equipment": "Équipement des joueurs",
+    "tracking": "Suivi de l'équipement individuel des joueurs",
+    "comingSoon": "Suivi de l'équipement des joueurs à venir",
+    "addRecord": "Ajouter un enregistrement d'équipement"
+  }
+}

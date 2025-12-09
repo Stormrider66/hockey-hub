@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Huoltopäällikön kojelauta",
+    "subtitle": "Varusteiden inventaario ja hallinta",
+    "welcome": "Tervetuloa, {{name}}",
+    "quickStats": "Varusteiden tila",
+    "urgentNeeds": "Kiireelliset varustetarpeet"
+  },
+  "inventory": {
+    "title": "Varustevarasto",
+    "overview": "Varaston yleiskatsaus",
+    "search": "Hae varusteita",
+    "filter": "Suodata tyypin mukaan",
+    "add": "Lisää varuste",
+    "remove": "Poista varuste",
+    "update": "Päivitä varasto",
+    "lowStock": "Varastohälytys",
+    "remaining": "{{count}} jäljellä",
+    "reorderAt": "Tilaa tasolla {{level}}",
+    "outOfStock": "Loppu varastosta",
+    "lowStockStatus": "Vähissä",
+    "stock": "Varasto",
+    "condition": {
+      "good": "Hyvä",
+      "fair": "Kohtalainen",
+      "poor": "Huono"
+    },
+    "categories": {
+      "protective": "Suojavarusteet",
+      "sticks": "Jääkiekkomailat",
+      "skates": "Luistimet",
+      "apparel": "Joukkuevaatteet",
+      "training": "Harjoitusvälineet",
+      "goalie": "Maalivahtien varusteet",
+      "accessories": "Lisävarusteet",
+      "medical": "Lääkintätarvikkeet"
+    },
+    "status": {
+      "available": "Saatavilla",
+      "assigned": "Luovutettu",
+      "maintenance": "Huollossa",
+      "ordered": "Tilattu",
+      "damaged": "Vaurioitunut",
+      "retired": "Poistettu käytöstä"
+    }
+  },
+  "assignments": {
+    "title": "Varustelainat",
+    "player": "Pelaajien varusteet",
+    "team": "Joukkueen varusteet",
+    "assign": "Luovuta varuste",
+    "return": "Palauta varuste",
+    "history": "Lainahistoria",
+    "current": "Nykyiset lainat",
+    "overdue": "Myöhässä olevat palautukset"
+  },
+  "sizes": {
+    "title": "Kokohallinta",
+    "chart": "Kokotaulukko",
+    "playerSizes": "Pelaajien koot",
+    "update": "Päivitä koot",
+    "fitting": "Varaa sovitus",
+    "categories": {
+      "helmet": "Kypärä",
+      "shoulderPads": "Hartiasuojat",
+      "elbow": "Kyynärsuojat",
+      "gloves": "Hanskat",
+      "pants": "Jääkiekkohousut",
+      "shinGuards": "Säärisuojat",
+      "skates": "Luistimet",
+      "jersey": "Pelipaita",
+      "socks": "Sukat"
+    },
+    "measurements": {
+      "xs": "Erikoispieni",
+      "s": "Pieni",
+      "m": "Keskikoko",
+      "l": "Iso",
+      "xl": "Erikoissuuri",
+      "xxl": "2X-Suuri",
+      "xxxl": "3X-Suuri",
+      "youth": "Nuoriso",
+      "junior": "Juniori",
+      "senior": "Aikuinen"
+    }
+  },
+  "maintenance": {
+    "title": "Varusteiden huolto",
+    "schedule": "Huoltoaikataulu",
+    "due": "Huolto erääntyy",
+    "history": "Huoltohistoria",
+    "log": "Kirjaa huolto",
+    "types": {
+      "sharpening": "Luistinteroitus",
+      "repair": "Varustekorjaus",
+      "cleaning": "Perusteellinen puhdistus",
+      "inspection": "Turvatarkastus",
+      "replacement": "Osien vaihto"
+    },
+    "frequency": {
+      "daily": "Päivittäin",
+      "weekly": "Viikoittain",
+      "biweekly": "Joka toinen viikko",
+      "monthly": "Kuukausittain",
+      "seasonal": "Kausittain",
+      "asNeeded": "Tarpeen mukaan"
+    }
+  },
+  "orders": {
+    "title": "Varustetilaukset",
+    "new": "Uusi tilaus",
+    "createOrder": "Luo tilaus",
+    "createOrderTitle": "Luo varustetilaus",
+    "createOrderDescription": "Lisää tuotteita tilaukseen. Tilaukset lähetetään hyväksyttäväksi.",
+    "addItem": "Lisää tuote",
+    "removeItem": "Poista",
+    "itemName": "Tuotteen nimi",
+    "itemNamePlaceholder": "Syötä tuotteen nimi",
+    "quantity": "Määrä",
+    "priority": "Prioriteetti",
+    "notes": "Huomautukset (valinnainen)",
+    "notesPlaceholder": "Lisämäärittelyt tai huomautukset",
+    "creating": "Luodaan...",
+    "pending": "Odottavat tilaukset",
+    "history": "Tilaushistoria",
+    "suppliers": "Toimittajat",
+    "budget": "Varustebudjetti",
+    "approve": "Hyväksy tilaus",
+    "track": "Seuraa lähetystä",
+    "receive": "Vastaanota tilaus",
+    "status": {
+      "draft": "Luonnos",
+      "submitted": "Lähetetty",
+      "approved": "Hyväksytty",
+      "ordered": "Tilattu",
+      "shipped": "Lähetetty",
+      "delivered": "Toimitettu",
+      "cancelled": "Peruutettu"
+    }
+  },
+  "laundry": {
+    "title": "Pyykkihuolto",
+    "schedule": "Pyykkiaikataulu",
+    "status": "Pyykin tila",
+    "pickup": "Varaa nouto",
+    "return": "Merkitse palautetuksi",
+    "items": {
+      "jerseys": "Pelipaidat",
+      "practice": "Harjoituspaidat",
+      "socks": "Joukkuesukat",
+      "shells": "Housujen päälliset",
+      "towels": "Pyyhkeet"
+    }
+  },
+  "reports": {
+    "title": "Varusteraportit",
+    "usage": "Käyttöraportti",
+    "cost": "Kustannusanalyysi",
+    "replacement": "Vaihtoaikataulu",
+    "playerNeeds": "Pelaajien varustetarpeet",
+    "teamNeeds": "Joukkueen varustetarpeet",
+    "generate": "Luo raportti",
+    "export": "Vie raportti"
+  },
+  "budget": {
+    "title": "Budjetin hallinta",
+    "current": "Nykyinen budjetti",
+    "spent": "Käytetty summa",
+    "remaining": "Jäljellä oleva budjetti",
+    "projected": "Ennustetut kustannukset",
+    "categories": "Budjetti kategorioittain",
+    "approval": "Odottavat hyväksynnät"
+  },
+  "team": {
+    "title": "Joukkueen varusteet",
+    "bags": "Varustekassit",
+    "medical": "Ensiapulaukku",
+    "tools": "Varustetyökalut",
+    "spare": "Varavarusteet",
+    "travel": "Matkatarkistuslista",
+    "gameday": "Pelipäivän tarkistuslista"
+  },
+  "events": {
+    "upcoming": "Tulevat tapahtumat",
+    "equipmentRelated": "Varusteisiin liittyvä aikataulu"
+  },
+  "tasks": {
+    "active": "Aktiiviset tehtävät",
+    "currentMaintenance": "Nykyiset huollot ja tehtävät",
+    "assigned": "Vastuutettu",
+    "due": "Erääntyy",
+    "estimatedTime": "Arvioitu aika",
+    "lastDone": "Viimeksi tehty"
+  },
+  "gameday": {
+    "checklist": "Pelipäivän tarkistuslista",
+    "preGame": "Peliä edeltävät valmistelut",
+    "deadline": "Määräaika"
+  },
+  "players": {
+    "equipment": "Pelaajien varusteet",
+    "tracking": "Henkilökohtaisten varusteiden seuranta",
+    "comingSoon": "Pelaajien varusteseuranta tulossa pian",
+    "addRecord": "Lisää varustemerkintä"
+  }
+}

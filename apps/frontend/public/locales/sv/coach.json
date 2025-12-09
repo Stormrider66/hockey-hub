@@ -1,0 +1,131 @@
+{
+  "dashboard": {
+    "title": "Tränarens översikt",
+    "subtitle": "Laghantering och resultatuppföljning",
+    "welcome": "Välkommen tillbaka, tränare {{name}}!",
+    "quickStats": "Snabbstatistik",
+    "todaysFocus": "Dagens fokus"
+  },
+  "team": {
+    "title": "Laghantering",
+    "roster": "Trupp",
+    "lineups": "Laguppställningar",
+    "availability": "Spelartillgänglighet",
+    "performance": "Lagprestation",
+    "statistics": "Lagstatistik",
+    "playerStatus": {
+      "available": "Tillgänglig",
+      "limited": "Begränsad",
+      "unavailable": "Otillgänglig",
+      "injured": "Skadad",
+      "dayToDay": "Dag-för-dag"
+    }
+  },
+  "practice": {
+    "title": "Träningsplanering",
+    "schedule": "Träningsschema",
+    "drills": "Övningsbibliotek",
+    "templates": "Träningsmallar",
+    "planning": "Passplanering",
+    "attendance": "Närvaroregistrering",
+    "intensity": "Träningsintensitet",
+    "focus": {
+      "offense": "Offensiva system",
+      "defense": "Defensiva system",
+      "specialTeams": "Speciallag",
+      "conditioning": "Konditionsträning",
+      "skills": "Färdighetsutveckling"
+    },
+    "types": {
+      "full": "Helträning",
+      "optional": "Frivillig träning",
+      "morning": "Morgonträning",
+      "preGame": "Förmatchträninga",
+      "recovery": "Återhämtningspass"
+    }
+  },
+  "games": {
+    "title": "Matchhantering",
+    "schedule": "Matchschema",
+    "preparation": "Matchförberedelse",
+    "tactics": "Taktikplanering",
+    "lineups": "Matchuppställningar",
+    "scouting": "Scoutingrapporter",
+    "video": "Videoanalys",
+    "stats": {
+      "goals": "Mål",
+      "assists": "Assist",
+      "shots": "Skott",
+      "saves": "Räddningar",
+      "faceoffs": "Tekningar",
+      "penalties": "Utvisningar",
+      "hits": "Tacklingar",
+      "blocks": "Blockeringar"
+    }
+  },
+  "tactics": {
+    "title": "Taktiktavla",
+    "systems": "Lagsystem",
+    "powerPlay": "Powerplay",
+    "penaltyKill": "Boxplay",
+    "faceoffPlays": "Tekningsspel",
+    "breakouts": "Utbrytningar",
+    "forecheck": "Forechecking",
+    "neutralZone": "Neutral zon",
+    "save": "Spara taktik",
+    "load": "Ladda taktik"
+  },
+  "communication": {
+    "title": "Lagkommunikation",
+    "announcements": "Lagmeddelanden",
+    "meetings": "Lagmöten",
+    "feedback": "Spelarfeedback",
+    "messages": "Direktmeddelanden",
+    "broadcast": "Skicka meddelande",
+    "schedule": "Schemalägg möte"
+  },
+  "analytics": {
+    "title": "Resultatanalys",
+    "teamMetrics": "Lagmått",
+    "playerMetrics": "Spelarmått",
+    "trends": "Resultattrender",
+    "comparison": "Lagjämförelse",
+    "advanced": "Avancerad statistik",
+    "reports": "Generera rapporter",
+    "metrics": {
+      "corsi": "Corsi",
+      "fenwick": "Fenwick",
+      "pdo": "PDO",
+      "ozs": "Offensiva zonstarter",
+      "gaa": "Insläppta mål per match",
+      "svp": "Räddningsprocent"
+    }
+  },
+  "development": {
+    "title": "Spelarutveckling",
+    "plans": "Utvecklingsplaner",
+    "progress": "Framstegsspårning",
+    "goals": "Utvecklingsmål",
+    "assessments": "Färdighetsbedömningar",
+    "feedback": "Utvecklingsfeedback",
+    "programs": "Träningsprogram"
+  },
+  "lineup": {
+    "title": "Laguppställning",
+    "forward": "Forwardskedjor",
+    "defense": "Backpar",
+    "powerPlay": "Powerplay-enheter",
+    "penaltyKill": "Boxplay-enheter",
+    "scratches": "Bänkade spelare",
+    "optimize": "Optimera kedjor",
+    "save": "Spara uppställning",
+    "positions": {
+      "c": "Center",
+      "lw": "Vänsterforward",
+      "rw": "Högerforward",
+      "ld": "Vänsterback",
+      "rd": "Högerback",
+      "g": "Målvakt"
+    }
+  }
+}

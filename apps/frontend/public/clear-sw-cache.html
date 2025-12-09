@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Hockey Hub Cache</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #0051cc;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .log {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clear Hockey Hub Cache</h1>
+    <p>This page will help clear all cached data for Hockey Hub, including service workers and localStorage.</p>
+    
+    <button onclick="clearAllCaches()">Clear All Caches</button>
+    <button onclick="unregisterServiceWorkers()">Unregister Service Workers</button>
+    <button onclick="clearLocalStorage()">Clear Local Storage</button>
+    
+    <div id="status"></div>
+    <div id="log" class="log" style="display:none;"></div>
+    
+    <script>
+        function log(message, isError = false) {
+            const logDiv = document.getElementById('log');
+            const statusDiv = document.getElementById('status');
+            logDiv.style.display = 'block';
+            logDiv.innerHTML += message + '<br>';
+            
+            if (isError) {
+                statusDiv.innerHTML = '<div class="error">' + message + '</div>';
+            } else {
+                statusDiv.innerHTML = '<div class="success">' + message + '</div>';
+            }
+        }
+        
+        async function clearAllCaches() {
+            log('Starting cache clear process...');
+            
+            try {
+                // Clear caches
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    log(`Found ${cacheNames.length} caches`);
+                    
+                    for (const cacheName of cacheNames) {
+                        await caches.delete(cacheName);
+                        log(`Deleted cache: ${cacheName}`);
+                    }
+                }
+                
+                // Clear localStorage
+                localStorage.clear();
+                log('Cleared localStorage');
+                
+                // Clear sessionStorage
+                sessionStorage.clear();
+                log('Cleared sessionStorage');
+                
+                // Unregister service workers
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    for (const registration of registrations) {
+                        await registration.unregister();
+                        log(`Unregistered service worker: ${registration.scope}`);
+                    }
+                }
+                
+                log('✅ All caches cleared successfully! Please refresh the page.');
+            } catch (error) {
+                log('❌ Error clearing caches: ' + error.message, true);
+            }
+        }
+        
+        async function unregisterServiceWorkers() {
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    for (const registration of registrations) {
+                        await registration.unregister();
+                        log(`Unregistered service worker: ${registration.scope}`);
+                    }
+                    log('✅ All service workers unregistered!');
+                } else {
+                    log('Service workers not supported in this browser', true);
+                }
+            } catch (error) {
+                log('❌ Error unregistering service workers: ' + error.message, true);
+            }
+        }
+        
+        function clearLocalStorage() {
+            try {
+                const itemCount = localStorage.length;
+                localStorage.clear();
+                sessionStorage.clear();
+                log(`✅ Cleared ${itemCount} items from localStorage and sessionStorage`);
+            } catch (error) {
+                log('❌ Error clearing storage: ' + error.message, true);
+            }
+        }
+    </script>
+</body>
+</html>

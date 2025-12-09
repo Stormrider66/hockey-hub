@@ -1,0 +1,232 @@
+{
+  "dashboard": {
+    "title": "Trening",
+    "overview": "Pregled treninga",
+    "todaysSessions": "Današnje vadbe",
+    "upcomingSessions": "Prihajajoče vadbe",
+    "recentActivity": "Nedavna aktivnost",
+    "quickActions": "Hitra dejanja"
+  },
+  "sessions": {
+    "title": "Treningi",
+    "create": "Ustvari trening",
+    "edit": "Uredi trening",
+    "delete": "Izbriši trening",
+    "schedule": "Urnik",
+    "types": {
+      "strength": "Moč",
+      "cardio": "Kardio",
+      "skills": "Veščine",
+      "tactical": "Taktika",
+      "recovery": "Regeneracija",
+      "testing": "Testiranje"
+    },
+    "fields": {
+      "title": "Naziv treninga",
+      "type": "Tip",
+      "date": "Datum",
+      "time": "Čas",
+      "duration": "Trajanje",
+      "location": "Lokacija",
+      "coach": "Trener",
+      "participants": "Udeleženci",
+      "equipment": "Potrebna oprema",
+      "notes": "Opombe"
+    },
+    "status": {
+      "scheduled": "Načrtovan",
+      "inProgress": "V teku",
+      "completed": "Zaključen",
+      "cancelled": "Preklican"
+    }
+  },
+  "programs": {
+    "title": "Programi treninga",
+    "create": "Ustvari program",
+    "edit": "Uredi program",
+    "assign": "Dodeli program",
+    "templates": "Predloge",
+    "phases": {
+      "preparation": "Pripravljalno obdobje",
+      "preseason": "Predsezona",
+      "inseason": "Tekmovalna sezona",
+      "postseason": "Po sezoni",
+      "offseason": "Obdobje počitka"
+    },
+    "focus": {
+      "general": "Splošno",
+      "strength": "Moč",
+      "speed": "Hitrost",
+      "endurance": "Vzdržljivost",
+      "power": "Eksplozivnost",
+      "flexibility": "Gibljivost",
+      "rehabilitation": "Rehabilitacija"
+    }
+  },
+  "exercises": {
+    "title": "Vaje",
+    "library": "Knjižnica vaj",
+    "search": "Iskanje vaj",
+    "categories": {
+      "warmup": "Ogrevanje",
+      "main": "Glavne vaje",
+      "cooldown": "Ohlajanje",
+      "stretching": "Raztezanje",
+      "strength": "Krepilne",
+      "cardio": "Kardio",
+      "skill": "Tehnične",
+      "tactical": "Taktične"
+    },
+    "equipment": {
+      "none": "Brez opreme",
+      "weights": "Uteži",
+      "bands": "Elastike",
+      "cones": "Stožci",
+      "sticks": "Palice",
+      "pucks": "Plošči",
+      "boards": "Table",
+      "ladders": "Koordinacijske lestve",
+      "medicine": "Medicinske žoge"
+    }
+  },
+  "workouts": {
+    "title": "Vadbe",
+    "log": "Dnevnik vadbe",
+    "history": "Zgodovina",
+    "metrics": {
+      "sets": "Serije",
+      "reps": "Ponovitve",
+      "weight": "Teža",
+      "time": "Čas",
+      "distance": "Razdalja",
+      "speed": "Hitrost",
+      "heartRate": "Srčni utrip",
+      "calories": "Kalorije"
+    },
+    "intensity": {
+      "low": "Nizka",
+      "moderate": "Zmerna",
+      "high": "Visoka",
+      "maximum": "Maksimalna"
+    }
+  },
+  "performance": {
+    "title": "Uspešnost",
+    "tracking": "Sledenje",
+    "analysis": "Analiza",
+    "reports": "Poročila",
+    "metrics": {
+      "strength": "Moč",
+      "speed": "Hitrost",
+      "endurance": "Vzdržljivost",
+      "flexibility": "Gibljivost",
+      "power": "Eksplozivnost",
+      "agility": "Agilnost",
+      "balance": "Ravnotežje",
+      "coordination": "Koordinacija"
+    },
+    "tests": {
+      "beep": "Beep test",
+      "sprint": "Test sprinta",
+      "jump": "Test skoka",
+      "strength": "Test moči",
+      "flexibility": "Test gibljivosti",
+      "balance": "Test ravnotežja"
+    }
+  },
+  "recovery": {
+    "title": "Regeneracija",
+    "methods": {
+      "rest": "Počitek",
+      "stretching": "Raztezanje",
+      "massage": "Masaža",
+      "ice": "Led",
+      "compression": "Kompresija",
+      "elevation": "Dvigovanje",
+      "hydration": "Hidracija",
+      "nutrition": "Prehrana",
+      "sleep": "Spanje"
+    },
+    "monitoring": {
+      "fatigue": "Utrujenost",
+      "soreness": "Bolečine v mišicah",
+      "mood": "Razpoloženje",
+      "energy": "Nivo energije",
+      "sleep": "Kvaliteta spanja",
+      "stress": "Nivo stresa"
+    }
+  },
+  "planning": {
+    "title": "Načrtovanje",
+    "calendar": "Koledar treningov",
+    "periodization": "Periodizacija",
+    "macrocycle": "Makrocikel",
+    "mesocycle": "Mezocikel",
+    "microcycle": "Mikrocikel",
+    "loadManagement": "Upravljanje obremenitve",
+    "peaking": "Časovno usklajevanje forme"
+  },
+  "team": {
+    "title": "Ekipni trening",
+    "drills": "Ekipne vaje",
+    "formations": "Formacije",
+    "tactics": "Taktike",
+    "systems": {
+      "offensive": "Napadalni sistemi",
+      "defensive": "Obrambni sistemi",
+      "transition": "Prehodi",
+      "specialTeams": "Posebne formacije"
+    }
+  },
+  "individual": {
+    "title": "Individualni trening",
+    "personalizedPlan": "Osebni načrt",
+    "skillDevelopment": "Razvoj veščin",
+    "weaknessImprovement": "Izboljšanje slabosti",
+    "strengthOptimization": "Optimizacija prednosti"
+  },
+  "nutrition": {
+    "title": "Športna prehrana",
+    "mealPlanning": "Načrtovanje obrokov",
+    "supplements": "Prehranski dodatki",
+    "hydration": "Hidracija",
+    "timing": {
+      "preWorkout": "Pred vadbo",
+      "duringWorkout": "Med vadbo",
+      "postWorkout": "Po vadbi",
+      "daily": "Dnevno"
+    }
+  },
+  "equipment": {
+    "title": "Trenažna oprema",
+    "required": "Zahtevano",
+    "optional": "Opcijsko",
+    "maintenance": "Vzdrževanje",
+    "inventory": "Inventar"
+  },
+  "safety": {
+    "title": "Varnost",
+    "guidelines": "Smernice",
+    "warmupProtocol": "Protokol ogrevanja",
+    "injuryPrevention": "Preprečevanje poškodb",
+    "emergencyProcedures": "Postopki v sili",
+    "firstAid": "Prva pomoč"
+  },
+  "reports": {
+    "title": "Poročila o treningu",
+    "attendance": "Prisotnost",
+    "progress": "Napredek",
+    "performance": "Uspešnost",
+    "comparison": "Primerjava",
+    "export": "Izvozi",
+    "share": "Deli"
+  },
+  "messages": {
+    "sessionCreated": "Trening uspešno ustvarjen",
+    "sessionUpdated": "Trening uspešno posodobljen",
+    "sessionDeleted": "Trening uspešno izbrisan",
+    "programAssigned": "Program uspešno dodeljen",
+    "workoutLogged": "Vadba uspešno zabeležena",
+    "reportGenerated": "Poročilo uspešno ustvarjeno"
+  }
+}

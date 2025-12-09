@@ -1,0 +1,142 @@
+{
+  "dashboard": {
+    "title": "Klubbadministrator dashbord",
+    "subtitle": "Organisasjonsledelse og oversikt",
+    "welcome": "Velkommen, {{name}}",
+    "organizationOverview": "Organisasjonsoversikt",
+    "quickActions": "Hurtighandlinger",
+    "stats": {
+      "teams": "Lag",
+      "activeMembers": "Aktive medlemmer",
+      "coachingStaff": "Trenerstab",
+      "upcomingEvents": "Kommende arrangementer",
+      "attendance": "Oppmøte",
+      "members": "Medlemmer"
+    }
+  },
+  "organization": {
+    "title": "Organisasjonsledelse",
+    "details": "Organisasjonsdetaljer",
+    "settings": "Organisasjonsinnstillinger",
+    "structure": "Organisasjonsstruktur",
+    "departments": "Avdelinger",
+    "policies": "Retningslinjer & prosedyrer",
+    "branding": "Merkevare & identitet",
+    "contact": "Kontaktinformasjon"
+  },
+  "teams": {
+    "title": "Lagsadministrasjon",
+    "all": "Alle lag",
+    "create": "Opprett lag",
+    "edit": "Rediger lag",
+    "delete": "Slett lag",
+    "roster": "Lagsstaller",
+    "assignments": "Stabstildelinger",
+    "categories": {
+      "senior": "Seniorlag",
+      "junior": "Juniorlag",
+      "youth": "Ungdomslag",
+      "academy": "Akademilag",
+      "womens": "Kvinnelag"
+    }
+  },
+  "staff": {
+    "title": "Personaladministrasjon",
+    "all": "Alt personale",
+    "add": "Legg til ansatt",
+    "roles": "Personalroller",
+    "permissions": "Tillatelser",
+    "contracts": "Kontrakter",
+    "evaluation": "Prestasjonsevaluering",
+    "training": "Opplæring & sertifisering",
+    "types": {
+      "coaching": "Trenerstab",
+      "medical": "Medisinsk personale",
+      "administrative": "Administrativt",
+      "support": "Støttepersonale",
+      "volunteer": "Frivillige"
+    }
+  },
+  "facilities": {
+    "title": "Anleggsadministrasjon",
+    "overview": "Anleggsoversikt",
+    "booking": "Anleggsreservasjon",
+    "maintenance": "Vedlikeholdsplan",
+    "calendar": "Anleggskalender",
+    "utilization": "Utnyttelsesrapporter",
+    "types": {
+      "mainRink": "Hovedbane",
+      "practiceRink": "Treningsbane",
+      "gym": "Gym/styrkerom",
+      "meetingRooms": "Møterom",
+      "lockerRooms": "Garderober",
+      "medicalRoom": "Medisinsk rom"
+    }
+  },
+  "finance": {
+    "title": "Økonomistyring",
+    "overview": "Økonomioversikt",
+    "budget": "Budsjettstyring",
+    "revenue": "Inntektskilder",
+    "expenses": "Utgifter",
+    "reports": "Økonomirapporter",
+    "invoicing": "Fakturering",
+    "sponsorships": "Sponsorater",
+    "grants": "Tilskudd & finansiering"
+  },
+  "events": {
+    "title": "Arrangementsadministrasjon",
+    "calendar": "Arrangementskalender",
+    "create": "Opprett arrangement",
+    "upcoming": "Kommende arrangementer",
+    "past": "Tidligere arrangementer",
+    "types": {
+      "games": "Kamper",
+      "tournaments": "Turneringer",
+      "fundraisers": "Innsamlingsaksjoner",
+      "meetings": "Møter",
+      "social": "Sosiale arrangementer",
+      "training": "Treningsleirer"
+    }
+  },
+  "communication": {
+    "title": "Kommunikasjon",
+    "announcements": "Kunngjøringer",
+    "newsletters": "Nyhetsbrev",
+    "social": "Sosiale medier",
+    "website": "Nettstedoppdateringer",
+    "press": "Pressemeldinger",
+    "internal": "Intern kommunikasjon",
+    "broadcast": "Send melding"
+  },
+  "compliance": {
+    "title": "Etterlevelse & styring",
+    "policies": "Retningslinjer",
+    "procedures": "Prosedyrer",
+    "regulations": "Forskrifter",
+    "certifications": "Sertifiseringer",
+    "audits": "Revisjoner",
+    "reports": "Samsvarsrapporter",
+    "training": "Samsvarsopplæring"
+  },
+  "reports": {
+    "title": "Rapporter & analyse",
+    "dashboard": "Lederdashbord",
+    "operational": "Operasjonelle rapporter",
+    "financial": "Økonomiske rapporter",
+    "performance": "Prestasjonsmetrikk",
+    "custom": "Tilpassede rapporter",
+    "export": "Eksporter data",
+    "schedule": "Planlegg rapporter"
+  },
+  "members": {
+    "title": "Medlemsadministrasjon",
+    "directory": "Medlemskatalog",
+    "registration": "Registrering",
+    "renewal": "Medlemsfornyelse",
+    "benefits": "Medlemsfordeler",
+    "communication": "Medlemskommunikasjon",
+    "statistics": "Medlemsstatistikk",
+    "byRole": "Medlemmer etter rolle"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "general": {
+    "title": "Oups! Quelque chose s'est mal passé",
+    "subtitle": "Nous sommes désolés pour le désagrément",
+    "tryAgain": "Réessayer",
+    "goHome": "Aller au tableau de bord",
+    "contactSupport": "Contacter le support"
+  },
+  "http": {
+    "400": {
+      "title": "Mauvaise demande",
+      "message": "La demande n'a pas pu être comprise par le serveur."
+    },
+    "401": {
+      "title": "Non autorisé",
+      "message": "Vous devez vous connecter pour accéder à cette ressource."
+    },
+    "403": {
+      "title": "Interdit",
+      "message": "Vous n'avez pas la permission d'accéder à cette ressource."
+    },
+    "404": {
+      "title": "Page non trouvée",
+      "message": "La page que vous recherchez n'existe pas."
+    },
+    "409": {
+      "title": "Conflit",
+      "message": "La demande entre en conflit avec l'état actuel du serveur."
+    },
+    "422": {
+      "title": "Erreur de validation",
+      "message": "Les données fournies sont invalides."
+    },
+    "429": {
+      "title": "Trop de demandes",
+      "message": "Vous avez fait trop de demandes. Veuillez réessayer plus tard."
+    },
+    "500": {
+      "title": "Erreur du serveur",
+      "message": "Une erreur inattendue s'est produite sur nos serveurs."
+    },
+    "502": {
+      "title": "Mauvaise passerelle",
+      "message": "Le serveur a reçu une réponse invalide."
+    },
+    "503": {
+      "title": "Service indisponible",
+      "message": "Le service est temporairement indisponible. Veuillez réessayer plus tard."
+    },
+    "504": {
+      "title": "Délai d'attente de la passerelle",
+      "message": "Le serveur a mis trop de temps à répondre."
+    }
+  },
+  "network": {
+    "offline": {
+      "title": "Pas de connexion Internet",
+      "message": "Veuillez vérifier votre connexion Internet et réessayer."
+    },
+    "timeout": {
+      "title": "Délai d'attente de la demande",
+      "message": "La demande a pris trop de temps. Veuillez réessayer."
+    },
+    "connectionFailed": {
+      "title": "Échec de la connexion",
+      "message": "Impossible de se connecter au serveur. Veuillez réessayer."
+    }
+  },
+  "application": {
+    "dataLoad": {
+      "title": "Échec du chargement des données",
+      "message": "Nous n'avons pas pu charger les données demandées. Veuillez actualiser la page."
+    },
+    "dataSave": {
+      "title": "Échec de la sauvegarde",
+      "message": "Vos modifications n'ont pas pu être enregistrées. Veuillez réessayer."
+    },
+    "fileUpload": {
+      "title": "Échec du téléversement",
+      "message": "Le fichier n'a pas pu être téléversé. Veuillez vérifier le fichier et réessayer."
+    },
+    "permissionDenied": {
+      "title": "Permission refusée",
+      "message": "Vous n'avez pas la permission d'effectuer cette action."
+    },
+    "sessionExpired": {
+      "title": "Session expirée",
+      "message": "Votre session a expiré. Veuillez vous reconnecter."
+    },
+    "maintenanceMode": {
+      "title": "En maintenance",
+      "message": "Nous effectuons une maintenance planifiée. Veuillez revenir bientôt."
+    }
+  },
+  "form": {
+    "submission": {
+      "title": "Erreur de soumission du formulaire",
+      "message": "Il y a eu une erreur lors de la soumission du formulaire. Veuillez vérifier vos données et réessayer."
+    },
+    "validation": {
+      "title": "Erreur de validation",
+      "message": "Veuillez corriger les erreurs dans le formulaire."
+    }
+  },
+  "payment": {
+    "failed": {
+      "title": "Échec du paiement",
+      "message": "Votre paiement n'a pas pu être traité. Veuillez essayer un autre mode de paiement."
+    },
+    "declined": {
+      "title": "Paiement refusé",
+      "message": "Votre paiement a été refusé. Veuillez vérifier vos informations de paiement."
+    },
+    "insufficientFunds": {
+      "title": "Fonds insuffisants",
+      "message": "Votre mode de paiement a des fonds insuffisants."
+    }
+  },
+  "calendar": {
+    "conflictDetected": {
+      "title": "Conflit d'horaire",
+      "message": "Ce créneau horaire entre en conflit avec un autre événement."
+    },
+    "bookingFailed": {
+      "title": "Échec de la réservation",
+      "message": "Impossible de réserver le créneau horaire sélectionné."
+    },
+    "facilityUnavailable": {
+      "title": "Installation non disponible",
+      "message": "L'installation sélectionnée n'est pas disponible à ce moment."
+    }
+  },
+  "training": {
+    "sessionNotFound": {
+      "title": "Session d'entraînement introuvable",
+      "message": "La session d'entraînement que vous recherchez n'existe pas."
+    },
+    "alreadyStarted": {
+      "title": "Session déjà commencée",
+      "message": "Cette session d'entraînement a déjà commencé."
+    },
+    "capacityReached": {
+      "title": "Session complète",
+      "message": "Cette session d'entraînement a atteint sa capacité maximale."
+    }
+  },
+  "communication": {
+    "messageSendFailed": {
+      "title": "Message non envoyé",
+      "message": "Votre message n'a pas pu être envoyé. Veuillez réessayer."
+    },
+    "notificationFailed": {
+      "title": "Échec de la notification",
+      "message": "Impossible d'envoyer des notifications en ce moment."
+    }
+  },
+  "actions": {
+    "retry": "Réessayer",
+    "dismiss": "Fermer",
+    "details": "Voir les détails",
+    "report": "Signaler le problème",
+    "refresh": "Actualiser la page"
+  }
+}

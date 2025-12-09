@@ -1,0 +1,3507 @@
+{
+  "marketplace": {
+    "title": "Template Marketplace",
+    "description": "Discover and download workout templates created by professional trainers and the community",
+    "filters": "Filters",
+    "filterTemplates": "Filter Templates",
+    "filterDescription": "Narrow down templates to find exactly what you need",
+    "categories": "Categories",
+    "difficulty": "Difficulty",
+    "duration": "Duration",
+    "minDuration": "Minimum Duration",
+    "maxDuration": "Maximum Duration",
+    "minimumRating": "Minimum Rating",
+    "price": "Price",
+    "allPrices": "All Prices",
+    "freeOnly": "Free Only",
+    "premiumOnly": "Premium Only",
+    "clearFilters": "Clear All Filters",
+    "templates": "templates",
+    "browse": "Browse",
+    "recommended": "Recommended",
+    "trending": "Trending",
+    "analytics": "Analytics",
+    "sortRelevance": "Relevance",
+    "sortRating": "Rating",
+    "sortPopularity": "Popularity",
+    "sortNewest": "Newest",
+    "sortPrice": "Price",
+    "searchPlaceholder": "Search templates by name, description, or tags...",
+    "noTemplatesFound": "No templates found",
+    "tryAdjustingFilters": "Try adjusting your search terms or filters"
+  },
+  "recommendations": {
+    "topPicks": "Top Picks for You",
+    "topPicksDescription": "AI-selected templates based on your profile and preferences",
+    "recommended": "Recommended",
+    "contextTitle": "Your Training Context",
+    "contextDescription": "Recommendations are personalized based on these factors",
+    "noRecommendations": "No Recommendations Available",
+    "noRecommendationsDescription": "We need more information about your preferences to provide personalized recommendations",
+    "exploreTemplates": "Explore Templates",
+    "allRecommendations": "All Recommendations"
+  },
+  "rotation": {
+    "integrationDemo": "Rotation System Integration Demo",
+    "integrationDemoDescription": "Demonstrates how the rotation system integrates with existing TrainingSessionViewer infrastructure without code duplication.",
+    "launchDemo": "Launch Demo",
+    "rotationCoordinator": "Rotation Coordinator",
+    "liveSessionMonitoring": "Live Session Monitoring",
+    "backToOverview": "Back to Overview",
+    "live": "LIVE",
+    "currentStation": "Current Station",
+    "nextStation": "Next Station",
+    "rotationProgress": "Rotation Progress",
+    "currentRotation": "Current Rotation",
+    "timeRemaining": "Time Remaining",
+    "activeStations": "Active Stations",
+    "totalParticipants": "Total Participants",
+    "rotation": "Rotation",
+    "players": "players",
+    "monitor": "Monitor",
+    "currentWorkout": "Current Workout",
+    "intervalTraining": "Interval Training",
+    "strengthTraining": "Strength Training",
+    "freeformWorkout": "Freeform Workout",
+    "restActivity": "Rest Activity",
+    "sessionProgress": "Session Progress",
+    "noGroupAssigned": "No group assigned",
+    "active": "Active",
+    "startRotation": "Start Rotation",
+    "pauseRotation": "Pause Rotation",
+    "emergencyStop": "Emergency Stop",
+    "resetRotation": "Reset Rotation",
+    "transitionWarning": "Rotation transition in {{seconds}} seconds",
+    "transitionNow": "Moving to rotation {{rotation}} - transition now!",
+    "rotationStarted": "Rotation session started successfully",
+    "sessionComplete": "All rotations completed",
+    "allRotationsComplete": "All rotations have been completed successfully",
+    "emergencyStopActivated": "Emergency stop activated - all sessions paused",
+    "acknowledge": "Acknowledge",
+    "warningsDetected": "Warnings detected",
+    "scheduleValidationFailed": "Schedule Validation Failed",
+    "errors": "Errors",
+    "warnings": "Warnings",
+    "backToBuilder": "Back to Builder",
+    "overallProgress": "Overall Progress",
+    "currentPositions": "Current Group Positions",
+    "coordinator": "Coordinator",
+    "analytics": "Analytics",
+    "rotationNotStarted": "Rotation not started",
+    "startRotationToMonitor": "Start the rotation to begin monitoring sessions",
+    "rotationSummary": "Rotation Summary",
+    "completedRotations": "Completed Rotations",
+    "totalSessions": "Total Sessions",
+    "averageRotationTime": "Average Rotation Time",
+    "rotationHistory": "Rotation History",
+    "sessions": "Sessions",
+    "noAnalyticsYet": "No Analytics Yet",
+    "analyticsAvailableAfterStart": "Analytics will be available after starting the rotation",
+    "status": {
+      "preparing": "Preparing",
+      "active": "Active",
+      "paused": "Paused",
+      "completed": "Completed",
+      "transitioning": "Transitioning"
+    }
+  },
+  "ai": {
+    "title": "AI Insights & Optimization",
+    "lastUpdated": "Last updated",
+    "confidence": "Confidence",
+    "settings": "AI Settings",
+    "timeframe": {
+      "24h": "Last 24 hours",
+      "7d": "Last 7 days",
+      "30d": "Last 30 days"
+    },
+    "summary": {
+      "totalRecommendations": "Total Recommendations",
+      "highPriority": "High Priority",
+      "activeAnomalies": "Active Anomalies",
+      "opportunities": "Optimization Opportunities"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "recommendations": "Recommendations",
+      "anomalies": "Anomalies",
+      "predictions": "Predictions"
+    },
+    "overview": {
+      "categories": "Insight Categories",
+      "recentActivity": "Recent Activity",
+      "viewDetails": "View Details",
+      "todaysSchedule": "Today's Schedule"
+    },
+    "recommendations": {
+      "title": "AI Recommendations",
+      "filterAll": "All Categories",
+      "filterHigh": "High Priority",
+      "filterMedium": "Medium Priority",
+      "filterLow": "Low Priority",
+      "implement": "Implement"
+    },
+    "anomalies": {
+      "title": "Detected Anomalies",
+      "filterAll": "All Severities",
+      "filterHigh": "High Severity",
+      "filterMedium": "Medium Severity",
+      "filterLow": "Low Severity",
+      "investigate": "Investigate"
+    },
+    "predictions": {
+      "title": "Performance Predictions",
+      "comingSoon": "Advanced predictive analytics coming soon"
+    },
+    "categories": {
+      "workoutOptimization": "Workout Optimization",
+      "loadBalancing": "Load Balancing",
+      "personalization": "Personalization",
+      "anomalyDetection": "Anomaly Detection",
+      "teamComposition": "Team Composition"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "severity": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "critical": "Critical"
+    }
+  },
+  "optimization": {
+    "suggestions": {
+      "title": "Optimization Suggestions",
+      "subtitle": "AI-powered recommendations to improve workout effectiveness",
+      "noSuggestions": "No Suggestions Available",
+      "noSuggestionsDesc": "All workout parameters are optimized"
+    },
+    "filters": {
+      "allCategories": "All Categories",
+      "showApplied": "Show Applied"
+    },
+    "categories": {
+      "duration": "Duration",
+      "intensity": "Intensity",
+      "exerciseOrder": "Exercise Order",
+      "restPeriods": "Rest Periods",
+      "volume": "Volume",
+      "progression": "Progression",
+      "rest_periods": "Rest Periods",
+      "exercise_order": "Exercise Order"
+    },
+    "sort": {
+      "impact": "Sort by Impact",
+      "confidence": "Sort by Confidence",
+      "complexity": "Sort by Complexity"
+    },
+    "complexity": {
+      "low": "Low Complexity",
+      "medium": "Medium Complexity",
+      "high": "High Complexity"
+    },
+    "current": "Current",
+    "suggested": "Suggested",
+    "metrics": {
+      "confidence": "Confidence",
+      "improvement": "Improvement",
+      "safety": "Safety",
+      "timeToImplement": "Time to Implement"
+    },
+    "reasoning": "AI Reasoning",
+    "prerequisites": "Prerequisites",
+    "potentialRisks": "Potential Risks",
+    "actions": {
+      "apply": "Apply",
+      "details": "Details",
+      "dismiss": "Dismiss",
+      "close": "Close"
+    },
+    "status": {
+      "applied": "Applied"
+    },
+    "appliedAt": "Applied",
+    "details": {
+      "effectiveness": "Effectiveness",
+      "current": "Current",
+      "predicted": "Predicted",
+      "improvement": "Improvement",
+      "additionalMetrics": "Additional Metrics",
+      "fatigueScore": "Fatigue Score",
+      "adaptationPotential": "Adaptation Potential",
+      "injuryRisk": "Injury Risk",
+      "timeEfficiency": "Time Efficiency",
+      "alternatives": "Alternative Approaches",
+      "pros": "Pros",
+      "cons": "Cons"
+    }
+  },
+  "dashboard": {
+    "title": "Physical Trainer Dashboard",
+    "subtitle": "Training & Performance Management",
+    "welcome": "Welcome, {{name}}",
+    "todaySessions": "Today's Training Sessions",
+    "playerProgress": "Player Progress Overview",
+    "tabs": {
+      "overview": "Overview",
+      "calendar": "Calendar",
+      "sessions": "Sessions",
+      "library": "Library",
+      "testing": "Testing",
+      "status": "Status",
+      "templates": "Templates",
+      "medical": "Medical",
+      "analytics": "Analytics",
+      "ai": "AI"
+    },
+    "quickStats": {
+      "todaysSessions": "Today's Sessions",
+      "activeNow": "Active Now",
+      "playerReadiness": "Player Readiness",
+      "completedToday": "Completed Today",
+      "injuryRisk": "Injury Risk Alert",
+      "loadDistribution": "Load Distribution",
+      "recoveryStatus": "Recovery Status",
+      "performanceTrending": "Performance Trending",
+      "totalPlayers": "{{count}} total players",
+      "noActiveSession": "No active session",
+      "teamAverage": "Team average",
+      "upcoming": "{{count}} upcoming",
+      "activeSessions": "{{count}} active session",
+      "activeSessions_other": "{{count}} active sessions",
+      "playersReady": "{{ready}} of {{total}} ready"
+    }
+  },
+  "recentWorkouts": {
+    "title": "Recent Workouts",
+    "description": "Your recently created workouts",
+    "empty": "No recent workouts yet",
+    "workouts": "workouts",
+    "uses": "uses",
+    "duplicate": "Duplicate",
+    "edit": "Edit",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites",
+    "viewDetails": "View details"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "subtitle": "We encountered an error while building your workout",
+    "errors": {
+      "network": {
+        "title": "Network Connection Issue",
+        "description": "Unable to connect to the server",
+        "suggestions": [
+          "Check your internet connection",
+          "Wait a moment and try again",
+          "Contact your network administrator"
+        ]
+      },
+      "auth": {
+        "title": "Authentication Issue",
+        "description": "Your session may have expired",
+        "suggestions": [
+          "Sign out and sign back in",
+          "Check your permissions",
+          "Contact your administrator"
+        ]
+      },
+      "validation": {
+        "title": "Data Validation Error",
+        "description": "There's an issue with your workout data",
+        "suggestions": [
+          "Review your input data",
+          "Check for required fields",
+          "Try with simpler data first"
+        ]
+      },
+      "system": {
+        "title": "System Error",
+        "description": "An internal system error occurred",
+        "suggestions": [
+          "Refresh the page",
+          "Clear your browser cache",
+          "Try a different browser"
+        ]
+      },
+      "unknown": {
+        "title": "Unexpected Error",
+        "description": "An unexpected error occurred",
+        "suggestions": [
+          "Refresh the page",
+          "Clear your browser cache",
+          "Try a different browser"
+        ]
+      }
+    },
+    "actions": {
+      "tryAgain": "Try Again",
+      "retrying": "Retrying...",
+      "restoreAutoSave": "Restore Auto-save",
+      "startOver": "Start Over",
+      "reportIssue": "Report Issue",
+      "maxRetriesReached": "Maximum retries reached",
+      "maxRetriesMessage": "Please refresh the page or contact support"
+    },
+    "autoSave": {
+      "available": "Auto-save available",
+      "restored": "Auto-save restored",
+      "description": "We found an auto-saved version of your work. Would you like to restore it?",
+      "success": "Your work has been recovered"
+    }
+  },
+  "teamSelector": {
+    "team": "Team",
+    "selectTeam": "Select Team",
+    "allTeams": "All Teams",
+    "personal": "Personal View"
+  },
+  "training": {
+    "title": "Training Programs",
+    "create": "Create Program",
+    "templates": "Training Templates",
+    "active": "Active Programs",
+    "scheduled": "Scheduled Sessions",
+    "history": "Training History",
+    "types": {
+      "strength": "Strength Training",
+      "cardio": "Cardiovascular",
+      "flexibility": "Flexibility",
+      "agility": "Agility",
+      "recovery": "Recovery",
+      "rehabilitation": "Rehabilitation",
+      "testing": "Fitness Testing"
+    },
+    "intensity": {
+      "low": "Low",
+      "medium": "Medium",
+      "moderate": "Moderate",
+      "high": "High",
+      "max": "Maximum",
+      "maximum": "Maximum"
+    },
+    "sessionTypes": {
+      "recoverySession": "Recovery Session",
+      "strengthTraining": "Strength Training",
+      "cardioIntervals": "Cardio Intervals",
+      "speedAgility": "Speed & Agility",
+      "powerDevelopment": "Power Development",
+      "sprintTraining": "Sprint Training",
+      "generalTraining": "General Training",
+      "trainingSession": "Training Session",
+      "personalTraining": "Personal Training",
+      "rehabSession": "Rehab Session",
+      "Morning Strength Training": "Morning Strength Training",
+      "Afternoon Recovery": "Afternoon Recovery",
+      "Hockey Circuit Training": "Hockey Circuit Training",
+      "Agility & Speed Development": "Agility & Speed Development",
+      "morningStrengthTraining": "Morning Strength Training",
+      "afternoonRecovery": "Afternoon Recovery",
+      "hockeyCircuitTraining": "Hockey Circuit Training",
+      "explosivePowerTraining": "Explosive Power Training",
+      "injuryPreventionProgram": "Injury Prevention Program",
+      "teamConditioningSession": "Team Conditioning Session",
+      "individualSkillDevelopment": "Individual Skill Development",
+      "preGameActivation": "Pre-Game Activation",
+      "postGameRecovery": "Post-Game Recovery",
+      "offSeasonStrengthProgram": "Off-Season Strength Program",
+      "agilityTraining": "Agility Training",
+      "hybridWorkout": "Hybrid Workout"
+    },
+    "sessionDescriptions": {
+      "activeRecoveryMobility": "Active recovery & mobility",
+      "olympicLiftsPlyometrics": "Olympic lifts & plyometrics",
+      "highIntensityIntervalTraining": "High-intensity interval training",
+      "sprintDrillsLadderWork": "Sprint drills & ladder work",
+      "explosivePowerTraining": "Explosive power training",
+      "individualSprintIntervals": "Individual sprint intervals",
+      "recoveryMobilityFocus": "Recovery & mobility focus",
+      "moderateEffortSkillDevelopment": "Moderate effort, skill development",
+      "highIntensityPerformanceFocus": "High intensity, performance focus",
+      "peakPerformanceTesting": "Peak performance testing",
+      "personalRecoveryProgram": "Sidney Crosby - Recovery program",
+      "kneeRehabilitation": "Nathan MacKinnon - Knee rehabilitation",
+      "speedDevelopmentProgram": "Speed development program"
+    },
+    "locations": {
+      "gym": "Gym",
+      "weightRoom": "Weight Room",
+      "field": "Field",
+      "track": "Track",
+      "pool": "Pool",
+      "iceRink": "Ice Rink",
+      "outdoors": "Outdoors",
+      "trainingCenter": "Training Center",
+      "medicalCenter": "Medical Center",
+      "mainGym": "Main Gym",
+      "recoveryCenter": "Recovery Center",
+      "fieldHouse": "Field House"
+    },
+    "teams": {
+      "allTeams": "All Teams",
+      "personalView": "Personal View",
+      "aTeam": "A-Team",
+      "j20Team": "J20 Team",
+      "J20": "J20 Team",
+      "u18Team": "U18 Team",
+      "u16Team": "U16 Team",
+      "womensTeam": "Women's Team",
+      "individual": "Individual",
+      "team": "Team",
+      "seniorTeam": "Senior Team",
+      "Senior Team": "Senior Team",
+      "Junior Team": "Junior Team",
+      "juniorTeam": "Junior Team"
+    }
+  },
+  "sessions": {
+    "title": "Training Sessions",
+    "schedule": "Schedule Session",
+    "current": "Current Session",
+    "upcoming": "Upcoming Sessions",
+    "completed": "Completed Sessions",
+    "cancel": "Cancel",
+    "reschedule": "Reschedule",
+    "duration": "Session Duration",
+    "participants": "Participants",
+    "newSession": "New Session",
+    "intensity": "Intensity",
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "upcoming": "Upcoming"
+    },
+    "launch": "Launch",
+    "launchSession": "Launch Session",
+    "viewWorkout": "View Workout",
+    "viewDetails": "View Details",
+    "sessionBundles": "Session Bundles",
+    "sessionBundlesDescription": "Manage bulk training sessions across multiple teams and dates",
+    "createBundle": "Create Bundle",
+    "createMultipleSessions": "Create Multiple Sessions",
+    "configureAndLaunch": "Configure & Launch",
+    "subtitle": "Manage and schedule training sessions",
+    "quickSchedule": "Quick Schedule Session",
+    "viewCalendar": "View Calendar",
+    "sessionScheduled": "Session scheduled successfully",
+    "createNewSession": "Create New Session",
+    "workoutTypeRequired": "Please select a workout type",
+    "selectWorkoutType": "Select Workout Type",
+    "createNewSessionDescription": "Choose the type of workout you'd like to create",
+    "sessionTypes": {
+      "strength": {
+        "name": "Strength",
+        "description": "Build muscle and power with targeted exercises"
+      },
+      "conditioning": {
+        "name": "Conditioning",
+        "description": "Improve cardiovascular endurance and stamina"
+      },
+      "hybrid": {
+        "name": "Hybrid",
+        "description": "Combine strength exercises with cardio intervals"
+      },
+      "agility": {
+        "name": "Agility",
+        "description": "Enhance speed, coordination, and reaction time"
+      }
+    },
+    "recentlyUsed": "Recently Used",
+    "allTypes": "All Types",
+    "recentWorkouts": "Recent Workouts",
+    "recentWorkoutsDescription": "Quickly access your recently created workouts",
+    "createWorkout": "Create Workout",
+    "createWorkoutDescription": "Build a new workout from scratch or use a template",
+    "scheduleSession": "Schedule Session",
+    "scheduleDescription": "Plan and schedule training sessions for your teams",
+    "todayScheduled": "Today's Sessions",
+    "activeNow": "Active Now",
+    "viewSchedule": "View Full Schedule",
+    "bulkAssignment": "Bulk Assignment",
+    "bulkDescription": "Assign workouts to multiple players or teams at once",
+    "assignWorkouts": "Assign Workouts",
+    "loadError": "Failed to load workout for editing",
+    "launchTrainingSession": "Launch Training Session",
+    "totalMinutes": "Total Minutes",
+    "playersSelected": "{{count}} Players Selected",
+    "sessionDuration": "Session Duration",
+    "intensityLevel": "Intensity Level",
+    "warmupDuration": "Warm-up Duration",
+    "cooldownDuration": "Cool-down Duration",
+    "trainingFocusAreas": "Training Focus Areas",
+    "selectPlayers": "Select Players",
+    "equipmentNeeded": "Equipment Needed",
+    "sessionNotes": "Session Notes",
+    "addInstructions": "Add special instructions or notes...",
+    "launching": "Launching...",
+    "minutes": "minutes",
+    "hours": "hours",
+    "viewer": {
+      "title": "Training Session Viewer",
+      "noSessionsToday": "No training sessions scheduled for today",
+      "createFirstSession": "Create your first session"
+    },
+    "management": {
+      "title": "Training Session Management",
+      "subtitle": "Create, schedule and manage physical training sessions",
+      "schedule": "Schedule",
+      "bulkAssign": "Bulk Assign",
+      "buildSession": "Build Session",
+      "quickSchedule": "Quick Schedule",
+      "createWorkout": "Create Workout",
+      "selectWorkoutType": "Select workout type"
+    },
+    "createBuild": {
+      "title": "Create & Build",
+      "description": "Choose a workout type to start building",
+      "shortcut": "Ctrl+N",
+      "showLess": "Show Less",
+      "showAll": "Show All Types ({{count}} more)"
+    },
+    "thisWeek": "This week",
+    "lastUsed": "Last used",
+    "planSchedule": {
+      "title": "Plan & Schedule",
+      "description": "Bulk planning tools for efficient scheduling",
+      "sessionBundles": "Session Bundles",
+      "createBundle": "Create Bundle",
+      "quickActions": "Quick Actions",
+      "bulkAssignment": "Bulk Assignment",
+      "bulkAssignmentDesc": "Assign workouts to multiple teams",
+      "weeklyPlanner": "Weekly Planner",
+      "weeklyPlannerDesc": "Plan entire week at once",
+      "recurringSessions": "Recurring Sessions",
+      "recurringSessionsDesc": "Set up repeating workouts",
+      "saveTime": "Save 70% time",
+      "quickSchedulePreview": "Quick Schedule Preview",
+      "dragToSchedule": "Drag items to schedule"
+    },
+    "bundles": {
+      "preseason": {
+        "name": "Pre-season Package",
+        "description": "Build strength and endurance before season starts"
+      },
+      "inseason": {
+        "name": "In-season Routine",
+        "description": "Maintain fitness during competitive season"
+      },
+      "recovery": {
+        "name": "Recovery Week",
+        "description": "Active recovery and mobility focus"
+      }
+    },
+    "templatesHistory": {
+      "title": "Templates & History",
+      "favorites": "Favorites",
+      "recent": "Recent",
+      "team": "Team",
+      "all": "All",
+      "noTemplates": "No templates found",
+      "loadMore": "Load More Templates"
+    },
+    "templates": {
+      "use": "Use",
+      "edit": "Edit",
+      "duplicate": "Duplicate",
+      "favorite": "Favorite",
+      "unfavorite": "Unfavorite",
+      "usedTimes": "Used {{count}} times",
+      "duplicateSuccess": "Template duplicated successfully",
+      "duplicateError": "Failed to duplicate template"
+    }
+  },
+  "exercises": {
+    "title": "Exercise Library",
+    "subtitle": "Manage your exercise database with videos and instructions",
+    "search": "Search exercises...",
+    "categories": "Exercise Categories",
+    "create": "Add Exercise",
+    "favorite": "Favorite Exercises",
+    "equipment": "Equipment Needed",
+    "instructions": "Instructions",
+    "video": "Video Tutorial",
+    "exercisesCount": "exercises",
+    "totalExercises": "total exercises",
+    "withVideos": "with videos",
+    "loading": "Loading exercises...",
+    "noMatchingExercises": "No exercises found matching your criteria",
+    "noExercisesYet": "No exercises in the library yet",
+    "playVideo": "Play exercise video",
+    "noVideo": "No video available",
+    "edit": "Edit exercise",
+    "searchPlaceholder": "Search exercises by name, category, or equipment...",
+    "allCategories": "All Categories",
+    "focusAreas": {
+      "power": "Power",
+      "endurance": "Endurance",
+      "strength": "Strength",
+      "flexibility": "Flexibility",
+      "balance": "Balance",
+      "coordination": "Coordination",
+      "speed": "Speed",
+      "agility": "Agility"
+    },
+    "equipment": {
+      "none": "No Equipment",
+      "barbell": "Barbell",
+      "dumbbell": "Dumbbell",
+      "kettlebell": "Kettlebell",
+      "cables": "Cables",
+      "machine": "Machine",
+      "bands": "Resistance Bands",
+      "bodyweight": "Bodyweight",
+      "medicine_ball": "Medicine Ball",
+      "stability_ball": "Stability Ball",
+      "box": "Box/Platform",
+      "bench": "Bench",
+      "rack": "Rack",
+      "pullup_bar": "Pull-up Bar",
+      "trx": "TRX/Suspension",
+      "sled": "Sled",
+      "rope": "Rope",
+      "cone": "Cones",
+      "ladder": "Agility Ladder",
+      "hurdles": "Hurdles"
+    },
+    "strength": "Strength",
+    "conditioning": "Conditioning",
+    "agility": "Agility",
+    "mobility": "Mobility",
+    "form": {
+      "name": "Exercise Name",
+      "namePlaceholder": "e.g., Back Squat",
+      "category": "Category",
+      "sets": "Sets",
+      "reps": "Reps",
+      "duration": "Duration",
+      "restBetweenSets": "Rest Between Sets",
+      "intensity": "Intensity",
+      "equipment": "Equipment",
+      "selectEquipment": "Select equipment",
+      "video": "Video",
+      "videoUrlPlaceholder": "Video URL",
+      "uploadVideo": "Upload",
+      "videoAdded": "Video added successfully",
+      "notes": "Notes",
+      "notesPlaceholder": "Add coaching cues, form tips, or other notes...",
+      "optional": "Optional"
+    },
+    "validation": {
+      "nameRequired": "Exercise name is required",
+      "categoryRequired": "Please select a category",
+      "parametersRequired": "At least one parameter (sets, reps, duration, or distance) is required"
+    },
+    "messages": {
+      "createSuccess": "Exercise created successfully",
+      "createError": "Failed to create exercise. Please try again.",
+      "updateSuccess": "Exercise updated successfully", 
+      "updateError": "Failed to update exercise. Please try again.",
+      "deleteSuccess": "Exercise deleted successfully",
+      "deleteError": "Failed to delete exercise. Please try again."
+    },
+    "deleteDialog": {
+      "title": "Delete Exercise",
+      "description": "Are you sure you want to delete \"{{exerciseName}}\"? This action cannot be undone."
+    },
+    "export": {
+      "button": "Export",
+      "success": "Exercises exported successfully",
+      "error": "Failed to export exercises"
+    },
+    "import": {
+      "button": "Import",
+      "fromFile": "Import from File",
+      "quickImport": "Quick Import",
+      "success": "Successfully imported {{count}} exercises",
+      "error": "Failed to import exercises",
+      "duplicatesSkipped": "Skipped {{count}} duplicate exercises"
+    },
+    "video": {
+      "uploadTitle": "Upload Video - {{exercise}}",
+      "uploadFile": "Upload Video File",
+      "orUseUrl": "Or Use Video URL",
+      "selectFile": "Choose Video",
+      "uploading": "Uploading... {{progress}}%",
+      "preview": "Preview",
+      "loadError": "Failed to load video",
+      "notSupported": "Your browser does not support video playback",
+      "invalidFileType": "Please select a valid video file (MP4, WebM, OGG)",
+      "fileTooLarge": "File size must be less than 100MB",
+      "uploadFailed": "Upload failed. Please try again.",
+      "playbackTip": "Use spacebar to play/pause, arrow keys to seek",
+      "fullscreen": "Fullscreen"
+    },
+    "categories": {
+      "strength": "Strength",
+      "conditioning": "Conditioning",
+      "agility": "Agility",
+      "mobility": "Mobility",
+      "recovery": "Recovery",
+      "skill": "Skill",
+      "upperBody": "Upper Body",
+      "lowerBody": "Lower Body",
+      "core": "Core",
+      "fullBody": "Full Body",
+      "skating": "Skating Specific",
+      "shooting": "Shooting Power",
+      "balance": "Balance & Stability",
+      "plyometric": "Plyometric"
+    },
+    "focusAreas": {
+      "strength": "Strength",
+      "speed": "Speed",
+      "endurance": "Endurance",
+      "agility": "Agility",
+      "power": "Power",
+      "flexibility": "Flexibility"
+    },
+    "equipment": {
+      "barbell": "Barbell",
+      "dumbbell": "Dumbbell",
+      "kettlebell": "Kettlebell",
+      "resistance-band": "Resistance Band",
+      "pull-up-bar": "Pull-up Bar",
+      "bench": "Bench",
+      "mat": "Mat",
+      "medicine-ball": "Medicine Ball",
+      "trx": "TRX",
+      "cable-machine": "Cable Machine",
+      "none": "No Equipment",
+      "barbells": "Barbells",
+      "dumbbells": "Dumbbells",
+      "kettlebells": "Kettlebells",
+      "medicineBalls": "Medicine Balls",
+      "resistanceBands": "Resistance Bands",
+      "agilityLadder": "Agility Ladder",
+      "cones": "Cones",
+      "jumpBoxes": "Jump Boxes",
+      "trxStraps": "TRX Straps",
+      "foamRollers": "Foam Rollers",
+      "battleRopes": "Battle Ropes",
+      "sleds": "Sleds"
+    }
+  },
+  "workouts": {
+    "title": "Workout Builder",
+    "create": "Create Workout",
+    "createWorkout": "Create Workout",
+    "selectWorkoutType": "Select workout type",
+    "workoutTypes": {
+      "strength": "Strength Training",
+      "strengthDescription": "Build muscle and power with resistance exercises",
+      "conditioning": "Conditioning",
+      "conditioningDescription": "Improve cardiovascular fitness with interval training",
+      "hybrid": "Hybrid Workout",
+      "hybridDescription": "Combine strength and cardio in one session",
+      "agility": "Agility Training",
+      "agilityDescription": "Enhance speed, coordination, and movement patterns"
+    },
+    "recentlyUsed": "Recently Used",
+    "primaryActions": "Primary Actions",
+    "edit": "Edit Workout",
+    "save": "Save Workout",
+    "templates": "Workout Templates",
+    "custom": "Custom Workouts",
+    "assign": "Assign to Players",
+    "components": {
+      "warmup": "Warm-up",
+      "main": "Main Workout",
+      "cooldown": "Cool-down",
+      "stretching": "Stretching"
+    },
+    "parameters": {
+      "sets": "Sets",
+      "reps": "Repetitions",
+      "duration": "Duration",
+      "rest": "Rest Period",
+      "weight": "Weight",
+      "distance": "Distance",
+      "speed": "Speed"
+    }
+  },
+  "workoutType": {
+    "select": "Select workout type",
+    "recentlyUsed": "Recently used",
+    "allTypes": "All workout types"
+  },
+  "testing": {
+    "title": "Fitness Testing",
+    "schedule": "Schedule Test",
+    "protocols": "Test Protocols",
+    "results": "Test Results",
+    "history": "Testing History",
+    "compare": "Compare Results",
+    "benchmarks": "Team Benchmarks",
+    "tests": {
+      "vo2max": "VO2 Max",
+      "sprint": "Sprint Test",
+      "agility": "Agility Test",
+      "strength": "Strength Test",
+      "flexibility": "Flexibility Test",
+      "balance": "Balance Test",
+      "endurance": "Endurance Test",
+      "powerOutput": "Power Output"
+    }
+  },
+  "monitoring": {
+    "title": "Performance Monitoring",
+    "metrics": "Performance Metrics",
+    "trends": "Progress Trends",
+    "alerts": "Performance Alerts",
+    "load": "Training Load",
+    "recovery": "Recovery Status",
+    "readiness": "Training Readiness",
+    "metrics": {
+      "hrv": "Heart Rate Variability",
+      "restingHR": "Resting Heart Rate",
+      "weight": "Body Weight",
+      "bodyFat": "Body Fat %",
+      "muscleMass": "Muscle Mass",
+      "power": "Power Output",
+      "speed": "Speed",
+      "endurance": "Endurance"
+    }
+  },
+  "programs": {
+    "title": "Training Programs",
+    "inSeason": "In-Season Program",
+    "offSeason": "Off-Season Program",
+    "preseason": "Pre-Season Program",
+    "rehabilitation": "Rehab Program",
+    "maintenance": "Maintenance Program",
+    "phases": {
+      "preparation": "Preparation Phase",
+      "building": "Building Phase",
+      "peak": "Peak Phase",
+      "recovery": "Recovery Phase"
+    }
+  },
+  "analytics": {
+    "title": "Training Analytics",
+    "individual": "Individual Analysis",
+    "team": "Team Analysis",
+    "progress": "Progress Reports",
+    "comparison": "Player Comparison",
+    "export": "Export Data",
+    "metrics": "Key Metrics",
+    "insights": "Performance Insights"
+  },
+  "communication": {
+    "title": "Communication",
+    "feedback": "Session Feedback",
+    "notes": "Training Notes",
+    "recommendations": "Recommendations",
+    "alerts": "Send Alert",
+    "report": "Progress Report",
+    "collaborate": "Collaborate with Medical"
+  },
+  "bulkAssignment": {
+    "title": "Bulk Workout Assignment",
+    "subtitle": "Assign workouts to multiple players efficiently",
+    "steps": {
+      "target": "Target",
+      "workout": "Workout",
+      "schedule": "Schedule",
+      "review": "Review"
+    },
+    "medicalAlert": "{{count}} players have medical restrictions that may affect this assignment",
+    "success": "Assignments created successfully",
+    "successDescription": "{{count}} workout assignments have been created",
+    "error": "Failed to create assignments",
+    "errorDescription": "There was an error creating the workout assignments. Please try again.",
+    "createAssignments": "Create {{count}} Assignments",
+    "confirmation": {
+      "title": "Confirm Bulk Assignment",
+      "description": "This will create {{totalAssignments}} workout assignments for {{playerCount}} players across {{sessionCount}} sessions. Are you sure you want to proceed?"
+    }
+  },
+  "playerSelector": {
+    "targetType": "Target Selection",
+    "entireOrganization": "Entire Organization",
+    "orgDescription": "All players in the organization",
+    "specificTeam": "Specific Team",
+    "teamDescription": "All players in a team",
+    "customGroup": "Custom Group",
+    "groupDescription": "Select specific players",
+    "individual": "Individual Players",
+    "individualDescription": "Select individual players",
+    "selectTeam": "Select a team",
+    "selectPlayers": "Select Players",
+    "selected": "selected",
+    "searchPlaceholder": "Search players by name or number...",
+    "allPositions": "All Positions",
+    "allTeams": "All Teams",
+    "allStatuses": "All Statuses",
+    "active": "Active",
+    "injured": "Injured",
+    "suspended": "Suspended",
+    "selectAll": "Select All ({{count}})",
+    "noPlayers": "No players found matching your criteria",
+    "summary": "Selection Summary",
+    "playersSelected": "players selected",
+    "withRestrictions": "with restrictions",
+    "injuries": "injuries",
+    "available": "Available"
+  },
+  "workoutBuilder": {
+    "details": "Workout Details",
+    "title": "Workout Title",
+    "titlePlaceholder": "Enter workout title...",
+    "type": "Workout Type",
+    "types": {
+      "strength": "Strength",
+      "cardio": "Cardio",
+      "skill": "Skill Development",
+      "recovery": "Recovery",
+      "mixed": "Mixed"
+    },
+    "description": "Description",
+    "descriptionPlaceholder": "Describe the workout objectives...",
+    "duration": "Duration (minutes)",
+    "location": "Location",
+    "locationPlaceholder": "Training facility, gym, etc.",
+    "targetPlayers": "Target Players",
+    "players": "players",
+    "exercises": "Exercise Selection",
+    "fromTemplate": "From Template",
+    "tabs": {
+      "details": "Details",
+      "exercises": "Exercises",
+      "assignment": "Assignment",
+      "preview": "Preview",
+      "templates": "Templates"
+    },
+    "validation": {
+      "errorsFound": "{{count}} errors found"
+    },
+    "exerciseLibrary": "Exercise Library",
+    "searchExercises": "Search exercises...",
+    "filters": "Filters",
+    "phase": "Phase",
+    "allPhases": "All Phases",
+    "warmup": "Warm-up",
+    "main": "Main",
+    "cooldown": "Cool-down",
+    "recovery": "Recovery",
+    "difficulty": "Difficulty",
+    "allLevels": "All Levels",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "favorites": "Favorites",
+    "recent": "Recent",
+    "noExercisesFound": "No exercises found",
+    "equipment": "Equipment",
+    "addCustomExercise": "Add Custom Exercise",
+    "collapseLibrary": "Collapse exercise library",
+    "expandLibrary": "Expand exercise library",
+    "categories": {
+      "strength": "Strength",
+      "conditioning": "Conditioning", 
+      "agility": "Agility",
+      "mobility": "Mobility",
+      "recovery": "Recovery",
+      "skill": "Skill"
+    },
+    "customBuild": "Custom Build",
+    "noTemplates": "No templates available",
+    "searchExercises": "Search exercises...",
+    "allCategories": "All Categories",
+    "strength": "Strength",
+    "cardio": "Cardio",
+    "skill": "Skill",
+    "recovery": "Recovery",
+    "selectedExercises": "Selected Exercises",
+    "instructions": "Exercise Instructions",
+    "instructionsPlaceholder": "Add specific instructions for this exercise...",
+    "equipment": "Equipment Required",
+    "targetMuscles": "Target Muscles",
+    "restrictionWarning": "{{count}} exercises are restricted for {{playerCount}} players due to medical conditions"
+  },
+  "medicalRestrictions": {
+    "title": "Medical Restrictions",
+    "warningMessage": "{{count}} players have active injuries or medical restrictions",
+    "highSeverity": "High Priority",
+    "mediumSeverity": "Moderate",
+    "lowSeverity": "Low Risk",
+    "players": "players",
+    "restrictions": "restrictions",
+    "injuryDetails": "Injury Details",
+    "exerciseRestrictions": "Exercise Restrictions",
+    "acknowledge": "I understand and acknowledge these restrictions"
+  },
+  "preview": {
+    "assignmentSummary": "Assignment Summary",
+    "players": "Players",
+    "sessions": "Sessions",
+    "totalAssignments": "Total Assignments",
+    "minutesPerSession": "min per session",
+    "medicalWarning": "{{count}} players have medical restrictions",
+    "conflictWarning": "{{count}} scheduling conflicts detected",
+    "workoutDetails": "Workout Details",
+    "location": "Location",
+    "duration": "Duration",
+    "equipment": "Equipment Required",
+    "exerciseBreakdown": "Exercise Breakdown",
+    "exercises": "exercises",
+    "scheduleDetails": "Schedule Details",
+    "pattern": "Recurrence Pattern",
+    "time": "Time",
+    "scheduledDates": "Scheduled Dates",
+    "more": "more dates",
+    "targetPlayers": "Target Players",
+    "targetType": "Target Type",
+    "playersSelected": "players selected",
+    "withRestrictions": "with restrictions",
+    "playerSummaryText": "Players will be notified of their assignments and can view details in their dashboard",
+    "templateInfo": "Template Information",
+    "basedOnTemplate": "Based on selected template",
+    "readyToCreate": "Ready to create {{assignments}} assignments for {{players}} players across {{sessions}} sessions",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "biweekly": "Bi-weekly",
+    "monthly": "Monthly",
+    "oneTime": "One-time"
+  },
+  "conflicts": {
+    "title": "{{count}} Conflicts Detected",
+    "resolved": "resolved",
+    "description": "The following conflicts were detected. Please choose how to resolve each one:",
+    "bulkAction": "Bulk Action ({{count}} selected)",
+    "selectAction": "Select an action",
+    "skipAll": "Skip Conflicted Sessions",
+    "rescheduleAll": "Reschedule All",
+    "overrideAll": "Override All",
+    "types": {
+      "scheduling": "Scheduling Conflicts",
+      "resource": "Resource Conflicts",
+      "capacity": "Capacity Issues",
+      "medical": "Medical Restrictions"
+    },
+    "existingEvent": "Conflicting Event",
+    "resolution": "Choose Resolution",
+    "allResolved": "All conflicts resolved",
+    "unresolvedRemaining": "{{count}} conflicts remaining",
+    "applyResolutions": "Apply Resolutions"
+  },
+  "schedule": {
+    "title": "Schedule Workouts",
+    "selectDates": "Select Dates",
+    "recurrence": "Recurrence",
+    "time": "Time",
+    "timezone": "Timezone"
+  },
+  "medical": {
+    "reportTitle": "Medical Report - {{playerName}}",
+    "overview": "Overview",
+    "restrictions": "Restrictions",
+    "alternatives": "Alternatives",
+    "documents": "Documents",
+    "errorLoading": "Error loading medical data",
+    "clearanceStatus": "Medical Clearance Status",
+    "cleared": "Fully Cleared",
+    "partialClearance": "Partial Clearance",
+    "notCleared": "Not Cleared",
+    "lastAssessment": "Last Assessment",
+    "currentInjuries": "Current Injuries",
+    "noActiveInjuries": "No active injuries",
+    "recoveryProgress": "Recovery Progress",
+    "expectedRecovery": "Expected Recovery",
+    "alternativeExercises": "Alternative Exercises",
+    "load": "Load",
+    "modifications": "Modifications",
+    "documentsComingSoon": "Documents Coming Soon",
+    "documentsDescription": "Medical reports and clearance forms will be available here soon",
+    "healthy": "Healthy",
+    "injured": "Injured",
+    "limited": "Limited",
+    "summary": "Medical Summary",
+    "violations": "violations",
+    "warnings": "warnings",
+    "status": {
+      "healthy": "Healthy",
+      "injured": "Injured",
+      "limited": "Limited"
+    }
+  },
+  "tabs": {
+    "overview": "Overview",
+    "calendar": "Calendar",
+    "sessions": "Sessions",
+    "exercises": "Exercises",
+    "testing": "Testing",
+    "players": "Players",
+    "templates": "Templates",
+    "medical": "Medical"
+  },
+  "templates": {
+    "title": "Workout Templates",
+    "updateSuccess": "Session template updated successfully!",
+    "createSuccess": "Session template created successfully!",
+    "saveError": "Failed to save template. Please try again.",
+    "deleteSuccess": "Template deleted successfully",
+    "deleteError": "Failed to delete template",
+    "legacyTitle": "Legacy Templates",
+    "legacySubtitle": "Previous template system (will be migrated)",
+    "loading": "Loading templates...",
+    "noTemplates": "No templates created yet",
+    "createFirst": "Create Your First Template",
+    "createCustom": "Create Custom Template",
+    "createSingleSession": "Create single session",
+    "bulkAssignTitle": "Bulk assign to multiple players",
+    "deleteTemplate": "Delete template",
+    "items": "items",
+    "lastUsed": "Last used",
+    "never": "Never",
+    "myTemplates": "My Templates",
+    "templateApplied": "Template '{{name}}' applied successfully",
+    "templateDuplicated": "Template '{{name}}' duplicated to your library",
+    "createTemplate": "Create New Template",
+    "searchPlaceholder": "Search by name, tags, or description...",
+    "noSearchResults": "No templates found matching your search",
+    "categories": {
+      "all": "All",
+      "byGoal": "By Goal",
+      "byDuration": "By Duration",
+      "byLevel": "By Level",
+      "bySport": "By Sport",
+      "custom": "Custom"
+    },
+    "editTemplate": "Edit Template",
+    "duplicateTemplate": "Duplicate Template",
+    "createDescription": "Design and save a reusable workout template that can be applied to future sessions",
+    "fields": {
+      "name": "Template Name",
+      "description": "Description",
+      "workoutType": "Workout Type",
+      "category": "Category",
+      "duration": "Duration",
+      "targetPlayers": "Target Players",
+      "difficulty": "Difficulty Level",
+      "equipment": "Equipment Required",
+      "tags": "Tags",
+      "notes": "Additional Notes",
+      "makePublic": "Make Public",
+      "publicDescription": "Other trainers in your organization can see and use this template"
+    },
+    "placeholders": {
+      "name": "Enter template name (e.g., Morning Strength Session)",
+      "description": "Describe the purpose and focus of this template...",
+      "addTag": "Add a tag",
+      "notes": "Special instructions, modifications, or tips for using this template..."
+    },
+    "targetPlayers": {
+      "all": "All Players",
+      "forwards": "Forwards",
+      "defense": "Defense",
+      "goalies": "Goalies"
+    },
+    "validation": {
+      "nameRequired": "Template name is required",
+      "typeRequired": "Please select a workout type",
+      "durationRange": "Duration must be between 15 and 180 minutes",
+      "exercisesRequired": "Add at least one exercise to the template",
+      "fixErrors": "Please fix the errors above before saving"
+    },
+    "availableExercises": "Available Exercises",
+    "selectedExercises": "Selected Exercises",
+    "preview": {
+      "overview": "Template Overview",
+      "totalExercises": "Total Exercises",
+      "totalVolume": "Total Volume",
+      "noEquipment": "No equipment required",
+      "exerciseList": "Exercise List"
+    },
+    "favorites": {
+      "title": "Favorite Templates",
+      "description": "Quick access to your most used templates",
+      "empty": "No favorite templates yet",
+      "hint": "Star templates to add them here"
+    },
+    "actions": {
+      "apply": "Apply Template",
+      "edit": "Edit Template",
+      "duplicate": "Duplicate",
+      "unfavorite": "Remove from Favorites",
+      "quickApply": "Quick Apply"
+    },
+    "share": {
+      "title": "Share Template",
+      "subtitle": "Share \"{{templateName}}\" with other trainers",
+      "shareButton": "Share Template",
+      "noRecipients": "Please select at least one recipient or enable public sharing",
+      "success": "Template shared successfully",
+      "error": "Failed to share template",
+      "notificationsSent": "Notifications sent to {{count}} recipients",
+      "permissionsUpdated": "Permissions updated successfully",
+      "updateError": "Failed to update permissions",
+      "revoked": "Template sharing revoked",
+      "revokeError": "Failed to revoke sharing",
+      "linkGenerated": "Public link generated successfully",
+      "linkError": "Failed to generate public link",
+      "linkCopied": "Link copied to clipboard",
+      "fetchError": "Failed to load shared templates",
+      "tabs": {
+        "share": "Share",
+        "publicLink": "Public Link",
+        "analytics": "Analytics"
+      },
+      "recipients": "Share with",
+      "searchPlaceholder": "Search for users, teams, or organizations...",
+      "selectedRecipients": "Selected Recipients",
+      "recipientTypes": {
+        "user": "User",
+        "team": "Team", 
+        "organization": "Organization"
+      },
+      "permission": "Permission Level",
+      "permissions": {
+        "viewer": {
+          "title": "Viewer",
+          "description": "Can view and use the template"
+        },
+        "collaborator": {
+          "title": "Collaborator", 
+          "description": "Can view, use, and edit the template"
+        },
+        "owner": {
+          "title": "Owner",
+          "description": "Full control over the template"
+        },
+        "link_access": {
+          "title": "Link Access",
+          "description": "Anyone with the link can use"
+        }
+      },
+      "message": "Message",
+      "optional": "optional",
+      "messagePlaceholder": "Add a personal message to recipients...",
+      "notifyRecipients": "Notify Recipients",
+      "notifyRecipientsDescription": "Send email notifications to all recipients",
+      "expiration": "Access Expiration",
+      "expirationOptions": {
+        "never": "Never expires",
+        "1day": "1 day",
+        "7days": "7 days", 
+        "30days": "30 days",
+        "90days": "90 days"
+      },
+      "publicLink": {
+        "title": "Public Link Sharing",
+        "description": "Create a public link that anyone can use to access this template"
+      },
+      "generateLink": "Generate Public Link",
+      "copyLink": "Copy Link",
+      "linkExpiration": "Link Expiration",
+      "linkExpires": "Link expires in {{days}} days",
+      "analytics": {
+        "totalShares": "Total Shares",
+        "active": "active",
+        "totalUses": "Total Uses",
+        "lastUsed": "Last used",
+        "topUsers": "Top Users",
+        "uses": "uses",
+        "noData": "No analytics data available yet"
+      },
+      "sharedWithMe": "Templates Shared With Me",
+      "sharedWithMeDescription": "{{count}} templates have been shared with you",
+      "searchShared": "Search shared templates...",
+      "allPermissions": "All Permissions",
+      "noSharedTemplates": "No Shared Templates",
+      "noMatchingShared": "No templates match your search criteria",
+      "noSharedYet": "No templates have been shared with you yet",
+      "sharedBy": "Shared by",
+      "usage": "Usage",
+      "uses": "uses",
+      "useTemplate": "Use Template",
+      "duplicateTemplate": "Duplicate",
+      "notifications": {
+        "title": "Template Sharing Notifications",
+        "new": "new",
+        "sharedTemplate": "shared a template with you:",
+        "justNow": "just now",
+        "hoursAgo": "{{hours}}h ago",
+        "yesterday": "yesterday",
+        "daysAgo": "{{days}}d ago",
+        "read": "read",
+        "accepted": "Accepted",
+        "declined": "Declined",
+        "accept": "Accept",
+        "decline": "Decline",
+        "markRead": "Mark as read",
+        "viewAll": "View all {{total}} notifications"
+      }
+    }
+  },
+  "playerStatus": {
+    "title": "Player Physical Status Overview",
+    "subtitle": "Monitor training load, recovery, and readiness",
+    "statusLabel": "Status",
+    "fatigueLabel": "Fatigue",
+    "fatigue": "Fatigue Level",
+    "trainingLoad": "Training Load",
+    "hrVariability": "HR Variability",
+    "powerOutput": "Power Output",
+    "recovery": "Recovery",
+    "normal": "Normal",
+    "good": "Good",
+    "ready": "Ready",
+    "caution": "Caution",
+    "rest": "Rest",
+    "status": {
+      "ready": "ready",
+      "caution": "caution",
+      "rest": "rest"
+    },
+    "noPlayers": "No players found. Select a team or adjust filters."
+  },
+  "playerDetails": {
+    "lastUpdated": "Last updated: {{time}}",
+    "overview": "Overview",
+    "performance": "Performance",
+    "history": "History",
+    "schedule": "Schedule",
+    "trend": "Trend",
+    "weeklyVolume": "Weekly Volume",
+    "monthlyProgress": "+{{value}}% this month",
+    "keyMetrics": "Key Performance Metrics",
+    "avgHeartRate": "Avg Heart Rate",
+    "maxPower": "Max Power",
+    "vo2Max": "VO2 Max",
+    "recentTests": "Recent Test Results",
+    "workoutHistory": "Workout History",
+    "upcomingSchedule": "Upcoming Schedule",
+    "nextWorkout": "Next Workout",
+    "lastWorkout": "Last workout: {{time}}",
+    "createWorkout": "Create Workout"
+  },
+  "testing": {
+    "title": "Physical Testing & Analysis",
+    "subtitle": "Track player performance metrics and analyze progress",
+    "tabs": {
+      "collection": "Test Collection",
+      "analysis": "Analysis",
+      "newTest": "New Test"
+    },
+    "export": {
+      "success": "Test data exported successfully",
+      "error": "Failed to export test data"
+    },
+    "collectionTitle": "Test Collection Dashboard",
+    "collectionSubtitle": "Recent test sessions and results",
+    "collectionInterface": "Test collection interface",
+    "collection": {
+      "tabs": {
+        "schedule": "Schedule Test",
+        "upcoming": "Upcoming Sessions",
+        "protocols": "Test Protocols"
+      },
+      "quickTemplates": "Quick Templates",
+      "quickTemplatesDesc": "Select a pre-built test battery to get started quickly",
+      "sessionDetails": "Session Details",
+      "sessionName": "Session Name",
+      "sessionNamePlaceholder": "e.g., Pre-Season Testing 2024",
+      "date": "Date",
+      "selectDate": "Select date",
+      "time": "Time",
+      "location": "Location",
+      "locationPlaceholder": "e.g., Training Facility",
+      "notes": "Notes",
+      "notesPlaceholder": "Additional notes or instructions...",
+      "selectTests": "Select Tests",
+      "testsSelected": "tests selected",
+      "assignPlayers": "Assign Players",
+      "playersSelected": "players selected",
+      "individual": "Individual",
+      "teams": "Teams",
+      "players": "players",
+      "scheduling": "Scheduling...",
+      "scheduleSession": "Schedule Session",
+      "noUpcoming": "No upcoming test sessions",
+      "tests": "Tests",
+      "assigned": "Assigned",
+      "viewProtocols": "View Protocols",
+      "startSession": "Start Session",
+      "protocols": "Protocols",
+      "viewProtocol": "View Protocol",
+      "download": "Download PDF"
+    },
+    "protocols": {
+      "verticalJump": {
+        "description": "Measure explosive lower body power with countermovement jump test"
+      },
+      "broadJump": {
+        "description": "Assess horizontal power production and lower body strength"
+      },
+      "sprint10m": {
+        "description": "Test acceleration and initial sprint speed over 10 meters"
+      },
+      "sprint30m": {
+        "description": "Evaluate maximum sprint speed and acceleration over 30 meters"
+      },
+      "vo2Max": {
+        "description": "Measure maximal oxygen uptake capacity for aerobic fitness"
+      },
+      "benchPress1RM": {
+        "description": "Test upper body maximal strength with bench press"
+      },
+      "squat1RM": {
+        "description": "Assess lower body maximal strength with back squat"
+      },
+      "deadlift1RM": {
+        "description": "Evaluate posterior chain strength with deadlift"
+      },
+      "pullUps": {
+        "description": "Test upper body pulling strength and endurance"
+      },
+      "plank": {
+        "description": "Measure core stability and isometric endurance"
+      },
+      "flexibility": {
+        "description": "Assess hamstring and lower back flexibility with sit-and-reach test"
+      },
+      "balanceTest": {
+        "description": "Evaluate single-leg balance and proprioception"
+      },
+      "reactionTime": {
+        "description": "Test neuromuscular response time to visual stimuli"
+      },
+      "agility5105": {
+        "description": "Measure change of direction speed with 5-10-5 shuttle run"
+      },
+      "cooperTest": {
+        "description": "12-minute run test for aerobic endurance assessment"
+      },
+      "yoyoTest": {
+        "description": "Intermittent recovery test for sport-specific endurance"
+      },
+      "custom": {
+        "description": "Custom test protocol defined by trainer"
+      }
+    }
+  },
+  "conditioning": {
+    "builder": {
+      "title": "Conditioning Workout Builder",
+      "subtitle": "Create interval-based cardio workouts with personalized targets"
+    },
+    "modes": {
+      "conditioning": {
+        "name": "Conditioning",
+        "description": "Traditional cardio training with mixed intensity zones",
+        "longDescription": "Build cardiovascular endurance with varied intensity intervals, combining aerobic and anaerobic training zones.",
+        "intensityRange": "70-100% max HR",
+        "preferredZones": "Zone 3-5 (Aerobic to Maximum)",
+        "benefits": ["Improves VO2 max", "Builds aerobic base", "Increases lactate threshold"]
+      },
+      "recovery": {
+        "name": "Recovery", 
+        "description": "Low-intensity active recovery focused on regeneration",
+        "longDescription": "Gentle movement to promote blood flow, reduce muscle soreness, and enhance recovery between training sessions.",
+        "intensityRange": "50-70% max HR",
+        "preferredZones": "Zone 1-2 (Recovery to Easy)",
+        "benefits": ["Promotes recovery", "Reduces muscle stiffness", "Improves HRV", "Enhances sleep quality"]
+      },
+      "sprint": {
+        "name": "Sprint",
+        "description": "High-intensity sprint intervals for speed and power",
+        "longDescription": "Short, explosive intervals designed to improve maximum speed, acceleration, and neuromuscular power.",
+        "intensityRange": "80-100% max effort",
+        "preferredZones": "Zone 4-5 (Threshold to Maximum)",
+        "benefits": ["Improves top speed", "Builds anaerobic power", "Enhances acceleration", "Increases stride efficiency"]
+      }
+    },
+    "tabs": {
+      "build": "Build",
+      "templates": "Templates",
+      "personalize": "Personalize"
+    },
+    "schedule": {
+      "title": "Schedule Conditioning Workout",
+      "description": "Set when this conditioning workout will take place and who will participate"
+    },
+    "createSuccess": "Conditioning workout created successfully",
+    "saveSuccess": "Conditioning workout saved successfully",
+    "saveError": "Failed to save conditioning workout",
+    "autoSaveRestored": "Auto-saved workout restored",
+    "modeChanged": "Mode changed to {{mode}}. Equipment updated to match.",
+    "intervalsCleared": "Existing intervals cleared due to mode change.",
+    "details": {
+      "title": "Workout Details",
+      "name": "Workout Name",
+      "namePlaceholder": "e.g., 20-min HIIT Rowing",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the workout goals and focus...",
+      "mode": "Training Mode"
+    },
+    "equipment": {
+      "title": "Equipment Type",
+      "recoveryEquipment": "Recovery Equipment",
+      "sprintEquipment": "Sprint Equipment",
+      "conditioningEquipment": "Conditioning Equipment",
+      "equipmentChanged": "Equipment selection updated for {{mode}} mode"
+    },
+    "timeline": {
+      "title": "Interval Timeline",
+      "addInterval": "Add Interval"
+    },
+    "editor": {
+      "selectInterval": "Select an interval to edit"
+    },
+    "intervalForm": {
+      "title": "Edit Interval",
+      "type": "Interval Type",
+      "name": "Interval Name",
+      "namePlaceholder": "Optional name for this interval",
+      "equipment": "Equipment",
+      "duration": "Duration",
+      "targetType": "Target Type",
+      "reference": "Reference Test",
+      "heartRate": "Target Heart Rate",
+      "watts": "Target Power",
+      "pace": "Target Pace",
+      "rpm": "Target Cadence",
+      "calories": "Target Calories",
+      "notes": "Instructions",
+      "notesPlaceholder": "Special instructions for this interval..."
+    },
+    "summary": {
+      "title": "Workout Summary"
+    },
+    "templates": {
+      "search": "Search templates...",
+      "noResults": "No templates found matching your criteria",
+      "categories": {
+        "active_recovery": "Active Recovery",
+        "hrv_guided": "HRV Guided",
+        "sprint_intervals": "Sprint Intervals", 
+        "hill_repeats": "Hill Repeats"
+      },
+      "filters": {
+        "recovery": "Recovery",
+        "sprint": "Sprint", 
+        "conditioning": "Conditioning"
+      }
+    },
+    "personalization": {
+      "title": "Test-Based Personalization",
+      "description": "Personalize workout targets based on player test results",
+      "noPlayers": "No players selected. Select players to personalize their workout targets.",
+      "playersSelected": "players selected"
+    },
+    "warnings": {
+      "noIntervals": "Add at least one interval to create a workout"
+    },
+    "intervalTypes": {
+      "warmup": "Warm Up",
+      "work": "Work",
+      "rest": "Rest",
+      "active_recovery": "Active Recovery",
+      "cooldown": "Cool Down"
+    },
+    "heartRateZones": {
+      "recovery": "Recovery",
+      "aerobic": "Aerobic",
+      "threshold": "Threshold",
+      "anaerobic": "Anaerobic",
+      "maximal": "Maximal"
+    },
+    "chartLabels": {
+      "heartRate": "HR",
+      "power": "Power",
+      "pace": "Pace",
+      "cadence": "Cadence",
+      "calories": "Calories"
+    },
+    "templateDescriptions": {
+      "hiit": "High-intensity interval training with 30s work, 30s rest",
+      "steady": "Aerobic base building at consistent pace",
+      "pyramid": "Progressive intervals: 1-2-3-2-1 minutes",
+      "ftp": "Functional Threshold Power test protocol",
+      "tabata": "4-minute high-intensity intervals with 20s work, 10s rest",
+      "endurance": "Long steady-state aerobic workout",
+      "sprint": "Short maximal effort intervals for speed development"
+    }
+  },
+  "agility": {
+    "builder": {
+      "title": "Agility Workout Builder",
+      "subtitle": "Design agility drills with visual patterns and performance metrics"
+    },
+    "tabs": {
+      "build": "Build",
+      "players": "Players",
+      "schedule": "Schedule & Assignment",
+      "library": "Drill Library",
+      "templates": "Templates",
+      "equipment": "Equipment Guide"
+    },
+    "schedule": {
+      "title": "Schedule Agility Session",
+      "description": "Set when this agility session will take place and who will participate. Agility work is often personalized based on player position and skill level."
+    },
+    "createSuccess": "Agility workout created successfully",
+    "saveError": "Failed to save agility workout",
+    "details": {
+      "title": "Program Details",
+      "name": "Program Name",
+      "namePlaceholder": "e.g., Pre-Season Agility Test",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the focus and goals...",
+      "warmup": "Warm-up (min)",
+      "cooldown": "Cool-down (min)"
+    },
+    "drills": {
+      "title": "Drill Sequence",
+      "add": "Add Drill",
+      "empty": "No drills added yet",
+      "browse": "Browse drill library"
+    },
+    "summary": {
+      "title": "Program Summary",
+      "equipment": "Equipment Required",
+      "categories": "Drill Categories",
+      "participants": "Participants"
+    },
+    "library": {
+      "search": "Search drills...",
+      "createCustom": "Create Custom Drill"
+    },
+    "editor": {
+      "selectDrill": "Select a drill to edit or view pattern"
+    },
+    "templates": {
+      "title": "Agility Templates",
+      "subtitle": "Pre-built agility programs for different training goals"
+    },
+    "equipment": {
+      "title": "Equipment Setup Guide",
+      "subtitle": "Equipment requirements and setup instructions for your drills"
+    },
+    "warnings": {
+      "noDrills": "Add at least one drill to create an agility program",
+      "noPlayersAssigned": "Please assign players or teams to this agility session."
+    },
+    "playerAssignment": {
+      "title": "Assign Players to Agility Session",
+      "description": "Select individual players for this agility training session. Agility work is often personalized based on player position and skill level.",
+      "individualPlayers": "Individual Players",
+      "teams": "Teams"
+    },
+    "warmup": "Warm-up Phase",
+    "prepareBody": "Prepare your body for agility training",
+    "drills": "Drills",
+    "cooldown": "Cool-down Phase",
+    "stretchRecover": "Stretch and recover after your workout",
+    "set": "Set",
+    "rep": "Rep",
+    "target": "Target",
+    "instructions": "Instructions",
+    "errors": "Errors",
+    "completeRep": "Complete Rep",
+    "previousAttempts": "Previous Attempts",
+    "hideInstructions": "Hide Instructions",
+    "showInstructions": "Show Instructions",
+    "noPattern": "No visual pattern available",
+    "sessionComplete": "Session Complete!",
+    "totalTime": "Total Time",
+    "avgTime": "Average Time",
+    "bestTime": "Best Time",
+    "successRate": "Success Rate",
+    "backToDashboard": "Back to Dashboard",
+    "start": "Start",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop"
+  },
+  "hybrid": {
+    "builder": {
+      "title": "Hybrid Workout Builder",
+      "subtitle": "Create workouts that combine strength exercises with cardio intervals"
+    },
+    "schedule": {
+      "title": "Schedule Hybrid Workout",
+      "description": "Set when this hybrid workout will take place and who will participate. Medical restrictions will be considered during execution."
+    },
+    "createSuccess": "Hybrid workout created successfully",
+    "saveError": "Failed to save hybrid workout",
+    "validation": {
+      "nameRequired": "Please enter a workout name",
+      "blocksRequired": "Please add at least one block to the workout"
+    }
+  },
+  "successModal": {
+    "title": "Workout Created!",
+    "description": "Your {{type}} workout has been saved successfully",
+    "summary": {
+      "player": "player",
+      "players": "players",
+      "team": "team",
+      "teams": "teams",
+      "exercise": "exercise",
+      "exercises": "exercises"
+    },
+    "actions": {
+      "whatNext": "What would you like to do next?",
+      "schedule": "Schedule This Workout",
+      "scheduleDesc": "Add to calendar",
+      "createAnother": "Create Another {{type}}",
+      "createAnotherDesc": "Same type",
+      "saveTemplate": "Save as Template",
+      "saveTemplateDesc": "Reuse later",
+      "notify": "Notify Players",
+      "notifyDesc": "Send alerts",
+      "view": "View Workout",
+      "createDifferent": "Create Different Type",
+      "done": "Done"
+    },
+    "tips": {
+      "title": "Pro Tip",
+      "strength": "Remember to schedule rest days between strength workouts for the same muscle groups. Consider creating a complementary conditioning workout for active recovery.",
+      "conditioning": "This workout can be used as active recovery between strength sessions. Track player heart rate data to optimize intensity zones.",
+      "hybrid": "Hybrid workouts are great for game-day preparation. Monitor player fatigue levels when combining strength and cardio.",
+      "agility": "Agility drills work best when players are fresh. Schedule these at the beginning of practice sessions."
+    }
+  },
+  "quickScheduler": {
+    "conflictMessage": "The selected time conflicts with existing events. You can change the time or proceed anyway.",
+    "changeTime": "Change Time",
+    "proceedAnyway": "Proceed Anyway"
+  },
+  "scheduler": {
+    "title": "Schedule Workout",
+    "players": "players",
+    "teams": "teams",
+    "singleSession": "Single Session",
+    "recurringSession": "Recurring Sessions",
+    "quickTemplates": "Quick Templates",
+    "date": "Date",
+    "selectDate": "Select date",
+    "timeSlot": "Time Slot",
+    "suggestedTimes": "Suggested Times",
+    "conflictDetected": "Schedule Conflict Detected",
+    "conflictingEvents": "conflicting events",
+    "enableRecurrence": "Enable Recurring Sessions",
+    "recurrenceDescription": "Create multiple sessions with a repeating pattern",
+    "frequency": "Frequency",
+    "interval": "Interval",
+    "every": "Every",
+    "days": "day(s)",
+    "weeks": "week(s)",
+    "months": "month(s)",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "daysOfWeek": "Days of Week",
+    "recurrenceEnd": "Recurrence End",
+    "endByDate": "End by date",
+    "endAfter": "End after",
+    "occurrences": "occurrences",
+    "neverEnd": "Never end",
+    "preview": "Preview",
+    "firstOccurrences": "First {{count}} occurrences",
+    "location": "Location",
+    "locationPlaceholder": "Enter location or room number",
+    "facility": "Facility",
+    "selectFacility": "Select a facility",
+    "visibility": "Visibility",
+    "teamOnly": "Team Only",
+    "public": "Public",
+    "private": "Private",
+    "maxParticipants": "Max Participants",
+    "unlimited": "Unlimited",
+    "reminders": "Reminders",
+    "remindersDescription": "Send notifications before the workout",
+    "reminderTimes": "Reminder Times",
+    "reminderTypes": "Notification Methods",
+    "email": "Email",
+    "push": "Push Notification",
+    "sms": "SMS",
+    "notes": "Notes",
+    "notesPlaceholder": "Add any special instructions or notes for this session",
+    "willCreateRecurring": "Will create {{count}} recurring sessions",
+    "willCreateSingle": "Will create a single workout session",
+    "scheduling": "Scheduling...",
+    "schedule": "Schedule Workout",
+    "scheduleSuccess": "Workout scheduled successfully",
+    "scheduleError": "Failed to schedule workout"
+  },
+  "smartDefaults": {
+    "title": "Smart Defaults",
+    "applied": "Smart Defaults Applied",
+    "confidence": "{{confidence}}% confidence",
+    "learning": "Smart defaults learn from your patterns and preferences over time",
+    "refresh": "Refresh Defaults",
+    "preferences": "Smart Defaults Preferences",
+    "preferencesDescription": "Customize how smart defaults work for you",
+    "autoSelection": "Auto-Selection Settings",
+    "autoSelectTeam": "Auto-select team based on context",
+    "autoSelectPlayers": "Auto-select available players",
+    "recentActivity": "Recent Activity",
+    "recentTeams": "Recent Teams",
+    "recentWorkouts": "Recent Workout Types",
+    "preferredTimes": "Preferred Workout Times",
+    "addPreferredTime": "Add Preferred Time",
+    "preferredEquipment": "Preferred Equipment",
+    "usageStats": "Usage Statistics",
+    "workoutsCreated": "Workouts Created",
+    "avgDuration": "Avg Duration (min)",
+    "favoriteType": "Favorite Type",
+    "preferredIntensity": "Preferred Intensity",
+    "dataManagement": "Data Management",
+    "exportPreferences": "Export Preferences",
+    "importPreferences": "Import Preferences",
+    "resetToDefaults": "Reset to Defaults",
+    "saveChanges": "Save Changes",
+    "reasons": {
+      "calendar": "From calendar",
+      "history": "Based on history",
+      "preferences": "Your preference",
+      "pattern": "Pattern detected",
+      "availability": "Equipment available",
+      "teamContext": "Currently viewing this team",
+      "calendarContext": "Team context from calendar view",
+      "recentTeam": "Most recently used team",
+      "availablePlayers": "{{count}} available players from {{team}}",
+      "preferredTime": "Your preferred {{day}} workout time",
+      "calendarSlot": "Using selected calendar time slot",
+      "defaultDuration": "Your default {{type}} workout duration",
+      "fitsCalendarSlot": "Fits selected calendar slot",
+      "equipmentAvailable": "Available at {{facility}}",
+      "preferredEquipment": "Your preferred equipment",
+      "gameTomorrow": "Game tomorrow - recovery focus",
+      "defaultIntensity": "Your default {{type}} intensity",
+      "commonWorkoutType": "Most common workout type on {{day}}s"
+    },
+    "fields": {
+      "name": "Name",
+      "type": "Type",
+      "date": "Date",
+      "time": "Time",
+      "duration": "Duration",
+      "assignedTeamIds": "Teams",
+      "assignedPlayerIds": "Players",
+      "intensity": "Intensity",
+      "equipment": "Equipment",
+      "tags": "Tags"
+    }
+  },
+  "errors": {
+    "summary": {
+      "mixed": "{{errorCount}} errors and {{warningCount}} warnings found",
+      "errors": "{{count}} error(s) found",
+      "warnings": "{{count}} warning(s) found"
+    },
+    "WORKOUT_NAME_REQUIRED": {
+      "message": "Please enter a name for your workout",
+      "helpText": "Give your workout a descriptive name that helps identify its purpose",
+      "action": "Enter a workout name"
+    },
+    "WORKOUT_NAME_TOO_SHORT": {
+      "message": "Workout name must be at least 3 characters",
+      "helpText": "Use a descriptive name that clearly identifies the workout",
+      "action": "Enter a longer workout name"
+    },
+    "WORKOUT_NAME_TOO_LONG": {
+      "message": "Workout name cannot exceed 100 characters",
+      "helpText": "Keep the name concise while still being descriptive",
+      "action": "Shorten the workout name"
+    },
+    "NO_EXERCISES_SELECTED": {
+      "message": "Please add at least one exercise to the workout",
+      "helpText": "A workout must contain at least one exercise",
+      "action": "Add exercises from the library"
+    },
+    "NO_PLAYERS_ASSIGNED": {
+      "message": "Please assign at least one player to this session",
+      "helpText": "Select players who will participate in this training session",
+      "action": "Assign players to the session"
+    },
+    "INVALID_DATE_RANGE": {
+      "message": "End date must be after start date",
+      "helpText": "Make sure your session end time is later than the start time",
+      "action": "Adjust the date/time selection"
+    },
+    "DUPLICATE_EXERCISE": {
+      "message": "This exercise is already in the workout",
+      "helpText": "Each exercise should appear only once per workout",
+      "action": "Choose a different exercise"
+    },
+    "INVALID_SETS_VALUE": {
+      "message": "Sets must be between 1 and 10",
+      "helpText": "Enter a reasonable number of sets for this exercise",
+      "action": "Enter a valid number of sets"
+    },
+    "INVALID_REPS_VALUE": {
+      "message": "Reps must be between 1 and 100",
+      "helpText": "Enter a reasonable number of repetitions",
+      "action": "Enter a valid number of reps"
+    },
+    "INVALID_INTENSITY_VALUE": {
+      "message": "Intensity must be between 1 and 100%",
+      "helpText": "Enter the intensity as a percentage (1-100)",
+      "action": "Enter a valid intensity percentage"
+    },
+    "NO_INTERVALS_DEFINED": {
+      "message": "Please add at least one interval to the conditioning workout",
+      "helpText": "A conditioning workout needs at least one work interval",
+      "action": "Add intervals to your workout"
+    },
+    "NO_DRILLS_DEFINED": {
+      "message": "Please add at least one drill to the agility workout",
+      "helpText": "An agility workout needs at least one drill to practice",
+      "action": "Add drills to your workout"
+    },
+    "NO_BLOCKS_DEFINED": {
+      "message": "Please add at least one block to the hybrid workout",
+      "helpText": "A hybrid workout needs at least one exercise or interval block",
+      "action": "Add blocks to your workout"
+    },
+    "CONNECTION_FAILED": {
+      "message": "Unable to connect to the server",
+      "helpText": "Check your internet connection and try again",
+      "action": "Retry the operation"
+    },
+    "TIMEOUT": {
+      "message": "The request took too long to complete",
+      "helpText": "The server may be busy. Please try again in a moment",
+      "action": "Retry the operation"
+    },
+    "SERVER_ERROR": {
+      "message": "An error occurred on the server",
+      "helpText": "This is a temporary issue. Our team has been notified",
+      "action": "Try again later"
+    },
+    "NOT_FOUND": {
+      "message": "The requested resource was not found",
+      "helpText": "The workout or session may have been deleted",
+      "action": "Return to the dashboard"
+    },
+    "UNAUTHORIZED": {
+      "message": "You are not authorized to perform this action",
+      "helpText": "Your session may have expired. Please log in again",
+      "action": "Log in again"
+    },
+    "FORBIDDEN": {
+      "message": "You do not have permission to access this resource",
+      "helpText": "Contact your administrator if you need access",
+      "action": "Contact administrator"
+    },
+    "INSUFFICIENT_ROLE": {
+      "message": "Your role does not allow this action",
+      "helpText": "Only Physical Trainers can manage workouts",
+      "action": "Contact administrator"
+    },
+    "SCHEDULE_CONFLICT": {
+      "message": "This time slot conflicts with another session",
+      "helpText": "Check the calendar for available time slots",
+      "action": "Choose a different time"
+    },
+    "PLAYER_UNAVAILABLE": {
+      "message": "One or more players are not available at this time",
+      "helpText": "Some players have conflicting schedules",
+      "action": "Check player availability"
+    },
+    "DUPLICATE_SESSION": {
+      "message": "A similar session already exists at this time",
+      "helpText": "You may have already created this session",
+      "action": "Review existing sessions"
+    },
+    "RESOURCE_LOCKED": {
+      "message": "This workout is currently being edited by another user",
+      "helpText": "Wait a moment and try again",
+      "action": "Try again later"
+    },
+    "MEDICAL_RESTRICTION": {
+      "message": "This exercise is restricted for some players",
+      "helpText": "Check player medical reports for exercise restrictions",
+      "action": "Review medical restrictions"
+    },
+    "INJURY_RISK": {
+      "message": "This workout may pose injury risk for some players",
+      "helpText": "Consider modifying intensity or choosing alternative exercises",
+      "action": "Modify workout parameters"
+    },
+    "NO_MEDICAL_CLEARANCE": {
+      "message": "Some players need medical clearance for this activity",
+      "helpText": "Contact medical staff for player clearance",
+      "action": "Request medical clearance"
+    },
+    "RECOVERY_PERIOD": {
+      "message": "Player is still in recovery period",
+      "helpText": "This player needs more recovery time before intense training",
+      "action": "Schedule for later date"
+    },
+    "UNKNOWN_ERROR": {
+      "message": "An unexpected error occurred",
+      "helpText": "Please try again. If the problem persists, contact support",
+      "action": "Contact support"
+    },
+    "DATA_CORRUPTION": {
+      "message": "Data integrity issue detected",
+      "helpText": "Your data may be corrupted. Please contact support",
+      "action": "Contact support immediately"
+    },
+    "FEATURE_DISABLED": {
+      "message": "This feature is temporarily disabled",
+      "helpText": "This feature is undergoing maintenance",
+      "action": "Check back later"
+    },
+    "MAINTENANCE_MODE": {
+      "message": "System is under maintenance",
+      "helpText": "We are performing scheduled maintenance",
+      "action": "Try again in 30 minutes"
+    },
+    "VALIDATION_ERROR": {
+      "message": "Please check your input",
+      "helpText": "One or more fields contain invalid data",
+      "action": "Review and correct the errors"
+    }
+  },
+  "save": {
+    "validation": {
+      "contentError": "Workout content validation failed",
+      "contentWarning": "Workout content has warnings but can proceed",
+      "contentSuccess": "Workout content is valid",
+      "contentUnknownError": "Failed to validate workout content",
+      "assignmentError": "Player assignment validation failed",
+      "assignmentWarning": "Player assignments have warnings",
+      "assignmentSuccess": "{{count}} players will be assigned",
+      "assignmentUnknownError": "Failed to validate player assignments",
+      "schedulingConflicts": "Scheduling conflicts detected",
+      "medicalViolations": "Medical compliance violations found",
+      "medicalWarnings": "Medical warnings detected",
+      "medicalSuccess": "All players are medically cleared",
+      "medicalUnknownError": "Failed to check medical compliance"
+    },
+    "success": {
+      "message": "Workout saved successfully",
+      "offlineQueued": "Workout saved offline - will sync when connection restored"
+    },
+    "errors": {
+      "networkError": "Network error - please check your connection",
+      "saveError": "Failed to save workout",
+      "maxRetriesReached": "Maximum retry attempts reached",
+      "multipleErrors": "{{count}} errors occurred during save"
+    }
+  },
+  "offline": {
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "syncing": "Syncing...",
+      "pending": "Pending Sync",
+      "failed": "Sync Failed"
+    },
+    "queue": {
+      "title": "Offline Changes",
+      "empty": "All changes are synced",
+      "size": "{{count}} pending change",
+      "size_other": "{{count}} pending changes",
+      "clearAll": "Clear All",
+      "retry": "Retry",
+      "remove": "Remove",
+      "syncNow": "Sync Now"
+    },
+    "notifications": {
+      "workingOffline": "Working Offline",
+      "workingOfflineDesc": "Your changes are being saved locally and will sync automatically when you're back online.",
+      "backOnline": "Back Online",
+      "backOnlineDesc": "Your connection has been restored. Syncing queued changes...",
+      "syncComplete": "Sync Complete",
+      "syncCompleteDesc": "All changes have been synced successfully.",
+      "syncFailed": "Sync Failed",
+      "syncFailedDesc": "Some changes could not be synced. Please check your connection and try again.",
+      "savedOffline": "Saved Offline",
+      "savedOfflineDesc": "Your changes have been saved locally and will sync when online."
+    },
+    "actions": {
+      "create": "Create",
+      "update": "Update",
+      "delete": "Delete"
+    },
+    "types": {
+      "workout": "Workout",
+      "session": "Session",
+      "update": "Update"
+    }
+  },
+  "broadcasting": {
+    "live": "Live",
+    "broadcastingOff": "Broadcasting Off",
+    "reconnecting": "Reconnecting...",
+    "offline": "Offline",
+    "queued": "queued",
+    "sessionBroadcasting": "Session Broadcasting",
+    "enableBroadcasting": "Enable Broadcasting",
+    "allowTrainerToSee": "Allow trainer to see your live progress",
+    "connectionStatus": "Connection Status",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "queuedUpdates": "Queued Updates",
+    "whenBroadcastingEnabled": "When broadcasting is enabled, your trainer can see:",
+    "currentExercise": "Current exercise and progress",
+    "heartRateMetrics": "Heart rate and performance metrics",
+    "completionStatus": "Completion status and timing",
+    "restPeriods": "Rest periods and transitions",
+    "privacyNote": "Privacy Note",
+    "privacyDescription": "You can disable broadcasting at any time. When disabled, your workout data remains private and is only saved locally.",
+    "shareProgress": "Share your workout progress with your trainer in real-time",
+    "connectionLost": "Connection lost, attempting to reconnect...",
+    "unableToConnect": "Unable to connect to live session. Progress will sync when connection is restored",
+    "broadcastingDisabled": "Broadcasting is disabled. Your workout progress is private"
+  },
+  "migration": {
+    "dashboard": {
+      "title": "Data Migration Dashboard",
+      "subtitle": "Manage workout data migration to unified format",
+      "analyze": "Analyze Data",
+      "startMigration": "Start Migration",
+      "viewAnalysis": "View Analysis",
+      "settings": "Migration Settings",
+      "rollback": "Rollback",
+      "exportResults": "Export Results",
+      "clearResults": "Clear Results"
+    },
+    "analysis": {
+      "title": "Migration Analysis Report",
+      "totalWorkouts": "Total Workouts",
+      "needMigration": "Need Migration",
+      "alreadyMigrated": "Already Migrated",
+      "invalidData": "Invalid Data",
+      "formatDistribution": "Format Distribution",
+      "potentialIssues": "Potential Issues",
+      "estimatedTime": "Estimated Time",
+      "recommendations": "Recommended Migration Strategy"
+    },
+    "progress": {
+      "title": "Data Migration Progress",
+      "converting": "Converting {{count}} workouts to unified format",
+      "overall": "Overall Progress",
+      "statistics": "Statistics",
+      "success": "Success",
+      "errors": "Errors",
+      "warnings": "Warnings",
+      "eta": "ETA",
+      "batchProgress": "Batch Progress",
+      "performance": "Performance"
+    },
+    "settings": {
+      "title": "Migration Settings",
+      "subtitle": "Configure migration behavior and safety options",
+      "batchSize": "Batch Size",
+      "validateBefore": "Validate Before Migration",
+      "stopOnError": "Stop on First Error",
+      "preserveOriginal": "Preserve Original Data",
+      "dryRun": "Dry Run Mode",
+      "presets": {
+        "safe": "Safe & Careful",
+        "recommended": "Recommended",
+        "fast": "Fast & Risky"
+      }
+    },
+    "rollback": {
+      "title": "Rollback Migration",
+      "subtitle": "Convert {{count}} unified workouts back to legacy format",
+      "warning": "Rollback Warning",
+      "selectFormat": "Select Target Format",
+      "impact": "Impact Analysis",
+      "confirmation": "I understand that this rollback may cause data loss and cannot be easily undone"
+    }
+  },
+  "bulk": {
+    "title": "Bulk Edit {{count}} Workouts",
+    "operation": "Select Operation",
+    "operations": {
+      "update": "Update Fields",
+      "duplicate": "Duplicate",
+      "delete": "Delete",
+      "compare": "Compare",
+      "merge": "Merge"
+    },
+    "fields": {
+      "location": "Location",
+      "intensity": "Intensity",
+      "team": "Team",
+      "date": "Date",
+      "duration": "Duration",
+      "status": "Status"
+    },
+    "selectFields": "Select fields to update",
+    "confirmDelete": "Are you sure you want to delete {{count}} workouts?",
+    "error": {
+      "operationFailed": "Operation failed. Please try again."
+    },
+    "validationErrors": "Validation Errors",
+    "schedulingConflicts": "Scheduling Conflicts",
+    "moreConflicts": "...and {{count}} more conflicts",
+    "medicalCompliance": "Medical Compliance",
+    "complianceWarning": "{{count}} players have medical restrictions",
+    "selectedWorkouts": "Selected Workouts",
+    "processing": "Processing...",
+    "execute": {
+      "update": "Update All",
+      "delete": "Delete All",
+      "duplicate": "Duplicate All",
+      "compare": "Compare",
+      "merge": "Merge"
+    },
+    "offsetDays": "Days to offset",
+    "offsetDaysHelp": "Number of days to shift duplicated workouts",
+    "duplicateAssignments": "Duplicate player assignments",
+    "updateTitle": "Update workout titles",
+    "deleteWarning": {
+      "title": "Delete Confirmation",
+      "message": "This will permanently delete {{count}} workouts."
+    },
+    "moreWorkouts": "...and {{count}} more workouts",
+    "conflicts": "{{count}} conflicts detected"
+  },
+  "comparison": {
+    "title": "Workout Comparison",
+    "workoutsCompared": "Workouts Compared",
+    "similarities": "Similarities",
+    "differences": "Differences",
+    "overlap": "Exercise Overlap",
+    "metrics": "Comparison Metrics",
+    "exerciseOverlap": "Exercise Overlap",
+    "structuralSimilarity": "Structural Similarity",
+    "keyDifferences": "Key Differences",
+    "field": "Field",
+    "match": "Match",
+    "exercises": "Exercises",
+    "totalExercises": "Total Exercises",
+    "duration": "Duration",
+    "players": "Players",
+    "export": "Export",
+    "print": "Print",
+    "mergeSelected": "Merge {{count}} Selected"
+  },
+  "analytics": {
+    "performanceDashboard": "Performance Analytics Dashboard",
+    "selectPlayer": "Select Player",
+    "teamOverview": "Team Overview",
+    "timeRange": "Time Range",
+    "week": "Week",
+    "month": "Month",
+    "season": "Season",
+    "export": "Export Report",
+    "teamPerformance": "Team Performance",
+    "improvementRate": "Improvement Rate",
+    "injuryRisk": "Injury Risk %",
+    "compliance": "Compliance %",
+    "performance": "Performance",
+    "predictions": "Predictions",
+    "riskAssessment": "Risk Assessment",
+    "teamComparison": "Team Comparison",
+    "performanceTrend": "Performance Trend",
+    "trainingLoad": "Training Load",
+    "optimal": "Optimal",
+    "performanceRadar": "Performance Radar",
+    "current": "Current",
+    "target": "Target",
+    "topPerformers": "Top Performers",
+    "needsAttention": "Needs Attention",
+    "confidence": "Confidence",
+    "improving": "Improving",
+    "declining": "Declining",
+    "maintaining": "Maintaining",
+    "nextMilestone": "Next Milestone",
+    "targetDate": "Target Date",
+    "probability": "Probability",
+    "recommendations": "AI Recommendations",
+    "injuryRiskDistribution": "Injury Risk Distribution",
+    "riskFactors": "Risk Factors",
+    "player": "Player",
+    "riskLevel": "Risk Level",
+    "primaryFactor": "Primary Factor",
+    "action": "Action",
+    "assess": "Assess",
+    "comingSoon": "Advanced team comparison features coming soon"
+  },
+  "calendar": {
+    "workoutScheduled": "Workout scheduled successfully",
+    "eventMoved": "Event moved successfully",
+    "scheduleFailed": "Failed to schedule workout",
+    "workoutDuplicated": "Workout duplicated successfully",
+    "workoutsSwapped": "Workouts swapped successfully",
+    "swapFailed": "Failed to swap workouts",
+    "scheduleOptimized": "Schedule optimized successfully",
+    "optimizationFailed": "Failed to optimize schedule",
+    "batchScheduled": "Batch schedule created successfully",
+    "batchScheduleFailed": "Failed to create batch schedule",
+    "previous": "Previous",
+    "today": "Today",
+    "next": "Next",
+    "batchSchedule": "Batch Schedule",
+    "autoSchedule": "Auto Schedule",
+    "optimize": "Optimize",
+    "availableWorkouts": "Available Workouts",
+    "weeklyOverview": "Weekly Overview",
+    "scheduledSessions": "Scheduled Sessions",
+    "totalDuration": "Total Duration",
+    "conflicts": "Conflicts",
+    "duplicate": "Duplicate",
+    "swap": "Swap",
+    "remove": "Remove",
+    "conflictsDetected": "Conflicts Detected",
+    "conflictTitle": "Schedule Conflicts",
+    "conflictMessage": "{{count}} conflicts detected with existing events",
+    "findAlternative": "Find Alternative",
+    "scheduleAnyway": "Schedule Anyway",
+    "selectWorkouts": "Select Workouts",
+    "schedulePattern": "Schedule Pattern",
+    "sequential": "Sequential",
+    "alternating": "Alternating",
+    "custom": "Custom",
+    "daysBetween": "Days Between",
+    "startDate": "Start Date",
+    "schedule": "Schedule",
+    "workoutScheduledWithConflicts": "Workout scheduled with conflicts"
+  },
+  "advanced": {
+    "title": "Advanced Features",
+    "description": "Leverage AI-powered analytics, bulk operations, and smart scheduling",
+    "bulkEdit": "Bulk Edit",
+    "compare": "Compare",
+    "analytics": "Analytics",
+    "calendar": "Smart Calendar",
+    "aiSuggestions": "AI Suggestions",
+    "selectWorkouts": "Select workouts to use advanced features",
+    "selectFeature": "Select a feature to get started",
+    "aiSuggestionsTitle": "AI-Powered Suggestions",
+    "aiSuggestionsDemo": "AI analysis would provide personalized recommendations here"
+  },
+  "metrics": {
+    "strength": "Strength",
+    "endurance": "Endurance",
+    "speed": "Speed",
+    "agility": "Agility",
+    "recovery": "Recovery"
+  },
+  "risk": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High"
+  },
+  "status": {
+    "needsRest": "Needs Rest",
+    "highFatigue": "High Fatigue",
+    "scheduled": "Scheduled",
+    "cancelled": "Cancelled"
+  },
+  "fields": {
+    "type": "Type",
+    "intensity": "Intensity",
+    "location": "Location",
+    "scheduledDate": "Scheduled Date"
+  },
+  "analytics": {
+    "title": "Performance Analytics",
+    "subtitle": "Comprehensive insights into team and player performance",
+    "views": {
+      "overview": "Overview",
+      "teams": "Teams",
+      "players": "Players",
+      "workouts": "Workouts",
+      "load": "Load Management",
+      "comparison": "Comparison"
+    },
+    "metrics": {
+      "activePlayers": "Active Players",
+      "teamReadiness": "Team Readiness",
+      "totalWorkouts": "Total Workouts",
+      "keyInsights": "Key Insights",
+      "highRisk": "High Risk",
+      "activeAlerts": "Active Alerts",
+      "recommendations": "Recommendations",
+      "overallTrend": "Overall Trend",
+      "effectiveness": "Effectiveness",
+      "sessions": "Sessions",
+      "improvement": "Improvement",
+      "completion": "Completion",
+      "retention": "Retention",
+      "intensity": "Intensity",
+      "avgRPE": "Average RPE",
+      "uses": "Uses",
+      "feedback": "Feedback",
+      "progression": "Progression",
+      "injuryRate": "Injury Rate",
+      "strength": "Strength",
+      "conditioning": "Conditioning",
+      "engagement": "Engagement",
+      "safety": "Safety",
+      "attendance": "Attendance",
+      "avgWellness": "Avg Wellness"
+    },
+    "trends": {
+      "title": "Performance Trends"
+    },
+    "comparison": {
+      "title": "Performance Comparison",
+      "type": "Comparison Type",
+      "playerVsPlayer": "Player vs Player",
+      "teamVsTeam": "Team vs Team",
+      "viewMode": "View Mode",
+      "chart": "Chart View",
+      "table": "Table View",
+      "radar": "Radar Chart",
+      "normalization": "Normalization",
+      "selectPlayers": "Select Players",
+      "selectTeams": "Select Teams",
+      "selectMetrics": "Select Metrics",
+      "selectAtLeastTwo": "Select at least 2 entities to compare",
+      "leads": "leads",
+      "improvements": "Improvements"
+    },
+    "loadManagement": {
+      "title": "Load Management"
+    },
+    "insights": {
+      "title": "Performance Insights",
+      "noInsights": "No insights available",
+      "noInsightsDescription": "Check back later for AI-generated performance insights"
+    },
+    "recommendations": {
+      "title": "Recommendations"
+    },
+    "alerts": {
+      "title": "Performance Alerts",
+      "noAlerts": "All clear!",
+      "noAlertsDescription": "No performance alerts at this time"
+    },
+    "filters": {
+      "title": "Filters",
+      "dateRange": "Date Range",
+      "teams": "Teams",
+      "players": "Players",
+      "workoutTypes": "Workout Types",
+      "workoutType": "Workout Type",
+      "metrics": "Metrics",
+      "groupBy": "Group By",
+      "aggregation": "Aggregation"
+    },
+    "viewModes": {
+      "overview": "Overview",
+      "detailed": "Detailed",
+      "exercises": "Exercises"
+    },
+    "workoutEffectiveness": {
+      "title": "Workout Effectiveness",
+      "subtitle": "Analyze the effectiveness of your training programs",
+      "comparison": {
+        "title": "Effectiveness Comparison"
+      },
+      "breakdown": {
+        "title": "Effectiveness Breakdown"
+      }
+    },
+    "teamPerformance": {
+      "title": "Team Performance",
+      "comparison": {
+        "title": "Team Comparison"
+      },
+      "trends": {
+        "title": "Performance Trends"
+      },
+      "workoutDistribution": {
+        "title": "Workout Distribution"
+      },
+      "radarChart": {
+        "title": "Performance Metrics"
+      },
+      "quickActions": {
+        "title": "Quick Actions"
+      },
+      "viewModes": {
+        "cards": "Cards",
+        "comparison": "Comparison",
+        "trends": "Trends"
+      }
+    },
+    "detailed": {
+      "trends": "Trends",
+      "breakdown": "Breakdown",
+      "feedback": "Feedback",
+      "recommendations": "Recommendations"
+    },
+    "sorting": {
+      "sortBy": "Sort By",
+      "effectiveness": "Effectiveness",
+      "improvement": "Improvement",
+      "frequency": "Frequency",
+      "progression": "Progression"
+    },
+    "exercises": {
+      "title": "Exercise Analysis"
+    },
+    "actions": {
+      "createWorkout": "Create Workout",
+      "scheduleSession": "Schedule Session",
+      "viewPlayers": "View Players",
+      "exportReport": "Export Report",
+      "viewDetails": "View Details"
+    },
+    "breakdown": {
+      "title": "Breakdown"
+    },
+    "current": "Current",
+    "average": "Average",
+    "peak": "Peak",
+    "consistency": "Consistency",
+    "export": {
+      "title": "Export Analytics",
+      "button": "Export Data"
+    }
+  },
+  "medical": {
+    "analytics": {
+      "title": "Medical Analytics & Performance Insights",
+      "subtitle": "Comprehensive medical data integration for injury prevention and performance optimization",
+      "loading": "Loading medical analytics...",
+      "error": "Failed to load medical analytics data"
+    },
+    "overview": {
+      "healthyPlayers": "Healthy Players",
+      "activeInjuries": "Active Injuries",
+      "riskScore": "Risk Score", 
+      "criticalAlerts": "Critical Alerts",
+      "inRecovery": "in recovery",
+      "otherAlerts": "other alerts",
+      "ofTotal": "of {{total}} total"
+    },
+    "quickAccess": {
+      "title": "Quick Access",
+      "activeAlerts": "Active Alerts",
+      "alertsRequiringAttention": "{{count}} requiring attention",
+      "todaysRTP": "Today's RTP",
+      "assessmentsScheduled": "{{count}} assessments scheduled",
+      "recoveryStatus": "Recovery Status",
+      "playersTracking": "{{count}} players tracking",
+      "reports": "Reports",
+      "generateReports": "Generate medical reports"
+    },
+    "alerts": {
+      "title": "Medical Alert Center",
+      "subtitle": "Real-time medical alerts and priority notifications",
+      "resolved": "Resolved",
+      "unresolved": "Unresolved", 
+      "severity": {
+        "critical": "Critical",
+        "high": "High Priority",
+        "medium": "Medium Priority",
+        "low": "Low Priority"
+      },
+      "types": {
+        "injury_risk": "Injury Risk",
+        "recovery_setback": "Recovery Setback",
+        "clearance_needed": "Clearance Needed",
+        "compliance_issue": "Compliance Issue",
+        "performance_decline": "Performance Decline"
+      }
+    },
+    "riskAssessment": {
+      "title": "Medical Risk Assessment",
+      "subtitle": "Comprehensive injury risk analysis and prevention strategies",
+      "teamOverview": "Team Overview",
+      "individualRisk": "Individual Risk",
+      "riskDistribution": "Risk Distribution",
+      "topRiskFactors": "Top Risk Factors",
+      "primaryConcerns": "Primary Concerns",
+      "riskFactors": "Risk Factors",
+      "predictedOutcomes": "Predicted Outcomes"
+    },
+    "recovery": {
+      "title": "Recovery Progress Monitor", 
+      "subtitle": "Track rehabilitation milestones, trends, and receive real-time alerts",
+      "milestones": "Milestones",
+      "trends": "Trends",
+      "alerts": "Alerts",
+      "completed": "Completed",
+      "remaining": "Remaining",
+      "progress": "Progress",
+      "weeksToGoal": "Weeks to Goal"
+    },
+    "returnToPlay": {
+      "title": "Return-to-Play Dashboard",
+      "subtitle": "Comprehensive return-to-play protocol management",
+      "protocols": "Protocols",
+      "assessments": "Assessments",
+      "clearances": "Clearances"
+    },
+    "workout": {
+      "notFound": "Workout Not Found",
+      "notFoundDescription": "The requested workout could not be found.",
+      "details": {
+        "title": "Workout Details",
+        "overview": "Overview",
+        "content": "Content",
+        "usage": "Usage",
+        "equipment": "Equipment",
+        "exercises": "Exercises",
+        "intervals": "Intervals",
+        "blocks": "Blocks",
+        "drills": "Drills",
+        "duration": "Duration",
+        "intensity": "Intensity",
+        "location": "Location",
+        "status": "Status",
+        "createdBy": "Created by",
+        "created": "Created",
+        "usageCount": "Usage count",
+        "lastUsed": "Last used",
+        "favorite": "Favorite",
+        "notes": "Notes",
+        "description": "Description"
+      }
+    },
+    "help": {
+      "title": "Help & Documentation",
+      "tabs": {
+        "tour": "Feature Tour",
+        "shortcuts": "Shortcuts",
+        "tutorials": "Tutorials",
+        "faq": "FAQ",
+        "support": "Support"
+      },
+      "tour": {
+        "welcome": "Welcome to Physical Trainer Dashboard",
+        "description": "Manage workouts, track player progress, and optimize training programs for your teams.",
+        "startTour": "Start Interactive Tour"
+      },
+      "features": {
+        "workoutBuilder": {
+          "title": "Workout Builder",
+          "description": "Create comprehensive strength, conditioning, hybrid, and agility workouts with medical compliance"
+        },
+        "calendar": {
+          "title": "Team Calendar",
+          "description": "Schedule sessions, view team events, and manage training calendars"
+        },
+        "playerTracking": {
+          "title": "Player Tracking",
+          "description": "Monitor player readiness, wellness, and performance metrics"
+        },
+        "templates": {
+          "title": "Templates",
+          "description": "Save and share workout templates across your organization"
+        },
+        "medical": {
+          "title": "Medical Integration",
+          "description": "Real-time medical restrictions and safe exercise alternatives"
+        },
+        "analytics": {
+          "title": "Analytics & AI",
+          "description": "Data-driven insights and AI-powered workout optimization"
+        }
+      },
+      "shortcuts": {
+        "title": "Keyboard Shortcuts",
+        "description": "Speed up your workflow with these keyboard shortcuts",
+        "tip": "Press ? anytime to show this overlay"
+      },
+      "tutorials": {
+        "description": "Watch video tutorials to master the platform",
+        "createWorkout": "Creating Your First Workout",
+        "scheduleSession": "Scheduling Training Sessions",
+        "playerAssignment": "Assigning Players to Workouts",
+        "conditioning": "Building Conditioning Programs",
+        "hybrid": "Creating Hybrid Workouts",
+        "templates": "Working with Templates"
+      },
+      "faq": {
+        "description": "Frequently asked questions",
+        "howToCreateWorkout": "How do I create a new workout?",
+        "howToCreateWorkoutAnswer": "Click the 'Create Workout' button or press Ctrl+N. Choose your workout type and follow the guided builder.",
+        "whatAreMedicalRestrictions": "What are medical restrictions?",
+        "whatAreMedicalRestrictionsAnswer": "Medical restrictions are limitations set by medical staff to prevent injury. The system automatically filters unsafe exercises.",
+        "howToShareTemplates": "How do I share templates with other trainers?",
+        "howToShareTemplatesAnswer": "Save your workout as a template, then use the share button to grant access to specific trainers or teams.",
+        "howToTrackProgress": "How do I track player progress?",
+        "howToTrackProgressAnswer": "View the Player Status tab for real-time wellness data, or check Analytics for detailed performance trends.",
+        "whatIsLiveSession": "What is a live training session?",
+        "whatIsLiveSessionAnswer": "Live sessions allow real-time monitoring of players during workouts. Players broadcast their data while you monitor progress."
+      },
+      "support": {
+        "title": "Contact Support",
+        "description": "Need help? Our support team is here to assist you.",
+        "email": "Email Support",
+        "phone": "Phone Support",
+        "hours": "Monday-Friday, 9AM-5PM EST",
+        "documentation": "Online Documentation"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "saved": "Settings saved successfully",
+      "resetToDefaults": "Reset to Defaults",
+      "tabs": {
+        "general": "General",
+        "notifications": "Notifications",
+        "calendar": "Calendar",
+        "appearance": "Appearance",
+        "workouts": "Workouts"
+      },
+      "general": {
+        "defaultTeam": "Default Team Selection",
+        "defaultTeamDescription": "Choose which team view to show when you log in"
+      },
+      "notifications": {
+        "types": "Notification Types",
+        "typesDescription": "Choose which notifications you want to receive",
+        "sessionReminders": "Training Session Reminders",
+        "medicalAlerts": "Medical Alerts & Updates",
+        "playerUpdates": "Player Status Updates",
+        "templateSharing": "Template Sharing Notifications",
+        "delivery": "Delivery Methods",
+        "deliveryDescription": "How you want to receive notifications",
+        "email": "Email Notifications",
+        "push": "Push Notifications"
+      },
+      "calendar": {
+        "view": "Calendar View",
+        "viewDescription": "Customize your calendar display preferences",
+        "defaultView": "Default View",
+        "month": "Month View",
+        "week": "Week View",
+        "day": "Day View",
+        "showWeekends": "Show Weekends",
+        "workoutColors": "Color-code Workouts by Type"
+      },
+      "appearance": {
+        "language": "Language",
+        "languageDescription": "Choose your preferred language",
+        "theme": "Theme",
+        "themeDescription": "Choose your preferred color theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System Default"
+      },
+      "workouts": {
+        "defaults": "Default Settings",
+        "defaultsDescription": "Set default values for new workouts",
+        "defaultDuration": "Default Workout Duration",
+        "defaultRest": "Default Rest Period",
+        "autoSave": "Auto-save Workouts",
+        "autoSaveInterval": "Auto-save Interval"
+      }
+    },
+    "fab": {
+      "quickActions": "Quick Actions",
+      "createWorkout": "Create New Workout",
+      "scheduleSession": "Schedule Session",
+      "viewActiveSessions": "View Active Sessions",
+      "quickTest": "Quick Test Entry"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts"
+    }
+  },
+  "export": {
+    "button": "Export",
+    "quickExport": "Quick Export",
+    "advancedExport": "Advanced Export",
+    "advancedTitle": "Advanced Export Options",
+    "advancedDescription": "Configure export settings and filters",
+    "format": "Export Format",
+    "formats": {
+      "excel": "Excel Spreadsheet",
+      "csv": "CSV File",
+      "json": "JSON Data",
+      "pdf": "PDF Report"
+    },
+    "dateRange": "Date Range",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "selectFields": "Select Fields to Export",
+    "includeMetadata": "Include metadata and statistics",
+    "exporting": "Exporting...",
+    "success": "Data exported successfully",
+    "error": "Failed to export data"
+  },
+  "dataMigration": {
+    "title": "Data Migration Tool",
+    "description": "Import data from other systems or file formats",
+    "steps": {
+      "selectFile": "Select File",
+      "mapFields": "Map Fields",
+      "configureOptions": "Configure Options",
+      "review": "Review",
+      "import": "Import"
+    },
+    "dataType": "Data Type",
+    "types": {
+      "exercises": "Exercises",
+      "templates": "Templates",
+      "testData": "Test Data"
+    },
+    "selectFile": "Select File",
+    "chooseFile": "Choose a file to import",
+    "supportedFormats": "Supported formats: JSON, CSV, Excel",
+    "mapFieldsDescription": "Map source fields to target fields",
+    "duplicateHandling": "Duplicate Handling",
+    "duplicateOptions": {
+      "skip": "Skip duplicates",
+      "overwrite": "Overwrite existing",
+      "rename": "Rename duplicates"
+    },
+    "validateData": "Validate data before importing",
+    "preview": "Import Preview",
+    "recordCount": "Record Count",
+    "sampleData": "Sample Data",
+    "importing": "Importing data...",
+    "startImport": "Start Import",
+    "success": {
+      "message": "Import completed successfully",
+      "imported": "{{count}} records imported",
+      "importComplete": "Import complete"
+    },
+    "errors": {
+      "parseError": "Failed to parse file",
+      "importFailed": "Import failed"
+    },
+    "duplicatesFound": "{{count}} duplicates found"
+  },
+  "settings": {
+    "title": "Settings",
+    "saved": "Settings saved successfully",
+    "resetToDefaults": "Reset to Defaults",
+    "tabs": {
+      "general": "General",
+      "notifications": "Notifications",
+      "calendar": "Calendar",
+      "appearance": "Appearance",
+      "workouts": "Workouts"
+    },
+    "general": {
+      "defaultTeam": "Default Team Selection",
+      "defaultTeamDescription": "Choose which team view to show when you log in"
+    },
+    "notifications": {
+      "types": "Notification Types",
+      "typesDescription": "Choose which notifications you want to receive",
+      "sessionReminders": "Training Session Reminders",
+      "medicalAlerts": "Medical Alerts & Updates",
+      "playerUpdates": "Player Status Updates",
+      "templateSharing": "Template Sharing Notifications",
+      "delivery": "Delivery Methods",
+      "deliveryDescription": "How you want to receive notifications",
+      "email": "Email Notifications",
+      "push": "Push Notifications"
+    },
+    "calendar": {
+      "view": "Calendar View",
+      "viewDescription": "Customize your calendar display preferences",
+      "defaultView": "Default View",
+      "month": "Month View",
+      "week": "Week View",
+      "day": "Day View",
+      "showWeekends": "Show Weekends",
+      "workoutColors": "Color-code Workouts by Type"
+    },
+    "appearance": {
+      "language": "Language",
+      "languageDescription": "Choose your preferred language",
+      "theme": "Theme",
+      "themeDescription": "Choose your preferred color theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System Default"
+    },
+    "workouts": {
+      "defaults": "Default Settings",
+      "defaultsDescription": "Set default values for new workouts",
+      "defaultDuration": "Default Workout Duration",
+      "defaultRest": "Default Rest Period",
+      "autoSave": "Auto-save Workouts",
+      "autoSaveInterval": "Auto-save Interval"
+    }
+  },
+  "help": {
+    "title": "Help & Documentation",
+    "tabs": {
+      "tour": "Feature Tour",
+      "shortcuts": "Shortcuts",
+      "tutorials": "Tutorials",
+      "faq": "FAQ",
+      "support": "Support"
+    },
+    "tour": {
+      "welcome": "Welcome to Physical Trainer Dashboard",
+      "description": "Manage workouts, track player progress, and optimize training programs for your teams.",
+      "startTour": "Start Interactive Tour"
+    },
+    "features": {
+      "workoutBuilder": {
+        "title": "Workout Builder",
+        "description": "Create comprehensive strength, conditioning, hybrid, and agility workouts with medical compliance"
+      },
+      "calendar": {
+        "title": "Team Calendar",
+        "description": "Schedule sessions, view team events, and manage training calendars"
+      },
+      "playerTracking": {
+        "title": "Player Tracking",
+        "description": "Monitor player readiness, wellness, and performance metrics"
+      },
+      "templates": {
+        "title": "Templates",
+        "description": "Save and share workout templates across your organization"
+      },
+      "medical": {
+        "title": "Medical Integration",
+        "description": "Real-time medical restrictions and safe exercise alternatives"
+      },
+      "analytics": {
+        "title": "Analytics & AI",
+        "description": "Data-driven insights and AI-powered workout optimization"
+      }
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "description": "Speed up your workflow with these keyboard shortcuts",
+      "tip": "Press ? anytime to show this overlay"
+    },
+    "tutorials": {
+      "description": "Watch video tutorials to master the platform",
+      "createWorkout": "Creating Your First Workout",
+      "scheduleSession": "Scheduling Training Sessions",
+      "playerAssignment": "Assigning Players to Workouts",
+      "conditioning": "Building Conditioning Programs",
+      "hybrid": "Creating Hybrid Workouts",
+      "templates": "Working with Templates"
+    },
+    "faq": {
+      "description": "Frequently asked questions",
+      "howToCreateWorkout": "How do I create a new workout?",
+      "howToCreateWorkoutAnswer": "Click the 'Create Workout' button or press Ctrl+N. Choose your workout type and follow the guided builder.",
+      "whatAreMedicalRestrictions": "What are medical restrictions?",
+      "whatAreMedicalRestrictionsAnswer": "Medical restrictions are limitations set by medical staff to prevent injury. The system automatically filters unsafe exercises.",
+      "howToShareTemplates": "How do I share templates with other trainers?",
+      "howToShareTemplatesAnswer": "Save your workout as a template, then use the share button to grant access to specific trainers or teams.",
+      "howToTrackProgress": "How do I track player progress?",
+      "howToTrackProgressAnswer": "View the Player Status tab for real-time wellness data, or check Analytics for detailed performance trends.",
+      "whatIsLiveSession": "What is a live training session?",
+      "whatIsLiveSessionAnswer": "Live sessions allow real-time monitoring of players during workouts. Players broadcast their data while you monitor progress."
+    },
+    "support": {
+      "title": "Contact Support",
+      "description": "Need help? Our support team is here to assist you.",
+      "email": "Email Support",
+      "phone": "Phone Support",
+      "hours": "Monday-Friday, 9AM-5PM EST",
+      "documentation": "Online Documentation"
+    }
+  },
+  "fab": {
+    "quickActions": "Quick Actions",
+    "createWorkout": "Create New Workout",
+    "scheduleSession": "Schedule Session",
+    "viewActiveSessions": "View Active Sessions",
+    "quickTest": "Quick Test Entry"
+  },
+  "teams": {
+    "allTeams": "All Teams",
+    "personalView": "Personal View",
+    "aTeam": "A-Team",
+    "j20Team": "J20 Team",
+    "u18Team": "U18 Team",
+    "u16Team": "U16 Team",
+    "womensTeam": "Women's Team",
+    "seniorTeam": "Senior Team",
+    "juniorTeam": "Junior Team"
+  },
+  "workoutTypes": {
+    "strength": {
+      "label": "Strength Training",
+      "description": "Build muscle and power with resistance exercises"
+    },
+    "conditioning": {
+      "label": "Conditioning",
+      "description": "Improve cardiovascular fitness with interval training"
+    },
+    "hybrid": {
+      "label": "Hybrid Workout",
+      "description": "Combine strength and cardio in one session"
+    },
+    "agility": {
+      "label": "Agility Training", 
+      "description": "Enhance speed, coordination, and movement patterns"
+    },
+    "flexibility": {
+      "label": "Flexibility & Mobility",
+      "description": "Improve range of motion and prevent injuries"
+    },
+    "wrestling": {
+      "label": "Wrestling Training",
+      "description": "Sport-specific grappling and combat training"
+    }
+  },
+  "workout": {
+    "notFound": "Workout Not Found",
+    "notFoundDescription": "The requested workout could not be found.",
+    "details": {
+      "title": "Workout Details",
+      "overview": "Overview",
+      "content": "Content",
+      "usage": "Usage",
+      "equipment": "Equipment",
+      "exercises": "Exercises",
+      "intervals": "Intervals",
+      "blocks": "Blocks",
+      "drills": "Drills",
+      "duration": "Duration",
+      "intensity": "Intensity",
+      "location": "Location",
+      "status": "Status",
+      "createdBy": "Created by",
+      "created": "Created",
+      "usageCount": "Usage count",
+      "lastUsed": "Last used",
+      "favorite": "Favorite",
+      "notes": "Notes",
+      "description": "Description"
+    }
+  },
+  "common": {
+    "close": "Close"
+  },
+  "training": {
+    "teams": {
+      "team": "Team",
+      "aTeam": "A-Team",
+      "j20Team": "J20",
+      "u18Team": "U18",
+      "u16Team": "U16",
+      "womensTeam": "Women's Team",
+      "individual": "Individual",
+      "A-Team": "A-Team",
+      "J20": "J20",
+      "U18": "U18",
+      "U16": "U16",
+      "Women's Team": "Women's Team"
+    },
+    "sessionTypes": {
+      "recoverySession": "Recovery Session",
+      "strengthTraining": "Strength Training",
+      "cardioIntervals": "Cardio Intervals",
+      "speedAgility": "Speed & Agility",
+      "powerDevelopment": "Power Development",
+      "personalTraining": "Personal Training",
+      "rehabSession": "Rehab Session",
+      "sprintTraining": "Sprint Training",
+      "strength": "Strength Training",
+      "conditioning": "Conditioning",
+      "hybrid": "Hybrid Training",
+      "agility": "Agility Training",
+      "recovery": "Recovery",
+      "agilityTraining": "Agility Training",
+      "hybridWorkout": "Hybrid Workout"
+    },
+    "locations": {
+      "gym": "Gym",
+      "weightRoom": "Weight Room",
+      "field": "Field",
+      "track": "Track",
+      "medicalCenter": "Medical Center"
+    },
+    "intensity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "max": "Max"
+    },
+    "sessionDescriptions": {
+      "activeRecoveryMobility": "Active recovery and mobility work",
+      "olympicLiftsPlyometrics": "Olympic lifts and plyometrics",
+      "highIntensityIntervalTraining": "High intensity interval training",
+      "sprintDrillsLadderWork": "Sprint drills and ladder work",
+      "explosivePowerTraining": "Explosive power training",
+      "personalRecoveryProgram": "Personal recovery program",
+      "kneeRehabilitation": "Knee rehabilitation",
+      "speedDevelopmentProgram": "Speed development program",
+      "recoveryMobilityFocus": "Recovery & mobility focus",
+      "moderateEffortSkillDevelopment": "Moderate effort, skill development",
+      "highIntensityPerformanceFocus": "High intensity, performance focus",
+      "peakPerformanceTesting": "Peak performance testing"
+    },
+    "equipment": {
+      "availability": {
+        "title": "Equipment Availability",
+        "error": "Unable to load equipment availability",
+        "current": "Current Availability",
+        "suggestions": {
+          "shareEquipment": "Consider having players share equipment",
+          "chooseAlternative": "Choose alternative equipment or time"
+        }
+      },
+      "units": "units",
+      "available": "available",
+      "inUse": "in use",
+      "reserved": "reserved",
+      "maintenance": "maintenance",
+      "outOfOrder": "out of order",
+      "nextAvailable": "Next available",
+      "noEquipment": "No equipment found",
+      "equipmentNeeded": "Equipment Needed",
+      "status": {
+        "available": "Available",
+        "limited": "{{available}}/{{needed}} available",
+        "fullyBooked": "Fully booked",
+        "unavailable": "Unavailable",
+        "checking": "Checking..."
+      },
+      "warnings": {
+        "limited": "Limited availability",
+        "fullyBooked": "Fully booked",
+        "insufficientEquipment": "Insufficient Equipment",
+        "noEquipmentAvailable": "No Equipment Available",
+        "availableCount": "Only {{available}} of {{needed}} equipment available",
+        "chooseAlternative": "Please choose alternative equipment or adjust timing"
+      },
+      "conflicts": {
+        "saveBlocked": "Cannot save workout due to equipment conflicts",
+        "insufficientEquipment": {
+          "title": "Insufficient Equipment",
+          "description": "Not enough {{equipment}} available at {{time}}. Requested: {{requested}}, Available: {{available}}"
+        },
+        "overlappingReservation": {
+          "title": "Overlapping Reservations",
+          "description": "{{equipment}} has {{count}} conflicting reservations"
+        },
+        "maintenanceWindow": {
+          "title": "Maintenance Scheduled",
+          "description": "{{equipment}} scheduled for maintenance during {{time}}"
+        },
+        "facilityClosed": {
+          "title": "Facility Closed",
+          "description": "Training facility closed during {{time}}"
+        },
+        "generic": {
+          "title": "Equipment Conflict",
+          "description": "Equipment scheduling conflict detected"
+        }
+      },
+      "suggestions": {
+        "title": "Suggested Solutions",
+        "apply": "Apply",
+        "applied": "Suggestion applied successfully",
+        "alternativeTime": "Schedule for {{time}} instead",
+        "alternativeEquipment": "Use {{equipment}} instead",
+        "reduceParticipants": "Reduce to {{maxParticipants}} participants"
+      },
+      "metrics": {
+        "primary": "Primary metric",
+        "secondary": "Secondary metrics"
+      },
+      "title": "Equipment Selection",
+      "selector": {
+        "title": "Select Equipment Type",
+        "description": "Choose the equipment type for this workout"
+      },
+      "rotation": {
+        "title": "Equipment Rotation",
+        "enabled": "Rotation Mode Enabled",
+        "disabled": "Rotation Mode Disabled",
+        "groups": "Rotation Groups",
+        "schedule": "Rotation Schedule",
+        "duration": "Rotation Duration",
+        "setup": "Setup Rotation",
+        "autoGroup": "Auto-create Groups"
+      },
+      "contextSection": {
+        "title": "Equipment Context",
+        "targetZones": "Target Zones",
+        "metrics": "Performance Metrics",
+        "modifications": "Equipment Modifications"
+      },
+      "viewDetails": "View Details",
+      "moreConflicts": "more conflicts",
+      "additionalConflicts": "Additional Conflicts",
+      "andMoreConflicts": "and {{count}} more...",
+      "reservationCreated": "Equipment reserved successfully",
+      "reservationFailed": "Failed to reserve equipment",
+      "types": {
+        "running": "Running",
+        "rowing": "Rowing",
+        "skierg": "SkiErg",
+        "bike_erg": "Bike Erg",
+        "wattbike": "Wattbike",
+        "airbike": "Air Bike",
+        "rope_jump": "Rope Jump",
+        "treadmill": "Treadmill"
+      }
+    },
+    "bulkSessions": {
+      "sessionMode": "Session Creation Mode",
+      "singleMode": "Single",
+      "bulkMode": "Bulk",
+      "singleSession": "Single Session",
+      "bulkSessions": "Multiple Sessions",
+      "bulkModeDescription": "Bulk Mode Features:",
+      "feature1": "Create multiple sessions at once",
+      "feature2": "Copy for different teams",
+      "feature3": "Schedule across date ranges",
+      "feature4": "Customize each session individually",
+      "bulkOptions": "Bulk Creation Options",
+      "comingSoon": "Coming Soon!",
+      "implementationNote": "Bulk session creation options will be implemented in the next phase.",
+      "currentSelection": "Current selection:",
+      "sessions": "sessions"
+    },
+    "bundle": {
+      "loading": "Loading session bundle...",
+      "created": "Created",
+      "lastUpdated": "Last updated",
+      "autoRefreshOn": "Auto-refresh ON",
+      "autoRefreshOff": "Auto-refresh OFF",
+      "error": {
+        "title": "Failed to Load Bundle",
+        "notFound": "Session bundle not found"
+      },
+      "metrics": {
+        "title": "Bundle Metrics",
+        "sessions": "Active Sessions",
+        "participants": "Active Participants",
+        "progress": "Average Progress",
+        "heartRate": "Avg Heart Rate",
+        "intensity": "Avg Intensity",
+        "caloriesBurned": "Calories Burned",
+        "participationRate": "Participation Rate",
+        "sessionActivityRate": "Session Activity",
+        "avgProgress": "across all sessions",
+        "avgIntensity": "average intensity",
+        "overallProgress": "Overall Progress",
+        "participantEngagement": "Participant Engagement",
+        "activity": "Activity Rate",
+        "sessionActivity": "session activity"
+      },
+      "monitoring": {
+        "overallProgress": "Overall Progress",
+        "completion": "Completion",
+        "strength": {
+          "totalSets": "Total Sets",
+          "avgWeight": "Avg Weight",
+          "totalVolume": "Total Volume"
+        },
+        "conditioning": {
+          "avgPower": "Avg Power",
+          "zoneDistribution": "Zone Distribution",
+          "totalCalories": "Total Calories"
+        },
+        "hybrid": {
+          "exerciseBlocks": "Exercise Blocks",
+          "intervalBlocks": "Interval Blocks",
+          "avgBlockDuration": "Avg Block Duration",
+          "overallIntensity": "Overall Intensity"
+        },
+        "agility": {
+          "drillsCompleted": "Drills Completed",
+          "avgAccuracy": "Avg Accuracy",
+          "avgTime": "Avg Time",
+          "errorRate": "Error Rate"
+        }
+      },
+      "distribution": {
+        "title": "Workout Type Distribution",
+        "noData": "No workout data available",
+        "avgProgress": "Avg Progress",
+        "avgParticipants": "Avg Participants",
+        "mixedBundle": "Mixed Workout Bundle"
+      },
+      "actions": {
+        "title": "Bulk Actions",
+        "pauseAll": "Pause All",
+        "resumeAll": "Resume All",
+        "broadcast": "Broadcast",
+        "exportData": "Export Data",
+        "exportByType": "Export by Type",
+        "exportSpreadsheet": "Export Spreadsheet",
+        "sendMessage": "Send Message"
+      },
+      "broadcast": {
+        "title": "Broadcast Message",
+        "description": "Send a message to all participants in {{count}} active sessions",
+        "placeholder": "Type your message here...",
+        "willReceive": "Sessions that will receive this message:",
+        "send": "Send Message"
+      },
+      "sessions": {
+        "title": "Active Sessions",
+        "progress": "Progress",
+        "currentPhase": "Current Phase",
+        "viewSession": "View Session"
+      },
+      "filters": {
+        "all": "All",
+        "active": "Active",
+        "paused": "Paused",
+        "preparing": "Preparing",
+        "completed": "Completed"
+      },
+      "sort": {
+        "name": "Name",
+        "progress": "Progress",
+        "participants": "Participants", 
+        "elapsed": "Time Elapsed"
+      },
+      "noSessions": {
+        "title": "No Sessions Found",
+        "description": "No sessions are currently available in this bundle.",
+        "filtered": "No {{filter}} sessions found.",
+        "showAll": "Show All Sessions"
+      },
+      "summary": {
+        "showing": "Showing {{count}} of {{total}} sessions"
+      }
+    }
+  },
+  "flexibility": {
+    "builder": {
+      "title": "Flexibility Workout Builder"
+    },
+    "autoSaveRestored": "Auto-saved flexibility program restored",
+    "createSuccess": "Flexibility program created successfully",
+    "saveError": "Failed to save flexibility program",
+    "saveSuccess": "Flexibility program saved successfully",
+    "phases": {
+      "warmup": "Warm-up",
+      "staticStretches": "Static Stretches",  
+      "dynamicStretches": "Dynamic Stretches",
+      "cooldown": "Cool-down"
+    },
+    "difficulty": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate", 
+      "advanced": "Advanced"
+    },
+    "equipment": {
+      "mat": "Yoga Mat",
+      "blocks": "Yoga Blocks",
+      "straps": "Yoga Straps",
+      "foam_roller": "Foam Roller",
+      "resistance_band": "Resistance Band",
+      "towel": "Towel",
+      "wall": "Wall Support",
+      "chair": "Chair",
+      "none": "No Equipment"
+    },
+    "bodyParts": {
+      "neck": "Neck",
+      "shoulders": "Shoulders", 
+      "chest": "Chest",
+      "back": "Back",
+      "arms": "Arms",
+      "core": "Core",
+      "hips": "Hips",
+      "glutes": "Glutes",
+      "quadriceps": "Quadriceps",
+      "hamstrings": "Hamstrings",
+      "calves": "Calves",
+      "ankles": "Ankles",
+      "full_body": "Full Body"
+    },
+    "stretchTypes": {
+      "static": "Static",
+      "dynamic": "Dynamic",
+      "pnf": "PNF",
+      "ballistic": "Ballistic"
+    },
+    "breathingPatterns": {
+      "4-4-4": "4-4-4 Equal Breathing",
+      "4-7-8": "4-7-8 Relaxation",
+      "6-2-6": "6-2-6 Recovery",
+      "natural": "Natural Flow"
+    },
+    "goals": {
+      "mobility": "Mobility",
+      "recovery": "Recovery",
+      "performance": "Performance",
+      "injury_prevention": "Injury Prevention",
+      "posture": "Posture"
+    }
+  },
+  "wrestling": {
+    "programOverview": "Program Overview",
+    "trainingRounds": "Training Rounds",
+    "partnerAssignment": "Partner Assignment",
+    "safetyProtocol": "Safety Protocol",
+    "techniqueLibrary": "Technique Library",
+    "programSummary": "Program Summary",
+    "roundEditor": "Round Editor",
+    "techniques": "Techniques",
+    "techniques_other": "Techniques",
+    "addRound": "Add Round",
+    "removeRound": "Remove Round",
+    "editRound": "Edit Round",
+    "addTechnique": "Add Technique",
+    "removeTechnique": "Remove Technique",
+    "roundTypes": {
+      "warmup": "Warm-up",
+      "technique": "Technique",
+      "drilling": "Drilling",
+      "live": "Live Wrestling",
+      "conditioning": "Conditioning",
+      "cooldown": "Cool-down"
+    },
+    "intensityLevels": {
+      "technique": "Technique (50%)",
+      "drilling": "Drilling (70%)",
+      "live": "Live (90%)",
+      "competition": "Competition (100%)"
+    },
+    "intensityDescriptions": {
+      "technique": "Focus on form and technique",
+      "drilling": "Controlled repetition",
+      "live": "Full-speed sparring",
+      "competition": "Match simulation"
+    },
+    "partnerConfig": {
+      "strategy": "Assignment Strategy",
+      "strategies": {
+        "weight_based": "Weight-Based",
+        "skill_based": "Skill-Based",
+        "mixed": "Mixed Criteria",
+        "random": "Random"
+      },
+      "maxWeightDifference": "Max Weight Difference (kg)",
+      "rotationFrequency": "Rotation Frequency (rounds)",
+      "allowSkillMismatch": "Allow Skill Mismatch",
+      "avoidRepeats": "Avoid Repeat Pairings",
+      "generatePairings": "Generate Partner Pairings"
+    },
+    "safetyChecklist": "Safety Checklist",
+    "requiredEquipment": "Required Equipment",
+    "safetyEquipment": "Safety Equipment",
+    "progressionNotes": "Progression Notes",
+    "matRequirements": "Mat Requirements",
+    "matsCount": "Number of Mats",
+    "matSize": "Mat Size",
+    "matSpacing": "Spacing (meters)",
+    "matSizes": {
+      "competition": "Competition (12x12m)",
+      "practice": "Practice (10x10m)",
+      "mini": "Mini (8x8m)"
+    },
+    "techniqueCategories": {
+      "standing": "Standing Techniques",
+      "ground": "Ground Techniques",
+      "transition": "Transition Techniques"
+    },
+    "difficultyLevels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    },
+    "focusAreas": {
+      "technique": "Technique",
+      "conditioning": "Conditioning",
+      "competition": "Competition",
+      "mixed": "Mixed"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+FROM node:20-alpine
+
+WORKDIR /usr/src/app
+
+# Copy root package files
+COPY package*.json ./
+COPY pnpm-workspace.yaml ./
+
+# Copy workspace packages
+COPY packages/ ./packages/
+
+# Copy service files
+COPY services/user-service/package*.json ./services/user-service/
+
+# Install pnpm
+RUN npm install -g pnpm
+
+# Install dependencies from root
+RUN pnpm install --filter @hockey-hub/user-service...
+
+# Copy service source
+COPY services/user-service/ ./services/user-service/
+
+# Set working directory to service
+WORKDIR /usr/src/app/services/user-service
+
+# Expose port
+EXPOSE 3001
+
+# Start in development mode
+CMD ["pnpm", "run", "dev"]

@@ -1,0 +1,229 @@
+{
+  "dashboard": {
+    "title": "Starševska nadzorna plošča",
+    "welcome": "Dobrodošli, {{name}}!",
+    "childrenOverview": "Pregled otrok",
+    "upcomingEvents": "Prihajajoči dogodki",
+    "announcements": "Obvestila",
+    "quickActions": "Hitra dejanja"
+  },
+  "children": {
+    "title": "Moji otroci",
+    "profiles": "Profili",
+    "schedule": "Urnik",
+    "performance": "Uspešnost",
+    "attendance": "Prisotnost",
+    "medical": "Zdravstveni status",
+    "development": "Razvoj",
+    "communication": "Komunikacija",
+    "activities": "Aktivnosti",
+    "progress": "Napredek"
+  },
+  "schedule": {
+    "title": "Urnik",
+    "calendar": "Koledar",
+    "practices": "Treningi",
+    "games": "Tekme",
+    "events": "Dogodki",
+    "transportation": "Prevoz",
+    "conflicts": "Konflikti",
+    "availability": "Razpoložljivost",
+    "notifications": "Opomniki",
+    "sync": "Sinhroniziraj koledar"
+  },
+  "attendance": {
+    "title": "Prisotnost",
+    "confirm": "Potrdi prisotnost",
+    "decline": "Odkloni udeležbo",
+    "history": "Zgodovina prisotnosti",
+    "statistics": "Statistika prisotnosti",
+    "excused": "Opravičeno",
+    "unexcused": "Neopravičeno",
+    "late": "Zamuda",
+    "reasons": "Razlogi odsotnosti"
+  },
+  "payments": {
+    "title": "Plačila",
+    "overview": "Pregled plačil",
+    "dues": "Članarine",
+    "fees": "Pristojbine",
+    "outstanding": "Neporavnane obveznosti",
+    "history": "Zgodovina plačil",
+    "methods": "Načini plačila",
+    "invoices": "Računi",
+    "receipts": "Potrdila",
+    "schedule": "Plačilni načrt",
+    "automatic": "Avtomatska plačila"
+  },
+  "communication": {
+    "title": "Komunikacija",
+    "messages": "Sporočila",
+    "announcements": "Obvestila",
+    "coaches": "Trenerji",
+    "teamParents": "Starši ekipe",
+    "administration": "Administracija",
+    "emergency": "Nujni kontakti",
+    "preferences": "Komunikacijske preference",
+    "notifications": "Nastavitve obvestil"
+  },
+  "medical": {
+    "title": "Zdravstvene informacije",
+    "records": "Zdravstveni karton",
+    "medications": "Zdravila",
+    "allergies": "Alergije",
+    "conditions": "Zdravstvena stanja",
+    "emergency": "Nujni kontakti",
+    "insurance": "Zavarovanje",
+    "consent": "Soglasja",
+    "clearance": "Zdravniška potrdila",
+    "injuries": "Poškodbe"
+  },
+  "volunteer": {
+    "title": "Prostovoljstvo",
+    "opportunities": "Priložnosti",
+    "schedule": "Urnik",
+    "hours": "Opravljene ure",
+    "requirements": "Zahteve",
+    "signUp": "Prijava",
+    "roles": "Vloge",
+    "training": "Usposabljanje",
+    "coordination": "Koordinacija"
+  },
+  "documents": {
+    "title": "Dokumenti",
+    "forms": "Obrazci",
+    "policies": "Pravilniki",
+    "handbooks": "Priročniki",
+    "waivers": "Izjave",
+    "contracts": "Pogodbe",
+    "upload": "Naloži dokument",
+    "download": "Prenesi dokument",
+    "sign": "Podpiši",
+    "status": "Status dokumentov"
+  },
+  "teamInfo": {
+    "title": "Informacije o ekipi",
+    "roster": "Seznam igralcev",
+    "coaches": "Trenersko osebje",
+    "schedule": "Razpored",
+    "standings": "Lestvica",
+    "news": "Novice",
+    "photos": "Fotografije",
+    "videos": "Video posnetki",
+    "social": "Družbena omrežja"
+  },
+  "transportation": {
+    "title": "Prevoz",
+    "carpool": "Skupni prevoz",
+    "schedule": "Vozni red",
+    "drivers": "Vozniki",
+    "routes": "Poti",
+    "coordination": "Koordinacija",
+    "volunteer": "Prostovoljni prevoz",
+    "busSchedule": "Avtobusni prevoz",
+    "directions": "Navodila za pot"
+  },
+  "fundraising": {
+    "title": "Zbiranje sredstev",
+    "campaigns": "Kampanje",
+    "goals": "Cilji",
+    "progress": "Napredek",
+    "contributions": "Prispevki",
+    "events": "Dogodki",
+    "volunteer": "Prostovoljno delo",
+    "donations": "Donacije",
+    "sponsors": "Sponzorji"
+  },
+  "equipment": {
+    "title": "Oprema",
+    "required": "Zahtevana oprema",
+    "sizing": "Velikosti",
+    "orders": "Naročila",
+    "maintenance": "Vzdrževanje",
+    "replacement": "Zamenjava",
+    "teamStore": "Ekipna trgovina",
+    "discounts": "Popusti",
+    "guidelines": "Smernice"
+  },
+  "performance": {
+    "title": "Uspešnost",
+    "statistics": "Statistika",
+    "gameReports": "Poročila tekem",
+    "practiceReports": "Poročila treningov",
+    "development": "Razvoj",
+    "feedback": "Povratne informacije",
+    "goals": "Cilji",
+    "achievements": "Dosežki",
+    "comparison": "Primerjava"
+  },
+  "social": {
+    "title": "Socialno",
+    "events": "Družabni dogodki",
+    "teamBuilding": "Gradnja ekipe",
+    "celebrations": "Praznovanja",
+    "photos": "Fotografije",
+    "community": "Skupnost",
+    "connections": "Povezave",
+    "groups": "Skupine"
+  },
+  "notifications": {
+    "title": "Obvestila",
+    "preferences": "Nastavitve",
+    "schedule": "Urnik obvestil",
+    "urgent": "Nujna obvestila",
+    "general": "Splošna obvestila",
+    "reminders": "Opomniki",
+    "alerts": "Opozorila",
+    "methods": {
+      "email": "E-pošta",
+      "sms": "SMS",
+      "app": "Aplikacija",
+      "push": "Potisna obvestila"
+    }
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "profile": "Profil",
+    "children": "Otroci",
+    "notifications": "Obvestila",
+    "privacy": "Zasebnost",
+    "communication": "Komunikacija",
+    "payment": "Plačila",
+    "language": "Jezik",
+    "timezone": "Časovni pas"
+  },
+  "actions": {
+    "confirmAttendance": "Potrdi prisotnost",
+    "makePayment": "Izvedi plačilo",
+    "sendMessage": "Pošlji sporočilo",
+    "viewSchedule": "Poglej urnik",
+    "updateInfo": "Posodobi podatke",
+    "volunteerSignUp": "Prijavi se kot prostovoljec",
+    "downloadDocument": "Prenesi dokument",
+    "contactCoach": "Kontaktiraj trenerja",
+    "reportAbsence": "Sporoči odsotnost",
+    "viewChild": "Poglej otroka"
+  },
+  "messages": {
+    "paymentDue": "Plačilo v višini {{amount}} zapade {{date}}",
+    "upcomingGame": "Tekma {{opponent}} dne {{date}}",
+    "practiceReminder": "Trening jutri ob {{time}}",
+    "documentRequired": "Prosimo, oddajte {{document}} do {{date}}",
+    "volunteerNeeded": "Potrebujemo prostovoljce za {{event}}",
+    "scheduleChange": "Sprememba urnika: {{details}}",
+    "paymentReceived": "Plačilo prejeto. Hvala!",
+    "attendanceConfirmed": "Prisotnost potrjena za {{event}}",
+    "messageFromCoach": "Novo sporočilo od trenerja {{coach}}",
+    "medicalUpdate": "Zdravstvena posodobitev za {{child}}"
+  },
+  "childActions": {
+    "switchChild": "Preklopi na drugega otroka",
+    "viewProfile": "Poglej profil",
+    "viewSchedule": "Poglej urnik",
+    "viewPerformance": "Poglej uspešnost",
+    "contactCoach": "Kontaktiraj trenerja",
+    "medicalInfo": "Zdravstvene informacije",
+    "attendance": "Prisotnost",
+    "payments": "Plačila"
+  }
+}
