@@ -44,7 +44,7 @@ jobs:
           EOF
 
       - name: Upload status
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: workflow-status
           path: workflow-status.json
