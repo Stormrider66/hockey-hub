@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.node-version == '20.x'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/lcov.info
           flags: unit
@@ -206,7 +206,7 @@ jobs:
         run: pnpm run test:integration --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/lcov.info
           flags: integration
@@ -272,7 +272,7 @@ jobs:
         working-directory: apps/frontend
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./apps/frontend/coverage/lcov.info
           flags: frontend
