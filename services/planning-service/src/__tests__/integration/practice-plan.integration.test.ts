@@ -11,6 +11,7 @@ import { Connection, createConnection, getRepository } from 'typeorm';
 import express from 'express';
 import { PracticePlan, PracticeStatus, PracticeFocus } from '../../entities/PracticePlan';
 import { Drill, DrillDifficulty, DrillType } from '../../entities/Drill';
+import { DrillCategory } from '../../entities/DrillCategory';
 import { TrainingPlan } from '../../entities/TrainingPlan';
 import { PracticePlanController } from '../../controllers/coach/practice-plan.controller';
 import { Logger } from '@hockey-hub/shared-lib/dist/utils/Logger';
@@ -102,14 +103,20 @@ describe('Practice Plan Integration Tests', () => {
   ];
 
   beforeAll(async () => {
+    // Freeze time so fixed ISO dates in tests remain stable across real-world dates
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('2024-02-01T00:00:00.000Z'));
+
     // Create in-memory database connection
     connection = await createConnection({
-      type: 'sqlite',
-      database: ':memory:',
-      entities: [PracticePlan, Drill, TrainingPlan],
+      // Use sqljs to avoid native sqlite3 dependency (works in pure JS)
+      type: 'sqljs',
+      autoSave: false,
+      location: ':memory:',
+      entities: [PracticePlan, Drill, DrillCategory, TrainingPlan],
       synchronize: true,
       logging: false,
-    });
+    } as any);
 
     repository = getRepository(PracticePlan);
     drillRepository = getRepository(Drill);
@@ -141,6 +148,7 @@ describe('Practice Plan Integration Tests', () => {
     if (connection) {
       await connection.close();
     }
+    jest.useRealTimers();
   });
 
   beforeEach(async () => {
@@ -193,7 +201,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.objectives).toEqual(practiceData.objectives);
 
       // Verify in database
-      const saved = await repository.findOne(response.body.id);
+      const saved = await repository.findOne({ where: { id: response.body.id } });
       expect(saved).toBeDefined();
       expect(saved.title).toBe(practiceData.title);
       expect(new Date(saved.date)).toEqual(new Date(practiceData.date));
@@ -212,7 +220,7 @@ describe('Practice Plan Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/practice-plans')
         .send(invalidData)
-        .expect(500);
+        .expect(400);
 
       // Check that no plan was created
       const count = await repository.count();
@@ -249,7 +257,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.trainingPlanId).toBe(trainingPlan.id);
 
       // Verify relationship in database
-      const saved = await repository.findOne(response.body.id, { relations: ['trainingPlan'] });
+      const saved = await repository.findOne({ where: { id: response.body.id } as any, relations: ['trainingPlan'] as any });
       expect(saved.trainingPlan.id).toBe(trainingPlan.id);
     });
 
@@ -433,7 +441,7 @@ describe('Practice Plan Integration Tests', () => {
 
     it('should include attendance and evaluation summaries', async () => {
       // Update one practice with attendance and evaluations
-      const practice = await repository.findOne();
+      const [practice] = await repository.find({ take: 1 });
       practice.attendance = mockAttendance;
       practice.playerEvaluations = mockEvaluations;
       await repository.save(practice);
@@ -567,7 +575,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.objectives).toEqual(updates.objectives);
 
       // Verify in database
-      const updated = await repository.findOne(testPractice.id);
+      const updated = await repository.findOne({ where: { id: testPractice.id } });
       expect(updated.title).toBe(updates.title);
       expect(updated.duration).toBe(updates.duration);
     });
@@ -672,7 +680,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.playerEvaluations).toBeNull();
 
       // Verify in database
-      const duplicated = await repository.findOne(response.body.id);
+      const duplicated = await repository.findOne({ where: { id: response.body.id } });
       expect(duplicated).toBeDefined();
       expect(duplicated.title).toBe(duplicateData.title);
     });
@@ -741,7 +749,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.attendanceRate).toBe(50); // 2 out of 4 present
 
       // Verify in database
-      const updated = await repository.findOne(testPractice.id);
+      const updated = await repository.findOne({ where: { id: testPractice.id } });
       expect(updated.attendance).toEqual(attendanceData.attendance);
     });
 
@@ -839,7 +847,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.playerEvaluations).toEqual(evaluationData.evaluations);
 
       // Verify in database
-      const updated = await repository.findOne(testPractice.id);
+      const updated = await repository.findOne({ where: { id: testPractice.id } });
       expect(updated.playerEvaluations).toEqual(evaluationData.evaluations);
     });
 
@@ -926,7 +934,7 @@ describe('Practice Plan Integration Tests', () => {
       expect(response.body.status).toBe(PracticeStatus.IN_PROGRESS);
 
       // Verify in database
-      const updated = await repository.findOne(testPractice.id);
+      const updated = await repository.findOne({ where: { id: testPractice.id } });
       expect(updated.status).toBe(PracticeStatus.IN_PROGRESS);
     });
 
@@ -960,7 +968,7 @@ describe('Practice Plan Integration Tests', () => {
         .send({ status: PracticeStatus.IN_PROGRESS })
         .expect(200);
 
-      const updated = await repository.findOne(testPractice.id);
+      const updated = await repository.findOne({ where: { id: testPractice.id } });
       expect(updated.metadata?.startedAt).toBeDefined();
       expect(new Date(updated.metadata.startedAt).getTime()).toBeGreaterThanOrEqual(startTime);
     });
@@ -989,7 +997,7 @@ describe('Practice Plan Integration Tests', () => {
         .expect(204);
 
       // Verify deletion
-      const deleted = await repository.findOne(testPractice.id);
+      const deleted = await repository.findOne({ where: { id: testPractice.id } });
       expect(deleted).toBeNull();
     });
 

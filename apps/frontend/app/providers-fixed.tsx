@@ -20,19 +20,36 @@ if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
 }
 
 export function ProvidersFixed({ children }: { children: React.ReactNode }) {
-  const [isReady, setIsReady] = useState(false);
+  // Start as true since i18n is typically initialized synchronously in dev
+  // The init() call is made at module load time
+  const [isReady, setIsReady] = useState(() => i18n.isInitialized);
 
   useEffect(() => {
-    // Check if already initialized
+    if (isReady) return;
+
+    // Set up event listener
+    const handleInitialized = () => {
+      setIsReady(true);
+    };
+
+    i18n.on('initialized', handleInitialized);
+
+    // Check again in case it initialized between render and effect
     if (i18n.isInitialized) {
       setIsReady(true);
-    } else {
-      // Wait for initialization
-      i18n.on('initialized', () => {
-        setIsReady(true);
-      });
     }
-  }, []);
+
+    // Also add a timeout fallback in case the event doesn't fire
+    const timeout = setTimeout(() => {
+      console.warn('i18n initialization timeout, proceeding anyway');
+      setIsReady(true);
+    }, 3000);
+
+    return () => {
+      i18n.off('initialized', handleInitialized);
+      clearTimeout(timeout);
+    };
+  }, [isReady]);
 
   if (!isReady) {
     return (

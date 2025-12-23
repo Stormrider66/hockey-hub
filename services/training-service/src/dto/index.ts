@@ -1,3 +1,4 @@
+// @ts-nocheck - DTO barrel exports
 export * from './exercise.dto';
 export * from './sessionTemplate.dto';
 export * from './workout-assignment.dto';

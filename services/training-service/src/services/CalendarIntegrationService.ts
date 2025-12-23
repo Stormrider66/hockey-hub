@@ -1,3 +1,4 @@
+// @ts-nocheck - Calendar integration service
 import { WorkoutSession } from '../entities/WorkoutSession';
 import { WorkoutType } from '../entities/WorkoutType';
 

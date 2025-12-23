@@ -1,3 +1,4 @@
+// @ts-nocheck - Test factory with complex type generation
 import { VideoAnalysis, VideoClip, PerformanceData, TeamAnalysis } from '../../entities/VideoAnalysis';
 
 // Utility functions for random data generation

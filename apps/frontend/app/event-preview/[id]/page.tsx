@@ -1,12 +1,14 @@
 'use client';
 
-import React from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import React, { use } from 'react';
 import { EventPreviewPage } from '@/features/schedule/components/EventPreviewPage';
 
-export default function EventPreview() {
-  const params = useParams();
-  const id = params?.id as string;
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function EventPreview({ params }: PageProps) {
+  const { id } = use(params);
 
   if (!id) {
     return (

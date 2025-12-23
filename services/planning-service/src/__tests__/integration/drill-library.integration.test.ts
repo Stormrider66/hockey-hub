@@ -73,12 +73,14 @@ describe('Drill Library Integration Tests', () => {
   beforeAll(async () => {
     // Create in-memory database connection
     connection = await createConnection({
-      type: 'sqlite',
-      database: ':memory:',
+      // Use sqljs to avoid native sqlite3 dependency (works in pure JS)
+      type: 'sqljs',
+      autoSave: false,
+      location: ':memory:',
       entities: [Drill, DrillCategory],
       synchronize: true,
       logging: false,
-    });
+    } as any);
 
     drillRepository = getRepository(Drill);
     categoryRepository = getRepository(DrillCategory);
@@ -92,6 +94,10 @@ describe('Drill Library Integration Tests', () => {
     app.post('/api/planning/drills', DrillLibraryController.create);
     app.get('/api/planning/drills', DrillLibraryController.list);
     app.get('/api/planning/drills/search', DrillLibraryController.search);
+    // Register more specific routes before the dynamic :id route
+    app.get('/api/planning/drills/categories', DrillLibraryController.getCategories);
+    app.post('/api/planning/drills/bulk-import', DrillLibraryController.bulkImport);
+    app.post('/api/planning/drills/validate-duplicate', DrillLibraryController.validateDuplicate);
     app.get('/api/planning/drills/:id', DrillLibraryController.getById);
     app.put('/api/planning/drills/:id', DrillLibraryController.update);
     app.delete('/api/planning/drills/:id', DrillLibraryController.delete);
@@ -99,9 +105,6 @@ describe('Drill Library Integration Tests', () => {
     app.post('/api/planning/drills/:id/rate', DrillLibraryController.rateDrill);
     app.post('/api/planning/drills/:id/share', DrillLibraryController.shareDrill);
     app.post('/api/planning/drills/:id/usage', DrillLibraryController.incrementUsage);
-    app.get('/api/planning/drills/categories', DrillLibraryController.getCategories);
-    app.post('/api/planning/drills/bulk-import', DrillLibraryController.bulkImport);
-    app.post('/api/planning/drills/validate-duplicate', DrillLibraryController.validateDuplicate);
 
     // Error handler
     app.use((error: any, req: any, res: any, next: any) => {
@@ -149,7 +152,8 @@ describe('Drill Library Integration Tests', () => {
     ]);
 
     // Set up parent-child relationship
-    testCategories[1].parentId = testCategories[0].id;
+    // Tree entities use the relation field, not a raw parentId assignment
+    testCategories[1].parent = testCategories[0];
     await categoryRepository.save(testCategories[1]);
   });
 
@@ -208,7 +212,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.ageGroups).toEqual(drillData.ageGroups);
 
       // Verify in database
-      const saved = await drillRepository.findOne(response.body.id);
+      const saved = await drillRepository.findOne({ where: { id: response.body.id } });
       expect(saved).toBeDefined();
       expect(saved.name).toBe(drillData.name);
     });
@@ -231,7 +235,7 @@ describe('Drill Library Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/drills')
         .send(invalidData)
-        .expect(500);
+        .expect(400);
 
       // Check that no drill was created
       const count = await drillRepository.count();
@@ -871,7 +875,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.tags).toEqual(updates.tags);
 
       // Verify in database
-      const updated = await drillRepository.findOne(testDrill.id);
+      const updated = await drillRepository.findOne({ where: { id: testDrill.id } });
       expect(updated.name).toBe(updates.name);
       expect(updated.description).toBe(updates.description);
     });
@@ -950,7 +954,7 @@ describe('Drill Library Integration Tests', () => {
         .expect(204);
 
       // Verify deletion
-      const deleted = await drillRepository.findOne(testDrill.id);
+      const deleted = await drillRepository.findOne({ where: { id: testDrill.id } });
       expect(deleted).toBeNull();
     });
 
@@ -981,7 +985,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.error).toBe('Drill not found or no permission to delete');
 
       // Verify drill still exists
-      const stillExists = await drillRepository.findOne(otherOrgDrill.id);
+      const stillExists = await drillRepository.findOne({ where: { id: otherOrgDrill.id } });
       expect(stillExists).toBeDefined();
     });
 
@@ -1060,7 +1064,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.objectives).toEqual(testDrill.objectives);
 
       // Verify in database
-      const duplicated = await drillRepository.findOne(response.body.id);
+      const duplicated = await drillRepository.findOne({ where: { id: response.body.id } });
       expect(duplicated).toBeDefined();
       expect(duplicated.name).toBe(duplicateData.name);
     });
@@ -1173,7 +1177,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.averageRating).toBe(5.6); // 28/5 = 5.6
 
       // Verify in database
-      const updated = await drillRepository.findOne(testDrill.id);
+      const updated = await drillRepository.findOne({ where: { id: testDrill.id } });
       expect(updated.rating).toBe(28);
       expect(updated.ratingCount).toBe(5);
     });
@@ -1269,7 +1273,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.shareCode).toBeDefined();
 
       // Verify in database
-      const updated = await drillRepository.findOne(testDrill.id);
+      const updated = await drillRepository.findOne({ where: { id: testDrill.id } });
       expect(updated.isPublic).toBe(true);
     });
 
@@ -1361,7 +1365,7 @@ describe('Drill Library Integration Tests', () => {
       expect(response.body.usageCount).toBe(6);
 
       // Verify in database
-      const updated = await drillRepository.findOne(testDrill.id);
+      const updated = await drillRepository.findOne({ where: { id: testDrill.id } });
       expect(updated.usageCount).toBe(6);
     });
 

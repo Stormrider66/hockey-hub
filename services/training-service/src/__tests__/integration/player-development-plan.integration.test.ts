@@ -14,7 +14,7 @@ import {
   ParentCommunication,
   ExternalResource
 } from '../../entities/PlayerDevelopmentPlan';
-import playerDevelopmentPlanRoutes from '../../routes/coach/player-development-plan.routes';
+import { playerDevelopmentPlanRoutes } from '../../routes/coach/player-development-plan.routes';
 
 describe('Player Development Plan Integration Tests', () => {
   let app: express.Express;

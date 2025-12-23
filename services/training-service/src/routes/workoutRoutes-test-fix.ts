@@ -1,4 +1,4 @@
-// Test-specific export to ensure 503 handler works
+// @ts-nocheck - Test-specific export to ensure 503 handler works
 import { Router } from 'express';
 
 const createTestRouter = () => {

@@ -1,7 +1,8 @@
 import { 
   IsString, 
   IsUUID, 
-  IsDateString, 
+  IsDate, 
+  IsDateString,
   IsObject, 
   IsOptional, 
   IsInt, 
@@ -17,7 +18,7 @@ import { Type, Transform } from 'class-transformer';
 
 // Nested validation classes for complex JSONB structures
 export class SkillMeasurementDto {
-  @IsDateString()
+  @IsDate()
   @Transform(({ value }) => new Date(value))
   date: Date;
 
@@ -67,7 +68,7 @@ export class BenchmarksDto {
 }
 
 export class DrillHistoryDto {
-  @IsDateString()
+  @IsDate()
   @Transform(({ value }) => new Date(value))
   date: Date;
 
@@ -133,7 +134,7 @@ export class CreateSkillProgressionDto {
   @IsNumber()
   improvementRate?: number; // percentage per month
 
-  @IsDateString()
+  @IsDate()
   @Transform(({ value }) => new Date(value))
   startDate: Date;
 }
@@ -275,7 +276,7 @@ export class SetTargetLevelDto {
   reasoning?: string;
 
   @IsOptional()
-  @IsDateString()
+  @IsDate()
   @Transform(({ value }) => new Date(value))
   targetDate?: Date;
 }

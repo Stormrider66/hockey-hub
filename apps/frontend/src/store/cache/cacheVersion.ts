@@ -1,9 +1,11 @@
 /**
  * Cache Version Management
- * 
+ *
  * This module manages cache versioning to ensure compatibility
  * when data structures change between application versions.
  */
+
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 export const CACHE_VERSION = '1.0.0';
 export const CACHE_VERSION_KEY = 'hockey-hub-cache-version';
@@ -38,11 +40,8 @@ export function compareVersions(v1: string, v2: string): number {
  */
 export function getCurrentCacheVersion(): CacheVersionInfo | null {
   try {
-    if (typeof localStorage !== 'undefined') {
-      const versionData = localStorage.getItem(CACHE_VERSION_KEY);
-      return versionData ? JSON.parse(versionData) : null;
-    }
-    return null;
+    const versionData = safeLocalStorage.getItem(CACHE_VERSION_KEY);
+    return versionData ? JSON.parse(versionData) : null;
   } catch (error) {
     console.error('Failed to read cache version:', error);
     return null;
@@ -58,11 +57,9 @@ export function setCacheVersion(version: string, lastMigration?: string): void {
     timestamp: Date.now(),
     lastMigration
   };
-  
+
   try {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(CACHE_VERSION_KEY, JSON.stringify(versionInfo));
-    }
+    safeLocalStorage.setItem(CACHE_VERSION_KEY, JSON.stringify(versionInfo));
   } catch (error) {
     console.error('Failed to set cache version:', error);
   }

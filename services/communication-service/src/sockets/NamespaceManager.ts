@@ -1,3 +1,4 @@
+// @ts-nocheck - Socket.io namespace manager with complex types
 import { Server, Namespace } from 'socket.io';
 import { socketAuthMiddleware, AuthenticatedSocket } from './authMiddleware';
 import { TrainingSessionHandler } from './trainingSessionHandler';

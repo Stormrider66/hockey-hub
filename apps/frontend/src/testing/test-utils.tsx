@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import { ChatSocketProvider } from '@/contexts/ChatSocketContext';
 
 // Import your reducers
+import authReducer from '@/store/slices/authSlice';
 import trainingSessionViewerReducer from '@/store/slices/trainingSessionViewerSlice';
 import { playerApi } from '@/store/api/playerApi';
 import { authApi } from '@/store/api/authApi';
@@ -19,6 +20,8 @@ import { userApi } from '@/store/api/userApi';
 import { scheduleApi } from '@/store/api/scheduleApi';
 import { chatApi } from '@/store/api/chatApi';
 import { privacyApi } from '@/store/api/privacyApi';
+import { dashboardApi } from '@/store/api/dashboardApi';
+import { scheduleClarificationApi } from '@/store/api/scheduleClarificationApi';
 import chatReducer from '@/store/slices/chatSlice';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
@@ -30,36 +33,43 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
  * Creates a test store with optional preloaded state
  */
 export function createTestStore(preloadedState?: any) {
+  const reducers: Record<string, any> = {
+    auth: authReducer,
+    chat: chatReducer,
+    trainingSessionViewer: trainingSessionViewerReducer,
+  };
+
+  const extraMiddlewares: any[] = [];
+  const addApiSlice = (api: any) => {
+    if (api?.reducerPath && typeof api.reducer === 'function') {
+      reducers[api.reducerPath] = api.reducer;
+    }
+    if (typeof api?.middleware === 'function') {
+      extraMiddlewares.push(api.middleware);
+    }
+  };
+
+  [
+    playerApi,
+    authApi,
+    trainingApi,
+    medicalApi,
+    calendarApi,
+    statisticsApi,
+    userApi,
+    chatApi,
+    scheduleApi,
+    privacyApi,
+    dashboardApi,
+    scheduleClarificationApi,
+  ].forEach(addApiSlice);
+
   return configureStore({
-    reducer: {
-      chat: chatReducer,
-      trainingSessionViewer: trainingSessionViewerReducer,
-      [playerApi.reducerPath]: playerApi.reducer,
-      [authApi.reducerPath]: authApi.reducer,
-      [trainingApi.reducerPath]: trainingApi.reducer,
-      [medicalApi.reducerPath]: medicalApi.reducer,
-      [calendarApi.reducerPath]: calendarApi.reducer,
-      [statisticsApi.reducerPath]: statisticsApi.reducer,
-      [userApi.reducerPath]: userApi.reducer,
-      [chatApi.reducerPath]: chatApi.reducer,
-      [scheduleApi.reducerPath]: scheduleApi.reducer,
-      [privacyApi.reducerPath]: privacyApi.reducer,
-    },
+    reducer: reducers,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(
-        playerApi.middleware,
-        authApi.middleware,
-        trainingApi.middleware,
-        medicalApi.middleware,
-        calendarApi.middleware,
-        statisticsApi.middleware,
-        userApi.middleware,
-        chatApi.middleware,
-        scheduleApi.middleware,
-        privacyApi.middleware
-      ),
+      }).concat(...extraMiddlewares),
     preloadedState,
   });
 }

@@ -1,3 +1,4 @@
+// @ts-nocheck - TypeORM migration file
 import { MigrationInterface, QueryRunner, Table, Index } from 'typeorm';
 
 export class AddWorkoutTypeConfigs1736200000000 implements MigrationInterface {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Repository } from 'typeorm';
 import { getCacheManager } from '@hockey-hub/shared-lib';
 

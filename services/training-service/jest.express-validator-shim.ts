@@ -4,8 +4,14 @@ type ChainFn = ((req: any, res: any, next: any) => any) & {
   isInt: (_opts?: any) => ChainFn;
   isUUID: () => ChainFn;
   isISO8601: () => ChainFn;
-  isArray: () => ChainFn;
+  isArray: (_opts?: any) => ChainFn;
   isObject: () => ChainFn;
+  isIn: (_values: any[]) => ChainFn;
+  isLength: (_opts: { min?: number; max?: number }) => ChainFn;
+  matches: (_re: RegExp) => ChainFn;
+  isNumeric: () => ChainFn;
+  isBoolean: () => ChainFn;
+  isURL: (_opts?: any) => ChainFn;
   optional: () => ChainFn;
   trim: () => ChainFn;
   notEmpty: () => ChainFn;
@@ -21,6 +27,12 @@ const makeChain = (): ChainFn => {
   fn.isISO8601 = () => fn;
   fn.isArray = () => fn;
   fn.isObject = () => fn;
+  fn.isIn = () => fn;
+  fn.isLength = () => fn;
+  fn.matches = () => fn;
+  fn.isNumeric = () => fn;
+  fn.isBoolean = () => fn;
+  fn.isURL = () => fn;
   fn.optional = () => fn;
   fn.trim = () => fn;
   fn.notEmpty = () => fn;

@@ -103,7 +103,11 @@ const mockApiWithCache = () => {
 };
 
 // Test suite for dashboard performance
-describe('Performance Benchmarks', () => {
+// NOTE: These are *benchmarks* (timing- and environment-sensitive). They are not stable in CI/JSDOM by default.
+// Run explicitly with: RUN_BENCHMARKS=true pnpm turbo run test --filter=hockey-hub-frontend -- --runTestsByPath src/__tests__/benchmarks/performance-benchmarks.test.tsx
+const describeBenchmarks = process.env.RUN_BENCHMARKS === 'true' ? describe : describe.skip;
+
+describeBenchmarks('Performance Benchmarks', () => {
   let monitor: PerformanceMonitor;
 
   beforeEach(() => {

@@ -296,6 +296,15 @@ export class RedisCacheManager extends CacheManager {
     return await this.client.hDel(fullKey, fields);
   }
 
+  // Alias methods for compatibility with calendar-service
+  async invalidateByPattern(pattern: string): Promise<number> {
+    return this.invalidatePattern(pattern);
+  }
+
+  async invalidateByTags(tags: string[]): Promise<number> {
+    return this.invalidateTags(tags);
+  }
+
   // Singleton pattern methods
   static getInstance(config?: RedisCacheConfig): RedisCacheManager {
     if (!RedisCacheManager.instance) {

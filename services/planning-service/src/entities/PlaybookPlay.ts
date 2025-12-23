@@ -2,6 +2,8 @@ import { Entity, Column, ManyToOne, JoinColumn, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableEntity';
 import { TacticalPlan } from './TacticalPlan';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 export enum PlayType {
   BREAKOUT = 'breakout',
   FORECHECK = 'forecheck',
@@ -50,10 +52,9 @@ export interface PracticeNote {
 export class PlaybookPlay extends AuditableEntity {
 
   @Column()
-  @Index()
   name: string; // "Breakout Option 1", "Cycle Play A"
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   tacticalPlanId: string;
 
   @ManyToOne(() => TacticalPlan, plan => plan.plays)
@@ -61,21 +62,21 @@ export class PlaybookPlay extends AuditableEntity {
   tacticalPlan: TacticalPlan;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PlayType
   })
   type: PlayType;
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   sequence: PlaySequenceStep[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   contingencies?: Contingency[];
 
   @Column('text', { nullable: true })
   coachingPoints?: string;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   practiceNotes?: PracticeNote[];
 
   @Column({ default: 0 })
@@ -90,7 +91,7 @@ export class PlaybookPlay extends AuditableEntity {
   @Column('simple-array', { nullable: true })
   tags?: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metadata?: Record<string, any>;
 
   // Helper methods

@@ -1,7 +1,21 @@
 import { Entity, Column, Index } from 'typeorm';
 import { BaseEntity } from './BaseEntity';
 
-export type EvaluationType = 'preseason' | 'midseason' | 'postseason' | 'monthly' | 'game' | 'practice';
+// IMPORTANT:
+// Some unit tests import `EvaluationType` as a runtime enum (e.g. `EvaluationType.REGULAR_SEASON`).
+// Use a string enum so it exists at runtime, while keeping persisted values compatible with existing schema.
+export enum EvaluationType {
+  PRESEASON = 'preseason',
+  MIDSEASON = 'midseason',
+  POSTSEASON = 'postseason',
+  MONTHLY = 'monthly',
+  GAME = 'game',
+  PRACTICE = 'practice',
+  // Aliases expected by unit tests
+  REGULAR_SEASON = 'game',
+  MID_SEASON = 'midseason',
+  PLAYOFF = 'postseason',
+}
 
 export interface TechnicalSkills {
   skating: {

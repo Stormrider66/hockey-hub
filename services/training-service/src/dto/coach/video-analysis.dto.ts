@@ -6,6 +6,7 @@ import {
   IsOptional, 
   IsInt, 
   IsArray, 
+  ArrayMinSize,
   Min, 
   Max, 
   MaxLength, 
@@ -49,7 +50,7 @@ export class VideoClipDto {
 
   @IsArray()
   @IsString({ each: true })
-  @MaxLength(300, { each: true })
+  @MaxLength(600, { each: true })
   coachingPoints: string[];
 
   @IsOptional()
@@ -268,7 +269,7 @@ export class AddVideoClipDto {
 
   @IsArray()
   @IsString({ each: true })
-  @MaxLength(300, { each: true })
+  @MaxLength(600, { each: true })
   coachingPoints: string[];
 }
 
@@ -290,7 +291,7 @@ export class UpdateVideoClipDto {
   @IsOptional()
   @IsArray()
   @IsString({ each: true })
-  @MaxLength(300, { each: true })
+  @MaxLength(600, { each: true })
   coachingPoints?: string[];
 
   @IsOptional()
@@ -351,6 +352,7 @@ export class VideoAnalysisFilterDto {
 
 export class BulkShareDto {
   @IsArray()
+  @ArrayMinSize(1)
   @IsUUID(undefined, { each: true })
   videoAnalysisIds: string[];
 

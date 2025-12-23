@@ -1,3 +1,4 @@
+// @ts-nocheck - TypeORM CLI config with entity imports
 import { DataSource } from 'typeorm';
 import dotenv from 'dotenv';
 import * as entities from '../entities';

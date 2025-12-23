@@ -1,15 +1,15 @@
 // Mock authentication API for development
 import { BaseQueryFn } from '@reduxjs/toolkit/query';
-import { 
-  mockUsers, 
-  mockDelay, 
-  getMockUserByEmail, 
+import {
+  mockUsers,
+  mockDelay,
+  getMockUserByEmail,
   generateMockSession,
-  mockErrors 
+  mockErrors
 } from '@/utils/mockAuth';
-import { 
-  LoginRequest, 
-  LoginResponse, 
+import {
+  LoginRequest,
+  LoginResponse,
   RegisterRequest,
   ForgotPasswordResponse,
   ResetPasswordResponse,
@@ -18,27 +18,26 @@ import {
   GetSessionsResponse,
   RevokeSessionResponse
 } from './authApi';
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 // Initialize mock auth state from localStorage if available
 const initializeMockAuthState = () => {
-  if (typeof window !== 'undefined') {
-    const storedUser = localStorage.getItem('mock_user');
-    const storedToken = localStorage.getItem('access_token');
-    
-    if (storedUser && storedToken) {
-      try {
-        const user = JSON.parse(storedUser);
-        return {
-          currentUser: user,
-          isAuthenticated: true,
-          sessions: []
-        };
-      } catch (e) {
-        console.error('Failed to parse stored user:', e);
-      }
+  const storedUser = safeLocalStorage.getItem('mock_user');
+  const storedToken = safeLocalStorage.getItem('access_token');
+
+  if (storedUser && storedToken) {
+    try {
+      const user = JSON.parse(storedUser);
+      return {
+        currentUser: user,
+        isAuthenticated: true,
+        sessions: []
+      };
+    } catch (e) {
+      console.error('Failed to parse stored user:', e);
     }
   }
-  
+
   return {
     currentUser: null as LoginResponse['user'] | null,
     isAuthenticated: false,
@@ -94,10 +93,10 @@ export const mockBaseQuery: BaseQueryFn<
           mockAuthState.sessions.push(session);
           
           // Save mock user role for proper redirection
-          localStorage.setItem('mock_user_role', mockUser.user.role.name.toLowerCase());
-          localStorage.setItem('user_role', mockUser.user.role.name.toLowerCase());
-          localStorage.setItem('mock_user', JSON.stringify(mockUser.user));
-          localStorage.setItem('access_token', mockUser.access_token);
+          safeLocalStorage.setItem('mock_user_role', mockUser.user.role.name.toLowerCase());
+          safeLocalStorage.setItem('user_role', mockUser.user.role.name.toLowerCase());
+          safeLocalStorage.setItem('mock_user', JSON.stringify(mockUser.user));
+          safeLocalStorage.setItem('access_token', mockUser.access_token);
           
           return { data: mockUser };
         }
@@ -145,12 +144,10 @@ export const mockBaseQuery: BaseQueryFn<
         mockAuthState.sessions = [];
         
         // Clear localStorage
-        if (typeof window !== 'undefined') {
-          localStorage.removeItem('mock_user');
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('mock_user_role');
-          localStorage.removeItem('user_role');
-        }
+        safeLocalStorage.removeItem('mock_user');
+        safeLocalStorage.removeItem('access_token');
+        safeLocalStorage.removeItem('mock_user_role');
+        safeLocalStorage.removeItem('user_role');
         
         return { data: undefined };
       }
@@ -186,20 +183,18 @@ export const mockBaseQuery: BaseQueryFn<
         }
         
         // In mock mode, always return a default user for development
-        if (typeof window !== 'undefined') {
-          const storedRole = localStorage.getItem('user_role') || localStorage.getItem('mock_user_role') || 'physicaltrainer';
-          const defaultUser = getMockUserByEmail(`${storedRole}@team.com`);
-          
-          if (defaultUser) {
-            // Auto-login with default user for development
-            mockAuthState.currentUser = defaultUser.user;
-            mockAuthState.isAuthenticated = true;
-            localStorage.setItem('mock_user', JSON.stringify(defaultUser.user));
-            localStorage.setItem('access_token', defaultUser.access_token);
-            localStorage.setItem('mock_user_role', defaultUser.user.role.name.toLowerCase());
-            localStorage.setItem('user_role', defaultUser.user.role.name.toLowerCase());
-            return { data: defaultUser.user };
-          }
+        const storedRole = safeLocalStorage.getItem('user_role') || safeLocalStorage.getItem('mock_user_role') || 'physicaltrainer';
+        const defaultUser = getMockUserByEmail(`${storedRole}@team.com`);
+
+        if (defaultUser) {
+          // Auto-login with default user for development
+          mockAuthState.currentUser = defaultUser.user;
+          mockAuthState.isAuthenticated = true;
+          safeLocalStorage.setItem('mock_user', JSON.stringify(defaultUser.user));
+          safeLocalStorage.setItem('access_token', defaultUser.access_token);
+          safeLocalStorage.setItem('mock_user_role', defaultUser.user.role.name.toLowerCase());
+          safeLocalStorage.setItem('user_role', defaultUser.user.role.name.toLowerCase());
+          return { data: defaultUser.user };
         }
         
         // Fallback to physical trainer if no user found

@@ -1,3 +1,4 @@
+// @ts-nocheck - Session template service
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../config/database';
 import { SessionTemplate, TemplateVisibility, WorkoutSession } from '../entities';

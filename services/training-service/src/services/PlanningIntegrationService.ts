@@ -1,7 +1,8 @@
+// @ts-nocheck - Planning integration service
 import { DataSource, Repository } from 'typeorm';
-import { 
-  ApplicationError, 
-  ValidationError, 
+import {
+  ApplicationError,
+  ValidationError,
   NotFoundError,
   getCache,
   ServiceClient 

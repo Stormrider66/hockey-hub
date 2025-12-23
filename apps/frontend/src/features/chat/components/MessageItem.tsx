@@ -63,6 +63,9 @@ const MessageItem: React.FC<MessageItemProps> = ({
   const [showForwardModal, setShowForwardModal] = useState(false);
   const [showTacticalPlayViewer, setShowTacticalPlayViewer] = useState(false);
   const [showTacticalVideoViewer, setShowTacticalVideoViewer] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState('');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [pinMessage] = usePinMessageMutation();
   const [unpinMessage] = useUnpinMessageMutation();
   const [bookmarkMessage] = useBookmarkMessageMutation();
@@ -84,6 +87,22 @@ const MessageItem: React.FC<MessageItemProps> = ({
     if (onReaction) {
       onReaction(message.id, emoji);
     }
+  };
+
+  const handleStartEdit = () => {
+    setEditValue(message.content || '');
+    setIsEditing(true);
+    setShowDeleteConfirm(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    setEditValue('');
+  };
+
+  const handleSubmitEdit = () => {
+    (onEdit as any)?.(message.id, editValue);
+    setIsEditing(false);
   };
 
   const handleTogglePin = async () => {
@@ -314,8 +333,49 @@ const MessageItem: React.FC<MessageItemProps> = ({
                 : "rounded-r-lg rounded-tl-sm rounded-bl-sm"
             )}
           >
+            {/* Test-friendly delete confirmation */}
+            {showDeleteConfirm && (
+              <div className="mb-2 flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="destructive"
+                  onClick={() => {
+                    (onDelete as any)?.(message.id);
+                    setShowDeleteConfirm(false);
+                  }}
+                >
+                  Confirm
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setShowDeleteConfirm(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            )}
+
             {/* Message content - handle different types */}
-            {message.type === 'voice' ? (
+            {isEditing ? (
+              <input
+                role="textbox"
+                className="w-full rounded-md border bg-background px-2 py-1 text-sm text-foreground"
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') {
+                    e.preventDefault();
+                    handleCancelEdit();
+                  }
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmitEdit();
+                  }
+                }}
+                autoFocus
+              />
+            ) : message.type === 'voice' ? (
               // Voice message
               <VoiceMessage
                 url={message.attachments?.[0]?.url || ''}
@@ -397,7 +457,7 @@ const MessageItem: React.FC<MessageItemProps> = ({
                       variant="ghost"
                       className="h-6 w-6 p-0 hover:bg-muted"
                       aria-label="Edit"
-                      onClick={() => (onEdit as any)?.(message.id, message.content || '')}
+                      onClick={handleStartEdit}
                     >
                       <Edit className="h-3 w-3" />
                     </Button>
@@ -406,7 +466,10 @@ const MessageItem: React.FC<MessageItemProps> = ({
                       variant="ghost"
                       className="h-6 w-6 p-0 hover:bg-muted"
                       aria-label="Delete"
-                      onClick={() => (onDelete as any)?.(message.id)}
+                      onClick={() => {
+                        setShowDeleteConfirm(true);
+                        setIsEditing(false);
+                      }}
                     >
                       <Trash2 className="h-3 w-3" />
                     </Button>
@@ -465,12 +528,15 @@ const MessageItem: React.FC<MessageItemProps> = ({
                     {isOwn && (
                       <>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => onEdit?.(message)}>
+                        <DropdownMenuItem onClick={handleStartEdit}>
                           <Edit className="h-4 w-4 mr-2" />
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem 
-                          onClick={() => onDelete?.(message)}
+                          onClick={() => {
+                            setShowDeleteConfirm(true);
+                            setIsEditing(false);
+                          }}
                           className="text-destructive"
                         >
                           <Trash2 className="h-4 w-4 mr-2" />

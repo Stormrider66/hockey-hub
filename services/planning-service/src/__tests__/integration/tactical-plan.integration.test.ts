@@ -6,10 +6,12 @@
 
 import request from 'supertest';
 import { Application } from 'express';
-import { Connection, createConnection, getRepository } from 'typeorm';
+import { Connection, createConnection, getRepository, In } from 'typeorm';
 import express from 'express';
 import { TacticalPlan, TacticalCategory, FormationType, PlayerPositionType, ZoneType } from '../../entities/TacticalPlan';
 import { TacticalPlanController } from '../../controllers/coach/tactical-plan.controller';
+import { Formation } from '../../entities/Formation';
+import { PlaybookPlay } from '../../entities/PlaybookPlay';
 import { Logger } from '@hockey-hub/shared-lib/dist/utils/Logger';
 import { authMiddleware } from '@hockey-hub/shared-lib/dist/middleware/auth.middleware';
 
@@ -19,8 +21,8 @@ jest.mock('@hockey-hub/shared-lib/dist/utils/Logger');
 // Mock authentication middleware
 const mockAuthMiddleware = (req: any, res: any, next: any) => {
   req.user = {
-    userId: 'coach-123',
-    organizationId: 'org-123',
+    userId: '22222222-2222-4222-8222-222222222222',
+    organizationId: '11111111-1111-4111-8111-111111111111',
     role: 'COACH'
   };
   next();
@@ -32,10 +34,12 @@ describe('Tactical Plan Integration Tests', () => {
   let repository: any;
 
   // Test data
-  const testOrganizationId = 'org-123';
-  const testCoachId = 'coach-123';
-  const testTeamId = 'team-123';
-  const otherCoachId = 'coach-456';
+  const testOrganizationId = '11111111-1111-4111-8111-111111111111';
+  const testCoachId = '22222222-2222-4222-8222-222222222222';
+  const testTeamId = '33333333-3333-4333-8333-333333333333';
+  const otherCoachId = '44444444-4444-4444-8444-444444444444';
+  const otherTeamId = '55555555-5555-4555-8555-555555555555';
+  const otherOrganizationId = '66666666-6666-4666-8666-666666666666';
 
   const mockFormation = {
     type: FormationType.EVEN_STRENGTH,
@@ -68,12 +72,15 @@ describe('Tactical Plan Integration Tests', () => {
   beforeAll(async () => {
     // Create in-memory database connection
     connection = await createConnection({
-      type: 'sqlite',
-      database: ':memory:',
-      entities: [TacticalPlan],
+      // Use sqljs to avoid native sqlite3 dependency (works in pure JS)
+      type: 'sqljs',
+      autoSave: false,
+      location: ':memory:',
+      // Include related entities used by relations to avoid metadata errors
+      entities: [TacticalPlan, Formation, PlaybookPlay],
       synchronize: true,
       logging: false,
-    });
+    } as any);
 
     repository = getRepository(TacticalPlan);
 
@@ -143,9 +150,10 @@ describe('Tactical Plan Integration Tests', () => {
       expect(response.body.triggers).toEqual(createData.triggers);
 
       // Verify in database
-      const saved = await repository.findOne(response.body.id);
+      const saved = await repository.findOne({ where: { id: response.body.id } });
       expect(saved).toBeDefined();
       expect(saved.name).toBe(createData.name);
+      expect(saved.legacyFormation).toEqual(createData.formation);
     });
 
     it('should validate required fields', async () => {
@@ -160,7 +168,7 @@ describe('Tactical Plan Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/tactical-plans')
         .send(invalidData)
-        .expect(500); // Validation should trigger error
+        .expect(400);
 
       // Check that no plan was created
       const count = await repository.count();
@@ -168,8 +176,9 @@ describe('Tactical Plan Integration Tests', () => {
     });
 
     it('should handle database errors gracefully', async () => {
-      // Close connection to simulate database error
-      await connection.close();
+      // Simulate repository failure without tearing down the shared in-memory connection
+      const repo = getRepository(TacticalPlan);
+      const saveSpy = jest.spyOn(repo, 'save').mockRejectedValueOnce(new Error('Simulated database failure'));
 
       const createData = {
         name: 'Test Plan',
@@ -184,15 +193,7 @@ describe('Tactical Plan Integration Tests', () => {
         .send(createData)
         .expect(500);
 
-      // Reconnect for other tests
-      connection = await createConnection({
-        type: 'sqlite',
-        database: ':memory:',
-        entities: [TacticalPlan],
-        synchronize: true,
-        logging: false,
-      });
-      repository = getRepository(TacticalPlan);
+      saveSpy.mockRestore();
     });
   });
 
@@ -226,7 +227,7 @@ describe('Tactical Plan Integration Tests', () => {
           name: 'Transition System',
           organizationId: testOrganizationId,
           coachId: testCoachId,
-          teamId: 'team-456',
+          teamId: otherTeamId,
           category: TacticalCategory.TRANSITION,
           formation: mockFormation,
           playerAssignments: mockPlayerAssignments,
@@ -254,12 +255,9 @@ describe('Tactical Plan Integration Tests', () => {
 
       expect(response.body).toMatchObject({
         data: expect.any(Array),
-        pagination: {
-          page: 1,
-          pageSize: 2,
-          total: 3, // Should exclude inactive plan
-          totalPages: 2
-        }
+        page: 1,
+        pageSize: 2,
+        total: 3, // Should exclude inactive plan
       });
 
       expect(response.body.data).toHaveLength(2);
@@ -357,7 +355,7 @@ describe('Tactical Plan Integration Tests', () => {
         .expect(200);
 
       expect(response.body).toHaveLength(1);
-      expect(response.body[0].description).toContain('umbrella');
+      expect(response.body[0].description).toMatch(/umbrella/i);
     });
 
     it('should limit search results to 50', async () => {
@@ -394,7 +392,7 @@ describe('Tactical Plan Integration Tests', () => {
         coachId: testCoachId,
         teamId: testTeamId,
         category: TacticalCategory.OFFENSIVE,
-        formation: mockFormation,
+        legacyFormation: mockFormation,
         playerAssignments: mockPlayerAssignments,
         isActive: true
       });
@@ -452,7 +450,7 @@ describe('Tactical Plan Integration Tests', () => {
         coachId: testCoachId,
         teamId: testTeamId,
         category: TacticalCategory.OFFENSIVE,
-        formation: mockFormation,
+        legacyFormation: mockFormation,
         playerAssignments: mockPlayerAssignments,
         description: 'Original description',
         isActive: true
@@ -479,7 +477,7 @@ describe('Tactical Plan Integration Tests', () => {
       });
 
       // Verify in database
-      const updated = await repository.findOne(testPlan.id);
+      const updated = await repository.findOne({ where: { id: testPlan.id } });
       expect(updated.name).toBe(updates.name);
       expect(updated.description).toBe(updates.description);
     });
@@ -525,7 +523,7 @@ describe('Tactical Plan Integration Tests', () => {
         coachId: testCoachId,
         teamId: testTeamId,
         category: TacticalCategory.OFFENSIVE,
-        formation: mockFormation,
+        legacyFormation: mockFormation,
         playerAssignments: mockPlayerAssignments,
         isActive: true
       });
@@ -537,7 +535,7 @@ describe('Tactical Plan Integration Tests', () => {
         .expect(204);
 
       // Verify soft deletion
-      const deleted = await repository.findOne(testPlan.id);
+      const deleted = await repository.findOne({ where: { id: testPlan.id } });
       expect(deleted.isActive).toBe(false);
 
       // Should not appear in active plans list
@@ -575,7 +573,7 @@ describe('Tactical Plan Integration Tests', () => {
       expect(response.body.error).toBe('Tactical plan not found or no permission to delete');
 
       // Plan should still be active
-      const stillActive = await repository.findOne(otherCoachPlan.id);
+      const stillActive = await repository.findOne({ where: { id: otherCoachPlan.id } });
       expect(stillActive.isActive).toBe(true);
     });
   });
@@ -591,7 +589,7 @@ describe('Tactical Plan Integration Tests', () => {
           coachId: testCoachId,
           teamId: testTeamId,
           category: TacticalCategory.OFFENSIVE,
-          formation: mockFormation,
+          legacyFormation: mockFormation,
           playerAssignments: mockPlayerAssignments,
           isActive: true
         },
@@ -601,7 +599,7 @@ describe('Tactical Plan Integration Tests', () => {
           coachId: testCoachId,
           teamId: testTeamId,
           category: TacticalCategory.DEFENSIVE,
-          formation: mockFormation,
+          legacyFormation: mockFormation,
           playerAssignments: mockPlayerAssignments,
           isActive: true
         }
@@ -623,7 +621,7 @@ describe('Tactical Plan Integration Tests', () => {
 
       // Verify soft deletion
       const deletedPlans = await repository.find({
-        where: { id: { $in: planIds } as any }
+        where: { id: In(planIds) }
       });
 
       expect(deletedPlans.every((plan: any) => !plan.isActive)).toBe(true);
@@ -669,12 +667,12 @@ describe('Tactical Plan Integration Tests', () => {
         .expect(200);
 
       // Other coach's plan should remain active
-      const otherPlan = await repository.findOne(otherCoachPlan.id);
+      const otherPlan = await repository.findOne({ where: { id: otherCoachPlan.id } });
       expect(otherPlan.isActive).toBe(true);
 
       // Current coach's plans should be inactive
       for (const plan of testPlans) {
-        const deleted = await repository.findOne(plan.id);
+        const deleted = await repository.findOne({ where: { id: plan.id } });
         expect(deleted.isActive).toBe(false);
       }
     });
@@ -683,9 +681,7 @@ describe('Tactical Plan Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/tactical-plans/bulk')
         .send({ action: 'invalid', planIds: [testPlans[0].id] })
-        .expect(200);
-
-      expect(response.body.success).toBe(true);
+        .expect(400);
     });
   });
 
@@ -705,16 +701,16 @@ describe('Tactical Plan Integration Tests', () => {
           formation: mockFormation,
           playerAssignments: mockPlayerAssignments
         })
-        .expect(500); // Should fail without auth
+        .expect(401);
     });
 
     it('should isolate data by organization', async () => {
       // Create plan for different organization
       const otherOrgPlan = await repository.save({
         name: 'Other Org Plan',
-        organizationId: 'other-org',
-        coachId: 'other-coach',
-        teamId: 'other-team',
+        organizationId: otherOrganizationId,
+        coachId: otherCoachId,
+        teamId: otherTeamId,
         category: TacticalCategory.OFFENSIVE,
         formation: mockFormation,
         playerAssignments: mockPlayerAssignments,
@@ -726,7 +722,7 @@ describe('Tactical Plan Integration Tests', () => {
         .expect(200);
 
       // Should not see other org's plans
-      expect(response.body.data.find((plan: any) => plan.organizationId === 'other-org')).toBeUndefined();
+      expect(response.body.data.find((plan: any) => plan.organizationId === otherOrganizationId)).toBeUndefined();
     });
   });
 
@@ -737,7 +733,7 @@ describe('Tactical Plan Integration Tests', () => {
         name: `Performance Plan ${i}`,
         organizationId: testOrganizationId,
         coachId: testCoachId,
-        teamId: i % 2 === 0 ? testTeamId : 'team-456',
+        teamId: i % 2 === 0 ? testTeamId : otherTeamId,
         category: i % 4 === 0 ? TacticalCategory.OFFENSIVE : TacticalCategory.DEFENSIVE,
         formation: mockFormation,
         playerAssignments: mockPlayerAssignments,
@@ -758,7 +754,7 @@ describe('Tactical Plan Integration Tests', () => {
 
       expect(responseTime).toBeLessThan(2000); // Should respond within 2 seconds
       expect(response.body.data).toHaveLength(100);
-      expect(response.body.pagination.total).toBe(1000);
+      expect(response.body.total).toBe(1000);
     });
 
     it('should handle complex search queries efficiently', async () => {
@@ -792,7 +788,7 @@ describe('Tactical Plan Integration Tests', () => {
           formation: invalidFormation,
           playerAssignments: mockPlayerAssignments
         })
-        .expect(500);
+        .expect(400);
 
       expect(response.body.error).toBeDefined();
     });
@@ -814,7 +810,7 @@ describe('Tactical Plan Integration Tests', () => {
           formation: mockFormation,
           playerAssignments: invalidAssignments
         })
-        .expect(500);
+        .expect(400);
 
       expect(response.body.error).toBeDefined();
     });
@@ -829,7 +825,7 @@ describe('Tactical Plan Integration Tests', () => {
           formation: mockFormation,
           playerAssignments: mockPlayerAssignments
         })
-        .expect(500);
+        .expect(400);
 
       expect(response.body.error).toBeDefined();
     });
@@ -858,7 +854,7 @@ describe('Tactical Plan Integration Tests', () => {
         coachId: testCoachId,
         teamId: testTeamId,
         category: TacticalCategory.OFFENSIVE,
-        formation: mockFormation,
+        legacyFormation: mockFormation,
         playerAssignments: mockPlayerAssignments,
         isActive: true
       });
@@ -877,7 +873,7 @@ describe('Tactical Plan Integration Tests', () => {
         coachId: testCoachId,
         teamId: testTeamId,
         category: TacticalCategory.OFFENSIVE,
-        formation: mockFormation,
+        legacyFormation: mockFormation,
         playerAssignments: mockPlayerAssignments,
         isActive: true
       });

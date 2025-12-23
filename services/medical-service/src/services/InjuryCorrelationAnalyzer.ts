@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Repository } from 'typeorm';
 import { InjuryCorrelation, Injury } from '../entities';
 

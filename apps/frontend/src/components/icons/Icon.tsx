@@ -33,7 +33,10 @@ export const Icon: React.FC<IconProps> = ({
 };
 
 // Create icon helper function that wraps lucide icons or custom SVG content
-export const createIcon = (iconOrConfig: React.FC<any> | { displayName?: string; viewBox?: string; path: React.ReactNode }, displayName?: string) => {
+export const createIcon = (
+  iconOrConfig: React.FC<any> | { displayName?: string; viewBox?: string; path: React.ReactNode } | React.ReactNode,
+  displayName?: string
+) => {
   // If it's a function component (Lucide icon)
   if (typeof iconOrConfig === 'function') {
     const LucideIcon = iconOrConfig;
@@ -43,15 +46,27 @@ export const createIcon = (iconOrConfig: React.FC<any> | { displayName?: string;
     IconComponent.displayName = displayName || LucideIcon.displayName || 'Icon';
     return IconComponent;
   }
-  
-  // If it's a custom SVG config object
-  const config = iconOrConfig;
+
+  // If it's a custom SVG config object with path property
+  if (iconOrConfig && typeof iconOrConfig === 'object' && 'path' in iconOrConfig) {
+    const config = iconOrConfig as { displayName?: string; viewBox?: string; path: React.ReactNode };
+    const IconComponent: React.FC<IconProps> = (props) => (
+      <Icon {...props} viewBox={config.viewBox}>
+        {config.path}
+      </Icon>
+    );
+    IconComponent.displayName = config.displayName || displayName || 'Icon';
+    return IconComponent;
+  }
+
+  // If it's direct JSX content (React element/fragment)
+  const path = iconOrConfig as React.ReactNode;
   const IconComponent: React.FC<IconProps> = (props) => (
-    <Icon {...props} viewBox={config.viewBox}>
-      {config.path}
+    <Icon {...props}>
+      {path}
     </Icon>
   );
-  IconComponent.displayName = config.displayName || 'Icon';
+  IconComponent.displayName = displayName || 'Icon';
   return IconComponent;
 };
 

@@ -1,7 +1,16 @@
 import { Entity, Column, Index } from 'typeorm';
 import { BaseEntity } from './BaseEntity';
 
-export type DevelopmentPlanStatus = 'active' | 'paused' | 'completed' | 'archived';
+// IMPORTANT:
+// Unit tests import `DevelopmentPlanStatus` as a runtime enum (e.g. `DevelopmentPlanStatus.ACTIVE`).
+// Use a string enum so it exists at runtime.
+export enum DevelopmentPlanStatus {
+  ACTIVE = 'active',
+  IN_PROGRESS = 'in_progress',
+  PAUSED = 'paused',
+  COMPLETED = 'completed',
+  ARCHIVED = 'archived',
+}
 export type GoalStatus = 'not_started' | 'in_progress' | 'completed' | 'delayed';
 export type GoalCategory = 'technical' | 'tactical' | 'physical' | 'mental';
 export type MilestoneStatus = 'pending' | 'achieved' | 'missed';
@@ -101,7 +110,7 @@ export class PlayerDevelopmentPlan extends BaseEntity {
 
   @Column({ 
     type: 'enum', 
-    enum: ['active', 'paused', 'completed', 'archived'],
+    enum: ['active', 'in_progress', 'paused', 'completed', 'archived'],
     default: 'active'
   })
   status: DevelopmentPlanStatus;

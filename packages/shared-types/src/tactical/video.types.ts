@@ -104,6 +104,17 @@ export interface ClipCollection {
   createdBy: string;
 }
 
+// Buffered time range (compatible with DOM TimeRanges interface)
+export interface BufferedRange {
+  start: number;
+  end: number;
+}
+
+export interface BufferedRanges {
+  length: number;
+  ranges: BufferedRange[];
+}
+
 // Video player types
 export interface VideoPlayerState {
   isPlaying: boolean;
@@ -114,7 +125,7 @@ export interface VideoPlayerState {
   playbackRate: number;
   fullscreen: boolean;
   loading: boolean;
-  buffered: TimeRanges | null;
+  buffered: BufferedRanges | null;
 }
 
 export interface VideoPlayerControls {

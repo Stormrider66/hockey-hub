@@ -1,13 +1,16 @@
 'use client';
 
+import { use } from 'react';
 import { WorkoutExecutor } from '@/features/player/components/WorkoutExecutor';
 import { TrainingSocketProvider } from '@/contexts/TrainingSocketContext';
-import { useParams } from 'next/navigation';
 
-export default function WorkoutExecutionPage() {
-  const params = useParams();
-  const workoutId = params.id as string;
-  
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function WorkoutExecutionPage({ params }: PageProps) {
+  const { id: workoutId } = use(params);
+
   // In production, get player ID from auth context
   const playerId = "player-123";
 

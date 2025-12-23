@@ -38,17 +38,20 @@ const customJestConfig = {
     '^@/test-utils$': '<rootDir>/src/testing/test-utils.tsx',
     '^@/testing/test-utils$': '<rootDir>/src/testing/test-utils.tsx',
     '^@/testing/mocks/(.*)$': '<rootDir>/src/testing/mocks/$1',
-    '^@/components/(.*)$': '<rootDir>/src/components/$1',
+
+    // Specific UI/component mocks MUST come before broad alias patterns
+    '^@/components/ui/select$': '<rootDir>/src/testing/mocks/select.tsx',
+    '^\\.\\/select$': '<rootDir>/src/testing/mocks/select.tsx',
     '^@/contexts/ChatSocketContext$': '<rootDir>/src/contexts/MockChatSocketContext.tsx',
+    '^@/utils/dynamicImports$': '<rootDir>/src/testing/mocks/dynamicImports.ts',
+
+    // Broad alias patterns
+    '^@/components/(.*)$': '<rootDir>/src/components/$1',
     '^@/features/(.*)$': '<rootDir>/src/features/$1',
     '^@/hooks/(.*)$': '<rootDir>/src/hooks/$1',
     '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
     '^@/store/(.*)$': '<rootDir>/src/store/$1',
     '^@/utils/(.*)$': '<rootDir>/src/utils/$1',
-    '^@/utils/dynamicImports$': '<rootDir>/src/testing/mocks/dynamicImports.ts',
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^@/components/ui/select$': '<rootDir>/src/testing/mocks/select.tsx',
-    '^\.\/select$': '<rootDir>/src/testing/mocks/select.tsx',
     '^@hockey-hub/shared-lib/middleware(?:/.*)?$': '<rootDir>/src/testing/mocks/shared-lib-middleware.ts',
     '^@hockey-hub/shared-lib$': '<rootDir>/src/testing/mocks/shared-lib-index.ts',
     '^@hockey-hub/shared-lib/(.*)$': '<rootDir>/src/testing/mocks/shared-lib-index.ts',
@@ -58,10 +61,13 @@ const customJestConfig = {
     '^react-router-dom$': '<rootDir>/src/testing/mocks/react-router-dom.tsx',
     '^vitest$': '<rootDir>/src/testing/mocks/vitest.ts',
     '^jose$': '<rootDir>/src/testing/mocks/jose.ts',
-    // '^next/navigation$': '<rootDir>/src/testing/mocks/next-navigation.ts', // Removed - causing issues in dev mode
+    '^next/navigation$': '<rootDir>/src/testing/mocks/next-navigation.ts',
     '^@hockey-hub/translations$': '<rootDir>/src/testing/mocks/translations.ts',
     '^@hockey-hub/translations(?:/.*)?$': '<rootDir>/src/testing/mocks/translations.ts',
-    '^packages/translations(?:/.*)?$': '<rootDir>/src/testing/mocks/translations.ts'
+    '^packages/translations(?:/.*)?$': '<rootDir>/src/testing/mocks/translations.ts',
+
+    // Keep the catch-all alias mapping LAST so it doesn't swallow more specific mocks above.
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',

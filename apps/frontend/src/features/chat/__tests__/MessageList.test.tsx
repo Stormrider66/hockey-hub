@@ -208,6 +208,11 @@ describe('MessageList', () => {
       
       const editButton = within(ownMessage).getByRole('button', { name: /edit/i });
       await user.click(editButton);
+
+      // Edit mode shows an input textbox; submit with Enter (MessageItem calls onEdit on Enter).
+      const textbox = within(ownMessage).getByRole('textbox');
+      expect(textbox).toBeInTheDocument();
+      await user.keyboard('{Enter}');
     }
 
     expect(defaultProps.onEdit).toHaveBeenCalledWith('msg1', 'Hello everyone!');
@@ -224,6 +229,10 @@ describe('MessageList', () => {
       
       const deleteButton = within(ownMessage).getByRole('button', { name: /delete/i });
       await user.click(deleteButton);
+
+      // MessageItem shows an inline confirmation ("Confirm") before calling onDelete.
+      const confirmButton = within(ownMessage).getByRole('button', { name: /confirm/i });
+      await user.click(confirmButton);
     }
 
     expect(defaultProps.onDelete).toHaveBeenCalledWith('msg1');

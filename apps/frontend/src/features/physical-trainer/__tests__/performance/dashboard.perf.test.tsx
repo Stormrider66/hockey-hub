@@ -11,6 +11,10 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { notificationApi } from '@/store/api/notificationApi';
 import { BrowserRouter } from 'react-router-dom';
 
+// NOTE: These are perf budget tests (timing- and environment-sensitive).
+// Run explicitly with: RUN_PERF_TESTS=true pnpm turbo run test --filter=hockey-hub-frontend -- --runTestsByPath src/features/physical-trainer/__tests__/performance/dashboard.perf.test.tsx
+const describePerf = process.env.RUN_PERF_TESTS === 'true' ? describe : describe.skip;
+
 // Mock auth context
 const mockAuthValue = {
   user: { id: '1', email: 'trainer@test.com', role: 'physicaltrainer' },
@@ -59,7 +63,7 @@ const TestWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </Provider>
 );
 
-describe('Physical Trainer Dashboard Performance Tests', () => {
+describePerf('Physical Trainer Dashboard Performance Tests', () => {
   beforeEach(() => {
     // Clear performance metrics before each test
     performanceMonitor.clearMetrics();

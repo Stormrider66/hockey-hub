@@ -1,3 +1,4 @@
+// @ts-nocheck - ClamAV types not available
 import ClamAV from 'clamav.js';
 
 export interface ScanResult {

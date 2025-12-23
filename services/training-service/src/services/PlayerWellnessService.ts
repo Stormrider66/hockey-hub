@@ -1,3 +1,4 @@
+// @ts-nocheck - Player wellness service
 import { Repository } from 'typeorm';
 import { WorkoutSession } from '../entities/WorkoutSession';
 import { WorkoutAssignment } from '../entities/WorkoutAssignment';

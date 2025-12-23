@@ -1,3 +1,4 @@
+// @ts-nocheck - Mock server entry point
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';

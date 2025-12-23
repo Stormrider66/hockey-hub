@@ -46,6 +46,17 @@ export class EventBus {
   }
 
   /**
+   * Backwards-compatible singleton accessor.
+   *
+   * Some services/tests historically used `EventBus.getInstance()`.
+   * The canonical helper is `getGlobalEventBus()`, but keeping this avoids
+   * runtime errors and simplifies integration.
+   */
+  static getInstance(options?: EventBusOptions): EventBus {
+    return getGlobalEventBus(options);
+  }
+
+  /**
    * Subscribe to an event
    */
   on<T = any>(eventType: string, handler: EventHandler<T>): () => void {

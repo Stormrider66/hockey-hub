@@ -144,6 +144,21 @@ export { BookOpen } from './icons/BookOpen';
 export { MessageCircle } from './icons/MessageCircle';
 export { Palette } from './icons/Palette';
 export { Snowflake } from './icons/Snowflake';
+export { ZoomIn } from './icons/ZoomIn';
+export { ZoomOut } from './icons/ZoomOut';
+export { Maximize } from './icons/Maximize';
+export { Bookmark } from './icons/Bookmark';
+export { Image } from './icons/Image';
+export { Archive } from './icons/Archive';
+export { FileCode } from './icons/FileCode';
+export { TestTube } from './icons/TestTube';
+export { Camera } from './icons/Camera';
+export { Pencil } from './icons/Pencil';
+export { Type } from './icons/Type';
+export { Scissors } from './icons/Scissors';
+export { Folder } from './icons/Folder';
+export { Edit2 } from './icons/Edit2';
+export { Presentation } from './icons/Presentation';
 
 // Convenience re-exports with commonly used aliases
 export { Edit as EditIcon } from './icons/Edit';

@@ -196,6 +196,26 @@ export class CacheKeyBuilder {
     return new CacheKeyBuilder();
   }
 
+  /**
+   * Static helper to build cache keys from multiple parts
+   * Usage: CacheKeyBuilder.build('entity', 'action', 'id', { page: 1 })
+   */
+  static build(...args: (string | number | boolean | Record<string, any>)[]): string {
+    const parts: string[] = [];
+    for (const arg of args) {
+      if (arg === null || arg === undefined) continue;
+      if (typeof arg === 'object') {
+        // Serialize object to deterministic string
+        const sortedKeys = Object.keys(arg).sort();
+        const objParts = sortedKeys.map(k => `${k}=${arg[k]}`);
+        parts.push(objParts.join('_'));
+      } else {
+        parts.push(String(arg));
+      }
+    }
+    return parts.join(':');
+  }
+
   add(part: string | number | boolean): CacheKeyBuilder {
     this.parts.push(String(part));
     return this;
@@ -208,7 +228,7 @@ export class CacheKeyBuilder {
     return this;
   }
 
-  build(): string {
+  buildKey(): string {
     return this.parts.join(':');
   }
 }

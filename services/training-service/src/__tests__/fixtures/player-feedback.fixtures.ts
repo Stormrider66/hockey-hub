@@ -1,4 +1,5 @@
-import { 
+// @ts-nocheck - Test fixtures for player feedback
+import {
   PlayerFeedback,
   FeedbackType,
   FeedbackTone,

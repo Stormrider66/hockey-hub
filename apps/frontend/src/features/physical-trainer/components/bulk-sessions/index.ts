@@ -17,8 +17,6 @@ export { default as BulkSessionExample } from './BulkSessionExample';
 export { BulkSessionWizard } from './BulkSessionWizard';
 export { SessionBundleView } from './SessionBundleView';
 export { SessionBundleViewDemo } from './SessionBundleViewDemo';
-export { default as BulkSessionApiTest } from './BulkSessionApiTest';
-export { default as BulkSessionIntegrationTest } from './IntegrationTest';
 
 // Wizard components
 export * from './wizard';

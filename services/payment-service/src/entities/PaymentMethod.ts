@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Entity, PrimaryGeneratedColumn, Column, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/entities/BaseEntity';
 

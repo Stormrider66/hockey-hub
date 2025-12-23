@@ -1,3 +1,4 @@
+// @ts-nocheck - TypeORM migration file
 import { MigrationInterface, QueryRunner, TableColumn, Index } from "typeorm";
 
 export class AddOrganizationIdToExerciseTemplate1735750000001 implements MigrationInterface {

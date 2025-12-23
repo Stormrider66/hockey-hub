@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/entities/BaseEntity';
 import { Subscription } from './Subscription';

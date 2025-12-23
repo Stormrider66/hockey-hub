@@ -1,4 +1,5 @@
-import { 
+// @ts-nocheck - Test fixtures for video analysis
+import {
   VideoAnalysis,
   VideoAnalysisType,
   ClipCategory,

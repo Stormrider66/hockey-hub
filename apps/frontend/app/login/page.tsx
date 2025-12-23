@@ -21,15 +21,13 @@ export default function LoginPage() {
   const router = useRouter();
   const { login, register, loading, error: authError, clearError, isAuthenticated } = useAuth();
   
-  // Login form state
-  const [loginForm, setLoginForm] = useState({
+  const initialLoginForm = {
     email: "",
     password: "",
     rememberMe: false
-  });
-  
-  // Register form state
-  const [registerForm, setRegisterForm] = useState({
+  };
+
+  const initialRegisterForm = {
     email: "",
     password: "",
     confirmPassword: "",
@@ -37,7 +35,13 @@ export default function LoginPage() {
     lastName: "",
     role: "player" as const,
     teamCode: ""
-  });
+  };
+
+  // Login form state
+  const [loginForm, setLoginForm] = useState(initialLoginForm);
+  
+  // Register form state
+  const [registerForm, setRegisterForm] = useState(initialRegisterForm);
   
   const [localError, setLocalError] = useState("");
   const [success, setSuccess] = useState("");
@@ -129,7 +133,8 @@ export default function LoginPage() {
         password: registerForm.password,
         firstName: registerForm.firstName,
         lastName: registerForm.lastName,
-        organizationId: registerForm.teamCode // Using teamCode as organizationId for now
+        role: registerForm.role,
+        teamCode: registerForm.teamCode
       });
       const elapsed = Date.now() - start;
       if (elapsed < 200) {
@@ -144,12 +149,14 @@ export default function LoginPage() {
       });
       // Ensure DOM paints before test assertion
       await Promise.resolve();
+
     } catch (err: any) {
       // Error is already set in AuthContext
       console.error("Registration failed:", err);
       try {
         const msg = err?.data?.message || err?.error?.data?.message || err?.message || '';
-        flushSync(() => { setLocalError(msg || 'Email already exists'); setTestError(msg || 'Email already exists'); });
+        const mapped = /network/i.test(msg) ? 'Failed to register' : (msg || 'Email already exists');
+        flushSync(() => { setLocalError(mapped); setTestError(mapped); });
         await Promise.resolve();
       } catch {}
     }
@@ -242,7 +249,20 @@ export default function LoginPage() {
               {/* Stable hidden targets for tests */}
               <div data-testid="error-text" className="sr-only">{testError || localError || authError || ''}</div>
               <div data-testid="success-text" className="sr-only">{testSuccess || success || ''}</div>
-              <Tabs value={activeTab} onValueChange={(val) => { setActiveTab(val); setLocalError(""); clearError(); }}>
+              <Tabs value={activeTab} onValueChange={(val) => {
+                setActiveTab(val);
+                // Clear transient UI state on tab switch
+                flushSync(() => { setLocalError(""); setSuccess(""); setTestError(""); setTestSuccess(""); });
+                clearError();
+
+                // Clear form values when switching away (better UX + stable tests)
+                if (val === "login") {
+                  setRegisterForm(initialRegisterForm);
+                }
+                if (val === "register") {
+                  setLoginForm(initialLoginForm);
+                }
+              }}>
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="login">Login</TabsTrigger>
                   <TabsTrigger value="register">Register</TabsTrigger>
@@ -326,9 +346,8 @@ export default function LoginPage() {
                     <Button
                       type="submit"
                       aria-label={loginSubmitting ? 'Signing in...' : 'Sign In'}
-                      onMouseDown={() => { flushSync(() => setLoginSubmitting(true)); }}
                       className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105"
-                      disabled={loading}
+                      disabled={loading || loginSubmitting}
                     >
                       {loginSubmitting || loading ? (
                         <>
@@ -342,9 +361,11 @@ export default function LoginPage() {
                   </form>
 
                   {/* Social Login */}
-                  <div className="mt-6">
-                    <LazySocialLoginButtons disabled={loading} />
-                  </div>
+                  {activeTab === 'login' && (
+                    <div className="mt-6" data-testid="social-login-buttons">
+                      <LazySocialLoginButtons disabled={loading} />
+                    </div>
+                  )}
 
                   {/* Demo Credentials */}
                   <div className="mt-6 pt-6 border-t">
@@ -470,9 +491,8 @@ export default function LoginPage() {
                     <Button
                       type="submit"
                       aria-label={registerSubmitting ? 'Creating account...' : 'Create Account'}
-                      onMouseDown={() => { flushSync(() => setRegisterSubmitting(true)); }}
                       className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105"
-                      disabled={loading}
+                      disabled={loading || registerSubmitting}
                     >
                       {registerSubmitting || loading ? (
                         <>
@@ -490,9 +510,11 @@ export default function LoginPage() {
                   </form>
 
                   {/* Social Login */}
-                  <div className="mt-6">
-                    <LazySocialLoginButtons disabled={loading} />
-                  </div>
+                  {activeTab === 'register' && (
+                    <div className="mt-6" data-testid="social-login-buttons">
+                      <LazySocialLoginButtons disabled={loading} />
+                    </div>
+                  )}
                 </TabsContent>
               </Tabs>
             </CardContent>

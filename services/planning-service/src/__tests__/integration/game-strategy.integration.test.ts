@@ -30,8 +30,8 @@ jest.mock('@hockey-hub/shared-lib/dist/utils/Logger');
 // Mock authentication middleware
 const mockAuthMiddleware = (req: any, res: any, next: any) => {
   req.user = {
-    userId: 'coach-123',
-    organizationId: 'org-123',
+    userId: '22222222-2222-4222-8222-222222222222',
+    organizationId: '11111111-1111-4111-8111-111111111111',
     role: 'COACH'
   };
   next();
@@ -43,12 +43,13 @@ describe('Game Strategy Integration Tests', () => {
   let repository: any;
 
   // Test data
-  const testOrganizationId = 'org-123';
-  const testCoachId = 'coach-123';
-  const testTeamId = 'team-123';
-  const testGameId = 'game-123';
-  const testOpponentTeamId = 'opponent-123';
-  const otherCoachId = 'coach-456';
+  const testOrganizationId = '11111111-1111-4111-8111-111111111111';
+  const testCoachId = '22222222-2222-4222-8222-222222222222';
+  const testTeamId = '33333333-3333-4333-8333-333333333333';
+  const testGameId = '77777777-7777-4777-8777-777777777777';
+  const testOpponentTeamId = '88888888-8888-4888-8888-888888888888';
+  const otherCoachId = '44444444-4444-4444-8444-444444444444';
+  const otherTeamId = '55555555-5555-4555-8555-555555555555';
 
   const mockEvenStrengthLines: LineCombo[] = [
     {
@@ -195,12 +196,14 @@ describe('Game Strategy Integration Tests', () => {
   beforeAll(async () => {
     // Create in-memory database connection
     connection = await createConnection({
-      type: 'sqlite',
-      database: ':memory:',
+      // Use sqljs to avoid native sqlite3 dependency (works in pure JS)
+      type: 'sqljs',
+      autoSave: false,
+      location: ':memory:',
       entities: [GameStrategy],
       synchronize: true,
       logging: false,
-    });
+    } as any);
 
     repository = getRepository(GameStrategy);
 
@@ -276,7 +279,7 @@ describe('Game Strategy Integration Tests', () => {
       expect(response.body.tags).toEqual(strategyData.tags);
 
       // Verify in database
-      const saved = await repository.findOne(response.body.id);
+      const saved = await repository.findOne({ where: { id: response.body.id } });
       expect(saved).toBeDefined();
       expect(saved.gameId).toBe(testGameId);
     });
@@ -292,7 +295,7 @@ describe('Game Strategy Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/game-strategies')
         .send(invalidData)
-        .expect(500);
+        .expect(400);
 
       // Check that no strategy was created
       const count = await repository.count();
@@ -390,7 +393,7 @@ describe('Game Strategy Integration Tests', () => {
           gameId: 'game-3',
           organizationId: testOrganizationId,
           coachId: testCoachId,
-          teamId: 'team-456',
+          teamId: otherTeamId,
           opponentTeamId: 'opp-3',
           opponentTeamName: 'Team C',
           lineups: mockLineups,
@@ -409,12 +412,9 @@ describe('Game Strategy Integration Tests', () => {
 
       expect(response.body).toMatchObject({
         data: expect.any(Array),
-        pagination: {
-          page: 1,
-          pageSize: 2,
-          total: 3,
-          totalPages: 2
-        }
+        page: 1,
+        pageSize: 2,
+        total: 3,
       });
 
       expect(response.body.data).toHaveLength(2);
@@ -614,7 +614,7 @@ describe('Game Strategy Integration Tests', () => {
       expect(response.body.opponentScouting).toEqual(mockOpponentScouting);
 
       // Verify in database
-      const updated = await repository.findOne(testStrategy.id);
+      const updated = await repository.findOne({ where: { id: testStrategy.id } });
       expect(updated.opponentTeamName).toBe(updates.opponentTeamName);
       expect(updated.preGameSpeech).toBe(updates.preGameSpeech);
     });
@@ -708,7 +708,7 @@ describe('Game Strategy Integration Tests', () => {
       expect(response.body.lineups.even_strength).toEqual(mockEvenStrengthLines); // Should remain unchanged
 
       // Verify in database
-      const updated = await repository.findOne(testStrategy.id);
+      const updated = await repository.findOne({ where: { id: testStrategy.id } });
       expect(updated.lineups.powerplay).toEqual(newPowerPlayLines);
     });
 
@@ -801,7 +801,7 @@ describe('Game Strategy Integration Tests', () => {
       expect(response.body.periodAdjustments[0]).toEqual(newAdjustment);
 
       // Verify in database
-      const updated = await repository.findOne(testStrategy.id);
+      const updated = await repository.findOne({ where: { id: testStrategy.id } });
       expect(updated.periodAdjustments).toHaveLength(1);
     });
 
@@ -884,7 +884,7 @@ describe('Game Strategy Integration Tests', () => {
       expect(response.body.teamAverageRating).toBe(8); // Average of player ratings
 
       // Verify in database
-      const updated = await repository.findOne(testStrategy.id);
+      const updated = await repository.findOne({ where: { id: testStrategy.id } });
       expect(updated.postGameAnalysis).toEqual(mockPostGameAnalysis);
     });
 
@@ -1009,7 +1009,7 @@ describe('Game Strategy Integration Tests', () => {
         .expect(204);
 
       // Verify deletion
-      const deleted = await repository.findOne(testStrategy.id);
+      const deleted = await repository.findOne({ where: { id: testStrategy.id } });
       expect(deleted).toBeNull();
     });
 
@@ -1050,7 +1050,7 @@ describe('Game Strategy Integration Tests', () => {
       };
 
       const strategyData = {
-        gameId: 'large-game',
+        gameId: '99999999-9999-4999-8999-999999999999',
         teamId: testTeamId,
         opponentTeamId: testOpponentTeamId,
         opponentTeamName: 'Large Test Team',
@@ -1094,7 +1094,7 @@ describe('Game Strategy Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/game-strategies')
         .send({
-          gameId: 'complex-scouting-game',
+          gameId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
           teamId: testTeamId,
           opponentTeamId: testOpponentTeamId,
           opponentTeamName: 'Complex Team',
@@ -1120,7 +1120,7 @@ describe('Game Strategy Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/game-strategies')
         .send({
-          gameId: 'invalid-goalie-game',
+          gameId: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
           teamId: testTeamId,
           opponentTeamId: testOpponentTeamId,
           opponentTeamName: 'Test Team',
@@ -1195,7 +1195,7 @@ describe('Game Strategy Integration Tests', () => {
       const response = await request(app)
         .post('/api/planning/game-strategies')
         .send({
-          gameId: 'duplicate-player-game',
+          gameId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
           teamId: testTeamId,
           opponentTeamId: testOpponentTeamId,
           opponentTeamName: 'Test Team',

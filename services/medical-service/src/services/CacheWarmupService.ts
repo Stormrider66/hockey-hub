@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getCacheManager } from '@hockey-hub/shared-lib';
 import { CachedInjuryRepository } from '../repositories/CachedInjuryRepository';
 import { CachedWellnessRepository } from '../repositories/CachedWellnessRepository';

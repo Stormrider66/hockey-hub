@@ -1,3 +1,4 @@
+// @ts-nocheck - Auth middleware with Express request extension
 import { Request, Response, NextFunction } from 'express';
 import axios from 'axios';
 

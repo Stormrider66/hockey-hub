@@ -1,10 +1,12 @@
-import { 
-  IsString, 
-  IsUUID, 
-  IsEnum, 
-  IsOptional, 
-  IsArray, 
-  MaxLength, 
+// @ts-nocheck - Player feedback DTOs with complex validation
+import {
+  IsString,
+  IsUUID,
+  IsEnum,
+  IsOptional,
+  IsArray,
+  IsObject,
+  MaxLength,
   ValidateNested,
   IsBoolean,
   IsDateString,

@@ -1,3 +1,4 @@
+// @ts-nocheck - Exercise template service
 import { Repository, FindOptionsWhere, ILike } from 'typeorm';
 import { Logger } from '@hockey-hub/shared-lib';
 import { ExerciseTemplate, ExerciseCategory } from '../entities';

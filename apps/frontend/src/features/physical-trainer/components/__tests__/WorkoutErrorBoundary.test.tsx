@@ -2,6 +2,25 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { WorkoutErrorBoundary, WorkoutBuilderErrorBoundary, WorkoutViewerErrorBoundary } from '../WorkoutErrorBoundary';
 
+// React error boundaries can still trigger window "error" events in JSDOM even when caught,
+// which Jest may treat as an unhandled exception during full-suite runs.
+const onWindowError = (e: Event) => {
+  try {
+    e.preventDefault();
+  } catch {}
+};
+
+const originalConsoleError = console.error;
+beforeAll(() => {
+  window.addEventListener('error', onWindowError);
+  console.error = jest.fn();
+});
+
+afterAll(() => {
+  window.removeEventListener('error', onWindowError);
+  console.error = originalConsoleError;
+});
+
 // Test component that throws an error
 const ThrowError: React.FC<{ shouldThrow: boolean }> = ({ shouldThrow }) => {
   if (shouldThrow) {
@@ -26,16 +45,6 @@ const ErrorButton: React.FC = () => {
 };
 
 describe('WorkoutErrorBoundary', () => {
-  // Suppress console errors during tests
-  const originalError = console.error;
-  beforeAll(() => {
-    console.error = jest.fn();
-  });
-  
-  afterAll(() => {
-    console.error = originalError;
-  });
-
   it('renders children when there is no error', () => {
     render(
       <WorkoutErrorBoundary>
@@ -69,40 +78,50 @@ describe('WorkoutErrorBoundary', () => {
   });
 
   it('resets error state when Try Again is clicked', () => {
-    const { rerender } = render(
-      <WorkoutErrorBoundary>
-        <ThrowError shouldThrow={true} />
-      </WorkoutErrorBoundary>
-    );
-    
+    const Wrapper: React.FC = () => {
+      const [shouldThrow, setShouldThrow] = React.useState(true);
+      return (
+        <WorkoutErrorBoundary onReset={() => setShouldThrow(false)}>
+          <ThrowError shouldThrow={shouldThrow} />
+        </WorkoutErrorBoundary>
+      );
+    };
+
+    render(<Wrapper />);
+
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-    
-    // Click Try Again
+
     fireEvent.click(screen.getByText('Try Again'));
-    
-    // Rerender with non-throwing component
-    rerender(
-      <WorkoutErrorBoundary>
-        <ThrowError shouldThrow={false} />
-      </WorkoutErrorBoundary>
-    );
-    
-    // After reset, the fallback should disappear
-    expect(screen.queryByText('Something went wrong')).not.toBeInTheDocument();
+
+    expect(screen.getByText('No error')).toBeInTheDocument();
   });
 
   it('calls custom onReset handler when provided', () => {
     const onReset = jest.fn();
-    
-    render(
-      <WorkoutErrorBoundary onReset={onReset}>
-        <ThrowError shouldThrow={true} />
-      </WorkoutErrorBoundary>
-    );
-    
+
+    // In React, error boundaries recover by resetting state AND re-rendering children.
+    // If the child keeps throwing, the error can surface as an "uncaught" window error in JSDOM.
+    // Model the real usage: onReset clears the condition that caused the error.
+    const Wrapper: React.FC = () => {
+      const [shouldThrow, setShouldThrow] = React.useState(true);
+      return (
+        <WorkoutErrorBoundary
+          onReset={() => {
+            onReset();
+            setShouldThrow(false);
+          }}
+        >
+          <ThrowError shouldThrow={shouldThrow} />
+        </WorkoutErrorBoundary>
+      );
+    };
+
+    render(<Wrapper />);
+
     fireEvent.click(screen.getByText('Try Again'));
-    
+
     expect(onReset).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('No error')).toBeInTheDocument();
   });
 
   it('catches errors that occur after initial render', () => {

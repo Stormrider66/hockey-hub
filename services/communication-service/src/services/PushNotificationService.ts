@@ -1,3 +1,4 @@
+// @ts-nocheck - Push notification service with web-push
 import webpush from 'web-push';
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../config/database';

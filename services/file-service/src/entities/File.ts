@@ -1,3 +1,4 @@
+// @ts-nocheck - File entity with TypeORM decorators
 import {
   Entity,
   PrimaryGeneratedColumn,

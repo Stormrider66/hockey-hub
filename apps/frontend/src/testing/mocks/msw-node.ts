@@ -64,9 +64,23 @@ export const setupServer = (...initialHandlers: Handler[]) => {
         if (!handler) {
           return new Response(null, { status: 404 });
         }
+        const parsedUrl = (() => {
+          try { return new URL(url, 'http://localhost'); } catch { return new URL('http://localhost'); }
+        })();
+        const headers = new Headers((isRequest ? (input as any).headers : init?.headers) || {});
         const req = {
-          url,
+          url: parsedUrl,
           method,
+          headers,
+          body: (() => {
+            try {
+              const body = isRequest ? (input as any).body : init?.body;
+              if (!body) return undefined;
+              return typeof body === 'string' ? JSON.parse(body) : body;
+            } catch {
+              return undefined;
+            }
+          })(),
           json: async () => {
             try {
               const body = isRequest ? input.body : init?.body;

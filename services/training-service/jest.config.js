@@ -8,6 +8,8 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   moduleNameMapper: {
+    // Some unit tests import the compiled shared-lib "dist" paths; map those back to source for Jest.
+    '^@hockey-hub/shared-lib/dist/(.*)$': '<rootDir>/../../packages/shared-lib/src/$1',
     ...baseConfig.moduleNameMapper,
     '^@hockey-hub/shared-lib/middleware/authMiddleware$': '<rootDir>/../../packages/shared-lib/src/middleware/auth.middleware.ts',
     '^@hockey-hub/shared-lib/middleware/errorHandler$': '<rootDir>/../../packages/shared-lib/src/errors/ErrorHandler.ts',

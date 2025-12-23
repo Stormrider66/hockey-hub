@@ -1,6 +1,8 @@
 import { Entity, Column, Tree, TreeChildren, TreeParent, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableEntity';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 @Entity('drill_categories')
 @Tree('closure-table')
 @Index(['name', 'organizationId'], { unique: true })
@@ -13,7 +15,7 @@ export class DrillCategory extends AuditableEntity {
   @Column({ nullable: true })
   description?: string;
 
-  @Column('uuid', { nullable: true })
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid', nullable: true })
   @Index()
   organizationId?: string;
 
@@ -35,7 +37,7 @@ export class DrillCategory extends AuditableEntity {
   @TreeParent()
   parent: DrillCategory;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metadata?: Record<string, any>;
 
   // Helper methods

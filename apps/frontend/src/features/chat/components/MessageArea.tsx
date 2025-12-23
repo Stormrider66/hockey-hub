@@ -3,7 +3,7 @@ import { ArrowLeft, Phone, Video, Info, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { useGetMessagesQuery, useSendMessageMutation, chatApi, useSearchMessagesQuery } from '@/store/api/chatApi';
+import { useGetMessagesQuery, useSendMessageMutation, useEditMessageMutation, useDeleteMessageMutation, useAddReactionMutation, chatApi, useSearchMessagesQuery } from '@/store/api/chatApi';
 import { useDispatch } from 'react-redux';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
@@ -57,6 +57,9 @@ const MessageArea: React.FC<MessageAreaProps> = ({
   });
   
   const [sendMessage, { isLoading: isSendingMessage }] = useSendMessageMutation();
+  const [editMessage] = useEditMessageMutation();
+  const [deleteMessage] = useDeleteMessageMutation();
+  const [addReaction] = useAddReactionMutation();
   
   // Handle loading more messages
   const handleLoadMore = useCallback(async () => {
@@ -142,6 +145,82 @@ const MessageArea: React.FC<MessageAreaProps> = ({
       refetchMessages();
     } catch (error) {
       console.error('Failed to send message:', error);
+    }
+  };
+
+  const handleEditMessage = async (arg1: any, arg2?: any) => {
+    const messageId = typeof arg1 === 'string' ? arg1 : arg1?.id;
+    const content = typeof arg1 === 'string' ? (arg2 ?? '') : (arg1?.content ?? arg2 ?? '');
+    if (!messageId) return;
+
+    // Optimistic local update
+    dispatch(
+      chatApi.util.updateQueryData('getMessages', { conversationId }, (draft: any) => {
+        const msg = draft.messages?.find((m: any) => m.id === messageId);
+        if (msg) {
+          msg.content = content;
+          msg.editedAt = new Date().toISOString();
+        }
+      })
+    );
+
+    try {
+      await editMessage({ messageId, data: { content } }).unwrap();
+    } catch (error) {
+      console.error('Failed to edit message:', error);
+      // Best-effort refetch to restore server state
+      try { refetchMessages(); } catch {}
+    }
+  };
+
+  const handleDeleteMessage = async (arg1: any) => {
+    const messageId = typeof arg1 === 'string' ? arg1 : arg1?.id;
+    if (!messageId) return;
+
+    // Optimistic local update (MessageItem renders deletedAt)
+    dispatch(
+      chatApi.util.updateQueryData('getMessages', { conversationId }, (draft: any) => {
+        const msg = draft.messages?.find((m: any) => m.id === messageId);
+        if (msg) {
+          msg.deletedAt = new Date().toISOString();
+        }
+      })
+    );
+
+    try {
+      await deleteMessage(messageId).unwrap();
+    } catch (error) {
+      console.error('Failed to delete message:', error);
+      try { refetchMessages(); } catch {}
+    }
+  };
+
+  const handleAddReaction = async (messageId: string, emoji: string) => {
+    if (!messageId || !emoji) return;
+    const createdAt = new Date().toISOString();
+
+    // Optimistic local update
+    dispatch(
+      chatApi.util.updateQueryData('getMessages', { conversationId }, (draft: any) => {
+        const msg = draft.messages?.find((m: any) => m.id === messageId);
+        if (!msg) return;
+        if (!Array.isArray(msg.reactions)) msg.reactions = [];
+        msg.reactions.push({
+          id: `reaction-${Date.now()}`,
+          messageId,
+          userId: currentUserId,
+          user: { id: currentUserId, name: 'Current User', email: '' },
+          emoji,
+          createdAt,
+        });
+      })
+    );
+
+    try {
+      await addReaction({ messageId, data: { emoji } }).unwrap();
+    } catch (error) {
+      console.error('Failed to add reaction:', error);
+      try { refetchMessages(); } catch {}
     }
   };
   
@@ -452,18 +531,9 @@ const MessageArea: React.FC<MessageAreaProps> = ({
             hasMore={messagesData?.hasMore || false}
             onLoadMore={handleLoadMore}
             onReply={handleReply}
-            onEdit={(message) => {
-              // TODO: Implement edit functionality
-              console.log('Edit message:', message);
-            }}
-            onDelete={(message) => {
-              // TODO: Implement delete functionality
-              console.log('Delete message:', message);
-            }}
-            onReaction={(messageId, emoji) => {
-              // TODO: Implement reaction functionality
-              console.log('Add reaction:', messageId, emoji);
-            }}
+            onEdit={handleEditMessage as any}
+            onDelete={handleDeleteMessage as any}
+            onReaction={handleAddReaction}
             highlightedMessageId={highlightedMessageId}
             searchTerms={searchTerms}
           />

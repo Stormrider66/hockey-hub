@@ -1,12 +1,13 @@
 /**
  * Cache Clear Utilities
- * 
+ *
  * Provides functions for selective and complete cache clearing,
  * including expired entries and size management.
  */
 
 import { api } from '../api';
 import { CacheEntry } from './cacheMigration';
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 export interface CacheClearOptions {
   includeVersion?: boolean;
@@ -28,21 +29,15 @@ export interface CacheSizeInfo {
 export function clearApiCache(apiName: string): number {
   const prefix = `rtkq:${apiName}:`;
   let clearedCount = 0;
-  
-  const keysToRemove: string[] = [];
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith(prefix)) {
-      keysToRemove.push(key);
-    }
-  }
-  
+
+  const allKeys = safeLocalStorage.keys();
+  const keysToRemove = allKeys.filter(key => key.startsWith(prefix));
+
   for (const key of keysToRemove) {
-    localStorage.removeItem(key);
+    safeLocalStorage.removeItem(key);
     clearedCount++;
   }
-  
+
   return clearedCount;
 }
 
@@ -52,32 +47,28 @@ export function clearApiCache(apiName: string): number {
 export function clearAllRTKQueryCache(options: CacheClearOptions = {}): number {
   const { preserveKeys = [] } = options;
   let clearedCount = 0;
-  
-  const keysToRemove: string[] = [];
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('rtkq:') && !preserveKeys.includes(key)) {
-      keysToRemove.push(key);
-    }
-  }
-  
+
+  const allKeys = safeLocalStorage.keys();
+  const keysToRemove = allKeys.filter(
+    key => key.startsWith('rtkq:') && !preserveKeys.includes(key)
+  );
+
   for (const key of keysToRemove) {
-    localStorage.removeItem(key);
+    safeLocalStorage.removeItem(key);
     clearedCount++;
   }
-  
+
   // Optionally clear version info
   if (options.includeVersion) {
-    localStorage.removeItem('hockey-hub-cache-version');
+    safeLocalStorage.removeItem('hockey-hub-cache-version');
   }
-  
+
   // Optionally clear credentials
   if (options.includeCredentials) {
-    localStorage.removeItem('hockey-hub-auth-token');
-    localStorage.removeItem('hockey-hub-refresh-token');
+    safeLocalStorage.removeItem('hockey-hub-auth-token');
+    safeLocalStorage.removeItem('hockey-hub-refresh-token');
   }
-  
+
   return clearedCount;
 }
 
@@ -87,14 +78,14 @@ export function clearAllRTKQueryCache(options: CacheClearOptions = {}): number {
 export function clearExpiredCache(maxAge: number = 24 * 60 * 60 * 1000): number {
   const now = Date.now();
   let clearedCount = 0;
-  
+
   const keysToRemove: string[] = [];
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('rtkq:')) {
+  const allKeys = safeLocalStorage.keys();
+
+  for (const key of allKeys) {
+    if (key.startsWith('rtkq:')) {
       try {
-        const rawData = localStorage.getItem(key);
+        const rawData = safeLocalStorage.getItem(key);
         if (rawData) {
           const entry: CacheEntry = JSON.parse(rawData);
           if (entry.timestamp && (now - entry.timestamp) > maxAge) {
@@ -107,12 +98,12 @@ export function clearExpiredCache(maxAge: number = 24 * 60 * 60 * 1000): number 
       }
     }
   }
-  
+
   for (const key of keysToRemove) {
-    localStorage.removeItem(key);
+    safeLocalStorage.removeItem(key);
     clearedCount++;
   }
-  
+
   return clearedCount;
 }
 
@@ -125,27 +116,28 @@ export function getCacheSizeInfo(): CacheSizeInfo {
     entryCount: 0,
     sizeByApi: {}
   };
-  
+
   let oldestTimestamp: number | undefined;
   let newestTimestamp: number | undefined;
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('rtkq:')) {
+
+  const allKeys = safeLocalStorage.keys();
+
+  for (const key of allKeys) {
+    if (key.startsWith('rtkq:')) {
       try {
-        const value = localStorage.getItem(key);
+        const value = safeLocalStorage.getItem(key);
         if (value) {
           const size = new Blob([value]).size;
           info.totalSize += size;
           info.entryCount++;
-          
+
           // Extract API name from key (rtkq:apiName:...)
           const match = key.match(/^rtkq:([^:]+):/);
           if (match) {
             const apiName = match[1];
             info.sizeByApi[apiName] = (info.sizeByApi[apiName] || 0) + size;
           }
-          
+
           // Try to get timestamp
           try {
             const entry: CacheEntry = JSON.parse(value);
@@ -166,10 +158,10 @@ export function getCacheSizeInfo(): CacheSizeInfo {
       }
     }
   }
-  
+
   info.oldestEntry = oldestTimestamp;
   info.newestEntry = newestTimestamp;
-  
+
   return info;
 }
 
@@ -178,24 +170,25 @@ export function getCacheSizeInfo(): CacheSizeInfo {
  */
 export function clearCacheBySize(maxSizeBytes: number): number {
   const entries: Array<{ key: string; size: number; timestamp?: number }> = [];
-  
+
   // Collect all cache entries with their sizes
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('rtkq:')) {
+  const allKeys = safeLocalStorage.keys();
+
+  for (const key of allKeys) {
+    if (key.startsWith('rtkq:')) {
       try {
-        const value = localStorage.getItem(key);
+        const value = safeLocalStorage.getItem(key);
         if (value) {
           const size = new Blob([value]).size;
           let timestamp: number | undefined;
-          
+
           try {
             const entry: CacheEntry = JSON.parse(value);
             timestamp = entry.timestamp;
           } catch {
             // Ignore parse errors
           }
-          
+
           entries.push({ key, size, timestamp });
         }
       } catch (error) {
@@ -203,7 +196,7 @@ export function clearCacheBySize(maxSizeBytes: number): number {
       }
     }
   }
-  
+
   // Sort by timestamp (oldest first) or by key if no timestamp
   entries.sort((a, b) => {
     if (a.timestamp && b.timestamp) {
@@ -211,20 +204,20 @@ export function clearCacheBySize(maxSizeBytes: number): number {
     }
     return a.key.localeCompare(b.key);
   });
-  
+
   // Calculate total size and remove oldest entries until under limit
   let totalSize = entries.reduce((sum, entry) => sum + entry.size, 0);
   let clearedCount = 0;
-  
+
   while (totalSize > maxSizeBytes && entries.length > 0) {
     const entry = entries.shift();
     if (entry) {
-      localStorage.removeItem(entry.key);
+      safeLocalStorage.removeItem(entry.key);
       totalSize -= entry.size;
       clearedCount++;
     }
   }
-  
+
   return clearedCount;
 }
 
@@ -233,28 +226,28 @@ export function clearCacheBySize(maxSizeBytes: number): number {
  */
 export function clearEndpointCache(endpoints: string[]): number {
   let clearedCount = 0;
-  
+
   const keysToRemove: string[] = [];
-  
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('rtkq:')) {
+  const allKeys = safeLocalStorage.keys();
+
+  for (const key of allKeys) {
+    if (key.startsWith('rtkq:')) {
       // Check if key contains any of the endpoints
-      const containsEndpoint = endpoints.some(endpoint => 
+      const containsEndpoint = endpoints.some(endpoint =>
         key.toLowerCase().includes(endpoint.toLowerCase())
       );
-      
+
       if (containsEndpoint) {
         keysToRemove.push(key);
       }
     }
   }
-  
+
   for (const key of keysToRemove) {
-    localStorage.removeItem(key);
+    safeLocalStorage.removeItem(key);
     clearedCount++;
   }
-  
+
   return clearedCount;
 }
 

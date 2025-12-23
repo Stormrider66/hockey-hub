@@ -73,6 +73,7 @@ import {
   Wind,
   Download,
   CheckCircle2,
+  Star,
   Play,
   X as XIcon,
 } from "lucide-react";
@@ -666,12 +667,14 @@ export default function PlayerDashboard() {
               <CardContent>
                 <div className={spacing.card} role="list" aria-label="Today's events">
               {isLoading ? (
-                    <div className="py-8 text-center" role="status" aria-live="polite">
-                      <div className="animate-pulse space-y-3">
-                        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                    <div role="listitem" className="py-8 text-center">
+                      <div role="status" aria-live="polite">
+                        <div className="animate-pulse space-y-3">
+                          <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                        </div>
+                        <span className={a11y.srOnly}>Loading schedule...</span>
                       </div>
-                      <span className={a11y.srOnly}>Loading schedule...</span>
                     </div>
                   ) : (
                     schedule.map((event, index) => (
@@ -777,7 +780,7 @@ export default function PlayerDashboard() {
                       </div>
                     ))
                   ) : (
-                    <div className="py-4 text-center text-muted-foreground">
+                    <div className="py-4 text-center text-muted-foreground" role="listitem">
                       <p className="text-sm">No workouts scheduled for today</p>
                     </div>
                   )}

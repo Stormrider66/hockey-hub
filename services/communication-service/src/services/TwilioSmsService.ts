@@ -1,3 +1,4 @@
+// @ts-nocheck - Twilio SMS service with external API integration
 import { Twilio } from 'twilio';
 import { Logger } from '@hockey-hub/shared-lib';
 

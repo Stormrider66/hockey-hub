@@ -16,6 +16,7 @@ interface WorkoutBuilderHeaderProps {
   onSave: () => void;
   onCancel: () => void;
   isSaving?: boolean;
+  canSave?: boolean;
   showAutoSave?: boolean;
   lastSaved?: Date;
   progress?: number;
@@ -64,6 +65,7 @@ export const WorkoutBuilderHeader: React.FC<WorkoutBuilderHeaderProps> = ({
   onSave,
   onCancel,
   isSaving = false,
+  canSave = true,
   showAutoSave = false,
   lastSaved,
   progress,
@@ -159,7 +161,7 @@ export const WorkoutBuilderHeader: React.FC<WorkoutBuilderHeaderProps> = ({
           </Button>
           <Button 
             onClick={onSave}
-            disabled={isSaving}
+            disabled={isSaving || !canSave}
           >
             <Save className="h-4 w-4 mr-2" />
             {isSaving ? 'Saving...' : bulkMode ? `Save ${bulkConfig?.numberOfSessions || 1} Sessions` : 'Save Workout'}

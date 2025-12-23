@@ -3,48 +3,25 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { EquipmentFittingModal } from './EquipmentFittingModal';
 import { renderWithProviders } from '@/test-utils';
-import { vi } from 'vitest';
-import { format } from 'date-fns';
 
-// Mock the API hook
-vi.mock('@/store/api/calendarApi', () => ({
-  useCreateCalendarEventMutation: () => {
-    const mockMutation = vi.fn().mockResolvedValue({ 
-      unwrap: () => Promise.resolve({ id: 'event-123', success: true }) 
-    });
-    return [mockMutation];
-  },
+const mockUnwrap = jest.fn().mockResolvedValue({ id: 'event-123', success: true });
+const mockCreateEvent = jest.fn(() => ({ unwrap: mockUnwrap }));
+
+jest.mock('@/store/api/calendarApi', () => ({
+  useCreateEventMutation: () => [mockCreateEvent],
 }));
 
-// Mock the toast
-vi.mock('@/components/ui/use-toast', () => ({
-  toast: vi.fn(),
+jest.mock('@/components/ui/use-toast', () => ({
+  toast: jest.fn(),
 }));
-
-// Mock date-fns format for consistent date display
-vi.mock('date-fns', async () => {
-  const actual = await vi.importActual('date-fns');
-  return {
-    ...actual,
-    format: vi.fn((date, formatStr) => {
-      if (formatStr === 'PPP') {
-        return 'January 15, 2024';
-      }
-      if (formatStr === 'HH:mm') {
-        return '14:00';
-      }
-      return actual.format(date, formatStr);
-    }),
-  };
-});
 
 describe('EquipmentFittingModal', () => {
   const user = userEvent.setup();
-  const mockOnClose = vi.fn();
+  const mockOnClose = jest.fn();
   const mockDate = new Date('2024-01-15T14:00:00');
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   it('renders the modal when open', () => {
@@ -218,7 +195,9 @@ describe('EquipmentFittingModal', () => {
       expect(screen.getByText('Select Team')).toBeInTheDocument();
       
       // Open dropdown
-      await user.click(screen.getByText('Choose a team'));
+      const teamSection = screen.getByText('Select Team').closest('div');
+      const teamCombobox = within(teamSection!).getByRole('combobox');
+      await user.click(teamCombobox);
 
       // Check team options
       expect(screen.getByText('Senior Team')).toBeInTheDocument();
@@ -235,8 +214,10 @@ describe('EquipmentFittingModal', () => {
       );
 
       await user.click(screen.getByRole('button', { name: /Entire Team/i }));
-      await user.click(screen.getByText('Choose a team'));
-      await user.click(screen.getByText('Senior Team'));
+      const teamSection = screen.getByText('Select Team').closest('div');
+      const teamCombobox = within(teamSection!).getByRole('combobox');
+      await user.click(teamCombobox);
+      await user.click(screen.getByRole('option', { name: /Senior Team/i }));
 
       // The dropdown should show the selected team
       expect(screen.getByText('Senior Team')).toBeInTheDocument();
@@ -319,7 +300,7 @@ describe('EquipmentFittingModal', () => {
 
       expect(screen.getByText('Date')).toBeInTheDocument();
       expect(screen.getByLabelText('Start Time')).toHaveValue('14:00');
-      expect(screen.getByLabelText('End Time')).toHaveValue('14:00'); // Due to our mock
+      expect(screen.getByLabelText('End Time')).toHaveValue('15:00');
     });
 
     it('allows changing time', async () => {
@@ -365,11 +346,11 @@ describe('EquipmentFittingModal', () => {
       );
 
       // Find and click the location dropdown
-      const locationDropdown = screen.getAllByRole('combobox')[1]; // Second dropdown is location
-      await user.click(locationDropdown);
+      const locationCombobox = screen.getByRole('combobox');
+      await user.click(locationCombobox);
 
       // Select a different location
-      await user.click(screen.getByText('Main Rink'));
+      await user.click(screen.getByRole('option', { name: /Main Rink/i }));
 
       expect(screen.getByText('Main Rink')).toBeInTheDocument();
     });
@@ -524,8 +505,10 @@ describe('EquipmentFittingModal', () => {
       await user.click(screen.getByRole('button', { name: /Entire Team/i }));
 
       // Select team
-      await user.click(screen.getByText('Choose a team'));
-      await user.click(screen.getByText('Senior Team'));
+      const teamSection = screen.getByText('Select Team').closest('div');
+      const teamCombobox = within(teamSection!).getByRole('combobox');
+      await user.click(teamCombobox);
+      await user.click(screen.getByRole('option', { name: /Senior Team/i }));
 
       // Select equipment
       await user.click(screen.getByText('Helmets'));

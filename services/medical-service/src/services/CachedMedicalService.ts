@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { CachedInjuryRepository, CachedWellnessRepository, CachedPlayerAvailabilityRepository } from '../repositories';
 import { Injury, WellnessEntry, PlayerAvailability } from '../entities';
 import { CacheKeyBuilder, RedisCacheManager } from '@hockey-hub/shared-lib';

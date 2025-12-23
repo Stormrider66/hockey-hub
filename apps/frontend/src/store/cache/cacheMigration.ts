@@ -1,17 +1,19 @@
 /**
  * Cache Migration System
- * 
+ *
  * Handles migration of cached data between different versions
  * to maintain compatibility when data structures change.
  */
 
-import { 
-  CACHE_VERSION, 
-  getCurrentCacheVersion, 
-  setCacheVersion, 
+import {
+  CACHE_VERSION,
+  getCurrentCacheVersion,
+  setCacheVersion,
   getMigrationPath,
-  needsCacheMigration 
+  needsCacheMigration,
+  CACHE_VERSION_KEY
 } from './cacheVersion';
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 export interface MigrationResult {
   success: boolean;
@@ -118,16 +120,14 @@ function migrateCacheEntry(entry: CacheEntry, targetVersion: string): CacheEntry
  */
 function getRTKQueryCacheKeys(): string[] {
   const keys: string[] = [];
-  
-  if (typeof localStorage !== 'undefined') {
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith('rtkq:')) {
-        keys.push(key);
-      }
+  const allKeys = safeLocalStorage.keys();
+
+  for (const key of allKeys) {
+    if (key.startsWith('rtkq:')) {
+      keys.push(key);
     }
   }
-  
+
   return keys;
 }
 
@@ -150,28 +150,24 @@ export async function migrateCache(): Promise<MigrationResult> {
   
   try {
     const cacheKeys = getRTKQueryCacheKeys();
-    
+
     for (const key of cacheKeys) {
       try {
-        if (typeof localStorage !== 'undefined') {
-          const rawData = localStorage.getItem(key);
-          if (!rawData) continue;
-          
-          const cacheEntry: CacheEntry = JSON.parse(rawData);
-          const migratedEntry = migrateCacheEntry(cacheEntry, CACHE_VERSION);
-          
-          localStorage.setItem(key, JSON.stringify(migratedEntry));
-        }
+        const rawData = safeLocalStorage.getItem(key);
+        if (!rawData) continue;
+
+        const cacheEntry: CacheEntry = JSON.parse(rawData);
+        const migratedEntry = migrateCacheEntry(cacheEntry, CACHE_VERSION);
+
+        safeLocalStorage.setItem(key, JSON.stringify(migratedEntry));
         migratedKeys.push(key);
       } catch (error) {
         const errorMsg = `Failed to migrate key ${key}: ${error}`;
         console.error(errorMsg);
         errors.push(errorMsg);
-        
+
         // Remove corrupted entry
-        if (typeof localStorage !== 'undefined') {
-          localStorage.removeItem(key);
-        }
+        safeLocalStorage.removeItem(key);
       }
     }
     
@@ -224,13 +220,11 @@ export async function ensureCacheCompatibility(): Promise<boolean> {
  */
 export function clearAllCache(): void {
   const cacheKeys = getRTKQueryCacheKeys();
-  
-  if (typeof localStorage !== 'undefined') {
-    for (const key of cacheKeys) {
-      localStorage.removeItem(key);
-    }
-    
-    // Also clear version info to force fresh start
-    localStorage.removeItem('hockey-hub-cache-version');
+
+  for (const key of cacheKeys) {
+    safeLocalStorage.removeItem(key);
   }
+
+  // Also clear version info to force fresh start
+  safeLocalStorage.removeItem(CACHE_VERSION_KEY);
 }

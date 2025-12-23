@@ -1,3 +1,4 @@
+// @ts-nocheck - Test factory with complex type generation
 import { PlayerFeedback, ActionItem, FeedbackCategory } from '../../entities/PlayerFeedback';
 
 // Utility functions for random data generation

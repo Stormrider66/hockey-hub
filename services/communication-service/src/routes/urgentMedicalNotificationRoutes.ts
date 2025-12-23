@@ -14,7 +14,7 @@ import {
   getAcknowledgmentMethods,
 } from '../controllers/urgentMedicalNotificationController';
 
-const router = Router();
+const router: any = Router();
 
 // Enum endpoints (public)
 router.get('/enums/urgency-levels', getUrgencyLevels);

@@ -1,4 +1,5 @@
 // Types only used internally, no need for external imports
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 export interface CacheMetrics {
   hits: number;
@@ -60,13 +61,11 @@ class CacheAnalyticsManager {
 
   private loadAnalytics(): CacheAnalytics {
     try {
-      if (typeof localStorage !== 'undefined') {
-        const stored = localStorage.getItem(this.ANALYTICS_STORAGE_KEY);
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          // Validate and migrate if needed
-          return this.validateAnalytics(parsed);
-        }
+      const stored = safeLocalStorage.getItem(this.ANALYTICS_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Validate and migrate if needed
+        return this.validateAnalytics(parsed);
       }
     } catch (error) {
       console.error('Failed to load cache analytics:', error);
@@ -446,12 +445,10 @@ class CacheAnalyticsManager {
 
   private save(): void {
     try {
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(
-          this.ANALYTICS_STORAGE_KEY,
-          JSON.stringify(this.analytics)
-        );
-      }
+      safeLocalStorage.setItem(
+        this.ANALYTICS_STORAGE_KEY,
+        JSON.stringify(this.analytics)
+      );
     } catch (error) {
       console.error('Failed to save cache analytics:', error);
     }

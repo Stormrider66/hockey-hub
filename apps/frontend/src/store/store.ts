@@ -155,9 +155,14 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 // Initialize cache warming after store is created and rehydrated
-if (typeof window !== 'undefined') {
+// Skip cache warming in development/mock mode since backend services aren't running
+const shouldEnableCacheWarming =
+  process.env.NODE_ENV === 'production' &&
+  process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH !== 'true';
+
+if (typeof window !== 'undefined' && shouldEnableCacheWarming) {
   let cleanupCacheWarming: (() => void) | null = null;
-  
+
   // Function to start cache warming once store is ready
   const startCacheWarmingWhenReady = () => {
     try {

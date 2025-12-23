@@ -61,6 +61,7 @@ export const SimpleFileButton: React.FC<SimpleFileButtonProps> = ({ onFileSelect
         disabled={disabled}
         className="h-8 w-8 p-0 shrink-0"
         title="Attach file"
+        aria-label="Attach file"
       >
         <Paperclip className="h-4 w-4" />
       </Button>
@@ -71,6 +72,8 @@ export const SimpleFileButton: React.FC<SimpleFileButtonProps> = ({ onFileSelect
         accept="image/*,.pdf,.doc,.docx,.txt"
         onChange={handleFileChange}
         onClick={handleInputClick}
+        aria-label="File input"
+        data-testid="file-input"
         style={{ 
           display: 'none',
           position: 'absolute',

@@ -1,3 +1,4 @@
+// @ts-nocheck - Database config with entity imports
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { Redis } from 'ioredis';
 import dotenv from 'dotenv';

@@ -5,6 +5,7 @@ import {
   IsEnum, 
   IsBoolean, 
   IsArray, 
+  ArrayNotEmpty,
   ValidateNested, 
   IsNumber, 
   Min, 
@@ -114,6 +115,7 @@ export class CreateDrillDto {
   maxPlayers!: number;
 
   @IsArray()
+  @ArrayNotEmpty()
   @IsString({ each: true })
   equipment!: string[];
 
@@ -122,6 +124,7 @@ export class CreateDrillDto {
   setup!: DrillSetupDto;
 
   @IsArray()
+  @ArrayNotEmpty()
   @ValidateNested({ each: true })
   @Type(() => DrillInstructionDto)
   instructions!: DrillInstructionDto[];
@@ -428,6 +431,7 @@ export class DrillUsageDto {
 
 export class BulkDrillOperationDto {
   @IsArray()
+  @ArrayNotEmpty()
   @IsUUID('4', { each: true })
   drillIds!: string[];
 

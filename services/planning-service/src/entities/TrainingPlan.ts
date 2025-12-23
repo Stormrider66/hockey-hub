@@ -2,6 +2,8 @@ import { Entity, Column, OneToMany, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableEntity';
 import { PracticePlan } from './PracticePlan';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 export enum PlanStatus {
   DRAFT = 'draft',
   ACTIVE = 'active',
@@ -29,26 +31,27 @@ export class TrainingPlan extends AuditableEntity {
   @Column({ nullable: true })
   description?: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   organizationId: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   teamId: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   coachId: string;
 
   @Column({
-    type: 'enum',
-    enum: PlanType
+    type: IS_JEST ? 'simple-enum' : 'enum',
+    enum: PlanType,
+    default: PlanType.SEASON
   })
   type: PlanType;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PlanStatus,
     default: PlanStatus.DRAFT
   })
@@ -62,8 +65,8 @@ export class TrainingPlan extends AuditableEntity {
   @Index()
   endDate: Date;
 
-  @Column('jsonb')
-  goals: Array<{
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
+  goals?: Array<{
     id: string;
     title: string;
     description: string;
@@ -73,14 +76,14 @@ export class TrainingPlan extends AuditableEntity {
     completed: boolean;
   }>;
 
-  @Column('jsonb')
-  focusAreas: Array<{
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
+  focusAreas?: Array<{
     area: string;
     priority: 'high' | 'medium' | 'low';
     weeklyHours: number;
   }>;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   periodization?: {
     phases: Array<{
       name: string;
@@ -91,7 +94,7 @@ export class TrainingPlan extends AuditableEntity {
     }>;
   };
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   weeklyStructure?: {
     monday?: string[];
     tuesday?: string[];
@@ -102,7 +105,7 @@ export class TrainingPlan extends AuditableEntity {
     sunday?: string[];
   };
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metrics?: {
     totalWeeks: number;
     totalHours: number;
@@ -110,7 +113,7 @@ export class TrainingPlan extends AuditableEntity {
     gamesPerWeek: number;
   };
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metadata?: Record<string, unknown>;
 
   @OneToMany(() => PracticePlan, practice => practice.trainingPlan)

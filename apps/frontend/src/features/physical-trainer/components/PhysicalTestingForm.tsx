@@ -255,7 +255,7 @@ export default function PhysicalTestingForm({
                 <div>
                   <Label>Select Test Type</Label>
                   <Select value={selectedTestType} onValueChange={setSelectedTestType}>
-                    <SelectTrigger>
+                    <SelectTrigger data-testid="test-type-select-trigger">
                       <SelectValue placeholder="Choose a test type" style={{ pointerEvents: 'auto' }} />
                     </SelectTrigger>
                     <SelectContent>
@@ -316,7 +316,7 @@ export default function PhysicalTestingForm({
                 <div>
                   <Label>Select Test Type for All Players</Label>
                   <Select value={bulkTestType} onValueChange={setBulkTestType}>
-                    <SelectTrigger>
+                    <SelectTrigger data-testid="bulk-test-type-select-trigger">
                       <SelectValue placeholder="Choose a test type" style={{ pointerEvents: 'auto' }} />
                     </SelectTrigger>
                     <SelectContent>

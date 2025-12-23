@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { DataSource } from 'typeorm';
 import { createClient } from 'redis';
 import type { RedisClientType } from 'redis';

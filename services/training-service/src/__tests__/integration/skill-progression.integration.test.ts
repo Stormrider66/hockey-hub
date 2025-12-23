@@ -11,7 +11,7 @@ import {
   Benchmarks, 
   DrillHistory 
 } from '../../entities/SkillProgressionTracking';
-import skillProgressionRoutes from '../../routes/coach/skill-progression.routes';
+import { skillProgressionRoutes } from '../../routes/coach/skill-progression.routes';
 
 describe('Skill Progression Integration Tests', () => {
   let app: express.Express;

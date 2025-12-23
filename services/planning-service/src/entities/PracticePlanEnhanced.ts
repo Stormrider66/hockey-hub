@@ -3,6 +3,8 @@ import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableE
 import { TrainingPlan } from './TrainingPlan';
 import { Drill } from './Drill';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 export enum PracticeStatus {
   PLANNED = 'planned',
   IN_PROGRESS = 'in_progress',
@@ -74,19 +76,19 @@ export class PracticePlanEnhanced extends AuditableEntity {
   @Column({ nullable: true })
   description?: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   organizationId: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   teamId: string;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   @Index()
   coachId: string;
 
-  @Column('uuid', { nullable: true })
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid', nullable: true })
   trainingPlanId?: string;
 
   @ManyToOne(() => TrainingPlan, plan => plan.practices, { nullable: true })
@@ -97,7 +99,7 @@ export class PracticePlanEnhanced extends AuditableEntity {
   @Index()
   date: Date;
 
-  @Column('time')
+  @Column(IS_JEST ? 'varchar' : 'time')
   startTime: string;
 
   @Column()
@@ -107,20 +109,20 @@ export class PracticePlanEnhanced extends AuditableEntity {
   facilityId?: string;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PracticeType
   })
   type: PracticeType;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PracticeStatus,
     default: PracticeStatus.PLANNED
   })
   status: PracticeStatus;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PracticeFocus
   })
   primaryFocus: PracticeFocus;
@@ -134,13 +136,13 @@ export class PracticePlanEnhanced extends AuditableEntity {
   @Column({ nullable: true })
   rinkId?: string;
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   segments: PracticeSegment[];
 
   @Column('simple-array')
   equipmentNeeded: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   assistantCoachAssignments?: AssistantCoachAssignment[];
 
   @Column('text', { nullable: true })
@@ -149,7 +151,7 @@ export class PracticePlanEnhanced extends AuditableEntity {
   @Column('text', { nullable: true })
   postPracticeNotes?: string;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   playerAttendance?: PlayerAttendanceRecord[];
 
   @ManyToMany(() => Drill)
@@ -160,7 +162,7 @@ export class PracticePlanEnhanced extends AuditableEntity {
   })
   drills: Drill[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   lineups?: {
     forward1: string[];
     forward2: string[];

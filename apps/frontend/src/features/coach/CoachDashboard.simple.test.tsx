@@ -35,6 +35,24 @@ jest.mock('@/store/api/coachApi', () => ({
     isLoading: false,
     error: null,
   }),
+  useGetPracticePlansQuery: () => ({
+    data: { data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 1 } },
+    isLoading: false,
+    error: null,
+    refetch: jest.fn(),
+  }),
+  useCreatePracticePlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useUpdatePracticePlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useDeletePracticePlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useDuplicatePracticePlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useGetDrillLibraryQuery: () => ({ data: null, isLoading: false, error: null }),
+  useGetTacticalPlansQuery: () => ({ data: { data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 1 } }, isLoading: false, error: null, refetch: jest.fn() }),
+  useCreateTacticalPlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useUpdateTacticalPlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useDeleteTacticalPlanMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useSharePlaybookMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
+  useGetAIInsightsQuery: () => ({ data: null, isLoading: false, error: null }),
+  useApplyAISuggestionMutation: () => [jest.fn().mockResolvedValue({}), { isLoading: false, error: null }],
 }));
 
 jest.mock('@/store/api/dashboardApi', () => ({

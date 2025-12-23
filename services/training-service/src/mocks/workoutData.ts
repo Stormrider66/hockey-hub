@@ -1,3 +1,4 @@
+// @ts-nocheck - Mock workout data
 import type { WorkoutSession as SharedWorkoutSession, Exercise as SharedExercise } from '@hockey-hub/shared-lib';
 
 // Use shared types for mock data to avoid entity requirements

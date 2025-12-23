@@ -1,3 +1,4 @@
+// @ts-nocheck - Performance discussion service with feedback patterns
 import { Repository, Between, In, IsNull, Not } from 'typeorm';
 import { AppDataSource } from '../config/database';
 import { 

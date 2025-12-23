@@ -149,11 +149,25 @@ describe('useWorkoutValidation', () => {
       await result.current.validate();
     });
 
+    // Add a second error so we can assert the separator behavior
+    act(() => {
+      result.current.setCustomError('name', 'Custom error message');
+    });
+
+    await act(async () => {
+      await result.current.validate();
+    });
+
     const formattedErrors = result.current.formatErrors(', ');
-    expect(formattedErrors).toContain(',');
+    // Message comes from the shared validation util for strength workouts
+    expect(formattedErrors).toContain('Please add exercises to the workout');
+    expect(formattedErrors).toContain('Custom error message');
+    expect(formattedErrors).toContain(', ');
   });
 
   it('should debounce validation on data changes', async () => {
+    jest.useFakeTimers();
+
     const { result, rerender } = renderHook(
       ({ data }) =>
         useWorkoutValidation({
@@ -166,23 +180,25 @@ describe('useWorkoutValidation', () => {
       }
     );
 
-    const validateSpy = jest.spyOn(result.current as any, 'validate');
-
     // Change data multiple times quickly
     rerender({ data: { ...mockWorkoutData, name: 'Updated 1' } });
     rerender({ data: { ...mockWorkoutData, name: 'Updated 2' } });
-    rerender({ data: { ...mockWorkoutData, name: 'Updated 3' } });
+    rerender({ data: { ...mockWorkoutData, name: 'Updated 3', exercises: [] } }); // make it invalid
 
     // Validation should not be called immediately
-    expect(validateSpy).not.toHaveBeenCalled();
+    expect(result.current.hasErrors).toBe(false);
 
-    // Wait for debounce
-    await waitFor(
-      () => {
-        expect(validateSpy).toHaveBeenCalledTimes(1);
-      },
-      { timeout: 200 }
-    );
+    // There's a 100ms batching timeout + debounceMs (100ms)
+    act(() => {
+      jest.advanceTimersByTime(250);
+    });
+
+    await waitFor(() => {
+      expect(result.current.hasErrors).toBe(true);
+      expect(result.current.isValid).toBe(false);
+    });
+
+    jest.useRealTimers();
   });
 
   it('should validate on mount when configured', async () => {
@@ -210,8 +226,7 @@ describe('useWorkoutValidation', () => {
         },
         {
           type: 'interval',
-          duration: 300,
-          intensity: 85,
+          intervals: [{ duration: 300, intensity: 85 }],
         },
       ],
     };
@@ -221,7 +236,7 @@ describe('useWorkoutValidation', () => {
         workoutType: WorkoutType.HYBRID,
         workoutData: complexData,
         validationRules: {
-          'blocks[1].intensity': commonValidationRules.numberRange('Intensity', 50, 100),
+          'blocks[1].intervals[0].intensity': commonValidationRules.numberRange('Intensity', 50, 100),
         },
       })
     );

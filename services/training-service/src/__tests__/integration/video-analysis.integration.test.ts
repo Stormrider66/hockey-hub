@@ -12,7 +12,7 @@ import {
   PlayerPerformance, 
   TeamAnalysis 
 } from '../../entities/VideoAnalysis';
-import videoAnalysisRoutes from '../../routes/coach/video-analysis.routes';
+import { videoAnalysisRoutes } from '../../routes/coach/video-analysis.routes';
 
 describe('Video Analysis Integration Tests', () => {
   let app: express.Express;

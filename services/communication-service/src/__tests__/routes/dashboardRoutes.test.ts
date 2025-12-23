@@ -3,7 +3,7 @@ import express from 'express';
 import { DataSource } from 'typeorm';
 import dashboardRoutes from '../../routes/dashboardRoutes';
 import { CachedCommunicationService } from '../../services/CachedCommunicationService';
-import { authMiddleware } from '@hockey-hub/shared-lib';
+import { authenticate } from '@hockey-hub/shared-lib';
 
 // Mock dependencies
 jest.mock('@hockey-hub/shared-lib');
@@ -75,7 +75,7 @@ describe('Communication Dashboard Routes', () => {
     app.use(express.json());
 
     // Mock auth middleware
-    (authMiddleware as jest.Mock).mockImplementation((req: any, res: any, next: any) => {
+    (authenticate as jest.Mock).mockImplementation((req: any, _res: any, next: any) => {
       req.user = { id: 'user-123', role: 'PLAYER' };
       next();
     });
@@ -110,7 +110,7 @@ describe('Communication Dashboard Routes', () => {
     });
 
     it('should return 401 if user is not authenticated', async () => {
-      (authMiddleware as jest.Mock).mockImplementationOnce((req: any, res: any, next: any) => {
+      (authenticate as jest.Mock).mockImplementationOnce((req: any, _res: any, next: any) => {
         req.user = null;
         next();
       });
@@ -145,7 +145,7 @@ describe('Communication Dashboard Routes', () => {
 
   describe('GET /api/dashboard/communication/team/:teamId', () => {
     it('should return team communication summary for COACH role', async () => {
-      (authMiddleware as jest.Mock).mockImplementationOnce((req: any, res: any, next: any) => {
+      (authenticate as jest.Mock).mockImplementationOnce((req: any, _res: any, next: any) => {
         req.user = { id: 'user-123', role: 'COACH' };
         next();
       });
@@ -181,7 +181,7 @@ describe('Communication Dashboard Routes', () => {
 
   describe('GET /api/dashboard/communication/organization/:organizationId', () => {
     it('should return organization summary for ADMIN role', async () => {
-      (authMiddleware as jest.Mock).mockImplementationOnce((req: any, res: any, next: any) => {
+      (authenticate as jest.Mock).mockImplementationOnce((req: any, _res: any, next: any) => {
         req.user = { id: 'user-123', role: 'ADMIN' };
         next();
       });
@@ -211,7 +211,7 @@ describe('Communication Dashboard Routes', () => {
     });
 
     it('should allow CLUB_ADMIN role', async () => {
-      (authMiddleware as jest.Mock).mockImplementationOnce((req: any, res: any, next: any) => {
+      (authenticate as jest.Mock).mockImplementationOnce((req: any, _res: any, next: any) => {
         req.user = { id: 'user-123', role: 'CLUB_ADMIN' };
         next();
       });
@@ -230,7 +230,7 @@ describe('Communication Dashboard Routes', () => {
     });
 
     it('should have longer cache duration for org-wide data', async () => {
-      (authMiddleware as jest.Mock).mockImplementationOnce((req: any, res: any, next: any) => {
+      (authenticate as jest.Mock).mockImplementationOnce((req: any, _res: any, next: any) => {
         req.user = { id: 'user-123', role: 'ADMIN' };
         next();
       });

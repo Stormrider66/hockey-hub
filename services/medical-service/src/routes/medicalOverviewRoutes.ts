@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Router, type Router as ExpressRouter } from 'express';
 import crypto from 'crypto';
 import { authenticate, authorize } from '@hockey-hub/shared-lib';

@@ -48,7 +48,8 @@ export const AppDataSource = new DataSource({
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '5438'),
   username: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
+  // Default aligns with docker-compose.yml (POSTGRES_PASSWORD=hockey_hub_password)
+  password: process.env.DB_PASSWORD || 'hockey_hub_password',
   database: process.env.DB_NAME || 'hockey_hub_planning',
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
@@ -67,6 +68,16 @@ export const connectToDatabase = async () => {
     // Then connect to PostgreSQL
     await AppDataSource.initialize();
     console.log('Database connection established');
+
+    // Ensure schema exists in local/dev environments. This is safe to call repeatedly:
+    // TypeORM tracks executed migrations in the database.
+    const shouldRunMigrations =
+      process.env.PLAN_RUN_MIGRATIONS === '1' ||
+      (process.env.PLAN_RUN_MIGRATIONS !== '0' && process.env.NODE_ENV !== 'test');
+    if (shouldRunMigrations) {
+      await AppDataSource.runMigrations();
+      console.log('Database migrations applied');
+    }
     // Optional: enable schema sync only when explicitly requested
     if (process.env.PLAN_SYNC === '1') {
       await AppDataSource.synchronize();

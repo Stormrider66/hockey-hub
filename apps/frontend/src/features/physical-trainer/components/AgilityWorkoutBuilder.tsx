@@ -384,6 +384,7 @@ export default function AgilityWorkoutBuilder({
         onSave={handleSave}
         onCancel={onCancel}
         isSaving={isSaving}
+        canSave={!!isValid}
         supportsBulkMode={true}
         bulkMode={bulkMode}
         onBulkToggle={handleBulkToggle}

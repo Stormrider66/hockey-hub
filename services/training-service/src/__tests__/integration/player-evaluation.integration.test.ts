@@ -6,7 +6,7 @@ import { createTestToken, createTestUser } from '@hockey-hub/shared-lib/testing/
 import { authMiddleware } from '@hockey-hub/shared-lib/middleware/authMiddleware';
 import { errorHandler } from '@hockey-hub/shared-lib/middleware/errorHandler';
 import { PlayerEvaluation, TechnicalSkills, TacticalSkills, PhysicalAttributes, MentalAttributes, DevelopmentPriority } from '../../entities/PlayerEvaluation';
-import playerEvaluationRoutes from '../../routes/coach/player-evaluation.routes';
+import { playerEvaluationRoutes } from '../../routes/coach/player-evaluation.routes';
 
 describe('Player Evaluation Integration Tests', () => {
   let app: express.Express;

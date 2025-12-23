@@ -2,6 +2,7 @@ import {
   Column, 
   CreateDateColumn, 
   UpdateDateColumn, 
+  DeleteDateColumn,
   BeforeInsert, 
   BeforeUpdate,
   PrimaryGeneratedColumn,
@@ -13,6 +14,10 @@ import {
  * Includes UUID primary key for consistency
  */
 export abstract class AuditableEntity extends TypeORMBaseEntity {
+  // Jest sets JEST_WORKER_ID very early (before test modules are imported).
+  // Some integration tests use sqljs, which doesn't support the "timestamp" column type.
+  private static readonly __isJest = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
   @CreateDateColumn()
@@ -27,7 +32,9 @@ export abstract class AuditableEntity extends TypeORMBaseEntity {
   @Column({ type: 'uuid', nullable: true })
   updatedBy?: string;
 
-  @Column({ type: 'timestamp', nullable: true })
+  // sqljs (used in some integration tests) doesn't support "timestamp" as a column type,
+  // while Postgres does. Keep Postgres behavior in non-test envs.
+  @DeleteDateColumn({ type: AuditableEntity.__isJest ? 'datetime' : 'timestamp', nullable: true })
   deletedAt?: Date;
 
   @Column({ type: 'uuid', nullable: true })

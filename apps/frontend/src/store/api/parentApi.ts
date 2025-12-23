@@ -4,8 +4,8 @@ export const parentApi = createApi({
   reducerPath: 'parentApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/parent' }),
   endpoints: (builder) => ({
-    getChildOverview: builder.query<any, void>({
-      query: () => '/overview',
+    getChildOverview: builder.query<any, string>({
+      query: (childId) => `/children/${childId}/overview`,
     }),
   }),
 });

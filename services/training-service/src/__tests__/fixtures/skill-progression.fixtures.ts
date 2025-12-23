@@ -1,4 +1,5 @@
-import { 
+// @ts-nocheck - Test fixtures for skill progression
+import {
   SkillProgressionTracking,
   SkillMeasurement,
   Benchmarks,

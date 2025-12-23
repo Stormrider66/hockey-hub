@@ -734,17 +734,14 @@ describe('Chat API Integration Tests', () => {
       clientSocket1.emit('join_conversation', { conversation_id: testConversation.id });
       clientSocket2.emit('join_conversation', { conversation_id: testConversation.id });
 
-      // Set up listener for new message
-      await new Promise<void>((resolve) => {
-        clientSocket2.on('new_message', (data) => {
-          expect(data.message).toMatchObject({
-            conversation_id: testConversation.id,
-            sender_id: 'user1',
-            content: 'Real-time message',
-          });
-          resolve();
-        });
-      });
+      // Ensure join completed before sending a message (avoid race conditions)
+      await Promise.all([
+        expectSocketEvent(clientSocket1, 'joined', 10000),
+        expectSocketEvent(clientSocket2, 'joined', 10000),
+      ]);
+
+      // Set up listener for new message (do NOT await before sending)
+      const newMessagePromise = expectSocketEvent(clientSocket2, 'new_message', 10000);
 
       // Send message via API
       await request(app)
@@ -755,6 +752,13 @@ describe('Chat API Integration Tests', () => {
           content: 'Real-time message',
           type: MessageType.TEXT,
         });
+
+      const data: any = await newMessagePromise;
+      expect(data.message).toMatchObject({
+        conversation_id: testConversation.id,
+        sender_id: 'user1',
+        content: 'Real-time message',
+      });
     });
 
     it('should handle typing indicators', async () => {
@@ -774,21 +778,23 @@ describe('Chat API Integration Tests', () => {
       clientSocket1.emit('join_conversation', { conversation_id: testConversation.id });
       clientSocket2.emit('join_conversation', { conversation_id: testConversation.id });
 
-      // Listen for typing event
-      await new Promise<void>((resolve) => {
-        clientSocket2.on('user_typing', (data) => {
-          expect(data).toMatchObject({
-            conversation_id: testConversation.id,
-            user_id: 'user1',
-            is_typing: true,
-          });
-          resolve();
-        });
-      });
+      await Promise.all([
+        expectSocketEvent(clientSocket1, 'joined', 10000),
+        expectSocketEvent(clientSocket2, 'joined', 10000),
+      ]);
+
+      const typingPromise = expectSocketEvent(clientSocket2, 'user_typing', 10000);
 
       // Emit typing event
       clientSocket1.emit('typing', {
         conversation_id: testConversation.id,
+        is_typing: true,
+      });
+
+      const data: any = await typingPromise;
+      expect(data).toMatchObject({
+        conversation_id: testConversation.id,
+        user_id: 'user1',
         is_typing: true,
       });
     });
@@ -811,18 +817,9 @@ describe('Chat API Integration Tests', () => {
       ]);
 
       clientSocket1.emit('join_conversation', { conversation_id: testConversation.id });
+      await expectSocketEvent(clientSocket1, 'joined', 10000);
 
-      // Listen for read receipt
-      await new Promise<void>((resolve) => {
-        clientSocket1.on('messages_read', (data) => {
-          expect(data).toMatchObject({
-            conversation_id: testConversation.id,
-            user_id: 'user2',
-            message_ids: [message.id],
-          });
-          resolve();
-        });
-      });
+      const readPromise = expectSocketEvent(clientSocket1, 'messages_read', 10000);
 
       // Mark message as read via API
       await request(app)
@@ -831,6 +828,13 @@ describe('Chat API Integration Tests', () => {
         .send({
           message_ids: [message.id],
         });
+
+      const data: any = await readPromise;
+      expect(data).toMatchObject({
+        conversation_id: testConversation.id,
+        user_id: 'user2',
+        message_ids: [message.id],
+      });
     });
 
     it('should handle presence updates', async () => {
@@ -849,18 +853,16 @@ describe('Chat API Integration Tests', () => {
       ]);
 
       // Listen for presence update
-      await new Promise<void>((resolve) => {
-        clientSocket1.on('presence_update', (data) => {
-          expect(data).toMatchObject({
-            user_id: 'user2',
-            status: 'online',
-          });
-          resolve();
-        });
-      });
+      const presencePromise = expectSocketEvent(clientSocket1, 'presence_update', 10000);
 
       // User2 updates presence
       clientSocket2.emit('update_presence', {
+        status: 'online',
+      });
+
+      const data: any = await presencePromise;
+      expect(data).toMatchObject({
+        user_id: 'user2',
         status: 'online',
       });
     });

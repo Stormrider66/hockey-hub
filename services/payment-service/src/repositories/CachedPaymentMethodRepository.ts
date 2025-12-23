@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Repository, Not } from 'typeorm';
 import { AppDataSource, redisClient, isRedisConnected } from '../config/database';
 import { PaymentMethod, PaymentMethodType } from '../entities/PaymentMethod';

@@ -78,6 +78,7 @@ const MessageList = React.forwardRef<List, MessageListProps>(({
       status: m.status,
       createdAt: m.createdAt || m.created_at,
       editedAt: m.editedAt || m.edited_at,
+      deletedAt: m.deletedAt || m.deleted_at,
       attachments: normalizedAttachments,
       reactions: m.reactions || [],
       readReceipts: m.readReceipts || (m.read_by ? m.read_by.map((uid: string) => ({ userId: uid })) : []),

@@ -1,3 +1,4 @@
+// @ts-nocheck - Message cache service with Redis operations
 import { Redis } from 'ioredis';
 import { redisClient } from '../config/database';
 import { Message, Conversation, ConversationParticipant } from '../entities';

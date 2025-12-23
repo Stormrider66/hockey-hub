@@ -78,7 +78,10 @@ describe('AdminDashboard', () => {
 
       // Check response time
       expect(screen.getByText('admin:system.responseTime')).toBeInTheDocument();
-      expect(screen.getByText('68ms')).toBeInTheDocument();
+      // "68ms" appears in multiple places (e.g. metric + chart), so scope to the Response Time card
+      const responseTimeCard = screen.getByText('admin:system.responseTime').closest('.border');
+      expect(responseTimeCard).toBeTruthy();
+      expect(within(responseTimeCard!).getByText('68ms')).toBeInTheDocument();
 
       // Check error rate
       expect(screen.getByText('admin:system.errorRate')).toBeInTheDocument();
@@ -254,7 +257,10 @@ describe('AdminDashboard', () => {
       
       // Check Swedish (100% complete)
       expect(screen.getByText('Swedish (Svenska)')).toBeInTheDocument();
-      expect(screen.getByText('1245 keys translated • 0 missing')).toBeInTheDocument();
+      // Same "1245 keys translated • 0 missing" also appears for English, so scope to the Swedish row
+      const swedishRow = screen.getByText('Swedish (Svenska)').closest('div[class*="border"]');
+      expect(swedishRow).toBeTruthy();
+      expect(within(swedishRow!).getByText('1245 keys translated • 0 missing')).toBeInTheDocument();
 
       // Check Finnish (85% complete)
       expect(screen.getByText('Finnish (Suomi)')).toBeInTheDocument();

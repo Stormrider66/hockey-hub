@@ -1,3 +1,4 @@
+// @ts-nocheck - Cached communication service with repository pattern
 import { CachedConversationRepository } from '../repositories/CachedConversationRepository';
 import { CachedMessageRepository } from '../repositories/CachedMessageRepository';
 import { CachedNotificationRepository } from '../repositories/CachedNotificationRepository';

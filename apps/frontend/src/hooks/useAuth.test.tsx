@@ -66,7 +66,14 @@ const server = setupServer(
 
 // Setup and teardown
 beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
+afterEach(() => {
+  server.resetHandlers();
+  // Prevent auth state leaking across tests via persisted storage
+  localStorage.clear();
+  sessionStorage.clear();
+  document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'refresh_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+});
 afterAll(() => server.close());
 
 // Helper to create a test store

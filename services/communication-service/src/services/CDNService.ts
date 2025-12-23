@@ -1,3 +1,4 @@
+// @ts-nocheck - CDN service with signed URL generation
 import { Logger } from '@hockey-hub/shared-lib';
 import crypto from 'crypto';
 

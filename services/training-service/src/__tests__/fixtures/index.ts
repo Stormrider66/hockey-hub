@@ -1,3 +1,4 @@
+// @ts-nocheck - Test fixtures barrel exports
 // Export all Training Service test fixtures
 
 export { playerEvaluationFixtures } from './player-evaluation.fixtures';

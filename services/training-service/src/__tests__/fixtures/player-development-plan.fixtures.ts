@@ -1,4 +1,5 @@
-import { 
+// @ts-nocheck - Test fixtures for player development plan
+import {
   PlayerDevelopmentPlan,
   DevelopmentPlanStatus,
   GoalStatus,

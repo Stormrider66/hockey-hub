@@ -32,8 +32,42 @@ const ConversationInfoModal: React.FC<ConversationInfoModalProps> = ({
   // Get current user ID
   const currentUserId = localStorage.getItem('current_user_id') || '';
 
+  // Normalize RTK Query conversation shape -> legacy/mock shape used by this modal
+  const normalizedConversation: any = (() => {
+    if (!conversation) return undefined;
+    const c: any = conversation as any;
+    const participants = Array.isArray(c.participants) ? c.participants : [];
+
+    // RTK Query shape: participants[] has { userId, user: { name/email/avatar }, role }
+    if (participants.length > 0 && participants[0]?.user) {
+      const displayName =
+        c.name ||
+        (c.type === 'direct'
+          ? participants.find((p: any) => p.userId !== currentUserId)?.user?.name || 'Direct Message'
+          : 'Conversation');
+
+      return {
+        id: c.id,
+        name: displayName,
+        type: c.type,
+        createdAt: c.createdAt || new Date().toISOString(),
+        participants: participants.map((p: any) => ({
+          id: p.userId,
+          user_id: p.userId,
+          name: p.user?.name || 'Unknown',
+          email: p.user?.email || '',
+          role: p.role === 'admin' ? 'admin' : 'member',
+          avatar: p.user?.avatar || null,
+        })),
+        isMuted: participants.some((p: any) => Boolean(p.isMuted)),
+      };
+    }
+
+    return c;
+  })();
+
   // Mock data as fallback
-  const mockConversation = conversation || {
+  const mockConversation = normalizedConversation || {
     id: conversationId,
     name: 'Team Discussion',
     type: 'group',

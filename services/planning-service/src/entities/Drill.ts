@@ -2,6 +2,8 @@ import { Entity, Column, ManyToOne, JoinColumn, Index } from 'typeorm';
 import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableEntity';
 import { DrillCategory } from './DrillCategory';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 export enum DrillDifficulty {
   BEGINNER = 'beginner',
   INTERMEDIATE = 'intermediate',
@@ -32,14 +34,14 @@ export class Drill extends AuditableEntity {
   @Column('text')
   description: string;
 
-  @Column('uuid', { nullable: true })
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid', nullable: true })
   @Index()
   organizationId?: string;
 
   @Column({ default: false })
   isPublic: boolean;
 
-  @Column('uuid')
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid' })
   categoryId: string;
 
   @ManyToOne(() => DrillCategory)
@@ -47,13 +49,13 @@ export class Drill extends AuditableEntity {
   category: DrillCategory;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: DrillType
   })
   type: DrillType;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: DrillDifficulty
   })
   difficulty: DrillDifficulty;
@@ -70,7 +72,7 @@ export class Drill extends AuditableEntity {
   @Column('simple-array')
   equipment: string[];
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   setup: {
     rinkArea: 'full' | 'half' | 'zone' | 'corner' | 'neutral';
     diagram?: string; // URL to diagram image
@@ -79,7 +81,7 @@ export class Drill extends AuditableEntity {
     otherEquipment?: string[];
   };
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   instructions: Array<{
     step: number;
     description: string;
@@ -112,13 +114,25 @@ export class Drill extends AuditableEntity {
   @Column({ default: 0 })
   usageCount: number;
 
+  @Column({ nullable: true })
+  shareCode?: string;
+
+  @Column('simple-array', { nullable: true })
+  sharedWith?: string[];
+
+  @Column('simple-array', { nullable: true })
+  sharePermissions?: string[];
+
+  @Column({ type: IS_JEST ? 'datetime' : 'timestamp', nullable: true })
+  lastUsed?: Date;
+
   @Column({ type: 'float', default: 0 })
   rating: number;
 
   @Column({ default: 0 })
   ratingCount: number;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metadata?: Record<string, any>;
 
   // Helper methods

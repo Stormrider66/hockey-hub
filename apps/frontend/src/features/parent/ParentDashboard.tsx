@@ -13,8 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Calendar, MessageCircle, Lock, Users } from "lucide-react";
-// Fallback: use dashboardApi to unblock build
-import { useGetUserDashboardDataQuery } from "@/store/api/dashboardApi";
+import { useGetChildOverviewQuery } from "@/store/api/parentApi";
 import { useTranslation } from '@hockey-hub/translations';
 import { CoachChannelList } from "@/features/chat/components/CoachChannelList";
 import { usePrivateCoachChannels } from "@/hooks/usePrivateCoachChannels";
@@ -30,7 +29,7 @@ export default function ParentDashboard() {
   const [activeChildId, setActiveChild] = useState<string>(children[0].id);
   const child = children.find((c) => c.id === activeChildId)!;
 
-  const { data, isLoading } = useGetUserDashboardDataQuery();
+  const { data, isLoading } = useGetChildOverviewQuery(activeChildId);
   const { channels: coachChannels, loading: channelsLoading } = usePrivateCoachChannels();
 
   const events = data?.upcoming ?? [

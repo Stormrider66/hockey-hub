@@ -6,7 +6,7 @@ import { createTestToken, createTestUser } from '@hockey-hub/shared-lib/testing/
 import { authMiddleware } from '@hockey-hub/shared-lib/middleware/authMiddleware';
 import { errorHandler } from '@hockey-hub/shared-lib/middleware/errorHandler';
 import { PlayerFeedback } from '../../entities/PlayerFeedback';
-import playerFeedbackRoutes from '../../routes/coach/player-feedback.routes';
+import { playerFeedbackRoutes } from '../../routes/coach/player-feedback.routes';
 
 describe('Player Feedback Integration Tests', () => {
   let app: express.Express;

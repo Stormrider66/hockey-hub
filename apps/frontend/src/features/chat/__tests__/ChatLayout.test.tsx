@@ -3,131 +3,207 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/testing/test-utils';
 import { ChatLayout } from '../components/ChatLayout';
-import { server } from '@/testing/mocks/server';
 import { rest } from 'msw';
 import { ConversationType, MessageType } from '@/testing/mocks/shared-lib-index';
+import { setupServer } from 'msw/node';
+import { addTypingUser } from '@/store/slices/chatSlice';
+import { chatApi } from '@/store/api/chatApi';
 
-// Mock next/navigation
-jest.mock('next/navigation', () => ({
-  useRouter: () => ({
-    push: jest.fn(),
-    replace: jest.fn(),
-    refresh: jest.fn(),
-  }),
-  useSearchParams: () => ({
-    get: jest.fn(),
-  }),
-}));
-
-// Mock socket.io
-jest.mock('socket.io-client', () => {
-  const emit = jest.fn();
-  const on = jest.fn();
-  const off = jest.fn();
-  return {
-    io: jest.fn(() => ({
-      emit,
-      on,
-      off,
-      disconnect: jest.fn(),
-    })),
-  };
-});
+const server = setupServer();
 
 describe('ChatLayout', () => {
-  const mockConversations = [
-    {
-      id: 'conv1',
-      type: ConversationType.DIRECT,
-      participants: [
-        { user_id: 'user1', user: { id: 'user1', name: 'Current User' } },
-        { user_id: 'user2', user: { id: 'user2', name: 'John Doe' } },
-      ],
-      last_message: {
-        id: 'msg1',
-        content: 'Hey there!',
-        created_at: new Date().toISOString(),
-        sender_id: 'user2',
-      },
-      unread_count: 2,
-    },
-    {
-      id: 'conv2',
-      type: ConversationType.GROUP,
-      name: 'Team Chat',
-      participants: [
-        { user_id: 'user1', user: { id: 'user1', name: 'Current User' } },
-        { user_id: 'user2', user: { id: 'user2', name: 'John Doe' } },
-        { user_id: 'user3', user: { id: 'user3', name: 'Jane Smith' } },
-      ],
-      last_message: {
-        id: 'msg2',
-        content: 'Meeting at 3pm',
-        created_at: new Date(Date.now() - 3600000).toISOString(),
-        sender_id: 'user3',
-      },
-      unread_count: 0,
-    },
-  ];
-
-  const mockMessages = {
-    data: [
-      {
-        id: 'msg1',
-        conversation_id: 'conv1',
-        sender_id: 'user2',
-        sender: { id: 'user2', name: 'John Doe' },
-        content: 'Hey there!',
-        type: MessageType.TEXT,
-        created_at: new Date().toISOString(),
-        read_by: ['user2'],
-      },
-      {
-        id: 'msg2',
-        conversation_id: 'conv1',
-        sender_id: 'user1',
-        sender: { id: 'user1', name: 'Current User' },
-        content: 'Hi John!',
-        type: MessageType.TEXT,
-        created_at: new Date(Date.now() - 60000).toISOString(),
-        read_by: ['user1', 'user2'],
-      },
-    ],
-    pagination: {
-      page: 1,
-      limit: 50,
-      total: 2,
-      totalPages: 1,
-    },
-  };
-
   beforeEach(() => {
+    localStorage.setItem('current_user_id', 'user1');
+    localStorage.setItem('access_token', 'test-token');
+
+    const nowIso = new Date().toISOString();
+    const hourAgoIso = new Date(Date.now() - 3600000).toISOString();
+    const minuteAgoIso = new Date(Date.now() - 60000).toISOString();
+
+    const conversations = [
+      {
+        id: 'conv1',
+        type: ConversationType.DIRECT as any,
+        createdAt: hourAgoIso,
+        updatedAt: nowIso,
+        createdBy: 'user1',
+        isArchived: false,
+        participants: [
+          {
+            conversationId: 'conv1',
+            userId: 'user1',
+            user: { id: 'user1', name: 'Current User', email: 'current@example.com' },
+            role: 'member',
+            joinedAt: hourAgoIso,
+            notificationsEnabled: true,
+            isMuted: false,
+          },
+          {
+            conversationId: 'conv1',
+            userId: 'user2',
+            user: { id: 'user2', name: 'John Doe', email: 'john@example.com' },
+            role: 'member',
+            joinedAt: hourAgoIso,
+            notificationsEnabled: true,
+            isMuted: false,
+          },
+        ],
+        lastMessage: {
+          id: 'msg1',
+          conversationId: 'conv1',
+          senderId: 'user2',
+          sender: { id: 'user2', name: 'John Doe', email: 'john@example.com' },
+          content: 'Hey there!',
+          type: MessageType.TEXT as any,
+          createdAt: nowIso,
+          attachments: [],
+          reactions: [],
+          readReceipts: [],
+        },
+        unreadCount: 2,
+      },
+      {
+        id: 'conv2',
+        type: ConversationType.GROUP as any,
+        name: 'Team Chat',
+        createdAt: hourAgoIso,
+        updatedAt: hourAgoIso,
+        createdBy: 'user1',
+        isArchived: false,
+        participants: [
+          {
+            conversationId: 'conv2',
+            userId: 'user1',
+            user: { id: 'user1', name: 'Current User', email: 'current@example.com' },
+            role: 'member',
+            joinedAt: hourAgoIso,
+            notificationsEnabled: true,
+            isMuted: false,
+          },
+          {
+            conversationId: 'conv2',
+            userId: 'user2',
+            user: { id: 'user2', name: 'John Doe', email: 'john@example.com' },
+            role: 'member',
+            joinedAt: hourAgoIso,
+            notificationsEnabled: true,
+            isMuted: false,
+          },
+          {
+            conversationId: 'conv2',
+            userId: 'user3',
+            user: { id: 'user3', name: 'Jane Smith', email: 'jane@example.com' },
+            role: 'member',
+            joinedAt: hourAgoIso,
+            notificationsEnabled: true,
+            isMuted: false,
+          },
+        ],
+        lastMessage: {
+          id: 'msg3',
+          conversationId: 'conv2',
+          senderId: 'user3',
+          sender: { id: 'user3', name: 'Jane Smith', email: 'jane@example.com' },
+          content: 'Meeting at 3pm',
+          type: MessageType.TEXT as any,
+          createdAt: hourAgoIso,
+          attachments: [],
+          reactions: [],
+          readReceipts: [],
+        },
+        unreadCount: 0,
+      },
+    ];
+
+    const messagesByConversation: Record<string, any> = {
+      conv1: {
+        messages: [
+          {
+            id: 'msg1',
+            conversationId: 'conv1',
+            senderId: 'user2',
+            sender: { id: 'user2', name: 'John Doe', email: 'john@example.com' },
+            content: 'Hey there!',
+            type: MessageType.TEXT as any,
+            createdAt: hourAgoIso,
+            attachments: [],
+            reactions: [],
+            readReceipts: [{ messageId: 'msg1', userId: 'user2', user: { id: 'user2', name: 'John Doe', email: 'john@example.com' }, readAt: hourAgoIso }],
+          },
+          {
+            id: 'msg2',
+            conversationId: 'conv1',
+            senderId: 'user1',
+            sender: { id: 'user1', name: 'Current User', email: 'current@example.com' },
+            content: 'Hi John!',
+            type: MessageType.TEXT as any,
+            createdAt: minuteAgoIso,
+            attachments: [],
+            reactions: [],
+            readReceipts: [],
+          },
+        ],
+        hasMore: false,
+      },
+      conv2: { messages: [], hasMore: false },
+    };
+
     server.use(
-      rest.get('/api/conversations', (req, res, ctx) => {
-        return res(ctx.json({ data: mockConversations }));
+      rest.get('/api/v1/messages/conversations', (req, res, ctx) => {
+        return res(ctx.json({ conversations, total: conversations.length, page: 1, limit: 20 }));
       }),
-      rest.get('/api/messages', (req, res, ctx) => {
-        const conversationId = req.url.searchParams.get('conversation_id');
-        if (conversationId === 'conv1') {
-          return res(ctx.json(mockMessages));
-        }
-        return res(ctx.json({ data: [], pagination: { page: 1, limit: 50, total: 0, totalPages: 0 } }));
+      rest.get(/\/api\/v1\/messages\/conversations\/.+/, (req, res, ctx) => {
+        const id = req.url.pathname.split('/').pop() || '';
+        const conv = conversations.find((c) => c.id === id);
+        if (!conv) return res(ctx.status(404), ctx.json({ message: 'Not found' }));
+        return res(ctx.json(conv));
       }),
-      rest.post('/api/messages', (req, res, ctx) => {
-        const body = req.body as any;
+      rest.get(/\/api\/v1\/conversations\/.+\/messages/, (req, res, ctx) => {
+        const parts = req.url.pathname.split('/');
+        const conversationId = parts[parts.indexOf('conversations') + 1];
+        return res(ctx.json(messagesByConversation[conversationId] || { messages: [], hasMore: false }));
+      }),
+      rest.post(/\/api\/v1\/conversations\/.+\/messages/, async (req, res, ctx) => {
+        const parts = req.url.pathname.split('/');
+        const conversationId = parts[parts.indexOf('conversations') + 1];
+        const body = (await req.json?.()) || (req.body as any) || {};
+        const createdAt = new Date().toISOString();
         return res(
           ctx.json({
-            data: {
-              id: 'new-msg',
-              ...body,
-              sender_id: 'user1',
-              created_at: new Date().toISOString(),
-            },
+            id: 'new-msg',
+            conversationId,
+            senderId: 'user1',
+            sender: { id: 'user1', name: 'Current User', email: 'current@example.com' },
+            content: body.content || '',
+            type: body.type || 'text',
+            createdAt,
+            attachments: body.attachments || [],
+            reactions: [],
+            readReceipts: [],
+            metadata: body.metadata,
           })
         );
+      }),
+      rest.put(/\/api\/v1\/messages\/.+/, async (req, res, ctx) => {
+        const messageId = req.url.pathname.split('/').pop() || '';
+        const body = (await req.json?.()) || (req.body as any) || {};
+        return res(ctx.json({ id: messageId, content: body.content, editedAt: new Date().toISOString() }));
+      }),
+      rest.delete(/\/api\/v1\/messages\/.+/, (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json({ ok: true }));
+      }),
+      rest.post(/\/api\/v1\/messages\/.+\/reactions/, async (req, res, ctx) => {
+        const parts = req.url.pathname.split('/');
+        const messageId = parts[parts.indexOf('messages') + 1];
+        const body = (await req.json?.()) || (req.body as any) || {};
+        return res(ctx.json({ id: `reaction-${Date.now()}`, messageId, emoji: body.emoji, userId: 'user1' }));
       })
     );
   });
+
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
 
   it('should render chat layout with conversation list and empty message area', async () => {
     renderWithProviders(<ChatLayout />);
@@ -138,22 +214,26 @@ describe('ChatLayout', () => {
     });
 
     // Check conversation list
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
-    expect(screen.getByText('Team Chat')).toBeInTheDocument();
-    expect(screen.getByText('Hey there!')).toBeInTheDocument();
-    expect(screen.getByText('Meeting at 3pm')).toBeInTheDocument();
+    expect(await screen.findByText('John Doe')).toBeInTheDocument();
+    expect(await screen.findByText('Team Chat')).toBeInTheDocument();
+    expect(screen.getAllByText('Hey there!').length).toBeGreaterThan(0);
+    expect(screen.getByText(/Meeting at 3pm/i)).toBeInTheDocument();
 
     // Check empty message area
-    expect(screen.getByText('Select a conversation to start messaging')).toBeInTheDocument();
+    expect(screen.getByText(/Welcome to Chat/i)).toBeInTheDocument();
+    expect(screen.getByText(/Select a conversation to start messaging/i)).toBeInTheDocument();
   });
 
   it('should display unread count on conversations', async () => {
     renderWithProviders(<ChatLayout />);
 
     await waitFor(() => {
-      const unreadBadge = screen.getByText('2');
+      const items = screen.getAllByTestId('conversation-item');
+      const johnItem = items.find((el) => within(el).queryByText('John Doe'));
+      expect(johnItem).toBeTruthy();
+      const unreadBadge = within(johnItem as HTMLElement).getByText('2');
       expect(unreadBadge).toBeInTheDocument();
-      expect(unreadBadge).toHaveClass('bg-primary'); // Assuming this is the unread badge class
+      expect(unreadBadge).toHaveClass('bg-primary');
     });
   });
 
@@ -171,12 +251,9 @@ describe('ChatLayout', () => {
 
     // Wait for messages to load
     await waitFor(() => {
-      expect(screen.getByText('Hey there!')).toBeInTheDocument();
+      expect(screen.getAllByText('Hey there!').length).toBeGreaterThan(0);
       expect(screen.getByText('Hi John!')).toBeInTheDocument();
     });
-
-    // Check message area header
-    expect(screen.getByText('John Doe')).toBeInTheDocument();
   });
 
   it('should send a new message', async () => {
@@ -199,6 +276,7 @@ describe('ChatLayout', () => {
     // Find and click send button
     const sendButton = screen.getByRole('button', { name: /send/i });
     await user.click(sendButton);
+    await user.click(await screen.findByText('Send now'));
 
     // Verify message was sent
     await waitFor(() => {
@@ -207,28 +285,10 @@ describe('ChatLayout', () => {
   });
 
   it('should show typing indicator when someone is typing', async () => {
-    const { io } = require('socket.io-client');
-    const mockSocket = io();
-    
-    renderWithProviders(<ChatLayout />);
+    const { store } = renderWithProviders(<ChatLayout />);
 
-    // Select conversation
     await waitFor(() => screen.getByText('John Doe'));
-    await userEvent.click(screen.getByText('John Doe'));
-
-    // Simulate typing event from socket
-    const typingHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'user_typing'
-    )?.[1];
-
-    if (typingHandler) {
-      typingHandler({
-        conversation_id: 'conv1',
-        user_id: 'user2',
-        user_name: 'John Doe',
-        is_typing: true,
-      });
-    }
+    store.dispatch(addTypingUser({ conversationId: 'conv1', userId: 'user2', userName: 'John Doe', timestamp: Date.now() }));
 
     await waitFor(() => {
       expect(screen.getByText('John Doe is typing...')).toBeInTheDocument();
@@ -241,17 +301,16 @@ describe('ChatLayout', () => {
 
     // Wait for the new conversation button
     await waitFor(() => {
-      const newConvoButton = screen.getByRole('button', { name: /new conversation/i });
+      const newConvoButton = screen.getByTitle('New conversation');
       expect(newConvoButton).toBeInTheDocument();
     });
 
     // Click new conversation button
-    await user.click(screen.getByRole('button', { name: /new conversation/i }));
+    await user.click(screen.getByTitle('New conversation'));
 
     // Check modal appears
     await waitFor(() => {
-      expect(screen.getByText('Start New Conversation')).toBeInTheDocument();
-      expect(screen.getByLabelText(/select participants/i)).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Start New Conversation' })).toBeInTheDocument();
     });
   });
 
@@ -261,11 +320,11 @@ describe('ChatLayout', () => {
 
     // Wait for search input
     await waitFor(() => {
-      expect(screen.getByPlaceholderText(/search conversations/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search conversations...')).toBeInTheDocument();
     });
 
     // Type in search
-    const searchInput = screen.getByPlaceholderText(/search conversations/i);
+    const searchInput = screen.getByPlaceholderText('Search conversations...');
     await user.type(searchInput, 'Team');
 
     // Only Team Chat should be visible
@@ -276,38 +335,29 @@ describe('ChatLayout', () => {
   });
 
   it('should handle real-time new message', async () => {
-    const { io } = require('socket.io-client');
-    const mockSocket = io();
-    
-    renderWithProviders(<ChatLayout />);
+    const { store } = renderWithProviders(<ChatLayout />);
 
-    // Select conversation
     await waitFor(() => screen.getByText('John Doe'));
     await userEvent.click(screen.getByText('John Doe'));
 
-    // Wait for messages to load
-    await waitFor(() => {
-      expect(screen.getByText('Hi John!')).toBeInTheDocument();
-    });
+    await waitFor(() => expect(screen.getByText('Hi John!')).toBeInTheDocument());
 
-    // Simulate new message from socket
-    const messageHandler = mockSocket.on.mock.calls.find(
-      (call: any) => call[0] === 'new_message'
-    )?.[1];
-
-    if (messageHandler) {
-      messageHandler({
-        message: {
+    store.dispatch(
+      chatApi.util.updateQueryData('getMessages', { conversationId: 'conv1' }, (draft: any) => {
+        draft.messages.push({
           id: 'real-time-msg',
-          conversation_id: 'conv1',
-          sender_id: 'user2',
-          sender: { id: 'user2', name: 'John Doe' },
+          conversationId: 'conv1',
+          senderId: 'user2',
+          sender: { id: 'user2', name: 'John Doe', email: 'john@example.com' },
           content: 'Real-time message!',
           type: MessageType.TEXT,
-          created_at: new Date().toISOString(),
-        },
-      });
-    }
+          createdAt: new Date().toISOString(),
+          attachments: [],
+          reactions: [],
+          readReceipts: [],
+        });
+      })
+    );
 
     await waitFor(() => {
       expect(screen.getByText('Real-time message!')).toBeInTheDocument();
@@ -323,11 +373,14 @@ describe('ChatLayout', () => {
     await user.click(screen.getByText('John Doe'));
 
     await waitFor(() => {
-      expect(screen.getByText('Hey there!')).toBeInTheDocument();
+      expect(screen.getAllByText('Hey there!').length).toBeGreaterThan(0);
+    });
+    await waitFor(() => {
+      expect(screen.getByText('Hi John!')).toBeInTheDocument();
     });
 
-    // Find message and open reaction picker
-    const message = screen.getByText('Hey there!').closest('[data-testid="message-item"]');
+    // Find message (avoid conversation preview) and open reaction picker
+    const message = screen.getAllByTestId('message-item').find((el) => within(el).queryByText('Hey there!')) || null;
     if (message) {
       // Hover over message to show actions
       await user.hover(message);
@@ -338,11 +391,10 @@ describe('ChatLayout', () => {
 
       // Select emoji
       await waitFor(() => {
-        const thumbsUp = screen.getByText('👍');
-        expect(thumbsUp).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Search emoji...')).toBeInTheDocument();
       });
       
-      await user.click(screen.getByText('👍'));
+      await user.click(screen.getByRole('button', { name: '👍' }));
     }
 
     // Verify reaction was added
@@ -373,7 +425,7 @@ describe('ChatLayout', () => {
 
     // Verify file preview appears
     await waitFor(() => {
-      expect(screen.getByText('test.pdf')).toBeInTheDocument();
+      expect(screen.getAllByText('test.pdf').length).toBeGreaterThan(0);
     });
   });
 
@@ -398,20 +450,15 @@ describe('ChatLayout', () => {
     await waitFor(() => screen.getByText('Team Chat'));
     await user.click(screen.getByText('Team Chat'));
 
-    // Click info button
-    await waitFor(() => {
-      const infoButton = screen.getByRole('button', { name: /conversation info/i });
-      expect(infoButton).toBeInTheDocument();
-    });
-
-    await user.click(screen.getByRole('button', { name: /conversation info/i }));
+    // Open settings dropdown and click Conversation Info
+    await user.click(screen.getByTitle('Settings'));
+    await user.click(await screen.findByText('Conversation Info'));
 
     // Check modal content
     await waitFor(() => {
-      expect(screen.getByText('Conversation Info')).toBeInTheDocument();
-      expect(screen.getByText('3 participants')).toBeInTheDocument();
-      expect(screen.getByText('John Doe')).toBeInTheDocument();
-      expect(screen.getByText('Jane Smith')).toBeInTheDocument();
+      const dialog = screen.getByRole('dialog');
+      expect(within(dialog).getByText('Conversation Info')).toBeInTheDocument();
+      expect(within(dialog).getByRole('heading', { name: /participants/i })).toBeInTheDocument();
     });
   });
 

@@ -30,8 +30,43 @@ export function authMiddleware(req: any, _res: any, next: any) {
   return next();
 }
 
+// Some training-service route modules import authenticateToken directly from @hockey-hub/shared-lib.
+// In production it is a JWT middleware; in tests we just ensure req.user exists.
+export function authenticateToken(req: any, _res: any, next: any) {
+  if (!req.user) {
+    req.user = {
+      id: 'test-user-id',
+      userId: 'test-user-id',
+      roles: ['coach'],
+      role: 'coach',
+      organizationId: 'test-org-id',
+      teamId: 'test-team-id',
+      teamIds: ['test-team-id'],
+    };
+  }
+  return next();
+}
+
+// Common validators used across controllers.
+export function validateUUID(value: unknown): boolean {
+  if (typeof value !== 'string') return false;
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
 export const CacheKeyBuilder = { build: (...parts: any[]) => parts.map((p) => (typeof p === 'object' && p !== null ? JSON.stringify(p) : String(p))).join(':') };
 export const RedisCacheManager = { getInstance: () => ({ get: async () => null, set: async () => {}, delete: async () => {} }) } as any;
+
+// Minimal cache service used by some services (e.g. WorkoutAssignmentService).
+export class CacheService {
+  private static instance: CacheService | null = null;
+  static getInstance() {
+    if (!CacheService.instance) CacheService.instance = new CacheService();
+    return CacheService.instance;
+  }
+  async get(_key: string) { return null; }
+  async set(_key: string, _value: any, _ttlSeconds?: number) {}
+  async delete(_key: string) {}
+}
 
 export class CachedRepository<T> {
   protected repository: any;
@@ -46,11 +81,15 @@ export class CachedRepository<T> {
 }
 
 export const Logger = class {
+  constructor(_context?: string) {}
   info = jest.fn();
   error = jest.fn();
   warn = jest.fn();
   debug = jest.fn();
 };
+
+// Some modules import a singleton logger instance.
+export const logger = new Logger('test');
 
 export const MockFactory = { resetIdCounter: () => {} };
 
@@ -88,6 +127,10 @@ export function createAuthMiddleware() {
     requireAuth: () => (_req: any, _res: any, next: any) => next(),
   };
 }
+
+// Cache lifecycle helpers used by src/index.ts (not invoked in unit tests, but must exist as imports).
+export async function initializeCache(_opts?: any) {}
+export async function closeCache() {}
 
 // Root-level error handler export (used by index.ts)
 export function errorHandler(_err: any, _req: any, res: any, _next: any) {

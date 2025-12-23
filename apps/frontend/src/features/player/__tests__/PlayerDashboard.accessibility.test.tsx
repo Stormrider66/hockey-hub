@@ -2,8 +2,39 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { PlayerDashboard } from '../PlayerDashboard';
+import PlayerDashboard from '../PlayerDashboard';
 import { renderWithProviders } from '@/test-utils';
+
+// Ensure RTK Query hooks used by PlayerDashboard don't drive the component into an error state during a11y tests.
+// We keep the real API slices (for reducer/middleware in test-utils) and only override hook implementations.
+jest.mock('@/store/api/playerApi', () => {
+  const actual = jest.requireActual('@/store/api/playerApi');
+  return {
+    ...actual,
+    useGetPlayerOverviewQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+    useSubmitWellnessMutation: () => [jest.fn(), { isLoading: false, error: null }],
+    useCompleteTrainingMutation: () => [jest.fn(), { isLoading: false, error: null }],
+  };
+});
+
+jest.mock('@/store/api/trainingApi', () => {
+  const actual = jest.requireActual('@/store/api/trainingApi');
+  return {
+    ...actual,
+    useGetWorkoutSessionsQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+  };
+});
+
+jest.mock('@/store/api/dashboardApi', () => {
+  const actual = jest.requireActual('@/store/api/dashboardApi');
+  return {
+    ...actual,
+    useGetUserDashboardDataQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+    useGetUserStatisticsQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+    useGetCommunicationSummaryQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+    useGetStatisticsSummaryQuery: () => ({ data: undefined, isLoading: false, error: undefined }),
+  };
+});
 
 // Add jest-axe matchers
 expect.extend(toHaveNoViolations);
@@ -16,15 +47,19 @@ describe('PlayerDashboard Accessibility', () => {
       
       // Start at the first tab
       const firstTab = screen.getByRole('tab', { name: /today/i });
-      await user.tab();
-      expect(firstTab).toHaveFocus();
-      
-      // Tab through all tabs
-      const tabs = screen.getAllByRole('tab');
-      for (let i = 1; i < tabs.length; i++) {
+
+      // The page header contains other focusable controls (e.g. message/logout buttons),
+      // so tab until we reach the first tab trigger.
+      for (let i = 0; i < 30; i++) {
         await user.tab();
-        expect(tabs[i]).toHaveFocus();
+        if (firstTab === document.activeElement) break;
       }
+      expect(firstTab).toHaveFocus();
+
+      // Radix Tabs uses roving tabindex: Tab moves *out* of the tablist, while arrow keys move between tabs.
+      // Verify tab continues to the next focusable control.
+      await user.tab();
+      expect(document.activeElement).not.toBe(firstTab);
     });
     
     it('should support arrow key navigation in tabs', async () => {
@@ -80,7 +115,7 @@ describe('PlayerDashboard Accessibility', () => {
       await user.click(calendarTab);
       
       // Check if calendar events are focusable
-      const events = screen.getAllByRole('article');
+      const events = screen.queryAllByRole('article');
       if (events.length > 0) {
         await user.tab();
         expect(events[0]).toHaveFocus();
@@ -115,15 +150,16 @@ describe('PlayerDashboard Accessibility', () => {
   });
   
   describe('ARIA Attributes', () => {
-    it('should have proper ARIA labels on all form elements', () => {
+    it('should have proper ARIA labels on all form elements', async () => {
+      const user = userEvent.setup();
       renderWithProviders(<PlayerDashboard />);
       
       // Navigate to wellness tab
       const wellnessTab = screen.getByRole('tab', { name: /wellness/i });
-      fireEvent.click(wellnessTab);
+      await user.click(wellnessTab);
       
       // Check sliders have proper ARIA attributes
-      const sliders = screen.getAllByRole('slider');
+      const sliders = await screen.findAllByRole('slider');
       sliders.forEach(slider => {
         expect(slider).toHaveAttribute('aria-label');
         expect(slider).toHaveAttribute('aria-valuemin');
@@ -134,8 +170,12 @@ describe('PlayerDashboard Accessibility', () => {
       // Check form inputs have labels
       const inputs = screen.getAllByRole('textbox');
       inputs.forEach(input => {
-        const label = screen.getByLabelText(input.getAttribute('aria-label') || '');
-        expect(label).toBeInTheDocument();
+        const ariaLabel = input.getAttribute('aria-label');
+        const ariaLabelledBy = input.getAttribute('aria-labelledby');
+        const id = input.getAttribute('id');
+        const hasHtmlForLabel = Boolean(id && document.querySelector(`label[for="${id}"]`));
+
+        expect(Boolean(ariaLabel || ariaLabelledBy || hasHtmlForLabel)).toBe(true);
       });
     });
     

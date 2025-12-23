@@ -6,6 +6,67 @@ import 'reflect-metadata';
 // Increase timeout for async operations
 jest.setTimeout(10000);
 
+// Ensure a minimal in-memory datasource exists early.
+// Some controllers (used by coach route modules) expect `global.__trainingDS` during module import time.
+if (!(global as any).__trainingDS) {
+  const stores: Record<string, any[]> =
+    (global as any).__trainingDbStores || ((global as any).__trainingDbStores = {});
+  const getStore = (name: string) => (stores[name] = stores[name] || []);
+  const getRepository = (entity: any) => {
+    const name = typeof entity === 'string' ? entity : entity?.name || 'Entity';
+    const data = getStore(name);
+    const findIndex = (id: any) => data.findIndex((e: any) => e.id === (typeof id === 'object' ? id?.id : id));
+    return {
+      create: (e: any) => ({ ...e }),
+      save: async (e: any | any[]) => {
+        const items = Array.isArray(e) ? e : [e];
+        const saved = items.map((item) => {
+          const idx = findIndex(item?.id);
+          const now = new Date();
+          const withTs = { createdAt: now, updatedAt: now, ...item };
+          if (idx >= 0) {
+            data[idx] = { ...data[idx], ...withTs, updatedAt: now };
+            return data[idx];
+          }
+          const withId = withTs.id ? withTs : { ...withTs, id: `id-${Date.now()}-${Math.random()}` };
+          data.push(withId);
+          return withId;
+        });
+        return Array.isArray(e) ? saved : saved[0];
+      },
+      findOne: async (opts?: any) => {
+        if (!opts) return null;
+        if (opts.where && typeof opts.where === 'object') {
+          return data.find((item: any) => Object.entries(opts.where).every(([k, v]) => (item as any)[k] === v)) || null;
+        }
+        const id = typeof opts === 'string' ? opts : opts.id;
+        return data.find((item: any) => item.id === id) || null;
+      },
+      find: async (opts?: any) => {
+        if (!opts?.where) return [...data];
+        return data.filter((item: any) => Object.entries(opts.where).every(([k, v]) => (item as any)[k] === v));
+      },
+      remove: async (entityToRemove: any) => {
+        const idx = findIndex(entityToRemove?.id);
+        if (idx >= 0) data.splice(idx, 1);
+        return entityToRemove;
+      },
+      delete: async (id: any) => {
+        const idx = findIndex(id);
+        if (idx >= 0) data.splice(idx, 1);
+        return { affected: idx >= 0 ? 1 : 0 };
+      },
+    };
+  };
+  (global as any).__trainingDS = {
+    isInitialized: true,
+    getRepository,
+    destroy: async () => {
+      Object.keys(stores).forEach((k) => { stores[k] = []; });
+    },
+  };
+}
+
 // Only silence console in non-E2E runs
 if (process.env.NODE_ENV !== 'e2e') {
   global.console = {
@@ -13,8 +74,9 @@ if (process.env.NODE_ENV !== 'e2e') {
     log: jest.fn(),
     debug: jest.fn(),
     info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
+    // Keep warn/error visible so we can debug failing integration tests
+    warn: console.warn.bind(console),
+    error: console.error.bind(console),
   };
 }
 
@@ -69,6 +131,20 @@ if (process.env.NODE_ENV !== 'e2e') {
     const errorHandler = (_err: any, _req: any, res: any, _next: any) => res.status(500).json({ error: 'Test error' });
     const initializeCache = async () => {};
     const closeCache = async () => {};
+    // Route middleware used across training-service routes
+    const authenticateToken = (req: any, _res: any, next: any) => {
+      // Keep behavior consistent with other test auth stubs in this file
+      req.user = req.user || {
+        id: 'test-user-id',
+        userId: 'test-user-id',
+        roles: ['coach'],
+        role: 'coach',
+        organizationId: 'test-org-id',
+        teamId: 'test-team-id',
+        teamIds: ['test-team-id'],
+      };
+      next();
+    };
     return {
       parsePaginationParams,
       createPaginationResponse,
@@ -79,6 +155,7 @@ if (process.env.NODE_ENV !== 'e2e') {
       errorHandler,
       initializeCache,
       closeCache,
+      authenticateToken,
     };
   });
 
@@ -130,7 +207,11 @@ if (process.env.NODE_ENV !== 'e2e') {
     },
   }));
   jest.mock('@hockey-hub/shared-lib/middleware/errorHandler', () => ({
-    errorHandler: (_err: any, _req: any, res: any, _next: any) => res.status(500).json({ error: 'Test error' }),
+    errorHandler: (err: any, _req: any, res: any, _next: any) =>
+      res.status(500).json({
+        error: err?.message || 'Test error',
+        details: err?.stack ? String(err.stack).split('\n').slice(0, 5).join('\n') : undefined,
+      }),
   }));
 }
 

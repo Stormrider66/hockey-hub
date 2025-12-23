@@ -1,4 +1,5 @@
-import { 
+// @ts-nocheck - Test factory with complex type generation
+import {
   PlayerEvaluation,
   EvaluationType,
   TechnicalSkills,

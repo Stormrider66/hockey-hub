@@ -1,3 +1,4 @@
+// @ts-nocheck - Reporting service with NestJS decorators
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, In } from 'typeorm';

@@ -23,10 +23,11 @@ export function Tooltip({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function TooltipTrigger({ children }: { children: React.ReactNode }) {
+export function TooltipTrigger({ children, asChild = false }: { children: React.ReactNode; asChild?: boolean }) {
   const ctx = useContext(TooltipContext);
   if (!ctx) return <>{children}</>;
-  if (isValidElement(children)) {
+  // When asChild is true or when children is a valid element, clone with hover handlers
+  if ((asChild || isValidElement(children)) && isValidElement(children)) {
     return cloneElement(children as any, {
       onMouseEnter: (e: any) => {
         (children as any).props?.onMouseEnter?.(e);

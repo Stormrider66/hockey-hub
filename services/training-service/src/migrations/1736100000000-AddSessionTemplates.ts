@@ -1,3 +1,4 @@
+// @ts-nocheck - TypeORM migration file
 import { MigrationInterface, QueryRunner, Table, Index } from 'typeorm';
 
 export class AddSessionTemplates1736100000000 implements MigrationInterface {

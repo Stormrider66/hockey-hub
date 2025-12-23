@@ -101,7 +101,8 @@ jest.mock('react-i18next', () => ({
     i18n: { language: 'en', changeLanguage: jest.fn() },
   }),
   Trans: ({ children }: any) => children,
-  initReactI18next: { init: jest.fn() },
+  // i18next expects a "3rdParty" plugin shape for `.use(initReactI18next)`
+  initReactI18next: { type: '3rdParty', init: jest.fn() },
 }));
 
 jest.mock('@hockey-hub/translations', () => ({
@@ -140,6 +141,20 @@ if (!(Element as any).prototype.setPointerCapture) {
 if (!(Element as any).prototype.releasePointerCapture) {
   // @ts-ignore
   (Element as any).prototype.releasePointerCapture = () => {};
+}
+
+// JSDOM doesn't implement scrollIntoView; some Radix/Floating-UI components call it.
+if (!(Element as any).prototype.scrollIntoView) {
+  // @ts-ignore
+  (Element as any).prototype.scrollIntoView = () => {};
+}
+
+// JSDOM doesn't implement URL.createObjectURL; file upload flows commonly rely on it.
+if (!(URL as any).createObjectURL) {
+  (URL as any).createObjectURL = jest.fn(() => 'blob:mock');
+}
+if (!(URL as any).revokeObjectURL) {
+  (URL as any).revokeObjectURL = jest.fn(() => {});
 }
 
 // next/navigation is mocked via moduleNameMapper to a shared spyable mock
@@ -195,5 +210,15 @@ process.env.JEST_TEST_ENV = 'true';
 if (typeof (globalThis as any).fetch === 'function' && typeof (window as any).fetch !== 'function') {
   (window as any).fetch = (globalThis as any).fetch.bind(globalThis);
 }
+
+// Radix (Dialog/Select/Popover) can leave `pointer-events: none` on <body> in JSDOM when unmounted mid-interaction.
+// That breaks @testing-library/user-event's pointer event checks across subsequent tests.
+afterEach(() => {
+  try {
+    document.body.style.pointerEvents = '';
+    document.body.removeAttribute('data-scroll-locked');
+    document.documentElement.style.pointerEvents = '';
+  } catch {}
+});
 
 // Keep default act behavior; tests that need return value should capture inside act callback

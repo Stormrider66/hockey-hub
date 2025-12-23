@@ -1,36 +1,34 @@
 /**
  * TacticalVideoPlayer Component
- * 
+ *
  * Professional video player with tactical analysis features
- * Uses video.js for robust video handling and custom controls
+ * Uses native HTML5 video for compatibility
  */
 
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import videojs from 'video.js';
-import 'video.js/dist/video-js.css';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import { 
-  Play, 
-  Pause, 
-  Volume2, 
-  VolumeX, 
-  Maximize, 
-  SkipBack, 
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  SkipBack,
   SkipForward,
   Settings,
   Download,
   Share2,
   Camera
 } from '@/components/icons';
-import type { 
-  VideoSource, 
-  VideoPlayerState, 
+import type {
+  VideoSource,
+  VideoPlayerState,
   VideoPlayerControls,
   VideoEventHandlers,
-  VideoAnnotation 
+  VideoAnnotation
 } from '@/types/tactical/video.types';
 import { VideoAnnotationLayer } from './VideoAnnotationLayer';
 import { cn } from '@/lib/utils';
@@ -101,9 +99,8 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
   className
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const [state, setState] = useState<VideoPlayerState>({
     isPlaying: false,
     currentTime: 0,
@@ -118,103 +115,82 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
 
   const [showCustomControls, setShowCustomControls] = useState(false);
 
-  // Initialize video.js player
+  // Update state helper
+  const updateState = useCallback((newState: Partial<VideoPlayerState>) => {
+    setState(prev => {
+      const updated = { ...prev, ...newState };
+      onStateChange?.(updated);
+      return updated;
+    });
+  }, [onStateChange]);
+
+  // Initialize native video player
   useEffect(() => {
-    if (!videoRef.current) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-    const player = videojs(videoRef.current, {
-      controls: false, // We'll use custom controls
-      fluid: true,
-      responsive: true,
-      playbackRates: playbackRates,
-      sources: [{
-        src: source.url,
-        type: getVideoMimeType(source.format || 'mp4')
-      }],
-      poster: source.thumbnailUrl,
-      autoplay: autoPlay,
-      muted: muted,
-      loop: loop,
-      preload: 'metadata',
-      html5: {
-        vhs: {
-          overrideNative: true
-        }
-      }
-    });
-
-    playerRef.current = player;
-
-    // Set up event listeners
-    player.on('loadedmetadata', () => {
-      const newState = {
-        ...state,
-        duration: player.duration() || 0,
+    const handleLoadedMetadata = () => {
+      updateState({
+        duration: video.duration || 0,
         loading: false
-      };
-      setState(newState);
-      onStateChange?.(newState);
+      });
       eventHandlers?.onLoaded?.();
-    });
+    };
 
-    player.on('play', () => {
-      const newState = { ...state, isPlaying: true };
-      setState(newState);
-      onStateChange?.(newState);
+    const handlePlay = () => {
+      updateState({ isPlaying: true });
       eventHandlers?.onPlay?.();
-    });
+    };
 
-    player.on('pause', () => {
-      const newState = { ...state, isPlaying: false };
-      setState(newState);
-      onStateChange?.(newState);
+    const handlePause = () => {
+      updateState({ isPlaying: false });
       eventHandlers?.onPause?.();
-    });
+    };
 
-    player.on('timeupdate', () => {
-      const currentTime = player.currentTime() || 0;
-      const newState = { 
-        ...state, 
+    const handleTimeUpdate = () => {
+      const currentTime = video.currentTime || 0;
+      updateState({
         currentTime,
-        buffered: player.buffered()
-      };
-      setState(newState);
-      onStateChange?.(newState);
+        buffered: video.buffered
+      });
       eventHandlers?.onTimeUpdate?.(currentTime);
-    });
+    };
 
-    player.on('seeked', () => {
-      const currentTime = player.currentTime() || 0;
-      eventHandlers?.onSeek?.(currentTime);
-    });
+    const handleSeeked = () => {
+      eventHandlers?.onSeek?.(video.currentTime);
+    };
 
-    player.on('ended', () => {
-      const newState = { ...state, isPlaying: false };
-      setState(newState);
-      onStateChange?.(newState);
+    const handleEnded = () => {
+      updateState({ isPlaying: false });
       eventHandlers?.onEnded?.();
-    });
+    };
 
-    player.on('volumechange', () => {
-      const newState = {
-        ...state,
-        volume: player.volume(),
-        muted: player.muted()
-      };
-      setState(newState);
-      onStateChange?.(newState);
-    });
+    const handleVolumeChange = () => {
+      updateState({
+        volume: video.volume,
+        muted: video.muted
+      });
+    };
 
-    player.on('ratechange', () => {
-      const newState = { ...state, playbackRate: player.playbackRate() };
-      setState(newState);
-      onStateChange?.(newState);
-    });
+    const handleRateChange = () => {
+      updateState({ playbackRate: video.playbackRate });
+    };
 
-    player.on('error', (error) => {
-      console.error('Video player error:', error);
+    const handleError = () => {
+      console.error('Video player error');
       eventHandlers?.onError?.(new Error('Video playback error'));
-    });
+    };
+
+    // Add event listeners
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('seeked', handleSeeked);
+    video.addEventListener('ended', handleEnded);
+    video.addEventListener('volumechange', handleVolumeChange);
+    video.addEventListener('ratechange', handleRateChange);
+    video.addEventListener('error', handleError);
 
     // Fullscreen change detection
     const handleFullscreenChange = () => {
@@ -224,34 +200,46 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
         (document as any).mozFullScreenElement ||
         (document as any).msFullscreenElement
       );
-      const newState = { ...state, fullscreen: isFullscreen };
-      setState(newState);
-      onStateChange?.(newState);
+      updateState({ fullscreen: isFullscreen });
     };
 
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
 
     return () => {
-      if (playerRef.current) {
-        playerRef.current.dispose();
-      }
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('seeked', handleSeeked);
+      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener('volumechange', handleVolumeChange);
+      video.removeEventListener('ratechange', handleRateChange);
+      video.removeEventListener('error', handleError);
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
     };
-  }, [source.url]);
+  }, [source.url, updateState, eventHandlers]);
 
   // Create player controls
   const controls: VideoPlayerControls = {
-    play: () => playerRef.current?.play(),
-    pause: () => playerRef.current?.pause(),
-    seek: (time: number) => playerRef.current?.currentTime(time),
-    setVolume: (volume: number) => playerRef.current?.volume(volume),
-    setPlaybackRate: (rate: number) => playerRef.current?.playbackRate(rate),
-    toggleMute: () => playerRef.current?.muted(!playerRef.current.muted()),
+    play: () => videoRef.current?.play(),
+    pause: () => videoRef.current?.pause(),
+    seek: (time: number) => {
+      if (videoRef.current) videoRef.current.currentTime = time;
+    },
+    setVolume: (volume: number) => {
+      if (videoRef.current) videoRef.current.volume = volume;
+    },
+    setPlaybackRate: (rate: number) => {
+      if (videoRef.current) videoRef.current.playbackRate = rate;
+    },
+    toggleMute: () => {
+      if (videoRef.current) videoRef.current.muted = !videoRef.current.muted;
+    },
     toggleFullscreen: async () => {
       if (!containerRef.current) return;
-      
+
       if (state.fullscreen) {
         await document.exitFullscreen?.();
       } else {
@@ -259,23 +247,23 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
       }
     },
     skipFrames: (frames: number) => {
-      if (!playerRef.current) return;
-      const framerate = 30; // Assume 30fps, could be detected from video
+      if (!videoRef.current) return;
+      const framerate = 30; // Assume 30fps
       const timeStep = frames / framerate;
       const newTime = Math.max(0, Math.min(state.duration, state.currentTime + timeStep));
-      playerRef.current.currentTime(newTime);
+      videoRef.current.currentTime = newTime;
     },
     takeScreenshot: async (): Promise<string> => {
       if (!videoRef.current) throw new Error('Video not available');
-      
+
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       if (!ctx) throw new Error('Canvas not available');
-      
+
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
       ctx.drawImage(videoRef.current, 0, 0);
-      
+
       return canvas.toDataURL('image/png');
     }
   };
@@ -284,7 +272,7 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = Math.floor(time % 60);
-    
+
     if (hours > 0) {
       return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
@@ -293,19 +281,19 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
 
   const handleTimelineClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!showTimeline) return;
-    
+
     const rect = event.currentTarget.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
     const percentage = clickX / rect.width;
     const newTime = percentage * state.duration;
-    
+
     controls.seek(newTime);
   };
 
   const progressPercentage = state.duration > 0 ? (state.currentTime / state.duration) * 100 : 0;
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={cn(
         "relative bg-black rounded-lg overflow-hidden group",
@@ -322,8 +310,14 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
           className="w-full h-full object-contain"
           playsInline
           crossOrigin="anonymous"
+          src={source.url}
+          poster={source.thumbnailUrl}
+          autoPlay={autoPlay}
+          muted={muted}
+          loop={loop}
+          preload="metadata"
         />
-        
+
         {/* Video Annotation Layer */}
         {showAnnotations && (
           <VideoAnnotationLayer
@@ -346,27 +340,27 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
         )}
 
         {/* Custom Controls */}
-        {showControls && (showCustomControls || state.isPlaying) && (
+        {showControls && (showCustomControls || !state.isPlaying) && (
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 transform transition-transform duration-300">
             {/* Timeline */}
             {showTimeline && (
               <div className="mb-4">
-                <div 
+                <div
                   className="relative h-2 bg-white/20 rounded-full cursor-pointer"
                   onClick={handleTimelineClick}
                 >
-                  <div 
+                  <div
                     className="absolute left-0 top-0 h-full bg-blue-500 rounded-full transition-all duration-100"
                     style={{ width: `${progressPercentage}%` }}
                   />
-                  
+
                   {/* Buffer indicator */}
-                  {state.buffered && (
-                    <div className="absolute left-0 top-0 h-full bg-white/30 rounded-full">
+                  {state.buffered && state.buffered.length > 0 && (
+                    <div className="absolute left-0 top-0 h-full pointer-events-none">
                       {Array.from({ length: state.buffered.length }).map((_, i) => (
                         <div
                           key={i}
-                          className="absolute top-0 h-full bg-white/30"
+                          className="absolute top-0 h-full bg-white/30 rounded-full"
                           style={{
                             left: `${(state.buffered!.start(i) / state.duration) * 100}%`,
                             width: `${((state.buffered!.end(i) - state.buffered!.start(i)) / state.duration) * 100}%`
@@ -376,7 +370,7 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
                     </div>
                   )}
                 </div>
-                
+
                 {/* Time display */}
                 <div className="flex justify-between text-white text-sm mt-1">
                   <span>{formatTime(state.currentTime)}</span>
@@ -419,7 +413,7 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
                       <Volume2 className="w-4 h-4" />
                     )}
                   </Button>
-                  
+
                   <div className="w-16">
                     <Slider
                       value={[state.muted ? 0 : state.volume * 100]}
@@ -459,7 +453,6 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
                   onClick={async () => {
                     try {
                       const screenshot = await controls.takeScreenshot();
-                      // Handle screenshot (could download or show modal)
                       const link = document.createElement('a');
                       link.download = `screenshot-${Date.now()}.png`;
                       link.href = screenshot;
@@ -508,19 +501,5 @@ export const TacticalVideoPlayer: React.FC<TacticalVideoPlayerProps> = ({
     </div>
   );
 };
-
-// Utility function to get MIME type
-function getVideoMimeType(format: string): string {
-  const mimeTypes: Record<string, string> = {
-    'mp4': 'video/mp4',
-    'webm': 'video/webm',
-    'ogg': 'video/ogg',
-    'mov': 'video/quicktime',
-    'avi': 'video/x-msvideo',
-    'm3u8': 'application/x-mpegURL'
-  };
-  
-  return mimeTypes[format.toLowerCase()] || 'video/mp4';
-}
 
 export default TacticalVideoPlayer;

@@ -507,7 +507,7 @@ describe('VideoAnalysisService', () => {
         ...mockVideoAnalysis,
         clips: [
           { ...mockVideoClips[0], playersInvolved: ['player-1'], importance: 9 },
-          { ...mockVideoClips[1], playersInvolved: ['player-1'], importance: 7, category: 'positive' }
+          { ...mockVideoClips[1], playersInvolved: ['player-1'], importance: 7, category: 'negative' }
         ]
       },
       {

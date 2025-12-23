@@ -19,3 +19,17 @@ global.console = {
 // Mock environment variables
 process.env.NODE_ENV = 'test';
 process.env.JWT_SECRET = 'test-secret';
+
+// Ensure EventBus.getInstance exists as a jest.fn when tests auto-mock the module.
+// Several planning-service unit tests do: `jest.mock('@hockey-hub/shared-lib/dist/events/EventBus')`
+// and then expect to configure `EventBus.getInstance.mockReturnValue(...)`.
+jest.mock('@hockey-hub/shared-lib/dist/events/EventBus', () => {
+  class EventBus {
+    static getInstance = jest.fn();
+    publish = jest.fn();
+    subscribe = jest.fn();
+    on = jest.fn();
+    emit = jest.fn();
+  }
+  return { EventBus };
+});

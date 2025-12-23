@@ -3,9 +3,10 @@ import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/testing/test-utils';
 import { NewConversationModal } from '../components/NewConversationModal';
-import { ConversationType } from '@hockey-hub/shared-lib';
-import { server } from '@/testing/mocks/server';
 import { rest } from 'msw';
+import { setupServer } from 'msw/node';
+
+const server = setupServer();
 
 describe('NewConversationModal', () => {
   const mockUsers = [
@@ -46,6 +47,10 @@ describe('NewConversationModal', () => {
       rest.get('/api/users', (req, res, ctx) => {
         const search = req.url.searchParams.get('search');
         if (search) {
+          // For short queries, return all users (keeps tests predictable)
+          if (search.length <= 1) {
+            return res(ctx.json({ data: mockUsers }));
+          }
           const filtered = mockUsers.filter(user => 
             user.name.toLowerCase().includes(search.toLowerCase())
           );
@@ -69,6 +74,10 @@ describe('NewConversationModal', () => {
       })
     );
   });
+
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
 
   it('should render modal with type selection', () => {
     renderWithProviders(<NewConversationModal {...defaultProps} />);
@@ -104,7 +113,7 @@ describe('NewConversationModal', () => {
     await waitFor(() => {
       expect(defaultProps.onSuccess).toHaveBeenCalledWith({
         id: 'new-conv-id',
-        type: ConversationType.DIRECT,
+        type: 'direct',
         name: undefined,
         participant_ids: ['user1', 'user2'],
         created_at: expect.any(String),
@@ -146,7 +155,7 @@ describe('NewConversationModal', () => {
     await waitFor(() => {
       expect(defaultProps.onSuccess).toHaveBeenCalledWith({
         id: 'new-conv-id',
-        type: ConversationType.GROUP,
+        type: 'group',
         name: 'Project Team',
         participant_ids: ['user1', 'user3', 'user4'],
         created_at: expect.any(String),
@@ -336,7 +345,7 @@ describe('NewConversationModal', () => {
         existingConversations={[
           {
             id: 'existing-conv',
-            type: ConversationType.DIRECT,
+            type: 'direct',
             participants: [
               { user_id: 'user1' },
               { user_id: 'user2' },

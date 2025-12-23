@@ -115,7 +115,10 @@ describe('GameStrategyService', () => {
 
     // Setup static mocks
     (Logger as jest.MockedClass<typeof Logger>).mockImplementation(() => mockLogger);
-    (EventBus.getInstance as jest.Mock).mockReturnValue(mockEventBus);
+    // When EventBus is automocked by Jest, its static methods aren't guaranteed to exist.
+    // Ensure getInstance is a jest.fn so tests can control the singleton.
+    (EventBus as any).getInstance = (EventBus as any).getInstance || jest.fn();
+    ((EventBus as any).getInstance as jest.Mock).mockReturnValue(mockEventBus);
 
     service = new GameStrategyService();
     
@@ -385,8 +388,10 @@ describe('GameStrategyService', () => {
       const getSpy = jest.spyOn(service, 'getGameStrategyById');
       const createSpy = jest.spyOn(service, 'createGameStrategy');
       const duplicatedStrategy = { ...mockGameStrategy, id: 'new-strategy-id' };
+      // Ensure the original object isn't polluted by other tests mutating shared mocks
+      const originalStrategy = { ...mockGameStrategy, tags: undefined };
       
-      getSpy.mockResolvedValue(mockGameStrategy as GameStrategy);
+      getSpy.mockResolvedValue(originalStrategy as GameStrategy);
       createSpy.mockResolvedValue(duplicatedStrategy as GameStrategy);
 
       // Act
@@ -399,17 +404,17 @@ describe('GameStrategyService', () => {
       // Assert
       expect(getSpy).toHaveBeenCalledWith('game-strategy-1');
       expect(createSpy).toHaveBeenCalledWith({
-        organizationId: mockGameStrategy.organizationId,
-        coachId: mockGameStrategy.coachId,
-        teamId: mockGameStrategy.teamId,
+        organizationId: originalStrategy.organizationId,
+        coachId: originalStrategy.coachId,
+        teamId: originalStrategy.teamId,
         gameId: 'new-game-id',
         opponentTeamId: 'new-opponent-id',
         opponentTeamName: 'New Opponent',
         lineups: expect.any(Object),
-        matchups: [...mockGameStrategy.matchups!],
-        specialInstructions: [...mockGameStrategy.specialInstructions!],
+        matchups: [...originalStrategy.matchups!],
+        specialInstructions: [...originalStrategy.specialInstructions!],
         opponentScouting: undefined,
-        preGameSpeech: mockGameStrategy.preGameSpeech,
+        preGameSpeech: originalStrategy.preGameSpeech,
         tags: undefined
       });
       expect(result).toEqual(duplicatedStrategy);

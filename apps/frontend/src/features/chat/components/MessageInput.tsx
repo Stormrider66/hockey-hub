@@ -553,6 +553,8 @@ const MessageInput: React.FC<MessageInputProps> = ({
             <Button
               size="sm"
               disabled={!canSend}
+              aria-label="Send"
+              title="Send"
               className={cn(
                 "h-8 px-2 shrink-0 transition-colors gap-1",
                 canSend 

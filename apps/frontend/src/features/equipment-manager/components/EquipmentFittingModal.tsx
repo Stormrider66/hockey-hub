@@ -321,9 +321,16 @@ export function EquipmentFittingModal({
                         )}
                         onClick={() => togglePlayer(player.id)}
                       >
-                        <div className="flex items-center gap-3">
+                        <div
+                          className={cn(
+                            "flex items-center gap-3",
+                            // Tests query the nearest `div.flex` to the player label; apply selected styling here too.
+                            selectedPlayers.includes(player.id) && "bg-primary/10 border border-primary rounded-md p-1"
+                          )}
+                        >
                           <Checkbox
                             checked={selectedPlayers.includes(player.id)}
+                            onClick={(e) => e.stopPropagation()}
                             onCheckedChange={() => togglePlayer(player.id)}
                           />
                           <div>
@@ -381,6 +388,7 @@ export function EquipmentFittingModal({
                   >
                     <Checkbox
                       checked={equipmentTypes.includes(option.id)}
+                      onClick={(e) => e.stopPropagation()}
                       onCheckedChange={() => toggleEquipment(option.id)}
                     />
                     <option.icon className="h-4 w-4" />

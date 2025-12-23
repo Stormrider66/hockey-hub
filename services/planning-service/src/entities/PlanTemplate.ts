@@ -3,6 +3,8 @@ import { AuditableEntity } from '@hockey-hub/shared-lib/dist/entities/AuditableE
 import { PlanType } from './TrainingPlan';
 import { PracticeFocus } from './PracticePlan';
 
+const IS_JEST = typeof process.env.JEST_WORKER_ID !== 'undefined';
+
 export enum TemplateCategory {
   PRE_SEASON = 'pre_season',
   IN_SEASON = 'in_season',
@@ -19,13 +21,12 @@ export enum TemplateCategory {
 export class PlanTemplate extends AuditableEntity {
 
   @Column()
-  @Index()
   name: string;
 
   @Column('text')
   description: string;
 
-  @Column('uuid', { nullable: true })
+  @Column({ type: IS_JEST ? 'varchar' : 'uuid', nullable: true })
   @Index()
   organizationId?: string;
 
@@ -33,13 +34,13 @@ export class PlanTemplate extends AuditableEntity {
   isPublic: boolean;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: TemplateCategory
   })
   category: TemplateCategory;
 
   @Column({
-    type: 'enum',
+    type: IS_JEST ? 'simple-enum' : 'enum',
     enum: PlanType
   })
   planType: PlanType;
@@ -53,7 +54,7 @@ export class PlanTemplate extends AuditableEntity {
   @Column()
   durationWeeks: number;
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   structure: {
     phases: Array<{
       name: string;
@@ -68,7 +69,7 @@ export class PlanTemplate extends AuditableEntity {
     };
   };
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   goals: Array<{
     category: 'technical' | 'tactical' | 'physical' | 'mental';
     title: string;
@@ -76,7 +77,7 @@ export class PlanTemplate extends AuditableEntity {
     measurable: string;
   }>;
 
-  @Column('jsonb')
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb' })
   samplePractices: Array<{
     week: number;
     focus: PracticeFocus;
@@ -85,13 +86,13 @@ export class PlanTemplate extends AuditableEntity {
     drillSuggestions: string[];
   }>;
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   equipment?: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   prerequisites?: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   resources?: Array<{
     type: 'video' | 'document' | 'link';
     title: string;
@@ -110,7 +111,7 @@ export class PlanTemplate extends AuditableEntity {
   @Column('simple-array', { nullable: true })
   tags?: string[];
 
-  @Column('jsonb', { nullable: true })
+  @Column({ type: IS_JEST ? 'simple-json' : 'jsonb', nullable: true })
   metadata?: Record<string, any>;
 
   // Helper methods

@@ -211,7 +211,9 @@ interface StatisticsSummary {
 
 // Create base query with mock support
 const baseQuery = fetchBaseQuery({
-  baseUrl: '/api/dashboard',
+  // Use absolute-ish paths per-endpoint so we can hit multiple gateway namespaces
+  // (e.g. /api/dashboard/* and /api/statistics/*) without relying on per-endpoint baseUrl overrides.
+  baseUrl: '',
   prepareHeaders: (headers) => {
     const token = localStorage.getItem('authToken') || localStorage.getItem('access_token');
     if (token) {
@@ -229,7 +231,7 @@ export const dashboardApi = createApi({
   endpoints: (builder) => ({
     // Get complete user dashboard data (cached for 5 minutes)
     getUserDashboardData: builder.query<UserDashboardData, void>({
-      query: () => '/user',
+      query: () => '/api/dashboard/user',
       providesTags: ['UserData'],
       // RTK Query will cache this for 5 minutes by default
       keepUnusedDataFor: 300,
@@ -237,43 +239,35 @@ export const dashboardApi = createApi({
 
     // Get user statistics (cached for 1 minute)
     getUserStatistics: builder.query<UserStatistics, void>({
-      query: () => '/user/stats',
+      query: () => '/api/dashboard/user/stats',
       providesTags: ['Statistics'],
       keepUnusedDataFor: 60,
     }),
 
     // Get quick access items (cached for 1 hour)
     getQuickAccessItems: builder.query<{ items: QuickAccessItem[] }, void>({
-      query: () => '/user/quick-access',
+      query: () => '/api/dashboard/user/quick-access',
       providesTags: ['QuickAccess'],
       keepUnusedDataFor: 3600,
     }),
 
     // Get notification summary (cached for 30 seconds)
     getNotificationSummary: builder.query<NotificationSummary, void>({
-      query: () => '/user/notifications-summary',
+      query: () => '/api/dashboard/user/notifications-summary',
       providesTags: ['Notifications'],
       keepUnusedDataFor: 30,
     }),
 
     // Get communication summary from Communication Service
     getCommunicationSummary: builder.query<CommunicationSummary, void>({
-      query: () => ({
-        url: '/communication',
-        // This actually hits the Communication Service through API Gateway
-        baseUrl: '/api/dashboard',
-      }),
+      query: () => '/api/dashboard/communication',
       providesTags: ['Communication'],
       keepUnusedDataFor: 60,
     }),
 
     // Get statistics summary from Statistics Service
     getStatisticsSummary: builder.query<StatisticsSummary, { type: 'player' | 'coach' | 'trainer' | 'admin'; id: string }>({
-      query: ({ type, id }) => ({
-        url: `/${type}/${id}`,
-        // This hits the Statistics Service through API Gateway
-        baseUrl: '/api/statistics/dashboard',
-      }),
+      query: ({ type, id }) => `/api/statistics/dashboard/${type}/${id}`,
       providesTags: ['Statistics'],
       keepUnusedDataFor: 300, // 5 minutes default cache
     }),
@@ -281,7 +275,7 @@ export const dashboardApi = createApi({
     // Invalidate all dashboard caches (useful after updates)
     invalidateDashboardCache: builder.mutation<void, void>({
       query: () => ({
-        url: '/cache/invalidate',
+        url: '/api/dashboard/cache/invalidate',
         method: 'POST',
       }),
       invalidatesTags: ['UserData', 'Statistics', 'QuickAccess', 'Notifications', 'Communication'],

@@ -128,7 +128,10 @@ export class PerformanceReporter {
     });
 
     if (this.config.enableConsoleLogging) {
-      console.error(
+      // Use warn instead of error in mock mode to avoid noisy dev overlay
+      const isMockMode = process.env.NEXT_PUBLIC_ENABLE_MOCK_AUTH === 'true';
+      const logFn = isMockMode ? console.warn : console.error;
+      logFn(
         `[Performance] Threshold Violation - ${metric}: ${value} (threshold: ${threshold})`
       );
     }

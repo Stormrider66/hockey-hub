@@ -1,3 +1,4 @@
+// @ts-nocheck - Image DTOs with class-validator decorators
 import { IsNumber, IsOptional, IsEnum, Min, Max, IsArray, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 

@@ -9,6 +9,7 @@ import { statisticsApi } from '../api/statisticsApi';
 import { adminApi } from '../api/adminApi';
 import { paymentApi } from '../api/paymentApi';
 import { cacheAnalytics } from './cacheAnalytics';
+import { safeLocalStorage } from '@/utils/safeStorage';
 
 export interface WarmingEndpoint {
   name: string;
@@ -107,8 +108,7 @@ class CacheWarmingManager {
         priority: 'high',
         condition: () => {
           // Only warm if user is logged in
-          if (typeof localStorage === 'undefined') return false;
-          const token = localStorage.getItem('access_token');
+          const token = safeLocalStorage.getItem('access_token');
           console.log('[CacheWarming] Current User Profile condition:', { hasToken: !!token, token });
           return !!token;
         }
@@ -160,8 +160,7 @@ class CacheWarmingManager {
         priority: 'low',
         condition: () => {
           // Only for medical staff and coaches
-          if (typeof localStorage === 'undefined') return false;
-          const userRole = localStorage.getItem('userRole');
+          const userRole = safeLocalStorage.getItem('userRole');
           return ['medicalStaff', 'coach', 'physicalTrainer'].includes(userRole || '');
         }
       },
@@ -172,8 +171,7 @@ class CacheWarmingManager {
         priority: 'low',
         condition: () => {
           // Only for medical staff and coaches
-          if (typeof localStorage === 'undefined') return false;
-          const userRole = localStorage.getItem('userRole');
+          const userRole = safeLocalStorage.getItem('userRole');
           return ['medicalStaff', 'coach', 'physicalTrainer'].includes(userRole || '');
         }
       },
@@ -185,8 +183,7 @@ class CacheWarmingManager {
         priority: 'low',
         condition: () => {
           // Only for parents and admins
-          if (typeof localStorage === 'undefined') return false;
-          const userRole = localStorage.getItem('userRole');
+          const userRole = safeLocalStorage.getItem('userRole');
           return ['parent', 'admin', 'clubAdmin'].includes(userRole || '');
         }
       }

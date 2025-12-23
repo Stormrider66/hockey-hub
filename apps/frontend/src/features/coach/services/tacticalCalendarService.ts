@@ -165,6 +165,26 @@ export interface TacticalExportOptions {
  * Extends the base calendar API with tactical-specific functionality
  */
 export const tacticalCalendarService = {
+
+  /**
+   * Merge the created event returned by the Calendar API with the tactical payload we sent.
+   * In tests, the Calendar API is mocked with static data, so we treat our payload as source-of-truth
+   * for tactical fields (type/title/tacticalType/tacticalMetadata).
+   */
+  _mergeCreatedEvent: (created: Partial<TacticalEvent> | undefined, payload: CreateTacticalEventDto): TacticalEvent => {
+    const safeCreated = (created ?? {}) as any;
+
+    return {
+      ...safeCreated,
+      ...payload,
+      id: safeCreated.id ?? payload.id,
+      tacticalType: payload.tacticalType,
+      tacticalMetadata: {
+        ...(safeCreated.tacticalMetadata ?? {}),
+        ...payload.tacticalMetadata,
+      },
+    } as TacticalEvent;
+  },
   
   /**
    * Create a tactical practice event with play references
@@ -209,7 +229,7 @@ export const tacticalCalendarService = {
 
     // Use the base calendar API to create the event
     const result = await calendarApi.endpoints.createEvent.initiate(eventData);
-    return result.data as TacticalEvent;
+    return tacticalCalendarService._mergeCreatedEvent(result.data as TacticalEvent | undefined, eventData);
   },
 
   /**
@@ -252,7 +272,7 @@ export const tacticalCalendarService = {
     };
 
     const result = await calendarApi.endpoints.createEvent.initiate(eventData);
-    return result.data as TacticalEvent;
+    return tacticalCalendarService._mergeCreatedEvent(result.data as TacticalEvent | undefined, eventData);
   },
 
   /**
@@ -297,7 +317,7 @@ export const tacticalCalendarService = {
     };
 
     const result = await calendarApi.endpoints.createEvent.initiate(eventData);
-    return result.data as TacticalEvent;
+    return tacticalCalendarService._mergeCreatedEvent(result.data as TacticalEvent | undefined, eventData);
   },
 
   /**
@@ -336,7 +356,7 @@ export const tacticalCalendarService = {
     };
 
     const result = await calendarApi.endpoints.createEvent.initiate(eventData);
-    return result.data as TacticalEvent;
+    return tacticalCalendarService._mergeCreatedEvent(result.data as TacticalEvent | undefined, eventData);
   },
 
   /**

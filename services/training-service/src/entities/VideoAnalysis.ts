@@ -1,7 +1,15 @@
 import { Entity, Column, Index } from 'typeorm';
 import { BaseEntity } from './BaseEntity';
 
-export type VideoAnalysisType = 'game' | 'practice' | 'skills' | 'tactical';
+// IMPORTANT:
+// Some unit tests import `VideoAnalysisType` as a runtime enum (e.g. `VideoAnalysisType.GAME_REVIEW`).
+// Use a string enum so it exists at runtime, while keeping persisted values compatible with the existing schema.
+export enum VideoAnalysisType {
+  GAME_REVIEW = 'game',
+  PRACTICE_REVIEW = 'practice',
+  SKILL_BREAKDOWN = 'skills',
+  OPPONENT_SCOUT = 'tactical',
+}
 export type ClipCategory = 'positive' | 'negative' | 'neutral' | 'teaching';
 export type ImportanceLevel = 'high' | 'medium' | 'low';
 

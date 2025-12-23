@@ -468,7 +468,8 @@ describe('LoginPage', () => {
 
       // Should show error message
       await waitFor(() => {
-        expect(screen.getByTestId('error-text')).toHaveTextContent(/failed to login/i);
+        // The component surfaces the underlying network error message in this case
+        expect(screen.getByTestId('error-text')).toHaveTextContent(/network error|failed to login/i);
       });
     });
 

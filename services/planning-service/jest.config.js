@@ -17,6 +17,7 @@ module.exports = {
     // Map 'dist/*' imports explicitly to source first so they win over generic mappings
     '^@hockey-hub/shared-lib/dist/utils/Logger$': '<rootDir>/../../packages/shared-lib/src/utils/Logger.ts',
     '^@hockey-hub/shared-lib/dist/types/pagination$': '<rootDir>/../../packages/shared-lib/src/types/pagination.ts',
+    '^@hockey-hub/shared-lib/dist/entities/AuditableEntity$': '<rootDir>/../../packages/shared-lib/src/entities/AuditableEntity.ts',
     '^@hockey-hub/shared-lib/dist/(.*)$': '<rootDir>/../../packages/shared-lib/src/$1',
     // Base mappings
     '^@hockey-hub/shared-lib$': '<rootDir>/../../packages/shared-lib/src',

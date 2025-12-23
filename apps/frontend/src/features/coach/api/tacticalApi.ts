@@ -685,6 +685,3 @@ export class TacticalApiClient {
 
 // Global instance
 export const tacticalApiClient = new TacticalApiClient();
-
-// Export error types
-export { TacticalApiError, TacticalNetworkError };

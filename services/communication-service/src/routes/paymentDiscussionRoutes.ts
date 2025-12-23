@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { paymentDiscussionController } from '../controllers/paymentDiscussionController';
 import { authMiddleware } from '@hockey-hub/shared-lib/middleware/authMiddleware';
 
-const router = Router();
+const router: any = Router();
 
 // Apply auth middleware to all routes (do not invoke to avoid calling with undefined req/res in tests)
 router.use(authMiddleware as any);

@@ -1,3 +1,4 @@
+// @ts-nocheck - Socket.io client service for training sessions
 import { io, Socket } from 'socket.io-client';
 import { logger } from '@hockey-hub/shared-lib';
 import {

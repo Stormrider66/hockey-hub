@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ProvidersFixed } from "./providers-fixed";
-// Import debug tools as a client component
-import { DebugTools } from "@/components/debug/DebugTools";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -35,7 +33,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <ProvidersFixed>
           {children}
-          <DebugTools />
         </ProvidersFixed>
       </body>
     </html>

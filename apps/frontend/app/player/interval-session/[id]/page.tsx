@@ -1,22 +1,25 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
+import React, { use, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useGetWorkoutSessionByIdQuery } from '@/store/api/trainingApi';
 import ConditioningIntervalDisplay from '@/features/physical-trainer/components/ConditioningIntervalDisplay';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, AlertCircle } from 'lucide-react';
+import { ArrowLeft, AlertCircle } from '@/components/icons';
 import { Card, CardContent } from '@/components/ui/card';
 import type { WorkoutEquipmentType } from '@/features/physical-trainer/types/conditioning.types';
 
-export default function PlayerIntervalSessionPage() {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function PlayerIntervalSessionPage({ params }: PageProps) {
+  const { id: workoutId } = use(params);
   const router = useRouter();
-  const params = useParams();
-  const workoutId = params.id as string;
-  
+
   // Get the player ID from auth/session
   const playerId = "player-123"; // In production, get from auth context
-  
+
   const { data: workoutResp, isLoading, error } = useGetWorkoutSessionByIdQuery(workoutId);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const workout = workoutResp?.data as any;
