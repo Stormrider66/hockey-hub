@@ -26,7 +26,7 @@
     "typeorm": "^0.3.17",
     "joi": "^17.11.0",
     "redis": "^4.6.12",
-    "dotenv": "^16.3.1",
+    "dotenv": "^17.2.3",
     "socket.io-client": "^4.7.5",
     "@hockey-hub/monitoring": "workspace:*",
     "@hockey-hub/shared-lib": "workspace:*",
