@@ -55,7 +55,7 @@ jobs:
           args: --all-projects --severity-threshold=high
 
       - name: Upload dependency scan results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: dependency-scan-results
           path: |
